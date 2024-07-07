@@ -1,19 +1,19 @@
 use reqwest::Method;
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
-use crate::api_request_with_query_and_body;
+use crate::api_request;
 use crate::client::request::ApiRequest;
 use crate::client::plugin::LolApiPlugin;
 use crate::client::query::{HasQuery, IdQuery};
 use crate::client::query;
 
-api_request_with_query_and_body!(
+api_request!(
     LolApiPlugin::LolChampSelect,
     LolChampSelectPatchSessionAction,
     Method::PATCH,
     "/session/actions/{id}",
-    IdQuery,
-    LolChampSelectPatchSessionActionBody,
+    query:IdQuery,
+    body:LolChampSelectPatchSessionActionBody,
     Value
 );
 

@@ -20,9 +20,13 @@ pub trait ApiRequest {
     }
 }
 
+
+
+
 #[macro_export]
-macro_rules! api_request_no_params {
-    ($plugin:expr, $struct_name:ident, $method:expr, $url:expr,$return_type:ty) => {
+macro_rules! api_request {
+    // No params
+    ($plugin:expr, $struct_name:ident, $method:expr, $url:expr, $return_type:ty) => {
         pub struct $struct_name {}
 
         impl ApiRequest for $struct_name {
@@ -35,12 +39,9 @@ macro_rules! api_request_no_params {
             }
         }
     };
-}
 
-
-#[macro_export]
-macro_rules! api_request_with_query {
-    ($plugin:expr, $struct_name:ident, $method:expr, $url:expr,$query_type:ty ,$return_type:ty) => {
+    // With query
+    ($plugin:expr, $struct_name:ident, $method:expr, $url:expr, query: $query_type:ty, $return_type:ty) => {
         pub struct $struct_name {
             pub query: $query_type,
         }
@@ -59,13 +60,9 @@ macro_rules! api_request_with_query {
             }
         }
     };
-}
 
-
-
-#[macro_export]
-macro_rules! api_request_with_body {
-    ($plugin:expr, $struct_name:ident, $method:expr, $url:expr,$body_type:ty ,$return_type:ty) => {
+    // With body
+    ($plugin:expr, $struct_name:ident, $method:expr, $url:expr, body: $body_type:ty, $return_type:ty) => {
         pub struct $struct_name {
             pub body: $body_type,
         }
@@ -84,12 +81,9 @@ macro_rules! api_request_with_body {
             }
         }
     };
-}
 
-
-#[macro_export]
-macro_rules! api_request_with_query_and_body {
-    ($plugin:expr, $struct_name:ident, $method:expr, $url:expr,$query_type:ty,$body_type:ty ,$return_type:ty) => {
+    // With query and body
+    ($plugin:expr, $struct_name:ident, $method:expr, $url:expr, query: $query_type:ty, body: $body_type:ty, $return_type:ty) => {
         pub struct $struct_name {
             pub query: $query_type,
             pub body: $body_type,
@@ -110,7 +104,3 @@ macro_rules! api_request_with_query_and_body {
         }
     };
 }
-
-
-
-

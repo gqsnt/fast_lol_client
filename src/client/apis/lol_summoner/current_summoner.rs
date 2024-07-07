@@ -1,11 +1,11 @@
 use reqwest::Method;
 use serde::{Deserialize, Serialize};
-use crate::api_request_no_params;
+use crate::{api_request};
 use crate::client::request::ApiRequest;
 use crate::client::plugin::LolApiPlugin;
 
 
-api_request_no_params!(
+api_request!(
     LolApiPlugin::LolSummoner,
     LolSummonerGetCurrentSummoner,
     Method::GET,

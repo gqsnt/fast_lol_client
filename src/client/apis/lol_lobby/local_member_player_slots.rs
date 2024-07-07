@@ -1,16 +1,17 @@
 use reqwest::Method;
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
-use crate::api_request_with_body;
-use crate::client::request::ApiRequest;
+use crate::api_request;
+use crate::client::request::ApiRequest ;
 use crate::client::plugin::LolApiPlugin;
+use crate::client::query;
 
-api_request_with_body!(
+api_request!(
     LolApiPlugin::LolLobby,
     LolLobbyPutLocalMemberPlayerSlots,
     Method::PUT,
     "/lobby/members/localMember/player-slots",
-    LolLobbyPutLocalMemberPlayerSlotsBody,
+    body:LolLobbyPutLocalMemberPlayerSlotsBody,
     Value
 );
 
