@@ -10,7 +10,7 @@ use request::ApiRequest;
 use crate::client::client_type::ClientType;
 pub mod apis;
 mod client_type;
-mod plugins;
+mod plugin;
 pub mod request;
 mod query;
 

@@ -2,7 +2,7 @@ use reqwest::Method;
 use serde::{Deserialize, Serialize};
 use crate::api_request_no_params;
 use crate::client::request::ApiRequest;
-use crate::client::plugins::LolApiPlugin;
+use crate::client::plugin::LolApiPlugin;
 
 
 api_request_no_params!(

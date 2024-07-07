@@ -1,7 +1,7 @@
 use serde::de::DeserializeOwned;
 use serde::Serialize;
 use serde_json::Value;
-use crate::client::plugins::LolApiPlugin;
+use crate::client::plugin::LolApiPlugin;
 pub trait ApiRequest {
     const METHOD: reqwest::Method = reqwest::Method::GET;
     type ReturnType: DeserializeOwned + Serialize;
