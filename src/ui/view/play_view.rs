@@ -1,20 +1,15 @@
-
-
 use iced::Command;
-use iced::widget::{Column, Container, container, Row, text};
+use iced::widget::{Container, container, Row};
+
 use crate::ui::message::Message;
 use crate::ui::state::ConnectedState;
 use crate::ui::view::HasView;
-use crate::ui::view::nav_bar_view::nav_button;
-
 
 #[derive(Debug, Clone, Default)]
-pub struct PlayState {
-}
+pub struct PlayState {}
 
 #[derive(Debug, Clone, PartialEq)]
-pub enum PlayMessage {
-}
+pub enum PlayMessage {}
 
 pub struct PlayView {}
 

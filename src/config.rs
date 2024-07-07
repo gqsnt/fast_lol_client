@@ -1,6 +1,6 @@
 use std::fs;
+
 use serde::Deserialize;
-use crate::AppResult;
 
 #[derive(Deserialize)]
 pub struct Config {

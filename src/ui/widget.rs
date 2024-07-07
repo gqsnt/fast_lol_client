@@ -1,5 +1,4 @@
 use iced::{Background, Color, Gradient, Renderer, Theme};
-use iced::alignment::{Horizontal, Vertical};
 use iced::gradient::Linear;
 use iced::widget::{container, Container, text};
 use iced_box::icon::material::{Material, material_font};
@@ -59,18 +58,18 @@ impl CanScaleAlpha for Linear {
     }
 }
 
-pub struct IconBuilder{
-    icon:Material,
-    size:u16,
+pub struct IconBuilder {
+    icon: Material,
+    size: u16,
 }
 
-impl IconBuilder{
-    pub fn size(mut self, size:u16) -> Self{
+impl IconBuilder {
+    pub fn size(mut self, size: u16) -> Self {
         self.size = size;
         self
     }
 
-    pub fn build(self) -> Container<'static, Message, Theme, Renderer>{
+    pub fn build(self) -> Container<'static, Message, Theme, Renderer> {
         container(
             text(self.icon).font(material_font()).size(self.size)
         ).center_x().center_y()
@@ -78,10 +77,10 @@ impl IconBuilder{
 }
 
 
-pub fn icons_builder(icon:Material) -> IconBuilder{
-    IconBuilder{
+pub fn icons_builder(icon: Material) -> IconBuilder {
+    IconBuilder {
         icon,
-        size:DEFAULT_TEXT_SIZE,
+        size: DEFAULT_TEXT_SIZE,
     }
 }
 

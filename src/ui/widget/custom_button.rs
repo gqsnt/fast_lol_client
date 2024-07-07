@@ -1,23 +1,22 @@
-
-use iced::event::{self, Event};
 use iced::{overlay, Theme};
-use iced::theme::palette;
-use iced::touch;
 use iced::{
     Background, Border, Color, Element, Length, Padding,
-    Rectangle, Shadow, Size, Vector
+    Rectangle, Shadow, Size, Vector,
 };
-use iced::advanced::{Clipboard, layout, Layout, Shell, Widget};
 use iced::{advanced, mouse};
+use iced::advanced::{Clipboard, layout, Layout, Shell, Widget};
 use iced::advanced::widget::{Operation, tree, Tree};
-use crate::ui::widget::CanScaleAlpha;
+use iced::event::{self, Event};
+use iced::theme::palette;
+use iced::touch;
 
+use crate::ui::widget::CanScaleAlpha;
 
 #[allow(missing_debug_implementations)]
 pub struct CustomButton<'a, Message, Theme = iced::Theme, Renderer = iced::Renderer>
-    where
-        Renderer: iced::advanced::Renderer,
-        Theme: Catalog,
+where
+    Renderer: iced::advanced::Renderer,
+    Theme: Catalog,
 {
     content: Element<'a, Message, Theme, Renderer>,
     on_press: Option<Message>,
@@ -29,9 +28,9 @@ pub struct CustomButton<'a, Message, Theme = iced::Theme, Renderer = iced::Rende
 }
 
 impl<'a, Message, Theme, Renderer> CustomButton<'a, Message, Theme, Renderer>
-    where
-        Renderer: iced::advanced::Renderer,
-        Theme: Catalog,
+where
+    Renderer: iced::advanced::Renderer,
+    Theme: Catalog,
 {
     /// Creates a new [`CustomButton`] with the given content.
     pub fn new(
@@ -96,8 +95,8 @@ impl<'a, Message, Theme, Renderer> CustomButton<'a, Message, Theme, Renderer>
     /// Sets the style of the [`CustomButton`].
     #[must_use]
     pub fn style(mut self, style: impl Fn(&Theme, Status) -> Style + 'a) -> Self
-        where
-            Theme::Class<'a>: From<StyleFn<'a, Theme>>,
+    where
+        Theme::Class<'a>: From<StyleFn<'a, Theme>>,
     {
         self.class = (Box::new(style) as StyleFn<'a, Theme>).into();
         self
@@ -119,10 +118,10 @@ struct State {
 
 impl<'a, Message, Theme, Renderer> Widget<Message, Theme, Renderer>
 for CustomButton<'a, Message, Theme, Renderer>
-    where
-        Message: 'a + Clone,
-        Renderer: 'a + iced::advanced::Renderer,
-        Theme: Catalog,
+where
+    Message: 'a + Clone,
+    Renderer: 'a + iced::advanced::Renderer,
+    Theme: Catalog,
 {
     fn tag(&self) -> tree::Tag {
         tree::Tag::of::<State>()
@@ -353,10 +352,10 @@ for CustomButton<'a, Message, Theme, Renderer>
 
 impl<'a, Message, Theme, Renderer> From<CustomButton<'a, Message, Theme, Renderer>>
 for Element<'a, Message, Theme, Renderer>
-    where
-        Message: Clone + 'a,
-        Theme: Catalog + 'a,
-        Renderer: iced::advanced::Renderer + 'a,
+where
+    Message: Clone + 'a,
+    Theme: Catalog + 'a,
+    Renderer: iced::advanced::Renderer + 'a,
 {
     fn from(button: CustomButton<'a, Message, Theme, Renderer>) -> Self {
         Self::new(button)
@@ -448,9 +447,9 @@ impl Catalog for Theme {
 pub fn custom_button<'a, Message, Theme, Renderer>(
     content: impl Into<Element<'a, Message, Theme, Renderer>>,
 ) -> CustomButton<'a, Message, Theme, Renderer>
-    where
-        Theme: Catalog + 'a,
-        Renderer: iced::advanced::Renderer,
+where
+    Theme: Catalog + 'a,
+    Renderer: iced::advanced::Renderer,
 {
     CustomButton::new(content)
 }

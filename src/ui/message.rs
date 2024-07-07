@@ -1,8 +1,9 @@
 use iced_box::icon::LoadingResult;
+
 use crate::AppResult;
 use crate::ui::state::ConnectedState;
-use crate::ui::view::summoner_info_view::SummonerInfoMessage;
 use crate::ui::view::nav_bar_view::NavBarMessage;
+use crate::ui::view::summoner_info_view::SummonerInfoMessage;
 
 #[derive(Debug, Clone)]
 pub enum Message {
@@ -12,6 +13,9 @@ pub enum Message {
     NavBar(NavBarMessage),
     SummonerInfo(SummonerInfoMessage),
 }
+
+
+
 
 
 

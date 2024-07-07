@@ -3,24 +3,20 @@ use iced::{Command, Element, Theme};
 use iced::widget::{Column, Row};
 use iced::widget::container;
 use iced_box::icon::material::load_material_font;
-use crate::config::Config;
 
+use crate::config::Config;
 use crate::ui::message::Message;
 use crate::ui::state::{ConnectedState, init_connected_state};
-use crate::ui::view::summoner_info_view::{SummonerInfoState, SummonerInfoView};
 use crate::ui::view::HasView;
-use crate::ui::view::nav_bar_view::{NavBarMessage, NavBarState, NavBarView};
+use crate::ui::view::nav_bar_view::{NavBarMessage, NavBarView};
 use crate::ui::view::play_view::PlayView;
+use crate::ui::view::summoner_info_view::SummonerInfoView;
 use crate::ui::widget::custom_button;
 use crate::ui::widget::custom_button::custom_button;
 
-
-
-
 pub struct MainApp {
     connected_state: Option<ConnectedState>,
-    config:Config
-
+    config: Config,
 }
 
 
@@ -33,8 +29,8 @@ impl Application for MainApp {
 
     fn new(_flags: Self::Flags) -> (Self, Command<Message>) {
         (Self {
-            connected_state:None,
-            config:Config::new()
+            connected_state: None,
+            config: Config::new(),
         }, Command::batch(vec![
             load_material_font().map(Message::FontLoaded),
         ]))

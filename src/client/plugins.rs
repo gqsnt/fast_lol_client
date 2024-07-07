@@ -6,7 +6,7 @@ pub enum LolApiPlugin {
     LolGameFlow,
 }
 
-impl LolApiPlugin{
+impl LolApiPlugin {
     pub fn get_path(&self) -> &str {
         match self {
             Self::LolSummoner => "/lol-summoner/v1",

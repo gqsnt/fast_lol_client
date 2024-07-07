@@ -1,5 +1,6 @@
 use iced::Command;
 use iced::widget::{Column, Container, container, text};
+
 use crate::ui::message::Message;
 use crate::ui::state::ConnectedState;
 use crate::ui::view::HasView;
@@ -8,9 +9,9 @@ use crate::ui::view::HasView;
 pub struct SummonerInfoState {
     pub summoner_name: String,
     pub tag_line: String,
-    pub summoner_level:u64,
-    pub profile_icon_id:u64,
-    pub number_of_rolls:u64,
+    pub summoner_level: u64,
+    pub profile_icon_id: u64,
+    pub number_of_rolls: u64,
 
 }
 
@@ -31,8 +32,8 @@ impl HasView for SummonerInfoView {
             Command::none()
         }
     }
-     fn view(connected_sate: &ConnectedState) -> Container<'_, Message> {
-         let summoner_info = &connected_sate.summoner_info;
+    fn view(connected_sate: &ConnectedState) -> Container<'_, Message> {
+        let summoner_info = &connected_sate.summoner_info;
         container(
             Column::new()
                 .push(text("Connected").size(25))

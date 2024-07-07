@@ -1,14 +1,14 @@
 use iced::{Command, Length};
-use iced::widget::{Column, Container, container, text};
+use iced::widget::{Column, Container, container};
+
 use crate::ui::message::Message;
 use crate::ui::state::ConnectedState;
 use crate::ui::view::HasView;
 use crate::ui::widget::custom_button::{custom_button, CustomButton};
 
-
 #[derive(Debug, Clone, Default)]
 pub struct NavBarState {
-    pub state:NavBarMessage,
+    pub state: NavBarMessage,
 }
 
 #[derive(Debug, Clone, Default, PartialEq)]
@@ -31,8 +31,8 @@ impl HasView for NavBarView {
             Command::none()
         }
     }
-     fn view(connected_state: &ConnectedState) -> Container<'_, Message> {
-         let nav_bar_state = &connected_state.nav_bar;
+    fn view(connected_state: &ConnectedState) -> Container<'_, Message> {
+        let nav_bar_state = &connected_state.nav_bar;
         container(Column::new()
             .push(nav_button("Play", Self::Message::Play, nav_bar_state.state.clone()))
             .spacing(20)

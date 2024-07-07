@@ -1,24 +1,17 @@
 use reqwest::Method;
 use serde::{Deserialize, Serialize};
-use crate::client::apis::request::ApiRequest;
+use crate::api_request_no_params;
+use crate::client::request::ApiRequest;
 use crate::client::plugins::LolApiPlugin;
 
-pub struct LolSummonerGetCurrentSummoner{}
 
-
-
-
-impl ApiRequest for LolSummonerGetCurrentSummoner{
-    type ReturnType = SummonerInfo;
-    const PLUGIN: LolApiPlugin = LolApiPlugin::LolSummoner;
-
-    const METHOD: reqwest::Method = Method::GET;
-
-    fn get_path(&self) -> String {
-        "/current-summoner".to_string()
-    }
-}
-
+api_request_no_params!(
+    LolApiPlugin::LolSummoner,
+    LolSummonerGetCurrentSummoner,
+    Method::GET,
+    "/current-summoner",
+    SummonerInfo
+);
 
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]

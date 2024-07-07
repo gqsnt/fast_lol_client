@@ -1,18 +1,17 @@
+use std::path::PathBuf;
 use base64::Engine;
 use base64::prelude::BASE64_STANDARD;
 use reqwest::Client;
 use serde::de::DeserializeOwned;
 use serde::Serialize;
-use serde_json::Value;
-use crate::{AppError, AppResult};
-use crate::client::apis::lol_summoner::current_summoner::{LolSummonerGetCurrentSummoner, SummonerInfo};
 
-use crate::client::apis::request::{ApiRequest};
+use crate::{AppError, AppResult};
+use request::ApiRequest;
 use crate::client::client_type::ClientType;
-use crate::utils::save_json_to_file;
 pub mod apis;
 mod client_type;
 mod plugins;
+pub mod request;
 
 #[derive(Clone, Default, Debug)]
 pub struct LolClient {
@@ -58,25 +57,19 @@ impl LolClient {
     }
 
 
-
-    pub async fn execute< S:ApiRequest>(&self, request: S) -> AppResult<S::ReturnType> {
+    pub async fn execute<S: ApiRequest>(&self, request: S) -> AppResult<S::ReturnType> {
         let builder = self.client.request(S::METHOD, self.build_url(&request.build_url()));
         let response = if let Some(body) = request.get_body() {
             builder.json(&body)
-        }else{
+        } else {
             builder
         }.send().await?;
         Ok(response.json().await?)
     }
 
-
-    pub async fn get_game_flow_session(&self) -> AppResult<serde_json::Value> {
-        let url = self.build_url("/lol-gameflow/v1/session");
-        println!("game_flow_session:{:?}", url);
-        let response = self.client.get(url).send().await?;
-        let json = response.json().await?;
-        save_json_to_file("game_flow_session.json", &json);
-        println!("{:?}", json);
-        Ok(json)
+    pub async fn execute_and_save<S: ApiRequest>(&self, request: S, file_name: &str) -> AppResult<S::ReturnType> {
+        let response = self.execute(request).await?;
+       serde_json::to_writer_pretty(&std::fs::File::create(PathBuf::from("temp").join(format!("{}.json", file_name)))?, &response).unwrap();
+        Ok(response)
     }
 }

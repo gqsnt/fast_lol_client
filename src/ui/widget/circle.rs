@@ -21,8 +21,8 @@ pub fn circle(radius: f32, color: Color) -> Circle {
 }
 
 impl<Message, Theme, Renderer> Widget<Message, Theme, Renderer> for Circle
-    where
-        Renderer: renderer::Renderer,
+where
+    Renderer: renderer::Renderer,
 {
     fn size(&self) -> Size<Length> {
         Size {
@@ -64,8 +64,8 @@ impl<Message, Theme, Renderer> Widget<Message, Theme, Renderer> for Circle
 
 impl<'a, Message, Theme, Renderer> From<Circle>
 for Element<'a, Message, Theme, Renderer>
-    where
-        Renderer: renderer::Renderer,
+where
+    Renderer: renderer::Renderer,
 {
     fn from(circle: Circle) -> Self {
         Self::new(circle)

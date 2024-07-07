@@ -1,29 +1,20 @@
 use reqwest::Method;
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
-use crate::client::apis::request::ApiRequest;
+use crate::api_request_with_query_and_body;
+use crate::client::request::{ApiRequest, IdQuery,HasQuery};
 use crate::client::plugins::LolApiPlugin;
+use crate::client::request::format_string_with_query;
 
-pub struct LolChampSelectPatchSessionAction{
-    pub id: u32,
-    pub body: LolChampSelectPatchSessionActionBody,
-}
-
-
-
-impl ApiRequest for LolChampSelectPatchSessionAction{
-    type ReturnType = Value;
-
-    const PLUGIN: LolApiPlugin = LolApiPlugin::LolChampSelect;
-
-    const METHOD: reqwest::Method = Method::PATCH;
-    fn get_path(&self) -> String {
-        format!("/session/actions/{}",self.id)
-    }
-
-    fn get_body(&self) -> Option<Value>{ serde_json::to_value(&self.body).ok()}
-
-}
+api_request_with_query_and_body!(
+    LolApiPlugin::LolChampSelect,
+    LolChampSelectPatchSessionAction,
+    Method::PATCH,
+    "/session/actions/{id}",
+    IdQuery,
+    LolChampSelectPatchSessionActionBody,
+    Value
+);
 
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
