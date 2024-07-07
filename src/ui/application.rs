@@ -3,7 +3,6 @@ use iced::{Command, Element, Theme};
 use iced::widget::{Column, Row};
 use iced::widget::container;
 use iced_box::icon::material::load_material_font;
-use crate::client::LolClient;
 use crate::config::Config;
 
 use crate::ui::message::Message;

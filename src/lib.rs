@@ -1,15 +1,16 @@
-pub mod client;
-
 pub mod ui;
 pub mod config;
-
+pub mod client;
+pub mod utils;
 
 #[derive(Debug, Clone)]
 pub enum AppError {
     IoError(String),
     ReqwestError(String),
     RiotClientError(String),
+    ApiRequestError(String),
 }
+
 
 impl From<std::io::Error> for AppError {
     fn from(err: std::io::Error) -> Self {

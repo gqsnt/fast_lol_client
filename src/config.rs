@@ -13,3 +13,4 @@ impl Config {
         toml::from_str(&config_data).expect("Unable to parse config file")
     }
 }
+
