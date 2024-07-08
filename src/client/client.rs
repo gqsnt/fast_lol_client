@@ -1,22 +1,15 @@
 use std::path::PathBuf;
+
 use base64::Engine;
-use base64::prelude::BASE64_STANDARD;
+use base64::engine::general_purpose::STANDARD as BASE64_STANDARD;
 use iced::Command;
 use reqwest::Client;
-use serde::de::DeserializeOwned;
-use serde::Serialize;
-use serde_json::Value;
+
 use crate::{AppError, AppResult};
-use request::ApiRequest;
 use crate::client::client_type::ClientType;
+use crate::client::request::ApiRequest;
 use crate::ui::message::Message;
 use crate::ui::state::ConnectedState;
-
-pub mod apis;
-mod client_type;
-mod plugin;
-pub mod request;
-pub mod query;
 
 #[derive(Clone, Default, Debug)]
 pub struct LolClient {
@@ -24,7 +17,6 @@ pub struct LolClient {
     pub port: String,
     pub client_type: ClientType,
 }
-
 
 impl LolClient {
     pub fn new(riot_path: &str) -> AppResult<Self> {
@@ -74,7 +66,7 @@ impl LolClient {
 
     pub async fn execute_and_save<S: ApiRequest>(&self, request: S, file_name: &str) -> AppResult<S::ReturnType> {
         let response = self.execute(request).await?;
-       serde_json::to_writer_pretty(&std::fs::File::create(PathBuf::from("temp").join(format!("{}.json", file_name)))?, &response).unwrap();
+        serde_json::to_writer_pretty(&std::fs::File::create(PathBuf::from("temp").join(format!("{}.json", file_name)))?, &response).unwrap();
         Ok(response)
     }
 }

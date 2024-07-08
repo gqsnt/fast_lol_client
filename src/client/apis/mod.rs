@@ -1,5 +1,3 @@
-use serde::Serialize;
-
 pub mod lol_summoner;
 pub mod lol_chat;
 pub mod lol_game_flow;

@@ -1,8 +1,6 @@
 use crate::AppResult;
-use crate::client::apis::lol_champ_select::patch_session_action::{LolChampSelectPatchSessionAction, LolChampSelectPatchSessionActionBody};
 use crate::client::apis::lol_summoner::current_summoner::{LolSummonerGetCurrentSummoner, SummonerInfo};
-use crate::client::LolClient;
-use crate::client::query::query_id;
+use crate::client::client::LolClient;
 use crate::ui::view::nav_bar_view::NavBarState;
 use crate::ui::view::play_view::PlayState;
 use crate::ui::view::test_view::TestState;

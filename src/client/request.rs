@@ -1,9 +1,8 @@
-use std::collections::HashMap;
 use serde::de::DeserializeOwned;
-use serde::{Deserialize, Serialize};
+use serde::Serialize;
 use serde_json::Value;
+
 use crate::client::plugin::LolApiPlugin;
-use crate::client::query::IsQuery;
 
 pub trait ApiRequest {
     const METHOD: reqwest::Method = reqwest::Method::GET;

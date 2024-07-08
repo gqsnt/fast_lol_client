@@ -1,9 +1,10 @@
 use iced::Command;
-use iced::widget::{Column, Container, container, Row, scrollable};
+use iced::widget::{Column, Container, container, scrollable};
 use serde_json::Value;
+
 use crate::AppResult;
 use crate::client::apis::lol_game_flow::get_session::LolGameFlowGetSession;
-use crate::client::perform_request;
+use crate::client::client::perform_request;
 use crate::ui::message::Message;
 use crate::ui::state::ConnectedState;
 use crate::ui::view::HasView;
@@ -28,14 +29,14 @@ impl HasView for TestView {
 
     fn update(message: Self::Message, connected_state: &mut Option<ConnectedState>) -> Command<Message> {
         if let Some(connected_state) = connected_state {
-            match message{
+            match message {
                 TestMessage::SendRequest => {
-                    perform_request(connected_state, LolGameFlowGetSession::new(), |r|TestMessage::RequestResult(r).into())
+                    perform_request(connected_state, LolGameFlowGetSession::new(), |r| TestMessage::RequestResult(r).into())
                 }
                 TestMessage::RequestResult(r) => {
                     match r {
                         Ok(v) => {
-                            connected_state.test_state.result =serde_json::to_string_pretty(&v).unwrap();
+                            connected_state.test_state.result = serde_json::to_string_pretty(&v).unwrap();
                         }
                         Err(e) => {
                             connected_state.test_state.result = format!("Error: {}", e);

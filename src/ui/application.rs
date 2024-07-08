@@ -3,7 +3,7 @@ use iced::{Command, Element, Theme};
 use iced::widget::{Column, Row};
 use iced::widget::container;
 use iced_box::icon::material::load_material_font;
-use crate::client::perform_request;
+
 use crate::config::Config;
 use crate::ui::message::Message;
 use crate::ui::state::{ConnectedState, init_connected_state};
@@ -77,7 +77,7 @@ impl Application for MainApp {
                 )
                 .push(match connected_state.nav_bar.state {
                     NavBarMessage::Play => { PlayView::view(connected_state) }
-                    NavBarMessage::Test => {TestView::view(connected_state)}
+                    NavBarMessage::Test => { TestView::view(connected_state) }
                 }).width(Length::Fill).height(Length::Fill)
         } else {
             Row::new()
