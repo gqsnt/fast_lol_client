@@ -12,7 +12,8 @@ pub mod apis;
 mod client_type;
 mod plugin;
 pub mod request;
-mod url_parameters;
+pub mod query;
+pub mod api_data;
 
 #[derive(Clone, Default, Debug)]
 pub struct LolClient {
