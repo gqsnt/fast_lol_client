@@ -4,7 +4,7 @@ use serde_json::Value;
 use crate::api_request;
 use crate::client::request::ApiRequest ;
 use crate::client::plugin::LolApiPlugin;
-use crate::client::query;
+use crate::client::url_parameters;
 
 api_request!(
     LolApiPlugin::LolLobby,

@@ -3,16 +3,17 @@ use serde::{Deserialize, Serialize};
 use serde_json::Value;
 use crate::api_request;
 use crate::client::request::ApiRequest;
+use crate::client::url_parameters::UrlParameters;
 use crate::client::plugin::LolApiPlugin;
-use crate::client::query::{HasQuery, IdQuery};
-use crate::client::query;
+use crate::client::url_parameters::{Id};
+use crate::client::url_parameters;
 
 api_request!(
     LolApiPlugin::LolChampSelect,
     LolChampSelectPatchSessionAction,
     Method::PATCH,
     "/session/actions/{id}",
-    query:IdQuery,
+    query:Id,
     body:LolChampSelectPatchSessionActionBody,
     Value
 );

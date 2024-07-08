@@ -1,3 +1,4 @@
+use std::collections::HashMap;
 use serde::de::DeserializeOwned;
 use serde::Serialize;
 use serde_json::Value;
@@ -19,6 +20,7 @@ pub trait ApiRequest {
         format!("{}{}", Self::PLUGIN.get_path(), self.get_path())
     }
 }
+
 
 
 
@@ -52,11 +54,7 @@ macro_rules! api_request {
             const PLUGIN: LolApiPlugin = $plugin;
 
             fn get_path(&self) -> String {
-                query::format_string_with_query($url, &self.query.get_query())
-            }
-
-            fn get_body(&self) -> Option<Value> {
-                serde_json::to_value(&self.query).ok()
+                self.query.to_path_string($url.to_string())
             }
         }
     };
@@ -95,7 +93,7 @@ macro_rules! api_request {
             const PLUGIN: LolApiPlugin = $plugin;
 
             fn get_path(&self) -> String {
-                query::format_string_with_query($url, &self.query.get_query())
+                 self.query.to_path_string($url.to_string())
             }
 
             fn get_body(&self) -> Option<Value> {
