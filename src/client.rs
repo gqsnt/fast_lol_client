@@ -1,13 +1,17 @@
 use std::path::PathBuf;
 use base64::Engine;
 use base64::prelude::BASE64_STANDARD;
+use iced::Command;
 use reqwest::Client;
 use serde::de::DeserializeOwned;
 use serde::Serialize;
-
+use serde_json::Value;
 use crate::{AppError, AppResult};
 use request::ApiRequest;
 use crate::client::client_type::ClientType;
+use crate::ui::message::Message;
+use crate::ui::state::ConnectedState;
+
 pub mod apis;
 mod client_type;
 mod plugin;
@@ -73,4 +77,25 @@ impl LolClient {
        serde_json::to_writer_pretty(&std::fs::File::create(PathBuf::from("temp").join(format!("{}.json", file_name)))?, &response).unwrap();
         Ok(response)
     }
+}
+
+pub fn perform_request<R: ApiRequest + Send + 'static>(
+    connected_state: &mut ConnectedState,
+    request: R,
+    map_response: fn(AppResult<R::ReturnType>) -> Message,
+) -> Command<Message>
+{
+    let client = connected_state.client.clone();
+    Command::perform(async move { client.execute(request).await }, move |r| map_response(r).into())
+}
+
+pub fn perform_save_request<R: ApiRequest + Send + 'static>(
+    connected_state: &mut ConnectedState,
+    file_name: String,
+    request: R,
+    map_response: fn(AppResult<R::ReturnType>) -> Message,
+) -> Command<Message>
+{
+    let client = connected_state.client.clone();
+    Command::perform(async move { client.execute_and_save(request, file_name.as_str()).await }, move |r| map_response(r).into())
 }

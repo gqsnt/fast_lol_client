@@ -8,7 +8,7 @@ use crate::ui::view::HasView;
 #[derive(Debug, Clone, Default)]
 pub struct PlayState {}
 
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone)]
 pub enum PlayMessage {}
 
 pub struct PlayView {}

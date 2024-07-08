@@ -3,7 +3,7 @@ use iced::{Command, Element, Theme};
 use iced::widget::{Column, Row};
 use iced::widget::container;
 use iced_box::icon::material::load_material_font;
-
+use crate::client::perform_request;
 use crate::config::Config;
 use crate::ui::message::Message;
 use crate::ui::state::{ConnectedState, init_connected_state};
@@ -11,6 +11,7 @@ use crate::ui::view::HasView;
 use crate::ui::view::nav_bar_view::{NavBarMessage, NavBarView};
 use crate::ui::view::play_view::PlayView;
 use crate::ui::view::summoner_info_view::SummonerInfoView;
+use crate::ui::view::test_view::TestView;
 use crate::ui::widget::custom_button;
 use crate::ui::widget::custom_button::custom_button;
 
@@ -57,6 +58,9 @@ impl Application for MainApp {
                 }
                 Command::none()
             }
+            Message::NavBar(message) => NavBarView::update(message, &mut self.connected_state),
+            Message::Play(message) => PlayView::update(message, &mut self.connected_state),
+            Message::Test(message) => TestView::update(message, &mut self.connected_state),
             _ => { Command::none() }
         }
     }
@@ -73,6 +77,7 @@ impl Application for MainApp {
                 )
                 .push(match connected_state.nav_bar.state {
                     NavBarMessage::Play => { PlayView::view(connected_state) }
+                    NavBarMessage::Test => {TestView::view(connected_state)}
                 }).width(Length::Fill).height(Length::Fill)
         } else {
             Row::new()

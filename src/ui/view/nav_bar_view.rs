@@ -15,6 +15,7 @@ pub struct NavBarState {
 pub enum NavBarMessage {
     #[default]
     Play,
+    Test,
 }
 
 pub struct NavBarView {}
@@ -35,6 +36,7 @@ impl HasView for NavBarView {
         let nav_bar_state = &connected_state.nav_bar;
         container(Column::new()
             .push(nav_button("Play", Self::Message::Play, nav_bar_state.state.clone()))
+            .push(nav_button("Test", Self::Message::Test, nav_bar_state.state.clone()))
             .spacing(20)
         ).center_x()
             .center_y()
