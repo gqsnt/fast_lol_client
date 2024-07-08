@@ -13,7 +13,6 @@ mod client_type;
 mod plugin;
 pub mod request;
 pub mod query;
-pub mod api_data;
 
 #[derive(Clone, Default, Debug)]
 pub struct LolClient {

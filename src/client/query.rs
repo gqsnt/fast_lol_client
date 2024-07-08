@@ -26,3 +26,9 @@ impl IsQuery for Id {
     }
 }
 
+pub fn query_id(id: u32) -> Id {
+    Id {
+        id
+    }
+}
+
