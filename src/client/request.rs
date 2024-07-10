@@ -5,7 +5,9 @@ pub trait ApiRequest {
     type ReturnType: serde::de::DeserializeOwned+ Serialize;
     const PLUGIN: crate::client::plugin::LolApiPlugin;
     fn get_path(&self) -> String;
-    fn get_body(&self) -> Option<serde_json::Value>;
+    fn get_body(&self) -> Option<serde_json::Value> {
+        None
+    }
 
     fn get_url(&self) -> String {
         format!("{}{}", Self::PLUGIN.get_path(), self.get_path())
@@ -131,11 +133,6 @@ macro_rules! impl_api_plugin {
         }
     };
 
-    (@get_body
-    ) => {
-        fn get_body(&self) -> Option<serde_json::Value> {
-            None
-        }
-    };
+    (@get_body) => {};
 
 }
