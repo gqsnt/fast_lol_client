@@ -3,11 +3,10 @@
 #[macro_export]
 macro_rules! impl_api_plugin {
     (
-        $plugin_name:ident,
-        $plugin_helper_name:ident,
+        $plugin:ident,
         $(
             $endpoint:ident {
-                $method_name:ident,
+                $fn_name:ident,
                 $method:expr,
                 $url:expr =>
                 $return_type:ty,
@@ -16,33 +15,24 @@ macro_rules! impl_api_plugin {
             },
         )*
     ) => {
-        use crate::client::apis::is_api_request::IsApiRequest;
-        use crate::client::apis::API;
-        use crate::client::apis::plugin::LolApiPlugin;
+        use crate::client::api::is_api_request::IsApiRequest;
+        use crate::client::api::plugin::LolApiPlugin;
 
-        // Struct representing the plugin
-        pub struct $plugin_name;
 
-        impl API{
-            pub fn $plugin_helper_name() -> $plugin_name{$plugin_name}
-        }
 
-        impl $plugin_name {
 
-            $(
-                // Method implementation for each endpoint
-                impl_api_plugin!(@method_impl
-                    $method_name,
-                    $endpoint,
-                    $( $( $param_name: $param_type, )* )?
-                    $( body: $body_type, )?
-                );
-            )*
-        }
 
         $(
             // Struct representing each endpoint
             impl_api_plugin!(@endpoint_struct
+                $endpoint,
+                $( $( $param_name: $param_type, )* )?
+                $( body: $body_type, )?
+            );
+
+            // Helper function to create the endpoint struct
+            impl_api_plugin!(@helper_fn_impl
+                $fn_name,
                 $endpoint,
                 $( $( $param_name: $param_type, )* )?
                 $( body: $body_type, )?
@@ -53,7 +43,7 @@ macro_rules! impl_api_plugin {
             impl IsApiRequest for $endpoint {
                 const METHOD: reqwest::Method = $method;
                 type ReturnType = $return_type;
-                const PLUGIN: LolApiPlugin = LolApiPlugin::$plugin_name;
+                const PLUGIN: LolApiPlugin = LolApiPlugin::$plugin;
                 const ENDPOINT: &'static str = $url;
 
 
@@ -69,13 +59,13 @@ macro_rules! impl_api_plugin {
     };
 
 
-    // Helper rule to implement the method for the plugin
-    (@method_impl
-        $method_name:ident,
+    // Helper rule to implement the function for the plugin
+    (@helper_fn_impl
+        $fn_name:ident,
         $endpoint:ident,
         $($param_name:ident: $param_type:ty,)*
     ) => {
-        pub fn $method_name(self,$($param_name: $param_type),*) -> $endpoint {
+        pub fn $fn_name($($param_name: $param_type),*) -> $endpoint {
             $endpoint {
                 $($param_name),*
             }
@@ -83,14 +73,14 @@ macro_rules! impl_api_plugin {
     };
 
 
-    // Helper rule to implement the method with body for the plugin
-    (@method_impl
-        $method_name:ident,
+    // Helper rule to implement the function with body for the plugin
+    (@helper_fn_impl
+        $fn_name:ident,
         $endpoint:ident,
         $($param_name:ident: $param_type:ty,)*
         body: $body_type:ty,
     ) => {
-        pub fn $method_name(self,$($param_name: $param_type),*, body: $body_type) -> $endpoint {
+        pub fn $fn_name($($param_name: $param_type),*, body: $body_type) -> $endpoint {
             $endpoint {
                 $($param_name),*,
                 body,

@@ -3,9 +3,8 @@ use iced::widget::{Column, Container, container, scrollable};
 use serde_json::Value;
 
 use crate::AppResult;
-use crate::client::apis::API;
-use crate::client::apis::lol_game_flow::get_availability::LolGameFlowGetAvailabilityResponse;
-use crate::client::apis::lol_game_flow::LolGameFlow;
+
+use crate::client::api::lol_game_flow::get_availability::LolGameFlowGetAvailabilityResponse;
 use crate::client::client::{perform_request, perform_save_request};
 use crate::ui::message::Message;
 use crate::ui::state::ConnectedState;

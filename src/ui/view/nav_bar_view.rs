@@ -1,6 +1,6 @@
 use iced::{Command, Length};
 use iced::widget::{Column, Container, container};
-use crate::client::apis::lol_game_flow::get_phase::LolGameFlowPhase;
+use crate::client::api::lol_game_flow::get_phase::LolGameFlowPhase;
 use crate::ui::message::Message;
 use crate::ui::state::{ConnectedState};
 use crate::ui::view::HasView;

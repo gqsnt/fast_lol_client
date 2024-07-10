@@ -1,6 +1,7 @@
 use iced::Command;
 use iced::widget::{Column, Container, container, text};
-use crate::client::apis::lol_summoner::CurrentSummoner;
+use crate::client::api;
+use crate::client::api::lol_summoner::CurrentSummoner;
 use crate::ui::message::Message;
 use crate::ui::state::ConnectedState;
 use crate::ui::view::HasView;
@@ -24,12 +25,11 @@ impl HasView for ProfileView {
         }
     }
     fn view(connected_sate: &ConnectedState) -> Container<'_, Message> {
-        let summoner_info = &connected_sate.summoner_info;
         container(
             Column::new()
-                .push(text(format!("{} #{}", &summoner_info.display_name, &summoner_info.tag_line)))
-                .push(text(format!("Level: {}", &summoner_info.summoner_level)))
-                .push(text(format!("Rolls: {}", &summoner_info.reroll_points.number_of_rolls)))
+                .push(text(format!("{} #{}", &connected_sate.summoner_info.display_name, &connected_sate.summoner_info.tag_line)))
+                .push(text(format!("Level: {}", &connected_sate.summoner_info.summoner_level)))
+                .push(text(format!("Rolls: {}", &connected_sate.summoner_info.reroll_points.number_of_rolls)))
                 .spacing(10)
         )
             .center_y()

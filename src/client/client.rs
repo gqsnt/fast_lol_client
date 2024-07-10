@@ -7,11 +7,11 @@ use iced::futures::{SinkExt, StreamExt};
 use reqwest::Client;
 use reqwest::header::HeaderName;
 use crate::{AppError, AppResult};
-use crate::client::apis::{API};
-use crate::client::apis::lol_game_flow::get_availability::{LolGameFlowGetAvailabilityResponse, LolGameFlowGetAvailabilityState};
+use crate::client::api;
 use crate::client::client_type::ClientType;
-use crate::client::apis::is_api_request::IsApiRequest;
-use crate::client::apis::lol_game_flow::get_phase::LolGameFlowPhase;
+use crate::client::api::is_api_request::IsApiRequest;
+use crate::client::api::lol_game_flow::get_availability::LolGameFlowGetAvailabilityState;
+use crate::client::api::lol_game_flow::get_phase::LolGameFlowPhase;
 use crate::ui::message::Message;
 use crate::ui::state::{ConnectedState};
 
@@ -132,7 +132,7 @@ pub fn perform_game_flow_state_update(
             }
             match current_state{
                 None => {
-                    let state = client.execute(API::lol_game_flow().get_availability()).await?;
+                    let state = client.execute(api::lol_game_flow::get_availability()).await?;
                     if state.is_available && state.state != LolGameFlowGetAvailabilityState::EligibilityInfoMissing{
                          Ok(Some(LolGameFlowPhase::default()))
                     }else{
@@ -140,7 +140,7 @@ pub fn perform_game_flow_state_update(
                     }
                 }
                 Some(new_state) => {
-                    Ok(Some(client.execute(API::lol_game_flow().get_phase()).await?))
+                    Ok(Some(client.execute(api::lol_game_flow::get_phase()).await?))
                 }
             }
         },

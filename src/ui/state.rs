@@ -1,10 +1,8 @@
 use crate::AppResult;
-use crate::client::apis::API;
-use crate::client::apis::lol_game_flow::get_availability::LolGameFlowGetAvailabilityState;
-use crate::client::apis::lol_game_flow::get_phase::LolGameFlowPhase;
-use crate::client::apis::lol_game_flow::LolGameFlow;
-use crate::client::apis::lol_summoner::current_summoner::SummonerInfo;
-use crate::client::apis::lol_summoner::LolSummoner;
+use crate::client::api;
+use crate::client::api::lol_game_flow::get_availability::LolGameFlowGetAvailabilityState;
+use crate::client::api::lol_game_flow::get_phase::LolGameFlowPhase;
+use crate::client::api::lol_summoner::current_summoner::SummonerInfo;
 use crate::client::client::LolClient;
 use crate::ui::view::nav_bar_view::NavBarState;
 use crate::ui::view::play_view::PlayState;
@@ -26,7 +24,7 @@ pub struct ConnectedState {
 
 pub async fn init_connected_state(riot_path: String) -> AppResult<ConnectedState> {
     let client = LolClient::new(riot_path.as_str()).await?;
-    let summoner_info = client.execute(API::lol_summoner().get_current_summoner()).await?;
+    let summoner_info = client.execute(api::lol_summoner::get_current_summoner()).await?;
 
     Ok(ConnectedState {
         client,
