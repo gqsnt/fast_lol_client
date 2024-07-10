@@ -3,6 +3,7 @@ use iced::widget::{Column, Container, container, scrollable};
 use serde_json::Value;
 
 use crate::AppResult;
+use crate::client::apis::API;
 use crate::client::apis::lol_game_flow::get_availability::LolGameFlowGetAvailabilityResponse;
 use crate::client::apis::lol_game_flow::LolGameFlow;
 use crate::client::client::perform_request;
@@ -33,7 +34,7 @@ impl HasView for TestView {
         if let Some(connected_state) = connected_state {
             match message {
                 TestMessage::SendRequest => {
-                    perform_request(connected_state, LolGameFlow::get_availability(), |r| TestMessage::RequestResult(r).into())
+                    perform_request(connected_state, API::lol_game_flow().get_session(), |r| TestMessage::DefaultRequestResult(r).into())
                     //perform_request(connected_state, LolGameFlowGetAvailability::new(), |r| TestMessage::RequestResult(r).into())
                 }
                 TestMessage::RequestResult(r) => {

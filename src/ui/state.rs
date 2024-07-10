@@ -1,4 +1,5 @@
 use crate::AppResult;
+use crate::client::apis::API;
 use crate::client::apis::lol_game_flow::get_availability::LolGameFlowGetAvailabilityState;
 use crate::client::apis::lol_game_flow::LolGameFlow;
 use crate::client::apis::lol_summoner::current_summoner::SummonerInfo;
@@ -42,7 +43,7 @@ pub struct ConnectedState {
 
 pub async fn init_connected_state(riot_path: String) -> AppResult<ConnectedState> {
     let client = LolClient::new(riot_path.as_str()).await?;
-    let summoner_info = client.execute(LolSummoner::get_current_summoner()).await?;
+    let summoner_info = client.execute(API::lol_summoner().get_current_summoner()).await?;
 
     Ok(ConnectedState {
         client,

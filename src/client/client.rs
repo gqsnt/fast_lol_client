@@ -7,8 +7,8 @@ use iced::futures::{SinkExt, StreamExt};
 use reqwest::Client;
 use reqwest::header::HeaderName;
 use crate::{AppError, AppResult};
+use crate::client::apis::{API};
 use crate::client::apis::lol_game_flow::get_availability::LolGameFlowGetAvailabilityState;
-use crate::client::apis::lol_game_flow::{GetSession, LolGameFlow};
 use crate::client::client_type::ClientType;
 use crate::client::request::ApiRequest;
 use crate::ui::message::Message;
@@ -128,7 +128,7 @@ pub fn perform_state_update(
             if let Some(delay_ms) = delay_ms {
                 tokio::time::sleep(tokio::time::Duration::from_millis(delay_ms)).await;
             }
-            let state = client.execute(LolGameFlow::get_availability()).await?;
+            let state = client.execute(API::lol_game_flow().get_availability()).await?;
             Ok(match (state.state, state.is_available) {
                 (_, false)|  (LolGameFlowGetAvailabilityState::EligibilityInfoMissing, true) => {
                     ClientState::NotAvailable
@@ -137,7 +137,7 @@ pub fn perform_state_update(
                     ClientState::Available
                 }
                 (LolGameFlowGetAvailabilityState::InGameFlow, true) => {
-                    let game_flow = client.execute_and_save(LolGameFlow::get_session(), "game_flow_session").await?;
+                    let game_flow = client.execute_and_save(API::lol_game_flow().get_session(), "game_flow_session").await?;
 
                     ClientState::InGameFlow(ClientGameFlowState::default())
                 }
