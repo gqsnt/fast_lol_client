@@ -10,7 +10,7 @@ use crate::{AppError, AppResult};
 use crate::client::apis::{API};
 use crate::client::apis::lol_game_flow::get_availability::LolGameFlowGetAvailabilityState;
 use crate::client::client_type::ClientType;
-use crate::client::request::ApiRequest;
+use crate::client::apis::request::ApiRequest;
 use crate::ui::message::Message;
 use crate::ui::state::{ClientGameFlowState, ClientState, ConnectedState};
 
