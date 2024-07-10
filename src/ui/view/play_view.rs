@@ -2,7 +2,6 @@ use iced::Command;
 use iced::widget::{Container, container, Row};
 use serde_json::Value;
 
-use crate::client::api::lol_game_flow::get_availability::LolGameFlowGetAvailabilityResponse;
 use crate::ui::message::Message;
 use crate::ui::state::ConnectedState;
 use crate::ui::view::HasView;

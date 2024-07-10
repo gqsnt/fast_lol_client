@@ -1,9 +1,7 @@
-
-
 #[macro_export]
 macro_rules! impl_api_plugin {
     (
-        $plugin:ident,
+        $plugin:expr,
         $(
             $endpoint:ident {
                 $fn_name:ident,
@@ -15,12 +13,8 @@ macro_rules! impl_api_plugin {
             },
         )*
     ) => {
-        use crate::client::api::is_api_request::IsApiRequest;
-        use crate::client::api::plugin::LolApiPlugin;
-
-
-
-
+        use crate::client::apis::is_api_request::IsApiRequest;
+        use crate::client::apis::plugin::LolApiPlugin;
 
         $(
             // Struct representing each endpoint
@@ -43,7 +37,7 @@ macro_rules! impl_api_plugin {
             impl IsApiRequest for $endpoint {
                 const METHOD: reqwest::Method = $method;
                 type ReturnType = $return_type;
-                const PLUGIN: LolApiPlugin = LolApiPlugin::$plugin;
+                const PLUGIN: LolApiPlugin = $plugin;
                 const ENDPOINT: &'static str = $url;
 
 

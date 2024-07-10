@@ -2,7 +2,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Default, Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct LolGameFlowGetAvailabilityResponse {
+pub struct LolGameFlowGetAvailability {
     #[serde(rename = "isAvailable")]
     pub is_available: bool,
     pub state: LolGameFlowGetAvailabilityState,

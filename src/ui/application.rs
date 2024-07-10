@@ -3,7 +3,8 @@ use iced::{Command, Element, Theme};
 use iced::widget::{Column, Row};
 use iced::widget::container;
 use iced_box::icon::material::load_material_font;
-use crate::client::client::{perform_request, perform_request_with_delay, perform_game_flow_state_update};
+
+use crate::client::client::perform_game_flow_state_update;
 use crate::config::Config;
 use crate::ui::message::Message;
 use crate::ui::state::{ConnectedState, init_connected_state};
@@ -20,8 +21,6 @@ pub struct MainApp {
     connected_state: Option<ConnectedState>,
     config: Config,
 }
-
-
 
 
 impl Application for MainApp {
@@ -45,17 +44,16 @@ impl Application for MainApp {
     }
 
 
-
     fn update(&mut self, message: Message) -> Command<Message> {
         match message {
             Message::Connect => {
                 Command::perform(init_connected_state(self.config.riot_path.to_string()), Message::ConnectResult)
             }
             Message::ConnectResult(mut result) => {
-                if let Ok(connected_state) = &mut result{
+                if let Ok(connected_state) = &mut result {
                     self.connected_state = Some(connected_state.clone());
                     perform_game_flow_state_update(connected_state, None)
-                }else{
+                } else {
                     self.connected_state = None;
                     Command::none()
                 }
@@ -65,12 +63,12 @@ impl Application for MainApp {
                 Command::none()
             }
             Message::ClientStateUpdated(r) => {
-                if let Some( connected_state) = &mut self.connected_state {
+                if let Some(connected_state) = &mut self.connected_state {
                     if let Ok(client_state) = r {
                         connected_state.state = client_state;
                     }
                     perform_game_flow_state_update(connected_state, Some(500))
-                }else{
+                } else {
                     Command::none()
                 }
             }
@@ -92,10 +90,10 @@ impl Application for MainApp {
                     .spacing(30)
                 )
                 .push(match connected_state.nav_bar.state {
-                    NavBarMessage::Profile => { ProfileView::view(connected_state)}
+                    NavBarMessage::Profile => { ProfileView::view(connected_state) }
                     NavBarMessage::Play => { PlayView::view(connected_state) }
                     NavBarMessage::Test => { TestView::view(connected_state) }
-                    NavBarMessage::Chat => {ChatView::view(connected_state)}
+                    NavBarMessage::Chat => { ChatView::view(connected_state) }
                 }).width(Length::Fill).height(Length::Fill)
         } else {
             Row::new()

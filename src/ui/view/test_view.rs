@@ -3,9 +3,7 @@ use iced::widget::{Column, Container, container, scrollable};
 use serde_json::Value;
 
 use crate::AppResult;
-
-use crate::client::api::lol_game_flow::get_availability::LolGameFlowGetAvailabilityResponse;
-use crate::client::client::{perform_request, perform_save_request};
+use crate::client::apis::lol_game_flow::get_availability::LolGameFlowGetAvailability;
 use crate::ui::message::Message;
 use crate::ui::state::ConnectedState;
 use crate::ui::view::HasView;
@@ -20,7 +18,7 @@ pub struct TestState {
 pub enum TestMessage {
     SendRequest,
     DefaultRequestResult(AppResult<Value>),
-    RequestResult(AppResult<LolGameFlowGetAvailabilityResponse>),
+    RequestResult(AppResult<LolGameFlowGetAvailability>),
 }
 
 pub struct TestView {}

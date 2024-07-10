@@ -1,6 +1,7 @@
 use std::collections::HashMap;
+
 use serde::{Deserialize, Serialize};
-use serde_json::Value;
+
 #[derive(Serialize, Deserialize)]
 pub struct LolGameFlowGetSession {
     pub phase: String,
@@ -190,7 +191,7 @@ pub struct Map {
     pub platform_id: String,
     #[serde(rename = "platformName")]
     pub platform_name: String,
-    pub assets: HashMap<String,String>,
+    pub assets: HashMap<String, String>,
     #[serde(rename = "categorizedContentBundles")]
     pub categorized_content_bundles: serde_json::Value,
     pub properties: serde_json::Value,
