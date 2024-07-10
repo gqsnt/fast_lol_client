@@ -3,7 +3,10 @@ use iced::widget::{Column, Container, container, scrollable};
 use serde_json::Value;
 
 use crate::AppResult;
+use crate::client::apis;
 use crate::client::apis::lol_game_flow::get_availability::LolGameFlowGetAvailability;
+use crate::client::apis::lol_game_queues::get_queues::LolGameQueuesGetQueues;
+use crate::client::client::{perform_request, perform_save_request};
 use crate::ui::message::Message;
 use crate::ui::state::ConnectedState;
 use crate::ui::view::HasView;
@@ -19,6 +22,7 @@ pub enum TestMessage {
     SendRequest,
     DefaultRequestResult(AppResult<Value>),
     RequestResult(AppResult<LolGameFlowGetAvailability>),
+    RequestQueuesResult(AppResult<LolGameQueuesGetQueues>),
 }
 
 pub struct TestView {}
@@ -33,8 +37,7 @@ impl HasView for TestView {
                 TestMessage::SendRequest => {
                     //perform_save_request(connected_state,"game_flow_session", API::lol_game_flow().get_session(), |r| TestMessage::DefaultRequestResult(Ok(serde_json::to_value(r.unwrap()).unwrap())).into())
                     //perform_save_request(connected_state,"game_flow_session", API::lol_game_flow().get_phase(), |r| TestMessage::DefaultRequestResult(Ok(serde_json::to_value(r).unwrap())).into())
-                    //perform_request(connected_state, LolGameFlowGetAvailability::new(), |r| TestMessage::RequestResult(r).into())
-                    Command::none()
+                    perform_save_request(connected_state,"queues",apis::lol_game_queues::get_queues() ,|r| TestMessage::RequestQueuesResult(r).into())
                 }
                 TestMessage::RequestResult(r) => {
                     match r {
@@ -48,6 +51,17 @@ impl HasView for TestView {
                     Command::none()
                 }
                 TestMessage::DefaultRequestResult(r) => {
+                    match r {
+                        Ok(v) => {
+                            connected_state.test.result = serde_json::to_string_pretty(&v).unwrap();
+                        }
+                        Err(e) => {
+                            connected_state.test.result = format!("Error: {}", e);
+                        }
+                    }
+                    Command::none()
+                }
+                TestMessage::RequestQueuesResult(r) => {
                     match r {
                         Ok(v) => {
                             connected_state.test.result = serde_json::to_string_pretty(&v).unwrap();

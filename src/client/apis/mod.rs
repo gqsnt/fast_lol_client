@@ -8,6 +8,7 @@ pub mod is_api_request;
 
 mod plugin_macro;
 mod plugin;
+pub mod lol_game_queues;
 
 
 

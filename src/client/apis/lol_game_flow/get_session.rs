@@ -1,8 +1,7 @@
 use std::collections::HashMap;
-
 use serde::{Deserialize, Serialize};
-
-#[derive(Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Serialize, Deserialize, Clone,Debug, Default)]
 pub struct LolGameFlowGetSession {
     pub phase: String,
     #[serde(rename = "gameData")]
@@ -14,7 +13,7 @@ pub struct LolGameFlowGetSession {
     pub game_dodge: GameDodge,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone,Debug, Default)]
 pub struct GameData {
     #[serde(rename = "gameId")]
     pub game_id: i32,
@@ -34,7 +33,7 @@ pub struct GameData {
     pub spectators_allowed: bool,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone,Debug, Default)]
 pub struct Queue {
     pub id: i32,
     #[serde(rename = "mapId")]
@@ -90,7 +89,7 @@ pub struct Queue {
     pub removal_from_game_delay_minutes: i32,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone,Debug, Default)]
 pub struct GameTypeConfig {
     pub id: i32,
     pub name: String,
@@ -132,7 +131,7 @@ pub struct GameTypeConfig {
     pub ban_mode: String,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone,Debug, Default)]
 pub struct QueueRewards {
     #[serde(rename = "isIpEnabled")]
     pub is_ip_enabled: bool,
@@ -144,19 +143,19 @@ pub struct QueueRewards {
     pub party_size_ip_rewards: Vec<i32>,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone,Debug, Default)]
 pub struct Team {
     #[serde(flatten)]
     pub additional_props: serde_json::Value,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone,Debug, Default)]
 pub struct PlayerChampionSelection {
     #[serde(flatten)]
     pub additional_props: serde_json::Value,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone,Debug, Default)]
 pub struct GameClient {
     #[serde(rename = "serverIp")]
     pub server_ip: String,
@@ -170,7 +169,7 @@ pub struct GameClient {
     pub visible: bool,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone,Debug, Default)]
 pub struct Map {
     pub id: i32,
     pub name: String,
@@ -191,7 +190,7 @@ pub struct Map {
     pub platform_id: String,
     #[serde(rename = "platformName")]
     pub platform_name: String,
-    pub assets: HashMap<String, String>,
+    pub assets: HashMap<String,String>,
     #[serde(rename = "categorizedContentBundles")]
     pub categorized_content_bundles: serde_json::Value,
     pub properties: serde_json::Value,
@@ -201,18 +200,18 @@ pub struct Map {
     pub per_position_disallowed_summoner_spells: PerPositionSummonerSpells,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone,Debug, Default)]
 pub struct PerPositionSummonerSpells {
     #[serde(flatten)]
     pub spells: std::collections::HashMap<String, Spells>,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone,Debug, Default)]
 pub struct Spells {
     pub spells: Vec<i32>,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone,Debug, Default)]
 pub struct GameDodge {
     pub state: String,
     #[serde(rename = "dodgeIds")]

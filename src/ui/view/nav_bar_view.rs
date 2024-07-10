@@ -1,9 +1,8 @@
 use iced::{Command, Length};
 use iced::widget::{Column, Container, container};
-
 use crate::client::apis::lol_game_flow::get_phase::LolGameFlowPhase;
 use crate::ui::message::Message;
-use crate::ui::state::ConnectedState;
+use crate::ui::state::{ConnectedState};
 use crate::ui::view::HasView;
 use crate::ui::widget::custom_button;
 use crate::ui::widget::custom_button::{custom_button, CustomButton};
@@ -56,12 +55,12 @@ impl HasView for NavBarView {
                     },
                 )
                     .style(
-                        if let Some(game_flow_state) = &connected_state.state {
-                            match game_flow_state {
+                        if let Some(game_flow_state) = &connected_state.state{
+                            match game_flow_state{
                                 LolGameFlowPhase::None => custom_button::primary,
                                 _ => custom_button::success
                             }
-                        } else {
+                        }else{
                             custom_button::danger
                         }
                     )

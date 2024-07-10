@@ -5,6 +5,7 @@ pub enum LolApiPlugin {
     LolLobby,
     LolChampSelect,
     LolGameFlow,
+    LolGameQueues,
 }
 
 
@@ -16,6 +17,7 @@ impl LolApiPlugin {
             Self::LolLobby => "/lol-lobby/v1",
             Self::LolChampSelect => "/lol-champ-select/v1",
             Self::LolGameFlow => "/lol-gameflow/v1",
+            Self::LolGameQueues => "/lol-game-queues/v1",
         }
     }
 }
