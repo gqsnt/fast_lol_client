@@ -37,13 +37,11 @@ impl HasView for SummonerInfoView {
         container(
             Column::new()
                 .push(text("Connected").size(25))
-                .push(text("Username: ".to_string() + &summoner_info.display_name.clone()))
-                .push(text("Level: ".to_string() + &summoner_info.summoner_level.to_string()))
-                .push(text("Tag Line: ".to_string() + &summoner_info.tag_line.clone()))
-                .push(text("Rolls: ".to_string() + &summoner_info.reroll_points.number_of_rolls.to_string()))
+                .push(text(format!("{} #{}",&summoner_info.display_name,&summoner_info.tag_line)))
+                .push(text(format!("Level: {}", &summoner_info.summoner_level)))
+                .push(text(format!("Rolls: {}", &summoner_info.reroll_points.number_of_rolls)))
                 .spacing(10)
         )
-            .center_x()
             .center_y()
     }
 }

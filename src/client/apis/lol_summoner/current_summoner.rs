@@ -1,17 +1,8 @@
 use reqwest::Method;
 use serde::{Deserialize, Serialize};
 
-use crate::api_request;
 use crate::client::plugin::LolApiPlugin;
 use crate::client::request::ApiRequest;
-
-api_request!(
-    LolApiPlugin::LolSummoner,
-    LolSummonerGetCurrentSummoner,
-    Method::GET,
-    "/current-summoner",
-    SummonerInfo
-);
 
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]

@@ -1,9 +1,10 @@
 use iced::{Command, Length};
-use iced::widget::{Column, Container, container};
-
+use iced::widget::{button, Column, Container, container};
+use crate::client::apis::lol_game_flow::get_availability::LolGameFlowGetAvailabilityState;
 use crate::ui::message::Message;
 use crate::ui::state::ConnectedState;
 use crate::ui::view::HasView;
+use crate::ui::widget::custom_button;
 use crate::ui::widget::custom_button::{custom_button, CustomButton};
 
 #[derive(Debug, Clone, Default)]
@@ -34,8 +35,18 @@ impl HasView for NavBarView {
     }
     fn view(connected_state: &ConnectedState) -> Container<'_, Message> {
         let nav_bar_state = &connected_state.nav_bar;
+        let play_btn = nav_button("Play", Self::Message::Play, nav_bar_state.state.clone())
+            .style(if !connected_state.play_state.state.is_available {
+                custom_button::danger
+            }else{
+                match connected_state.play_state.state.state {
+                    LolGameFlowGetAvailabilityState::EligibilityInfoMissing => custom_button::danger,
+                    LolGameFlowGetAvailabilityState::Available => custom_button::primary,
+                    LolGameFlowGetAvailabilityState::InGameFlow => custom_button::success,
+                }
+            });
         container(Column::new()
-            .push(nav_button("Play", Self::Message::Play, nav_bar_state.state.clone()))
+            .push(play_btn)
             .push(nav_button("Test", Self::Message::Test, nav_bar_state.state.clone()))
             .spacing(20)
         ).center_x()

@@ -1,12 +1,16 @@
 use iced::Command;
 use iced::widget::{Container, container, Row};
-
+use serde_json::Value;
+use crate::client::apis::lol_game_flow::get_availability::{LolGameFlowGetAvailabilityResponse, LolGameFlowGetAvailabilityState};
 use crate::ui::message::Message;
 use crate::ui::state::ConnectedState;
 use crate::ui::view::HasView;
 
 #[derive(Debug, Clone, Default)]
-pub struct PlayState {}
+pub struct PlayState {
+    pub state:LolGameFlowGetAvailabilityResponse,
+    pub session: Option<Value>,
+}
 
 #[derive(Debug, Clone)]
 pub enum PlayMessage {}

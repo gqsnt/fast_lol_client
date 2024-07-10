@@ -1,10 +1,13 @@
-pub enum LolApiPlugin {
+
+
+pub(crate) enum LolApiPlugin {
     LolSummoner,
     LolChat,
     LolLobby,
     LolChampSelect,
     LolGameFlow,
 }
+
 
 impl LolApiPlugin {
     pub fn get_path(&self) -> &str {
@@ -17,3 +20,5 @@ impl LolApiPlugin {
         }
     }
 }
+
+

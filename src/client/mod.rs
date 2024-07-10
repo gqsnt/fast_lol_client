@@ -1,6 +1,6 @@
 pub mod apis;
 pub mod client_type;
-pub mod plugin;
+mod plugin;
 pub mod request;
-pub mod query;
+pub mod url_replacer;
 pub mod client;

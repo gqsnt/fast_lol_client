@@ -1,23 +1,13 @@
-use serde::de::DeserializeOwned;
 use serde::Serialize;
-use serde_json::Value;
-
-use crate::client::plugin::LolApiPlugin;
 
 pub trait ApiRequest {
-    const METHOD: reqwest::Method = reqwest::Method::GET;
-    type ReturnType: DeserializeOwned + Serialize;
-
-    const PLUGIN: LolApiPlugin;
-
-
+    const METHOD: reqwest::Method;
+    type ReturnType: serde::de::DeserializeOwned+ Serialize;
+    const PLUGIN: crate::client::plugin::LolApiPlugin;
     fn get_path(&self) -> String;
+    fn get_body(&self) -> Option<serde_json::Value>;
 
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn build_url(&self) -> String {
+    fn get_url(&self) -> String {
         format!("{}{}", Self::PLUGIN.get_path(), self.get_path())
     }
 }
@@ -26,115 +16,126 @@ pub trait ApiRequest {
 
 
 #[macro_export]
-macro_rules! api_request {
-    // No params
-    ($plugin:expr, $struct_name:ident, $method:expr, $url:expr, $return_type:ty) => {
-        pub struct $struct_name {}
+macro_rules! impl_api_plugin {
+    (
+        $plugin_name:ident,
+        $(
+            $endpoint:ident {
+                $method_name:ident,
+                $method:expr,
+                $url:expr =>
+                $return_type:ty,
+                $(route_params: {$($param_name:ident: $param_type:ty),* $(,)*},)?
+                $(body: $body_type:ty,)?
+            },
+        )*
+    ) => {
+        use crate::client::request::ApiRequest;
+        pub struct $plugin_name;
 
-        impl $struct_name{
-            pub fn new() -> Self {
-                Self{}
-            }
+        impl $plugin_name {
+            $(
+                impl_api_plugin!(@method_impl
+                    $method_name,
+                    $endpoint,
+                    $( $( $param_name: $param_type, )* )?
+                    $( body: $body_type, )?
+                );
+            )*
         }
 
-        impl ApiRequest for $struct_name {
-            const METHOD: reqwest::Method = $method;
-            type ReturnType = $return_type;
-            const PLUGIN: LolApiPlugin = $plugin;
+        $(
+            impl_api_plugin!(@endpoint_struct
+                $endpoint,
+                $( $( $param_name: $param_type, )* )?
+                $( body: $body_type, )?
+            );
 
-            fn get_path(&self) -> String {
-                $url.to_string()
-            }
-        }
-    };
 
-    // With query
-    ($plugin:expr, $struct_name:ident, $method:expr, $url:expr, query:$query_type:ty, $return_type:ty) => {
-        pub struct $struct_name {
-            pub query: $query_type,
-        }
 
-        impl $struct_name{
-            pub fn new(query: $query_type) -> Self {
-                Self{
-                    query
+            impl ApiRequest for $endpoint {
+                const METHOD: reqwest::Method = $method;
+                type ReturnType = $return_type;
+                const PLUGIN: crate::client::plugin::LolApiPlugin = crate::client::plugin::LolApiPlugin::$plugin_name;
+
+                fn get_path(&self) -> String {
+                    let mut path = $url.to_string();
+                    $(
+                        $(
+                            path = path.replace(&format!("{{{}}}", stringify!($param_name)), &self.$param_name.to_string());
+                        )*
+                    )?
+                    path
                 }
+
+                impl_api_plugin!(@get_body $(body: $body_type,)?);
+            }
+        )*
+    };
+
+
+ (@method_impl
+        $method_name:ident,
+        $endpoint:ident,
+        $($param_name:ident: $param_type:ty,)*
+    ) => {
+        pub fn $method_name($($param_name: $param_type),*) -> $endpoint {
+            $endpoint {
+                $($param_name),*
             }
         }
+    };
 
-        impl ApiRequest for $struct_name {
-            const METHOD: reqwest::Method = $method;
-            type ReturnType = $return_type;
-            const PLUGIN: LolApiPlugin = $plugin;
-
-            fn get_path(&self) -> String {
-                self.query.to_path_string($url.to_string()).unwrap()
-            }
-
-            fn get_body(&self) -> Option<Value> {
-                None
+    (@method_impl
+        $method_name:ident,
+        $endpoint:ident,
+        $($param_name:ident: $param_type:ty,)*
+        body: $body_type:ty,
+    ) => {
+        pub fn $method_name($($param_name: $param_type),*, body: $body_type) -> $endpoint {
+            $endpoint {
+                $($param_name),*,
+                body,
             }
         }
     };
 
 
-    // With body
-    ($plugin:expr, $struct_name:ident, $method:expr, $url:expr, body:$body_type:ty, $return_type:ty) => {
-        pub struct $struct_name {
-            pub body: $body_type,
-        }
-
-        impl $struct_name{
-            pub fn new(body: $body_type) -> Self {
-                Self{
-                    body
-                }
-            }
-        }
-
-        impl ApiRequest for $struct_name {
-            const METHOD: reqwest::Method = $method;
-            type ReturnType = $return_type;
-            const PLUGIN: LolApiPlugin = $plugin;
-
-            fn get_path(&self) -> String {
-                $url.to_string()
-            }
-
-            fn get_body(&self) -> Option<Value> {
-                Some(serde_json::to_value(&self.body).unwrap())
-            }
+    (@endpoint_struct
+        $endpoint:ident,
+        $($param_name:ident: $param_type:ty,)*
+    ) => {
+        pub struct $endpoint {
+            $($param_name: $param_type),*
         }
     };
 
-    // With query and body
-    ($plugin:expr, $struct_name:ident, $method:expr, $url:expr, query:$query_type:ty, body:$body_type:ty, $return_type:ty) => {
-        pub struct $struct_name {
-            pub query: $query_type,
-            pub body: $body_type,
-        }
-
-        impl $struct_name{
-            pub fn new(query: $query_type, body: $body_type) -> Self {
-                Self{
-                    query,
-                    body
-                }
-            }
-        }
-
-        impl ApiRequest for $struct_name {
-            const METHOD: reqwest::Method = $method;
-            type ReturnType = $return_type;
-            const PLUGIN: LolApiPlugin = $plugin;
-
-            fn get_path(&self) -> String {
-                self.query.to_path_string($url.to_string()).unwrap()
-            }
-
-            fn get_body(&self) -> Option<Value> {
-                Some(serde_json::to_value(&self.body).unwrap())
-            }
+    (@endpoint_struct
+        $endpoint:ident,
+        $($param_name:ident: $param_type:ty,)*
+        body: $body_type:ty,
+    ) => {
+        pub struct $endpoint {
+            $($param_name: $param_type),*,
+            body: $body_type,
         }
     };
+
+
+
+    (@get_body
+        body: $body_type:ty,
+    ) => {
+        fn get_body(&self) -> Option<serde_json::Value> {
+            Some(serde_json::to_value( & self.body).expect("Failed to serialize body"))
+        }
+    };
+
+    (@get_body
+    ) => {
+        fn get_body(&self) -> Option<serde_json::Value> {
+            None
+        }
+    };
+
 }

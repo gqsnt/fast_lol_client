@@ -1,9 +1,11 @@
 use iced::Command;
 use iced::widget::{Column, Container, container, scrollable};
+use serde::de::DeserializeOwned;
 use serde_json::Value;
 
 use crate::AppResult;
-use crate::client::apis::lol_game_flow::get_session::LolGameFlowGetSession;
+use crate::client::apis::lol_game_flow::get_availability::LolGameFlowGetAvailabilityResponse;
+use crate::client::apis::lol_game_flow::LolGameFlow;
 use crate::client::client::perform_request;
 use crate::ui::message::Message;
 use crate::ui::state::ConnectedState;
@@ -18,7 +20,8 @@ pub struct TestState {
 #[derive(Debug, Clone)]
 pub enum TestMessage {
     SendRequest,
-    RequestResult(AppResult<Value>),
+    DefaultRequestResult(AppResult<Value>),
+    RequestResult(AppResult<LolGameFlowGetAvailabilityResponse>),
 }
 
 pub struct TestView {}
@@ -31,9 +34,21 @@ impl HasView for TestView {
         if let Some(connected_state) = connected_state {
             match message {
                 TestMessage::SendRequest => {
-                    perform_request(connected_state, LolGameFlowGetSession::new(), |r| TestMessage::RequestResult(r).into())
+                    perform_request(connected_state, LolGameFlow::get_availability(), |r| TestMessage::RequestResult(r).into())
+                    //perform_request(connected_state, LolGameFlowGetAvailability::new(), |r| TestMessage::RequestResult(r).into())
                 }
                 TestMessage::RequestResult(r) => {
+                    match r {
+                        Ok(v) => {
+                            connected_state.test_state.result = serde_json::to_string_pretty(&v).unwrap();
+                        }
+                        Err(e) => {
+                            connected_state.test_state.result = format!("Error: {}", e);
+                        }
+                    }
+                    Command::none()
+                }
+                TestMessage::DefaultRequestResult(r) => {
                     match r {
                         Ok(v) => {
                             connected_state.test_state.result = serde_json::to_string_pretty(&v).unwrap();

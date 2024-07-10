@@ -101,7 +101,7 @@ impl Application for MainApp {
             .height(Length::Fill)
             .center_x()
             .center_y()
-            .padding(20)
+            .padding(10)
             .into()
     }
 
