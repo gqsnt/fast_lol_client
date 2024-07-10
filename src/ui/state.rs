@@ -1,7 +1,5 @@
 use crate::AppResult;
-use crate::client::apis::lol_champ_select::LolChampSelect;
-use crate::client::apis::lol_game_flow::LolGameFlow;
-use crate::client::apis::lol_summoner::current_summoner::{SummonerInfo};
+use crate::client::apis::lol_summoner::current_summoner::SummonerInfo;
 use crate::client::apis::lol_summoner::LolSummoner;
 use crate::client::client::LolClient;
 use crate::ui::view::nav_bar_view::NavBarState;

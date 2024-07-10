@@ -1,5 +1,6 @@
 use iced::{Command, Length};
-use iced::widget::{button, Column, Container, container};
+use iced::widget::{Column, Container, container};
+
 use crate::client::apis::lol_game_flow::get_availability::LolGameFlowGetAvailabilityState;
 use crate::ui::message::Message;
 use crate::ui::state::ConnectedState;
@@ -38,7 +39,7 @@ impl HasView for NavBarView {
         let play_btn = nav_button("Play", Self::Message::Play, nav_bar_state.state.clone())
             .style(if !connected_state.play_state.state.is_available {
                 custom_button::danger
-            }else{
+            } else {
                 match connected_state.play_state.state.state {
                     LolGameFlowGetAvailabilityState::EligibilityInfoMissing => custom_button::danger,
                     LolGameFlowGetAvailabilityState::Available => custom_button::primary,

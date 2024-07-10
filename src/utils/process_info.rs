@@ -1,6 +1,3 @@
-use std::alloc::System;
-use crate::AppError;
-
 #[cfg(target_os = "windows")]
 const TARGET_PROCESS: &str = "LeagueClientUx.exe";
 #[cfg(target_os = "linux")]

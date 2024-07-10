@@ -1,6 +1,5 @@
 use iced::Command;
 use iced::widget::{Column, Container, container, scrollable};
-use serde::de::DeserializeOwned;
 use serde_json::Value;
 
 use crate::AppResult;

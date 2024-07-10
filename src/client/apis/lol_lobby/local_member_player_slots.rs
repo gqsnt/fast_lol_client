@@ -1,11 +1,4 @@
-use reqwest::Method;
 use serde::{Deserialize, Serialize};
-use serde_json::Value;
-
-use crate::client::plugin::LolApiPlugin;
-use crate::client::request::ApiRequest;
-
-
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]

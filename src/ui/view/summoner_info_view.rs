@@ -37,7 +37,7 @@ impl HasView for SummonerInfoView {
         container(
             Column::new()
                 .push(text("Connected").size(25))
-                .push(text(format!("{} #{}",&summoner_info.display_name,&summoner_info.tag_line)))
+                .push(text(format!("{} #{}", &summoner_info.display_name, &summoner_info.tag_line)))
                 .push(text(format!("Level: {}", &summoner_info.summoner_level)))
                 .push(text(format!("Rolls: {}", &summoner_info.reroll_points.number_of_rolls)))
                 .spacing(10)

@@ -1,17 +1,11 @@
-use std::path::{Path, PathBuf};
-use std::rc::Rc;
-use std::sync::Arc;
+use std::path::PathBuf;
+
 use base64::Engine;
 use base64::engine::general_purpose::STANDARD as BASE64_STANDARD;
 use iced::Command;
 use iced::futures::{SinkExt, StreamExt};
 use reqwest::Client;
-use tokio::sync::Mutex;
-use tokio_tungstenite::Connector;
-use tokio_tungstenite::Connector::NativeTls;
-use tungstenite::{handshake::client::Request, protocol::WebSocketConfig};
-use tungstenite::client::IntoClientRequest;
-use tungstenite::http::HeaderValue;
+
 use crate::{AppError, AppResult};
 use crate::client::client_type::ClientType;
 use crate::client::request::ApiRequest;
@@ -48,14 +42,25 @@ impl LolClient {
     }
 
 
+
     pub async fn execute<S: ApiRequest>(&self, request: S) -> AppResult<S::ReturnType> {
         let builder = self.client.request(S::METHOD, self.build_url(&request.get_url()));
         let response = if let Some(body) = request.get_body() {
             builder.json(&body)
         } else {
             builder
-        }.send().await?;
-        Ok(response.json().await?)
+        }.send().await;
+
+        match response {
+            Ok(resp) => {
+                if resp.status().is_success() {
+                    Ok(resp.json().await?)
+                } else {
+                    Err(AppError::ApiRequestError(format!("API request failed with status: {}", resp.status())))
+                }
+            },
+            Err(err) => Err(AppError::ReqwestError(format!("Request error: {}", err))),
+        }
     }
 
     pub async fn execute_and_save<S: ApiRequest>(&self, request: S, file_name: &str) -> AppResult<S::ReturnType> {

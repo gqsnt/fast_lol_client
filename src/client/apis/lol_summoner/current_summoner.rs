@@ -1,9 +1,4 @@
-use reqwest::Method;
 use serde::{Deserialize, Serialize};
-
-use crate::client::plugin::LolApiPlugin;
-use crate::client::request::ApiRequest;
-
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct SummonerInfo {

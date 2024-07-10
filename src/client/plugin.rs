@@ -1,6 +1,5 @@
-
-
-pub(crate) enum LolApiPlugin {
+#[derive(Debug, Clone, Copy, PartialEq)]
+pub enum LolApiPlugin {
     LolSummoner,
     LolChat,
     LolLobby,
