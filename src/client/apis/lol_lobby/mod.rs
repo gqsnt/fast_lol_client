@@ -1,7 +1,7 @@
 use serde_json::Value;
 
 use crate::client::apis::lol_lobby::local_member_player_slots::LolLobbyPutLocalMemberPlayerSlotsBody;
-use crate::impl_api_plugin;
+use crate::client::request::impl_api_plugin;
 
 pub mod local_member_player_slots;
 

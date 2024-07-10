@@ -2,7 +2,7 @@ use serde::Serialize;
 
 pub trait ApiRequest {
     const METHOD: reqwest::Method;
-    type ReturnType: serde::de::DeserializeOwned+ Serialize;
+    type ReturnType: serde::de::DeserializeOwned + Serialize;
     const PLUGIN: crate::client::plugin::LolApiPlugin;
     fn get_path(&self) -> String;
     fn get_body(&self) -> Option<serde_json::Value> {
@@ -16,8 +16,6 @@ pub trait ApiRequest {
 
 
 
-
-#[macro_export]
 macro_rules! impl_api_plugin {
     (
         $plugin_name:ident,
@@ -136,3 +134,5 @@ macro_rules! impl_api_plugin {
     (@get_body) => {};
 
 }
+pub use impl_api_plugin;
+

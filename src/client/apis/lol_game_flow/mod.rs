@@ -1,5 +1,5 @@
 use serde_json::Value;
-use crate::{impl_api_plugin};
+use crate::client::request::impl_api_plugin;
 use crate::client::apis::lol_champ_select::patch_session_action::LolChampSelectPatchSessionActionBody;
 use crate::client::apis::lol_game_flow::get_availability::LolGameFlowGetAvailabilityResponse;
 

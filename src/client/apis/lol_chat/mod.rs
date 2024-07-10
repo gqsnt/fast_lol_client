@@ -1,6 +1,6 @@
 use reqwest::Method;
 use serde_json::Value;
-use crate::impl_api_plugin;
+use crate::client::request::impl_api_plugin;
 
 pub mod me;
 
