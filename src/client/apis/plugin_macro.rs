@@ -16,7 +16,7 @@ macro_rules! impl_api_plugin {
             },
         )*
     ) => {
-        use crate::client::apis::request::ApiRequest;
+        use crate::client::apis::is_api_request::IsApiRequest;
         use crate::client::apis::API;
         use crate::client::apis::plugin::LolApiPlugin;
 
@@ -50,7 +50,7 @@ macro_rules! impl_api_plugin {
 
 
             // Implementing the ApiRequest trait for each endpoint
-            impl ApiRequest for $endpoint {
+            impl IsApiRequest for $endpoint {
                 const METHOD: reqwest::Method = $method;
                 type ReturnType = $return_type;
                 const PLUGIN: LolApiPlugin = LolApiPlugin::$plugin_name;

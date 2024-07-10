@@ -4,10 +4,10 @@ use iced::widget::{Column, Row};
 use iced::widget::container;
 use iced_box::icon::material::load_material_font;
 use crate::client::apis::lol_game_flow::LolGameFlow;
-use crate::client::client::{perform_request, perform_request_with_delay, perform_state_update};
+use crate::client::client::{perform_request, perform_request_with_delay, perform_game_flow_state_update};
 use crate::config::Config;
 use crate::ui::message::Message;
-use crate::ui::state::{ClientState, ConnectedState, init_connected_state};
+use crate::ui::state::{ConnectedState, init_connected_state};
 use crate::ui::view::chat_view::ChatView;
 use crate::ui::view::HasView;
 use crate::ui::view::nav_bar_view::{NavBarMessage, NavBarView};
@@ -55,8 +55,9 @@ impl Application for MainApp {
             Message::ConnectResult(mut result) => {
                 if let Ok(connected_state) = &mut result{
                     self.connected_state = Some(connected_state.clone());
-                    perform_state_update(connected_state, None)
+                    perform_game_flow_state_update(connected_state, None)
                 }else{
+                    self.connected_state = None;
                     Command::none()
                 }
             }
@@ -68,13 +69,11 @@ impl Application for MainApp {
                 if let Some( connected_state) = &mut self.connected_state {
                     if let Ok(client_state) = r {
                         connected_state.state = client_state;
-                        if connected_state.state != ClientState::NotAvailable{
-                            return Command::none();
-                        }
                     }
-                    return perform_state_update(connected_state, Some(1000));
+                    perform_game_flow_state_update(connected_state, Some(500))
+                }else{
+                    Command::none()
                 }
-                Command::none()
             }
             Message::NavBar(message) => NavBarView::update(message, &mut self.connected_state),
             Message::Play(message) => PlayView::update(message, &mut self.connected_state),

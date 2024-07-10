@@ -1,8 +1,8 @@
 use iced::{Command, Length};
 use iced::widget::{Column, Container, container};
-
+use crate::client::apis::lol_game_flow::get_phase::LolGameFlowPhase;
 use crate::ui::message::Message;
-use crate::ui::state::{ClientState, ConnectedState};
+use crate::ui::state::{ConnectedState};
 use crate::ui::view::HasView;
 use crate::ui::widget::custom_button;
 use crate::ui::widget::custom_button::{custom_button, CustomButton};
@@ -30,7 +30,7 @@ impl HasView for NavBarView {
     fn update(message: Self::Message, connected_state: &mut Option<ConnectedState>) -> Command<Message> {
         if let Some(connected_state) = connected_state {
             if message == NavBarMessage::Play {
-                if connected_state.state != ClientState::NotAvailable {
+                if connected_state.state.is_some() {
                     connected_state.nav_bar.state = message;
                 }
             } else {
@@ -48,23 +48,22 @@ impl HasView for NavBarView {
             .push(
                 nav_button(
                     "Play",
-                    if connected_state.state == ClientState::NotAvailable || connected_state.nav_bar.state.clone() == NavBarMessage::Play {
+                    if connected_state.state.is_none() || connected_state.nav_bar.state.clone() == NavBarMessage::Play {
                         None
                     } else {
                         Some(Message::NavBar(NavBarMessage::Play))
                     },
                 )
-                    .style(match connected_state.state {
-                        ClientState::NotAvailable => {
+                    .style(
+                        if let Some(game_flow_state) = &connected_state.state{
+                            match game_flow_state{
+                                LolGameFlowPhase::None => custom_button::primary,
+                                _ => custom_button::success
+                            }
+                        }else{
                             custom_button::danger
                         }
-                        ClientState::Available => {
-                            custom_button::primary
-                        }
-                        ClientState::InGameFlow(_) => {
-                            custom_button::success
-                        }
-                    })
+                    )
             )
             .push(nav_button("Chat", get_message_if_not_already(NavBarMessage::Chat, nav_bar_state.state.clone()))
                 .style(custom_button::primary))

@@ -1,6 +1,6 @@
 use serde::Serialize;
 
-pub trait ApiRequest {
+pub trait IsApiRequest {
     const METHOD: reqwest::Method;
     type ReturnType: serde::de::DeserializeOwned + Serialize;
     const PLUGIN: crate::client::apis::plugin::LolApiPlugin;

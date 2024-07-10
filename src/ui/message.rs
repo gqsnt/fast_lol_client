@@ -3,7 +3,8 @@ use serde::de::DeserializeOwned;
 use serde_json::Value;
 use crate::AppResult;
 use crate::client::apis::lol_game_flow::get_availability::LolGameFlowGetAvailabilityResponse;
-use crate::ui::state::{ClientState, ConnectedState};
+use crate::client::apis::lol_game_flow::get_phase::LolGameFlowPhase;
+use crate::ui::state::{ConnectedState};
 use crate::ui::view::chat_view::ChatMessage;
 use crate::ui::view::nav_bar_view::NavBarMessage;
 use crate::ui::view::play_view::PlayMessage;
@@ -16,7 +17,7 @@ pub enum Message {
     Connect,
     ConnectResult(AppResult<ConnectedState>),
     Disconnected,
-    ClientStateUpdated(AppResult<ClientState>),
+    ClientStateUpdated(AppResult<Option<LolGameFlowPhase>>),
     NavBar(NavBarMessage),
     SummonerInfo(ProfileMessage),
     Test(TestMessage),

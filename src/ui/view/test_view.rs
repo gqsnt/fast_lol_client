@@ -6,7 +6,7 @@ use crate::AppResult;
 use crate::client::apis::API;
 use crate::client::apis::lol_game_flow::get_availability::LolGameFlowGetAvailabilityResponse;
 use crate::client::apis::lol_game_flow::LolGameFlow;
-use crate::client::client::perform_request;
+use crate::client::client::{perform_request, perform_save_request};
 use crate::ui::message::Message;
 use crate::ui::state::ConnectedState;
 use crate::ui::view::HasView;
@@ -34,8 +34,10 @@ impl HasView for TestView {
         if let Some(connected_state) = connected_state {
             match message {
                 TestMessage::SendRequest => {
-                    perform_request(connected_state, API::lol_game_flow().get_session(), |r| TestMessage::DefaultRequestResult(r).into())
+                    //perform_save_request(connected_state,"game_flow_session", API::lol_game_flow().get_session(), |r| TestMessage::DefaultRequestResult(Ok(serde_json::to_value(r.unwrap()).unwrap())).into())
+                    //perform_save_request(connected_state,"game_flow_session", API::lol_game_flow().get_phase(), |r| TestMessage::DefaultRequestResult(Ok(serde_json::to_value(r).unwrap())).into())
                     //perform_request(connected_state, LolGameFlowGetAvailability::new(), |r| TestMessage::RequestResult(r).into())
+                    Command::none()
                 }
                 TestMessage::RequestResult(r) => {
                     match r {

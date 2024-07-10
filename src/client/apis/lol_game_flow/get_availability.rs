@@ -9,7 +9,7 @@ pub struct LolGameFlowGetAvailabilityResponse {
 }
 
 
-#[derive(Debug, Clone, Serialize, Deserialize, Default)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq)]
 pub enum LolGameFlowGetAvailabilityState {
     #[default]
     EligibilityInfoMissing,
