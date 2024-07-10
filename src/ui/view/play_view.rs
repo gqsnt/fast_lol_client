@@ -9,7 +9,6 @@ use crate::ui::view::HasView;
 
 #[derive(Debug, Clone, Default)]
 pub struct PlayState {
-    pub state: LolGameFlowGetAvailabilityResponse,
     pub session: Option<Value>,
 }
 

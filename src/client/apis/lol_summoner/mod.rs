@@ -7,6 +7,6 @@ pub mod current_summoner;
 impl_api_plugin!(
     LolSummoner,
     CurrentSummoner{
-         get_current_summoner,reqwest::Method::GET,"/current-summoner" => SummonerInfo,
+        get_current_summoner,reqwest::Method::GET,"/current-summoner" => SummonerInfo,
     },
 );

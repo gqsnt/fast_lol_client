@@ -39,10 +39,10 @@ impl HasView for TestView {
                 TestMessage::RequestResult(r) => {
                     match r {
                         Ok(v) => {
-                            connected_state.test_state.result = serde_json::to_string_pretty(&v).unwrap();
+                            connected_state.test.result = serde_json::to_string_pretty(&v).unwrap();
                         }
                         Err(e) => {
-                            connected_state.test_state.result = format!("Error: {}", e);
+                            connected_state.test.result = format!("Error: {}", e);
                         }
                     }
                     Command::none()
@@ -50,10 +50,10 @@ impl HasView for TestView {
                 TestMessage::DefaultRequestResult(r) => {
                     match r {
                         Ok(v) => {
-                            connected_state.test_state.result = serde_json::to_string_pretty(&v).unwrap();
+                            connected_state.test.result = serde_json::to_string_pretty(&v).unwrap();
                         }
                         Err(e) => {
-                            connected_state.test_state.result = format!("Error: {}", e);
+                            connected_state.test.result = format!("Error: {}", e);
                         }
                     }
                     Command::none()
@@ -69,7 +69,7 @@ impl HasView for TestView {
             .push(custom_button("Send Request")
                 .on_press(TestMessage::SendRequest.into())
             )
-            .push(scrollable(iced::widget::Text::new(&connected_state.test_state.result)))
+            .push(scrollable(iced::widget::Text::new(&connected_state.test.result)))
         ).center_x()
             .center_y()
     }
