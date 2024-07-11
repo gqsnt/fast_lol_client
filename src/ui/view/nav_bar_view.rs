@@ -1,6 +1,7 @@
 use iced::{Command, Length};
 use iced::widget::{Column, Container, container};
 use crate::client::apis::lol_game_flow::get_phase::LolGameFlowPhase;
+use crate::ui::application::AppState;
 use crate::ui::message::Message;
 use crate::ui::state::{ConnectedState};
 use crate::ui::view::HasView;
@@ -27,19 +28,11 @@ impl HasView for NavBarView {
     type State = NavBarState;
     type Message = NavBarMessage;
 
-    fn update(message: Self::Message, connected_state: &mut Option<ConnectedState>) -> Command<Message> {
-        if let Some(connected_state) = connected_state {
-            if message == NavBarMessage::Play {
-                if connected_state.state.is_some() {
-                    connected_state.nav_bar.state = message;
-                }
-            } else {
-                connected_state.nav_bar.state = message;
-            }
-            Command::none()
-        } else {
-            Command::none()
+    fn update(message: Self::Message, state: &mut AppState) -> Command<Message> {
+        if let AppState::Connected(connected_state) = state{
+            connected_state.nav_bar.state = message;
         }
+        Command::none()
     }
     fn view(connected_state: &ConnectedState) -> Container<'_, Message> {
         let nav_bar_state = &connected_state.nav_bar;
@@ -48,20 +41,19 @@ impl HasView for NavBarView {
             .push(
                 nav_button(
                     "Play",
-                    if connected_state.state.is_none() || connected_state.nav_bar.state.clone() == NavBarMessage::Play {
-                        None
-                    } else {
-                        Some(Message::NavBar(NavBarMessage::Play))
-                    },
+                    get_message_if_not_already(NavBarMessage::Play, nav_bar_state.state.clone())
                 )
                     .style(
-                        if let Some(game_flow_state) = &connected_state.state{
-                            match game_flow_state{
-                                LolGameFlowPhase::None => custom_button::primary,
-                                _ => custom_button::success
-                            }
-                        }else{
-                            custom_button::danger
+                        match connected_state.state {
+                            LolGameFlowPhase::None => custom_button::primary,
+                            LolGameFlowPhase::Lobby
+                            | LolGameFlowPhase::Matchmaking
+                            | LolGameFlowPhase::ChampSelect
+                            | LolGameFlowPhase::InProgress
+                            | LolGameFlowPhase::WaitingForStats
+                            | LolGameFlowPhase::PostGame => custom_button::success,
+                            LolGameFlowPhase::ReadyCheck => custom_button::danger,
+
                         }
                     )
             )

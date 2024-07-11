@@ -2,6 +2,7 @@ use iced::Command;
 use iced::widget::{Column, Container, container, text};
 use crate::client::apis;
 use crate::client::apis::lol_summoner::CurrentSummoner;
+use crate::ui::application::AppState;
 use crate::ui::message::Message;
 use crate::ui::state::ConnectedState;
 use crate::ui::view::HasView;
@@ -17,12 +18,11 @@ impl HasView for ProfileView {
     type State = CurrentSummoner;
     type Message = ProfileMessage;
 
-    fn update(message: Self::Message, connected_state: &mut Option<ConnectedState>) -> Command<Message> {
-        if let Some(_connected_state) = connected_state {
+    fn update(message: Self::Message, state: &mut AppState) -> Command<Message> {
+        if let AppState::Connected(connected_state) = state {
             match message {}
-        } else {
-            Command::none()
         }
+        Command::none()
     }
     fn view(connected_sate: &ConnectedState) -> Container<'_, Message> {
         container(

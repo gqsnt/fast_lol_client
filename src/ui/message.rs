@@ -14,12 +14,11 @@ use crate::ui::view::test_view::TestMessage;
 #[derive(Debug, Clone)]
 pub enum Message {
     FontLoaded(LoadingResult),
-    Connect,
     ConnectResult(AppResult<ConnectedState>),
     Disconnected,
-    ClientStateUpdated(AppResult<Option<LolGameFlowPhase>>),
+    ClientStateUpdated(AppResult<LolGameFlowPhase>),
     NavBar(NavBarMessage),
-    SummonerInfo(ProfileMessage),
+    Profile(ProfileMessage),
     Test(TestMessage),
     Play(PlayMessage),
     Chat(ChatMessage),
@@ -42,9 +41,8 @@ macro_rules! impl_from_for_message {
 }
 
 
-impl_from_for_message!(ProfileMessage => SummonerInfo);
+impl_from_for_message!(ProfileMessage => Profile);
 impl_from_for_message!(NavBarMessage => NavBar);
 impl_from_for_message!(TestMessage => Test);
 impl_from_for_message!(PlayMessage => Play);
 impl_from_for_message!(ChatMessage => Chat);
-

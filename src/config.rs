@@ -2,7 +2,7 @@ use std::fs;
 
 use serde::Deserialize;
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Clone)]
 pub struct Config {
     pub riot_path: String,
 }

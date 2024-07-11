@@ -70,6 +70,23 @@ pub struct LolGameQueuesGetQueue {
     pub removal_from_game_delay_minutes: i32,
 }
 
+impl std::fmt::Display for LolGameQueuesGetQueue {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{}", if self.detailed_description.len() > 0 {self.detailed_description.as_str()} else {self.name.as_str()})
+    }
+}
+
+impl PartialEq for LolGameQueuesGetQueue {
+    fn eq(&self, other: &Self) -> bool {
+        self.id == other.id
+    }
+}
+
+
+
+
+
+
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct GameTypeConfig {
     pub id: i32,
@@ -131,7 +148,7 @@ pub struct QueueRewards {
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub enum QueueCategory{
     VersusAi,
-    PVP
+    PvP,
 }
 
 

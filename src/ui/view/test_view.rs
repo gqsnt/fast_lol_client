@@ -6,7 +6,8 @@ use crate::AppResult;
 use crate::client::apis;
 use crate::client::apis::lol_game_flow::get_availability::LolGameFlowGetAvailability;
 use crate::client::apis::lol_game_queues::get_queues::LolGameQueuesGetQueues;
-use crate::client::client::{perform_request, perform_save_request};
+use crate::client::utils::perform_save_request;
+use crate::ui::application::AppState;
 use crate::ui::message::Message;
 use crate::ui::state::ConnectedState;
 use crate::ui::view::HasView;
@@ -31,24 +32,11 @@ impl HasView for TestView {
     type State = TestState;
     type Message = TestMessage;
 
-    fn update(message: Self::Message, connected_state: &mut Option<ConnectedState>) -> Command<Message> {
-        if let Some(connected_state) = connected_state {
+    fn update(message: Self::Message, state: &mut AppState) -> Command<Message> {
+        if let AppState::Connected(connected_state) = state {
             match message {
                 TestMessage::SendRequest => {
-                    //perform_save_request(connected_state,"game_flow_session", API::lol_game_flow().get_session(), |r| TestMessage::DefaultRequestResult(Ok(serde_json::to_value(r.unwrap()).unwrap())).into())
-                    //perform_save_request(connected_state,"game_flow_session", API::lol_game_flow().get_phase(), |r| TestMessage::DefaultRequestResult(Ok(serde_json::to_value(r).unwrap())).into())
-                    perform_save_request(connected_state,"queues",apis::lol_game_queues::get_queues() ,|r| TestMessage::RequestQueuesResult(r).into())
-                }
-                TestMessage::RequestResult(r) => {
-                    match r {
-                        Ok(v) => {
-                            connected_state.test.result = serde_json::to_string_pretty(&v).unwrap();
-                        }
-                        Err(e) => {
-                            connected_state.test.result = format!("Error: {}", e);
-                        }
-                    }
-                    Command::none()
+                    return perform_save_request(connected_state, "queues", apis::lol_game_queues::get_queues(), |r| TestMessage::RequestQueuesResult(r).into());
                 }
                 TestMessage::DefaultRequestResult(r) => {
                     match r {
@@ -59,7 +47,16 @@ impl HasView for TestView {
                             connected_state.test.result = format!("Error: {}", e);
                         }
                     }
-                    Command::none()
+                }
+                TestMessage::RequestResult(r) => {
+                    match r {
+                        Ok(v) => {
+                            connected_state.test.result = serde_json::to_string_pretty(&v).unwrap();
+                        }
+                        Err(e) => {
+                            connected_state.test.result = format!("Error: {}", e);
+                        }
+                    }
                 }
                 TestMessage::RequestQueuesResult(r) => {
                     match r {
@@ -70,12 +67,10 @@ impl HasView for TestView {
                             connected_state.test.result = format!("Error: {}", e);
                         }
                     }
-                    Command::none()
                 }
             }
-        } else {
-            Command::none()
         }
+        Command::none()
     }
     fn view(connected_state: &ConnectedState) -> Container<'_, Message> {
         container(Column::new()

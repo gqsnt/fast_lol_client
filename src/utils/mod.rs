@@ -11,3 +11,17 @@ pub fn save_json_to_file(name: &str, json: &Value) -> std::io::Result<()> {
     serde_json::to_writer_pretty(file, json)?;
     Ok(())
 }
+
+#[macro_export]
+macro_rules! with_delay {
+    (
+        $delay:expr,
+        $function:expr
+    ) => {
+        {
+            tokio::time::sleep(tokio::time::Duration::from_millis(delay_ms)).await;
+            $function
+        }
+    };
+}
+

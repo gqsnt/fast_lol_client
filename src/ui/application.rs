@@ -1,28 +1,25 @@
-use iced::{Application, executor, Length};
+use iced::{Application, executor, Length, Subscription};
 use iced::{Command, Element, Theme};
-use iced::widget::{Column, Row};
+use iced::widget::{Column, Row, text};
 use iced::widget::container;
 use iced_box::icon::material::load_material_font;
+
 use crate::client::apis;
-use crate::client::client::{perform_request, perform_request_with_delay, perform_game_flow_state_update};
+use crate::client::utils::{perform_game_flow_state_update, perform_request};
 use crate::config::Config;
 use crate::ui::message::Message;
-use crate::ui::state::{ConnectedState, init_connected_state};
+use crate::ui::state::{ConnectedState, wait_client_available};
 use crate::ui::view::chat_view::ChatView;
 use crate::ui::view::HasView;
 use crate::ui::view::nav_bar_view::{NavBarMessage, NavBarView};
 use crate::ui::view::play_view::{PlayMessage, PlayView};
 use crate::ui::view::profile_view::ProfileView;
 use crate::ui::view::test_view::TestView;
-use crate::ui::widget::custom_button;
-use crate::ui::widget::custom_button::custom_button;
 
 pub struct MainApp {
-    connected_state: Option<ConnectedState>,
+    state: AppState,
     config: Config,
 }
-
-
 
 
 impl Application for MainApp {
@@ -33,11 +30,13 @@ impl Application for MainApp {
 
 
     fn new(_flags: Self::Flags) -> (Self, Command<Message>) {
+        let config = Config::new();
         (Self {
-            connected_state: None,
-            config: Config::new(),
+            state: AppState::Disconnected,
+            config: config.clone(),
         }, Command::batch(vec![
             load_material_font().map(Message::FontLoaded),
+            Command::perform(wait_client_available(config.riot_path.to_string()), Message::ConnectResult),
         ]))
     }
 
@@ -46,75 +45,66 @@ impl Application for MainApp {
     }
 
 
-
     fn update(&mut self, message: Message) -> Command<Message> {
         match message {
-            Message::Connect => {
-                Command::perform(init_connected_state(self.config.riot_path.to_string()), Message::ConnectResult)
-            }
             Message::ConnectResult(mut result) => {
-                if let Ok(connected_state) = &mut result{
-                    self.connected_state = Some(connected_state.clone());
+                if let Ok(connected_state) = &mut result {
+                    self.state = AppState::Connected(connected_state.clone());
                     Command::batch(vec![
-                        perform_game_flow_state_update(connected_state, None),
-                        perform_request(connected_state, apis::lol_game_queues::get_queues(), |r|PlayMessage::RequestQueuesResult(r).into())
+                        perform_game_flow_state_update(connected_state),
+                        perform_request(connected_state, apis::lol_game_queues::get_queues(), |r| PlayMessage::RequestQueuesResult(r).into()),
                     ])
-                }else{
-                    self.connected_state = None;
+                } else {
                     Command::none()
                 }
             }
             Message::Disconnected => {
-                self.connected_state = None;
-                Command::none()
+                self.state = AppState::Disconnected;
+                println!("Disconnected");
+                Command::perform(wait_client_available(self.config.riot_path.to_string()), Message::ConnectResult)
             }
             Message::ClientStateUpdated(r) => {
-                if let Some( connected_state) = &mut self.connected_state {
-                    if let Ok(client_state) = r {
-                        connected_state.state = client_state;
+                match &mut self.state {
+                    AppState::Connected(connected_state) => {
+                        connected_state.state = r.unwrap_or_default();
+                        perform_game_flow_state_update(connected_state)
                     }
-                    perform_game_flow_state_update(connected_state, Some(500))
-                }else{
-                    Command::none()
+                    AppState::Disconnected => Command::none()
                 }
             }
-            Message::NavBar(message) => NavBarView::update(message, &mut self.connected_state),
-            Message::Play(message) => PlayView::update(message, &mut self.connected_state),
-            Message::Test(message) => TestView::update(message, &mut self.connected_state),
-            Message::Chat(message) => ChatView::update(message, &mut self.connected_state),
-            _ => { Command::none() }
+            Message::NavBar(message) => NavBarView::update(message, &mut self.state),
+            Message::Play(message) => PlayView::update(message, &mut self.state),
+            Message::Test(message) => TestView::update(message, &mut self.state),
+            Message::Chat(message) => ChatView::update(message, &mut self.state),
+            Message::Profile(message) => ProfileView::update(message, &mut self.state),
+            Message::FontLoaded(_) => { Command::none() }
         }
     }
 
+
     fn view(&self) -> Element<'_, Message> {
-        let rest_row = if let Some(connected_state) = &self.connected_state {
-            Row::new()
-                .push(Column::new()
-                    .push(NavBarView::view(connected_state))
-                    .width(Length::Fixed(200.0))
-                    .height(Length::Fill)
-                    .spacing(30)
-                )
-                .push(match connected_state.nav_bar.state {
-                    NavBarMessage::Profile => { ProfileView::view(connected_state)}
-                    NavBarMessage::Play => { PlayView::view(connected_state) }
-                    NavBarMessage::Test => { TestView::view(connected_state) }
-                    NavBarMessage::Chat => {ChatView::view(connected_state)}
-                }).width(Length::Fill).height(Length::Fill)
-        } else {
-            Row::new()
-        };
         container(Column::new()
-            .push(Column::new()
-                .push_maybe(if self.connected_state.is_none() {
-                    Some(custom_button("Connect")
-                        .style(custom_button::success)
-                        .on_press(Message::Connect))
-                } else {
-                    None
+            .push(
+                match &self.state {
+                    AppState::Connected(connected_state) => {
+                        container(Row::new()
+                            .push(Column::new()
+                                .push(NavBarView::view(connected_state))
+                                .width(Length::Fixed(200.0))
+                                .height(Length::Fill)
+                                .spacing(30)
+                            )
+                            .push(match connected_state.nav_bar.state {
+                                NavBarMessage::Profile => { ProfileView::view(connected_state) }
+                                NavBarMessage::Play => { PlayView::view(connected_state) }
+                                NavBarMessage::Test => { TestView::view(connected_state) }
+                                NavBarMessage::Chat => { ChatView::view(connected_state) }
+                            }).width(Length::Fill).height(Length::Fill))
+                    }
+                    AppState::Disconnected => {
+                        container(Column::new().push(text("Waiting for client...")))
+                    }
                 })
-                .spacing(20))
-            .push(rest_row)
             .spacing(20)
             .width(Length::Fill)
             .height(Length::Fill)
@@ -132,3 +122,9 @@ impl Application for MainApp {
     }
 }
 
+
+#[derive(Debug, Clone)]
+pub enum AppState {
+    Connected(ConnectedState),
+    Disconnected,
+}
