@@ -13,19 +13,19 @@ use crate::ui::state::ConnectedState;
 use crate::ui::view::HasView;
 
 #[derive(Debug, Clone, Default)]
-pub struct PostGameState {
+pub struct EndOfGameState {
 
 }
 
 #[derive(Debug, Clone)]
-pub enum PostGameMessage {
+pub enum EndOfGameMessage {
 }
 
-pub struct PostGameView {}
+pub struct EndOfGameView {}
 
-impl HasView for PostGameView {
-    type State = PostGameState;
-    type Message = PostGameMessage;
+impl HasView for EndOfGameView {
+    type State = EndOfGameState;
+    type Message = EndOfGameMessage;
 
     fn update(message: Self::Message, state: &mut AppState) -> Command<Message> {
         if let AppState::Connected(connected_state) = state {
@@ -35,7 +35,7 @@ impl HasView for PostGameView {
     }
     fn view(connected_state: &ConnectedState) -> Container<'_, Message> {
         container(Column::new()
-            .push(text("Game Done").size(25))
+            .push(text("End Of Game").size(25))
         ).center_x()
             .center_y()
     }

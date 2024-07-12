@@ -149,6 +149,9 @@ pub struct QueueRewards {
 pub enum QueueCategory{
     VersusAi,
     PvP,
+    Alpha,
+    Custom,
+    None,
 }
 
 

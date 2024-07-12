@@ -6,7 +6,7 @@ use crate::AppResult;
 use crate::client::apis;
 use crate::client::apis::lol_game_flow::get_availability::LolGameFlowGetAvailability;
 use crate::client::apis::lol_game_queues::get_queues::LolGameQueuesGetQueues;
-use crate::client::utils::perform_save_request;
+use crate::client::utils::{perform_request, perform_save_request};
 use crate::ui::application::AppState;
 use crate::ui::message::Message;
 use crate::ui::state::ConnectedState;
@@ -36,7 +36,7 @@ impl HasView for TestView {
         if let AppState::Connected(connected_state) = state {
             match message {
                 TestMessage::SendRequest => {
-                    return perform_save_request(connected_state, "queues", apis::lol_game_queues::get_queues(), |r| TestMessage::RequestQueuesResult(r).into());
+                    return perform_request(connected_state, apis::lol_game_queues::get_queues(), |r| TestMessage::RequestQueuesResult(r).into());
                 }
                 TestMessage::DefaultRequestResult(r) => {
                     match r {

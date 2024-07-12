@@ -8,9 +8,15 @@ pub enum LolGameFlowPhase {
     None,
     Lobby,
     Matchmaking,
+    CheckedIntoTournament,
     ReadyCheck,// Needs to be confirmed
     ChampSelect,
+    GameStart,
+    FailedToLaunch,
     InProgress,//InGame
+    Reconnect,
     WaitingForStats,
-    PostGame,
+    PreEndOfGame,
+    EndOfGame,
+    TerminatedInError
 }

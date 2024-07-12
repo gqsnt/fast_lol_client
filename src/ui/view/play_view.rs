@@ -2,9 +2,11 @@ use iced::Command;
 use iced::widget::{Column, combo_box, Container, container};
 use serde_json::Value;
 use crate::AppResult;
+use crate::client::apis;
 use crate::client::apis::lol_game_flow::get_phase::LolGameFlowPhase;
 use crate::client::apis::lol_game_flow::get_session::LolGameFlowGetSession;
 use crate::client::apis::lol_game_queues::get_queues::{LolGameQueuesGetQueue, LolGameQueuesGetQueues};
+use crate::client::apis::lol_lobby::post_lobby::LolLobbySession;
 use crate::ui::application::AppState;
 use crate::ui::message::Message;
 use crate::ui::state::ConnectedState;
@@ -13,36 +15,34 @@ use crate::ui::view::play_view::champ_select_view::{ChampSelectMessage, ChampSel
 use crate::ui::view::play_view::create_lobby_view::{CreateLobbyMessage, CreateLobbyState, CreateLobbyView};
 use crate::ui::view::play_view::in_game_view::{InGameMessage, InGameState, InGameView};
 use crate::ui::view::play_view::lobby_view::{LobbyMessage, LobbyState, LobbyView};
-use crate::ui::view::play_view::post_game_view::{PostGameMessage, PostGameState, PostGameView};
+use crate::ui::view::play_view::end_of_game_view::{EndOfGameMessage, EndOfGameState, EndOfGameView};
 
-mod create_lobby_view;
-mod lobby_view;
-mod post_game_view;
-mod champ_select_view;
+pub mod create_lobby_view;
+pub mod lobby_view;
+pub mod end_of_game_view;
+pub mod champ_select_view;
 
-mod in_game_view;
+pub mod in_game_view;
 
 #[derive(Debug, Clone)]
 pub struct PlayState {
-    pub session: Option<LolGameFlowGetSession>,
     pub queues: combo_box::State<LolGameQueuesGetQueue>,
-    pub champ_select_state: Option<ChampSelectState>,
+    pub champ_select_state: ChampSelectState,
     pub create_lobby_state: CreateLobbyState,
-    pub lobby_state: Option<LobbyState>,
-    pub post_game_state: Option<PostGameState>,
-    pub in_game_state: Option<InGameState>,
+    pub lobby_state: LobbyState,
+    pub post_game_state: EndOfGameState,
+    pub in_game_state: InGameState,
 }
 
 impl Default for PlayState{
     fn default() -> Self {
         Self {
-            session: None,
             queues: combo_box::State::new(vec![]),
-            champ_select_state: None,
+            champ_select_state: ChampSelectState::default(),
             create_lobby_state: CreateLobbyState::default(),
-            lobby_state: None,
-            post_game_state: None,
-            in_game_state: None,
+            lobby_state: LobbyState::default(),
+            post_game_state: EndOfGameState::default(),
+            in_game_state: InGameState::default(),
         }
     }
 }
@@ -54,9 +54,9 @@ pub enum PlayMessage {
     ChampSelect(ChampSelectMessage),
     CreateLobby(CreateLobbyMessage),
     Lobby(LobbyMessage),
-    PostGame(PostGameMessage),
+    PostGame(EndOfGameMessage),
     InGame(InGameMessage),
-    StartQueueResult(AppResult<Value>),
+
 }
 
 
@@ -84,25 +84,27 @@ impl HasView for PlayView {
             PlayMessage::ChampSelect(message) => ChampSelectView::update(message, state),
             PlayMessage::CreateLobby(message) => CreateLobbyView::update(message, state),
             PlayMessage::Lobby(message) => LobbyView::update(message, state),
-            PlayMessage::PostGame(message) => PostGameView::update(message, state),
+            PlayMessage::PostGame(message) => EndOfGameView::update(message, state),
             PlayMessage::InGame(message) => InGameView::update(message, state),
-            PlayMessage::StartQueueResult(r) => {
-                println!("StartQueueResult: {:?}", r);
-                Command::none()
-            }
         }
     }
     fn view(connected_state: &ConnectedState) -> Container<'_, Message> {
         container(Column::new()
             .push(match connected_state.state {
                 LolGameFlowPhase::None => CreateLobbyView::view(connected_state),
-                LolGameFlowPhase::Lobby => LobbyView::view(connected_state),
-                LolGameFlowPhase::Matchmaking => LobbyView::view(connected_state),
-                LolGameFlowPhase::ReadyCheck => LobbyView::view(connected_state),
                 LolGameFlowPhase::ChampSelect => ChampSelectView::view(connected_state),
-                LolGameFlowPhase::InProgress => InGameView::view(connected_state),
-                LolGameFlowPhase::WaitingForStats => InGameView::view(connected_state),
-                LolGameFlowPhase::PostGame => PostGameView::view(connected_state),
+                LolGameFlowPhase::EndOfGame => EndOfGameView::view(connected_state),
+                LolGameFlowPhase::Lobby
+                |LolGameFlowPhase::CheckedIntoTournament
+                |LolGameFlowPhase::Matchmaking
+                |LolGameFlowPhase::ReadyCheck => LobbyView::view(connected_state),
+                LolGameFlowPhase::FailedToLaunch
+                | LolGameFlowPhase::WaitingForStats
+                |LolGameFlowPhase::Reconnect
+                |LolGameFlowPhase::PreEndOfGame
+                |LolGameFlowPhase::GameStart
+                |LolGameFlowPhase::TerminatedInError
+                |LolGameFlowPhase::InProgress => InGameView::view(connected_state),
             })
         )
             .center_x()
@@ -125,5 +127,5 @@ impl_from_for_play_message!(AppResult<LolGameQueuesGetQueues> => RequestQueuesRe
 impl_from_for_play_message!(ChampSelectMessage => ChampSelect);
 impl_from_for_play_message!(CreateLobbyMessage => CreateLobby);
 impl_from_for_play_message!(LobbyMessage => Lobby);
-impl_from_for_play_message!(PostGameMessage => PostGame);
+impl_from_for_play_message!(EndOfGameMessage => PostGame);
 impl_from_for_play_message!(InGameMessage => InGame);

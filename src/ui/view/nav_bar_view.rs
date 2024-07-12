@@ -46,14 +46,9 @@ impl HasView for NavBarView {
                     .style(
                         match connected_state.state {
                             LolGameFlowPhase::None => custom_button::primary,
-                            LolGameFlowPhase::Lobby
-                            | LolGameFlowPhase::Matchmaking
-                            | LolGameFlowPhase::ChampSelect
-                            | LolGameFlowPhase::InProgress
-                            | LolGameFlowPhase::WaitingForStats
-                            | LolGameFlowPhase::PostGame => custom_button::success,
-                            LolGameFlowPhase::ReadyCheck => custom_button::danger,
-
+                            LolGameFlowPhase::ReadyCheck |LolGameFlowPhase::Reconnect => custom_button::danger,
+                            LolGameFlowPhase::WaitingForStats => custom_button::secondary,
+                            _ => custom_button::success,
                         }
                     )
             )

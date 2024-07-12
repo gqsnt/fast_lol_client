@@ -13,6 +13,10 @@ pub struct LolGameFlowGetAvailability {
 pub enum LolGameFlowGetAvailabilityState {
     #[default]
     EligibilityInfoMissing,
+    Configuration,
+    PlayerBanned,
+    Patching,
+    Initializing,
     Available,
     InGameFlow,
 }

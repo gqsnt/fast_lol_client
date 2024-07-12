@@ -10,6 +10,7 @@ use crate::ui::application::AppState;
 use crate::ui::message::Message;
 use crate::ui::state::ConnectedState;
 use crate::ui::view::HasView;
+use crate::ui::view::play_view::lobby_view::LobbyMessage;
 use crate::ui::view::play_view::PlayMessage;
 use crate::ui::widget::custom_button;
 use crate::ui::widget::custom_button::custom_button;
@@ -44,9 +45,9 @@ impl HasView for CreateLobbyView {
                         let queue = queue.clone();
                         return Command::perform(
                             async move {
-                                client.execute_and_save(apis::lol_lobby::post_lobby(LolLobbyPostLobbyBody{queue_id:queue.id}), "create_lobby_response").await
+                                client.execute(apis::lol_lobby::post_lobby(LolLobbyPostLobbyBody{queue_id:queue.id})).await
                             },
-                            |r| disconnect_if_disconnect_error::<Value>(r, |r|PlayMessage::StartQueueResult(r).into()),
+                            |r| disconnect_if_disconnect_error(r, |r|LobbyMessage::RequestLobbyResult(r).into()),
                         );
                     }
                 }

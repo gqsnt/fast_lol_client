@@ -1,6 +1,9 @@
 
+
 pub trait IsApiRequest {
     const METHOD: reqwest::Method;
+
+    const API_VERSION: crate::client::apis::ApiVersion;
     type ReturnType: serde::de::DeserializeOwned + serde::Serialize;
     const PLUGIN_URL: &'static str;
     const REQUEST_URL: &'static str;
@@ -12,7 +15,7 @@ pub trait IsApiRequest {
     }
 
     fn get_url(&self) -> String {
-        format!("{}{}", Self::PLUGIN_URL, self.get_path())
+        format!("{}{}{}", Self::PLUGIN_URL, Self::API_VERSION, self.get_path())
     }
 
 }

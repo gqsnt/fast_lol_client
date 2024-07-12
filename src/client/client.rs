@@ -6,11 +6,12 @@ use iced::Command;
 use iced::futures::{SinkExt, StreamExt, TryFutureExt};
 use reqwest::Client;
 use reqwest::header::HeaderName;
+use serde_json::Value;
 use crate::{AppError, AppResult};
 use crate::client::apis;
 use crate::client::client_type::ClientType;
 use crate::client::apis::is_api_request::IsApiRequest;
-
+use crate::utils::save_json_to_file;
 
 #[derive(Debug, Clone, Default)]
 pub struct LolClient {

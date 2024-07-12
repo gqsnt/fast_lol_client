@@ -5,7 +5,7 @@ use iced::widget::container;
 use iced_box::icon::material::load_material_font;
 
 use crate::client::apis;
-use crate::client::utils::{perform_game_flow_state_update, perform_request};
+use crate::client::utils::{perform_game_flow_state_update, perform_request, perform_request_based_on_flow_state};
 use crate::config::Config;
 use crate::ui::message::Message;
 use crate::ui::state::{ConnectedState, wait_client_available};
@@ -52,6 +52,7 @@ impl Application for MainApp {
                     self.state = AppState::Connected(connected_state.clone());
                     Command::batch(vec![
                         perform_game_flow_state_update(connected_state),
+                        perform_request_based_on_flow_state(connected_state),
                         perform_request(connected_state, apis::lol_game_queues::get_queues(), |r| PlayMessage::RequestQueuesResult(r).into()),
                     ])
                 } else {
