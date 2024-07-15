@@ -1,26 +1,36 @@
 use iced::Command;
-use iced::widget::{Column, Container, container, text};
+use iced::widget::{Column, Container, container, Row, text};
 
 use crate::AppResult;
+use crate::client::apis;
+use crate::client::apis::lol_lobby::matchmaking_search_state::{LolLobbyMatchmakingSearchState, MatchMakingSearchState};
 use crate::client::apis::lol_lobby::post_lobby::LolLobbySession;
+use crate::client::apis::lol_matchmaking::get_search::{LolMatchmakingMatchmakingReadyCheckResponse, LolMatchmakingMatchmakingReadyCheckState, LolMatchmakingMatchmakingSearchResource, LolMatchmakingMatchmakingSearchState};
+use crate::client::utils::perform_request;
 use crate::ui::application::AppState;
 use crate::ui::message::Message;
 use crate::ui::state::ConnectedState;
 use crate::ui::view::HasView;
+use crate::ui::view::play_view::create_lobby_view::CreateLobbyMessage;
+use crate::ui::widget::custom_button;
+use crate::ui::widget::custom_button::custom_button;
 
 #[derive(Debug, Clone, Default)]
 pub struct LobbyState {
     pub session: Option<LolLobbySession>,
+    pub matchmaking_session: Option<LolMatchmakingMatchmakingSearchResource>,
 }
 
 #[derive(Debug, Clone)]
 pub enum LobbyMessage {
-    RequestLobbyResult(AppResult<LolLobbySession>),
-    IsReadyCheck,
+    LobbySessionResult(AppResult<LolLobbySession>),
+    MatchmakingSearchResult(AppResult<LolMatchmakingMatchmakingSearchResource>),
+    QuitLobby,
+    FindMatch,
+    CancelMatchmaking,
     AcceptReadyCheck,
-    AcceptReadyCheckResult,
-    StartLobby,
-    StartLobbyResult,
+    DeclineReadyCheck,
+
 }
 
 pub struct LobbyView {}
@@ -32,14 +42,47 @@ impl HasView for LobbyView {
     fn update(message: Self::Message, state: &mut AppState) -> Command<Message> {
         if let AppState::Connected(connected_state) = state {
             match message {
-                LobbyMessage::RequestLobbyResult(result) => {
+                LobbyMessage::LobbySessionResult(result) => {
                     connected_state.play.lobby_state.session = result.ok();
                 }
-                LobbyMessage::IsReadyCheck => {}
-                LobbyMessage::AcceptReadyCheck => {}
-                LobbyMessage::AcceptReadyCheckResult => {}
-                LobbyMessage::StartLobby => {}
-                LobbyMessage::StartLobbyResult => {}
+                LobbyMessage::MatchmakingSearchResult(result) => {
+                    connected_state.play.lobby_state.matchmaking_session = result.ok();
+                }
+                LobbyMessage::QuitLobby => {
+                    return perform_request(
+                        connected_state,
+                        apis::lol_lobby::delete_lobby(),
+                        |r| CreateLobbyMessage::DeleteLobbyResult.into(),
+                    );
+                }
+                LobbyMessage::FindMatch => {
+                    return perform_request(
+                        connected_state,
+                        apis::lol_lobby::post_matchmaking_search(),
+                        |r| Message::None,
+                    );
+                }
+                LobbyMessage::CancelMatchmaking => {
+                    return perform_request(
+                        connected_state,
+                        apis::lol_lobby::delete_matchmaking_search(),
+                        |r| Message::None,
+                    );
+                }
+                LobbyMessage::AcceptReadyCheck => {
+                    return perform_request(
+                        connected_state,
+                        apis::lol_matchmaking::post_ready_check_accept(),
+                        |r| Message::None,
+                    );
+                }
+                LobbyMessage::DeclineReadyCheck => {
+                    return perform_request(
+                        connected_state,
+                        apis::lol_matchmaking::post_ready_check_decline(),
+                        |r| Message::None,
+                    );
+                }
             }
         }
         Command::none()
@@ -55,7 +98,68 @@ impl HasView for LobbyView {
                 result = result
                     .push(text(format!("Member: {}", member.summoner_name)));
             }
+            result = result.push(if let Some(matchmaking_session) = &connected_state.play.lobby_state.matchmaking_session {
+                match matchmaking_session.search_state {
+                    LolMatchmakingMatchmakingSearchState::Searching => {
+                        Column::new()
+                            .push(text("Searching..."))
+                            .push(
+                                custom_button("Cancel")
+                                    .on_press(Self::Message::CancelMatchmaking.into())
+                                    .style(custom_button::danger)
+                            )
+                    }
+                    LolMatchmakingMatchmakingSearchState::Found => {
+                        Column::new()
+                            .push(text(format!("Ready Check: {:?}", matchmaking_session.ready_check.state)))
+                            .push(text(format!("Time Remaining: {}", 12.0 - matchmaking_session.ready_check.timer)))
+                            .push(
+                                if matchmaking_session.ready_check.player_response == LolMatchmakingMatchmakingReadyCheckResponse::None {
+                                    Row::new()
+                                        .push(
+                                            custom_button("Accept")
+                                                .on_press(Self::Message::AcceptReadyCheck.into())
+                                                .style(custom_button::primary)
+                                        )
+                                        .push(
+                                            custom_button("Decline")
+                                                .on_press(Self::Message::DeclineReadyCheck.into())
+                                                .style(custom_button::danger)
+                                        )
+                                } else {
+                                    Row::new()
+                                        .push(
+                                            text(format!("Player Choice: {:?}", matchmaking_session.ready_check.player_response))
+                                        )
 
+                                }
+                            )
+                    }
+                    LolMatchmakingMatchmakingSearchState::Canceled => {
+                        Column::new()
+                            .push(text("Cancelled"))
+                    }
+                    LolMatchmakingMatchmakingSearchState::Invalid
+                    | LolMatchmakingMatchmakingSearchState::AbandonedLowPriorityQueue
+                    | LolMatchmakingMatchmakingSearchState::Error
+                    | LolMatchmakingMatchmakingSearchState::ServiceError
+                    | LolMatchmakingMatchmakingSearchState::ServiceShutdown => Column::new()
+                }
+            } else {
+                Column::new().push(
+                    Row::new()
+                        .push(
+                            custom_button("Find Match")
+                                .on_press(Self::Message::FindMatch.into())
+                                .style(custom_button::primary)
+                        )
+                        .push(
+                            custom_button("Quit")
+                                .on_press(Self::Message::QuitLobby.into())
+                                .style(custom_button::danger)
+                        )
+                )
+            });
         }
         container(result)
             .center_x()

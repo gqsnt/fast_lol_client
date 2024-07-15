@@ -1,16 +1,17 @@
 use iced::Command;
 use iced::widget::{Column, combo_box, Container, container, text};
 use serde_json::Value;
+use crate::AppResult;
 use crate::client::apis;
 use crate::client::apis::lol_game_flow::get_phase::LolGameFlowPhase;
 use crate::client::apis::lol_game_queues::get_queues::LolGameQueuesGetQueue;
 use crate::client::apis::lol_lobby::post_lobby::LolLobbyPostLobbyBody;
-use crate::client::utils::disconnect_if_disconnect_error;
+use crate::client::utils::{disconnect_if_disconnect_error, perform_request};
 use crate::ui::application::AppState;
 use crate::ui::message::Message;
 use crate::ui::state::ConnectedState;
 use crate::ui::view::HasView;
-use crate::ui::view::play_view::lobby_view::LobbyMessage;
+use crate::ui::view::play_view::lobby_view::{LobbyMessage, LobbyState, LobbyView};
 use crate::ui::view::play_view::PlayMessage;
 use crate::ui::widget::custom_button;
 use crate::ui::widget::custom_button::custom_button;
@@ -23,6 +24,7 @@ pub struct CreateLobbyState {
 #[derive(Debug, Clone)]
 pub enum CreateLobbyMessage {
     Selected(LolGameQueuesGetQueue),
+    DeleteLobbyResult,
     StartQueue,
 }
 
@@ -41,15 +43,16 @@ impl HasView for CreateLobbyView {
 
                 CreateLobbyMessage::StartQueue => {
                     if let Some(queue) = &connected_state.play.create_lobby_state.selected_queue {
-                        let client = connected_state.client.clone();
                         let queue = queue.clone();
-                        return Command::perform(
-                            async move {
-                                client.execute(apis::lol_lobby::post_lobby(LolLobbyPostLobbyBody{queue_id:queue.id})).await
-                            },
-                            |r| disconnect_if_disconnect_error(r, |r|LobbyMessage::RequestLobbyResult(r).into()),
+                        return perform_request(
+                            connected_state,
+                            apis::lol_lobby::post_lobby(LolLobbyPostLobbyBody{queue_id:queue.id}),
+                            |r|LobbyMessage::LobbySessionResult(r).into()
                         );
                     }
+                }
+                CreateLobbyMessage::DeleteLobbyResult => {
+                    connected_state.play.lobby_state = LobbyState::default();
                 }
             }
         }
@@ -66,7 +69,7 @@ impl HasView for CreateLobbyView {
             .push(text("Create Lobby").size(25))
             .push(combo_box)
             .push(
-                custom_button("Start Queue")
+                custom_button("Confirm")
                     .on_press(Self::Message::StartQueue.into())
                     .style(custom_button::primary)
             )

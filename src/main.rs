@@ -1,6 +1,8 @@
 use iced::{Application, Settings, Size};
-
 use fast_lol_client::ui::application::MainApp;
+
+
+
 
 fn main() -> iced::Result {
     MainApp::run(Settings {

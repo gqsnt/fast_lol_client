@@ -85,7 +85,7 @@ pub struct Member {
     #[serde(rename = "intraSubteamPosition")]
     pub intra_subteam_position: Option<i64>,
     #[serde(rename = "tftNPEQueueBypass")]
-    pub tft_npe_queue_bypass: bool,
+    pub tft_npe_queue_bypass: Option<bool>,
     #[serde(rename = "quickplayPlayerState")]
     pub quickplay_player_state: Option<String>,
     #[serde(rename = "strawberryMapId")]

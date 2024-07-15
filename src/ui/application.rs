@@ -5,7 +5,7 @@ use iced::widget::container;
 use iced_box::icon::material::load_material_font;
 
 use crate::client::apis;
-use crate::client::utils::{perform_game_flow_state_update, perform_request, perform_request_based_on_flow_state};
+use crate::client::utils::{perform_game_flow_update, perform_request, perform_request_with_delay};
 use crate::config::Config;
 use crate::ui::message::Message;
 use crate::ui::state::{ConnectedState, wait_client_available};
@@ -51,8 +51,7 @@ impl Application for MainApp {
                 if let Ok(connected_state) = &mut result {
                     self.state = AppState::Connected(connected_state.clone());
                     Command::batch(vec![
-                        perform_game_flow_state_update(connected_state),
-                        perform_request_based_on_flow_state(connected_state),
+                        perform_request(connected_state, apis::lol_game_flow::get_phase(), Message::GamFlowResult),
                         perform_request(connected_state, apis::lol_game_queues::get_queues(), |r| PlayMessage::RequestQueuesResult(r).into()),
                     ])
                 } else {
@@ -64,11 +63,11 @@ impl Application for MainApp {
                 println!("Disconnected");
                 Command::perform(wait_client_available(self.config.riot_path.to_string()), Message::ConnectResult)
             }
-            Message::ClientStateUpdated(r) => {
+            Message::GamFlowResult(r) => {
                 match &mut self.state {
                     AppState::Connected(connected_state) => {
                         connected_state.state = r.unwrap_or_default();
-                        perform_game_flow_state_update(connected_state)
+                        perform_game_flow_update(connected_state)
                     }
                     AppState::Disconnected => Command::none()
                 }
@@ -79,6 +78,7 @@ impl Application for MainApp {
             Message::Chat(message) => ChatView::update(message, &mut self.state),
             Message::Profile(message) => ProfileView::update(message, &mut self.state),
             Message::FontLoaded(_) => { Command::none() }
+            Message::None => {Command::none()}
         }
     }
 

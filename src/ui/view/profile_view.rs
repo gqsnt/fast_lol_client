@@ -24,12 +24,12 @@ impl HasView for ProfileView {
         }
         Command::none()
     }
-    fn view(connected_sate: &ConnectedState) -> Container<'_, Message> {
+    fn view(connected_state: &ConnectedState) -> Container<'_, Message> {
         container(
             Column::new()
-                .push(text(format!("{} #{}", &connected_sate.summoner_info.display_name, &connected_sate.summoner_info.tag_line)))
-                .push(text(format!("Level: {}", &connected_sate.summoner_info.summoner_level)))
-                .push(text(format!("Rolls: {}", &connected_sate.summoner_info.reroll_points.number_of_rolls)))
+                .push(text(format!("{} #{}", &connected_state.summoner_info.display_name, &connected_state.summoner_info.tag_line)))
+                .push(text(format!("Level: {}", &connected_state.summoner_info.summoner_level)))
+                .push(text(format!("Rolls: {}", &connected_state.summoner_info.reroll_points.number_of_rolls)))
                 .spacing(10)
         )
             .center_y()

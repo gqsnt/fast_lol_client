@@ -13,10 +13,11 @@ use crate::ui::view::test_view::TestMessage;
 
 #[derive(Debug, Clone)]
 pub enum Message {
+    None,
     FontLoaded(LoadingResult),
     ConnectResult(AppResult<ConnectedState>),
     Disconnected,
-    ClientStateUpdated(AppResult<LolGameFlowPhase>),
+    GamFlowResult(AppResult<LolGameFlowPhase>),
     NavBar(NavBarMessage),
     Profile(ProfileMessage),
     Test(TestMessage),

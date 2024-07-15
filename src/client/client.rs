@@ -1,7 +1,9 @@
+use std::any::TypeId;
 use std::path::PathBuf;
 
 use base64::Engine;
 use base64::engine::general_purpose::STANDARD as BASE64_STANDARD;
+use chrono::TimeZone;
 use iced::Command;
 use iced::futures::{SinkExt, StreamExt, TryFutureExt};
 use reqwest::Client;
@@ -50,7 +52,22 @@ impl LolClient {
         }.send().await.map_err(|e| AppError::DisconnectedError(e.to_string()))?;
 
         if response.status().is_success() {
-            Ok(response.json().await.map_err(|e| AppError::ParsingError(e.to_string()))?)
+            let response_text = response.text().await?;
+            if response_text.is_empty() {
+                Ok(serde_json::from_str::<S::ReturnType>("{}").unwrap())
+            } else {
+                let json = serde_json::from_str::<S::ReturnType>(&response_text);
+                match json {
+                    Ok(result) => {
+                        Ok(result)
+                    }
+                    Err(e) => {
+                        println!("Error parsing response: {:?}", e);
+                        println!("Response: {:?}", response_text);
+                        Err(AppError::ParsingError(e.to_string()))
+                    }
+                }
+            }
         } else {
             Err(AppError::ApiRequestError(format!("API request failed with status: {:?}", response.text().await?)))
         }
@@ -63,9 +80,20 @@ impl LolClient {
 
 
     pub async fn execute_and_save<S: IsApiRequest>(&self, request: S, file_name: &str) -> AppResult<S::ReturnType> {
-        let response = self.execute(request).await?;
-        serde_json::to_writer_pretty(&std::fs::File::create(PathBuf::from("temp").join(format!("{}.json", file_name)))?, &response).unwrap();
-        Ok(response)
+        let response = self.execute(request).await;
+        let timestamp = chrono::Utc::now().timestamp_millis();
+        let path = std::fs::File::create(PathBuf::from("temp").join(format!("{}_{}.json", file_name,timestamp)))?;
+        match response{
+            Ok(r) => {
+                serde_json::to_writer_pretty(&path, &r).unwrap();
+                Ok(r)
+            }
+            Err(e) => {
+                serde_json::to_writer_pretty(&path, &Value::String(e.to_string())).unwrap();
+                Err(e)
+            }
+        }
+
     }
 }
 

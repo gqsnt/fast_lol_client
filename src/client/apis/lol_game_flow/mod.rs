@@ -1,4 +1,5 @@
 use reqwest::Method;
+use serde_json::Value;
 use crate::client::apis::lol_game_flow::get_availability::LolGameFlowGetAvailability;
 use crate::client::apis::lol_game_flow::get_phase::LolGameFlowPhase;
 use crate::client::apis::lol_game_flow::get_session::LolGameFlowGetSession;
@@ -11,14 +12,20 @@ impl_api_plugin!(
     "/lol-gameflow",
     V1{
         GetAvailability{
-            fn:get_availability,method:Method::GET,url:"/availability" => LolGameFlowGetAvailability
-        }
+            get_availability,Method::GET,"/availability"
+        } => LolGameFlowGetAvailability
         GetSession{
-            fn:get_session,method: Method::GET, url:"/session" => LolGameFlowGetSession
-        }
+            get_session,Method::GET,"/session"
+        } => LolGameFlowGetSession
         GetPhase{
-            fn:get_phase,method: Method::GET, url:"/gameflow-phase" => LolGameFlowPhase
-        }
+            get_phase,Method::GET,"/gameflow-phase"
+        } => LolGameFlowPhase
+        PostReconnect{
+            post_reconnect,Method::POST,"/reconnect"
+        } => Value
+        PostPreEndGameTransition{
+            post_pre_end_game_transition,Method::POST,"/pre-end-game-transition"
+        } => Value
     }
 );
 

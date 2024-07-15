@@ -1,21 +1,22 @@
 use iced::Command;
-use iced::widget::{Column, combo_box, Container, container};
-use serde_json::Value;
+use iced::widget::{Column, combo_box, Container, container, text};
+
 use crate::AppResult;
 use crate::client::apis;
 use crate::client::apis::lol_game_flow::get_phase::LolGameFlowPhase;
-use crate::client::apis::lol_game_flow::get_session::LolGameFlowGetSession;
 use crate::client::apis::lol_game_queues::get_queues::{LolGameQueuesGetQueue, LolGameQueuesGetQueues};
-use crate::client::apis::lol_lobby::post_lobby::LolLobbySession;
+use crate::client::utils::perform_request;
 use crate::ui::application::AppState;
 use crate::ui::message::Message;
 use crate::ui::state::ConnectedState;
 use crate::ui::view::HasView;
 use crate::ui::view::play_view::champ_select_view::{ChampSelectMessage, ChampSelectState, ChampSelectView};
 use crate::ui::view::play_view::create_lobby_view::{CreateLobbyMessage, CreateLobbyState, CreateLobbyView};
+use crate::ui::view::play_view::end_of_game_view::{EndOfGameMessage, EndOfGameState, EndOfGameView};
 use crate::ui::view::play_view::in_game_view::{InGameMessage, InGameState, InGameView};
 use crate::ui::view::play_view::lobby_view::{LobbyMessage, LobbyState, LobbyView};
-use crate::ui::view::play_view::end_of_game_view::{EndOfGameMessage, EndOfGameState, EndOfGameView};
+use crate::ui::widget::custom_button;
+use crate::ui::widget::custom_button::custom_button;
 
 pub mod create_lobby_view;
 pub mod lobby_view;
@@ -34,7 +35,7 @@ pub struct PlayState {
     pub in_game_state: InGameState,
 }
 
-impl Default for PlayState{
+impl Default for PlayState {
     fn default() -> Self {
         Self {
             queues: combo_box::State::new(vec![]),
@@ -56,6 +57,7 @@ pub enum PlayMessage {
     Lobby(LobbyMessage),
     PostGame(EndOfGameMessage),
     InGame(InGameMessage),
+    ContinuePreEndGame,
 
 }
 
@@ -86,6 +88,13 @@ impl HasView for PlayView {
             PlayMessage::Lobby(message) => LobbyView::update(message, state),
             PlayMessage::PostGame(message) => EndOfGameView::update(message, state),
             PlayMessage::InGame(message) => InGameView::update(message, state),
+            PlayMessage::ContinuePreEndGame => {
+                if let AppState::Connected(connected_state) = state {
+                    perform_request(connected_state, apis::lol_game_flow::post_pre_end_game_transition(), |r| Message::None)
+                } else {
+                    Command::none()
+                }
+            }
         }
     }
     fn view(connected_state: &ConnectedState) -> Container<'_, Message> {
@@ -95,16 +104,16 @@ impl HasView for PlayView {
                 LolGameFlowPhase::ChampSelect => ChampSelectView::view(connected_state),
                 LolGameFlowPhase::EndOfGame => EndOfGameView::view(connected_state),
                 LolGameFlowPhase::Lobby
-                |LolGameFlowPhase::CheckedIntoTournament
-                |LolGameFlowPhase::Matchmaking
-                |LolGameFlowPhase::ReadyCheck => LobbyView::view(connected_state),
+                | LolGameFlowPhase::CheckedIntoTournament
+                | LolGameFlowPhase::Matchmaking
+                | LolGameFlowPhase::ReadyCheck => LobbyView::view(connected_state),
                 LolGameFlowPhase::FailedToLaunch
                 | LolGameFlowPhase::WaitingForStats
-                |LolGameFlowPhase::Reconnect
-                |LolGameFlowPhase::PreEndOfGame
-                |LolGameFlowPhase::GameStart
-                |LolGameFlowPhase::TerminatedInError
-                |LolGameFlowPhase::InProgress => InGameView::view(connected_state),
+                | LolGameFlowPhase::GameStart
+                | LolGameFlowPhase::TerminatedInError => container(Column::new().push(text("Not Implemented/Error"))),
+                LolGameFlowPhase::Reconnect
+                | LolGameFlowPhase::InProgress => InGameView::view(connected_state),
+                LolGameFlowPhase::PreEndOfGame => Container::new(Column::new().push(custom_button("Continue").style(custom_button::primary).on_press(Self::Message::ContinuePreEndGame.into()))),
             })
         )
             .center_x()

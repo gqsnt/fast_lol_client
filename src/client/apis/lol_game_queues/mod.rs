@@ -8,7 +8,7 @@ impl_api_plugin!(
     "/lol-game-queues",
     V1{
         GetQueues{
-            fn:get_queues,method: reqwest::Method::GET,url: "/queues" => LolGameQueuesGetQueues
-        }
+            get_queues,reqwest::Method::GET, "/queues"
+        } => LolGameQueuesGetQueues
     }
 );

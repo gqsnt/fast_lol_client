@@ -8,7 +8,7 @@ impl_api_plugin!(
     "/lol-summoner",
     V1{
          CurrentSummoner{
-            fn:get_current_summoner,method: reqwest::Method::GET,url: "/current-summoner" => SummonerInfo
-        }
+            get_current_summoner, reqwest::Method::GET, "/current-summoner"
+        } => SummonerInfo
     }
 );

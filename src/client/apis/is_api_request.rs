@@ -1,4 +1,4 @@
-
+use serde::{Deserialize, Serialize};
 
 pub trait IsApiRequest {
     const METHOD: reqwest::Method;
@@ -17,6 +17,7 @@ pub trait IsApiRequest {
     fn get_url(&self) -> String {
         format!("{}{}{}", Self::PLUGIN_URL, Self::API_VERSION, self.get_path())
     }
-
 }
+
+
 

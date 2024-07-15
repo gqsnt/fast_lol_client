@@ -14,5 +14,5 @@ pub trait HasView {
     type State;
     type Message;
     fn update(message: Self::Message, state: &mut AppState) -> Command<Message>;
-    fn view(connected_sate: &ConnectedState) -> Container<'_, Message>;
+    fn view(connected_state: &ConnectedState) -> Container<'_, Message>;
 }

@@ -8,13 +8,12 @@ macro_rules! impl_api_plugin {
             $version:ident {
                 $(
                     $endpoint:ident {
-                        fn: $fn_name:ident,
-                        method: $method:expr,
-                        url: $url:expr
+                        $fn_name:ident,
+                        $method:expr,
+                        $url:expr
                         $(, params: {$($param_name:ident: $param_type:ty),*})?
                         $(, body: $body_type:ty)?
-                        => $return_type:ty
-                    }
+                    }  => $return_type:ty
                 )*
             }
         )*
