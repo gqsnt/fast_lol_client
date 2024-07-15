@@ -19,8 +19,8 @@ pub struct LolLobbySession {
     pub invitations: Vec<Invitation>,
     #[serde(rename = "canStartActivity")]
     pub can_start_activity: bool,
-    pub restrictions: Vec<Restriction>,
-    pub warnings: Vec<Restriction>,
+    pub restrictions: Option<Vec<Restriction>>,
+    pub warnings: Option<Vec<Restriction>>,
     #[serde(rename = "gameConfig")]
     pub game_config: GameConfig,
     #[serde(rename = "multiUserChatId")]

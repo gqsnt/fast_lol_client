@@ -11,7 +11,7 @@ pub mod is_api_request;
 mod plugin_macro;
 pub mod lol_game_queues;
 pub mod lol_matchmaking;
-mod lol_end_of_game;
+pub mod lol_end_of_game;
 
 pub enum ApiVersion{
     None,

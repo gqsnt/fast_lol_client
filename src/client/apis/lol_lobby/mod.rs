@@ -15,6 +15,12 @@ impl_api_plugin!(
             put_local_member_player_slots, reqwest::Method::PUT, "/lobby/members/localMember/player-slots",
             body:LolLobbyPutLocalMemberPlayerSlotsBody
         } => Value
+        PostStartCustomLobby{
+            post_start_custom_lobby, reqwest::Method::POST, "/lobby/custom/start-champ-select"
+        } => Value
+        PostStopCustomLobby{
+            post_stop_custom_lobby, reqwest::Method::POST, "/lobby/custom/start-champ-select"
+        } => Value
     }
     V2{
         PostLobby{

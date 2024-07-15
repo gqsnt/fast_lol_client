@@ -86,7 +86,7 @@ pub fn perform_game_flow_update(
         | LolGameFlowPhase::Matchmaking
         | LolGameFlowPhase::ReadyCheck => {
             all_commands.push(
-                perform_request(connected_state, apis::lol_lobby::get_lobby(), |r| LobbyMessage::LobbySessionResult(r).into())
+                perform_save_request(connected_state, "lol_lobby",apis::lol_lobby::get_lobby(), |r| LobbyMessage::LobbySessionResult(r).into())
             );
             if matches!( current_state,LolGameFlowPhase::Matchmaking| LolGameFlowPhase::ReadyCheck ) {
                 all_commands.push(

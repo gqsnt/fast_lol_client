@@ -1,17 +1,16 @@
+use iced::{Application, Command};
+use iced::widget::{Column, Container, container, text};
 
-use iced::Command;
-use iced::widget::{Column, Container, container, Row, text};
-use serde_json::Value;
 use crate::AppResult;
 use crate::client::apis;
 use crate::client::apis::lol_champ_select::get_session::LolChampSelectChampSelectSession;
-use crate::client::apis::lol_game_flow::get_availability::LolGameFlowGetAvailability;
-use crate::client::apis::lol_game_flow::get_session::LolGameFlowGetSession;
-use crate::client::apis::lol_game_queues::get_queues::LolGameQueuesGetQueues;
+use crate::client::utils::perform_request;
 use crate::ui::application::AppState;
 use crate::ui::message::Message;
 use crate::ui::state::ConnectedState;
 use crate::ui::view::HasView;
+use crate::ui::widget::custom_button;
+use crate::ui::widget::custom_button::custom_button;
 
 #[derive(Debug, Clone, Default)]
 pub struct ChampSelectState {
@@ -21,6 +20,7 @@ pub struct ChampSelectState {
 #[derive(Debug, Clone)]
 pub enum ChampSelectMessage {
     ChampSelectSessionResult(AppResult<LolChampSelectChampSelectSession>),
+    QuitCustomLobby,
 }
 
 pub struct ChampSelectView {}
@@ -36,6 +36,13 @@ impl HasView for ChampSelectView {
                     if let Ok(result) = result {
                         connected_state.play.champ_select_state.session = Some(result);
                     }
+                }
+                ChampSelectMessage::QuitCustomLobby => {
+                    return perform_request(
+                        connected_state,
+                        apis::lol_lobby::post_stop_custom_lobby(),
+                        |r| Message::None,
+                    )
                 }
             }
         }

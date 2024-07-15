@@ -49,6 +49,7 @@ impl HasView for LobbyView {
                     connected_state.play.lobby_state.matchmaking_session = result.ok();
                 }
                 LobbyMessage::QuitLobby => {
+
                     return perform_request(
                         connected_state,
                         apis::lol_lobby::delete_lobby(),
@@ -56,18 +57,33 @@ impl HasView for LobbyView {
                     );
                 }
                 LobbyMessage::FindMatch => {
-                    return perform_request(
-                        connected_state,
-                        apis::lol_lobby::post_matchmaking_search(),
-                        |r| Message::None,
-                    );
+                    if let Some(session) = &connected_state.play.lobby_state.session{
+                        return if !session.game_config.is_custom{
+                            perform_request(
+                                connected_state,
+                                apis::lol_lobby::post_matchmaking_search(),
+                                |r| Message::None,
+                            )
+                        }else {
+                            perform_request(
+                                connected_state,
+                                apis::lol_lobby::post_start_custom_lobby(),
+                                |r| Message::None
+                            )
+                        }
+                    }
+
                 }
                 LobbyMessage::CancelMatchmaking => {
-                    return perform_request(
-                        connected_state,
-                        apis::lol_lobby::delete_matchmaking_search(),
-                        |r| Message::None,
-                    );
+                    if let Some(session) = &connected_state.play.lobby_state.session{
+                        if !session.game_config.is_custom{
+                            return perform_request(
+                                connected_state,
+                                apis::lol_lobby::delete_matchmaking_search(),
+                                |r| Message::None,
+                            );
+                        }
+                    }
                 }
                 LobbyMessage::AcceptReadyCheck => {
                     return perform_request(
@@ -148,10 +164,12 @@ impl HasView for LobbyView {
             } else {
                 Column::new().push(
                     Row::new()
-                        .push(
-                            custom_button("Find Match")
-                                .on_press(Self::Message::FindMatch.into())
-                                .style(custom_button::primary)
+                        .push_maybe(
+                            if session.local_member.is_leader{
+                                Some(custom_button("Find Match")
+                                    .on_press(Self::Message::FindMatch.into())
+                                    .style(custom_button::primary))
+                            }else{None}
                         )
                         .push(
                             custom_button("Quit")

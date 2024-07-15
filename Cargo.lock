@@ -789,7 +789,6 @@ dependencies = [
  "futures",
  "iced",
  "iced-box",
- "paste",
  "regex",
  "reqwest",
  "serde",

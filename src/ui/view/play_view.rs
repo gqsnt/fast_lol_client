@@ -57,7 +57,6 @@ pub enum PlayMessage {
     Lobby(LobbyMessage),
     PostGame(EndOfGameMessage),
     InGame(InGameMessage),
-    ContinuePreEndGame,
 
 }
 
@@ -88,32 +87,25 @@ impl HasView for PlayView {
             PlayMessage::Lobby(message) => LobbyView::update(message, state),
             PlayMessage::PostGame(message) => EndOfGameView::update(message, state),
             PlayMessage::InGame(message) => InGameView::update(message, state),
-            PlayMessage::ContinuePreEndGame => {
-                if let AppState::Connected(connected_state) = state {
-                    perform_request(connected_state, apis::lol_game_flow::post_pre_end_game_transition(), |r| Message::None)
-                } else {
-                    Command::none()
-                }
-            }
         }
     }
     fn view(connected_state: &ConnectedState) -> Container<'_, Message> {
         container(Column::new()
             .push(match connected_state.state {
                 LolGameFlowPhase::None => CreateLobbyView::view(connected_state),
-                LolGameFlowPhase::ChampSelect => ChampSelectView::view(connected_state),
-                LolGameFlowPhase::EndOfGame => EndOfGameView::view(connected_state),
                 LolGameFlowPhase::Lobby
-                | LolGameFlowPhase::CheckedIntoTournament
                 | LolGameFlowPhase::Matchmaking
                 | LolGameFlowPhase::ReadyCheck => LobbyView::view(connected_state),
-                LolGameFlowPhase::FailedToLaunch
-                | LolGameFlowPhase::WaitingForStats
-                | LolGameFlowPhase::GameStart
-                | LolGameFlowPhase::TerminatedInError => container(Column::new().push(text("Not Implemented/Error"))),
+                LolGameFlowPhase::ChampSelect => ChampSelectView::view(connected_state),
+                LolGameFlowPhase::GameStart => container(Column::new().push(text("Game Starting"))),
                 LolGameFlowPhase::Reconnect
                 | LolGameFlowPhase::InProgress => InGameView::view(connected_state),
-                LolGameFlowPhase::PreEndOfGame => Container::new(Column::new().push(custom_button("Continue").style(custom_button::primary).on_press(Self::Message::ContinuePreEndGame.into()))),
+                LolGameFlowPhase::WaitingForStats
+                |LolGameFlowPhase::PreEndOfGame
+                |LolGameFlowPhase::EndOfGame => EndOfGameView::view(connected_state),
+                LolGameFlowPhase::FailedToLaunch
+                | LolGameFlowPhase::CheckedIntoTournament
+                | LolGameFlowPhase::TerminatedInError => container(Column::new().push(text("Not Implemented/Error"))),
             })
         )
             .center_x()

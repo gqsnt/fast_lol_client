@@ -28,7 +28,7 @@ pub async fn wait_client_available(riot_path: String) -> AppResult<ConnectedStat
         if client.is_some() {
             break;
         }
-        println!("Waiting for client to be started");
+        println!("Waiting client...");
         tokio::time::sleep(std::time::Duration::from_millis(500)).await;
     }
 
@@ -44,9 +44,10 @@ pub async fn wait_client_available(riot_path: String) -> AppResult<ConnectedStat
                 break;
             }
         }
-        println!("Waiting for client to be available");
+        println!("Waiting client available ...");
         tokio::time::sleep(std::time::Duration::from_millis(500)).await;
     }
+
     let summoner_info = client.execute(apis::lol_summoner::get_current_summoner()).await?;
     let me = client.execute(apis::lol_chat::get_me()).await?;
     let friends = client.execute(apis::lol_chat::get_friends() ).await?;
