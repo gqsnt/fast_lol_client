@@ -41,6 +41,10 @@ impl_api_plugin!(
         GetMatchmakingSearchState{
             get_matchmaking_search_state, reqwest::Method::GET, "/lobby/matchmaking/search-state"
         } => LolLobbyMatchmakingSearchState
+        PromoteLobbySummoner{
+            promote_lobby_summoner, reqwest::Method::POST, "/lobby/members/{}/promote",
+            params: {summoner_id:i64}
+        } => Value
 
     }
 );
