@@ -19,7 +19,6 @@ pub enum NavBarMessage {
     Profile,
     Play,
     Chat,
-    Test,
 }
 
 pub struct NavBarView {}
@@ -54,8 +53,6 @@ impl HasView for NavBarView {
             )
             .push(nav_button("Chat", get_message_if_not_already(NavBarMessage::Chat, nav_bar_state.state.clone()))
                 .style(custom_button::primary))
-            .push(nav_button("Test", get_message_if_not_already(NavBarMessage::Test, nav_bar_state.state.clone()))
-                .style(custom_button::secondary))
             .spacing(20)
         ).center_x()
             .center_y()

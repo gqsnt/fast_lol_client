@@ -9,7 +9,6 @@ use crate::ui::view::chat_view::ChatMessage;
 use crate::ui::view::nav_bar_view::NavBarMessage;
 use crate::ui::view::play_view::PlayMessage;
 use crate::ui::view::profile_view::ProfileMessage;
-use crate::ui::view::test_view::TestMessage;
 
 #[derive(Debug, Clone)]
 pub enum Message {
@@ -20,7 +19,6 @@ pub enum Message {
     GamFlowResult(AppResult<LolGameFlowPhase>),
     NavBar(NavBarMessage),
     Profile(ProfileMessage),
-    Test(TestMessage),
     Play(PlayMessage),
     Chat(ChatMessage),
 
@@ -44,6 +42,5 @@ macro_rules! impl_from_for_message {
 
 impl_from_for_message!(ProfileMessage => Profile);
 impl_from_for_message!(NavBarMessage => NavBar);
-impl_from_for_message!(TestMessage => Test);
 impl_from_for_message!(PlayMessage => Play);
 impl_from_for_message!(ChatMessage => Chat);

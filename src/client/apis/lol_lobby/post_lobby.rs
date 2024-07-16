@@ -1,10 +1,71 @@
+use std::fmt;
 use serde::{Deserialize, Serialize};
+use crate::client::apis::lol_game_queues::get_queues::LolGameMode;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct LolLobbyPostLobbyBody{
-    #[serde(rename = "queueId")]
+#[derive(Debug, Serialize, Deserialize, Default, Clone)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLobbyPostLobbyBody {
     pub queue_id: i32,
+    pub is_custom: bool,
+    pub custom_game_lobby: Option<LolLobbyLobbyCustomGameLobby>,
 }
+
+#[derive(Debug, Serialize, Deserialize, Default, Clone)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLobbyLobbyCustomGameLobby {
+    pub lobby_name: String,
+    pub lobby_password: Option<String>,
+    pub configuration: LolLobbyLobbyCustomGameConfiguration,
+}
+
+#[derive(Debug, Serialize, Deserialize, Default, Clone)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLobbyLobbyCustomGameConfiguration {
+    pub map_id: i32,
+    pub game_mode: LolGameMode,
+    pub mutators: LolLobbyQueueGameTypeConfig,
+    pub spectator_policy: LolLobbyQueueCustomGameSpectatorPolicy,
+    pub team_size: i32,
+}
+
+#[derive(Debug, Serialize, Deserialize, Default, Clone)]
+pub struct LolLobbyQueueGameTypeConfig {
+    pub id: i64,
+}
+
+
+#[derive(Debug, Serialize, Deserialize, Default, Clone, PartialEq)]
+pub enum LolLobbyQueueCustomGameSpectatorPolicy {
+    AllAllowed,
+    FriendsAllowed,
+    LobbyAllowed,
+    #[default]
+    NotAllowed,
+}
+
+impl LolLobbyQueueCustomGameSpectatorPolicy{
+    pub fn cases() -> Vec<LolLobbyQueueCustomGameSpectatorPolicy>{
+        vec![
+            LolLobbyQueueCustomGameSpectatorPolicy::NotAllowed,
+            LolLobbyQueueCustomGameSpectatorPolicy::AllAllowed,
+            LolLobbyQueueCustomGameSpectatorPolicy::FriendsAllowed,
+            LolLobbyQueueCustomGameSpectatorPolicy::LobbyAllowed
+        ]
+    }
+}
+
+impl fmt::Display for LolLobbyQueueCustomGameSpectatorPolicy {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            LolLobbyQueueCustomGameSpectatorPolicy::AllAllowed => write!(f, "AllAllowed"),
+            LolLobbyQueueCustomGameSpectatorPolicy::FriendsAllowed => write!(f, "FriendsAllowed"),
+            LolLobbyQueueCustomGameSpectatorPolicy::LobbyAllowed => write!(f, "LobbyAllowed"),
+            LolLobbyQueueCustomGameSpectatorPolicy::NotAllowed => write!(f, "NotAllowed"),
+        }
+    }
+}
+
+
 
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]

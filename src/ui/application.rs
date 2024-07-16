@@ -14,7 +14,6 @@ use crate::ui::view::HasView;
 use crate::ui::view::nav_bar_view::{NavBarMessage, NavBarView};
 use crate::ui::view::play_view::{PlayMessage, PlayView};
 use crate::ui::view::profile_view::ProfileView;
-use crate::ui::view::test_view::TestView;
 
 pub struct MainApp {
     state: AppState,
@@ -52,7 +51,6 @@ impl Application for MainApp {
                     self.state = AppState::Connected(connected_state.clone());
                     Command::batch(vec![
                         perform_request(connected_state, apis::lol_game_flow::get_phase(), Message::GamFlowResult),
-                        perform_request(connected_state, apis::lol_game_queues::get_queues(), |r| PlayMessage::RequestQueuesResult(r).into()),
                     ])
                 } else {
                     Command::none()
@@ -74,7 +72,6 @@ impl Application for MainApp {
             }
             Message::NavBar(message) => NavBarView::update(message, &mut self.state),
             Message::Play(message) => PlayView::update(message, &mut self.state),
-            Message::Test(message) => TestView::update(message, &mut self.state),
             Message::Chat(message) => ChatView::update(message, &mut self.state),
             Message::Profile(message) => ProfileView::update(message, &mut self.state),
             Message::FontLoaded(_) => { Command::none() }
@@ -98,7 +95,6 @@ impl Application for MainApp {
                             .push(match connected_state.nav_bar.state {
                                 NavBarMessage::Profile => { ProfileView::view(connected_state) }
                                 NavBarMessage::Play => { PlayView::view(connected_state) }
-                                NavBarMessage::Test => { TestView::view(connected_state) }
                                 NavBarMessage::Chat => { ChatView::view(connected_state) }
                             }).width(Length::Fill).height(Length::Fill))
                     }

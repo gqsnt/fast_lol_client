@@ -1,31 +1,82 @@
+use std::borrow::Borrow;
+use std::fmt;
+
 use iced::Command;
-use iced::widget::{Column, combo_box, Container, container, text};
-use serde_json::Value;
-use crate::AppResult;
+use iced::widget::{Column, Container, container, pick_list, Row, text};
+
 use crate::client::apis;
-use crate::client::apis::lol_game_flow::get_phase::LolGameFlowPhase;
-use crate::client::apis::lol_game_queues::get_queues::LolGameQueuesGetQueue;
+use crate::client::apis::lol_game_queues::get_queues::LolGameMode;
 use crate::client::apis::lol_lobby::post_lobby::LolLobbyPostLobbyBody;
-use crate::client::utils::{disconnect_if_disconnect_error, perform_request};
+use crate::client::utils::perform_request;
 use crate::ui::application::AppState;
 use crate::ui::message::Message;
 use crate::ui::state::ConnectedState;
 use crate::ui::view::HasView;
-use crate::ui::view::play_view::lobby_view::{LobbyMessage, LobbyState, LobbyView};
-use crate::ui::view::play_view::PlayMessage;
+use crate::ui::view::play_view::create_lobby_view::create_lobby_coop_ai_view::{CreateLobbyCoopAiMessage, CreateLobbyCoopAiView};
+use crate::ui::view::play_view::create_lobby_view::create_lobby_custom_view::{CreateLobbyCustomMessage, CreateLobbyCustomView};
+use crate::ui::view::play_view::create_lobby_view::create_lobby_join_custom_view::{CreateLobbyJoinCustomMessage, CreateLobbyJoinCustomView};
+use crate::ui::view::play_view::create_lobby_view::create_lobby_pvp_view::{CreateLobbyPvpMessage, CreateLobbyPvpView};
+use crate::ui::view::play_view::create_lobby_view::create_lobby_training_view::{CreateLobbyTrainingMessage, CreateLobbyTrainingView};
+use crate::ui::view::play_view::lobby_view::{LobbyMessage, LobbyState};
 use crate::ui::widget::custom_button;
 use crate::ui::widget::custom_button::custom_button;
 
+pub mod create_lobby_pvp_view;
+pub mod create_lobby_coop_ai_view;
+pub mod create_lobby_custom_view;
+pub mod create_lobby_join_custom_view;
+pub mod create_lobby_training_view;
+
+#[derive(Debug, Clone, PartialEq, Default)]
+pub enum CreateLobbyViewType {
+    #[default]
+    Pvp,
+    CoopVsAi,
+    Training,
+    Custom,
+    JoinCustom,
+}
+
+
+impl CreateLobbyViewType {
+    pub fn cases() -> Vec<Self> {
+        vec![Self::Pvp, Self::CoopVsAi,Self::Training, Self::Custom, Self::JoinCustom]
+    }
+}
+
+
+impl fmt::Display for CreateLobbyViewType {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            Self::Pvp => write!(f, "Pvp"),
+            Self::CoopVsAi => write!(f, "CoopVsAi"),
+            Self::Custom => write!(f, "Custom"),
+            Self::JoinCustom => write!(f, "JoinCustom"),
+            Self::Training => write!(f, "Training"),
+        }
+    }
+}
+
+
 #[derive(Debug, Clone, Default)]
 pub struct CreateLobbyState {
-    selected_queue: Option<LolGameQueuesGetQueue>,
+    view_type: CreateLobbyViewType,
+    pvp_state: create_lobby_pvp_view::CreateLobbyPvpState,
+    coop_ai_state: create_lobby_coop_ai_view::CreateLobbyCoopAiState,
+    training_state: create_lobby_training_view::CreateLobbyTrainingState,
+    custom_state: create_lobby_custom_view::CreateLobbyCustomState,
+    join_custom_state: create_lobby_join_custom_view::CreateLobbyJoinCustomState,
 }
 
 #[derive(Debug, Clone)]
 pub enum CreateLobbyMessage {
-    Selected(LolGameQueuesGetQueue),
+    SelectedViewType(CreateLobbyViewType),
     DeleteLobbyResult,
-    StartQueue,
+    Pvp(CreateLobbyPvpMessage),
+    CoopAi(CreateLobbyCoopAiMessage),
+    Training(CreateLobbyTrainingMessage),
+    Custom(CreateLobbyCustomMessage),
+    JoinCustom(CreateLobbyJoinCustomMessage)
 }
 
 pub struct CreateLobbyView {}
@@ -35,45 +86,63 @@ impl HasView for CreateLobbyView {
     type Message = CreateLobbyMessage;
 
     fn update(message: Self::Message, state: &mut AppState) -> Command<Message> {
-        if let AppState::Connected(connected_state) = state {
-            match message {
-                CreateLobbyMessage::Selected(queue) => {
-                    connected_state.play.create_lobby_state.selected_queue = Some(queue);
+        return match message{
+            CreateLobbyMessage::SelectedViewType(selected_type) => {
+                if let AppState::Connected(connected_state) = state {
+                    connected_state.play.create_lobby_state.view_type = selected_type;
                 }
-
-                CreateLobbyMessage::StartQueue => {
-                    if let Some(queue) = &connected_state.play.create_lobby_state.selected_queue {
-                        let queue = queue.clone();
-                        return perform_request(
-                            connected_state,
-                            apis::lol_lobby::post_lobby(LolLobbyPostLobbyBody{queue_id:queue.id}),
-                            |r|LobbyMessage::LobbySessionResult(r).into()
-                        );
-                    }
-                }
-                CreateLobbyMessage::DeleteLobbyResult => {
+                Command::none()
+            }
+            CreateLobbyMessage::DeleteLobbyResult => {
+                if let AppState::Connected(connected_state) = state {
                     connected_state.play.lobby_state = LobbyState::default();
                 }
+                Command::none()
             }
-        }
-        Command::none()
+            CreateLobbyMessage::Pvp(message) => CreateLobbyPvpView::update(message, state),
+            CreateLobbyMessage::CoopAi(message) => CreateLobbyCoopAiView::update(message, state),
+            CreateLobbyMessage::Training(message) => CreateLobbyTrainingView::update(message, state),
+            CreateLobbyMessage::Custom(message) => CreateLobbyCustomView::update(message, state),
+            CreateLobbyMessage::JoinCustom(message) => CreateLobbyJoinCustomView::update(message, state),
+        };
     }
     fn view(connected_state: &ConnectedState) -> Container<'_, Message> {
-        let combo_box = combo_box(
-            &connected_state.play.queues,
-            "Type a Queue...",
-            connected_state.play.create_lobby_state.selected_queue.as_ref(),
-            |r|CreateLobbyMessage::Selected(r).into(),
-        ).width(250);
         container(Column::new()
             .push(text("Create Lobby").size(25))
-            .push(combo_box)
             .push(
-                custom_button("Confirm")
-                    .on_press(Self::Message::StartQueue.into())
-                    .style(custom_button::primary)
+                pick_list(
+                    CreateLobbyViewType::cases(),
+                    Some(connected_state.play.create_lobby_state.view_type.clone()),
+                    |r| CreateLobbyMessage::SelectedViewType(r).into()
+                )
             )
-        ).center_x()
+            .push(match connected_state.play.create_lobby_state.view_type {
+                CreateLobbyViewType::Pvp => CreateLobbyPvpView::view(connected_state),
+                CreateLobbyViewType::CoopVsAi => CreateLobbyCoopAiView::view(connected_state),
+                CreateLobbyViewType::Training => CreateLobbyTrainingView::view(connected_state),
+                CreateLobbyViewType::Custom => CreateLobbyCustomView::view(connected_state),
+                CreateLobbyViewType::JoinCustom => CreateLobbyJoinCustomView::view(connected_state),
+            })
+            .spacing(20)
+        )
+            .center_x()
             .center_y()
     }
 }
+
+
+macro_rules! impl_from_for_create_lobby_message {
+    ($source_type:ty => $enum_variant:ident) => {
+        impl From<$source_type> for Message {
+            fn from(value: $source_type) -> Self {
+                CreateLobbyMessage::$enum_variant(value).into()
+            }
+        }
+    };
+}
+
+impl_from_for_create_lobby_message!(CreateLobbyPvpMessage => Pvp);
+impl_from_for_create_lobby_message!(CreateLobbyCoopAiMessage => CoopAi);
+impl_from_for_create_lobby_message!(CreateLobbyTrainingMessage => Training);
+impl_from_for_create_lobby_message!(CreateLobbyCustomMessage => Custom);
+impl_from_for_create_lobby_message!(CreateLobbyJoinCustomMessage => JoinCustom);

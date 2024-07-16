@@ -7,7 +7,6 @@ use crate::ui::state::ConnectedState;
 pub mod profile_view;
 pub mod nav_bar_view;
 pub mod play_view;
-pub mod test_view;
 pub mod chat_view;
 
 pub trait HasView {
