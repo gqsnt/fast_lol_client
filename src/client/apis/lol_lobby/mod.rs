@@ -45,6 +45,10 @@ impl_api_plugin!(
             promote_lobby_summoner, reqwest::Method::POST, "/lobby/members/{}/promote",
             params: {summoner_id:i64}
         } => Value
+        KickLobbySummoner{
+            kick_lobby_summoner, reqwest::Method::POST, "/lobby/members/{}/kick",
+            params: {summoner_id:i64}
+        } => Value
 
     }
 );
