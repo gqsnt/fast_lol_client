@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct PostTracingV1PerformanceByName {
@@ -99,7 +101,7 @@ pub struct DeleteTracingV1TraceTimeSeriesEventByEventName {
     // Record the ending of a time series event.
     pub event_name: String,
     pub when: u64,
-    pub suffix: String,
+    pub suffix: Option<String>,
 }
 
 impl IsApiRequest for DeleteTracingV1TraceTimeSeriesEventByEventName {
@@ -122,7 +124,7 @@ impl IsApiRequest for DeleteTracingV1TraceTimeSeriesEventByEventName {
     }
 }
 
-pub fn delete_tracing_v_1_trace_time_series_event_by_event_name(event_name: String, when: u64, suffix: String) -> DeleteTracingV1TraceTimeSeriesEventByEventName {
+pub fn delete_tracing_v_1_trace_time_series_event_by_event_name(event_name: String, when: u64, suffix: Option<String>) -> DeleteTracingV1TraceTimeSeriesEventByEventName {
     DeleteTracingV1TraceTimeSeriesEventByEventName {
         event_name, when, suffix
     }
@@ -402,14 +404,6 @@ pub fn post_tracing_v_1_trace_time_series_event_by_event_name_marker_by_marker_n
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct TracingPhaseEndV1 {
-    pub when: u64,
-    pub name: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct TracingCriticalFlowEventV1 {
     pub when: u64,
     pub event_id: String,
@@ -442,6 +436,14 @@ pub struct TracingModuleV1 {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct TracingPhaseEndV1 {
+    pub when: u64,
+    pub name: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct TracingPhaseBeginV1 {
     pub when: u64,
     pub name: String,
@@ -450,18 +452,6 @@ pub struct TracingPhaseBeginV1 {
 
 
 // ENUMS
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum TracingPhaseImportanceV1 {
-    #[default]
-    #[serde(rename = "major")]
-    Major,
-    #[serde(rename = "minor")]
-    Minor,
-    #[serde(rename = "trivial")]
-    Trivial,
-}
-
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
 pub enum TracingModuleTypeV1 {
@@ -478,6 +468,18 @@ pub enum TracingModuleTypeV1 {
     KRemoteAppModule,
     #[serde(rename = "kUnknown")]
     KUnknown,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum TracingPhaseImportanceV1 {
+    #[default]
+    #[serde(rename = "major")]
+    Major,
+    #[serde(rename = "minor")]
+    Minor,
+    #[serde(rename = "trivial")]
+    Trivial,
 }
 
 

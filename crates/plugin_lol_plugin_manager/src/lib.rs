@@ -5,13 +5,15 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetByPluginAssetsByPath {
     // Download a backend asset
     pub plugin: String,
     pub path_: String,
-    pub if_none_match: String,
+    pub if_none_match: Option<String>,
 }
 
 impl IsApiRequest for GetByPluginAssetsByPath {
@@ -33,7 +35,7 @@ impl IsApiRequest for GetByPluginAssetsByPath {
     }
 }
 
-pub fn get_by_plugin_assets_by_path(plugin: String, path_: String, if_none_match: String) -> GetByPluginAssetsByPath {
+pub fn get_by_plugin_assets_by_path(plugin: String, path_: String, if_none_match: Option<String>) -> GetByPluginAssetsByPath {
     GetByPluginAssetsByPath {
         plugin, path_, if_none_match
     }
@@ -44,7 +46,7 @@ pub struct HeadByPluginAssetsByPath {
     // Download the header for a backend asset
     pub plugin: String,
     pub path_: String,
-    pub if_none_match: String,
+    pub if_none_match: Option<String>,
 }
 
 impl IsApiRequest for HeadByPluginAssetsByPath {
@@ -66,7 +68,7 @@ impl IsApiRequest for HeadByPluginAssetsByPath {
     }
 }
 
-pub fn head_by_plugin_assets_by_path(plugin: String, path_: String, if_none_match: String) -> HeadByPluginAssetsByPath {
+pub fn head_by_plugin_assets_by_path(plugin: String, path_: String, if_none_match: Option<String>) -> HeadByPluginAssetsByPath {
     HeadByPluginAssetsByPath {
         plugin, path_, if_none_match
     }
@@ -282,15 +284,6 @@ pub struct PluginManagerResource {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct PluginDescriptionResource {
-    pub name: String,
-    pub riot_meta: PluginMetadataResource,
-    pub plugin_dependencies: Vec<String>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct PluginResource {
     pub full_name: String,
     pub short_name: String,
@@ -304,14 +297,6 @@ pub struct PluginResource {
     pub order_wad_file_mounted: i32,
     pub dependencies: Vec<PluginResourceContract>,
     pub implemented_contracts: Vec<PluginResourceContract>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct ExternalPluginsResource {
-    pub state: ExternalPluginsAvailability,
-    pub error_string: String,
 }
 
 
@@ -333,20 +318,29 @@ pub struct PluginMetadataResource {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct PluginDescriptionResource {
+    pub name: String,
+    pub riot_meta: PluginMetadataResource,
+    pub plugin_dependencies: Vec<String>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct PluginResourceContract {
     pub full_name: String,
 }
 
 
-// ENUMS
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum PluginManagerState {
-    #[default]
-    PluginsInitialized,
-    NotReady,
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct ExternalPluginsResource {
+    pub state: ExternalPluginsAvailability,
+    pub error_string: String,
 }
 
+
+// ENUMS
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
 pub enum PluginThreadingModel {
@@ -370,5 +364,13 @@ pub enum ExternalPluginsAvailability {
     Connected,
     Preparing,
     NotAvailable,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum PluginManagerState {
+    #[default]
+    PluginsInitialized,
+    NotReady,
 }
 

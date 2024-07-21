@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetLolTftPassV1BattlePass {
@@ -267,31 +269,6 @@ pub fn put_lol_tft_pass_v_1_pass_by_id_milestone_claim_all_rewards(id: String) -
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolTftPassTftBattlepassInfo {
-    pub title: String,
-    pub description: String,
-    pub start_date: u64,
-    pub end_date: u64,
-    pub premium: bool,
-    pub premium_title: String,
-    pub premium_entitlement_id: String,
-    pub pc_purchase_requirement: String,
-    pub pass_id: String,
-    pub media: HashMap<String, String>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolTftPassTftBattlepassReward {
-    pub description: String,
-    pub icon_url: String,
-    pub icon_needs_frame: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LolTftPassTftBattlepassMilestone {
     pub milestone_id: String,
     pub title: String,
@@ -319,6 +296,31 @@ pub struct LolTftPassTftPassRewardNotification {
     pub description: String,
     pub icon_url: String,
     pub framed_icon: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolTftPassTftBattlepassInfo {
+    pub title: String,
+    pub description: String,
+    pub start_date: u64,
+    pub end_date: u64,
+    pub premium: bool,
+    pub premium_title: String,
+    pub premium_entitlement_id: String,
+    pub pc_purchase_requirement: String,
+    pub pass_id: String,
+    pub media: HashMap<String, String>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolTftPassTftBattlepassReward {
+    pub description: String,
+    pub icon_url: String,
+    pub icon_needs_frame: bool,
 }
 
 

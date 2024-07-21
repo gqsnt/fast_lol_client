@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetLolTftTrovesV1RollRewards {
@@ -294,6 +296,52 @@ pub fn post_lol_tft_troves_v_1_roll(body: LolTftTrovesTrovesRollRequest) -> Post
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct LolTftTrovesTrovesMilestones {
+    pub group_id: String,
+    pub name: String,
+    pub milestones: Vec<LolTftTrovesTrovesMilestone>,
+    pub counter: LolTftTrovesTrovesMilestoneCounter,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolTftTrovesTrovesActiveBanner {
+    pub id: String,
+    pub version: u8,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolTftTrovesVerboseLootOddsResponse {
+    pub recipe_name: String,
+    pub chance_to_contain: Vec<LolTftTrovesLootOddsResponse>,
+    pub guaranteed_to_contain: Vec<LolTftTrovesLootOddsResponse>,
+    pub loot_item: LolTftTrovesPlayerLoot,
+    pub has_pity_rules: bool,
+    pub checks_ownership: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolTftTrovesTrovesCelebrationPortalSegmentData {
+    pub single_pull_rare_webm_path: String,
+    pub single_pull_epic_webm_path: String,
+    pub single_pull_legendary_webm_path: String,
+    pub single_pull_mythic_webm_path: String,
+    pub single_pull_sound_path: String,
+    pub multi_pull_rare_webm_path: String,
+    pub multi_pull_epic_webm_path: String,
+    pub multi_pull_legendary_webm_path: String,
+    pub multi_pull_mythic_webm_path: String,
+    pub multi_pull_sound_path: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct LolTftTrovesCapOrdersResponseDto {
     pub data: HashMap<String, String>,
 }
@@ -313,6 +361,75 @@ pub struct LolTftTrovesTrovesMilestone {
     pub name: String,
     pub icon_url: String,
     pub reset_value: u16,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolTftTrovesLootOddsResponse {
+    pub loot_id: String,
+    pub parent_id: String,
+    pub drop_rate: f64,
+    pub quantity: i32,
+    pub label: String,
+    pub query: String,
+    pub display_priority: i32,
+    pub children: Vec<LolTftTrovesLootOddsResponse>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolTftTrovesTrovesPurchaseRequest {
+    pub offer_id: String,
+    pub quantity: u32,
+    pub payment_option: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolTftTrovesTrovesRollRequest {
+    pub offer_id: String,
+    pub number_of_rolls: u32,
+    pub is_mythic: bool,
+    pub drop_table_id: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolTftTrovesTrovesPcSpriteAnimation {
+    pub spritesheet_path: String,
+    pub duration: f32,
+    pub delay: f32,
+    pub num_rows: u32,
+    pub num_cols: u32,
+    pub num_frames: u32,
+    pub start_frame: u32,
+    pub fps: u32,
+    pub max_play_count: i32,
+    pub play_at_insert: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolTftTrovesTrovesCelebrationCurrencySegmentData {
+    pub lottie_json_path: String,
+    pub single_pull_sound_path: String,
+    pub multi_pull_sound_path: String,
+    pub mythic_pull_sound_path: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolTftTrovesTrovesCelebrationThemeData {
+    pub currency_segment_data: LolTftTrovesTrovesCelebrationCurrencySegmentData,
+    pub portal_segment_data: LolTftTrovesTrovesCelebrationPortalSegmentData,
+    pub highlight_segment_data: LolTftTrovesTrovesCelebrationHighlightSegmentData,
+    pub standard_segment_data: LolTftTrovesTrovesCelebrationStandardSegmentData,
 }
 
 
@@ -362,6 +479,16 @@ pub struct LolTftTrovesPlayerLoot {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct LolTftTrovesTroves {
+    pub enabled: bool,
+    pub use_display_metadata: bool,
+    pub v_2_enabled: bool,
+    pub banner_list: Option<Vec<LolTftTrovesTrovesActiveBanner>>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct LolTftTrovesTrovesBanner {
     pub id: String,
     pub version: u8,
@@ -402,120 +529,6 @@ pub struct LolTftTrovesTrovesMilestoneCounter {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolTftTrovesTrovesMilestones {
-    pub group_id: String,
-    pub name: String,
-    pub milestones: Vec<LolTftTrovesTrovesMilestone>,
-    pub counter: LolTftTrovesTrovesMilestoneCounter,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolTftTrovesTrovesCelebrationCurrencySegmentData {
-    pub lottie_json_path: String,
-    pub single_pull_sound_path: String,
-    pub multi_pull_sound_path: String,
-    pub mythic_pull_sound_path: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolTftTrovesTrovesCelebrationPortalSegmentData {
-    pub single_pull_rare_webm_path: String,
-    pub single_pull_epic_webm_path: String,
-    pub single_pull_legendary_webm_path: String,
-    pub single_pull_mythic_webm_path: String,
-    pub single_pull_sound_path: String,
-    pub multi_pull_rare_webm_path: String,
-    pub multi_pull_epic_webm_path: String,
-    pub multi_pull_legendary_webm_path: String,
-    pub multi_pull_mythic_webm_path: String,
-    pub multi_pull_sound_path: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolTftTrovesVerboseLootOddsResponse {
-    pub recipe_name: String,
-    pub chance_to_contain: Vec<LolTftTrovesLootOddsResponse>,
-    pub guaranteed_to_contain: Vec<LolTftTrovesLootOddsResponse>,
-    pub loot_item: LolTftTrovesPlayerLoot,
-    pub has_pity_rules: bool,
-    pub checks_ownership: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolTftTrovesTrovesCelebrationThemeData {
-    pub currency_segment_data: LolTftTrovesTrovesCelebrationCurrencySegmentData,
-    pub portal_segment_data: LolTftTrovesTrovesCelebrationPortalSegmentData,
-    pub highlight_segment_data: LolTftTrovesTrovesCelebrationHighlightSegmentData,
-    pub standard_segment_data: LolTftTrovesTrovesCelebrationStandardSegmentData,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolTftTrovesTroves {
-    pub enabled: bool,
-    pub use_display_metadata: bool,
-    pub v_2_enabled: bool,
-    pub banner_list: Vec<LolTftTrovesTrovesActiveBanner>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolTftTrovesTrovesPurchaseRequest {
-    pub offer_id: String,
-    pub quantity: u32,
-    pub payment_option: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolTftTrovesTrovesCelebrationHighlightSegmentData {
-    pub lottie_json_path: String,
-    pub reveal_sound_path: String,
-    pub transition_wipe_sound_path: String,
-    pub promise_token_title: String,
-    pub promise_token_description: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolTftTrovesTrovesRollRequest {
-    pub offer_id: String,
-    pub number_of_rolls: u32,
-    pub is_mythic: bool,
-    pub drop_table_id: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolTftTrovesTrovesPcSpriteAnimation {
-    pub spritesheet_path: String,
-    pub duration: f32,
-    pub delay: f32,
-    pub num_rows: u32,
-    pub num_cols: u32,
-    pub num_frames: u32,
-    pub start_frame: u32,
-    pub fps: u32,
-    pub max_play_count: i32,
-    pub play_at_insert: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LolTftTrovesTrovesStatus {
     pub owned: bool,
     pub available_contents: u32,
@@ -529,23 +542,12 @@ pub struct LolTftTrovesTrovesStatus {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolTftTrovesTrovesActiveBanner {
-    pub id: String,
-    pub version: u8,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolTftTrovesLootOddsResponse {
-    pub loot_id: String,
-    pub parent_id: String,
-    pub drop_rate: f64,
-    pub quantity: i32,
-    pub label: String,
-    pub query: String,
-    pub display_priority: i32,
-    pub children: Vec<LolTftTrovesLootOddsResponse>,
+pub struct LolTftTrovesTrovesCelebrationHighlightSegmentData {
+    pub lottie_json_path: String,
+    pub reveal_sound_path: String,
+    pub transition_wipe_sound_path: String,
+    pub promise_token_title: String,
+    pub promise_token_description: String,
 }
 
 

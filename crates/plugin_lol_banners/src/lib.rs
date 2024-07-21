@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetLolBannersV1CurrentSummonerFlags {
@@ -153,19 +155,19 @@ pub fn get_lol_banners_v_1_players_by_puuid_flags_equipped(puuid: String) -> Get
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolBannersBannerFrame {
-    pub level: i64,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LolBannersBannerFlag {
     pub item_id: i32,
     pub theme: String,
     pub level: i64,
     pub season_id: i64,
     pub earned_date_iso_8601: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolBannersBannerFrame {
+    pub level: i64,
 }
 
 

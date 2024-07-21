@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct PostRiotMessagingServiceV1Connect {
@@ -398,19 +400,6 @@ pub fn get_riot_messaging_service_v_1_state() -> GetRiotMessagingServiceV1State 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct RmsMessage {
-    pub id: String,
-    pub resource: String,
-    pub service: String,
-    pub version: String,
-    pub timestamp: i64,
-    pub payload: String,
-    pub ack_required: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct RiotMessagingServiceEntitlementsToken {
     pub access_token: String,
     pub token: String,
@@ -426,6 +415,19 @@ pub struct RiotMessagingServiceSession {
     pub state: RiotMessagingServiceState,
     pub token: String,
     pub token_type: RiotMessagingServiceTokenType,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct RmsMessage {
+    pub id: String,
+    pub resource: String,
+    pub service: String,
+    pub version: String,
+    pub timestamp: i64,
+    pub payload: String,
+    pub ack_required: bool,
 }
 
 

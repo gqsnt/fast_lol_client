@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetLolYourshopV1HasPermissions {
@@ -266,8 +268,8 @@ pub fn post_lol_yourshop_v_1_permissions(body: LolYourshopPlayerPermissions) -> 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolYourshopWallet {
-    pub rp: i64,
+pub struct LolYourshopPlayerPermissions {
+    pub use_data: String,
 }
 
 
@@ -283,16 +285,8 @@ pub struct LolYourshopUiStatus {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolYourshopPlayerPermissions {
-    pub use_data: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolYourshopPurchaseResponse {
-    pub items: Vec<LolYourshopPurchaseItem>,
-    pub wallet: LolYourshopWallet,
+pub struct LolYourshopWallet {
+    pub rp: i64,
 }
 
 
@@ -321,6 +315,14 @@ pub struct LolYourshopPurchaseItem {
     pub item_id: i32,
     pub price_paid: i64,
     pub order_id: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolYourshopPurchaseResponse {
+    pub items: Vec<LolYourshopPurchaseItem>,
+    pub wallet: LolYourshopWallet,
 }
 
 

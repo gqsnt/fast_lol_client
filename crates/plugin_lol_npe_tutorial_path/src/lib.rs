@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetLolNpeTutorialPathV1RewardsChamp {
@@ -197,10 +199,19 @@ pub struct LolNpeTutorialPathCollectionsChampion {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolNpeTutorialPathAccountSettingsTutorial {
-    pub has_seen_tutorial_path: bool,
-    pub has_skipped_tutorial_path: bool,
-    pub should_see_new_player_experience: bool,
+pub struct LolNpeTutorialPathTutorial {
+    pub id: String,
+    pub step_number: i32,
+    pub title: String,
+    pub description: String,
+    pub background_url: String,
+    pub queue_id: String,
+    pub use_quick_search_matchmaking: bool,
+    pub use_chosen_champion: bool,
+    pub status: LolNpeTutorialPathTutorialStatus,
+    pub is_viewed: bool,
+    pub type_: LolNpeTutorialPathTutorialType,
+    pub rewards: Vec<LolNpeTutorialPathTutorialReward>,
 }
 
 
@@ -227,33 +238,14 @@ pub struct LolNpeTutorialPathTutorialReward {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolNpeTutorialPathTutorial {
-    pub id: String,
-    pub step_number: i32,
-    pub title: String,
-    pub description: String,
-    pub background_url: String,
-    pub queue_id: String,
-    pub use_quick_search_matchmaking: bool,
-    pub use_chosen_champion: bool,
-    pub status: LolNpeTutorialPathTutorialStatus,
-    pub is_viewed: bool,
-    pub type_: LolNpeTutorialPathTutorialType,
-    pub rewards: Vec<LolNpeTutorialPathTutorialReward>,
+pub struct LolNpeTutorialPathAccountSettingsTutorial {
+    pub has_seen_tutorial_path: bool,
+    pub has_skipped_tutorial_path: bool,
+    pub should_see_new_player_experience: bool,
 }
 
 
 // ENUMS
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum LolNpeTutorialPathTutorialType {
-    #[default]
-    #[serde(rename = "REWARD")]
-    Reward,
-    #[serde(rename = "CARD")]
-    Card,
-}
-
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
 pub enum LolNpeTutorialPathTutorialStatus {
@@ -264,5 +256,15 @@ pub enum LolNpeTutorialPathTutorialStatus {
     Unlocked,
     #[serde(rename = "LOCKED")]
     Locked,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum LolNpeTutorialPathTutorialType {
+    #[default]
+    #[serde(rename = "REWARD")]
+    Reward,
+    #[serde(rename = "CARD")]
+    Card,
 }
 

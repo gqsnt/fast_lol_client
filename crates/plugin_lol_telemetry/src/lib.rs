@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetTelemetryV1ApplicationStartTime {
@@ -422,48 +424,9 @@ pub fn post_telemetry_v_3_uptime_tracking_notify_success(body: NotifySuccessRequ
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct NotifySuccessRequest {
-    pub availability_item_name: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct SliDoubleDiagnostic {
-    pub key: String,
-    pub value: f64,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct SliIntDiagnostic {
     pub key: String,
     pub value: i64,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct SliBoolDiagnostic {
-    pub key: String,
-    pub value: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct SliLabel {
-    pub key: String,
-    pub value: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct SliStringDiagnostic {
-    pub key: String,
-    pub value: String,
 }
 
 
@@ -486,9 +449,48 @@ pub struct SliCount {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct SliLabel {
+    pub key: String,
+    pub value: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct SliBoolDiagnostic {
+    pub key: String,
+    pub value: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct SliStringDiagnostic {
+    pub key: String,
+    pub value: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct SliDoubleDiagnostic {
+    pub key: String,
+    pub value: f64,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct NotifyFailureRequest {
     pub availability_item_name: String,
     pub failure_info: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct NotifySuccessRequest {
+    pub availability_item_name: String,
 }
 
 

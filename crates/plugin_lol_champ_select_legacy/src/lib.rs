@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetLolChampSelectLegacyV1BannableChampionIds {
@@ -608,29 +610,22 @@ pub fn post_lol_champ_select_legacy_v_1_session_trades_by_id_request(id: i64) ->
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolChampSelectLegacyChampSelectPlayerSelection {
-    pub cell_id: i64,
-    pub champion_id: i32,
-    pub selected_skin_id: i32,
-    pub ward_skin_id: i64,
-    pub spell_1_id: u64,
-    pub spell_2_id: u64,
-    pub team: i32,
-    pub assigned_position: String,
-    pub champion_pick_intent: i32,
-    pub player_type: String,
-    pub summoner_id: u64,
-    pub puuid: String,
+pub struct LolChampSelectLegacyChampSelectTimer {
+    pub adjusted_time_left_in_phase: i64,
+    pub total_time_in_phase: i64,
+    pub phase: String,
+    pub is_infinite: bool,
+    pub internal_now_in_epoch_ms: u64,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolChampSelectLegacyMucJwtDto {
-    pub jwt: String,
-    pub channel_claim: String,
-    pub domain: String,
-    pub target_region: String,
+pub struct LolChampSelectLegacyChampSelectMySelection {
+    pub selected_skin_id: Option<i32>,
+    pub spell_1_id: Option<u64>,
+    pub spell_2_id: Option<u64>,
+    pub ward_skin_id: Option<i64>,
 }
 
 
@@ -664,6 +659,33 @@ pub struct LolChampSelectLegacyChampSelectAction {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct LolChampSelectLegacyChampSelectTradeContract {
+    pub id: i64,
+    pub cell_id: i64,
+    pub state: LolChampSelectLegacyChampSelectTradeState,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChampSelectLegacyChampSelectPlayerSelection {
+    pub cell_id: i64,
+    pub champion_id: i32,
+    pub selected_skin_id: i32,
+    pub ward_skin_id: i64,
+    pub spell_1_id: u64,
+    pub spell_2_id: u64,
+    pub team: i32,
+    pub assigned_position: String,
+    pub champion_pick_intent: i32,
+    pub player_type: String,
+    pub summoner_id: u64,
+    pub puuid: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct LolChampSelectLegacyChampSelectChatRoomDetails {
     pub multi_user_chat_id: String,
     pub multi_user_chat_password: String,
@@ -673,10 +695,11 @@ pub struct LolChampSelectLegacyChampSelectChatRoomDetails {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolChampSelectLegacyChampSelectBannedChampions {
-    pub my_team_bans: Vec<i32>,
-    pub their_team_bans: Vec<i32>,
-    pub num_bans: i32,
+pub struct LolChampSelectLegacyMucJwtDto {
+    pub jwt: String,
+    pub channel_claim: String,
+    pub domain: String,
+    pub target_region: String,
 }
 
 
@@ -704,31 +727,10 @@ pub struct LolChampSelectLegacyChampSelectSession {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolChampSelectLegacyChampSelectMySelection {
-    pub selected_skin_id: i32,
-    pub spell_1_id: u64,
-    pub spell_2_id: u64,
-    pub ward_skin_id: i64,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChampSelectLegacyChampSelectTradeContract {
-    pub id: i64,
-    pub cell_id: i64,
-    pub state: LolChampSelectLegacyChampSelectTradeState,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChampSelectLegacyChampSelectTimer {
-    pub adjusted_time_left_in_phase: i64,
-    pub total_time_in_phase: i64,
-    pub phase: String,
-    pub is_infinite: bool,
-    pub internal_now_in_epoch_ms: u64,
+pub struct LolChampSelectLegacyChampSelectBannedChampions {
+    pub my_team_bans: Vec<i32>,
+    pub their_team_bans: Vec<i32>,
+    pub num_bans: i32,
 }
 
 

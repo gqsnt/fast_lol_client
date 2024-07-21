@@ -1,9 +1,11 @@
-mod enum_impl;
+
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
+
+mod additional;
 
 // ENDPOINTS
 
@@ -1218,7 +1220,7 @@ pub fn get_lol_chat_v_1_settings() -> GetLolChatV1Settings {
 pub struct PutLolChatV1Settings {
 
     pub data: HashMap<String, String>,
-    pub do_async: bool,
+    pub do_async: Option<bool>,
 }
 
 impl IsApiRequest for PutLolChatV1Settings {
@@ -1241,7 +1243,7 @@ impl IsApiRequest for PutLolChatV1Settings {
     }
 }
 
-pub fn put_lol_chat_v_1_settings(data: HashMap<String, String>, do_async: bool) -> PutLolChatV1Settings {
+pub fn put_lol_chat_v_1_settings(data: HashMap<String, String>, do_async: Option<bool>) -> PutLolChatV1Settings {
     PutLolChatV1Settings {
         data, do_async
     }
@@ -1396,6 +1398,72 @@ pub fn put_lol_chat_v_1_friend_groups_order(body: LolChatFriendGroupOrder) -> Pu
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct LolChatGroupResource {
+    pub id: u32,
+    pub name: String,
+    pub is_meta_group: bool,
+    pub is_localized: bool,
+    pub priority: i32,
+    pub collapsed: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChatChatServiceDynamicClientConfig {
+    pub lcu_social: Option<LolChatLcuSocialConfig>,
+    pub chat_domain: Option<LolChatChatDomainConfig>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChatConversationMessageResource {
+    pub id: String,
+    pub type_: String,
+    pub from_summoner_id: u64,
+    pub from_id: String,
+    pub from_pid: String,
+    pub from_obfuscated_summoner_id: u64,
+    pub body: String,
+    pub timestamp: String,
+    pub is_historical: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChatChatDomainConfig {
+    pub p_2_p_domain_name: Option<String>,
+    pub custom_game_domain_name: Option<String>,
+    pub champ_select_domain_name: Option<String>,
+    pub post_game_domain_name: Option<String>,
+    pub club_domain_name: Option<String>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChatErrorResource {
+    pub id: u64,
+    pub from: String,
+    pub code: u64,
+    pub message: String,
+    pub text: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChatProductMetadata {
+    pub id: String,
+    pub name: String,
+    pub patchlines: LolChatPatchlineMetadata,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct LolChatConversationResource {
     pub id: String,
     pub name: String,
@@ -1408,50 +1476,16 @@ pub struct LolChatConversationResource {
     pub target_region: String,
     pub is_muted: bool,
     pub unread_message_count: u64,
-    pub last_message: LolChatConversationMessageResource,
+    pub last_message: Option<LolChatConversationMessageResource>,
     pub muc_jwt_dto: LolChatMucJwtDto,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolChatUserResource {
-    pub summoner_id: u64,
-    pub id: String,
-    pub name: String,
-    pub pid: String,
-    pub puuid: String,
-    pub obfuscated_summoner_id: u64,
-    pub game_name: String,
-    pub game_tag: String,
-    pub icon: i32,
-    pub availability: String,
-    pub platform_id: String,
-    pub patchline: String,
-    pub product: String,
-    pub product_name: String,
-    pub summary: String,
-    pub time: u64,
-    pub status_message: String,
-    pub last_seen_online_timestamp: String,
-    pub lol: HashMap<String, String>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChatContentCookies {
-    pub content_id: String,
-    pub content_path: String,
-    pub cookies: Vec<LolChatcookie>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChatChatServiceDynamicClientConfig {
-    pub lcu_social: LolChatLcuSocialConfig,
-    pub chat_domain: LolChatChatDomainConfig,
+pub struct LolChatSessionResource {
+    pub session_state: LolChatSessionState,
+    pub session_expire: u32,
 }
 
 
@@ -1475,7 +1509,7 @@ pub struct LolChatFriendResource {
     pub time: u64,
     pub status_message: String,
     pub note: String,
-    pub last_seen_online_timestamp: String,
+    pub last_seen_online_timestamp: Option<String>,
     pub is_p_2_p_conversation_muted: bool,
     pub group_id: u32,
     pub display_group_id: u32,
@@ -1487,31 +1521,19 @@ pub struct LolChatFriendResource {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolChatLcuSocialConfig {
-    pub force_chat_filter: bool,
-    pub queue_job_grace_seconds: u64,
-    pub silence_chat_while_in_game: bool,
-    pub aggressive_scanning: bool,
-    pub replace_rich_messages: bool,
-    pub game_name_tagline_enabled: bool,
-    pub allow_group_by_game: bool,
-    pub platform_to_region_map: HashMap<String, String>,
+pub struct LolChatMucJwtDto {
+    pub jwt: String,
+    pub channel_claim: String,
+    pub domain: String,
+    pub target_region: String,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolChatProductMetadataMap {
-    pub products: LolChatProductMetadata,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChatProductMetadata {
-    pub id: String,
-    pub name: String,
-    pub patchlines: LolChatPatchlineMetadata,
+pub struct LolChatPlayerMuteUpdate {
+    pub puuids: Vec<String>,
+    pub is_muted: bool,
 }
 
 
@@ -1533,55 +1555,49 @@ pub struct LolChatFriendRequestResource {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolChatMucJwtDto {
-    pub jwt: String,
-    pub channel_claim: String,
-    pub domain: String,
-    pub target_region: String,
+pub struct LolChatFriendCountsResource {
+    pub num_friends: u32,
+    pub num_friends_online: u32,
+    pub num_friends_available: u32,
+    pub num_friends_away: u32,
+    pub num_friends_in_queue: u32,
+    pub num_friends_in_champ_select: u32,
+    pub num_friends_in_game: u32,
+    pub num_friends_mobile: u32,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolChatGroupResource {
-    pub id: u32,
+pub struct LolChatContentCookies {
+    pub content_id: String,
+    pub content_path: String,
+    pub cookies: Vec<LolChatcookie>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChatUserResource {
+    pub summoner_id: u64,
+    pub id: String,
     pub name: String,
-    pub is_meta_group: bool,
-    pub is_localized: bool,
-    pub priority: i32,
-    pub collapsed: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChatActiveConversationResource {
-    pub id: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChatConversationMessageResource {
-    pub id: String,
-    pub type_: String,
-    pub from_summoner_id: u64,
-    pub from_id: String,
-    pub from_pid: String,
-    pub from_obfuscated_summoner_id: u64,
-    pub body: String,
-    pub timestamp: String,
-    pub is_historical: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChatPatchlineMetadata {
-    pub product_id: String,
-    pub id: String,
-    pub content_paths: HashMap<String, String>,
-    pub content_cookies: Vec<LolChatContentCookies>,
+    pub pid: String,
+    pub puuid: String,
+    pub obfuscated_summoner_id: u64,
+    pub game_name: String,
+    pub game_tag: String,
+    pub icon: i32,
+    pub availability: String,
+    pub platform_id: String,
+    pub patchline: String,
+    pub product: String,
+    pub product_name: String,
+    pub summary: String,
+    pub time: u64,
+    pub status_message: Option<String>,
+    pub last_seen_online_timestamp: Option<String>,
+    pub lol: HashMap<String, String>,
 }
 
 
@@ -1601,9 +1617,8 @@ pub struct LolChatBlockedPlayerResource {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolChatPlayerMuteUpdate {
-    pub puuids: Vec<String>,
-    pub is_muted: bool,
+pub struct LolChatActiveConversationResource {
+    pub id: String,
 }
 
 
@@ -1617,7 +1632,45 @@ pub struct LolChatcookie {
     pub path: String,
     pub secure: bool,
     pub httponly: bool,
-    pub expires: i64,
+    pub expires: Option<i64>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChatPatchlineMetadata {
+    pub product_id: String,
+    pub id: String,
+    pub content_paths: HashMap<String, String>,
+    pub content_cookies: Vec<LolChatContentCookies>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChatFriendGroupOrder {
+    pub groups: Vec<String>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChatProductMetadataMap {
+    pub products: LolChatProductMetadata,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChatLcuSocialConfig {
+    pub force_chat_filter: bool,
+    pub queue_job_grace_seconds: u64,
+    pub silence_chat_while_in_game: bool,
+    pub aggressive_scanning: bool,
+    pub replace_rich_messages: bool,
+    pub game_name_tagline_enabled: bool,
+    pub allow_group_by_game: bool,
+    pub platform_to_region_map: HashMap<String, String>,
 }
 
 
@@ -1632,58 +1685,19 @@ pub struct LolChatPlayerMuteStatus {
 }
 
 
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChatChatDomainConfig {
-    pub p_2_p_domain_name: String,
-    pub custom_game_domain_name: String,
-    pub champ_select_domain_name: String,
-    pub post_game_domain_name: String,
-    pub club_domain_name: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChatSessionResource {
-    pub session_state: LolChatSessionState,
-    pub session_expire: u32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChatFriendGroupOrder {
-    pub groups: Vec<String>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChatErrorResource {
-    pub id: u64,
-    pub from: String,
-    pub code: u64,
-    pub message: String,
-    pub text: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChatFriendCountsResource {
-    pub num_friends: u32,
-    pub num_friends_online: u32,
-    pub num_friends_available: u32,
-    pub num_friends_away: u32,
-    pub num_friends_in_queue: u32,
-    pub num_friends_in_champ_select: u32,
-    pub num_friends_in_game: u32,
-    pub num_friends_mobile: u32,
-}
-
-
 // ENUMS
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum LolChatFriendRequestDirection {
+    #[default]
+    #[serde(rename = "both")]
+    Both,
+    #[serde(rename = "out")]
+    Out,
+    #[serde(rename = "in")]
+    In,
+}
+
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
 pub enum LolChatSessionState {
@@ -1698,17 +1712,5 @@ pub enum LolChatSessionState {
     Connected,
     #[serde(rename = "initializing")]
     Initializing,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum LolChatFriendRequestDirection {
-    #[default]
-    #[serde(rename = "both")]
-    Both,
-    #[serde(rename = "out")]
-    Out,
-    #[serde(rename = "in")]
-    In,
 }
 

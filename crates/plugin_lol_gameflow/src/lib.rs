@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetLolGameflowV1EarlyExitNotificationsEog {
@@ -1397,37 +1399,146 @@ pub fn post_lol_gameflow_v_2_spectate_launch(body: LolGameflowSpectateGameInfoRe
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolGameflowPlayerStatus {
-    pub current_lobby_status: LolGameflowLobbyStatus,
-    pub last_queued_lobby_status: LolGameflowLobbyStatus,
-    pub can_invite_others_at_eog: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolGameflowLobbyStatus {
-    pub queue_id: i32,
-    pub is_custom: bool,
-    pub is_practice_tool: bool,
-    pub is_leader: bool,
-    pub is_spectator: bool,
-    pub allowed_play_again: bool,
-    pub member_summoner_ids: Vec<u64>,
-    pub invited_summoner_ids: Vec<u64>,
-    pub lobby_id: String,
-    pub custom_spectator_policy: LolGameflowQueueCustomGameSpectatorPolicy,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LolGameflowGameflowSession {
     pub phase: LolGameflowGameflowPhase,
     pub game_data: LolGameflowGameflowGameData,
     pub game_client: LolGameflowGameflowGameClient,
     pub map: LolGameflowGameflowGameMap,
     pub game_dodge: LolGameflowGameflowGameDodge,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolGameflowGameflowGameMap {
+    pub id: i64,
+    pub name: String,
+    pub map_string_id: String,
+    pub game_mode: String,
+    pub game_mode_name: String,
+    pub game_mode_short_name: String,
+    pub game_mutator: String,
+    pub is_rgm: bool,
+    pub description: String,
+    pub platform_id: String,
+    pub platform_name: String,
+    pub assets: HashMap<String, String>,
+    pub categorized_content_bundles: HashMap<String, String>,
+    pub properties: HashMap<String, String>,
+    pub per_position_required_summoner_spells: LolGameflowGameModeSpellList,
+    pub per_position_disallowed_summoner_spells: LolGameflowGameModeSpellList,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolGameflowRegistrationStatus {
+    pub complete: bool,
+    pub error_codes: Vec<String>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolGameflowGameflowGameData {
+    pub game_id: u64,
+    pub queue: LolGameflowQueue,
+    pub is_custom_game: bool,
+    pub game_name: String,
+    pub password: String,
+    pub team_one: Vec<HashMap<String, String>>,
+    pub team_two: Vec<HashMap<String, String>>,
+    pub player_champion_selections: Vec<HashMap<String, String>>,
+    pub spectators_allowed: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolGameflowGameflowGameDodge {
+    pub state: LolGameflowGameflowGameDodgeState,
+    pub dodge_ids: Vec<u64>,
+    pub phase: LolGameflowGameflowPhase,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolGameflowPlayerStatus {
+    pub current_lobby_status: Option<LolGameflowLobbyStatus>,
+    pub last_queued_lobby_status: Option<LolGameflowLobbyStatus>,
+    pub can_invite_others_at_eog: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolGameflowGameflowGameClient {
+    pub server_ip: String,
+    pub server_port: u16,
+    pub observer_server_ip: String,
+    pub observer_server_port: u16,
+    pub running: bool,
+    pub visible: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolGameflowQueue {
+    pub id: i32,
+    pub map_id: i32,
+    pub name: String,
+    pub short_name: String,
+    pub description: String,
+    pub detailed_description: String,
+    pub type_: String,
+    pub game_mode: String,
+    pub asset_mutator: String,
+    pub category: LolGameflowQueueGameCategory,
+    pub game_type_config: LolGameflowQueueGameTypeConfig,
+    pub num_players_per_team: i32,
+    pub minimum_participant_list_size: i32,
+    pub maximum_participant_list_size: i32,
+    pub min_level: u32,
+    pub is_ranked: bool,
+    pub are_free_champions_allowed: bool,
+    pub is_team_builder_managed: bool,
+    pub queue_availability: LolGameflowQueueAvailability,
+    pub queue_rewards: LolGameflowQueueReward,
+    pub spectator_enabled: bool,
+    pub champions_required_to_play: u32,
+    pub allowable_premade_sizes: Vec<i32>,
+    pub show_position_selector: bool,
+    pub last_toggled_off_time: u64,
+    pub last_toggled_on_time: u64,
+    pub removal_from_game_allowed: bool,
+    pub removal_from_game_delay_minutes: i32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolGameflowSpectateGameInfoResource {
+    pub drop_in_spectate_game_id: String,
+    pub game_queue_type: String,
+    pub allow_observe_mode: String,
+    pub puuid: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolGameflowGameflowAvailability {
+    pub is_available: bool,
+    pub state: LolGameflowGameflowAvailabilityState,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolGameflowGameModeSpellList {
+    pub spells: Vec<u64>,
 }
 
 
@@ -1469,147 +1580,38 @@ pub struct LolGameflowQueueReward {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolGameflowGameModeSpellList {
-    pub spells: Vec<u64>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolGameflowQueue {
-    pub id: i32,
-    pub map_id: i32,
-    pub name: String,
-    pub short_name: String,
-    pub description: String,
-    pub detailed_description: String,
-    pub type_: String,
-    pub game_mode: String,
-    pub asset_mutator: String,
-    pub category: LolGameflowQueueGameCategory,
-    pub game_type_config: LolGameflowQueueGameTypeConfig,
-    pub num_players_per_team: i32,
-    pub minimum_participant_list_size: i32,
-    pub maximum_participant_list_size: i32,
-    pub min_level: u32,
-    pub is_ranked: bool,
-    pub are_free_champions_allowed: bool,
-    pub is_team_builder_managed: bool,
-    pub queue_availability: LolGameflowQueueAvailability,
-    pub queue_rewards: LolGameflowQueueReward,
-    pub spectator_enabled: bool,
-    pub champions_required_to_play: u32,
-    pub allowable_premade_sizes: Vec<i32>,
-    pub show_position_selector: bool,
-    pub last_toggled_off_time: u64,
-    pub last_toggled_on_time: u64,
-    pub removal_from_game_allowed: bool,
-    pub removal_from_game_delay_minutes: i32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolGameflowRegistrationStatus {
-    pub complete: bool,
-    pub error_codes: Vec<String>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolGameflowGameflowGameDodge {
-    pub state: LolGameflowGameflowGameDodgeState,
-    pub dodge_ids: Vec<u64>,
-    pub phase: LolGameflowGameflowPhase,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolGameflowGameflowGameMap {
-    pub id: i64,
-    pub name: String,
-    pub map_string_id: String,
-    pub game_mode: String,
-    pub game_mode_name: String,
-    pub game_mode_short_name: String,
-    pub game_mutator: String,
-    pub is_rgm: bool,
-    pub description: String,
-    pub platform_id: String,
-    pub platform_name: String,
-    pub assets: HashMap<String, String>,
-    pub categorized_content_bundles: HashMap<String, String>,
-    pub properties: HashMap<String, String>,
-    pub per_position_required_summoner_spells: LolGameflowGameModeSpellList,
-    pub per_position_disallowed_summoner_spells: LolGameflowGameModeSpellList,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolGameflowGameflowGameData {
-    pub game_id: u64,
-    pub queue: LolGameflowQueue,
-    pub is_custom_game: bool,
-    pub game_name: String,
-    pub password: String,
-    pub team_one: Vec<HashMap<String, String>>,
-    pub team_two: Vec<HashMap<String, String>>,
-    pub player_champion_selections: Vec<HashMap<String, String>>,
-    pub spectators_allowed: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolGameflowSpectateGameInfoResource {
-    pub drop_in_spectate_game_id: String,
-    pub game_queue_type: String,
-    pub allow_observe_mode: String,
-    pub puuid: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolGameflowGameflowAvailability {
-    pub is_available: bool,
-    pub state: LolGameflowGameflowAvailabilityState,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolGameflowGameflowGameClient {
-    pub server_ip: String,
-    pub server_port: u16,
-    pub observer_server_ip: String,
-    pub observer_server_port: u16,
-    pub running: bool,
-    pub visible: bool,
+pub struct LolGameflowLobbyStatus {
+    pub queue_id: i32,
+    pub is_custom: bool,
+    pub is_practice_tool: bool,
+    pub is_leader: bool,
+    pub is_spectator: bool,
+    pub allowed_play_again: bool,
+    pub member_summoner_ids: Vec<u64>,
+    pub invited_summoner_ids: Vec<u64>,
+    pub lobby_id: Option<String>,
+    pub custom_spectator_policy: LolGameflowQueueCustomGameSpectatorPolicy,
 }
 
 
 // ENUMS
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum LolGameflowGameflowGameDodgeState {
+pub enum LolGameflowGameflowPhase {
     #[default]
-    TournamentDodged,
-    StrangerDodged,
-    PartyDodged,
-    Invalid,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum LolGameflowGameflowWatchPhase {
-    #[default]
-    WatchFailedToLaunch,
-    WatchInProgress,
-    WatchStarted,
+    TerminatedInError,
+    EndOfGame,
+    PreEndOfGame,
+    WaitingForStats,
+    Reconnect,
+    InProgress,
+    FailedToLaunch,
+    GameStart,
+    ChampSelect,
+    ReadyCheck,
+    CheckedIntoTournament,
+    Matchmaking,
+    Lobby,
     None,
 }
 
@@ -1623,15 +1625,6 @@ pub enum LolGameflowGameflowAvailabilityState {
     PlayerBanned,
     Patching,
     Initializing,
-    Available,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum LolGameflowQueueAvailability {
-    #[default]
-    DoesntMeetRequirements,
-    PlatformDisabled,
     Available,
 }
 
@@ -1658,21 +1651,30 @@ pub enum LolGameflowQueueGameCategory {
 
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum LolGameflowGameflowPhase {
+pub enum LolGameflowGameflowGameDodgeState {
     #[default]
-    TerminatedInError,
-    EndOfGame,
-    PreEndOfGame,
-    WaitingForStats,
-    Reconnect,
-    InProgress,
-    FailedToLaunch,
-    GameStart,
-    ChampSelect,
-    ReadyCheck,
-    CheckedIntoTournament,
-    Matchmaking,
-    Lobby,
+    TournamentDodged,
+    StrangerDodged,
+    PartyDodged,
+    Invalid,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum LolGameflowQueueAvailability {
+    #[default]
+    DoesntMeetRequirements,
+    PlatformDisabled,
+    Available,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum LolGameflowGameflowWatchPhase {
+    #[default]
+    WatchFailedToLaunch,
+    WatchInProgress,
+    WatchStarted,
     None,
 }
 

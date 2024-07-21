@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct PatchLolTftTeamPlannerV1TeamChampions {
@@ -468,8 +470,11 @@ pub fn put_lol_tft_team_planner_v_1_team() -> PutLolTftTeamPlannerV1Team {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolTftTeamPlannerChampion {
-    pub champion_id: String,
+pub struct LolTftTeamPlannerTeamSettings {
+    pub teams: Vec<LolTftTeamPlannerTeamPlan>,
+    pub reminders_enabled: bool,
+    pub registered_team_index: u64,
+    pub has_viewed_team_planner: bool,
 }
 
 
@@ -483,19 +488,16 @@ pub struct LolTftTeamPlannerTftTeamPlannerConfig {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolTftTeamPlannerTeamSettings {
-    pub teams: Vec<LolTftTeamPlannerTeamPlan>,
-    pub reminders_enabled: bool,
-    pub registered_team_index: u64,
-    pub has_viewed_team_planner: bool,
+pub struct LolTftTeamPlannerTeamPlan {
+    pub champions: Vec<LolTftTeamPlannerChampion>,
+    pub set_name: String,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolTftTeamPlannerTeamPlan {
-    pub champions: Vec<LolTftTeamPlannerChampion>,
-    pub set_name: String,
+pub struct LolTftTeamPlannerChampion {
+    pub champion_id: String,
 }
 
 

@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetLolRegaliaV2Config {
@@ -276,10 +278,51 @@ pub fn get_lol_regalia_v_3_summoners_by_summoner_id_regalia(summoner_id: u64) ->
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct LolRegaliaGameDataRegalia {
+    pub id: String,
+    pub id_secondary: String,
+    pub asset_path: String,
+    pub is_selectable: bool,
+    pub regalia_type: String,
+    pub localized_name: String,
+    pub localized_description: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct LolRegaliaRegaliaPreferences {
     pub preferred_crest_type: String,
     pub preferred_banner_type: String,
     pub selected_prestige_crest: u8,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolRegaliaRegalia {
+    pub profile_icon_id: i32,
+    pub crest_type: String,
+    pub banner_type: String,
+    pub summoner_level: u32,
+    pub last_season_highest_rank: Option<String>,
+    pub highest_ranked_entry: Option<LolRegaliaRegaliaRankedEntry>,
+    pub selected_prestige_crest: u8,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolRegaliaRegaliaWithPreferences {
+    pub profile_icon_id: i32,
+    pub crest_type: String,
+    pub banner_type: String,
+    pub preferred_crest_type: String,
+    pub preferred_banner_type: String,
+    pub selected_prestige_crest: u8,
+    pub summoner_level: u32,
+    pub last_season_highest_rank: Option<String>,
+    pub highest_ranked_entry: Option<LolRegaliaRegaliaRankedEntry>,
 }
 
 
@@ -295,36 +338,8 @@ pub struct LolRegaliaRegaliaRankedEntry {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolRegaliaRegalia {
-    pub profile_icon_id: i32,
-    pub crest_type: String,
-    pub banner_type: String,
-    pub summoner_level: u32,
-    pub last_season_highest_rank: String,
-    pub highest_ranked_entry: LolRegaliaRegaliaRankedEntry,
-    pub selected_prestige_crest: u8,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LolRegaliaRegaliaAsync {
     pub md_5: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolRegaliaRegaliaWithPreferences {
-    pub profile_icon_id: i32,
-    pub crest_type: String,
-    pub banner_type: String,
-    pub preferred_crest_type: String,
-    pub preferred_banner_type: String,
-    pub selected_prestige_crest: u8,
-    pub summoner_level: u32,
-    pub last_season_highest_rank: String,
-    pub highest_ranked_entry: LolRegaliaRegaliaRankedEntry,
 }
 
 
@@ -344,36 +359,7 @@ pub struct LolRegaliaRegaliaInventoryItem {
 }
 
 
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolRegaliaGameDataRegalia {
-    pub id: String,
-    pub id_secondary: String,
-    pub asset_path: String,
-    pub is_selectable: bool,
-    pub regalia_type: String,
-    pub localized_name: String,
-    pub localized_description: String,
-}
-
-
 // ENUMS
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum LolRegaliaLeagueDivision {
-    #[default]
-    #[serde(rename = "NA")]
-    Na,
-    V,
-    #[serde(rename = "IV")]
-    Iv,
-    #[serde(rename = "III")]
-    Iii,
-    #[serde(rename = "II")]
-    Ii,
-    I,
-}
-
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
 pub enum LolRegaliaLeagueQueueType {
@@ -396,5 +382,21 @@ pub enum LolRegaliaLeagueQueueType {
     RankedSolo5X5,
     #[serde(rename = "NONE")]
     None,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum LolRegaliaLeagueDivision {
+    #[default]
+    #[serde(rename = "NA")]
+    Na,
+    V,
+    #[serde(rename = "IV")]
+    Iv,
+    #[serde(rename = "III")]
+    Iii,
+    #[serde(rename = "II")]
+    Ii,
+    I,
 }
 

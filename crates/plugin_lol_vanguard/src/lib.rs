@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetLolVanguardV1ConfigDaysToReshowModal {
@@ -180,14 +182,6 @@ pub fn post_lol_vanguard_v_1_telemetry_system_check(body: LolVanguardVanguardSys
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolVanguardVanguardSystemCheckTelemetryEvent {
-    pub passed_os_check: bool,
-    pub passed_secure_features_check: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LolVanguardVanguardSession {
     pub state: LolVanguardVanguardSessionState,
     pub vanguard_status: i32,
@@ -199,6 +193,14 @@ pub struct LolVanguardVanguardSession {
 pub struct LolVanguardVanguardMachineSpecs {
     pub tpm_2_enabled: bool,
     pub secure_boot_enabled: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolVanguardVanguardSystemCheckTelemetryEvent {
+    pub passed_os_check: bool,
+    pub passed_secure_features_check: bool,
 }
 
 

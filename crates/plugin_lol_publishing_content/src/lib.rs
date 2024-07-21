@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetLolPublishingContentV1ListenersAllowListByRegion {
@@ -180,18 +182,17 @@ pub fn get_lol_publishing_content_v_1_tft_hub_cards() -> GetLolPublishingContent
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolPublishingContentPubHubConfigAppContext {
-    pub user_id: String,
-    pub user_region: String,
-    pub device_category: String,
-    pub device_operating_system: String,
-    pub device_operating_system_version: String,
-    pub app_id: String,
-    pub app_version: String,
-    pub app_locale: String,
-    pub app_language: String,
-    pub publishing_locale: String,
-    pub app_session_id: String,
+pub struct LolPublishingContentPubHubConfigEdge {
+    pub client_id: String,
+    pub client_region: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolPublishingContentPubHubConfig {
+    pub edge: LolPublishingContentPubHubConfigEdge,
+    pub app_context: LolPublishingContentPubHubConfigAppContext,
 }
 
 
@@ -216,17 +217,18 @@ pub struct LolPublishingContentClientData {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolPublishingContentPubHubConfigEdge {
-    pub client_id: String,
-    pub client_region: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolPublishingContentPubHubConfig {
-    pub edge: LolPublishingContentPubHubConfigEdge,
-    pub app_context: LolPublishingContentPubHubConfigAppContext,
+pub struct LolPublishingContentPubHubConfigAppContext {
+    pub user_id: String,
+    pub user_region: String,
+    pub device_category: String,
+    pub device_operating_system: String,
+    pub device_operating_system_version: String,
+    pub app_id: String,
+    pub app_version: String,
+    pub app_locale: String,
+    pub app_language: String,
+    pub publishing_locale: String,
+    pub app_session_id: String,
 }
 
 

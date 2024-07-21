@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetRiotclientAffinity {
@@ -1040,15 +1042,6 @@ pub struct LolL10NRegionLocale {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct CrashReportingEnvironment {
-    pub environment: String,
-    pub user_name: String,
-    pub user_id: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct BasicSystemInfo {
     pub operating_system: BasicOperatingSystemInfo,
     pub physical_memory: u64,
@@ -1064,6 +1057,15 @@ pub struct BasicOperatingSystemInfo {
     pub version_major: String,
     pub version_minor: String,
     pub build_number: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct CrashReportingEnvironment {
+    pub environment: String,
+    pub user_name: String,
+    pub user_id: String,
 }
 
 

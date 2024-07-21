@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct PostLolLoginV1ServiceProxyAsyncRequestsByServiceNameByMethodName {
@@ -659,17 +661,24 @@ pub fn post_lol_login_v_1_summoner_session_failed(body: i32) -> PostLolLoginV1Su
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolLoginLcdsResponse {
-    pub type_name: String,
-    pub body: HashMap<String, String>,
+pub struct LolLoginAccountStateResource {
+    pub state: LolLoginAccountStateType,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolLoginLoginSessionWallet {
-    pub ip: i64,
-    pub rp: i64,
+pub struct LolLoginLeagueSessionTokenEnvelope {
+    pub token: Option<String>,
+    pub logout_on_failure: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLoginPlatformGeneratedCredentials {
+    pub username: String,
+    pub password: String,
 }
 
 
@@ -684,8 +693,36 @@ pub struct LolLoginSummonerSessionResource {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolLoginAccountStateResource {
-    pub state: LolLoginAccountStateType,
+pub struct LolLoginLoginError {
+    pub id: String,
+    pub message_id: String,
+    pub description: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLoginLoginSessionWallet {
+    pub ip: i64,
+    pub rp: i64,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLoginLoginQueue {
+    pub estimated_position_in_queue: u64,
+    pub approximate_wait_time_seconds: Option<u64>,
+    pub max_displayed_position: Option<u64>,
+    pub max_displayed_wait_time_seconds: Option<u64>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLoginLcdsResponse {
+    pub type_name: String,
+    pub body: HashMap<String, String>,
 }
 
 
@@ -700,32 +737,14 @@ pub struct LolLoginLoginConnectionState {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolLoginLeagueSessionTokenEnvelope {
-    pub token: String,
-    pub logout_on_failure: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolLoginLoginQueue {
-    pub estimated_position_in_queue: u64,
-    pub approximate_wait_time_seconds: u64,
-    pub max_displayed_position: u64,
-    pub max_displayed_wait_time_seconds: u64,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LolLoginLoginSession {
     pub state: LolLoginLoginSessionStates,
     pub username: String,
     pub user_auth_token: String,
     pub account_id: u64,
-    pub summoner_id: u64,
+    pub summoner_id: Option<u64>,
     pub is_in_login_queue: bool,
-    pub error: LolLoginLoginError,
+    pub error: Option<LolLoginLoginError>,
     pub id_token: String,
     pub puuid: String,
     pub is_new_player: bool,
@@ -733,24 +752,17 @@ pub struct LolLoginLoginSession {
 }
 
 
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolLoginLoginError {
-    pub id: String,
-    pub message_id: String,
-    pub description: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolLoginPlatformGeneratedCredentials {
-    pub username: String,
-    pub password: String,
-}
-
-
 // ENUMS
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum LolLoginLoginConnectionMode {
+    #[default]
+    RiotClient,
+    Partner,
+    Legacy,
+    Preparing,
+}
+
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
 pub enum LolLoginLeagueSessionStatus {
@@ -769,30 +781,6 @@ pub enum LolLoginLeagueSessionStatus {
 
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum LolLoginLoginSessionStates {
-    #[default]
-    #[serde(rename = "ERROR")]
-    Error,
-    #[serde(rename = "LOGGING_OUT")]
-    LoggingOut,
-    #[serde(rename = "SUCCEEDED")]
-    Succeeded,
-    #[serde(rename = "IN_PROGRESS")]
-    InProgress,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum LolLoginLoginConnectionMode {
-    #[default]
-    RiotClient,
-    Partner,
-    Legacy,
-    Preparing,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
 pub enum LolLoginAccountStateType {
     #[default]
     #[serde(rename = "GENERATING")]
@@ -807,5 +795,19 @@ pub enum LolLoginAccountStateType {
     Enabled,
     #[serde(rename = "CREATING")]
     Creating,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum LolLoginLoginSessionStates {
+    #[default]
+    #[serde(rename = "ERROR")]
+    Error,
+    #[serde(rename = "LOGGING_OUT")]
+    LoggingOut,
+    #[serde(rename = "SUCCEEDED")]
+    Succeeded,
+    #[serde(rename = "IN_PROGRESS")]
+    InProgress,
 }
 

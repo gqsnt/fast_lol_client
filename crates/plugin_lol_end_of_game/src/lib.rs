@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetLolEndOfGameV1ChampionMasteryUpdates {
@@ -180,56 +182,58 @@ pub fn post_lol_end_of_game_v_1_state_dismiss_stats() -> PostLolEndOfGameV1State
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolEndOfGameChampionMasteryUpdate {
-    pub id: String,
+pub struct LolEndOfGameEndOfGameTeam {
+    pub stats: HashMap<String, String>,
+    pub players: Vec<LolEndOfGameEndOfGamePlayer>,
+    pub member_status_string: String,
+    pub name: String,
+    pub tag: String,
+    pub full_id: String,
+    pub team_id: i32,
+    pub is_bottom_team: bool,
+    pub is_player_team: bool,
+    pub is_winning_team: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolEndOfGameEndOfGamePlayer {
+    pub stats: HashMap<String, String>,
+    pub items: Vec<i32>,
+    pub puuid: String,
+    pub bot_player: bool,
+    pub champion_id: i32,
     pub game_id: u64,
-    pub puuid: String,
-    pub champion_id: i32,
-    pub has_leveled_up: bool,
-    pub level: i64,
-    pub points_before_game: i64,
-    pub points_gained: i64,
-    pub points_gained_individual_contribution: i64,
-    pub bonus_points_gained: i64,
-    pub points_since_last_level_before_game: i64,
-    pub points_until_next_level_before_game: i64,
-    pub points_until_next_level_after_game: i64,
-    pub tokens_earned: i64,
-    pub token_earned_after_game: bool,
-    pub grade: String,
-    pub score: i64,
-    pub level_up_list: Vec<LolEndOfGameChampionMasteryMini>,
-    pub member_grades: Vec<LolEndOfGameChampionMasteryGrade>,
-    pub mvp_puuid: String,
+    pub leaver: bool,
+    pub leaves: i32,
+    pub level: i32,
+    pub losses: i32,
+    pub profile_icon_id: i32,
+    pub spell_1_id: i32,
+    pub spell_2_id: i32,
+    pub summoner_name: String,
+    pub team_id: i32,
+    pub wins: i32,
+    pub summoner_id: u64,
+    pub selected_position: String,
+    pub detected_team_position: String,
+    pub skin_splash_path: String,
+    pub skin_tile_path: String,
+    pub skin_emblem_paths: Vec<String>,
+    pub champion_name: String,
+    pub champion_square_portrait_path: String,
+    pub is_local_player: bool,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolEndOfGameChampionMasteryMini {
-    pub puuid: String,
-    pub champion_id: i32,
-    pub champion_level: i64,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolEndOfGameTftEndOfGameCustomAugmentContainerViewModel {
+pub struct LolEndOfGameTftEndOfGameItemViewModel {
+    pub name: String,
+    pub icon: String,
+    pub id: i32,
     pub name_id: String,
-    pub icon_path: String,
-    pub display_name: String,
-    pub description: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolEndOfGameMucJwtDto {
-    pub jwt: String,
-    pub channel_claim: String,
-    pub domain: String,
-    pub target_region: String,
 }
 
 
@@ -280,19 +284,56 @@ pub struct LolEndOfGameEndOfGameStats {
     pub team_early_surrendered: bool,
     pub game_ended_in_early_surrender: bool,
     pub reroll_data: LolEndOfGameEndOfGamePoints,
-    pub team_boost: LolEndOfGameEndOfGameTeamBoost,
+    pub team_boost: Option<LolEndOfGameEndOfGameTeamBoost>,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolEndOfGameTftEndOfGamePieceViewModel {
-    pub name: String,
+pub struct LolEndOfGameTftEndOfGameCustomAugmentContainerViewModel {
+    pub name_id: String,
+    pub icon_path: String,
+    pub display_name: String,
+    pub description: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolEndOfGameTftEndOfGameCompanionViewModel {
+    pub species_name: String,
+    pub color_name: String,
     pub icon: String,
-    pub level: u32,
-    pub price: u32,
-    pub items: Vec<LolEndOfGameTftEndOfGameItemViewModel>,
-    pub traits: Vec<LolEndOfGameTftEndOfGameTraitViewModel>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolEndOfGameTftEndOfGameTraitViewModel {
+    pub id: String,
+    pub name: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolEndOfGameTftEndOfGamePlaybookViewModel {
+    pub item_id: u32,
+    pub name: String,
+    pub icon_small: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolEndOfGameTftEndOfGameViewModel {
+    pub players: Vec<LolEndOfGameTftEndOfGamePlayerViewModel>,
+    pub local_player: Option<LolEndOfGameTftEndOfGamePlayerViewModel>,
+    pub game_length: u32,
+    pub game_id: u64,
+    pub queue_id: i32,
+    pub queue_type: String,
+    pub is_ranked: bool,
 }
 
 
@@ -311,29 +352,46 @@ pub struct LolEndOfGameEndOfGamePoints {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolEndOfGameEndOfGameTeam {
-    pub stats: HashMap<String, String>,
-    pub players: Vec<LolEndOfGameEndOfGamePlayer>,
-    pub member_status_string: String,
-    pub name: String,
-    pub tag: String,
-    pub full_id: String,
-    pub team_id: i32,
-    pub is_bottom_team: bool,
-    pub is_player_team: bool,
-    pub is_winning_team: bool,
+pub struct LolEndOfGameChampionMasteryMini {
+    pub puuid: String,
+    pub champion_id: i32,
+    pub champion_level: i64,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolEndOfGameGameClientEndOfGameStats {
+pub struct LolEndOfGameChampionMasteryUpdate {
+    pub id: String,
     pub game_id: u64,
-    pub game_mode: String,
-    pub stats_block: HashMap<String, String>,
-    pub queue_id: i32,
-    pub queue_type: String,
-    pub is_ranked: bool,
+    pub puuid: String,
+    pub champion_id: i32,
+    pub has_leveled_up: bool,
+    pub level: i64,
+    pub points_before_game: i64,
+    pub points_gained: i64,
+    pub points_gained_individual_contribution: i64,
+    pub bonus_points_gained: i64,
+    pub points_since_last_level_before_game: i64,
+    pub points_until_next_level_before_game: i64,
+    pub points_until_next_level_after_game: i64,
+    pub tokens_earned: i64,
+    pub token_earned_after_game: bool,
+    pub grade: String,
+    pub score: i64,
+    pub level_up_list: Vec<LolEndOfGameChampionMasteryMini>,
+    pub member_grades: Vec<LolEndOfGameChampionMasteryGrade>,
+    pub mvp_puuid: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolEndOfGameMucJwtDto {
+    pub jwt: String,
+    pub channel_claim: String,
+    pub domain: String,
+    pub target_region: String,
 }
 
 
@@ -347,59 +405,6 @@ pub struct LolEndOfGameEndOfGameTeamBoost {
     pub ip_reward_for_purchaser: i64,
     pub available_skins: Vec<i64>,
     pub unlocked: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolEndOfGameTftEndOfGameViewModel {
-    pub players: Vec<LolEndOfGameTftEndOfGamePlayerViewModel>,
-    pub local_player: LolEndOfGameTftEndOfGamePlayerViewModel,
-    pub game_length: u32,
-    pub game_id: u64,
-    pub queue_id: i32,
-    pub queue_type: String,
-    pub is_ranked: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolEndOfGameEndOfGamePlayer {
-    pub stats: HashMap<String, String>,
-    pub items: Vec<i32>,
-    pub puuid: String,
-    pub bot_player: bool,
-    pub champion_id: i32,
-    pub game_id: u64,
-    pub leaver: bool,
-    pub leaves: i32,
-    pub level: i32,
-    pub losses: i32,
-    pub profile_icon_id: i32,
-    pub spell_1_id: i32,
-    pub spell_2_id: i32,
-    pub summoner_name: String,
-    pub team_id: i32,
-    pub wins: i32,
-    pub summoner_id: u64,
-    pub selected_position: String,
-    pub detected_team_position: String,
-    pub skin_splash_path: String,
-    pub skin_tile_path: String,
-    pub skin_emblem_paths: Vec<String>,
-    pub champion_name: String,
-    pub champion_square_portrait_path: String,
-    pub is_local_player: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolEndOfGameTftEndOfGamePlaybookViewModel {
-    pub item_id: u32,
-    pub name: String,
-    pub icon_small: String,
 }
 
 
@@ -429,10 +434,13 @@ pub struct LolEndOfGameTftEndOfGamePlayerViewModel {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolEndOfGameTftEndOfGameCompanionViewModel {
-    pub species_name: String,
-    pub color_name: String,
+pub struct LolEndOfGameTftEndOfGamePieceViewModel {
+    pub name: String,
     pub icon: String,
+    pub level: u32,
+    pub price: u32,
+    pub items: Vec<LolEndOfGameTftEndOfGameItemViewModel>,
+    pub traits: Vec<LolEndOfGameTftEndOfGameTraitViewModel>,
 }
 
 
@@ -447,19 +455,13 @@ pub struct LolEndOfGameChampionMasteryGrade {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolEndOfGameTftEndOfGameTraitViewModel {
-    pub id: String,
-    pub name: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolEndOfGameTftEndOfGameItemViewModel {
-    pub name: String,
-    pub icon: String,
-    pub id: i32,
-    pub name_id: String,
+pub struct LolEndOfGameGameClientEndOfGameStats {
+    pub game_id: u64,
+    pub game_mode: String,
+    pub stats_block: HashMap<String, String>,
+    pub queue_id: i32,
+    pub queue_type: String,
+    pub is_ranked: bool,
 }
 
 

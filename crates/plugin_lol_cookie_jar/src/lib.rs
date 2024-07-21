@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetCookieJarV1Cookies {
@@ -76,7 +78,7 @@ pub struct Cookie {
     pub path: String,
     pub secure: bool,
     pub httponly: bool,
-    pub expires: i64,
+    pub expires: Option<i64>,
 }
 
 

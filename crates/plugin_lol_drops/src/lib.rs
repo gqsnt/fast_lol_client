@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetLolDropsV1DropTables {
@@ -242,26 +244,9 @@ pub fn get_lol_drops_v_1_ready() -> GetLolDropsV1Ready {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolDropsCapDropsDropTableWithPityDto {
-    pub id: String,
-    pub source_id: String,
-    pub product_id: String,
-    pub start_date: String,
-    pub end_date: String,
-    pub currency_id: String,
-    pub roll_offer: String,
-    pub cost: u16,
-    pub total_rolls_info: LolDropsTotalRollsInfoDto,
-    pub pity_info: LolDropsCapDropsDropTablePityInfo,
-    pub display_metadata: LolDropsCapDropsDropTableDisplayMetadata,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolDropsCapDropsDropTablePityInfo {
-    pub pity_limit: u8,
-    pub chase_content_ids: Vec<String>,
+pub struct LolDropsOddsTableDisplayMetadata {
+    pub name_tra_key: String,
+    pub priority: u8,
 }
 
 
@@ -276,6 +261,14 @@ pub struct LolDropsCapDropsOddsListEntryDto {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct LolDropsCapDropTableCounterDto {
+    pub drop_table_id: String,
+    pub count: u8,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct LolDropsCapDropsOddsTreeNodeDto {
     pub node_id: String,
     pub odds: f32,
@@ -283,6 +276,23 @@ pub struct LolDropsCapDropsOddsTreeNodeDto {
     pub quantity: u16,
     pub name_tra_key: String,
     pub priority: u8,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolDropsCapDropsDropTableWithPityDto {
+    pub id: String,
+    pub source_id: String,
+    pub product_id: String,
+    pub start_date: String,
+    pub end_date: String,
+    pub currency_id: String,
+    pub roll_offer: String,
+    pub cost: u16,
+    pub total_rolls_info: LolDropsTotalRollsInfoDto,
+    pub pity_info: LolDropsCapDropsDropTablePityInfo,
+    pub display_metadata: LolDropsCapDropsDropTableDisplayMetadata,
 }
 
 
@@ -304,14 +314,6 @@ pub struct LolDropsCapDropsDropTableDisplayMetadata {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolDropsCapDropTableCounterDto {
-    pub drop_table_id: String,
-    pub count: u8,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LolDropsTotalRollsInfoDto {
     pub total_rolls_counter_id: String,
     pub max_total_rolls: u8,
@@ -320,9 +322,9 @@ pub struct LolDropsTotalRollsInfoDto {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolDropsOddsTableDisplayMetadata {
-    pub name_tra_key: String,
-    pub priority: u8,
+pub struct LolDropsCapDropsDropTablePityInfo {
+    pub pity_limit: u8,
+    pub chase_content_ids: Vec<String>,
 }
 
 

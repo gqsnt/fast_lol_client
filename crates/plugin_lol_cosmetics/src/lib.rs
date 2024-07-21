@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct PutLolCosmeticsV1FavoritesTftByCosmeticTypeByContentId {
@@ -557,6 +559,34 @@ pub fn put_lol_cosmetics_v_1_favorites_tft_save() -> PutLolCosmeticsV1FavoritesT
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct LolCosmeticsTftMapSkinFavoritesViewModel {
+    pub favorite_items: Vec<LolCosmeticsCosmeticsTftMapSkinViewModel>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolCosmeticsTftMapSkinGroupViewModel {
+    pub group_name: String,
+    pub group_id: u32,
+    pub num_owned: u32,
+    pub num_available: u32,
+    pub purchase_date: i64,
+    pub items: Vec<LolCosmeticsCosmeticsTftMapSkinViewModel>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolCosmeticsTftDamageSkinGroupedViewModel {
+    pub selected_loadout_item: LolCosmeticsCosmeticsTftDamageSkinViewModel,
+    pub default_item_id: i32,
+    pub groups: Vec<LolCosmeticsTftDamageSkinGroupViewModel>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct LolCosmeticsTftMapSkinGroupedViewModel {
     pub selected_loadout_item: LolCosmeticsCosmeticsTftMapSkinViewModel,
     pub default_item_id: i32,
@@ -575,61 +605,9 @@ pub struct LolCosmeticsTftPlaybookGroupedViewModel {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolCosmeticsCapOffer {
-    pub id: String,
-    pub type_id: String,
-    pub label: String,
-    pub product_id: String,
-    pub merchant_id: String,
-    pub payload: Vec<HashMap<String, String>>,
-    pub active: bool,
-    pub start_date: String,
-    pub created_date: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolCosmeticsTftPlaybookGroupViewModel {
-    pub group_name: String,
-    pub group_id: u32,
-    pub num_owned: u32,
-    pub num_available: u32,
-    pub items: Vec<LolCosmeticsCosmeticsTftPlaybookViewModel>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolCosmeticsCompanionsFavoritesViewModel {
-    pub favorite_items: Vec<LolCosmeticsCosmeticsCompanionViewModel>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolCosmeticsTftMapSkinGroupViewModel {
-    pub group_name: String,
-    pub group_id: u32,
-    pub num_owned: u32,
-    pub num_available: u32,
-    pub purchase_date: i64,
-    pub items: Vec<LolCosmeticsCosmeticsTftMapSkinViewModel>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LolCosmeticsCosmeticsOfferPrice {
     pub offer_id: String,
     pub price: u64,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolCosmeticsTftMapSkinFavoritesViewModel {
-    pub favorite_items: Vec<LolCosmeticsCosmeticsTftMapSkinViewModel>,
 }
 
 
@@ -644,81 +622,6 @@ pub struct LolCosmeticsCosmeticsTftPlaybookAugmentEffectAmount {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolCosmeticsCosmeticsCompanionViewModel {
-    pub content_id: String,
-    pub item_id: i32,
-    pub name: String,
-    pub description: String,
-    pub loadouts_icon: String,
-    pub owned: bool,
-    pub selected: bool,
-    pub favorited: bool,
-    pub loyalty: bool,
-    pub f_2_p: bool,
-    pub rarity_value: u32,
-    pub purchase_date: String,
-    pub is_recent_item: bool,
-    pub species: String,
-    pub group_id: u32,
-    pub color: String,
-    pub level: u32,
-    pub upgrades: Vec<LolCosmeticsCosmeticsCompanionViewModel>,
-    pub offer_data: LolCosmeticsCapOffer,
-    pub star_shards_price: LolCosmeticsCosmeticsOfferPrice,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolCosmeticsCosmeticsTftPlaybookAugment {
-    pub name: String,
-    pub description: String,
-    pub icon_path: String,
-    pub effect_amounts: Vec<LolCosmeticsCosmeticsTftPlaybookAugmentEffectAmount>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolCosmeticsCosmeticsTftDamageSkinViewModel {
-    pub content_id: String,
-    pub item_id: i32,
-    pub name: String,
-    pub description: String,
-    pub loadouts_icon: String,
-    pub owned: bool,
-    pub selected: bool,
-    pub favorited: bool,
-    pub loyalty: bool,
-    pub f_2_p: bool,
-    pub rarity_value: u32,
-    pub purchase_date: String,
-    pub is_recent_item: bool,
-    pub level: u32,
-    pub group_id: u32,
-    pub group_name: String,
-    pub upgrades: Vec<LolCosmeticsCosmeticsTftDamageSkinViewModel>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolCosmeticsTftDamageSkinFavoritesViewModel {
-    pub favorite_items: Vec<LolCosmeticsCosmeticsTftDamageSkinViewModel>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolCosmeticsTftDamageSkinGroupedViewModel {
-    pub selected_loadout_item: LolCosmeticsCosmeticsTftDamageSkinViewModel,
-    pub default_item_id: i32,
-    pub groups: Vec<LolCosmeticsTftDamageSkinGroupViewModel>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LolCosmeticsCompanionsGroupViewModel {
     pub group_name: String,
     pub group_id: u32,
@@ -726,6 +629,25 @@ pub struct LolCosmeticsCompanionsGroupViewModel {
     pub num_available: u32,
     pub purchase_date: i64,
     pub items: Vec<LolCosmeticsCosmeticsCompanionViewModel>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolCosmeticsTftDamageSkinGroupViewModel {
+    pub group_name: String,
+    pub group_id: u32,
+    pub num_owned: u32,
+    pub num_available: u32,
+    pub purchase_date: i64,
+    pub items: Vec<LolCosmeticsCosmeticsTftDamageSkinViewModel>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolCosmeticsTftDamageSkinFavoritesViewModel {
+    pub favorite_items: Vec<LolCosmeticsCosmeticsTftDamageSkinViewModel>,
 }
 
 
@@ -756,22 +678,85 @@ pub struct LolCosmeticsCosmeticsTftPlaybookViewModel {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolCosmeticsTftDamageSkinGroupViewModel {
-    pub group_name: String,
-    pub group_id: u32,
-    pub num_owned: u32,
-    pub num_available: u32,
-    pub purchase_date: i64,
-    pub items: Vec<LolCosmeticsCosmeticsTftDamageSkinViewModel>,
+pub struct LolCosmeticsCompanionsGroupedViewModel {
+    pub selected_loadout_item: LolCosmeticsCosmeticsCompanionViewModel,
+    pub default_item_id: i32,
+    pub groups: Vec<LolCosmeticsCompanionsGroupViewModel>,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolCosmeticsCompanionsGroupedViewModel {
-    pub selected_loadout_item: LolCosmeticsCosmeticsCompanionViewModel,
-    pub default_item_id: i32,
-    pub groups: Vec<LolCosmeticsCompanionsGroupViewModel>,
+pub struct LolCosmeticsCosmeticsCompanionViewModel {
+    pub content_id: String,
+    pub item_id: i32,
+    pub name: String,
+    pub description: String,
+    pub loadouts_icon: String,
+    pub owned: bool,
+    pub selected: bool,
+    pub favorited: bool,
+    pub loyalty: bool,
+    pub f_2_p: bool,
+    pub rarity_value: u32,
+    pub purchase_date: String,
+    pub is_recent_item: bool,
+    pub species: String,
+    pub group_id: u32,
+    pub color: String,
+    pub level: u32,
+    pub upgrades: Vec<LolCosmeticsCosmeticsCompanionViewModel>,
+    pub offer_data: Option<LolCosmeticsCapOffer>,
+    pub star_shards_price: LolCosmeticsCosmeticsOfferPrice,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolCosmeticsCosmeticsTftDamageSkinViewModel {
+    pub content_id: String,
+    pub item_id: i32,
+    pub name: String,
+    pub description: String,
+    pub loadouts_icon: String,
+    pub owned: bool,
+    pub selected: bool,
+    pub favorited: bool,
+    pub loyalty: bool,
+    pub f_2_p: bool,
+    pub rarity_value: u32,
+    pub purchase_date: String,
+    pub is_recent_item: bool,
+    pub level: u32,
+    pub group_id: u32,
+    pub group_name: String,
+    pub upgrades: Vec<LolCosmeticsCosmeticsTftDamageSkinViewModel>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolCosmeticsTftPlaybookGroupViewModel {
+    pub group_name: String,
+    pub group_id: u32,
+    pub num_owned: u32,
+    pub num_available: u32,
+    pub items: Vec<LolCosmeticsCosmeticsTftPlaybookViewModel>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolCosmeticsCapOffer {
+    pub id: String,
+    pub type_id: String,
+    pub label: String,
+    pub product_id: String,
+    pub merchant_id: String,
+    pub payload: Vec<HashMap<String, String>>,
+    pub active: bool,
+    pub start_date: String,
+    pub created_date: String,
 }
 
 
@@ -793,6 +778,23 @@ pub struct LolCosmeticsCosmeticsTftMapSkinViewModel {
     pub is_recent_item: bool,
     pub group_id: u32,
     pub group_name: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolCosmeticsCosmeticsTftPlaybookAugment {
+    pub name: String,
+    pub description: String,
+    pub icon_path: String,
+    pub effect_amounts: Vec<LolCosmeticsCosmeticsTftPlaybookAugmentEffectAmount>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolCosmeticsCompanionsFavoritesViewModel {
+    pub favorite_items: Vec<LolCosmeticsCosmeticsCompanionViewModel>,
 }
 
 

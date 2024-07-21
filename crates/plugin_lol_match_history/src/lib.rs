@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetLolMatchHistoryV1Delta {
@@ -96,8 +98,8 @@ pub fn get_lol_match_history_v_1_games_by_game_id(game_id: u64) -> GetLolMatchHi
 pub struct GetLolMatchHistoryV1ProductsLolByPuuidMatches {
 
     pub puuid: String,
-    pub beg_index: u32,
-    pub end_index: u32,
+    pub beg_index: Option<u32>,
+    pub end_index: Option<u32>,
 }
 
 impl IsApiRequest for GetLolMatchHistoryV1ProductsLolByPuuidMatches {
@@ -120,7 +122,7 @@ impl IsApiRequest for GetLolMatchHistoryV1ProductsLolByPuuidMatches {
     }
 }
 
-pub fn get_lol_match_history_v_1_products_lol_by_puuid_matches(puuid: String, beg_index: u32, end_index: u32) -> GetLolMatchHistoryV1ProductsLolByPuuidMatches {
+pub fn get_lol_match_history_v_1_products_lol_by_puuid_matches(puuid: String, beg_index: Option<u32>, end_index: Option<u32>) -> GetLolMatchHistoryV1ProductsLolByPuuidMatches {
     GetLolMatchHistoryV1ProductsLolByPuuidMatches {
         puuid, beg_index, end_index
     }
@@ -129,8 +131,8 @@ pub fn get_lol_match_history_v_1_products_lol_by_puuid_matches(puuid: String, be
 
 pub struct GetLolMatchHistoryV1ProductsLolCurrentSummonerMatches {
 
-    pub beg_index: u32,
-    pub end_index: u32,
+    pub beg_index: Option<u32>,
+    pub end_index: Option<u32>,
 }
 
 impl IsApiRequest for GetLolMatchHistoryV1ProductsLolCurrentSummonerMatches {
@@ -153,7 +155,7 @@ impl IsApiRequest for GetLolMatchHistoryV1ProductsLolCurrentSummonerMatches {
     }
 }
 
-pub fn get_lol_match_history_v_1_products_lol_current_summoner_matches(beg_index: u32, end_index: u32) -> GetLolMatchHistoryV1ProductsLolCurrentSummonerMatches {
+pub fn get_lol_match_history_v_1_products_lol_current_summoner_matches(beg_index: Option<u32>, end_index: Option<u32>) -> GetLolMatchHistoryV1ProductsLolCurrentSummonerMatches {
     GetLolMatchHistoryV1ProductsLolCurrentSummonerMatches {
         beg_index, end_index
     }
@@ -163,9 +165,9 @@ pub fn get_lol_match_history_v_1_products_lol_current_summoner_matches(beg_index
 pub struct GetLolMatchHistoryV1ProductsTftByPuuidMatches {
 
     pub puuid: String,
-    pub begin: u32,
-    pub count: u32,
-    pub tag: String,
+    pub begin: Option<u32>,
+    pub count: Option<u32>,
+    pub tag: Option<String>,
 }
 
 impl IsApiRequest for GetLolMatchHistoryV1ProductsTftByPuuidMatches {
@@ -189,7 +191,7 @@ impl IsApiRequest for GetLolMatchHistoryV1ProductsTftByPuuidMatches {
     }
 }
 
-pub fn get_lol_match_history_v_1_products_tft_by_puuid_matches(puuid: String, begin: u32, count: u32, tag: String) -> GetLolMatchHistoryV1ProductsTftByPuuidMatches {
+pub fn get_lol_match_history_v_1_products_tft_by_puuid_matches(puuid: String, begin: Option<u32>, count: Option<u32>, tag: Option<String>) -> GetLolMatchHistoryV1ProductsTftByPuuidMatches {
     GetLolMatchHistoryV1ProductsTftByPuuidMatches {
         puuid, begin, count, tag
     }
@@ -255,8 +257,8 @@ pub fn get_lol_match_history_v_1_web_url() -> GetLolMatchHistoryV1WebUrl {
 pub struct GetLolMatchHistoryV3MatchlistAccountByAccountId {
 
     pub account_id: u64,
-    pub beg_index: u32,
-    pub end_index: u32,
+    pub beg_index: Option<u32>,
+    pub end_index: Option<u32>,
 }
 
 impl IsApiRequest for GetLolMatchHistoryV3MatchlistAccountByAccountId {
@@ -279,7 +281,7 @@ impl IsApiRequest for GetLolMatchHistoryV3MatchlistAccountByAccountId {
     }
 }
 
-pub fn get_lol_match_history_v_3_matchlist_account_by_account_id(account_id: u64, beg_index: u32, end_index: u32) -> GetLolMatchHistoryV3MatchlistAccountByAccountId {
+pub fn get_lol_match_history_v_3_matchlist_account_by_account_id(account_id: u64, beg_index: Option<u32>, end_index: Option<u32>) -> GetLolMatchHistoryV3MatchlistAccountByAccountId {
     GetLolMatchHistoryV3MatchlistAccountByAccountId {
         account_id, beg_index, end_index
     }
@@ -319,37 +321,123 @@ pub fn post_lol_match_history_v_1_acs_endpoint_override(body: LolMatchHistoryAcs
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolMatchHistoryMatchHistoryParticipant {
-    pub participant_id: u16,
-    pub team_id: u16,
-    pub champion_id: i32,
-    pub spell_1_id: u16,
-    pub spell_2_id: u16,
-    pub highest_achieved_season_tier: String,
-    pub stats: LolMatchHistoryMatchHistoryParticipantStatistics,
-    pub timeline: LolMatchHistoryMatchHistoryTimeline,
+pub struct LolMatchHistoryMatchHistoryPosition {
+    pub x: i16,
+    pub y: i16,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolMatchHistoryMatchHistoryPlayerLeagueDelta {
-    pub league_point_delta: u64,
-    pub reason: String,
-    pub mini_series_progress: Vec<String>,
+pub struct LolMatchHistoryMatchHistoryGame {
+    pub end_of_game_result: String,
+    pub game_id: u64,
+    pub platform_id: String,
+    pub game_creation: u64,
+    pub game_creation_date: String,
+    pub game_duration: u32,
+    pub queue_id: i32,
+    pub map_id: u16,
+    pub season_id: u16,
+    pub game_version: String,
+    pub game_mode: String,
+    pub game_type: String,
+    pub teams: Vec<LolMatchHistoryMatchHistoryTeam>,
+    pub participants: Vec<LolMatchHistoryMatchHistoryParticipant>,
+    pub participant_identities: Vec<LolMatchHistoryMatchHistoryParticipantIdentities>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolMatchHistoryMatchHistoryTeamBan {
+    pub champion_id: i32,
+    pub pick_turn: u16,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolMatchHistoryMatchHistoryPlayerGameDelta {
+    pub game_platform_id: String,
+    pub game_id: u64,
+    pub platform_delta: LolMatchHistoryMatchHistoryPlayerPlatformDelta,
+    pub league_delta: LolMatchHistoryMatchHistoryPlayerLeagueDelta,
+    pub champ_mastery: LolMatchHistoryMatchHistoryPlayerChampMasteryDelta,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolMatchHistoryMatchHistoryParticipantIdentities {
+    pub participant_id: u16,
+    pub player: LolMatchHistoryMatchHistoryParticipantIdentityPlayer,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolMatchHistoryMatchHistoryTimelineFrames {
+    pub frames: Vec<LolMatchHistoryMatchHistoryTimelineFrame>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolMatchHistoryMatchHistoryPlayerPlatformDelta {
+    pub xp_delta: u64,
+    pub ip_delta: u64,
+    pub compensation_mode_enabled: bool,
     pub timestamp: u64,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolMatchHistoryMatchHistoryGameList {
-    pub game_index_begin: u64,
-    pub game_index_end: u64,
-    pub game_begin_date: String,
-    pub game_end_date: String,
-    pub game_count: u64,
-    pub games: Vec<LolMatchHistoryMatchHistoryGame>,
+pub struct LolMatchHistoryMatchHistoryParticipantIdentityPlayer {
+    pub puuid: String,
+    pub platform_id: String,
+    pub account_id: u64,
+    pub summoner_id: u64,
+    pub summoner_name: String,
+    pub game_name: String,
+    pub tag_line: String,
+    pub current_platform_id: String,
+    pub current_account_id: u64,
+    pub match_history_uri: String,
+    pub profile_icon: i32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolMatchHistoryMatchHistoryTimeline {
+    pub participant_id: u16,
+    pub role: String,
+    pub lane: String,
+    pub creeps_per_min_deltas: HashMap<String, f64>,
+    pub xp_per_min_deltas: HashMap<String, f64>,
+    pub gold_per_min_deltas: HashMap<String, f64>,
+    pub cs_diff_per_min_deltas: HashMap<String, f64>,
+    pub xp_diff_per_min_deltas: HashMap<String, f64>,
+    pub damage_taken_per_min_deltas: HashMap<String, f64>,
+    pub damage_taken_diff_per_min_deltas: HashMap<String, f64>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolMatchHistoryMatchHistoryParticipantFrame {
+    pub participant_id: u16,
+    pub position: LolMatchHistoryMatchHistoryPosition,
+    pub current_gold: i32,
+    pub total_gold: i32,
+    pub level: u16,
+    pub xp: u32,
+    pub minions_killed: u16,
+    pub jungle_minions_killed: u16,
+    pub dominion_score: u16,
+    pub team_score: u16,
 }
 
 
@@ -377,24 +465,8 @@ pub struct LolMatchHistoryMatchHistoryTeam {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolMatchHistoryMatchHistoryTimelineFrames {
-    pub frames: Vec<LolMatchHistoryMatchHistoryTimelineFrame>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolMatchHistoryMatchHistoryTeamBan {
-    pub champion_id: i32,
-    pub pick_turn: u16,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolMatchHistoryGamhsMatchHistoryData {
-    pub metadata: LolMatchHistoryGamhsMatchHistoryMetadata,
-    pub json: HashMap<String, String>,
+pub struct LolMatchHistoryMatchHistoryPlayerChampMasteryDelta {
+    pub grade: String,
 }
 
 
@@ -403,136 +475,6 @@ pub struct LolMatchHistoryGamhsMatchHistoryData {
 pub struct LolMatchHistoryGamhsMatchHistoryList {
     pub games: Vec<LolMatchHistoryGamhsMatchHistoryData>,
     pub active_puuid: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolMatchHistoryMatchHistoryPlayerGameDelta {
-    pub game_platform_id: String,
-    pub game_id: u64,
-    pub platform_delta: LolMatchHistoryMatchHistoryPlayerPlatformDelta,
-    pub league_delta: LolMatchHistoryMatchHistoryPlayerLeagueDelta,
-    pub champ_mastery: LolMatchHistoryMatchHistoryPlayerChampMasteryDelta,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolMatchHistoryMatchHistoryParticipantIdentities {
-    pub participant_id: u16,
-    pub player: LolMatchHistoryMatchHistoryParticipantIdentityPlayer,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolMatchHistoryGamhsMatchHistoryMetadata {
-    pub product: String,
-    pub data_version: u8,
-    pub info_type: String,
-    pub match_id: String,
-    pub tags: Vec<String>,
-    pub participants: Vec<String>,
-    pub timestamp: u64,
-    pub private: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolMatchHistoryAcsEndPoint {
-    pub url: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolMatchHistoryMatchHistoryPlayerChampMasteryDelta {
-    pub grade: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolMatchHistoryMatchHistoryParticipantIdentityPlayer {
-    pub puuid: String,
-    pub platform_id: String,
-    pub account_id: u64,
-    pub summoner_id: u64,
-    pub summoner_name: String,
-    pub game_name: String,
-    pub tag_line: String,
-    pub current_platform_id: String,
-    pub current_account_id: u64,
-    pub match_history_uri: String,
-    pub profile_icon: i32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolMatchHistoryMatchHistoryEvent {
-    pub type_: String,
-    pub timestamp: u64,
-    pub participant_id: u16,
-    pub team_id: u16,
-    pub item_id: u16,
-    pub killer_id: u16,
-    pub victim_id: u16,
-    pub skill_slot: u16,
-    pub position: LolMatchHistoryMatchHistoryPosition,
-    pub assisting_participant_ids: Vec<u16>,
-    pub building_type: String,
-    pub lane_type: String,
-    pub tower_type: String,
-    pub monster_type: String,
-    pub monster_sub_type: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolMatchHistoryMatchHistoryParticipantFrame {
-    pub participant_id: u16,
-    pub position: LolMatchHistoryMatchHistoryPosition,
-    pub current_gold: i32,
-    pub total_gold: i32,
-    pub level: u16,
-    pub xp: u32,
-    pub minions_killed: u16,
-    pub jungle_minions_killed: u16,
-    pub dominion_score: u16,
-    pub team_score: u16,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolMatchHistoryMatchHistoryPosition {
-    pub x: i16,
-    pub y: i16,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolMatchHistoryMatchHistoryGame {
-    pub end_of_game_result: String,
-    pub game_id: u64,
-    pub platform_id: String,
-    pub game_creation: u64,
-    pub game_creation_date: String,
-    pub game_duration: u32,
-    pub queue_id: i32,
-    pub map_id: u16,
-    pub season_id: u16,
-    pub game_version: String,
-    pub game_mode: String,
-    pub game_type: String,
-    pub teams: Vec<LolMatchHistoryMatchHistoryTeam>,
-    pub participants: Vec<LolMatchHistoryMatchHistoryParticipant>,
-    pub participant_identities: Vec<LolMatchHistoryMatchHistoryParticipantIdentities>,
 }
 
 
@@ -658,29 +600,25 @@ pub struct LolMatchHistoryMatchHistoryParticipantStatistics {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct LolMatchHistoryGamhsMatchHistoryData {
+    pub metadata: LolMatchHistoryGamhsMatchHistoryMetadata,
+    pub json: HashMap<String, String>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolMatchHistoryAcsEndPoint {
+    pub url: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct LolMatchHistoryMatchHistoryPlayerDelta {
     pub original_account_id: u64,
     pub original_platform_id: String,
     pub deltas: Vec<LolMatchHistoryMatchHistoryPlayerGameDelta>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolMatchHistoryMatchHistoryPlayerPlatformDelta {
-    pub xp_delta: u64,
-    pub ip_delta: u64,
-    pub compensation_mode_enabled: bool,
-    pub timestamp: u64,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolMatchHistoryMatchHistoryList {
-    pub platform_id: String,
-    pub account_id: u64,
-    pub games: LolMatchHistoryMatchHistoryGameList,
 }
 
 
@@ -695,17 +633,38 @@ pub struct LolMatchHistoryMatchHistoryTimelineFrame {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolMatchHistoryMatchHistoryTimeline {
+pub struct LolMatchHistoryMatchHistoryParticipant {
     pub participant_id: u16,
-    pub role: String,
-    pub lane: String,
-    pub creeps_per_min_deltas: HashMap<String, f64>,
-    pub xp_per_min_deltas: HashMap<String, f64>,
-    pub gold_per_min_deltas: HashMap<String, f64>,
-    pub cs_diff_per_min_deltas: HashMap<String, f64>,
-    pub xp_diff_per_min_deltas: HashMap<String, f64>,
-    pub damage_taken_per_min_deltas: HashMap<String, f64>,
-    pub damage_taken_diff_per_min_deltas: HashMap<String, f64>,
+    pub team_id: u16,
+    pub champion_id: i32,
+    pub spell_1_id: u16,
+    pub spell_2_id: u16,
+    pub highest_achieved_season_tier: String,
+    pub stats: LolMatchHistoryMatchHistoryParticipantStatistics,
+    pub timeline: LolMatchHistoryMatchHistoryTimeline,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolMatchHistoryMatchHistoryList {
+    pub platform_id: String,
+    pub account_id: u64,
+    pub games: LolMatchHistoryMatchHistoryGameList,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolMatchHistoryGamhsMatchHistoryMetadata {
+    pub product: String,
+    pub data_version: u8,
+    pub info_type: String,
+    pub match_id: String,
+    pub tags: Vec<String>,
+    pub participants: Vec<String>,
+    pub timestamp: u64,
+    pub private: bool,
 }
 
 
@@ -721,6 +680,49 @@ pub struct LolMatchHistoryRecentlyPlayedSummoner {
     pub champion_id: u64,
     pub team_id: u64,
     pub puuid: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolMatchHistoryMatchHistoryGameList {
+    pub game_index_begin: u64,
+    pub game_index_end: u64,
+    pub game_begin_date: String,
+    pub game_end_date: String,
+    pub game_count: u64,
+    pub games: Vec<LolMatchHistoryMatchHistoryGame>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolMatchHistoryMatchHistoryEvent {
+    pub type_: String,
+    pub timestamp: u64,
+    pub participant_id: u16,
+    pub team_id: u16,
+    pub item_id: u16,
+    pub killer_id: u16,
+    pub victim_id: u16,
+    pub skill_slot: u16,
+    pub position: LolMatchHistoryMatchHistoryPosition,
+    pub assisting_participant_ids: Vec<u16>,
+    pub building_type: String,
+    pub lane_type: String,
+    pub tower_type: String,
+    pub monster_type: String,
+    pub monster_sub_type: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolMatchHistoryMatchHistoryPlayerLeagueDelta {
+    pub league_point_delta: u64,
+    pub reason: String,
+    pub mini_series_progress: Vec<String>,
+    pub timestamp: u64,
 }
 
 

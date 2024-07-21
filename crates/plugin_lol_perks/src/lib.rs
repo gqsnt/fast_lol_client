@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetLolPerksV1Pages {
@@ -814,15 +816,6 @@ pub fn put_lol_perks_v_1_perks_ack_gameplay_updated(body: Vec<i32>) -> PutLolPer
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolPerksUpdatePageOrderRequest {
-    pub target_page_id: i32,
-    pub destination_page_id: i32,
-    pub offset: i32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LolPerksPlayerInventory {
     pub owned_page_count: u32,
     pub custom_page_count: u32,
@@ -833,122 +826,9 @@ pub struct LolPerksPlayerInventory {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolPerksUiPerkMinimal {
-    pub id: i32,
-    pub style_id: i32,
-    pub name: String,
-    pub slot_type: String,
-    pub icon_path: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolPerksPerkUiPerk {
-    pub icon_path: String,
-    pub id: i32,
-    pub style_id: i32,
-    pub style_id_name: String,
-    pub long_desc: String,
-    pub name: String,
-    pub short_desc: String,
-    pub tooltip: String,
-    pub recommendation_descriptor: String,
-    pub slot_type: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolPerksRecommendedPositionsMapResource {
-    pub recommended_positions: Vec<String>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolPerksPerkUiRecommendedPage {
-    pub position: String,
-    pub is_default_position: bool,
-    pub keystone: LolPerksPerkUiPerk,
-    pub perks: Vec<LolPerksPerkUiPerk>,
-    pub primary_perk_style_id: i32,
-    pub secondary_perk_style_id: i32,
-    pub primary_recommendation_attribute: String,
-    pub secondary_recommendation_attribute: String,
-    pub summoner_spell_ids: Vec<i32>,
-    pub recommendation_id: String,
-    pub is_recommendation_override: bool,
-    pub recommendation_champion_id: i32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolPerksNamecheckResponse {
-    pub errors: Vec<String>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolPerksPerkUiSlot {
-    pub perks: Vec<i32>,
-    pub type_: String,
-    pub slot_label: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolPerksValidatePageNameData {
-    pub id: i32,
-    pub name: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolPerksPerkUiStyle {
-    pub allowed_sub_styles: Vec<i32>,
-    pub icon_path: String,
-    pub asset_map: HashMap<String, String>,
-    pub id: i32,
-    pub name: String,
-    pub slots: Vec<LolPerksPerkUiSlot>,
-    pub sub_style_bonus: Vec<LolPerksPerkSubStyleBonusResource>,
-    pub tooltip: String,
-    pub default_sub_style: i32,
-    pub default_perks: Vec<i32>,
-    pub default_page_name: String,
-    pub id_name: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolPerksUiSettings {
-    pub show_long_descriptions: bool,
-    pub grid_mode_enabled: bool,
-    pub show_preset_pages: bool,
-    pub gameplay_patch_version_seen: String,
-    pub gameplay_updated_perks_seen: Vec<i32>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LolPerksPerkSubStyleBonusResource {
     pub perk_id: i32,
     pub style_id: i32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolPerksValidateItemSetNameResponse {
-    pub success: bool,
-    pub name_check_response: LolPerksNamecheckResponse,
 }
 
 
@@ -981,6 +861,128 @@ pub struct LolPerksPerkPageResource {
     pub tooltip_bg_path: String,
     pub page_keystone: LolPerksUiPerkMinimal,
     pub ui_perks: Vec<LolPerksUiPerkMinimal>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolPerksUiPerkMinimal {
+    pub id: i32,
+    pub style_id: i32,
+    pub name: String,
+    pub slot_type: String,
+    pub icon_path: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolPerksPerkUiStyle {
+    pub allowed_sub_styles: Vec<i32>,
+    pub icon_path: String,
+    pub asset_map: HashMap<String, String>,
+    pub id: i32,
+    pub name: String,
+    pub slots: Vec<LolPerksPerkUiSlot>,
+    pub sub_style_bonus: Vec<LolPerksPerkSubStyleBonusResource>,
+    pub tooltip: String,
+    pub default_sub_style: i32,
+    pub default_perks: Vec<i32>,
+    pub default_page_name: String,
+    pub id_name: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolPerksValidatePageNameData {
+    pub id: i32,
+    pub name: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolPerksUpdatePageOrderRequest {
+    pub target_page_id: i32,
+    pub destination_page_id: i32,
+    pub offset: i32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolPerksNamecheckResponse {
+    pub errors: Vec<String>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolPerksPerkUiPerk {
+    pub icon_path: String,
+    pub id: i32,
+    pub style_id: i32,
+    pub style_id_name: String,
+    pub long_desc: String,
+    pub name: String,
+    pub short_desc: String,
+    pub tooltip: String,
+    pub recommendation_descriptor: String,
+    pub slot_type: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolPerksValidateItemSetNameResponse {
+    pub success: bool,
+    pub name_check_response: LolPerksNamecheckResponse,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolPerksRecommendedPositionsMapResource {
+    pub recommended_positions: Vec<String>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolPerksUiSettings {
+    pub show_long_descriptions: bool,
+    pub grid_mode_enabled: bool,
+    pub show_preset_pages: bool,
+    pub gameplay_patch_version_seen: String,
+    pub gameplay_updated_perks_seen: Vec<i32>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolPerksPerkUiRecommendedPage {
+    pub position: String,
+    pub is_default_position: bool,
+    pub keystone: LolPerksPerkUiPerk,
+    pub perks: Vec<LolPerksPerkUiPerk>,
+    pub primary_perk_style_id: i32,
+    pub secondary_perk_style_id: i32,
+    pub primary_recommendation_attribute: String,
+    pub secondary_recommendation_attribute: String,
+    pub summoner_spell_ids: Vec<i32>,
+    pub recommendation_id: String,
+    pub is_recommendation_override: bool,
+    pub recommendation_champion_id: i32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolPerksPerkUiSlot {
+    pub perks: Vec<i32>,
+    pub type_: String,
+    pub slot_label: String,
 }
 
 

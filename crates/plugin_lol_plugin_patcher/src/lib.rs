@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct DeletePatcherV1NotificationsById {
@@ -558,57 +560,10 @@ pub fn put_patcher_v_1_ux(body: PatcherUxResource) -> PutPatcherV1Ux {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct PatcherComponentStateProgress {
-    pub bytes_complete: u64,
-    pub bytes_required: u64,
-    pub bytes_per_second: f64,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct PatcherStatus {
-    pub connected_to_patch_server: bool,
-    pub successfully_installed_version: u32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct PatcherUxResource {
-    pub visible: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct PatcherNotification {
     pub id: String,
     pub notification_id: PatcherNotificationId,
     pub data: HashMap<String, HashMap<String, String>>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct PatcherComponentState {
-    pub id: String,
-    pub action: PatcherComponentStateAction,
-    pub is_up_to_date: bool,
-    pub is_update_available: bool,
-    pub time_of_last_up_to_date_check_iso_8601: String,
-    pub is_corrupted: bool,
-    pub progress: PatcherComponentActionProgress,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct PatcherComponentActionProgress {
-    pub current_item: String,
-    pub total: PatcherComponentStateProgress,
-    pub network: PatcherComponentStateProgress,
-    pub primary_work: PatcherComponentStateWorkType,
 }
 
 
@@ -630,6 +585,53 @@ pub struct PatcherProductState {
     pub is_stopped: bool,
     pub percent_patched: f64,
     pub components: Vec<PatcherComponentState>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct PatcherStatus {
+    pub connected_to_patch_server: bool,
+    pub successfully_installed_version: Option<u32>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct PatcherComponentStateProgress {
+    pub bytes_complete: u64,
+    pub bytes_required: u64,
+    pub bytes_per_second: f64,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct PatcherUxResource {
+    pub visible: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct PatcherComponentActionProgress {
+    pub current_item: String,
+    pub total: PatcherComponentStateProgress,
+    pub network: PatcherComponentStateProgress,
+    pub primary_work: PatcherComponentStateWorkType,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct PatcherComponentState {
+    pub id: String,
+    pub action: PatcherComponentStateAction,
+    pub is_up_to_date: bool,
+    pub is_update_available: bool,
+    pub time_of_last_up_to_date_check_iso_8601: Option<String>,
+    pub is_corrupted: bool,
+    pub progress: Option<PatcherComponentActionProgress>,
 }
 
 

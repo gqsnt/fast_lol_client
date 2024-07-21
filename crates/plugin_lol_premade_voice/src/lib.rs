@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetLolPremadeVoiceV1MicTest {
@@ -694,32 +696,34 @@ pub fn put_lol_premade_voice_v_1_self_mute(body: i32) -> PutLolPremadeVoiceV1Sel
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolPremadeVoiceAudioPropertiesResource {
-    pub is_loopback_enabled: bool,
-    pub mic_energy: u32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolPremadeVoiceVoiceAvailability {
-    pub enabled: bool,
-    pub connected_to_voice_server: bool,
-    pub voice_channel_available: bool,
-    pub disabled_after_login: bool,
-    pub show_ui: bool,
-    pub show_disconnected_state: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LolPremadeVoiceDeviceResource {
     pub handle: String,
     pub name: String,
     pub usable: bool,
     pub is_current_device: bool,
     pub is_default: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolPremadeVoicePremadeVoiceParticipantDto {
+    pub participant_id: String,
+    pub summoner_id: u64,
+    pub puuid: String,
+    pub display_name: String,
+    pub volume: u32,
+    pub energy: u32,
+    pub is_muted: bool,
+    pub is_speaking: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolPremadeVoiceFirstExperience {
+    pub show_first_experience_in_lcu: bool,
+    pub show_first_experience_in_game: bool,
 }
 
 
@@ -737,29 +741,27 @@ pub struct LolPremadeVoiceSettingsResource {
     pub vad_active: bool,
     pub ptt_active: bool,
     pub input_mode: LolPremadeVoiceInputMode,
-    pub ptt_key: String,
+    pub ptt_key: Option<String>,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolPremadeVoiceFirstExperience {
-    pub show_first_experience_in_lcu: bool,
-    pub show_first_experience_in_game: bool,
+pub struct LolPremadeVoiceAudioPropertiesResource {
+    pub is_loopback_enabled: bool,
+    pub mic_energy: u32,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolPremadeVoicePremadeVoiceParticipantDto {
-    pub participant_id: String,
-    pub summoner_id: u64,
-    pub puuid: String,
-    pub display_name: String,
-    pub volume: u32,
-    pub energy: u32,
-    pub is_muted: bool,
-    pub is_speaking: bool,
+pub struct LolPremadeVoiceVoiceAvailability {
+    pub enabled: bool,
+    pub connected_to_voice_server: bool,
+    pub voice_channel_available: bool,
+    pub disabled_after_login: bool,
+    pub show_ui: bool,
+    pub show_disconnected_state: bool,
 }
 
 

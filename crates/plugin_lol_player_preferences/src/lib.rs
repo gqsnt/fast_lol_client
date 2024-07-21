@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetLolPlayerPreferencesV1PlayerPreferencesReady {
@@ -126,21 +128,21 @@ pub fn put_lol_player_preferences_v_1_preference(body: LolPlayerPreferencesPlaye
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct LolPlayerPreferencesPlayerPreferences {
+    pub type_: String,
+    pub version: String,
+    pub data: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct LolPlayerPreferencesPlayerPreferencesEndpoint {
     pub enabled: bool,
     pub enforce_https: bool,
     pub service_endpoint: String,
     pub version: String,
     pub retries: i64,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolPlayerPreferencesPlayerPreferences {
-    pub type_: String,
-    pub version: String,
-    pub data: String,
 }
 
 

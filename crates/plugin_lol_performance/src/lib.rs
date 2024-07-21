@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetPerformanceV1Memory {
@@ -65,7 +67,7 @@ pub fn get_performance_v_1_report() -> GetPerformanceV1Report {
 
 pub struct GetPerformanceV1SystemInfo {
     // Returns hardware and software specs for the machine the client is running on.
-    pub full: i32,
+    pub full: Option<i32>,
 }
 
 impl IsApiRequest for GetPerformanceV1SystemInfo {
@@ -87,7 +89,7 @@ impl IsApiRequest for GetPerformanceV1SystemInfo {
     }
 }
 
-pub fn get_performance_v_1_system_info(full: i32) -> GetPerformanceV1SystemInfo {
+pub fn get_performance_v_1_system_info(full: Option<i32>) -> GetPerformanceV1SystemInfo {
     GetPerformanceV1SystemInfo {
         full
     }
@@ -125,8 +127,8 @@ pub fn post_performance_v_1_process_by_process_id(process_id: u32) -> PostPerfor
 
 pub struct PostPerformanceV1ReportRestart {
     // Restarts the CPU timing information and returns the results from PerfReportProcesses
-    pub sample_length: i32,
-    pub sample_count: i32,
+    pub sample_length: Option<i32>,
+    pub sample_count: Option<i32>,
 }
 
 impl IsApiRequest for PostPerformanceV1ReportRestart {
@@ -149,7 +151,7 @@ impl IsApiRequest for PostPerformanceV1ReportRestart {
     }
 }
 
-pub fn post_performance_v_1_report_restart(sample_length: i32, sample_count: i32) -> PostPerformanceV1ReportRestart {
+pub fn post_performance_v_1_report_restart(sample_length: Option<i32>, sample_count: Option<i32>) -> PostPerformanceV1ReportRestart {
     PostPerformanceV1ReportRestart {
         sample_length, sample_count
     }

@@ -5,11 +5,13 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetLolSocialLeaderboardV1LeaderboardNextUpdateTime {
 
-    pub queue_type: LolSocialLeaderboardLeagueQueueType,
+    pub queue_type: Option<LolSocialLeaderboardLeagueQueueType>,
 }
 
 impl IsApiRequest for GetLolSocialLeaderboardV1LeaderboardNextUpdateTime {
@@ -31,7 +33,7 @@ impl IsApiRequest for GetLolSocialLeaderboardV1LeaderboardNextUpdateTime {
     }
 }
 
-pub fn get_lol_social_leaderboard_v_1_leaderboard_next_update_time(queue_type: LolSocialLeaderboardLeagueQueueType) -> GetLolSocialLeaderboardV1LeaderboardNextUpdateTime {
+pub fn get_lol_social_leaderboard_v_1_leaderboard_next_update_time(queue_type: Option<LolSocialLeaderboardLeagueQueueType>) -> GetLolSocialLeaderboardV1LeaderboardNextUpdateTime {
     GetLolSocialLeaderboardV1LeaderboardNextUpdateTime {
         queue_type
     }
@@ -40,7 +42,7 @@ pub fn get_lol_social_leaderboard_v_1_leaderboard_next_update_time(queue_type: L
 
 pub struct GetLolSocialLeaderboardV1SocialLeaderboardData {
 
-    pub queue_type: LolSocialLeaderboardLeagueQueueType,
+    pub queue_type: Option<LolSocialLeaderboardLeagueQueueType>,
 }
 
 impl IsApiRequest for GetLolSocialLeaderboardV1SocialLeaderboardData {
@@ -62,7 +64,7 @@ impl IsApiRequest for GetLolSocialLeaderboardV1SocialLeaderboardData {
     }
 }
 
-pub fn get_lol_social_leaderboard_v_1_social_leaderboard_data(queue_type: LolSocialLeaderboardLeagueQueueType) -> GetLolSocialLeaderboardV1SocialLeaderboardData {
+pub fn get_lol_social_leaderboard_v_1_social_leaderboard_data(queue_type: Option<LolSocialLeaderboardLeagueQueueType>) -> GetLolSocialLeaderboardV1SocialLeaderboardData {
     GetLolSocialLeaderboardV1SocialLeaderboardData {
         queue_type
     }
@@ -70,14 +72,6 @@ pub fn get_lol_social_leaderboard_v_1_social_leaderboard_data(queue_type: LolSoc
 
 
 // OBJECTS
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolSocialLeaderboardSocialLeaderboardData {
-    pub row_data: Vec<LolSocialLeaderboardSocialLeaderboardRowData>,
-    pub next_update_time: i64,
-}
-
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
@@ -101,7 +95,31 @@ pub struct LolSocialLeaderboardSocialLeaderboardRowData {
 }
 
 
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolSocialLeaderboardSocialLeaderboardData {
+    pub row_data: Vec<LolSocialLeaderboardSocialLeaderboardRowData>,
+    pub next_update_time: i64,
+}
+
+
 // ENUMS
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum LolSocialLeaderboardLeagueDivision {
+    #[default]
+    #[serde(rename = "NA")]
+    Na,
+    V,
+    #[serde(rename = "IV")]
+    Iv,
+    #[serde(rename = "III")]
+    Iii,
+    #[serde(rename = "II")]
+    Ii,
+    I,
+}
+
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
 pub enum LolSocialLeaderboardLeagueQueueType {
@@ -122,21 +140,5 @@ pub enum LolSocialLeaderboardLeagueQueueType {
     RankedSolo5X5,
     #[serde(rename = "NONE")]
     None,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum LolSocialLeaderboardLeagueDivision {
-    #[default]
-    #[serde(rename = "NA")]
-    Na,
-    V,
-    #[serde(rename = "IV")]
-    Iv,
-    #[serde(rename = "III")]
-    Iii,
-    #[serde(rename = "II")]
-    Ii,
-    I,
 }
 

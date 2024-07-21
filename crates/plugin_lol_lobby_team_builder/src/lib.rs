@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetLolLobbyTeamBuilderChampSelectV1BannableChampionIds {
@@ -1072,11 +1074,43 @@ pub struct LolLobbyTeamBuilderMucJwtDto {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct LolLobbyTeamBuilderMatchmakingLowPriorityData {
+    pub penalized_summoner_ids: Vec<u64>,
+    pub penalty_time: f64,
+    pub penalty_time_remaining: f64,
+    pub busted_leaver_access_token: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLobbyTeamBuilderBenchChampion {
+    pub champion_id: i32,
+    pub is_priority: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct LolLobbyTeamBuilderChampSelectMySelection {
-    pub selected_skin_id: i32,
-    pub spell_1_id: u64,
-    pub spell_2_id: u64,
-    pub ward_skin_id: i64,
+    pub selected_skin_id: Option<i32>,
+    pub spell_1_id: Option<u64>,
+    pub spell_2_id: Option<u64>,
+    pub ward_skin_id: Option<i64>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLobbyTeamBuilderTeamBoost {
+    pub summoner_id: i64,
+    pub puuid: String,
+    pub skin_unlock_mode: String,
+    pub price: i64,
+    pub ip_reward: i64,
+    pub ip_reward_for_purchaser: i64,
+    pub available_skins: Vec<i64>,
+    pub unlocked: bool,
 }
 
 
@@ -1103,53 +1137,21 @@ pub struct LolLobbyTeamBuilderChampSelectPlayerSelection {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolLobbyTeamBuilderMatchmakingSearchErrorResource {
-    pub id: i32,
-    pub error_type: String,
-    pub penalized_summoner_id: u64,
-    pub penalty_time_remaining: f64,
-    pub message: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolLobbyTeamBuilderChampSelectAction {
-    pub id: i64,
-    pub actor_cell_id: i64,
-    pub champion_id: i32,
-    pub type_: String,
-    pub completed: bool,
-    pub is_ally_action: bool,
-    pub is_in_progress: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolLobbyTeamBuilderChampSelectTimer {
-    pub adjusted_time_left_in_phase: i64,
-    pub total_time_in_phase: i64,
-    pub phase: String,
-    pub is_infinite: bool,
-    pub internal_now_in_epoch_ms: u64,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolLobbyTeamBuilderBenchChampion {
-    pub champion_id: i32,
-    pub is_priority: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LolLobbyTeamBuilderChampSelectSwapContract {
     pub id: i64,
     pub cell_id: i64,
     pub state: LolLobbyTeamBuilderChampSelectSwapState,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLobbyTeamBuilderMatchmakingReadyCheckResource {
+    pub state: LolLobbyTeamBuilderMatchmakingReadyCheckState,
+    pub player_response: LolLobbyTeamBuilderMatchmakingReadyCheckResponse,
+    pub dodge_warning: LolLobbyTeamBuilderMatchmakingDodgeWarning,
+    pub timer: f32,
+    pub decliner_ids: Vec<u64>,
 }
 
 
@@ -1166,6 +1168,42 @@ pub struct LolLobbyTeamBuilderMatchmakingSearchResource {
     pub dodge_data: LolLobbyTeamBuilderMatchmakingDodgeData,
     pub low_priority_data: LolLobbyTeamBuilderMatchmakingLowPriorityData,
     pub errors: Vec<LolLobbyTeamBuilderMatchmakingSearchErrorResource>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLobbyTeamBuilderMatchmakingSearchErrorResource {
+    pub id: i32,
+    pub error_type: String,
+    pub penalized_summoner_id: u64,
+    pub penalty_time_remaining: f64,
+    pub message: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLobbyTeamBuilderMatchmakingDodgeData {
+    pub state: LolLobbyTeamBuilderMatchmakingDodgeState,
+    pub dodger_id: u64,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLobbyTeamBuilderChampionSelectPreferences {
+    pub skins: HashMap<String, i32>,
+    pub spells: HashMap<String, HashMap<String, String>>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLobbyTeamBuilderChampSelectTradeContract {
+    pub id: i64,
+    pub cell_id: i64,
+    pub state: LolLobbyTeamBuilderChampSelectTradeState,
 }
 
 
@@ -1202,25 +1240,6 @@ pub struct LolLobbyTeamBuilderChampSelectSession {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolLobbyTeamBuilderMatchmakingReadyCheckResource {
-    pub state: LolLobbyTeamBuilderMatchmakingReadyCheckState,
-    pub player_response: LolLobbyTeamBuilderMatchmakingReadyCheckResponse,
-    pub dodge_warning: LolLobbyTeamBuilderMatchmakingDodgeWarning,
-    pub timer: f32,
-    pub decliner_ids: Vec<u64>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolLobbyTeamBuilderMatchmakingDodgeData {
-    pub state: LolLobbyTeamBuilderMatchmakingDodgeState,
-    pub dodger_id: u64,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LolLobbyTeamBuilderChampSelectChatRoomDetails {
     pub multi_user_chat_id: String,
     pub multi_user_chat_password: String,
@@ -1230,55 +1249,29 @@ pub struct LolLobbyTeamBuilderChampSelectChatRoomDetails {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolLobbyTeamBuilderChampSelectTradeContract {
+pub struct LolLobbyTeamBuilderChampSelectTimer {
+    pub adjusted_time_left_in_phase: i64,
+    pub total_time_in_phase: i64,
+    pub phase: String,
+    pub is_infinite: bool,
+    pub internal_now_in_epoch_ms: u64,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLobbyTeamBuilderChampSelectAction {
     pub id: i64,
-    pub cell_id: i64,
-    pub state: LolLobbyTeamBuilderChampSelectTradeState,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolLobbyTeamBuilderMatchmakingLowPriorityData {
-    pub penalized_summoner_ids: Vec<u64>,
-    pub penalty_time: f64,
-    pub penalty_time_remaining: f64,
-    pub busted_leaver_access_token: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolLobbyTeamBuilderTeamBoost {
-    pub summoner_id: i64,
-    pub puuid: String,
-    pub skin_unlock_mode: String,
-    pub price: i64,
-    pub ip_reward: i64,
-    pub ip_reward_for_purchaser: i64,
-    pub available_skins: Vec<i64>,
-    pub unlocked: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolLobbyTeamBuilderChampionSelectPreferences {
-    pub skins: HashMap<String, i32>,
-    pub spells: HashMap<String, HashMap<String, String>>,
+    pub actor_cell_id: i64,
+    pub champion_id: i32,
+    pub type_: String,
+    pub completed: bool,
+    pub is_ally_action: bool,
+    pub is_in_progress: bool,
 }
 
 
 // ENUMS
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum LolLobbyTeamBuilderMatchmakingDodgeWarning {
-    #[default]
-    Penalty,
-    Warning,
-    None,
-}
-
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
 pub enum LolLobbyTeamBuilderMatchmakingReadyCheckState {
@@ -1293,26 +1286,21 @@ pub enum LolLobbyTeamBuilderMatchmakingReadyCheckState {
 
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum LolLobbyTeamBuilderMatchmakingSearchState {
-    #[default]
-    ServiceShutdown,
-    ServiceError,
-    Error,
-    Found,
-    Searching,
-    Canceled,
-    AbandonedLowPriorityQueue,
-    Invalid,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
 pub enum LolLobbyTeamBuilderMatchmakingDodgeState {
     #[default]
     TournamentDodged,
     StrangerDodged,
     PartyDodged,
     Invalid,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum LolLobbyTeamBuilderMatchmakingDodgeWarning {
+    #[default]
+    Penalty,
+    Warning,
+    None,
 }
 
 
@@ -1329,6 +1317,20 @@ pub enum LolLobbyTeamBuilderChampSelectTradeState {
     Busy,
     #[serde(rename = "AVAILABLE")]
     Available,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum LolLobbyTeamBuilderMatchmakingSearchState {
+    #[default]
+    ServiceShutdown,
+    ServiceError,
+    Error,
+    Found,
+    Searching,
+    Canceled,
+    AbandonedLowPriorityQueue,
+    Invalid,
 }
 
 

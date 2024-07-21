@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetLolCollectionsV1InventoriesBySummonerIdBackdrop {
@@ -128,44 +130,6 @@ pub fn get_lol_collections_v_1_inventories_by_summoner_id_ward_skins_by_ward_ski
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolCollectionsCollectionsWardSkin {
-    pub id: i64,
-    pub name: String,
-    pub description: String,
-    pub ownership: LolCollectionsCollectionsOwnership,
-    pub ward_image_path: String,
-    pub ward_shadow_image_path: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolCollectionsCollectionsOwnership {
-    pub loyalty_reward: bool,
-    pub xbox_gp_reward: bool,
-    pub owned: bool,
-    pub rental: LolCollectionsCollectionsRental,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolCollectionsCollectionsSummonerBackdropAugments {
-    pub centered_lc_overlay_path: String,
-    pub social_card_lc_overlay_path: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolCollectionsCollectionsSummonerSpells {
-    pub summoner_id: u64,
-    pub spells: Vec<u64>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LolCollectionsCollectionsSummonerBackdrop {
     pub summoner_id: u64,
     pub account_id: u64,
@@ -182,11 +146,49 @@ pub struct LolCollectionsCollectionsSummonerBackdrop {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct LolCollectionsCollectionsSummonerBackdropAugments {
+    pub centered_lc_overlay_path: String,
+    pub social_card_lc_overlay_path: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct LolCollectionsCollectionsRental {
     pub end_date: u64,
     pub purchase_date: u64,
     pub win_count_remaining: i32,
     pub rented: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolCollectionsCollectionsSummonerSpells {
+    pub summoner_id: u64,
+    pub spells: Vec<u64>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolCollectionsCollectionsOwnership {
+    pub loyalty_reward: bool,
+    pub xbox_gp_reward: bool,
+    pub owned: bool,
+    pub rental: LolCollectionsCollectionsRental,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolCollectionsCollectionsWardSkin {
+    pub id: i64,
+    pub name: String,
+    pub description: String,
+    pub ownership: LolCollectionsCollectionsOwnership,
+    pub ward_image_path: String,
+    pub ward_shadow_image_path: String,
 }
 
 

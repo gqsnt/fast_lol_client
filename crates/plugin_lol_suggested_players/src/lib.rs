@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct DeleteLolSuggestedPlayersV1SuggestedPlayersBySummonerId {
@@ -126,14 +128,6 @@ pub fn post_lol_suggested_players_v_1_victorious_comrade(body: LolSuggestedPlaye
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolSuggestedPlayersSuggestedPlayersVictoriousComrade {
-    pub summoner_id: u64,
-    pub summoner_name: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LolSuggestedPlayersSuggestedPlayersReportedPlayer {
     pub reported_summoner_id: u64,
 }
@@ -148,6 +142,14 @@ pub struct LolSuggestedPlayersSuggestedPlayersSuggestedPlayer {
     pub common_friend_id: u64,
     pub reason: LolSuggestedPlayersSuggestedPlayersReason,
     pub game_id: u64,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolSuggestedPlayersSuggestedPlayersVictoriousComrade {
+    pub summoner_id: u64,
+    pub summoner_name: String,
 }
 
 

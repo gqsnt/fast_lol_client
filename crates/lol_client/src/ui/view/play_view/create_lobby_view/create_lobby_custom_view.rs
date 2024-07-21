@@ -84,7 +84,7 @@ impl HasView for CreateLobbyCustomView {
                                     LolLobbyLobbyChangeGameDto {
                                         queue_id: 0,
                                         is_custom: true,
-                                        custom_game_lobby: LolLobbyLobbyCustomGameLobby{
+                                        custom_game_lobby: Some(LolLobbyLobbyCustomGameLobby{
                                             lobby_name: connected_state.play.create_lobby_state.custom_state.name.clone(),
                                             lobby_password: connected_state.play.create_lobby_state.custom_state.password.clone(),
                                             configuration: LolLobbyLobbyCustomGameConfiguration {
@@ -96,7 +96,7 @@ impl HasView for CreateLobbyCustomView {
                                                 ..Default::default()
                                             },
                                             ..Default::default()
-                                        },
+                                        }),
                                         ..Default::default()
                                     }
                                 ),

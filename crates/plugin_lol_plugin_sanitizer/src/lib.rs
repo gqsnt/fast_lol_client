@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetSanitizerV1Status {
@@ -97,31 +99,6 @@ pub fn post_sanitizer_v_1_sanitize(body: SanitizerSanitizeRequest) -> PostSaniti
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct SanitizerContainsSanitizedRequest {
-    pub text: String,
-    pub level: u32,
-    pub aggressive_scan: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct SanitizerContainsSanitizedResponse {
-    pub contains: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct SanitizerSanitizeResponse {
-    pub texts: Vec<String>,
-    pub text: String,
-    pub modified: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct SanitizerSanitizerStatus {
     pub ready: bool,
     pub region: String,
@@ -135,11 +112,36 @@ pub struct SanitizerSanitizerStatus {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct SanitizerSanitizeRequest {
-    pub texts: Vec<String>,
+pub struct SanitizerContainsSanitizedRequest {
     pub text: String,
-    pub level: u32,
-    pub aggressive_scan: bool,
+    pub level: Option<u32>,
+    pub aggressive_scan: Option<bool>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct SanitizerSanitizeRequest {
+    pub texts: Option<Vec<String>>,
+    pub text: Option<String>,
+    pub level: Option<u32>,
+    pub aggressive_scan: Option<bool>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct SanitizerSanitizeResponse {
+    pub texts: Option<Vec<String>>,
+    pub text: Option<String>,
+    pub modified: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct SanitizerContainsSanitizedResponse {
+    pub contains: bool,
 }
 
 

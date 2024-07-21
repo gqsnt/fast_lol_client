@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetLolNpeRewardsV1ChallengesProgress {
@@ -209,6 +211,22 @@ pub struct LolNpeRewardsChallengesProgress {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct LolNpeRewardsRewardPack {
+    pub index: i32,
+    pub type_: String,
+    pub requirements: LolNpeRewardsRequirements,
+    pub state: String,
+    pub premium_reward: bool,
+    pub reward_key: String,
+    pub major_reward: LolNpeRewardsReward,
+    pub minor_rewards: Vec<LolNpeRewardsReward>,
+    pub delay: i64,
+    pub unlock_time: i64,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct LolNpeRewardsProgress {
     pub last_viewed_progress: i32,
     pub current_progress: i32,
@@ -221,22 +239,6 @@ pub struct LolNpeRewardsProgress {
 pub struct LolNpeRewardsReward {
     pub renderer: String,
     pub data: HashMap<String, String>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolNpeRewardsRewardPack {
-    pub index: i32,
-    pub type_: String,
-    pub requirements: LolNpeRewardsRequirements,
-    pub state: String,
-    pub premium_reward: bool,
-    pub reward_key: String,
-    pub major_reward: LolNpeRewardsReward,
-    pub minor_rewards: Vec<LolNpeRewardsReward>,
-    pub delay: i64,
-    pub unlock_time: i64,
 }
 
 

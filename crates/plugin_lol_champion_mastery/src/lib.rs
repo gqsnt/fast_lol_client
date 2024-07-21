@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct DeleteLolChampionMasteryV1RewardGrantsById {
@@ -296,6 +298,47 @@ pub fn post_lol_champion_mastery_v_1_scouting(body: Vec<String>) -> PostLolChamp
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct LolChampionMasteryTopChampionMasteries {
+    pub puuid: String,
+    pub summoner_id: u64,
+    pub score: u64,
+    pub masteries: Vec<LolChampionMasteryChampionMastery>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChampionMasteryChampionMasteryRewardGrantNotification {
+    pub id: String,
+    pub game_id: i64,
+    pub puuid: String,
+    pub champion_id: i32,
+    pub player_grade: String,
+    pub message_key: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChampionMasteryChampionSet {
+    pub champions: Vec<i32>,
+    pub total_milestone: i32,
+    pub completed: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChampionMasteryUiChampionMasteryCustomReward {
+    pub type_: String,
+    pub level: i32,
+    pub reward_value: String,
+    pub quantity: i32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct LolChampionMasteryChampionMasteryChangeNotification {
     pub game_id: i64,
     pub puuid: String,
@@ -327,11 +370,47 @@ pub struct LolChampionMasteryChampionMasteryChangeNotification {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolChampionMasteryTopChampionMasteries {
+pub struct LolChampionMasteryChampionMasteryGrade {
     pub puuid: String,
-    pub summoner_id: u64,
-    pub score: u64,
-    pub masteries: Vec<LolChampionMasteryChampionMastery>,
+    pub champion_id: i32,
+    pub grade: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct ChampionScoutingDto {
+    pub champion_id: i32,
+    pub win_count: i32,
+    pub game_count: i32,
+    pub kda: f32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChampionMasteryChampionMasteryMini {
+    pub puuid: String,
+    pub champion_id: i32,
+    pub champion_level: i32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChampionMasterySeasonMilestoneRequireAndRewards {
+    pub require_grade_counts: HashMap<String, i16>,
+    pub reward_marks: u16,
+    pub bonus: bool,
+    pub reward_config: LolChampionMasteryRewardConfigurationEntry,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChampionMasteryRewardConfigurationEntry {
+    pub reward_value: String,
+    pub maximum_reward: i32,
 }
 
 
@@ -356,20 +435,10 @@ pub struct LolChampionMasteryChampionMastery {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolChampionMasteryChampionMasteryGrade {
-    pub puuid: String,
+pub struct ChampionMasteryPublicDto {
     pub champion_id: i32,
-    pub grade: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChampionMasteryUiChampionMasteryCustomReward {
-    pub type_: String,
-    pub level: i32,
-    pub reward_value: String,
-    pub quantity: i32,
+    pub champion_level: i32,
+    pub champion_points: i32,
 }
 
 
@@ -386,67 +455,10 @@ pub struct RankedScoutingDto {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct ChampionScoutingDto {
-    pub champion_id: i32,
-    pub win_count: i32,
-    pub game_count: i32,
-    pub kda: f32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChampionMasteryChampionSet {
-    pub champions: Vec<i32>,
-    pub total_milestone: i32,
-    pub completed: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LolChampionMasterySetRewardEntry {
     pub id: String,
     pub type_: String,
     pub value: i32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChampionMasteryChampionMasteryRewardGrantNotification {
-    pub id: String,
-    pub game_id: i64,
-    pub puuid: String,
-    pub champion_id: i32,
-    pub player_grade: String,
-    pub message_key: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChampionMasteryRewardConfigurationEntry {
-    pub reward_value: String,
-    pub maximum_reward: i32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct ChampionMasteryPublicDto {
-    pub champion_id: i32,
-    pub champion_level: i32,
-    pub champion_points: i32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChampionMasteryChampionMasteryMini {
-    pub puuid: String,
-    pub champion_id: i32,
-    pub champion_level: i32,
 }
 
 
@@ -461,16 +473,6 @@ pub struct LolChampionMasteryUiAllChampionMasteryWithSets {
     pub custom_rewards: Vec<LolChampionMasteryUiChampionMasteryCustomReward>,
     pub total_score: i32,
     pub champion_count_by_milestone: HashMap<String, i32>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChampionMasterySeasonMilestoneRequireAndRewards {
-    pub require_grade_counts: HashMap<String, i16>,
-    pub reward_marks: u16,
-    pub bonus: bool,
-    pub reward_config: LolChampionMasteryRewardConfigurationEntry,
 }
 
 

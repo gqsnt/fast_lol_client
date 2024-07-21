@@ -5,11 +5,13 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetLolRewardsV1Grants {
 
-    pub status: LolRewardsGrantStatus,
+    pub status: Option<LolRewardsGrantStatus>,
 }
 
 impl IsApiRequest for GetLolRewardsV1Grants {
@@ -31,7 +33,7 @@ impl IsApiRequest for GetLolRewardsV1Grants {
     }
 }
 
-pub fn get_lol_rewards_v_1_grants(status: LolRewardsGrantStatus) -> GetLolRewardsV1Grants {
+pub fn get_lol_rewards_v_1_grants(status: Option<LolRewardsGrantStatus>) -> GetLolRewardsV1Grants {
     GetLolRewardsV1Grants {
         status
     }
@@ -40,7 +42,7 @@ pub fn get_lol_rewards_v_1_grants(status: LolRewardsGrantStatus) -> GetLolReward
 
 pub struct GetLolRewardsV1Groups {
 
-    pub types: Vec<String>,
+    pub types: Option<Vec<String>>,
 }
 
 impl IsApiRequest for GetLolRewardsV1Groups {
@@ -62,7 +64,7 @@ impl IsApiRequest for GetLolRewardsV1Groups {
     }
 }
 
-pub fn get_lol_rewards_v_1_groups(types: Vec<String>) -> GetLolRewardsV1Groups {
+pub fn get_lol_rewards_v_1_groups(types: Option<Vec<String>>) -> GetLolRewardsV1Groups {
     GetLolRewardsV1Groups {
         types
     }
@@ -190,6 +192,14 @@ pub fn post_lol_rewards_v_1_select_bulk(body: Vec<LolRewardsSelectionRequestDto>
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct LolRewardsRewardGrant {
+    pub info: LolRewardsSvcRewardGrant,
+    pub reward_group: LolRewardsSvcRewardGroup,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct LolRewardsSvcRewardGrant {
     pub id: String,
     pub grantee_id: String,
@@ -201,6 +211,40 @@ pub struct LolRewardsSvcRewardGrant {
     pub viewed: bool,
     pub grantor_description: LolRewardsGrantorDescription,
     pub message_parameters: HashMap<String, HashMap<String, String>>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolRewardsSelectionRequestDto {
+    pub grant_id: String,
+    pub reward_group_id: String,
+    pub selections: Vec<String>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolRewardsSvcRewardGroup {
+    pub id: String,
+    pub product_id: String,
+    pub types: Vec<String>,
+    pub rewards: Vec<LolRewardsReward>,
+    pub child_reward_group_ids: Vec<String>,
+    pub reward_strategy: LolRewardsRewardStrategy,
+    pub selection_strategy_config: Option<LolRewardsSelectionStrategyConfig>,
+    pub active: bool,
+    pub media: HashMap<String, String>,
+    pub localizations: HashMap<String, String>,
+    pub celebration_type: LolRewardsCelebrationType,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolRewardsGrantorDescription {
+    pub app_name: String,
+    pub entity_id: String,
 }
 
 
@@ -219,26 +263,9 @@ pub struct LolRewardsReward {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolRewardsSvcRewardGroup {
-    pub id: String,
-    pub product_id: String,
-    pub types: Vec<String>,
-    pub rewards: Vec<LolRewardsReward>,
-    pub child_reward_group_ids: Vec<String>,
-    pub reward_strategy: LolRewardsRewardStrategy,
-    pub selection_strategy_config: LolRewardsSelectionStrategyConfig,
-    pub active: bool,
-    pub media: HashMap<String, String>,
-    pub localizations: HashMap<String, String>,
-    pub celebration_type: LolRewardsCelebrationType,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolRewardsRewardGrant {
-    pub info: LolRewardsSvcRewardGrant,
-    pub reward_group: LolRewardsSvcRewardGroup,
+pub struct LolRewardsSelectionStrategyConfig {
+    pub min_selections_allowed: u32,
+    pub max_selections_allowed: u32,
 }
 
 
@@ -256,68 +283,7 @@ pub struct LolRewardsSvcRewardGrantElement {
 }
 
 
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolRewardsGrantorDescription {
-    pub app_name: String,
-    pub entity_id: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolRewardsSelectionStrategyConfig {
-    pub min_selections_allowed: u32,
-    pub max_selections_allowed: u32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolRewardsSelectionRequestDto {
-    pub grant_id: String,
-    pub reward_group_id: String,
-    pub selections: Vec<String>,
-}
-
-
 // ENUMS
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum LolRewardsCelebrationType {
-    #[default]
-    #[serde(rename = "FULLSCREEN")]
-    Fullscreen,
-    #[serde(rename = "TOAST")]
-    Toast,
-    #[serde(rename = "NONE")]
-    None,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum LolRewardsRewardStrategy {
-    #[default]
-    #[serde(rename = "SELECTION")]
-    Selection,
-    #[serde(rename = "RANDOM")]
-    Random,
-    #[serde(rename = "ALL")]
-    All,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum LolRewardsRewardStatus {
-    #[default]
-    #[serde(rename = "FAILED")]
-    Failed,
-    #[serde(rename = "FULFILLED")]
-    Fulfilled,
-    #[serde(rename = "PENDING")]
-    Pending,
-}
-
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
 pub enum LolRewardsGrantStatus {
@@ -334,11 +300,47 @@ pub enum LolRewardsGrantStatus {
 
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum LolRewardsCelebrationType {
+    #[default]
+    #[serde(rename = "FULLSCREEN")]
+    Fullscreen,
+    #[serde(rename = "TOAST")]
+    Toast,
+    #[serde(rename = "NONE")]
+    None,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum LolRewardsRewardStatus {
+    #[default]
+    #[serde(rename = "FAILED")]
+    Failed,
+    #[serde(rename = "FULFILLED")]
+    Fulfilled,
+    #[serde(rename = "PENDING")]
+    Pending,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
 pub enum LolRewardsSelectGrantStatusResponse {
     #[default]
     #[serde(rename = "FAILED")]
     Failed,
     #[serde(rename = "SELECTED")]
     Selected,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum LolRewardsRewardStrategy {
+    #[default]
+    #[serde(rename = "SELECTION")]
+    Selection,
+    #[serde(rename = "RANDOM")]
+    Random,
+    #[serde(rename = "ALL")]
+    All,
 }
 

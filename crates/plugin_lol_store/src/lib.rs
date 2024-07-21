@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetLolStoreV1AliasChangeNotifications {
@@ -66,8 +68,8 @@ pub fn get_lol_store_v_1_by_page_type(page_type: String) -> GetLolStoreV1ByPageT
 
 pub struct GetLolStoreV1Catalog {
 
-    pub inventory_type: Vec<String>,
-    pub item_id: Vec<i32>,
+    pub inventory_type: Option<Vec<String>>,
+    pub item_id: Option<Vec<i32>>,
 }
 
 impl IsApiRequest for GetLolStoreV1Catalog {
@@ -90,7 +92,7 @@ impl IsApiRequest for GetLolStoreV1Catalog {
     }
 }
 
-pub fn get_lol_store_v_1_catalog(inventory_type: Vec<String>, item_id: Vec<i32>) -> GetLolStoreV1Catalog {
+pub fn get_lol_store_v_1_catalog(inventory_type: Option<Vec<String>>, item_id: Option<Vec<i32>>) -> GetLolStoreV1Catalog {
     GetLolStoreV1Catalog {
         inventory_type, item_id
     }
@@ -396,7 +398,7 @@ pub fn post_lol_store_v_1_last_page(body: String) -> PostLolStoreV1LastPage {
 
 pub struct GetLolStoreV1Offers {
 
-    pub inventory_type_uui_ds: Vec<String>,
+    pub inventory_type_uui_ds: Option<Vec<String>>,
 }
 
 impl IsApiRequest for GetLolStoreV1Offers {
@@ -418,7 +420,7 @@ impl IsApiRequest for GetLolStoreV1Offers {
     }
 }
 
-pub fn get_lol_store_v_1_offers(inventory_type_uui_ds: Vec<String>) -> GetLolStoreV1Offers {
+pub fn get_lol_store_v_1_offers(inventory_type_uui_ds: Option<Vec<String>>) -> GetLolStoreV1Offers {
     GetLolStoreV1Offers {
         inventory_type_uui_ds
     }
@@ -514,8 +516,8 @@ pub fn get_lol_store_v_1_order_notifications_by_id(id: u64) -> GetLolStoreV1Orde
 pub struct GetLolStoreV1PaymentDetails {
 
     pub action: String,
-    pub gift_recipient_account_id: u64,
-    pub gift_message: String,
+    pub gift_recipient_account_id: Option<u64>,
+    pub gift_message: Option<String>,
 }
 
 impl IsApiRequest for GetLolStoreV1PaymentDetails {
@@ -539,7 +541,7 @@ impl IsApiRequest for GetLolStoreV1PaymentDetails {
     }
 }
 
-pub fn get_lol_store_v_1_payment_details(action: String, gift_recipient_account_id: u64, gift_message: String) -> GetLolStoreV1PaymentDetails {
+pub fn get_lol_store_v_1_payment_details(action: String, gift_recipient_account_id: Option<u64>, gift_message: Option<String>) -> GetLolStoreV1PaymentDetails {
     GetLolStoreV1PaymentDetails {
         action, gift_recipient_account_id, gift_message
     }
@@ -633,7 +635,7 @@ pub fn get_lol_store_v_1_store_ready() -> GetLolStoreV1StoreReady {
 
 pub struct GetLolStoreV2Offers {
 
-    pub type_id: String,
+    pub type_id: Option<String>,
 }
 
 impl IsApiRequest for GetLolStoreV2Offers {
@@ -655,7 +657,7 @@ impl IsApiRequest for GetLolStoreV2Offers {
     }
 }
 
-pub fn get_lol_store_v_2_offers(type_id: String) -> GetLolStoreV2Offers {
+pub fn get_lol_store_v_2_offers(type_id: Option<String>) -> GetLolStoreV2Offers {
     GetLolStoreV2Offers {
         type_id
     }
@@ -724,68 +726,36 @@ pub fn post_lol_store_v_3_purchase(body: Vec<LolStoreItemOrderDto>) -> PostLolSt
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolStoreItemMetadataEntry {
-    pub type_: String,
-    pub value: String,
+pub struct LolStoreStoreStatus {
+    pub storefront_is_running: bool,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolStoreAliasDetail {
-    pub field: String,
-    pub old_value: String,
-    pub new_value: String,
+pub struct LolStoreOrderNotificationResource {
+    pub id: u64,
+    pub event_type_id: String,
+    pub event_type: String,
+    pub status: String,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolStoreItemLocalization {
-    pub language: String,
-    pub name: String,
-    pub description: String,
+pub struct LolStoreBundled {
+    pub flexible: bool,
+    pub items: Vec<LolStoreBundledItem>,
+    pub minimum_prices: Vec<LolStoreBundledItemCost>,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolStoreItemKey {
-    pub inventory_type: String,
-    pub item_id: i32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolStoreBundledItem {
-    pub inventory_type: String,
-    pub item_id: i32,
-    pub quantity: u32,
-    pub discount_prices: Vec<LolStoreBundledItemCost>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolStoreCatalogItem {
-    pub item_id: i32,
-    pub inventory_type: String,
-    pub icon_url: String,
-    pub localizations: LolStoreItemLocalization,
-    pub active: bool,
-    pub bundled: LolStoreBundled,
-    pub inactive_date: String,
-    pub max_quantity: i32,
+pub struct LolStoreSale {
+    pub start_date: String,
+    pub end_date: String,
     pub prices: Vec<LolStoreItemCost>,
-    pub release_date: String,
-    pub sale: LolStoreSale,
-    pub sub_inventory_type: String,
-    pub tags: Vec<String>,
-    pub item_requirements: Vec<LolStoreItemKey>,
-    pub metadata: Vec<LolStoreItemMetadataEntry>,
-    pub item_instance_id: String,
-    pub offer_id: String,
 }
 
 
@@ -801,17 +771,29 @@ pub struct LolStoreGiftingFriend {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolStoreStoreStatus {
-    pub storefront_is_running: bool,
+pub struct LolStoreAliasDetail {
+    pub field: String,
+    pub old_value: String,
+    pub new_value: String,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolStoreBundled {
-    pub flexible: bool,
-    pub items: Vec<LolStoreBundledItem>,
-    pub minimum_prices: Vec<LolStoreBundledItemCost>,
+pub struct LolStoreBundledItem {
+    pub inventory_type: String,
+    pub item_id: i32,
+    pub quantity: u32,
+    pub discount_prices: Vec<LolStoreBundledItemCost>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolStorePurchaseOrderResponseDto {
+    pub rp_balance: i64,
+    pub ip_balance: i64,
+    pub transactions: Vec<LolStoreTransactionResponseDto>,
 }
 
 
@@ -832,39 +814,18 @@ pub struct LolStoreCapOffer {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolStoreOrderNotificationResource {
-    pub id: u64,
-    pub event_type_id: String,
-    pub event_type: String,
-    pub status: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolStoreAliasChangeNotificationResource {
-    pub id: u64,
+pub struct LolStoreItemMetadataEntry {
     pub type_: String,
-    pub details: LolStoreAliasDetail,
+    pub value: String,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolStoreItemSale {
-    pub id: u64,
-    pub active: bool,
-    pub item: LolStoreItemKey,
-    pub sale: LolStoreSale,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolStorePurchaseOrderResponseDto {
-    pub rp_balance: i64,
-    pub ip_balance: i64,
-    pub transactions: Vec<LolStoreTransactionResponseDto>,
+pub struct LolStoreItemCost {
+    pub currency: String,
+    pub cost: i64,
+    pub discount: Option<f32>,
 }
 
 
@@ -880,6 +841,14 @@ pub struct LolStoreItemOrderDto {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct LolStoreItemKey {
+    pub inventory_type: String,
+    pub item_id: i32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct LolStoreTransactionResponseDto {
     pub id: String,
     pub inventory_type: String,
@@ -889,29 +858,62 @@ pub struct LolStoreTransactionResponseDto {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct LolStoreAliasChangeNotificationResource {
+    pub id: u64,
+    pub type_: String,
+    pub details: LolStoreAliasDetail,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolStoreItemLocalization {
+    pub language: String,
+    pub name: String,
+    pub description: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolStoreCatalogItem {
+    pub item_id: i32,
+    pub inventory_type: String,
+    pub icon_url: Option<String>,
+    pub localizations: Option<LolStoreItemLocalization>,
+    pub active: Option<bool>,
+    pub bundled: Option<LolStoreBundled>,
+    pub inactive_date: Option<String>,
+    pub max_quantity: Option<i32>,
+    pub prices: Option<Vec<LolStoreItemCost>>,
+    pub release_date: Option<String>,
+    pub sale: Option<LolStoreSale>,
+    pub sub_inventory_type: Option<String>,
+    pub tags: Option<Vec<String>>,
+    pub item_requirements: Option<Vec<LolStoreItemKey>>,
+    pub metadata: Option<Vec<LolStoreItemMetadataEntry>>,
+    pub item_instance_id: Option<String>,
+    pub offer_id: Option<String>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct LolStoreBundledItemCost {
     pub currency: String,
     pub cost: i64,
-    pub discount: f32,
+    pub discount: Option<f32>,
     pub cost_type: String,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolStoreItemCost {
-    pub currency: String,
-    pub cost: i64,
-    pub discount: f32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolStoreSale {
-    pub start_date: String,
-    pub end_date: String,
-    pub prices: Vec<LolStoreItemCost>,
+pub struct LolStoreItemSale {
+    pub id: u64,
+    pub active: bool,
+    pub item: LolStoreItemKey,
+    pub sale: LolStoreSale,
 }
 
 

@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct PutLolLoadoutsV4LoadoutsById {
@@ -262,24 +264,24 @@ pub struct LolLoadoutsItemKey {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolLoadoutsCreateLoadoutDto {
+pub struct LolLoadoutsScopedLoadout {
     pub scope: String,
-    pub item_id: u32,
+    pub item_id: Option<u32>,
     pub name: String,
     pub loadout: LolLoadoutsItemKey,
     pub refresh_time: String,
+    pub id: String,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolLoadoutsScopedLoadout {
+pub struct LolLoadoutsCreateLoadoutDto {
     pub scope: String,
-    pub item_id: u32,
+    pub item_id: Option<u32>,
     pub name: String,
     pub loadout: LolLoadoutsItemKey,
     pub refresh_time: String,
-    pub id: String,
 }
 
 

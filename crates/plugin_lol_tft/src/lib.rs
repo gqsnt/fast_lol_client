@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetLolTftV1TftBackgrounds {
@@ -292,6 +294,41 @@ pub fn put_lol_tft_v_1_tft_experiment_bucket(body: u8) -> PutLolTftV1TftExperime
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct LolTftLolTftEvents {
+    pub sub_nav_tabs: Vec<LolTftLolTftEvent>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolTftLolTftPromoButton {
+    pub enabled: bool,
+    pub show_timer_while_event_active: bool,
+    pub event_asset_id: String,
+    pub event_key: String,
+    pub url: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolTftLolTftTencentEventHubConfig {
+    pub trove_asset_id: String,
+    pub trove_url: String,
+    pub logo_asset_id: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolTftLolTftPrimeGaming {
+    pub url: String,
+    pub asset_id: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct LolTftLolTftBackgrounds {
     pub backgrounds: HashMap<String, String>,
 }
@@ -299,23 +336,8 @@ pub struct LolTftLolTftBackgrounds {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolTftLolTftNewsHub {
-    pub enabled: bool,
-    pub url: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolTftLolTftPromoButtons {
-    pub promo_buttons: Vec<LolTftLolTftPromoButton>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolTftLolTftBattlePassHub {
-    pub battle_pass_xp_boosted: bool,
+pub struct LolTftLolTftTencentEventHubConfigs {
+    pub tencent_eventhub_configs: Vec<LolTftLolTftTencentEventHubConfig>,
 }
 
 
@@ -338,9 +360,23 @@ pub struct LolTftLolTftEvent {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolTftLolTftPrimeGaming {
+pub struct LolTftLolTftBattlePassHub {
+    pub battle_pass_xp_boosted: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolTftLolTftNewsHub {
+    pub enabled: bool,
     pub url: String,
-    pub asset_id: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolTftLolTftPromoButtons {
+    pub promo_buttons: Vec<LolTftLolTftPromoButton>,
 }
 
 
@@ -352,43 +388,9 @@ pub struct LolTftLolTftHomeHub {
     pub tactician_promo_offer_ids: Vec<String>,
     pub battle_pass_offer_ids: Vec<String>,
     pub fallback_store_promo_offer_ids: Vec<String>,
-    pub prime_gaming_promo_offer: LolTftLolTftPrimeGaming,
+    pub prime_gaming_promo_offer: Option<LolTftLolTftPrimeGaming>,
     pub override_url: String,
     pub header_buttons_override_url: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolTftLolTftPromoButton {
-    pub enabled: bool,
-    pub show_timer_while_event_active: bool,
-    pub event_asset_id: String,
-    pub event_key: String,
-    pub url: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolTftLolTftEvents {
-    pub sub_nav_tabs: Vec<LolTftLolTftEvent>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolTftLolTftTencentEventHubConfigs {
-    pub tencent_eventhub_configs: Vec<LolTftLolTftTencentEventHubConfig>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolTftLolTftTencentEventHubConfig {
-    pub trove_asset_id: String,
-    pub trove_url: String,
-    pub logo_asset_id: String,
 }
 
 

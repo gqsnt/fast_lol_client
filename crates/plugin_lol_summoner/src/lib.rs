@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetLolSummonerV1AliasLookup {
@@ -761,7 +763,7 @@ pub fn get_lol_summoner_v_2_summoner_names(ids: Vec<u64>) -> GetLolSummonerV2Sum
 
 pub struct GetLolSummonerV2Summoners {
 
-    pub ids: Vec<u64>,
+    pub ids: Option<Vec<u64>>,
 }
 
 impl IsApiRequest for GetLolSummonerV2Summoners {
@@ -783,7 +785,7 @@ impl IsApiRequest for GetLolSummonerV2Summoners {
     }
 }
 
-pub fn get_lol_summoner_v_2_summoners(ids: Vec<u64>) -> GetLolSummonerV2Summoners {
+pub fn get_lol_summoner_v_2_summoners(ids: Option<Vec<u64>>) -> GetLolSummonerV2Summoners {
     GetLolSummonerV2Summoners {
         ids
     }
@@ -1084,75 +1086,8 @@ pub fn put_lol_summoner_v_1_current_summoner_icon(body: LolSummonerSummonerIcon)
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolSummonerAliasAvailability {
-    pub alias: LolSummonerAlias,
-    pub error_code: LolSummonerAliasAvailabilityCode,
-    pub error_message: String,
-    pub is_success: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LolSummonerAliasLookupResponse {
     pub alias: LolSummonerAlias,
-    pub puuid: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolSummonerSummonerRequestedName {
-    pub name: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolSummonerSummonerIdAndName {
-    pub summoner_id: u64,
-    pub display_name: String,
-    pub puuid: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolSummonerSummonerIcon {
-    pub profile_icon_id: i32,
-    pub inventory_token: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolSummonerStatus {
-    pub ready: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolSummonerAccountIdAndSummonerId {
-    pub account_id: u64,
-    pub summoner_id: u64,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolSummonerSummonerProfileUpdate {
-    pub key: String,
-    pub value: HashMap<String, String>,
-    pub inventory: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolSummonerSummonerIdAndIcon {
-    pub summoner_id: u64,
-    pub profile_icon_id: i32,
     pub puuid: String,
 }
 
@@ -1162,6 +1097,15 @@ pub struct LolSummonerSummonerIdAndIcon {
 pub struct LolSummonerAlias {
     pub game_name: String,
     pub tag_line: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolSummonerSummonerProfileUpdate {
+    pub key: String,
+    pub value: HashMap<String, String>,
+    pub inventory: String,
 }
 
 
@@ -1178,20 +1122,9 @@ pub struct LolSummonerSummonerRerollPoints {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolSummonerAutoFillQueueDto {
-    pub queue_id: i32,
-    pub auto_fill_eligible: bool,
-    pub auto_fill_protected_for_streaking: bool,
-    pub auto_fill_protected_for_promos: bool,
-    pub auto_fill_protected_for_remedy: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolSummonerProfilePrivacy {
-    pub enabled_state: LolSummonerProfilePrivacyEnabledState,
-    pub setting: LolSummonerProfilePrivacySetting,
+pub struct LolSummonerSummonerIcon {
+    pub profile_icon_id: i32,
+    pub inventory_token: String,
 }
 
 
@@ -1219,6 +1152,75 @@ pub struct LolSummonerSummoner {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct LolSummonerSummonerIdAndName {
+    pub summoner_id: u64,
+    pub display_name: String,
+    pub puuid: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolSummonerAliasAvailability {
+    pub alias: LolSummonerAlias,
+    pub error_code: LolSummonerAliasAvailabilityCode,
+    pub error_message: String,
+    pub is_success: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolSummonerAccountIdAndSummonerId {
+    pub account_id: u64,
+    pub summoner_id: u64,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolSummonerProfilePrivacy {
+    pub enabled_state: LolSummonerProfilePrivacyEnabledState,
+    pub setting: LolSummonerProfilePrivacySetting,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolSummonerSummonerRequestedName {
+    pub name: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolSummonerAutoFillQueueDto {
+    pub queue_id: i32,
+    pub auto_fill_eligible: bool,
+    pub auto_fill_protected_for_streaking: bool,
+    pub auto_fill_protected_for_promos: bool,
+    pub auto_fill_protected_for_remedy: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolSummonerSummonerIdAndIcon {
+    pub summoner_id: u64,
+    pub profile_icon_id: i32,
+    pub puuid: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolSummonerStatus {
+    pub ready: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct LolSummonerPlayerNameState {
     pub is_alias_change_required: bool,
     pub is_alias_missing: bool,
@@ -1241,22 +1243,6 @@ pub enum LolSummonerProfilePrivacyEnabledState {
 
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum LolSummonerAliasAvailabilityCode {
-    #[default]
-    #[serde(rename = "server_error")]
-    ServerError,
-    #[serde(rename = "rate_limited")]
-    RateLimited,
-    #[serde(rename = "name_not_available")]
-    NameNotAvailable,
-    #[serde(rename = "name_change_forbidden")]
-    NameChangeForbidden,
-    #[serde(rename = "no_error")]
-    NoError,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
 pub enum LolSummonerPlayerNameMode {
     #[default]
     #[serde(rename = "ALIAS")]
@@ -1275,5 +1261,21 @@ pub enum LolSummonerProfilePrivacySetting {
     Public,
     #[serde(rename = "PRIVATE")]
     Private,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum LolSummonerAliasAvailabilityCode {
+    #[default]
+    #[serde(rename = "server_error")]
+    ServerError,
+    #[serde(rename = "rate_limited")]
+    RateLimited,
+    #[serde(rename = "name_not_available")]
+    NameNotAvailable,
+    #[serde(rename = "name_change_forbidden")]
+    NameChangeForbidden,
+    #[serde(rename = "no_error")]
+    NoError,
 }
 

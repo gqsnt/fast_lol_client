@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetLolInventoryV1ChampSelectInventory {
@@ -276,7 +278,7 @@ pub fn get_lol_inventory_v_1_signed_inventory_cache() -> GetLolInventoryV1Signed
 pub struct GetLolInventoryV1SignedInventorySimple {
 
     pub inventory_types: Vec<String>,
-    pub query_params: HashMap<String, String>,
+    pub query_params: Option<HashMap<String, String>>,
 }
 
 impl IsApiRequest for GetLolInventoryV1SignedInventorySimple {
@@ -299,7 +301,7 @@ impl IsApiRequest for GetLolInventoryV1SignedInventorySimple {
     }
 }
 
-pub fn get_lol_inventory_v_1_signed_inventory_simple(inventory_types: Vec<String>, query_params: HashMap<String, String>) -> GetLolInventoryV1SignedInventorySimple {
+pub fn get_lol_inventory_v_1_signed_inventory_simple(inventory_types: Vec<String>, query_params: Option<HashMap<String, String>>) -> GetLolInventoryV1SignedInventorySimple {
     GetLolInventoryV1SignedInventorySimple {
         inventory_types, query_params
     }
@@ -572,28 +574,6 @@ pub fn post_lol_inventory_v_1_notification_acknowledge(body: i64) -> PostLolInve
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolInventoryInventoryNotification {
-    pub id: i64,
-    pub item_id: i32,
-    pub inventory_type: String,
-    pub type_: String,
-    pub acknowledged: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolInventoryInventoryCacheEntry {
-    pub signed_inventory_jwt: String,
-    pub expiration_ms: u64,
-    pub issued_at_ms: u64,
-    pub received_at_ms: u64,
-    pub valid: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LolInventoryInventoryItemWithPayload {
     pub uuid: String,
     pub item_id: i32,
@@ -614,9 +594,31 @@ pub struct LolInventoryInventoryItemWithPayload {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct LolInventoryInventoryCacheEntry {
+    pub signed_inventory_jwt: String,
+    pub expiration_ms: u64,
+    pub issued_at_ms: u64,
+    pub received_at_ms: u64,
+    pub valid: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct LolInventoryXboxSubscriptionStatus {
     pub active: String,
     pub subscription_id: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolInventoryInventoryNotification {
+    pub id: i64,
+    pub item_id: i32,
+    pub inventory_type: String,
+    pub type_: String,
+    pub acknowledged: bool,
 }
 
 

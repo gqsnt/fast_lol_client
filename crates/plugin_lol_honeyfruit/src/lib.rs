@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetLolHoneyfruitV1AccountClaimMigration {
@@ -293,9 +295,11 @@ pub fn post_lol_honeyfruit_v_1_account_claim_linking_redirect() -> PostLolHoneyf
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolHoneyfruitAccountClaimStatus {
-    pub linking_status: LolHoneyfruitHoneyfruitLinkingServiceResponse,
-    pub migration_status: String,
+pub struct LolHoneyfruitHoneyfruitLinkingServiceResponse {
+    pub eligible: bool,
+    pub reason_code: LolHoneyfruitHoneyfruitLinkingFailureReason,
+    pub email: String,
+    pub account_details: Option<LolHoneyfruitGarenaRegionLeagueAccount>,
 }
 
 
@@ -315,11 +319,9 @@ pub struct LolHoneyfruitGarenaRegionLeagueAccount {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolHoneyfruitHoneyfruitLinkingServiceResponse {
-    pub eligible: bool,
-    pub reason_code: LolHoneyfruitHoneyfruitLinkingFailureReason,
-    pub email: String,
-    pub account_details: LolHoneyfruitGarenaRegionLeagueAccount,
+pub struct LolHoneyfruitAccountClaimStatus {
+    pub linking_status: Option<LolHoneyfruitHoneyfruitLinkingServiceResponse>,
+    pub migration_status: Option<String>,
 }
 
 

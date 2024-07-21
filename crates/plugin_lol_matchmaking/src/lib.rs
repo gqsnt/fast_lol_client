@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetLolMatchmakingV1Search {
@@ -265,23 +267,9 @@ pub fn post_lol_matchmaking_v_1_ready_check_decline() -> PostLolMatchmakingV1Rea
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolMatchmakingMatchmakingSearchErrorResource {
-    pub id: i32,
-    pub error_type: String,
-    pub penalized_summoner_id: u64,
-    pub penalty_time_remaining: f64,
-    pub message: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolMatchmakingMatchmakingLowPriorityData {
-    pub penalized_summoner_ids: Vec<u64>,
-    pub penalty_time: f64,
-    pub penalty_time_remaining: f64,
-    pub busted_leaver_access_token: String,
-    pub reason: String,
+pub struct LolMatchmakingMatchmakingDodgeData {
+    pub state: LolMatchmakingMatchmakingDodgeState,
+    pub dodger_id: u64,
 }
 
 
@@ -303,6 +291,28 @@ pub struct LolMatchmakingMatchmakingSearchResource {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct LolMatchmakingMatchmakingLowPriorityData {
+    pub penalized_summoner_ids: Vec<u64>,
+    pub penalty_time: f64,
+    pub penalty_time_remaining: f64,
+    pub busted_leaver_access_token: String,
+    pub reason: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolMatchmakingMatchmakingSearchErrorResource {
+    pub id: i32,
+    pub error_type: String,
+    pub penalized_summoner_id: u64,
+    pub penalty_time_remaining: f64,
+    pub message: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct LolMatchmakingMatchmakingReadyCheckResource {
     pub state: LolMatchmakingMatchmakingReadyCheckState,
     pub player_response: LolMatchmakingMatchmakingReadyCheckResponse,
@@ -313,30 +323,27 @@ pub struct LolMatchmakingMatchmakingReadyCheckResource {
 }
 
 
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolMatchmakingMatchmakingDodgeData {
-    pub state: LolMatchmakingMatchmakingDodgeState,
-    pub dodger_id: u64,
+// ENUMS
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum LolMatchmakingMatchmakingSearchState {
+    #[default]
+    ServiceShutdown,
+    ServiceError,
+    Error,
+    Found,
+    Searching,
+    Canceled,
+    AbandonedLowPriorityQueue,
+    Invalid,
 }
 
-
-// ENUMS
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
 pub enum LolMatchmakingMatchmakingDodgeWarning {
     #[default]
     Penalty,
     Warning,
-    None,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum LolMatchmakingMatchmakingReadyCheckResponse {
-    #[default]
-    Declined,
-    Accepted,
     None,
 }
 
@@ -352,16 +359,11 @@ pub enum LolMatchmakingMatchmakingDodgeState {
 
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum LolMatchmakingMatchmakingSearchState {
+pub enum LolMatchmakingMatchmakingReadyCheckResponse {
     #[default]
-    ServiceShutdown,
-    ServiceError,
-    Error,
-    Found,
-    Searching,
-    Canceled,
-    AbandonedLowPriorityQueue,
-    Invalid,
+    Declined,
+    Accepted,
+    None,
 }
 
 

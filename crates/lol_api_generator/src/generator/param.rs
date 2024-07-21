@@ -59,14 +59,24 @@ impl Parameter{
 
     pub fn to_string_with_rename(&self) -> String{
         if let Some(rename) = &self.rename {
-            format!("    #[serde(rename = \"{}\")]\n    pub {}: {},\n", self.name, rename, self.type_)
+            format!("    #[serde(rename = \"{}\")]\n    pub {}: {},\n", self.name, rename, self.get_type_string())
         }else{
-            format!("    pub {}: {},\n", self.get_name(), self.type_)
+            format!("    pub {}: {},\n", self.get_name(), self.get_type_string())
+        }
+    }
+
+    pub fn get_type_string(&self) -> String{
+        if !self.required{
+            format!("Option<{}>", self.type_.to_string())
+        }else{
+            self.type_.to_string()
         }
     }
 
     pub fn to_string(&self) -> String{
-        format!("    pub {}: {},\n", self.get_name(), self.type_)
+        format!("    pub {}: {},\n", self.get_name(), self.get_type_string())
+
+
     }
 
 }

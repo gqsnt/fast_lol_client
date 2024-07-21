@@ -31,7 +31,7 @@ impl HasView for CreateLobbyTrainingView {
                         plugin_lol_lobby::post_lol_lobby_v_2_lobby(LolLobbyLobbyChangeGameDto{
                             queue_id: 0,
                             is_custom: true,
-                            custom_game_lobby: LolLobbyLobbyCustomGameLobby{
+                            custom_game_lobby: Some(LolLobbyLobbyCustomGameLobby{
                                 lobby_name:   "Practice Tool".to_string(),
                                 lobby_password: "".to_string(),
                                 configuration: LolLobbyLobbyCustomGameConfiguration{
@@ -43,7 +43,7 @@ impl HasView for CreateLobbyTrainingView {
                                     ..Default::default()
                                 },
                                 .. Default::default()
-                            },
+                            }),
                             .. Default::default()
                         }),
                         |r| Message::None,

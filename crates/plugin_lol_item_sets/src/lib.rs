@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetLolItemSetsV1ItemSetsBySummonerIdSets {
@@ -129,25 +131,11 @@ pub fn post_lol_item_sets_v_1_item_sets_validate(body: LolItemSetsValidateItemSe
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolItemSetsItemSet {
-    pub uid: String,
-    pub title: String,
-    pub mode: String,
-    pub map: String,
+pub struct LolItemSetsItemSetBlock {
     pub type_: String,
-    pub sortrank: i32,
-    pub started_from: String,
-    pub associated_champions: Vec<i32>,
-    pub associated_maps: Vec<i32>,
-    pub blocks: Vec<LolItemSetsItemSetBlock>,
-    pub preferred_item_slots: Vec<LolItemSetsPreferredItemSlot>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolItemSetsNamecheckResponse {
-    pub errors: Vec<String>,
+    pub hide_if_summoner_spell: String,
+    pub show_if_summoner_spell: String,
+    pub items: Vec<LolItemSetsItemSetItem>,
 }
 
 
@@ -161,11 +149,23 @@ pub struct LolItemSetsItemSetItem {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolItemSetsItemSetBlock {
-    pub type_: String,
-    pub hide_if_summoner_spell: String,
-    pub show_if_summoner_spell: String,
-    pub items: Vec<LolItemSetsItemSetItem>,
+pub struct LolItemSetsValidateItemSetNameInput {
+    pub name: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolItemSetsNamecheckResponse {
+    pub errors: Vec<String>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolItemSetsValidateItemSetNameResponse {
+    pub success: bool,
+    pub name_check_response: LolItemSetsNamecheckResponse,
 }
 
 
@@ -188,16 +188,18 @@ pub struct LolItemSetsItemSets {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolItemSetsValidateItemSetNameInput {
-    pub name: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolItemSetsValidateItemSetNameResponse {
-    pub success: bool,
-    pub name_check_response: LolItemSetsNamecheckResponse,
+pub struct LolItemSetsItemSet {
+    pub uid: String,
+    pub title: String,
+    pub mode: String,
+    pub map: String,
+    pub type_: String,
+    pub sortrank: i32,
+    pub started_from: String,
+    pub associated_champions: Vec<i32>,
+    pub associated_maps: Vec<i32>,
+    pub blocks: Vec<LolItemSetsItemSetBlock>,
+    pub preferred_item_slots: Vec<LolItemSetsPreferredItemSlot>,
 }
 
 

@@ -1,10 +1,11 @@
-mod enum_impl;
 
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
+
+mod additional;
 
 // ENDPOINTS
 
@@ -239,17 +240,6 @@ pub struct LolGameQueuesQueueCustomGameSubcategory {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolGameQueuesQueueCustomGame {
-    pub subcategories: Vec<LolGameQueuesQueueCustomGameSubcategory>,
-    pub queue_availability: LolGameQueuesQueueAvailability,
-    pub spectator_policies: Vec<LolGameQueuesQueueCustomGameSpectatorPolicy>,
-    pub spectator_slot_limit: u32,
-    pub game_server_regions: Vec<String>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LolGameQueuesQueueGameTypeConfig {
     pub id: i64,
     pub name: String,
@@ -271,8 +261,19 @@ pub struct LolGameQueuesQueueGameTypeConfig {
     pub ban_timer_duration: i32,
     pub pick_mode: String,
     pub ban_mode: String,
-    pub game_mode_override: String,
-    pub num_players_per_team_override: i32,
+    pub game_mode_override: Option<String>,
+    pub num_players_per_team_override: Option<i32>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolGameQueuesQueueCustomGame {
+    pub subcategories: Vec<LolGameQueuesQueueCustomGameSubcategory>,
+    pub queue_availability: LolGameQueuesQueueAvailability,
+    pub spectator_policies: Vec<LolGameQueuesQueueCustomGameSpectatorPolicy>,
+    pub spectator_slot_limit: u32,
+    pub game_server_regions: Option<Vec<String>>,
 }
 
 

@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct PostLolClashV1Voice {
@@ -2552,216 +2554,9 @@ pub fn post_lol_clash_v_1_update_logos() -> PostLolClashV1UpdateLogos {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolClashFindPlayers {
-    pub invitation_id: String,
-    pub member_id: i64,
-    pub page: i32,
-    pub count: i32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct PendingOpenedTeamDto {
-    pub invitation_id: String,
-    pub name: String,
-    pub short_name: String,
-    pub logo: i32,
-    pub logo_color: i32,
-    pub tier: i32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolClashClientFailedInvite {
-    pub player_id: u64,
-    pub exception: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolClashKickRequest {
-    pub summoner_id: u64,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolClashScoutingChampions {
-    pub player_id: u64,
-    pub total_mastery_score: u64,
-    pub top_masteries: Vec<LolClashScoutingChampionMastery>,
-    pub top_season_champions: Vec<LolClashScoutingSeasonChampion>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolClashThirdPartyApiPlayer {
-    pub summoner_id: u64,
-    pub role: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolClashPlaymodeRestrictedInfo {
-    pub is_restricted: bool,
-    pub tournament_id: i64,
-    pub presence_state: LolClashPresenceState,
-    pub roster_id: String,
-    pub phase_id: i64,
-    pub ready_for_voice: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct TournamentPhaseDto {
-    pub id: i64,
-    pub tournament_id: i64,
-    pub registration_time: i64,
-    pub start_time: i64,
-    pub period: i32,
-    pub cancelled: bool,
-    pub limit_tiers: Vec<i32>,
-    pub capacity_status: CapacityEnum,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolClashTournamentGameEnd {
-    pub tournament_id: i64,
-    pub tournament_name_loc_key: String,
-    pub tournament_name_loc_key_secondary: String,
-    pub bracket_id: i64,
-    pub old_bracket: LolClashBracket,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct ClashRewardDefinition {
-    pub reward_type: ClashRewardType,
-    pub reward_spec: ClashRewardSpec,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct ClashRewardSpec {
-    pub pedestal: String,
-    pub cup: String,
-    pub gem: String,
-    pub tier: String,
-    pub bracket: String,
-    pub theme: String,
-    pub level: String,
-    pub season_id: String,
-    pub name: String,
-    pub quantity: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolClashRosterPhaseInfo {
-    pub phase_id: i64,
-    pub period: i32,
-    pub checkin_time: i64,
-    pub is_bracket_complete: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolClashSuggestedInvite {
-    pub summoner_id: u64,
-    pub suggester_summoner_id: u64,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolClashTournamentStateInfo {
-    pub tournament_id: i64,
-    pub state: LolClashTournamentState,
-    pub current_phase_id: i64,
-    pub next_phase_id: i64,
-    pub next_state_change_time: i64,
-    pub num_remaining_periods: i32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct OpenedTeamDto {
-    pub name: String,
-    pub short_name: String,
-    pub logo: i32,
-    pub logo_color: i32,
-    pub invitation_id: String,
-    pub captain_id: u64,
-    pub tier: i32,
-    pub members: Vec<OpenedTeamMemberDto>,
-    pub invitees: Vec<PendingRosterInviteeDto>,
-    pub open_positions: Vec<Position>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolClashChangeIconRequest {
-    pub icon_id: i32,
-    pub icon_color_id: i32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct BracketRoster {
-    pub roster_id: i64,
-    pub name: String,
-    pub short_name: String,
-    pub logo: i32,
-    pub logo_color: i32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolClashPlayerRewards {
-    pub season_vp: i32,
-    pub theme_vp: Vec<LolClashThemeVp>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolClashTicketOffer {
-    pub summoner_id: u64,
-    pub amount: i32,
-    pub ticket_type: TicketType,
-    pub is_accepted: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolClashLftState {
-    pub lft: bool,
-    pub primary_pos: String,
-    pub secondary_pos: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolClashSetPositionRequest {
-    pub position: Position,
+pub struct ClashRewardConfigEntry {
+    pub key: String,
+    pub vals: Vec<ClashRewardOutput>,
 }
 
 
@@ -2782,74 +2577,26 @@ pub struct LolClashTournamentWinnerInfo {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct BracketMatch {
+pub struct LolClashTournamentPhase {
     pub id: i64,
-    pub round: i32,
-    pub order: i32,
-    pub roster_id_1: i64,
-    pub roster_id_2: i64,
-    pub result_history: String,
-    pub lowest_possible_position: i32,
-    pub highest_possible_position: i32,
-    pub round_start_time: i64,
-    pub game_start_time: i64,
-    pub status: ClientBracketMatchStatus,
-    pub winner_id: i64,
-    pub game_id: i64,
-    pub loser_bracket: bool,
-    pub forfeit_roster_id: i64,
-    pub fail_roster_status: i32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolClashTeamOpenState {
-    pub invitation_id: String,
-    pub captain_id: i64,
-    pub open_team: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolClashRoster {
     pub tournament_id: i64,
-    pub invitation_id: String,
-    pub id: String,
+    pub period: i32,
+    pub lockin_start_time: i64,
+    pub scouting_start_time: i64,
+    pub cancelled: bool,
+    pub limit_tiers: Vec<i32>,
+    pub capacity_status: CapacityEnum,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct BracketRoster {
+    pub roster_id: i64,
     pub name: String,
     pub short_name: String,
-    pub icon_id: i32,
-    pub icon_color_id: i32,
-    pub captain_summoner_id: u64,
-    pub tier: i32,
-    pub points: i32,
-    pub wins: i32,
-    pub losses: i32,
-    pub current_bracket_wins: i32,
-    pub num_completed_periods: i32,
-    pub is_eliminated: bool,
-    pub is_registered: bool,
-    pub is_active_in_current_phase: bool,
-    pub is_current_bracket_complete: bool,
-    pub high_tier_variance: bool,
-    pub members: Vec<LolClashRosterMember>,
-    pub available_logos: Vec<RewardLogo>,
-    pub suggested_invites: Vec<LolClashSuggestedInvite>,
-    pub phase_infos: Vec<LolClashRosterPhaseInfo>,
-    pub withdraw: RosterWithdraw,
-    pub is_clash_banned: bool,
-    pub lft: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct ClashRewardOutput {
-    pub primary: ClashRewardDefinition,
-    pub alternative: ClashRewardDefinition,
-    pub grant: ClashRewardTime,
-    pub show: ClashRewardTime,
+    pub logo: i32,
+    pub logo_color: i32,
 }
 
 
@@ -2859,23 +2606,6 @@ pub struct LolClashFindTeams {
     pub tournament_id: i64,
     pub page: i32,
     pub count: i32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct ClashRewardConfigClient {
-    pub name: String,
-    pub key_def: Vec<ClashRewardKeyType>,
-    pub entries: Vec<ClashRewardConfigEntry>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolClashThirdPartyApiRoster {
-    pub captain: LolClashThirdPartyApiPlayer,
-    pub members: Vec<LolClashThirdPartyApiPlayer>,
 }
 
 
@@ -2898,200 +2628,12 @@ pub struct LolClashRosterMember {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolClashThemeVp {
-    pub theme_id: i32,
-    pub vp: i32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolClashSetTicketRequest {
-    pub ticket_amount: i32,
-    pub ticket_type: TicketType,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct PlayerTierDto {
-    pub player_id: u64,
-    pub tier: i32,
-    pub primary_pos: Position,
-    pub second_pos: Position,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolClashRosterStats {
-    pub roster_id: i64,
-    pub tournament_theme_id: i32,
-    pub tournament_name_loc_key: String,
-    pub tournament_name_loc_key_secondary: String,
-    pub start_time_ms: i64,
-    pub end_time_ms: i64,
-    pub tournament_periods: i32,
-    pub tier: i32,
-    pub roster_name: String,
-    pub roster_short_name: String,
-    pub roster_icon_id: i32,
-    pub roster_icon_color_id: i32,
-    pub period_stats: Vec<LolClashRosterPeriodAggregatedStats>,
-    pub player_stats: LolClashRosterPlayerAggregatedStats,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolClashTournamentWinnerHistory {
-    pub tournament_id: i64,
-    pub winners: Vec<LolClashTournamentWinnerInfo>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolClashMucJwtDto {
-    pub jwt: String,
-    pub channel_claim: String,
-    pub domain: String,
-    pub target_region: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolClashRosterPeriodAggregatedStats {
-    pub period: i32,
-    pub bracket_size: i32,
-    pub time: i64,
-    pub match_stats: Vec<LolClashRosterMatchAggregatedStats>,
-    pub player_bids: HashMap<String, i32>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolClashRosterDetails {
-    pub name: String,
-    pub short_name: String,
-    pub icon_id: i32,
-    pub icon_color_id: i32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolClashPlayerTournamentData {
-    pub state: LolClashPlayerState,
-    pub roster_id: String,
-    pub bracket_id: i64,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct PlayerFinderDto {
-    pub player_id: u64,
-    pub tier: i32,
-    pub primary_pos: Position,
-    pub secondary_pos: Position,
-    pub type_: PlayerFinderEnum,
-    pub friend_id: i64,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct RewardLogo {
-    pub logo: i32,
-    pub member_owned_count: i32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolClashTournamentSummary {
-    pub state: LolClashTournamentState,
-    pub tournament_id: i64,
-    pub roster_id: String,
-    pub bracket_id: i64,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct PendingRosterInviteeDto {
     pub invitee_id: u64,
     pub invitee_state: PendingRosterInviteeState,
     pub inviter: u64,
     pub invite_time: i64,
     pub invite_type: InviteType,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolClashEogPlayerUpdateDto {
-    pub tournament_id: i64,
-    pub game_id: i64,
-    pub winner: bool,
-    pub theme_vp: i32,
-    pub season_vp: i32,
-    pub lowest_position: i32,
-    pub bracket_size: i32,
-    pub bid: i32,
-    pub tier: i32,
-    pub earned_rewards: Vec<ClashRewardDefinition>,
-    pub reward_progress: Vec<ClashRewardDefinition>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct ClashRewardConfigEntry {
-    pub key: String,
-    pub vals: Vec<ClashRewardOutput>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolClashScoutingSeasonChampion {
-    pub champion_id: i32,
-    pub win_count: i32,
-    pub game_count: i32,
-    pub win_rate: i32,
-    pub kda: String,
-    pub kda_classification: LolClashKdaClassification,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct OpenedTeamMemberDto {
-    pub player_id: i64,
-    pub position: Position,
-    pub tier: i32,
-    pub friendship: i32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolClashSimpleStateFlag {
-    pub id: String,
-    pub status: LolClashSimpleStateStatus,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolClashScoutingChampionMastery {
-    pub champion_id: i32,
-    pub champion_level: i32,
-    pub champion_points: i32,
 }
 
 
@@ -3113,114 +2655,6 @@ pub struct ClashEventData {
     pub team_logo_chroma_id: String,
     pub player_uui_ds: Vec<String>,
     pub reward_spec: ClashRewardSpec,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolClashBracket {
-    pub tournament_id: i64,
-    pub id: i64,
-    pub size: i32,
-    pub matches: Vec<BracketMatch>,
-    pub rosters: Vec<BracketRoster>,
-    pub version: i32,
-    pub period: i32,
-    pub is_complete: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct RosterWithdraw {
-    pub init_vote_time: i64,
-    pub init_vote_member: u64,
-    pub vote_timeout_ms: i64,
-    pub lockout_time_ms: i64,
-    pub game_start_buffer_ms: i64,
-    pub vote_withdraw_members: Vec<i64>,
-    pub decline_withdraw_members: Vec<i64>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolClashRosterPlayerAggregatedStats {
-    pub raw_stats_sum: HashMap<String, i32>,
-    pub raw_stats_max: HashMap<String, i32>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolClashPlayerChatRoster {
-    pub tournament_id: i64,
-    pub start_time_ms: i64,
-    pub end_time_ms: i64,
-    pub tournament_state: LolClashTournamentState,
-    pub player_state: LolClashPlayerState,
-    pub is_registered: bool,
-    pub name: String,
-    pub short_name: String,
-    pub icon_id: i32,
-    pub icon_color_id: i32,
-    pub logo_url: String,
-    pub invitation_id: String,
-    pub multi_user_chat_id: String,
-    pub multi_user_chat_password: String,
-    pub muc_jwt_dto: LolClashMucJwtDto,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolClashTournamentPhase {
-    pub id: i64,
-    pub tournament_id: i64,
-    pub period: i32,
-    pub lockin_start_time: i64,
-    pub scouting_start_time: i64,
-    pub cancelled: bool,
-    pub limit_tiers: Vec<i32>,
-    pub capacity_status: CapacityEnum,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolClashChangeNameRequest {
-    pub name: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolClashPlayerNotification {
-    pub source: String,
-    pub type_: String,
-    pub id: u64,
-    pub background_url: String,
-    pub data: HashMap<String, String>,
-    pub state: String,
-    pub icon_url: String,
-    pub title_key: String,
-    pub detail_key: String,
-    pub created: String,
-    pub expires: String,
-    pub critical: bool,
-    pub dismissible: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolClashPlayerData {
-    pub tickets: HashMap<String, i32>,
-    pub is_clash_banned: bool,
-    pub tier: i32,
-    pub lft: bool,
-    pub primary_pos: String,
-    pub secondary_pos: String,
 }
 
 
@@ -3262,6 +2696,489 @@ pub struct TournamentDto {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct PlayerTierDto {
+    pub player_id: u64,
+    pub tier: i32,
+    pub primary_pos: Position,
+    pub second_pos: Position,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolClashSetPositionRequest {
+    pub position: Position,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolClashScoutingChampionMastery {
+    pub champion_id: i32,
+    pub champion_level: i32,
+    pub champion_points: i32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolClashThemeVp {
+    pub theme_id: i32,
+    pub vp: i32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct TierConfig {
+    pub tier: i32,
+    pub delay_time: i64,
+    pub estimate_time: i64,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolClashChangeNameRequest {
+    pub name: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct PendingOpenedTeamDto {
+    pub invitation_id: String,
+    pub name: String,
+    pub short_name: String,
+    pub logo: i32,
+    pub logo_color: i32,
+    pub tier: i32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolClashRosterStats {
+    pub roster_id: i64,
+    pub tournament_theme_id: i32,
+    pub tournament_name_loc_key: String,
+    pub tournament_name_loc_key_secondary: String,
+    pub start_time_ms: i64,
+    pub end_time_ms: i64,
+    pub tournament_periods: i32,
+    pub tier: i32,
+    pub roster_name: String,
+    pub roster_short_name: String,
+    pub roster_icon_id: i32,
+    pub roster_icon_color_id: i32,
+    pub period_stats: Vec<LolClashRosterPeriodAggregatedStats>,
+    pub player_stats: LolClashRosterPlayerAggregatedStats,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolClashChangeIconRequest {
+    pub icon_id: i32,
+    pub icon_color_id: i32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolClashTournamentGameEnd {
+    pub tournament_id: i64,
+    pub tournament_name_loc_key: String,
+    pub tournament_name_loc_key_secondary: String,
+    pub bracket_id: i64,
+    pub old_bracket: Option<LolClashBracket>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolClashTicketOffer {
+    pub summoner_id: u64,
+    pub amount: i32,
+    pub ticket_type: TicketType,
+    pub is_accepted: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolClashRosterPlayerAggregatedStats {
+    pub raw_stats_sum: HashMap<String, i32>,
+    pub raw_stats_max: HashMap<String, i32>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct OpenedTeamMemberDto {
+    pub player_id: i64,
+    pub position: Position,
+    pub tier: i32,
+    pub friendship: i32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolClashClashDisabledConfig {
+    pub disabled_reason: String,
+    pub estimated_enable_time_millis: u64,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolClashPlayerChatRoster {
+    pub tournament_id: i64,
+    pub start_time_ms: i64,
+    pub end_time_ms: i64,
+    pub tournament_state: LolClashTournamentState,
+    pub player_state: LolClashPlayerState,
+    pub is_registered: bool,
+    pub name: String,
+    pub short_name: String,
+    pub icon_id: i32,
+    pub icon_color_id: i32,
+    pub logo_url: String,
+    pub invitation_id: String,
+    pub multi_user_chat_id: String,
+    pub multi_user_chat_password: String,
+    pub muc_jwt_dto: LolClashMucJwtDto,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolClashScoutingChampions {
+    pub player_id: u64,
+    pub total_mastery_score: u64,
+    pub top_masteries: Vec<LolClashScoutingChampionMastery>,
+    pub top_season_champions: Vec<LolClashScoutingSeasonChampion>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolClashRosterMatchAggregatedStats {
+    pub round: i32,
+    pub duration_ms: i64,
+    pub opponent_short_name: String,
+    pub opponent_icon_id: i32,
+    pub opponent_icon_color_id: i32,
+    pub win: bool,
+    pub loser_bracket: bool,
+    pub game_id: i64,
+    pub kills: i32,
+    pub opponent_kills: i32,
+    pub player_champion_ids: HashMap<String, i32>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolClashTournamentSummary {
+    pub state: LolClashTournamentState,
+    pub tournament_id: i64,
+    pub roster_id: String,
+    pub bracket_id: i64,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolClashPlayerRewards {
+    pub season_vp: i32,
+    pub theme_vp: Vec<LolClashThemeVp>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct RewardLogo {
+    pub logo: i32,
+    pub member_owned_count: i32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct ClashSeasonRewardResult {
+    pub player_id: u64,
+    pub season_id: i32,
+    pub season_vp: i32,
+    pub banned: bool,
+    pub honor_level: i32,
+    pub eligible: bool,
+    pub rewards: Vec<ClashRewardDefinition>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct BracketMatch {
+    pub id: i64,
+    pub round: i32,
+    pub order: i32,
+    pub roster_id_1: i64,
+    pub roster_id_2: i64,
+    pub result_history: String,
+    pub lowest_possible_position: i32,
+    pub highest_possible_position: i32,
+    pub round_start_time: i64,
+    pub game_start_time: i64,
+    pub status: ClientBracketMatchStatus,
+    pub winner_id: i64,
+    pub game_id: i64,
+    pub loser_bracket: bool,
+    pub forfeit_roster_id: i64,
+    pub fail_roster_status: i32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolClashTournamentHistoryAndWinners {
+    pub tournament_history: Vec<LolClashTournament>,
+    pub tournament_winners: LolClashTournamentWinnerHistory,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct OpenedTeamDto {
+    pub name: String,
+    pub short_name: String,
+    pub logo: i32,
+    pub logo_color: i32,
+    pub invitation_id: String,
+    pub captain_id: u64,
+    pub tier: i32,
+    pub members: Vec<OpenedTeamMemberDto>,
+    pub invitees: Vec<PendingRosterInviteeDto>,
+    pub open_positions: Vec<Position>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolClashTournamentWinnerHistory {
+    pub tournament_id: i64,
+    pub winners: Vec<LolClashTournamentWinnerInfo>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolClashClientFailedInvite {
+    pub player_id: u64,
+    pub exception: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolClashOfferTicketRequest {
+    pub ticket_amount: i32,
+    pub ticket_type: TicketType,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolClashFindPlayers {
+    pub invitation_id: String,
+    pub member_id: i64,
+    pub page: i32,
+    pub count: i32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolClashRoster {
+    pub tournament_id: i64,
+    pub invitation_id: String,
+    pub id: String,
+    pub name: String,
+    pub short_name: String,
+    pub icon_id: i32,
+    pub icon_color_id: i32,
+    pub captain_summoner_id: u64,
+    pub tier: i32,
+    pub points: i32,
+    pub wins: i32,
+    pub losses: i32,
+    pub current_bracket_wins: i32,
+    pub num_completed_periods: i32,
+    pub is_eliminated: bool,
+    pub is_registered: bool,
+    pub is_active_in_current_phase: bool,
+    pub is_current_bracket_complete: bool,
+    pub high_tier_variance: bool,
+    pub members: Vec<LolClashRosterMember>,
+    pub available_logos: Vec<RewardLogo>,
+    pub suggested_invites: Vec<LolClashSuggestedInvite>,
+    pub phase_infos: Vec<LolClashRosterPhaseInfo>,
+    pub withdraw: Option<RosterWithdraw>,
+    pub is_clash_banned: bool,
+    pub lft: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct ClashRewardDefinition {
+    pub reward_type: ClashRewardType,
+    pub reward_spec: ClashRewardSpec,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolClashRosterPhaseInfo {
+    pub phase_id: i64,
+    pub period: i32,
+    pub checkin_time: i64,
+    pub is_bracket_complete: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolClashScoutingSeasonChampion {
+    pub champion_id: i32,
+    pub win_count: i32,
+    pub game_count: i32,
+    pub win_rate: i32,
+    pub kda: String,
+    pub kda_classification: LolClashKdaClassification,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct RosterWithdraw {
+    pub init_vote_time: i64,
+    pub init_vote_member: u64,
+    pub vote_timeout_ms: i64,
+    pub lockout_time_ms: i64,
+    pub game_start_buffer_ms: i64,
+    pub vote_withdraw_members: Vec<i64>,
+    pub decline_withdraw_members: Vec<i64>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct ClashRewardConfigClient {
+    pub name: String,
+    pub key_def: Vec<ClashRewardKeyType>,
+    pub entries: Vec<ClashRewardConfigEntry>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolClashMucJwtDto {
+    pub jwt: String,
+    pub channel_claim: String,
+    pub domain: String,
+    pub target_region: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolClashThirdPartyApiRoster {
+    pub captain: LolClashThirdPartyApiPlayer,
+    pub members: Vec<LolClashThirdPartyApiPlayer>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct ClashRewardSpec {
+    pub pedestal: String,
+    pub cup: String,
+    pub gem: String,
+    pub tier: String,
+    pub bracket: String,
+    pub theme: String,
+    pub level: String,
+    pub season_id: String,
+    pub name: String,
+    pub quantity: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolClashThirdPartyApiPlayer {
+    pub summoner_id: u64,
+    pub role: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolClashSetTicketRequest {
+    pub ticket_amount: i32,
+    pub ticket_type: TicketType,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolClashBracket {
+    pub tournament_id: i64,
+    pub id: i64,
+    pub size: i32,
+    pub matches: Vec<BracketMatch>,
+    pub rosters: Vec<BracketRoster>,
+    pub version: i32,
+    pub period: i32,
+    pub is_complete: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolClashPlayerTournamentData {
+    pub state: LolClashPlayerState,
+    pub roster_id: String,
+    pub bracket_id: i64,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolClashTournamentStateInfo {
+    pub tournament_id: i64,
+    pub state: LolClashTournamentState,
+    pub current_phase_id: i64,
+    pub next_phase_id: i64,
+    pub next_state_change_time: i64,
+    pub num_remaining_periods: i32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct ClashRewardOutput {
+    pub primary: ClashRewardDefinition,
+    pub alternative: ClashRewardDefinition,
+    pub grant: ClashRewardTime,
+    pub show: ClashRewardTime,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct LolClashTournament {
     pub id: i64,
     pub theme_id: i32,
@@ -3297,47 +3214,130 @@ pub struct LolClashTournament {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct ClashSeasonRewardResult {
-    pub player_id: u64,
-    pub season_id: i32,
-    pub season_vp: i32,
-    pub banned: bool,
-    pub honor_level: i32,
-    pub eligible: bool,
-    pub rewards: Vec<ClashRewardDefinition>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolClashOfferTicketRequest {
-    pub ticket_amount: i32,
-    pub ticket_type: TicketType,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolClashRosterMatchAggregatedStats {
-    pub round: i32,
-    pub duration_ms: i64,
-    pub opponent_short_name: String,
-    pub opponent_icon_id: i32,
-    pub opponent_icon_color_id: i32,
-    pub win: bool,
-    pub loser_bracket: bool,
+pub struct LolClashEogPlayerUpdateDto {
+    pub tournament_id: i64,
     pub game_id: i64,
-    pub kills: i32,
-    pub opponent_kills: i32,
-    pub player_champion_ids: HashMap<String, i32>,
+    pub winner: bool,
+    pub theme_vp: i32,
+    pub season_vp: i32,
+    pub lowest_position: i32,
+    pub bracket_size: i32,
+    pub bid: i32,
+    pub tier: i32,
+    pub earned_rewards: Vec<ClashRewardDefinition>,
+    pub reward_progress: Vec<ClashRewardDefinition>,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolClashClashDisabledConfig {
-    pub disabled_reason: String,
-    pub estimated_enable_time_millis: u64,
+pub struct LolClashPlayerData {
+    pub tickets: HashMap<String, i32>,
+    pub is_clash_banned: bool,
+    pub tier: i32,
+    pub lft: bool,
+    pub primary_pos: String,
+    pub secondary_pos: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolClashPlaymodeRestrictedInfo {
+    pub is_restricted: bool,
+    pub tournament_id: i64,
+    pub presence_state: LolClashPresenceState,
+    pub roster_id: String,
+    pub phase_id: i64,
+    pub ready_for_voice: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolClashPlayerNotification {
+    pub source: String,
+    pub type_: String,
+    pub id: u64,
+    pub background_url: String,
+    pub data: HashMap<String, String>,
+    pub state: String,
+    pub icon_url: String,
+    pub title_key: String,
+    pub detail_key: String,
+    pub created: String,
+    pub expires: String,
+    pub critical: bool,
+    pub dismissible: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolClashRosterPeriodAggregatedStats {
+    pub period: i32,
+    pub bracket_size: i32,
+    pub time: i64,
+    pub match_stats: Vec<LolClashRosterMatchAggregatedStats>,
+    pub player_bids: HashMap<String, i32>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolClashSuggestedInvite {
+    pub summoner_id: u64,
+    pub suggester_summoner_id: u64,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolClashLftState {
+    pub lft: bool,
+    pub primary_pos: String,
+    pub secondary_pos: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolClashSimpleStateFlag {
+    pub id: String,
+    pub status: LolClashSimpleStateStatus,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolClashRosterDetails {
+    pub name: String,
+    pub short_name: String,
+    pub icon_id: i32,
+    pub icon_color_id: i32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct TournamentPhaseDto {
+    pub id: i64,
+    pub tournament_id: i64,
+    pub registration_time: i64,
+    pub start_time: i64,
+    pub period: i32,
+    pub cancelled: bool,
+    pub limit_tiers: Vec<i32>,
+    pub capacity_status: CapacityEnum,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolClashTeamOpenState {
+    pub invitation_id: String,
+    pub captain_id: i64,
+    pub open_team: bool,
 }
 
 
@@ -3356,22 +3356,44 @@ pub struct LolClashPlayerNotificationData {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct TierConfig {
+pub struct PlayerFinderDto {
+    pub player_id: u64,
     pub tier: i32,
-    pub delay_time: i64,
-    pub estimate_time: i64,
+    pub primary_pos: Position,
+    pub secondary_pos: Position,
+    pub type_: PlayerFinderEnum,
+    pub friend_id: i64,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolClashTournamentHistoryAndWinners {
-    pub tournament_history: Vec<LolClashTournament>,
-    pub tournament_winners: LolClashTournamentWinnerHistory,
+pub struct LolClashKickRequest {
+    pub summoner_id: u64,
 }
 
 
 // ENUMS
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum Position {
+    #[default]
+    #[serde(rename = "UNSELECTED")]
+    Unselected,
+    #[serde(rename = "FILL")]
+    Fill,
+    #[serde(rename = "UTILITY")]
+    Utility,
+    #[serde(rename = "JUNGLE")]
+    Jungle,
+    #[serde(rename = "BOTTOM")]
+    Bottom,
+    #[serde(rename = "MIDDLE")]
+    Middle,
+    #[serde(rename = "TOP")]
+    Top,
+}
+
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
 pub enum LolClashPresenceState {
@@ -3382,6 +3404,58 @@ pub enum LolClashPresenceState {
     LockedIn,
     #[serde(rename = "NONE")]
     None,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum LolClashTournamentNotifyReason {
+    #[default]
+    #[serde(rename = "UPDATE_STATUS")]
+    UpdateStatus,
+    #[serde(rename = "REVERT_PHASE")]
+    RevertPhase,
+    #[serde(rename = "UPDATE_PHASE")]
+    UpdatePhase,
+    #[serde(rename = "ADD_PHASE")]
+    AddPhase,
+    #[serde(rename = "CANCEL_PERIOD")]
+    CancelPeriod,
+    #[serde(rename = "CANCEL_TOURNAMENT")]
+    CancelTournament,
+    #[serde(rename = "UPDATE_TOURNAMENT")]
+    UpdateTournament,
+    #[serde(rename = "NEW_TOURNAMENT")]
+    NewTournament,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum ClashRewardKeyType {
+    #[default]
+    #[serde(rename = "TOC_STATE")]
+    TocState,
+    #[serde(rename = "SEASON_FLAG_COUNT")]
+    SeasonFlagCount,
+    #[serde(rename = "SEASON_VP")]
+    SeasonVp,
+    #[serde(rename = "THEME_VP")]
+    ThemeVp,
+    #[serde(rename = "POINTS")]
+    Points,
+    #[serde(rename = "WINS")]
+    Wins,
+    #[serde(rename = "TOURNAMENT_WIN_POS")]
+    TournamentWinPos,
+    #[serde(rename = "LOWEST_POSITION")]
+    LowestPosition,
+    #[serde(rename = "TICKET_TYPE")]
+    TicketType,
+    #[serde(rename = "TICKET_COUNT")]
+    TicketCount,
+    #[serde(rename = "CUP")]
+    Cup,
+    #[serde(rename = "TIER")]
+    Tier,
 }
 
 
@@ -3398,6 +3472,60 @@ pub enum LolClashPlayerState {
     PendingRoster,
     #[serde(rename = "NO_ROSTER")]
     NoRoster,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum LolClashKdaClassification {
+    #[default]
+    #[serde(rename = "HIGH")]
+    High,
+    #[serde(rename = "AVERAGE")]
+    Average,
+    #[serde(rename = "LOW")]
+    Low,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum InviteType {
+    #[default]
+    #[serde(rename = "NONE")]
+    None,
+    #[serde(rename = "SELFJOIN")]
+    Selfjoin,
+    #[serde(rename = "SUGGEST")]
+    Suggest,
+    #[serde(rename = "FRIEND")]
+    Friend,
+    #[serde(rename = "FREEAGENT")]
+    Freeagent,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum ClientBracketMatchStatus {
+    #[default]
+    #[serde(rename = "COMPLETED")]
+    Completed,
+    #[serde(rename = "STARTED")]
+    Started,
+    #[serde(rename = "UPCOMING")]
+    Upcoming,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum TournamentStatusEnum {
+    #[default]
+    #[serde(rename = "PRERESUME")]
+    Preresume,
+    #[serde(rename = "PAUSED")]
+    Paused,
+    #[serde(rename = "CANCELLED")]
+    Cancelled,
+    #[serde(rename = "DEFAULT")]
+    Default,
 }
 
 
@@ -3510,118 +3638,6 @@ pub enum ClashRewardType {
 
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum CapacityEnum {
-    #[default]
-    #[serde(rename = "FULL")]
-    Full,
-    #[serde(rename = "HIGH")]
-    High,
-    #[serde(rename = "MEDIUM")]
-    Medium,
-    #[serde(rename = "LOW")]
-    Low,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum ClashRewardTime {
-    #[default]
-    #[serde(rename = "EOT")]
-    Eot,
-    #[serde(rename = "EOB")]
-    Eob,
-    #[serde(rename = "EOG")]
-    Eog,
-    #[serde(rename = "NONE")]
-    None,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum PendingRosterInviteeState {
-    #[default]
-    #[serde(rename = "SELFJOIN_REVOKED")]
-    SelfjoinRevoked,
-    #[serde(rename = "SELFJOIN_DECLINED")]
-    SelfjoinDeclined,
-    #[serde(rename = "SELFJOIN")]
-    Selfjoin,
-    #[serde(rename = "ACCEPTED")]
-    Accepted,
-    #[serde(rename = "SUGGEST_REVOKED")]
-    SuggestRevoked,
-    #[serde(rename = "SUGGEST_DECLINED")]
-    SuggestDeclined,
-    #[serde(rename = "REVOKED")]
-    Revoked,
-    #[serde(rename = "DECLINED")]
-    Declined,
-    #[serde(rename = "PENDING")]
-    Pending,
-    #[serde(rename = "SUGGESTED")]
-    Suggested,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum Position {
-    #[default]
-    #[serde(rename = "UNSELECTED")]
-    Unselected,
-    #[serde(rename = "FILL")]
-    Fill,
-    #[serde(rename = "UTILITY")]
-    Utility,
-    #[serde(rename = "JUNGLE")]
-    Jungle,
-    #[serde(rename = "BOTTOM")]
-    Bottom,
-    #[serde(rename = "MIDDLE")]
-    Middle,
-    #[serde(rename = "TOP")]
-    Top,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum LolClashSimpleStateStatus {
-    #[default]
-    #[serde(rename = "ACKNOWLEDGED")]
-    Acknowledged,
-    #[serde(rename = "UNACKNOWLEDGED")]
-    Unacknowledged,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum InviteType {
-    #[default]
-    #[serde(rename = "NONE")]
-    None,
-    #[serde(rename = "SELFJOIN")]
-    Selfjoin,
-    #[serde(rename = "SUGGEST")]
-    Suggest,
-    #[serde(rename = "FRIEND")]
-    Friend,
-    #[serde(rename = "FREEAGENT")]
-    Freeagent,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum LolClashKdaClassification {
-    #[default]
-    #[serde(rename = "HIGH")]
-    High,
-    #[serde(rename = "AVERAGE")]
-    Average,
-    #[serde(rename = "LOW")]
-    Low,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
 pub enum LolClashRosterNotifyReason {
     #[default]
     #[serde(rename = "GAME_RESCHEDULED")]
@@ -3722,6 +3738,64 @@ pub enum LolClashRosterNotifyReason {
 
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum ClashRewardTime {
+    #[default]
+    #[serde(rename = "EOT")]
+    Eot,
+    #[serde(rename = "EOB")]
+    Eob,
+    #[serde(rename = "EOG")]
+    Eog,
+    #[serde(rename = "NONE")]
+    None,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum LolClashSimpleStateStatus {
+    #[default]
+    #[serde(rename = "ACKNOWLEDGED")]
+    Acknowledged,
+    #[serde(rename = "UNACKNOWLEDGED")]
+    Unacknowledged,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum TicketType {
+    #[default]
+    #[serde(rename = "PREMIUM")]
+    Premium,
+    #[serde(rename = "BASIC")]
+    Basic,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum PlayerFinderEnum {
+    #[default]
+    #[serde(rename = "FRIEND")]
+    Friend,
+    #[serde(rename = "FREEAGENT")]
+    Freeagent,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum CapacityEnum {
+    #[default]
+    #[serde(rename = "FULL")]
+    Full,
+    #[serde(rename = "HIGH")]
+    High,
+    #[serde(rename = "MEDIUM")]
+    Medium,
+    #[serde(rename = "LOW")]
+    Low,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
 pub enum LolClashTournamentState {
     #[default]
     #[serde(rename = "RESULTS")]
@@ -3756,99 +3830,27 @@ pub enum LolClashRosterMemberState {
 
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum TicketType {
+pub enum PendingRosterInviteeState {
     #[default]
-    #[serde(rename = "PREMIUM")]
-    Premium,
-    #[serde(rename = "BASIC")]
-    Basic,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum ClientBracketMatchStatus {
-    #[default]
-    #[serde(rename = "COMPLETED")]
-    Completed,
-    #[serde(rename = "STARTED")]
-    Started,
-    #[serde(rename = "UPCOMING")]
-    Upcoming,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum LolClashTournamentNotifyReason {
-    #[default]
-    #[serde(rename = "UPDATE_STATUS")]
-    UpdateStatus,
-    #[serde(rename = "REVERT_PHASE")]
-    RevertPhase,
-    #[serde(rename = "UPDATE_PHASE")]
-    UpdatePhase,
-    #[serde(rename = "ADD_PHASE")]
-    AddPhase,
-    #[serde(rename = "CANCEL_PERIOD")]
-    CancelPeriod,
-    #[serde(rename = "CANCEL_TOURNAMENT")]
-    CancelTournament,
-    #[serde(rename = "UPDATE_TOURNAMENT")]
-    UpdateTournament,
-    #[serde(rename = "NEW_TOURNAMENT")]
-    NewTournament,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum TournamentStatusEnum {
-    #[default]
-    #[serde(rename = "PRERESUME")]
-    Preresume,
-    #[serde(rename = "PAUSED")]
-    Paused,
-    #[serde(rename = "CANCELLED")]
-    Cancelled,
-    #[serde(rename = "DEFAULT")]
-    Default,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum PlayerFinderEnum {
-    #[default]
-    #[serde(rename = "FRIEND")]
-    Friend,
-    #[serde(rename = "FREEAGENT")]
-    Freeagent,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum ClashRewardKeyType {
-    #[default]
-    #[serde(rename = "TOC_STATE")]
-    TocState,
-    #[serde(rename = "SEASON_FLAG_COUNT")]
-    SeasonFlagCount,
-    #[serde(rename = "SEASON_VP")]
-    SeasonVp,
-    #[serde(rename = "THEME_VP")]
-    ThemeVp,
-    #[serde(rename = "POINTS")]
-    Points,
-    #[serde(rename = "WINS")]
-    Wins,
-    #[serde(rename = "TOURNAMENT_WIN_POS")]
-    TournamentWinPos,
-    #[serde(rename = "LOWEST_POSITION")]
-    LowestPosition,
-    #[serde(rename = "TICKET_TYPE")]
-    TicketType,
-    #[serde(rename = "TICKET_COUNT")]
-    TicketCount,
-    #[serde(rename = "CUP")]
-    Cup,
-    #[serde(rename = "TIER")]
-    Tier,
+    #[serde(rename = "SELFJOIN_REVOKED")]
+    SelfjoinRevoked,
+    #[serde(rename = "SELFJOIN_DECLINED")]
+    SelfjoinDeclined,
+    #[serde(rename = "SELFJOIN")]
+    Selfjoin,
+    #[serde(rename = "ACCEPTED")]
+    Accepted,
+    #[serde(rename = "SUGGEST_REVOKED")]
+    SuggestRevoked,
+    #[serde(rename = "SUGGEST_DECLINED")]
+    SuggestDeclined,
+    #[serde(rename = "REVOKED")]
+    Revoked,
+    #[serde(rename = "DECLINED")]
+    Declined,
+    #[serde(rename = "PENDING")]
+    Pending,
+    #[serde(rename = "SUGGESTED")]
+    Suggested,
 }
 

@@ -26,6 +26,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 {endpoints}
 
@@ -76,12 +78,17 @@ impl Plugin{
         let cargo_path = plugin_path.join("Cargo.toml");
         let src_path = plugin_path.join("src");
         let lib_path = src_path.join("lib.rs");
+        let additional_path = src_path.join("additional.rs");
 
         if !plugin_path.exists() {
             let _ = std::fs::create_dir_all(&plugin_path);
             let _ = std::fs::create_dir_all(&src_path);
             let _ = std::fs::write(&cargo_path, &cargo);
             let _ = std::fs::write(&lib_path, &lib);
+        }
+
+        if !additional_path.exists() {
+            let _ = std::fs::write(&additional_path, "");
         }
 
         let endpoints = self.endpoints.iter().map(|endpoint| {

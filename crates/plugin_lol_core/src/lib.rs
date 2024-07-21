@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct LoggingGetEntries {
@@ -93,8 +95,8 @@ pub fn logging_metrics_metadata() -> LoggingMetricsMetadata {
 
 pub struct LoggingStart {
     // Initializes the logging system.
-    pub buffered: bool,
-    pub severity: LogSeverityLevels,
+    pub buffered: Option<bool>,
+    pub severity: Option<LogSeverityLevels>,
 }
 
 impl IsApiRequest for LoggingStart {
@@ -117,7 +119,7 @@ impl IsApiRequest for LoggingStart {
     }
 }
 
-pub fn logging_start(buffered: bool, severity: LogSeverityLevels) -> LoggingStart {
+pub fn logging_start(buffered: Option<bool>, severity: Option<LogSeverityLevels>) -> LoggingStart {
     LoggingStart {
         buffered, severity
     }

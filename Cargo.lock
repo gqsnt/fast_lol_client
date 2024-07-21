@@ -3611,6 +3611,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "plugin_lol_tft_event_missions"
+version = "0.1.0"
+dependencies = [
+ "common",
+ "reqwest",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "plugin_lol_tft_pass"
 version = "0.1.0"
 dependencies = [

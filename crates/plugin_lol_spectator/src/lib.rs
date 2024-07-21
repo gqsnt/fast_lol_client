@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetLolSpectatorV1Spectate {
@@ -183,27 +185,6 @@ pub fn post_lol_spectator_v_3_buddy_spectate(body: Vec<String>) -> PostLolSpecta
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolSpectatorSummonerOrTeamAvailabilty {
-    pub available_for_watching: Vec<String>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolSpectatorSummonerPuuidsSpectateResource {
-    pub available_for_watching: Vec<String>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolSpectatorSummonerIdAvailability {
-    pub available_for_watching: Vec<u64>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LolSpectatorSpectateGameInfo {
     pub drop_in_spectate_game_id: String,
     pub game_queue_type: String,
@@ -219,6 +200,27 @@ pub struct LolSpectatorSpectatorConfig {
     pub is_spectator_delay_configurable: bool,
     pub is_bracket_spectating_enabled: bool,
     pub spectatable_queues: Vec<u32>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolSpectatorSummonerOrTeamAvailabilty {
+    pub available_for_watching: Vec<String>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolSpectatorSummonerIdAvailability {
+    pub available_for_watching: Vec<u64>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolSpectatorSummonerPuuidsSpectateResource {
+    pub available_for_watching: Vec<String>,
 }
 
 

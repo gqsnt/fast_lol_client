@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetLolPftV2Survey {
@@ -97,15 +99,6 @@ pub fn post_lol_pft_v_2_events(body: LolPftPftEvent) -> PostLolPftV2Events {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolPftPftEvent {
-    pub player_survey_id: u64,
-    pub action: String,
-    pub data: Vec<HashMap<String, String>>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LolPftPftSurvey {
     pub id: u64,
     pub title: String,
@@ -113,6 +106,15 @@ pub struct LolPftPftSurvey {
     pub type_: String,
     pub display: String,
     pub data: HashMap<String, HashMap<String, String>>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolPftPftEvent {
+    pub player_survey_id: u64,
+    pub action: String,
+    pub data: Vec<HashMap<String, String>>,
 }
 
 

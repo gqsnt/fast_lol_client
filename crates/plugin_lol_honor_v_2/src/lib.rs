@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetLolHonorV2V1Ballot {
@@ -545,81 +547,12 @@ pub fn post_lol_honor_v_2_v_1_reward_granted_ack() -> PostLolHonorV2V1RewardGran
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolHonorV2HonorInteraction {
-    pub puuid: String,
-    pub display_name: String,
-    pub game_id: u64,
-    pub summoner_id: u64,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolHonorV2Reward {
-    pub reward_type: String,
-    pub quantity: i32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolHonorV2VendedHonorState {
-    pub level: i32,
-    pub checkpoint: i32,
-    pub rewards_locked: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolHonorV2ApiHonorPlayerServerRequestV3 {
-    pub puuid: String,
-    pub honor_type: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolHonorV2Honor {
-    pub honor_category: String,
-    pub voter_relationship: String,
-    pub sender_puuid: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LolHonorV2Ballot {
     pub eligible_allies: Vec<LolHonorV2EligiblePlayer>,
     pub eligible_opponents: Vec<LolHonorV2EligiblePlayer>,
     pub num_votes: u32,
     pub game_id: u64,
     pub honored_players: Vec<LolHonorV2ApiHonorPlayerServerRequestV3>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolHonorV2DynamicHonorMessage {
-    pub message_id: String,
-    pub value: i32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolHonorV2MutualHonor {
-    pub game_id: u64,
-    pub summoners: Vec<LolHonorV2MutualHonorPlayer>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolHonorV2ProfileInfo {
-    pub honor_level: i32,
-    pub checkpoint: i32,
-    pub rewards_locked: bool,
 }
 
 
@@ -637,12 +570,28 @@ pub struct LolHonorV2HonorConfig {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolHonorV2VendedHonorChange {
-    pub action_type: String,
-    pub previous_state: LolHonorV2VendedHonorState,
-    pub current_state: LolHonorV2VendedHonorState,
-    pub reward: LolHonorV2Reward,
-    pub dynamic_honor_message: LolHonorV2DynamicHonorMessage,
+pub struct LolHonorV2Honor {
+    pub honor_category: String,
+    pub voter_relationship: String,
+    pub sender_puuid: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolHonorV2ApiHonorPlayerServerRequest {
+    pub summoner_id: u64,
+    pub puuid: String,
+    pub honor_type: String,
+    pub game_id: u64,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolHonorV2MutualHonor {
+    pub game_id: u64,
+    pub summoners: Vec<LolHonorV2MutualHonorPlayer>,
 }
 
 
@@ -652,6 +601,17 @@ pub struct LolHonorV2MutualHonorPlayer {
     pub summoner_id: u64,
     pub champion_id: i32,
     pub skin_id: i32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolHonorV2VendedHonorChange {
+    pub action_type: String,
+    pub previous_state: LolHonorV2VendedHonorState,
+    pub current_state: LolHonorV2VendedHonorState,
+    pub reward: LolHonorV2Reward,
+    pub dynamic_honor_message: LolHonorV2DynamicHonorMessage,
 }
 
 
@@ -668,9 +628,9 @@ pub struct LolHonorV2EligiblePlayer {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolHonorV2VoteCompletion {
-    pub game_id: u64,
-    pub full_team_vote: bool,
+pub struct LolHonorV2ApiHonorPlayerServerRequestV3 {
+    pub puuid: String,
+    pub honor_type: String,
 }
 
 
@@ -685,11 +645,53 @@ pub struct LolHonorV2VendedReward {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolHonorV2ApiHonorPlayerServerRequest {
-    pub summoner_id: u64,
-    pub puuid: String,
-    pub honor_type: String,
+pub struct LolHonorV2VoteCompletion {
     pub game_id: u64,
+    pub full_team_vote: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolHonorV2HonorInteraction {
+    pub puuid: String,
+    pub display_name: String,
+    pub game_id: u64,
+    pub summoner_id: u64,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolHonorV2DynamicHonorMessage {
+    pub message_id: String,
+    pub value: i32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolHonorV2Reward {
+    pub reward_type: String,
+    pub quantity: i32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolHonorV2ProfileInfo {
+    pub honor_level: i32,
+    pub checkpoint: i32,
+    pub rewards_locked: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolHonorV2VendedHonorState {
+    pub level: i32,
+    pub checkpoint: i32,
+    pub rewards_locked: bool,
 }
 
 

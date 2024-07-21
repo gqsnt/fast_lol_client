@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetLolReplaysV1Configuration {
@@ -311,6 +313,16 @@ pub struct LolReplaysReplayContextData {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct LolReplaysReplayCreateMetadata {
+    pub game_version: String,
+    pub game_type: String,
+    pub queue_id: i32,
+    pub game_end: u64,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct LolReplaysReplaysConfiguration {
     pub is_replays_enabled: bool,
     pub is_replays_for_end_of_game_enabled: bool,
@@ -332,16 +344,6 @@ pub struct LolReplaysReplayMetadata {
     pub state: LolReplaysMetadataState,
     pub game_id: u64,
     pub download_progress: u32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolReplaysReplayCreateMetadata {
-    pub game_version: String,
-    pub game_type: String,
-    pub queue_id: i32,
-    pub game_end: u64,
 }
 
 

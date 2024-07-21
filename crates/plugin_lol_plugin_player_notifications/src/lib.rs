@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetPlayerNotificationsV1NotificationsById {
@@ -233,7 +235,7 @@ pub struct PlayerNotificationsPlayerNotificationResource {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct PlayerNotificationsPlayerNotificationConfigResource {
-    pub expiration_check_frequency: u64,
+    pub expiration_check_frequency: Option<u64>,
 }
 
 

@@ -3,6 +3,7 @@ use std::collections::HashMap;
 use iced::Command;
 use iced::widget::{Column, combo_box, Container, container, text};
 use serde::{Deserialize, Serialize};
+use serde_json::Value;
 use plugin_lol_game_queues::{LolGameQueuesQueue, LolGameQueuesQueueAvailability, LolGameQueuesQueueCustomGame, LolGameQueuesQueueCustomGameSubcategory, LolGameQueuesQueueGameCategory};
 use plugin_lol_gameflow::LolGameflowGameflowPhase;
 use crate::AppResult;
@@ -63,7 +64,7 @@ impl PlayState{
                         coop_vs_ai_queues_result.push(queue.into());
                     }
                     LolGameQueuesQueueGameCategory::PvP => {
-                        let game_mode:LolGameMode = serde_json::from_str(&queue.game_mode).unwrap();
+                        let game_mode:LolGameMode = serde_json::from_value(Value::String(queue.game_mode.clone())).unwrap();
                         pvp_queues_result.entry(game_mode).or_insert_with(Vec::new).push(queue);
                     }
                     _ => {}

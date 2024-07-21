@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetLolRsoAuthV1Authorization {
@@ -491,25 +493,6 @@ pub fn post_lol_rso_auth_v_1_external_session_config(body: HashMap<String, Strin
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolRsoAuthRegionStatus {
-    pub platform_id: String,
-    pub enabled: bool,
-    pub is_lq_fallback_allowed: bool,
-    pub is_user_info_enabled: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolRsoAuthAuthorization {
-    pub current_platform_id: String,
-    pub current_account_id: u64,
-    pub subject: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LolRsoAuthPublicClientConfig {
     pub url: String,
     pub client_id: String,
@@ -520,31 +503,6 @@ pub struct LolRsoAuthPublicClientConfig {
 #[serde(rename_all = "camelCase")]
 pub struct LolRsoAuthRsoConfigReadyState {
     pub ready: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolRsoAuthAccessToken {
-    pub token: String,
-    pub scopes: Vec<String>,
-    pub expiry: u64,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolRsoAuthAuthError {
-    pub error: String,
-    pub error_description: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolRsoAuthIdToken {
-    pub token: String,
-    pub expiry: u64,
 }
 
 
@@ -561,6 +519,48 @@ pub struct LolRsoAuthDeviceId {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct LolRsoAuthIdToken {
+    pub token: String,
+    pub expiry: u64,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolRsoAuthAuthError {
+    pub error: String,
+    pub error_description: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolRsoAuthAuthorization {
+    pub current_platform_id: String,
+    pub current_account_id: u64,
+    pub subject: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolRsoAuthRegionStatus {
+    pub platform_id: String,
+    pub enabled: bool,
+    pub is_lq_fallback_allowed: bool,
+    pub is_user_info_enabled: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolRsoAuthUserInfo {
+    pub user_info: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct LolRsoAuthRsoPlayerCredentials {
     pub username: String,
     pub password: String,
@@ -570,8 +570,10 @@ pub struct LolRsoAuthRsoPlayerCredentials {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolRsoAuthUserInfo {
-    pub user_info: String,
+pub struct LolRsoAuthAccessToken {
+    pub token: String,
+    pub scopes: Vec<String>,
+    pub expiry: u64,
 }
 
 

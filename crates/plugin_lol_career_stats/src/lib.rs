@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetLolCareerStatsV1ChampionAveragesByChampionIdByPositionByTierByQueue {
@@ -320,7 +322,7 @@ pub struct GetLolCareerStatsV1SummonerStatsByPuuidBySeasonByQueueByPosition {
     pub season: u32,
     pub queue: LolCareerStatsCareerStatsQueueType,
     pub position: LolCareerStatsSummonersRiftPosition,
-    pub champion_id: i32,
+    pub champion_id: Option<i32>,
 }
 
 impl IsApiRequest for GetLolCareerStatsV1SummonerStatsByPuuidBySeasonByQueueByPosition {
@@ -342,7 +344,7 @@ impl IsApiRequest for GetLolCareerStatsV1SummonerStatsByPuuidBySeasonByQueueByPo
     }
 }
 
-pub fn get_lol_career_stats_v_1_summoner_stats_by_puuid_by_season_by_queue_by_position(puuid: String, season: u32, queue: LolCareerStatsCareerStatsQueueType, position: LolCareerStatsSummonersRiftPosition, champion_id: i32) -> GetLolCareerStatsV1SummonerStatsByPuuidBySeasonByQueueByPosition {
+pub fn get_lol_career_stats_v_1_summoner_stats_by_puuid_by_season_by_queue_by_position(puuid: String, season: u32, queue: LolCareerStatsCareerStatsQueueType, position: LolCareerStatsSummonersRiftPosition, champion_id: Option<i32>) -> GetLolCareerStatsV1SummonerStatsByPuuidBySeasonByQueueByPosition {
     GetLolCareerStatsV1SummonerStatsByPuuidBySeasonByQueueByPosition {
         puuid, season, queue, position, champion_id
     }
@@ -411,18 +413,18 @@ pub fn post_lol_career_stats_v_1_position_stats_percentiles(body: Vec<LolCareerS
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolCareerStatsPositionStatsQueryRequest {
+pub struct LolCareerStatsChampionQueueStatsResponse {
+    pub champion_id: i32,
     pub queue_type: LolCareerStatsCareerStatsQueueType,
     pub position: LolCareerStatsSummonersRiftPosition,
     pub rank_tier: String,
-    pub season: u32,
+    pub stats: HashMap<String, String>,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolCareerStatsStatsQueryRequest {
-    pub champion_id: i32,
+pub struct LolCareerStatsPositionStatsQueryRequest {
     pub queue_type: LolCareerStatsCareerStatsQueueType,
     pub position: LolCareerStatsSummonersRiftPosition,
     pub rank_tier: String,
@@ -444,6 +446,17 @@ pub struct LolCareerStatsStatisticsPercentilesResponse {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct LolCareerStatsStatsQueryRequest {
+    pub champion_id: i32,
+    pub queue_type: LolCareerStatsCareerStatsQueueType,
+    pub position: LolCareerStatsSummonersRiftPosition,
+    pub rank_tier: String,
+    pub season: u32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct LolCareerStatsExpertPlayer {
     pub champion_id: i32,
     pub position: LolCareerStatsSummonersRiftPosition,
@@ -455,18 +468,27 @@ pub struct LolCareerStatsExpertPlayer {
 }
 
 
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolCareerStatsChampionQueueStatsResponse {
-    pub champion_id: i32,
-    pub queue_type: LolCareerStatsCareerStatsQueueType,
-    pub position: LolCareerStatsSummonersRiftPosition,
-    pub rank_tier: String,
-    pub stats: HashMap<String, String>,
+// ENUMS
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum LolCareerStatsSummonersRiftPosition {
+    #[default]
+    #[serde(rename = "SUPPORT")]
+    Support,
+    #[serde(rename = "BOTTOM")]
+    Bottom,
+    #[serde(rename = "MID")]
+    Mid,
+    #[serde(rename = "JUNGLE")]
+    Jungle,
+    #[serde(rename = "TOP")]
+    Top,
+    #[serde(rename = "UNKNOWN")]
+    Unknown,
+    #[serde(rename = "ALL")]
+    All,
 }
 
-
-// ENUMS
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
 pub enum LolCareerStatsCareerStatsQueueType {
@@ -489,25 +511,5 @@ pub enum LolCareerStatsCareerStatsQueueType {
     Rank5Flex,
     #[serde(rename = "draft5")]
     Draft5,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum LolCareerStatsSummonersRiftPosition {
-    #[default]
-    #[serde(rename = "SUPPORT")]
-    Support,
-    #[serde(rename = "BOTTOM")]
-    Bottom,
-    #[serde(rename = "MID")]
-    Mid,
-    #[serde(rename = "JUNGLE")]
-    Jungle,
-    #[serde(rename = "TOP")]
-    Top,
-    #[serde(rename = "UNKNOWN")]
-    Unknown,
-    #[serde(rename = "ALL")]
-    All,
 }
 

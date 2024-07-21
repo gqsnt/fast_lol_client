@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetClientConfigV1StatusByType {
@@ -287,20 +289,20 @@ pub enum ClientConfigConfigReadinessEnum {
 
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum ClientConfigUpdateType {
+    #[default]
+    Delete,
+    Update,
+    Create,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
 pub enum ClientConfigConfigType {
     #[default]
     #[serde(rename = "player")]
     Player,
     #[serde(rename = "public")]
     Public,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum ClientConfigUpdateType {
-    #[default]
-    Delete,
-    Update,
-    Create,
 }
 

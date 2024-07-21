@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct AsyncDelete {
@@ -153,8 +155,8 @@ pub fn exit() -> Exit {
 
 pub struct Help {
     // Returns information on available functions and types
-    pub target: String,
-    pub format: RemotingHelpFormat,
+    pub target: Option<String>,
+    pub format: Option<RemotingHelpFormat>,
 }
 
 impl IsApiRequest for Help {
@@ -177,7 +179,7 @@ impl IsApiRequest for Help {
     }
 }
 
-pub fn help(target: String, format: RemotingHelpFormat) -> Help {
+pub fn help(target: Option<String>, format: Option<RemotingHelpFormat>) -> Help {
     Help {
         target, format
     }
@@ -274,7 +276,7 @@ pub fn http_async_result(async_token: u32) -> HttpAsyncResult {
 pub struct Subscribe {
     // Subscribes to a given event
     pub event_name: String,
-    pub format: RemotingSerializedFormat,
+    pub format: Option<RemotingSerializedFormat>,
 }
 
 impl IsApiRequest for Subscribe {
@@ -297,7 +299,7 @@ impl IsApiRequest for Subscribe {
     }
 }
 
-pub fn subscribe(event_name: String, format: RemotingSerializedFormat) -> Subscribe {
+pub fn subscribe(event_name: String, format: Option<RemotingSerializedFormat>) -> Subscribe {
     Subscribe {
         event_name, format
     }

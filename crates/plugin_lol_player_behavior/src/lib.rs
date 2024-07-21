@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetLolPlayerBehaviorV1CodeOfConductNotification {
@@ -464,12 +466,9 @@ pub fn put_lol_player_behavior_v_3_reform_card_by_id(id: String) -> PutLolPlayer
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolPlayerBehaviorRestrictionNotification {
-    pub id: u64,
-    pub source: LolPlayerBehaviorNotificationSource,
-    pub games_remaining: i64,
-    pub expiration_millis: u64,
-    pub display_reform_card: bool,
+pub struct LolPlayerBehaviorPlayerBehaviorConfig {
+    pub is_loaded: bool,
+    pub code_of_conduct_enabled: bool,
 }
 
 
@@ -490,9 +489,8 @@ pub struct LolPlayerBehaviorReformCardV2 {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolPlayerBehaviorPlayerBehaviorConfig {
-    pub is_loaded: bool,
-    pub code_of_conduct_enabled: bool,
+pub struct LolPlayerBehaviorCodeOfConductNotification {
+    pub message: String,
 }
 
 
@@ -514,20 +512,12 @@ pub struct LolPlayerBehaviorReformCard {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolPlayerBehaviorBanNotification {
+pub struct LolPlayerBehaviorRestrictionNotification {
     pub id: u64,
     pub source: LolPlayerBehaviorNotificationSource,
-    pub reason: String,
-    pub time_until_ban_expires: u64,
-    pub is_perma_ban: bool,
+    pub games_remaining: i64,
+    pub expiration_millis: u64,
     pub display_reform_card: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolPlayerBehaviorCodeOfConductNotification {
-    pub message: String,
 }
 
 
@@ -543,21 +533,33 @@ pub struct LolPlayerBehaviorReporterFeedback {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct LolPlayerBehaviorReformCardChatLogs {
+    pub pre_game_chat_logs: Vec<String>,
+    pub in_game_chat_logs: Vec<String>,
+    pub post_game_chat_logs: Vec<String>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolPlayerBehaviorBanNotification {
+    pub id: u64,
+    pub source: LolPlayerBehaviorNotificationSource,
+    pub reason: String,
+    pub time_until_ban_expires: u64,
+    pub is_perma_ban: bool,
+    pub display_reform_card: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct LolPlayerBehaviorReporterFeedbackMessage {
     pub title: String,
     pub message: String,
     pub category: String,
     pub locale: String,
     pub key: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolPlayerBehaviorReformCardChatLogs {
-    pub pre_game_chat_logs: Vec<String>,
-    pub in_game_chat_logs: Vec<String>,
-    pub post_game_chat_logs: Vec<String>,
 }
 
 

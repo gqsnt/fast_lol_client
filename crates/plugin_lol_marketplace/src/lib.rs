@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetLolMarketplaceV1ProductsByProductStores {
@@ -99,26 +101,6 @@ pub fn post_lol_marketplace_v_1_products_by_product_purchases(product: String, b
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolMarketplaceResponseStats {
-    pub duration_ms: u32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolMarketplaceCatalogEntryDto {
-    pub id: String,
-    pub product_id: String,
-    pub name: String,
-    pub description: String,
-    pub end_time: String,
-    pub purchase_units: Vec<LolMarketplacePurchaseUnitDto>,
-    pub display_metadata: HashMap<String, String>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LolMarketplacePurchaseTransaction {
     pub purchase_id: String,
     pub product_id: String,
@@ -130,24 +112,42 @@ pub struct LolMarketplacePurchaseTransaction {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolMarketplacePagination {
-    pub offset: u32,
-    pub limit: u32,
-    pub max_limit: u32,
-    pub total: u32,
-    pub previous: String,
-    pub next: String,
+pub struct LolMarketplaceFulfillmentDto {
+    pub delta: i64,
+    pub final_delta: i64,
+    pub name: String,
+    pub max_quantity: i64,
+    pub owned_quantity: u64,
+    pub item_type_id: String,
+    pub item_id: String,
+    pub currency_id: String,
+    pub sub_currency_deltas: HashMap<String, i64>,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolMarketplacePurchaseResponse {
-    pub data: LolMarketplacePurchaseDto,
-    pub paging: LolMarketplacePagination,
-    pub stats: LolMarketplaceResponseStats,
-    pub notes: Vec<String>,
-    pub errors: Vec<LolMarketplaceResponseError>,
+pub struct LolMarketplacePurchaseDto {
+    pub id: String,
+    pub product_id: String,
+    pub store_id: String,
+    pub catalog_entry_id: String,
+    pub purchaser_id: String,
+    pub recipient_id: String,
+    pub purchase_units: Vec<LolMarketplaceFinalPurchaseUnitDto>,
+    pub created_time: String,
+    pub completed_time: String,
+    pub is_reverted: bool,
+    pub reverted_time: String,
+    pub purchase_state: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolMarketplacePaymentOptionDto {
+    pub key: String,
+    pub payments: Vec<LolMarketplacePaymentDto>,
 }
 
 
@@ -173,9 +173,48 @@ pub struct LolMarketplacePurchaseUnitDto {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct LolMarketplaceResponseError {
+    pub message: String,
+    pub type_: String,
+    pub code: u32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolMarketplacePagination {
+    pub offset: u32,
+    pub limit: u32,
+    pub max_limit: u32,
+    pub total: u32,
+    pub previous: String,
+    pub next: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct LolMarketplaceFinalPurchaseUnitDto {
     pub payments: Vec<LolMarketplacePaymentDto>,
     pub fulfillment: LolMarketplaceFulfillmentDto,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolMarketplaceResponseStats {
+    pub duration_ms: u32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolMarketplacePurchaseResponse {
+    pub data: LolMarketplacePurchaseDto,
+    pub paging: LolMarketplacePagination,
+    pub stats: LolMarketplaceResponseStats,
+    pub notes: Vec<String>,
+    pub errors: Vec<LolMarketplaceResponseError>,
 }
 
 
@@ -201,51 +240,14 @@ pub struct LolMarketplaceStoreDto {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolMarketplaceFulfillmentDto {
-    pub delta: i64,
-    pub final_delta: i64,
-    pub name: String,
-    pub max_quantity: i64,
-    pub owned_quantity: u64,
-    pub item_type_id: String,
-    pub item_id: String,
-    pub currency_id: String,
-    pub sub_currency_deltas: HashMap<String, i64>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolMarketplacePaymentOptionDto {
-    pub key: String,
-    pub payments: Vec<LolMarketplacePaymentDto>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolMarketplaceResponseError {
-    pub message: String,
-    pub type_: String,
-    pub code: u32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolMarketplacePurchaseDto {
+pub struct LolMarketplaceCatalogEntryDto {
     pub id: String,
     pub product_id: String,
-    pub store_id: String,
-    pub catalog_entry_id: String,
-    pub purchaser_id: String,
-    pub recipient_id: String,
-    pub purchase_units: Vec<LolMarketplaceFinalPurchaseUnitDto>,
-    pub created_time: String,
-    pub completed_time: String,
-    pub is_reverted: bool,
-    pub reverted_time: String,
-    pub purchase_state: String,
+    pub name: String,
+    pub description: String,
+    pub end_time: String,
+    pub purchase_units: Vec<LolMarketplacePurchaseUnitDto>,
+    pub display_metadata: HashMap<String, String>,
 }
 
 

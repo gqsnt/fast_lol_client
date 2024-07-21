@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetLolKrShutdownLawV1CustomStatus {
@@ -236,15 +238,15 @@ pub fn post_lol_kr_shutdown_law_v_1_rating_screen_acknowledge() -> PostLolKrShut
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolKrShutdownLawShutdownLawNotification {
-    pub type_: LolKrShutdownLawShutdownLawStatus,
+pub struct LolKrShutdownLawRatingScreenInfo {
+    pub shown: bool,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolKrShutdownLawAllQueueShutdownStatus {
-    pub is_all_queues_disabled: bool,
+pub struct LolKrShutdownLawShutdownLawNotification {
+    pub type_: LolKrShutdownLawShutdownLawStatus,
 }
 
 
@@ -257,8 +259,8 @@ pub struct LolKrShutdownLawQueueShutdownStatus {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolKrShutdownLawRatingScreenInfo {
-    pub shown: bool,
+pub struct LolKrShutdownLawAllQueueShutdownStatus {
+    pub is_all_queues_disabled: bool,
 }
 
 

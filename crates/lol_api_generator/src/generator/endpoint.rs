@@ -186,11 +186,11 @@ impl std::fmt::Display for Endpoint {
         let mut helper_fn_params = vec![];
 
         for param in &self.parameters {
-            helper_fn_params.push(format!("{}: {}", param.get_name(), param.type_));
+            helper_fn_params.push(format!("{}: {}", param.get_name(), param.get_type_string()));
         }
 
         for query in &self.queries {
-            helper_fn_params.push(format!("{}: {}", query.get_name(), query.type_));
+            helper_fn_params.push(format!("{}: {}", query.get_name(), query.get_type_string()));
         }
 
         if let Some(body) = &self.body {

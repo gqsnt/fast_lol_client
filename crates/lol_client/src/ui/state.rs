@@ -60,9 +60,6 @@ pub async fn wait_client_available(riot_path: String) -> AppResult<ConnectedStat
     let play = PlayState::new(queues, custom_queues, custom_non_default_queues);
     let summoner_info = client.execute(plugin_lol_summoner::get_lol_summoner_v_1_current_summoner()).await?;
     let state = client.execute(plugin_lol_gameflow::get_lol_gameflow_v_1_gameflow_phase()).await?;
-    let help = client.get_help().await?;
-    let file =  PathBuf::from("../../../../temp").join("help.json");
-    serde_json::to_writer_pretty(std::fs::File::create(&file)?, &help).unwrap();
     Ok(ConnectedState {
         client,
         summoner_info,

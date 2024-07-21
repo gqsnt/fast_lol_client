@@ -5,6 +5,8 @@ use serde_json::{json, Value, to_value};
 use reqwest::Method;
 use common::IsApiRequest;
 
+mod additional;
+
 // ENDPOINTS
 
 pub struct GetLolContentTargetingV1Filters {
@@ -95,15 +97,15 @@ pub fn get_lol_content_targeting_v_1_protected_filters() -> GetLolContentTargeti
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolContentTargetingContentTargetingFilterResponse {
-    pub filters: Vec<String>,
+pub struct LolContentTargetingContentTargetingLocaleResponse {
+    pub locale: String,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolContentTargetingContentTargetingLocaleResponse {
-    pub locale: String,
+pub struct LolContentTargetingContentTargetingFilterResponse {
+    pub filters: Vec<String>,
 }
 
 
