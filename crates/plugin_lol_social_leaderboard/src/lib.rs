@@ -75,6 +75,14 @@ pub fn get_lol_social_leaderboard_v_1_social_leaderboard_data(queue_type: Option
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct LolSocialLeaderboardSocialLeaderboardData {
+    pub row_data: Vec<LolSocialLeaderboardSocialLeaderboardRowData>,
+    pub next_update_time: i64,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct LolSocialLeaderboardSocialLeaderboardRowData {
     pub puuid: String,
     pub summoner_id: u64,
@@ -92,14 +100,6 @@ pub struct LolSocialLeaderboardSocialLeaderboardRowData {
     pub availability: String,
     pub leaderboard_position: i32,
     pub is_giftable: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolSocialLeaderboardSocialLeaderboardData {
-    pub row_data: Vec<LolSocialLeaderboardSocialLeaderboardRowData>,
-    pub next_update_time: i64,
 }
 
 

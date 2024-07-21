@@ -182,17 +182,17 @@ pub fn post_lol_vanguard_v_1_telemetry_system_check(body: LolVanguardVanguardSys
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolVanguardVanguardSession {
-    pub state: LolVanguardVanguardSessionState,
-    pub vanguard_status: i32,
+pub struct LolVanguardVanguardMachineSpecs {
+    pub tpm_2_enabled: bool,
+    pub secure_boot_enabled: bool,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolVanguardVanguardMachineSpecs {
-    pub tpm_2_enabled: bool,
-    pub secure_boot_enabled: bool,
+pub struct LolVanguardVanguardSession {
+    pub state: LolVanguardVanguardSessionState,
+    pub vanguard_status: i32,
 }
 
 

@@ -535,52 +535,45 @@ pub fn post_lol_ranked_v_1_notifications_by_id_acknowledge(id: u64) -> PostLolRa
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolRankedRewardsInfo {
-    pub splits: Vec<LolRankedSeasonSplit>,
-    pub current_split: Option<LolRankedSeasonSplit>,
-    pub reward_info_by_reward_id: LolRankedSplitReward,
-    pub current_split_id: i32,
-    pub current_season_id: i32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolRankedSplitReward {
-    pub reward_type: String,
-    pub quantity: i32,
-    pub description: String,
-    pub id: String,
-    pub regalia_level: Option<i32>,
-    pub points_required: i32,
-    pub split_id: i32,
-    pub champion_id: i32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolRankedLeagueStanding {
-    pub summoner_id: u64,
-    pub puuid: String,
-    pub summoner_name: String,
-    pub position: i32,
-    pub position_delta: i32,
-    pub previous_position: i32,
+pub struct LolRankedAchievedTier {
+    pub queue_type: LolRankedLeagueQueueType,
     pub tier: String,
-    pub division: LolRankedLeagueDivision,
-    pub league_points: i64,
-    pub miniseries_results: Vec<LolRankedMiniseries>,
-    pub wins: u64,
-    pub losses: u64,
-    pub provisional_games_remaining: i32,
-    pub is_provisional: bool,
-    pub previous_season_end_tier: String,
-    pub previous_season_end_division: LolRankedLeagueDivision,
-    pub earned_regalia_reward_ids: Vec<String>,
-    pub ranked_regalia_level: i32,
-    pub pending_promotion: bool,
-    pub pending_demotion: bool,
+    pub division: u64,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolRankedEosNotificationResource {
+    pub notification_name: String,
+    pub notification_type: String,
+    pub season_end_time: i64,
+    pub queue: String,
+    pub tier: String,
+    pub division: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolRankedEosRewardData {
+    pub id: String,
+    pub type_: String,
+    pub override_image_path: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolRankedEosRewardsConfig {
+    pub seasons: LolRankedEosRewardsConfigEntry,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolRankedEosRewardsConfigEntry {
+    pub rewards: LolRankedEosRewardData,
 }
 
 
@@ -625,117 +618,6 @@ pub struct LolRankedLcuLeagueNotification {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolRankedSplitRewardGroup {
-    pub split_points: i32,
-    pub rewards: Vec<LolRankedSplitReward>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolRankedSeasonDto {
-    pub current_season_id: i32,
-    pub current_season_end: i64,
-    pub next_season_start: i64,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolRankedRankedQueueWarnings {
-    pub display_decay_warning: bool,
-    pub time_until_inactivity_status_changes: i64,
-    pub demotion_warning: i32,
-    pub days_until_decay: i32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolRankedRatedLadderInfo {
-    pub queue_type: LolRankedLeagueQueueType,
-    pub standings: Vec<LolRankedRatedLadderStanding>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolRankedEosRewardsConfig {
-    pub seasons: LolRankedEosRewardsConfigEntry,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolRankedSplitPointsNotification {
-    pub split_points_delta: i32,
-    pub split_points_before_game: i32,
-    pub split_points_after_game: i32,
-    pub previous_split_points_required: i32,
-    pub split_points_required: i32,
-    pub next_reward_id: String,
-    pub next_reward_type: String,
-    pub split_points_breakdown: HashMap<String, i32>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolRankedRankedQueueStatsDto {
-    pub queue_type: String,
-    pub provisional_game_threshold: i32,
-    pub provisional_games_remaining: i32,
-    pub tier: String,
-    pub rank: String,
-    pub league_points: i32,
-    pub mini_series_progress: String,
-    pub rated_tier: String,
-    pub rated_rating: i32,
-    pub wins: i32,
-    pub losses: i32,
-    pub highest_tier: String,
-    pub highest_rank: String,
-    pub previous_season_end_tier: String,
-    pub previous_season_end_rank: String,
-    pub previous_season_highest_tier: String,
-    pub previous_season_highest_rank: String,
-    pub warnings: Option<LolRankedRankedQueueWarningsDto>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolRankedVictoriousSkin {
-    pub split_points_by_highest_season_end_tier: HashMap<String, i32>,
-    pub item_instance_id: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolRankedParticipantTiers {
-    pub summoner_id: u64,
-    pub achieved_tiers: Vec<LolRankedAchievedTier>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolRankedRatedLadderStanding {
-    pub summoner_id: u64,
-    pub puuid: String,
-    pub summoner_name: String,
-    pub rated_tier: LolRankedRatedTier,
-    pub league_points: i32,
-    pub wins: i32,
-    pub position: i32,
-    pub position_delta: i32,
-    pub previous_position: i32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LolRankedLeagueDivisionInfo {
     pub tier: String,
     pub division: LolRankedLeagueDivision,
@@ -749,42 +631,47 @@ pub struct LolRankedLeagueDivisionInfo {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolRankedSignedRankedStatsDto {
-    pub queues: Vec<LolRankedRankedQueueStatsDto>,
-    pub earned_regalia_reward_ids: Vec<String>,
-    pub highest_previous_season_end_tier: String,
-    pub highest_previous_season_end_rank: String,
-    pub splits_progress: HashMap<String, i32>,
-    pub current_season_split_points: i32,
-    pub previous_season_split_points: i32,
-    pub seasons: LolRankedSeasonDto,
-    pub jwt: String,
+pub struct LolRankedLeagueLadderInfo {
+    pub queue_type: LolRankedLeagueQueueType,
+    pub tier: String,
+    pub provisional_game_threshold: i32,
+    pub divisions: Vec<LolRankedLeagueDivisionInfo>,
+    pub next_apex_update_millis: i64,
+    pub requested_ranked_entry: Option<LolRankedLeagueStanding>,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolRankedEosRewardsConfigEntry {
-    pub rewards: LolRankedEosRewardData,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolRankedRankedStats {
-    pub queues: Vec<LolRankedRankedQueueStats>,
-    pub queue_map: LolRankedRankedQueueStats,
-    pub highest_ranked_entry: Option<LolRankedRankedQueueStats>,
-    pub highest_ranked_entry_sr: Option<LolRankedRankedQueueStats>,
+pub struct LolRankedLeagueStanding {
+    pub summoner_id: u64,
+    pub puuid: String,
+    pub summoner_name: String,
+    pub position: i32,
+    pub position_delta: i32,
+    pub previous_position: i32,
+    pub tier: String,
+    pub division: LolRankedLeagueDivision,
+    pub league_points: i64,
+    pub miniseries_results: Vec<LolRankedMiniseries>,
+    pub wins: u64,
+    pub losses: u64,
+    pub provisional_games_remaining: i32,
+    pub is_provisional: bool,
+    pub previous_season_end_tier: String,
+    pub previous_season_end_division: LolRankedLeagueDivision,
     pub earned_regalia_reward_ids: Vec<String>,
     pub ranked_regalia_level: i32,
-    pub highest_current_season_reached_tier_sr: String,
-    pub highest_previous_season_end_tier: String,
-    pub highest_previous_season_end_division: LolRankedLeagueDivision,
-    pub splits_progress: HashMap<String, i32>,
-    pub current_season_split_points: i32,
-    pub previous_season_split_points: i32,
-    pub seasons: LolRankedSeasonDto,
+    pub pending_promotion: bool,
+    pub pending_demotion: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolRankedParticipantTiers {
+    pub summoner_id: u64,
+    pub achieved_tiers: Vec<LolRankedAchievedTier>,
 }
 
 
@@ -815,31 +702,108 @@ pub struct LolRankedRankedQueueStats {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolRankedLeagueLadderInfo {
-    pub queue_type: LolRankedLeagueQueueType,
-    pub tier: String,
+pub struct LolRankedRankedQueueStatsDto {
+    pub queue_type: String,
     pub provisional_game_threshold: i32,
-    pub divisions: Vec<LolRankedLeagueDivisionInfo>,
-    pub next_apex_update_millis: i64,
-    pub requested_ranked_entry: Option<LolRankedLeagueStanding>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolRankedEosRewardData {
-    pub id: String,
-    pub type_: String,
-    pub override_image_path: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolRankedAchievedTier {
-    pub queue_type: LolRankedLeagueQueueType,
+    pub provisional_games_remaining: i32,
     pub tier: String,
-    pub division: u64,
+    pub rank: String,
+    pub league_points: i32,
+    pub mini_series_progress: String,
+    pub rated_tier: String,
+    pub rated_rating: i32,
+    pub wins: i32,
+    pub losses: i32,
+    pub highest_tier: String,
+    pub highest_rank: String,
+    pub previous_season_end_tier: String,
+    pub previous_season_end_rank: String,
+    pub previous_season_highest_tier: String,
+    pub previous_season_highest_rank: String,
+    pub warnings: Option<LolRankedRankedQueueWarningsDto>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolRankedRankedQueueWarnings {
+    pub display_decay_warning: bool,
+    pub time_until_inactivity_status_changes: i64,
+    pub demotion_warning: i32,
+    pub days_until_decay: i32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolRankedRankedQueueWarningsDto {
+    pub display_decay_warning: bool,
+    pub time_until_inactivity_status_changes: i64,
+    pub demotion_warning: i32,
+    pub apex_days_until_decay: i32,
+    pub days_until_decay: i32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolRankedRankedStats {
+    pub queues: Vec<LolRankedRankedQueueStats>,
+    pub queue_map: LolRankedRankedQueueStats,
+    pub highest_ranked_entry: Option<LolRankedRankedQueueStats>,
+    pub highest_ranked_entry_sr: Option<LolRankedRankedQueueStats>,
+    pub earned_regalia_reward_ids: Vec<String>,
+    pub ranked_regalia_level: i32,
+    pub highest_current_season_reached_tier_sr: String,
+    pub highest_previous_season_end_tier: String,
+    pub highest_previous_season_end_division: LolRankedLeagueDivision,
+    pub splits_progress: HashMap<String, i32>,
+    pub current_season_split_points: i32,
+    pub previous_season_split_points: i32,
+    pub seasons: LolRankedSeasonDto,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolRankedRatedLadderInfo {
+    pub queue_type: LolRankedLeagueQueueType,
+    pub standings: Vec<LolRankedRatedLadderStanding>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolRankedRatedLadderStanding {
+    pub summoner_id: u64,
+    pub puuid: String,
+    pub summoner_name: String,
+    pub rated_tier: LolRankedRatedTier,
+    pub league_points: i32,
+    pub wins: i32,
+    pub position: i32,
+    pub position_delta: i32,
+    pub previous_position: i32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolRankedRewardsInfo {
+    pub splits: Vec<LolRankedSeasonSplit>,
+    pub current_split: Option<LolRankedSeasonSplit>,
+    pub reward_info_by_reward_id: LolRankedSplitReward,
+    pub current_split_id: i32,
+    pub current_season_id: i32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolRankedSeasonDto {
+    pub current_season_id: i32,
+    pub current_season_end: i64,
+    pub next_season_start: i64,
 }
 
 
@@ -852,6 +816,21 @@ pub struct LolRankedSeasonSplit {
     pub end_time_millis: u64,
     pub reward_track: Vec<LolRankedSplitRewardGroup>,
     pub victorious_skin_reward_group: LolRankedVictoriousSkin,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolRankedSignedRankedStatsDto {
+    pub queues: Vec<LolRankedRankedQueueStatsDto>,
+    pub earned_regalia_reward_ids: Vec<String>,
+    pub highest_previous_season_end_tier: String,
+    pub highest_previous_season_end_rank: String,
+    pub splits_progress: HashMap<String, i32>,
+    pub current_season_split_points: i32,
+    pub previous_season_split_points: i32,
+    pub seasons: LolRankedSeasonDto,
+    pub jwt: String,
 }
 
 
@@ -875,40 +854,63 @@ pub struct LolRankedSocialLeaderboardRankedQueueStats {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolRankedRankedQueueWarningsDto {
-    pub display_decay_warning: bool,
-    pub time_until_inactivity_status_changes: i64,
-    pub demotion_warning: i32,
-    pub apex_days_until_decay: i32,
-    pub days_until_decay: i32,
+pub struct LolRankedSplitPointsNotification {
+    pub split_points_delta: i32,
+    pub split_points_before_game: i32,
+    pub split_points_after_game: i32,
+    pub previous_split_points_required: i32,
+    pub split_points_required: i32,
+    pub next_reward_id: String,
+    pub next_reward_type: String,
+    pub split_points_breakdown: HashMap<String, i32>,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolRankedEosNotificationResource {
-    pub notification_name: String,
-    pub notification_type: String,
-    pub season_end_time: i64,
-    pub queue: String,
-    pub tier: String,
-    pub division: String,
+pub struct LolRankedSplitReward {
+    pub reward_type: String,
+    pub quantity: i32,
+    pub description: String,
+    pub id: String,
+    pub regalia_level: Option<i32>,
+    pub points_required: i32,
+    pub split_id: i32,
+    pub champion_id: i32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolRankedSplitRewardGroup {
+    pub split_points: i32,
+    pub rewards: Vec<LolRankedSplitReward>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolRankedVictoriousSkin {
+    pub split_points_by_highest_season_end_tier: HashMap<String, i32>,
+    pub item_instance_id: String,
 }
 
 
 // ENUMS
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum LolRankedNotificationDisplayType {
+pub enum LolRankedLeagueDivision {
     #[default]
-    #[serde(rename = "VIGNETTE")]
-    Vignette,
-    #[serde(rename = "MODAL")]
-    Modal,
-    #[serde(rename = "TOAST")]
-    Toast,
-    #[serde(rename = "NONE")]
-    None,
+    #[serde(rename = "NA")]
+    Na,
+    V,
+    #[serde(rename = "IV")]
+    Iv,
+    #[serde(rename = "III")]
+    Iii,
+    #[serde(rename = "II")]
+    Ii,
+    I,
 }
 
 
@@ -946,6 +948,20 @@ pub enum LolRankedMiniseries {
 
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum LolRankedNotificationDisplayType {
+    #[default]
+    #[serde(rename = "VIGNETTE")]
+    Vignette,
+    #[serde(rename = "MODAL")]
+    Modal,
+    #[serde(rename = "TOAST")]
+    Toast,
+    #[serde(rename = "NONE")]
+    None,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
 pub enum LolRankedRatedTier {
     #[default]
     #[serde(rename = "ORANGE")]
@@ -960,21 +976,5 @@ pub enum LolRankedRatedTier {
     Gray,
     #[serde(rename = "NONE")]
     None,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum LolRankedLeagueDivision {
-    #[default]
-    #[serde(rename = "NA")]
-    Na,
-    V,
-    #[serde(rename = "IV")]
-    Iv,
-    #[serde(rename = "III")]
-    Iii,
-    #[serde(rename = "II")]
-    Ii,
-    I,
 }
 

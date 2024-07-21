@@ -184,19 +184,24 @@ pub fn post_lol_account_verification_v_1_send_deactivation_pin() -> PostLolAccou
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolAccountVerificationIsVerifiedResponse {
-    pub success: bool,
-    pub message: String,
-    pub status: i32,
+pub struct LolAccountVerificationConfirmActivationPinRequest {
+    pub one_time_pin: String,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolAccountVerificationPhoneNumberResponse {
-    pub data: LolAccountVerificationPhoneNumberResponseData,
-    pub error: LolAccountVerificationResponseError,
-    pub client_message_id: String,
+pub struct LolAccountVerificationConfirmDeactivationPinRequest {
+    pub one_time_pin: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolAccountVerificationIsVerifiedResponse {
+    pub success: bool,
+    pub message: String,
+    pub status: i32,
 }
 
 
@@ -211,23 +216,17 @@ pub struct LolAccountVerificationPhoneNumberObfuscated {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct LolAccountVerificationPhoneNumberResponse {
+    pub data: LolAccountVerificationPhoneNumberResponseData,
+    pub error: LolAccountVerificationResponseError,
+    pub client_message_id: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct LolAccountVerificationPhoneNumberResponseData {
     pub phone_number_obfuscated: LolAccountVerificationPhoneNumberObfuscated,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolAccountVerificationConfirmActivationPinRequest {
-    pub one_time_pin: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolAccountVerificationSendActivationPinRequest {
-    pub phone_number: String,
-    pub locale: String,
 }
 
 
@@ -241,8 +240,9 @@ pub struct LolAccountVerificationResponseError {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolAccountVerificationConfirmDeactivationPinRequest {
-    pub one_time_pin: String,
+pub struct LolAccountVerificationSendActivationPinRequest {
+    pub phone_number: String,
+    pub locale: String,
 }
 
 

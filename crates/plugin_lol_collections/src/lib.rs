@@ -130,6 +130,26 @@ pub fn get_lol_collections_v_1_inventories_by_summoner_id_ward_skins_by_ward_ski
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct LolCollectionsCollectionsOwnership {
+    pub loyalty_reward: bool,
+    pub xbox_gp_reward: bool,
+    pub owned: bool,
+    pub rental: LolCollectionsCollectionsRental,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolCollectionsCollectionsRental {
+    pub end_date: u64,
+    pub purchase_date: u64,
+    pub win_count_remaining: i32,
+    pub rented: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct LolCollectionsCollectionsSummonerBackdrop {
     pub summoner_id: u64,
     pub account_id: u64,
@@ -154,29 +174,9 @@ pub struct LolCollectionsCollectionsSummonerBackdropAugments {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolCollectionsCollectionsRental {
-    pub end_date: u64,
-    pub purchase_date: u64,
-    pub win_count_remaining: i32,
-    pub rented: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LolCollectionsCollectionsSummonerSpells {
     pub summoner_id: u64,
     pub spells: Vec<u64>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolCollectionsCollectionsOwnership {
-    pub loyalty_reward: bool,
-    pub xbox_gp_reward: bool,
-    pub owned: bool,
-    pub rental: LolCollectionsCollectionsRental,
 }
 
 

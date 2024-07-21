@@ -65,35 +65,6 @@ pub fn get_lol_banners_v_1_current_summoner_flags_equipped() -> GetLolBannersV1C
 }
 
 
-pub struct PutLolBannersV1CurrentSummonerFlagsEquipped {
-
-    pub body: LolBannersBannerFlag,
-}
-
-impl IsApiRequest for PutLolBannersV1CurrentSummonerFlagsEquipped {
-    const METHOD: Method = Method::PUT;
-    type ReturnType = LolBannersBannerFlag;
-
-    fn get_url(&self) -> String {
-        "/lol-banners/v1/current-summoner/flags/equipped".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn put_lol_banners_v_1_current_summoner_flags_equipped(body: LolBannersBannerFlag) -> PutLolBannersV1CurrentSummonerFlagsEquipped {
-    PutLolBannersV1CurrentSummonerFlagsEquipped {
-        body
-    }
-}
-
-
 pub struct GetLolBannersV1CurrentSummonerFramesEquipped {
 
 }
@@ -147,6 +118,35 @@ impl IsApiRequest for GetLolBannersV1PlayersByPuuidFlagsEquipped {
 pub fn get_lol_banners_v_1_players_by_puuid_flags_equipped(puuid: String) -> GetLolBannersV1PlayersByPuuidFlagsEquipped {
     GetLolBannersV1PlayersByPuuidFlagsEquipped {
         puuid
+    }
+}
+
+
+pub struct PutLolBannersV1CurrentSummonerFlagsEquipped {
+
+    pub body: LolBannersBannerFlag,
+}
+
+impl IsApiRequest for PutLolBannersV1CurrentSummonerFlagsEquipped {
+    const METHOD: Method = Method::PUT;
+    type ReturnType = LolBannersBannerFlag;
+
+    fn get_url(&self) -> String {
+        "/lol-banners/v1/current-summoner/flags/equipped".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn put_lol_banners_v_1_current_summoner_flags_equipped(body: LolBannersBannerFlag) -> PutLolBannersV1CurrentSummonerFlagsEquipped {
+    PutLolBannersV1CurrentSummonerFlagsEquipped {
+        body
     }
 }
 

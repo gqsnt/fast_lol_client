@@ -298,42 +298,39 @@ pub fn post_lol_champion_mastery_v_1_scouting(body: Vec<String>) -> PostLolChamp
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolChampionMasteryTopChampionMasteries {
-    pub puuid: String,
-    pub summoner_id: u64,
-    pub score: u64,
-    pub masteries: Vec<LolChampionMasteryChampionMastery>,
+pub struct ChampionMasteryPublicDto {
+    pub champion_id: i32,
+    pub champion_level: i32,
+    pub champion_points: i32,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolChampionMasteryChampionMasteryRewardGrantNotification {
-    pub id: String,
-    pub game_id: i64,
+pub struct ChampionScoutingDto {
+    pub champion_id: i32,
+    pub win_count: i32,
+    pub game_count: i32,
+    pub kda: f32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChampionMasteryChampionMastery {
     pub puuid: String,
     pub champion_id: i32,
-    pub player_grade: String,
-    pub message_key: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChampionMasteryChampionSet {
-    pub champions: Vec<i32>,
-    pub total_milestone: i32,
-    pub completed: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChampionMasteryUiChampionMasteryCustomReward {
-    pub type_: String,
-    pub level: i32,
-    pub reward_value: String,
-    pub quantity: i32,
+    pub champion_level: i32,
+    pub champion_points: i32,
+    pub last_play_time: u64,
+    pub champion_points_since_last_level: i32,
+    pub champion_points_until_next_level: i32,
+    pub mark_required_for_next_level: i32,
+    pub tokens_earned: i32,
+    pub champion_season_milestone: i32,
+    pub milestone_grades: Vec<String>,
+    pub next_season_milestone: LolChampionMasterySeasonMilestoneRequireAndRewards,
+    pub highest_grade: String,
 }
 
 
@@ -379,20 +376,39 @@ pub struct LolChampionMasteryChampionMasteryGrade {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct ChampionScoutingDto {
+pub struct LolChampionMasteryChampionMasteryMini {
+    pub puuid: String,
     pub champion_id: i32,
-    pub win_count: i32,
-    pub game_count: i32,
-    pub kda: f32,
+    pub champion_level: i32,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolChampionMasteryChampionMasteryMini {
+pub struct LolChampionMasteryChampionMasteryRewardGrantNotification {
+    pub id: String,
+    pub game_id: i64,
     pub puuid: String,
     pub champion_id: i32,
-    pub champion_level: i32,
+    pub player_grade: String,
+    pub message_key: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChampionMasteryChampionSet {
+    pub champions: Vec<i32>,
+    pub total_milestone: i32,
+    pub completed: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChampionMasteryRewardConfigurationEntry {
+    pub reward_value: String,
+    pub maximum_reward: i32,
 }
 
 
@@ -408,57 +424,20 @@ pub struct LolChampionMasterySeasonMilestoneRequireAndRewards {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolChampionMasteryRewardConfigurationEntry {
-    pub reward_value: String,
-    pub maximum_reward: i32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChampionMasteryChampionMastery {
-    pub puuid: String,
-    pub champion_id: i32,
-    pub champion_level: i32,
-    pub champion_points: i32,
-    pub last_play_time: u64,
-    pub champion_points_since_last_level: i32,
-    pub champion_points_until_next_level: i32,
-    pub mark_required_for_next_level: i32,
-    pub tokens_earned: i32,
-    pub champion_season_milestone: i32,
-    pub milestone_grades: Vec<String>,
-    pub next_season_milestone: LolChampionMasterySeasonMilestoneRequireAndRewards,
-    pub highest_grade: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct ChampionMasteryPublicDto {
-    pub champion_id: i32,
-    pub champion_level: i32,
-    pub champion_points: i32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct RankedScoutingDto {
-    pub player_id: u64,
-    pub puuid: String,
-    pub total_mastery_score: u64,
-    pub top_masteries: Vec<ChampionMasteryPublicDto>,
-    pub top_season_champions: Vec<ChampionScoutingDto>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LolChampionMasterySetRewardEntry {
     pub id: String,
     pub type_: String,
     pub value: i32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChampionMasteryTopChampionMasteries {
+    pub puuid: String,
+    pub summoner_id: u64,
+    pub score: u64,
+    pub masteries: Vec<LolChampionMasteryChampionMastery>,
 }
 
 
@@ -473,6 +452,27 @@ pub struct LolChampionMasteryUiAllChampionMasteryWithSets {
     pub custom_rewards: Vec<LolChampionMasteryUiChampionMasteryCustomReward>,
     pub total_score: i32,
     pub champion_count_by_milestone: HashMap<String, i32>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChampionMasteryUiChampionMasteryCustomReward {
+    pub type_: String,
+    pub level: i32,
+    pub reward_value: String,
+    pub quantity: i32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct RankedScoutingDto {
+    pub player_id: u64,
+    pub puuid: String,
+    pub total_mastery_score: u64,
+    pub top_masteries: Vec<ChampionMasteryPublicDto>,
+    pub top_season_champions: Vec<ChampionScoutingDto>,
 }
 
 

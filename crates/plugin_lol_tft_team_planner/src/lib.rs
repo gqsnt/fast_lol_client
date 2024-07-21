@@ -9,35 +9,6 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct PatchLolTftTeamPlannerV1TeamChampions {
-
-    pub body: Vec<u64>,
-}
-
-impl IsApiRequest for PatchLolTftTeamPlannerV1TeamChampions {
-    const METHOD: Method = Method::PATCH;
-    type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-tft-team-planner/v1/team/champions".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn patch_lol_tft_team_planner_v_1_team_champions(body: Vec<u64>) -> PatchLolTftTeamPlannerV1TeamChampions {
-    PatchLolTftTeamPlannerV1TeamChampions {
-        body
-    }
-}
-
-
 pub struct DeleteLolTftTeamPlannerV1TeamChampions {
 
 }
@@ -62,35 +33,6 @@ impl IsApiRequest for DeleteLolTftTeamPlannerV1TeamChampions {
 pub fn delete_lol_tft_team_planner_v_1_team_champions() -> DeleteLolTftTeamPlannerV1TeamChampions {
     DeleteLolTftTeamPlannerV1TeamChampions {
         
-    }
-}
-
-
-pub struct PostLolTftTeamPlannerV1TeamChampionsByIdByChampionName {
-
-    pub champion_name: String,
-}
-
-impl IsApiRequest for PostLolTftTeamPlannerV1TeamChampionsByIdByChampionName {
-    const METHOD: Method = Method::POST;
-    type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-tft-team-planner/v1/team/championsById/{}", self.champion_name)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn post_lol_tft_team_planner_v_1_team_champions_by_id_by_champion_name(champion_name: String) -> PostLolTftTeamPlannerV1TeamChampionsByIdByChampionName {
-    PostLolTftTeamPlannerV1TeamChampionsByIdByChampionName {
-        champion_name
     }
 }
 
@@ -124,36 +66,6 @@ pub fn delete_lol_tft_team_planner_v_1_team_champions_by_id_by_champion_name(cha
 }
 
 
-pub struct PostLolTftTeamPlannerV1TeamChampionsByIndex {
-
-    pub index: u64,
-    pub body: String,
-}
-
-impl IsApiRequest for PostLolTftTeamPlannerV1TeamChampionsByIndex {
-    const METHOD: Method = Method::POST;
-    type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-tft-team-planner/v1/team/champions/{}", self.index)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn post_lol_tft_team_planner_v_1_team_champions_by_index(index: u64, body: String) -> PostLolTftTeamPlannerV1TeamChampionsByIndex {
-    PostLolTftTeamPlannerV1TeamChampionsByIndex {
-        index, body
-    }
-}
-
-
 pub struct DeleteLolTftTeamPlannerV1TeamChampionsByIndex {
 
     pub index: u64,
@@ -179,34 +91,6 @@ impl IsApiRequest for DeleteLolTftTeamPlannerV1TeamChampionsByIndex {
 pub fn delete_lol_tft_team_planner_v_1_team_champions_by_index(index: u64) -> DeleteLolTftTeamPlannerV1TeamChampionsByIndex {
     DeleteLolTftTeamPlannerV1TeamChampionsByIndex {
         index
-    }
-}
-
-
-pub struct GetLolTftTeamPlannerV1TeamDirty {
-
-}
-
-impl IsApiRequest for GetLolTftTeamPlannerV1TeamDirty {
-    const METHOD: Method = Method::GET;
-    type ReturnType = LolTftTeamPlannerTeamPlan;
-
-    fn get_url(&self) -> String {
-        "/lol-tft-team-planner/v1/team/dirty".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn get_lol_tft_team_planner_v_1_team_dirty() -> GetLolTftTeamPlannerV1TeamDirty {
-    GetLolTftTeamPlannerV1TeamDirty {
-        
     }
 }
 
@@ -295,21 +179,20 @@ pub fn get_lol_tft_team_planner_v_1_ftue_has_viewed() -> GetLolTftTeamPlannerV1F
 }
 
 
-pub struct PatchLolTftTeamPlannerV1FtueHasViewed {
+pub struct GetLolTftTeamPlannerV1TeamDirty {
 
-    pub body: bool,
 }
 
-impl IsApiRequest for PatchLolTftTeamPlannerV1FtueHasViewed {
-    const METHOD: Method = Method::PATCH;
-    type ReturnType = HashMap<String, String>;
+impl IsApiRequest for GetLolTftTeamPlannerV1TeamDirty {
+    const METHOD: Method = Method::GET;
+    type ReturnType = LolTftTeamPlannerTeamPlan;
 
     fn get_url(&self) -> String {
-        "/lol-tft-team-planner/v1/ftue/hasViewed".to_string()
+        "/lol-tft-team-planner/v1/team/dirty".to_string()
     }
 
     fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
+        None
     }
 
     fn get_query_params(&self) -> Option<Value> {
@@ -317,9 +200,9 @@ impl IsApiRequest for PatchLolTftTeamPlannerV1FtueHasViewed {
     }
 }
 
-pub fn patch_lol_tft_team_planner_v_1_ftue_has_viewed(body: bool) -> PatchLolTftTeamPlannerV1FtueHasViewed {
-    PatchLolTftTeamPlannerV1FtueHasViewed {
-        body
+pub fn get_lol_tft_team_planner_v_1_team_dirty() -> GetLolTftTeamPlannerV1TeamDirty {
+    GetLolTftTeamPlannerV1TeamDirty {
+        
     }
 }
 
@@ -380,17 +263,17 @@ pub fn get_lol_tft_team_planner_v_1_team_reminders() -> GetLolTftTeamPlannerV1Te
 }
 
 
-pub struct PatchLolTftTeamPlannerV1TeamReminders {
+pub struct PatchLolTftTeamPlannerV1FtueHasViewed {
 
     pub body: bool,
 }
 
-impl IsApiRequest for PatchLolTftTeamPlannerV1TeamReminders {
+impl IsApiRequest for PatchLolTftTeamPlannerV1FtueHasViewed {
     const METHOD: Method = Method::PATCH;
     type ReturnType = HashMap<String, String>;
 
     fn get_url(&self) -> String {
-        "/lol-tft-team-planner/v1/team/reminders".to_string()
+        "/lol-tft-team-planner/v1/ftue/hasViewed".to_string()
     }
 
     fn get_body(&self) -> Option<Value> {
@@ -402,8 +285,8 @@ impl IsApiRequest for PatchLolTftTeamPlannerV1TeamReminders {
     }
 }
 
-pub fn patch_lol_tft_team_planner_v_1_team_reminders(body: bool) -> PatchLolTftTeamPlannerV1TeamReminders {
-    PatchLolTftTeamPlannerV1TeamReminders {
+pub fn patch_lol_tft_team_planner_v_1_ftue_has_viewed(body: bool) -> PatchLolTftTeamPlannerV1FtueHasViewed {
+    PatchLolTftTeamPlannerV1FtueHasViewed {
         body
     }
 }
@@ -434,6 +317,123 @@ impl IsApiRequest for PatchLolTftTeamPlannerV1Set {
 pub fn patch_lol_tft_team_planner_v_1_set(body: String) -> PatchLolTftTeamPlannerV1Set {
     PatchLolTftTeamPlannerV1Set {
         body
+    }
+}
+
+
+pub struct PatchLolTftTeamPlannerV1TeamChampions {
+
+    pub body: Vec<u64>,
+}
+
+impl IsApiRequest for PatchLolTftTeamPlannerV1TeamChampions {
+    const METHOD: Method = Method::PATCH;
+    type ReturnType = HashMap<String, String>;
+
+    fn get_url(&self) -> String {
+        "/lol-tft-team-planner/v1/team/champions".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn patch_lol_tft_team_planner_v_1_team_champions(body: Vec<u64>) -> PatchLolTftTeamPlannerV1TeamChampions {
+    PatchLolTftTeamPlannerV1TeamChampions {
+        body
+    }
+}
+
+
+pub struct PatchLolTftTeamPlannerV1TeamReminders {
+
+    pub body: bool,
+}
+
+impl IsApiRequest for PatchLolTftTeamPlannerV1TeamReminders {
+    const METHOD: Method = Method::PATCH;
+    type ReturnType = HashMap<String, String>;
+
+    fn get_url(&self) -> String {
+        "/lol-tft-team-planner/v1/team/reminders".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn patch_lol_tft_team_planner_v_1_team_reminders(body: bool) -> PatchLolTftTeamPlannerV1TeamReminders {
+    PatchLolTftTeamPlannerV1TeamReminders {
+        body
+    }
+}
+
+
+pub struct PostLolTftTeamPlannerV1TeamChampionsByIdByChampionName {
+
+    pub champion_name: String,
+}
+
+impl IsApiRequest for PostLolTftTeamPlannerV1TeamChampionsByIdByChampionName {
+    const METHOD: Method = Method::POST;
+    type ReturnType = HashMap<String, String>;
+
+    fn get_url(&self) -> String {
+        format!("/lol-tft-team-planner/v1/team/championsById/{}", self.champion_name)
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        None
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn post_lol_tft_team_planner_v_1_team_champions_by_id_by_champion_name(champion_name: String) -> PostLolTftTeamPlannerV1TeamChampionsByIdByChampionName {
+    PostLolTftTeamPlannerV1TeamChampionsByIdByChampionName {
+        champion_name
+    }
+}
+
+
+pub struct PostLolTftTeamPlannerV1TeamChampionsByIndex {
+
+    pub index: u64,
+    pub body: String,
+}
+
+impl IsApiRequest for PostLolTftTeamPlannerV1TeamChampionsByIndex {
+    const METHOD: Method = Method::POST;
+    type ReturnType = HashMap<String, String>;
+
+    fn get_url(&self) -> String {
+        format!("/lol-tft-team-planner/v1/team/champions/{}", self.index)
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn post_lol_tft_team_planner_v_1_team_champions_by_index(index: u64, body: String) -> PostLolTftTeamPlannerV1TeamChampionsByIndex {
+    PostLolTftTeamPlannerV1TeamChampionsByIndex {
+        index, body
     }
 }
 
@@ -470,19 +470,8 @@ pub fn put_lol_tft_team_planner_v_1_team() -> PutLolTftTeamPlannerV1Team {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolTftTeamPlannerTeamSettings {
-    pub teams: Vec<LolTftTeamPlannerTeamPlan>,
-    pub reminders_enabled: bool,
-    pub registered_team_index: u64,
-    pub has_viewed_team_planner: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolTftTeamPlannerTftTeamPlannerConfig {
-    pub enabled: bool,
-    pub multiple_sets_enabled: bool,
+pub struct LolTftTeamPlannerChampion {
+    pub champion_id: String,
 }
 
 
@@ -496,8 +485,20 @@ pub struct LolTftTeamPlannerTeamPlan {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolTftTeamPlannerChampion {
-    pub champion_id: String,
+pub struct LolTftTeamPlannerTeamSettings {
+    pub teams: Vec<LolTftTeamPlannerTeamPlan>,
+    pub reminders_enabled: bool,
+    pub registered_team_index: u64,
+    pub has_viewed_team_planner: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolTftTeamPlannerTftTeamPlannerConfig {
+    pub enabled: bool,
+    pub multiple_sets_enabled: bool,
+    pub multiple_teams_enabled: bool,
 }
 
 

@@ -69,20 +69,20 @@ pub fn get_lol_service_status_v_1_ticker_messages() -> GetLolServiceStatusV1Tick
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct LolServiceStatusServiceStatusResource {
+    pub status: String,
+    pub human_readable_url: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct LolServiceStatusTickerMessage {
     pub severity: String,
     pub created_at: String,
     pub updated_at: String,
     pub heading: String,
     pub message: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolServiceStatusServiceStatusResource {
-    pub status: String,
-    pub human_readable_url: String,
 }
 
 

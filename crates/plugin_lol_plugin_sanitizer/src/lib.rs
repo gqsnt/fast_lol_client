@@ -99,23 +99,17 @@ pub fn post_sanitizer_v_1_sanitize(body: SanitizerSanitizeRequest) -> PostSaniti
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct SanitizerSanitizerStatus {
-    pub ready: bool,
-    pub region: String,
-    pub locale: String,
-    pub filtered_word_counts_by_level: HashMap<String, u32>,
-    pub whitelisted_word_counts_by_level: HashMap<String, u32>,
-    pub breaking_chars_count: u32,
-    pub projected_chars_count: u32,
+pub struct SanitizerContainsSanitizedRequest {
+    pub text: String,
+    pub level: Option<u32>,
+    pub aggressive_scan: Option<bool>,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct SanitizerContainsSanitizedRequest {
-    pub text: String,
-    pub level: Option<u32>,
-    pub aggressive_scan: Option<bool>,
+pub struct SanitizerContainsSanitizedResponse {
+    pub contains: bool,
 }
 
 
@@ -140,8 +134,14 @@ pub struct SanitizerSanitizeResponse {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct SanitizerContainsSanitizedResponse {
-    pub contains: bool,
+pub struct SanitizerSanitizerStatus {
+    pub ready: bool,
+    pub region: String,
+    pub locale: String,
+    pub filtered_word_counts_by_level: HashMap<String, u32>,
+    pub whitelisted_word_counts_by_level: HashMap<String, u32>,
+    pub breaking_chars_count: u32,
+    pub projected_chars_count: u32,
 }
 
 

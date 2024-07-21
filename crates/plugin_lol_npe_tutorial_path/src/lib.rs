@@ -65,35 +65,6 @@ pub fn get_lol_npe_tutorial_path_v_1_settings() -> GetLolNpeTutorialPathV1Settin
 }
 
 
-pub struct PutLolNpeTutorialPathV1Settings {
-
-    pub body: LolNpeTutorialPathAccountSettingsTutorial,
-}
-
-impl IsApiRequest for PutLolNpeTutorialPathV1Settings {
-    const METHOD: Method = Method::PUT;
-    type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-npe-tutorial-path/v1/settings".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn put_lol_npe_tutorial_path_v_1_settings(body: LolNpeTutorialPathAccountSettingsTutorial) -> PutLolNpeTutorialPathV1Settings {
-    PutLolNpeTutorialPathV1Settings {
-        body
-    }
-}
-
-
 pub struct GetLolNpeTutorialPathV1Tutorials {
 
 }
@@ -150,6 +121,35 @@ pub fn patch_lol_npe_tutorial_path_v_1_tutorials_init() -> PatchLolNpeTutorialPa
 }
 
 
+pub struct PutLolNpeTutorialPathV1Settings {
+
+    pub body: LolNpeTutorialPathAccountSettingsTutorial,
+}
+
+impl IsApiRequest for PutLolNpeTutorialPathV1Settings {
+    const METHOD: Method = Method::PUT;
+    type ReturnType = Value;
+
+    fn get_url(&self) -> String {
+        "/lol-npe-tutorial-path/v1/settings".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn put_lol_npe_tutorial_path_v_1_settings(body: LolNpeTutorialPathAccountSettingsTutorial) -> PutLolNpeTutorialPathV1Settings {
+    PutLolNpeTutorialPathV1Settings {
+        body
+    }
+}
+
+
 pub struct PutLolNpeTutorialPathV1TutorialsByTutorialIdView {
 
     pub tutorial_id: String,
@@ -183,6 +183,15 @@ pub fn put_lol_npe_tutorial_path_v_1_tutorials_by_tutorial_id_view(tutorial_id: 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct LolNpeTutorialPathAccountSettingsTutorial {
+    pub has_seen_tutorial_path: bool,
+    pub has_skipped_tutorial_path: bool,
+    pub should_see_new_player_experience: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct LolNpeTutorialPathCollectionsChampion {
     pub alias: String,
     pub ban_vo_path: String,
@@ -194,6 +203,14 @@ pub struct LolNpeTutorialPathCollectionsChampion {
     pub stinger_sfx_path: String,
     pub passive: LolNpeTutorialPathCollectionsChampionSpell,
     pub spells: Vec<LolNpeTutorialPathCollectionsChampionSpell>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolNpeTutorialPathCollectionsChampionSpell {
+    pub name: String,
+    pub description: String,
 }
 
 
@@ -217,14 +234,6 @@ pub struct LolNpeTutorialPathTutorial {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolNpeTutorialPathCollectionsChampionSpell {
-    pub name: String,
-    pub description: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LolNpeTutorialPathTutorialReward {
     pub reward_type: String,
     pub description: String,
@@ -233,15 +242,6 @@ pub struct LolNpeTutorialPathTutorialReward {
     pub item_id: String,
     pub sequence: i32,
     pub unique_name: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolNpeTutorialPathAccountSettingsTutorial {
-    pub has_seen_tutorial_path: bool,
-    pub has_skipped_tutorial_path: bool,
-    pub should_see_new_player_experience: bool,
 }
 
 

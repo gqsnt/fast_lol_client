@@ -581,35 +581,6 @@ pub fn get_lol_loot_v_1_player_loot_by_loot_id_context_menu(loot_id: String) -> 
 }
 
 
-pub struct PostLolLootV1PlayerLootByLootIdContextMenu {
-
-    pub loot_id: String,
-}
-
-impl IsApiRequest for PostLolLootV1PlayerLootByLootIdContextMenu {
-    const METHOD: Method = Method::POST;
-    type ReturnType = Vec<LolLootContextMenu>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-loot/v1/player-loot/{}/context-menu", self.loot_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn post_lol_loot_v_1_player_loot_by_loot_id_context_menu(loot_id: String) -> PostLolLootV1PlayerLootByLootIdContextMenu {
-    PostLolLootV1PlayerLootByLootIdContextMenu {
-        loot_id
-    }
-}
-
-
 pub struct GetLolLootV1PlayerLootMap {
 
 }
@@ -751,35 +722,6 @@ pub fn get_lol_loot_v_1_recipes_initial_item_by_loot_id(loot_id: String) -> GetL
 }
 
 
-pub struct PostLolLootV1RecipesInitialItemByLootId {
-
-    pub loot_id: String,
-}
-
-impl IsApiRequest for PostLolLootV1RecipesInitialItemByLootId {
-    const METHOD: Method = Method::POST;
-    type ReturnType = Vec<LolLootRecipeWithMilestones>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-loot/v1/recipes/initial-item/{}", self.loot_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn post_lol_loot_v_1_recipes_initial_item_by_loot_id(loot_id: String) -> PostLolLootV1RecipesInitialItemByLootId {
-    PostLolLootV1RecipesInitialItemByLootId {
-        loot_id
-    }
-}
-
-
 pub struct GetLolLootV2PlayerLootMap {
 
 }
@@ -862,6 +804,35 @@ impl IsApiRequest for PostLolLootV1MilestonesByLootMilestonesIdClaim {
 pub fn post_lol_loot_v_1_milestones_by_loot_milestones_id_claim(loot_milestones_id: String) -> PostLolLootV1MilestonesByLootMilestonesIdClaim {
     PostLolLootV1MilestonesByLootMilestonesIdClaim {
         loot_milestones_id
+    }
+}
+
+
+pub struct PostLolLootV1PlayerLootByLootIdContextMenu {
+
+    pub loot_id: String,
+}
+
+impl IsApiRequest for PostLolLootV1PlayerLootByLootIdContextMenu {
+    const METHOD: Method = Method::POST;
+    type ReturnType = Vec<LolLootContextMenu>;
+
+    fn get_url(&self) -> String {
+        format!("/lol-loot/v1/player-loot/{}/context-menu", self.loot_id)
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        None
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn post_lol_loot_v_1_player_loot_by_loot_id_context_menu(loot_id: String) -> PostLolLootV1PlayerLootByLootIdContextMenu {
+    PostLolLootV1PlayerLootByLootIdContextMenu {
+        loot_id
     }
 }
 
@@ -958,6 +929,35 @@ pub fn post_lol_loot_v_1_recipes_by_recipe_name_craft(recipe_name: String, playe
 }
 
 
+pub struct PostLolLootV1RecipesInitialItemByLootId {
+
+    pub loot_id: String,
+}
+
+impl IsApiRequest for PostLolLootV1RecipesInitialItemByLootId {
+    const METHOD: Method = Method::POST;
+    type ReturnType = Vec<LolLootRecipeWithMilestones>;
+
+    fn get_url(&self) -> String {
+        format!("/lol-loot/v1/recipes/initial-item/{}", self.loot_id)
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        None
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn post_lol_loot_v_1_recipes_initial_item_by_loot_id(loot_id: String) -> PostLolLootV1RecipesInitialItemByLootId {
+    PostLolLootV1RecipesInitialItemByLootId {
+        loot_id
+    }
+}
+
+
 pub struct PostLolLootV1Refresh {
 
     pub body: bool,
@@ -1020,17 +1020,54 @@ pub fn put_lol_loot_v_1_loot_odds_evaluate_query(body: QueryEvaluationRequestDto
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolLootRecipeOutput {
-    pub loot_name: String,
-    pub quantity: i32,
+pub struct CraftLootDto {
+    pub recipe_name: String,
+    pub loot_names: Vec<String>,
+    pub repeat: i32,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolLootPlayerLootMap {
-    pub version: i64,
-    pub player_loot: LolLootPlayerLoot,
+pub struct LolLootContextMenu {
+    pub name: String,
+    pub action_type: String,
+    pub recipe_description: String,
+    pub recipe_context_menu_action: String,
+    pub enabled: bool,
+    pub essence_type: String,
+    pub essence_quantity: i32,
+    pub required_tokens: String,
+    pub required_others: String,
+    pub required_others_name: String,
+    pub required_others_count: i32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLootLootDescription {
+    pub loot_name: String,
+    pub localized_description: String,
+    pub localized_description_long: String,
+    pub image_path: String,
+    pub child_loot_table_names: Vec<String>,
+    pub children_descriptions: Vec<LolLootLootDescription>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLootLootGrantNotification {
+    pub id: i64,
+    pub game_id: u64,
+    pub player_id: u64,
+    pub champion_id: i32,
+    pub player_grade: String,
+    pub loot_name: String,
+    pub message_key: String,
+    pub msg_id: String,
+    pub account_id: u64,
 }
 
 
@@ -1054,9 +1091,32 @@ pub struct LolLootLootItem {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolLootMassDisenchantClientConfig {
-    pub max_loot_items_size_mass_craft: i16,
-    pub enabled: bool,
+pub struct LolLootLootMilestone {
+    pub id: String,
+    pub threshold: u64,
+    pub rewards: Vec<LolLootLootMilestoneReward>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLootLootMilestoneRepeat {
+    pub repeat_count: i32,
+    pub repeat_scope: i32,
+    pub multiplier: f32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLootLootMilestoneReward {
+    pub reward_group_id: String,
+    pub reward_type: String,
+    pub item_instance_id: String,
+    pub inventory_type: String,
+    pub item_id: i32,
+    pub quantity: i32,
+    pub loot_item: Option<LolLootPlayerLoot>,
 }
 
 
@@ -1079,58 +1139,42 @@ pub struct LolLootLootMilestones {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolLootRecipeSlot {
-    pub slot_number: i32,
-    pub loot_ids: Vec<String>,
-    pub tags: String,
-    pub quantity: i32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolLootRecipeWithMilestones {
-    pub recipe_name: String,
-    pub type_: String,
-    pub description: String,
-    pub context_menu_text: String,
-    pub requirement_text: String,
-    pub image_path: String,
-    pub intro_video_path: String,
-    pub loop_video_path: String,
-    pub outro_video_path: String,
-    pub display_categories: String,
-    pub crafter_name: String,
-    pub slots: Vec<LolLootRecipeSlot>,
-    pub outputs: Vec<LolLootRecipeOutput>,
-    pub metadata: LolLootRecipeMetadata,
-    pub single_open: bool,
-    pub has_visible_loot_odds: bool,
-    pub loot_milestone_ids: Vec<String>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolLootPlayerLootDelta {
-    pub delta_count: i32,
-    pub player_loot: LolLootPlayerLoot,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct QueryEvaluationRequestDto {
-    pub query: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LolLootLootMilestonesClaimResponse {
     pub loot_milestone_set_id: String,
     pub claimed_milestones: Vec<String>,
     pub status: LolLootLootMilestoneClaimStatus,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLootLootMilestonesCounter {
+    pub loot_milestones_id: String,
+    pub counter_value: i64,
+    pub completed_loops: i64,
+    pub ready_to_claim_milestones: Vec<String>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLootLootOddsResponse {
+    pub loot_id: String,
+    pub parent_id: String,
+    pub drop_rate: f64,
+    pub quantity: i32,
+    pub label: String,
+    pub query: String,
+    pub loot_order: i32,
+    pub children: Vec<LolLootLootOddsResponse>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLootMassDisenchantClientConfig {
+    pub max_loot_items_size_mass_craft: i16,
+    pub enabled: bool,
 }
 
 
@@ -1176,121 +1220,17 @@ pub struct LolLootPlayerLoot {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolLootLootMilestoneRepeat {
-    pub repeat_count: i32,
-    pub repeat_scope: i32,
-    pub multiplier: f32,
+pub struct LolLootPlayerLootDelta {
+    pub delta_count: i32,
+    pub player_loot: LolLootPlayerLoot,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolLootLootOddsResponse {
-    pub loot_id: String,
-    pub parent_id: String,
-    pub drop_rate: f64,
-    pub quantity: i32,
-    pub label: String,
-    pub query: String,
-    pub loot_order: i32,
-    pub children: Vec<LolLootLootOddsResponse>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct CraftLootDto {
-    pub recipe_name: String,
-    pub loot_names: Vec<String>,
-    pub repeat: i32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LootLcdsRecipeMetadata {
-    pub guaranteed_descriptions: Vec<LootLcdsLootDescriptionDto>,
-    pub bonus_descriptions: Vec<LootLcdsLootDescriptionDto>,
-    pub tooltips_disabled: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LootLcdsRecipeSlotClientDto {
-    pub slot_number: i32,
-    pub query: String,
-    pub quantity_expression: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolLootQueryEvaluatedLootItem {
-    pub loot_name: String,
-    pub localized_name: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolLootContextMenu {
-    pub name: String,
-    pub action_type: String,
-    pub recipe_description: String,
-    pub recipe_context_menu_action: String,
-    pub enabled: bool,
-    pub essence_type: String,
-    pub essence_quantity: i32,
-    pub required_tokens: String,
-    pub required_others: String,
-    pub required_others_name: String,
-    pub required_others_count: i32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolLootRecipeMetadata {
-    pub guaranteed_descriptions: Vec<LolLootLootDescription>,
-    pub bonus_descriptions: Vec<LolLootLootDescription>,
-    pub tooltips_disabled: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolLootLootGrantNotification {
-    pub id: i64,
-    pub game_id: u64,
-    pub player_id: u64,
-    pub champion_id: i32,
-    pub player_grade: String,
-    pub loot_name: String,
-    pub message_key: String,
-    pub msg_id: String,
-    pub account_id: u64,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolLootLootDescription {
-    pub loot_name: String,
-    pub localized_description: String,
-    pub localized_description_long: String,
-    pub image_path: String,
-    pub child_loot_table_names: Vec<String>,
-    pub children_descriptions: Vec<LolLootLootDescription>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolLootLootMilestone {
-    pub id: String,
-    pub threshold: u64,
-    pub rewards: Vec<LolLootLootMilestoneReward>,
+pub struct LolLootPlayerLootMap {
+    pub version: i64,
+    pub player_loot: LolLootPlayerLoot,
 }
 
 
@@ -1314,34 +1254,59 @@ pub struct LolLootPlayerLootUpdate {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolLootLootMilestonesCounter {
-    pub loot_milestones_id: String,
-    pub counter_value: i64,
-    pub completed_loops: i64,
-    pub ready_to_claim_milestones: Vec<String>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LootLcdsRecipeOutputDto {
+pub struct LolLootQueryEvaluatedLootItem {
     pub loot_name: String,
-    pub quantity_expression: String,
-    pub probability: f64,
-    pub allow_duplicates: bool,
+    pub localized_name: String,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolLootLootMilestoneReward {
-    pub reward_group_id: String,
-    pub reward_type: String,
-    pub item_instance_id: String,
-    pub inventory_type: String,
-    pub item_id: i32,
+pub struct LolLootRecipeMetadata {
+    pub guaranteed_descriptions: Vec<LolLootLootDescription>,
+    pub bonus_descriptions: Vec<LolLootLootDescription>,
+    pub tooltips_disabled: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLootRecipeOutput {
+    pub loot_name: String,
     pub quantity: i32,
-    pub loot_item: Option<LolLootPlayerLoot>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLootRecipeSlot {
+    pub slot_number: i32,
+    pub loot_ids: Vec<String>,
+    pub tags: String,
+    pub quantity: i32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLootRecipeWithMilestones {
+    pub recipe_name: String,
+    pub type_: String,
+    pub description: String,
+    pub context_menu_text: String,
+    pub requirement_text: String,
+    pub image_path: String,
+    pub intro_video_path: String,
+    pub loop_video_path: String,
+    pub outro_video_path: String,
+    pub display_categories: String,
+    pub crafter_name: String,
+    pub slots: Vec<LolLootRecipeSlot>,
+    pub outputs: Vec<LolLootRecipeOutput>,
+    pub metadata: LolLootRecipeMetadata,
+    pub single_open: bool,
+    pub has_visible_loot_odds: bool,
+    pub loot_milestone_ids: Vec<String>,
 }
 
 
@@ -1354,6 +1319,16 @@ pub struct LolLootVerboseLootOddsResponse {
     pub loot_item: LolLootPlayerLoot,
     pub has_pity_rules: bool,
     pub checks_ownership: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LootLcdsLootDescriptionDto {
+    pub loot_name: String,
+    pub child_loot_table_names: Vec<String>,
+    pub localization_map: HashMap<String, String>,
+    pub localization_long_description_map: HashMap<String, String>,
 }
 
 
@@ -1373,11 +1348,36 @@ pub struct LootLcdsRecipeClientDto {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LootLcdsLootDescriptionDto {
+pub struct LootLcdsRecipeMetadata {
+    pub guaranteed_descriptions: Vec<LootLcdsLootDescriptionDto>,
+    pub bonus_descriptions: Vec<LootLcdsLootDescriptionDto>,
+    pub tooltips_disabled: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LootLcdsRecipeOutputDto {
     pub loot_name: String,
-    pub child_loot_table_names: Vec<String>,
-    pub localization_map: HashMap<String, String>,
-    pub localization_long_description_map: HashMap<String, String>,
+    pub quantity_expression: String,
+    pub probability: f64,
+    pub allow_duplicates: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LootLcdsRecipeSlotClientDto {
+    pub slot_number: i32,
+    pub query: String,
+    pub quantity_expression: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct QueryEvaluationRequestDto {
+    pub query: String,
 }
 
 
@@ -1394,6 +1394,20 @@ pub enum LolLootItemOwnershipStatus {
     Free,
     #[serde(rename = "NONE")]
     None,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum LolLootLootMilestoneClaimStatus {
+    #[default]
+    #[serde(rename = "FAILED")]
+    Failed,
+    #[serde(rename = "COMPLETED")]
+    Completed,
+    #[serde(rename = "IN_PROGRESS")]
+    InProgress,
+    #[serde(rename = "NOT_STARTED")]
+    NotStarted,
 }
 
 
@@ -1418,19 +1432,5 @@ pub enum LolLootRedeemableStatus {
     Redeemable,
     #[serde(rename = "UNKNOWN")]
     Unknown,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum LolLootLootMilestoneClaimStatus {
-    #[default]
-    #[serde(rename = "FAILED")]
-    Failed,
-    #[serde(rename = "COMPLETED")]
-    Completed,
-    #[serde(rename = "IN_PROGRESS")]
-    InProgress,
-    #[serde(rename = "NOT_STARTED")]
-    NotStarted,
 }
 

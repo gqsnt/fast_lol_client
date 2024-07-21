@@ -9,62 +9,6 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct GetLolHoneyfruitV1AccountClaimMigration {
-
-}
-
-impl IsApiRequest for GetLolHoneyfruitV1AccountClaimMigration {
-    const METHOD: Method = Method::GET;
-    type ReturnType = String;
-
-    fn get_url(&self) -> String {
-        "/lol-honeyfruit/v1/account-claim/migration".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn get_lol_honeyfruit_v_1_account_claim_migration() -> GetLolHoneyfruitV1AccountClaimMigration {
-    GetLolHoneyfruitV1AccountClaimMigration {
-        
-    }
-}
-
-
-pub struct PostLolHoneyfruitV1AccountClaimMigration {
-
-}
-
-impl IsApiRequest for PostLolHoneyfruitV1AccountClaimMigration {
-    const METHOD: Method = Method::POST;
-    type ReturnType = String;
-
-    fn get_url(&self) -> String {
-        "/lol-honeyfruit/v1/account-claim/migration".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn post_lol_honeyfruit_v_1_account_claim_migration() -> PostLolHoneyfruitV1AccountClaimMigration {
-    PostLolHoneyfruitV1AccountClaimMigration {
-        
-    }
-}
-
-
 pub struct DeleteLolHoneyfruitV1AccountClaimMigration {
 
 }
@@ -150,21 +94,20 @@ pub fn get_lol_honeyfruit_v_1_account_claim_auto_dismiss() -> GetLolHoneyfruitV1
 }
 
 
-pub struct PutLolHoneyfruitV1AccountClaimAutoDismiss {
+pub struct GetLolHoneyfruitV1AccountClaimMigration {
 
-    pub body: bool,
 }
 
-impl IsApiRequest for PutLolHoneyfruitV1AccountClaimAutoDismiss {
-    const METHOD: Method = Method::PUT;
-    type ReturnType = HashMap<String, String>;
+impl IsApiRequest for GetLolHoneyfruitV1AccountClaimMigration {
+    const METHOD: Method = Method::GET;
+    type ReturnType = String;
 
     fn get_url(&self) -> String {
-        "/lol-honeyfruit/v1/account-claim/auto-dismiss".to_string()
+        "/lol-honeyfruit/v1/account-claim/migration".to_string()
     }
 
     fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
+        None
     }
 
     fn get_query_params(&self) -> Option<Value> {
@@ -172,9 +115,9 @@ impl IsApiRequest for PutLolHoneyfruitV1AccountClaimAutoDismiss {
     }
 }
 
-pub fn put_lol_honeyfruit_v_1_account_claim_auto_dismiss(body: bool) -> PutLolHoneyfruitV1AccountClaimAutoDismiss {
-    PutLolHoneyfruitV1AccountClaimAutoDismiss {
-        body
+pub fn get_lol_honeyfruit_v_1_account_claim_migration() -> GetLolHoneyfruitV1AccountClaimMigration {
+    GetLolHoneyfruitV1AccountClaimMigration {
+        
     }
 }
 
@@ -235,34 +178,6 @@ pub fn get_lol_honeyfruit_v_1_vng_publisher_settings() -> GetLolHoneyfruitV1VngP
 }
 
 
-pub struct PostLolHoneyfruitV1VngPublisherSettings {
-
-}
-
-impl IsApiRequest for PostLolHoneyfruitV1VngPublisherSettings {
-    const METHOD: Method = Method::POST;
-    type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-honeyfruit/v1/vng-publisher-settings".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn post_lol_honeyfruit_v_1_vng_publisher_settings() -> PostLolHoneyfruitV1VngPublisherSettings {
-    PostLolHoneyfruitV1VngPublisherSettings {
-        
-    }
-}
-
-
 pub struct PostLolHoneyfruitV1AccountClaimLinkingRedirect {
 
 }
@@ -291,15 +206,98 @@ pub fn post_lol_honeyfruit_v_1_account_claim_linking_redirect() -> PostLolHoneyf
 }
 
 
+pub struct PostLolHoneyfruitV1AccountClaimMigration {
+
+}
+
+impl IsApiRequest for PostLolHoneyfruitV1AccountClaimMigration {
+    const METHOD: Method = Method::POST;
+    type ReturnType = String;
+
+    fn get_url(&self) -> String {
+        "/lol-honeyfruit/v1/account-claim/migration".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        None
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn post_lol_honeyfruit_v_1_account_claim_migration() -> PostLolHoneyfruitV1AccountClaimMigration {
+    PostLolHoneyfruitV1AccountClaimMigration {
+        
+    }
+}
+
+
+pub struct PostLolHoneyfruitV1VngPublisherSettings {
+
+}
+
+impl IsApiRequest for PostLolHoneyfruitV1VngPublisherSettings {
+    const METHOD: Method = Method::POST;
+    type ReturnType = HashMap<String, String>;
+
+    fn get_url(&self) -> String {
+        "/lol-honeyfruit/v1/vng-publisher-settings".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        None
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn post_lol_honeyfruit_v_1_vng_publisher_settings() -> PostLolHoneyfruitV1VngPublisherSettings {
+    PostLolHoneyfruitV1VngPublisherSettings {
+        
+    }
+}
+
+
+pub struct PutLolHoneyfruitV1AccountClaimAutoDismiss {
+
+    pub body: bool,
+}
+
+impl IsApiRequest for PutLolHoneyfruitV1AccountClaimAutoDismiss {
+    const METHOD: Method = Method::PUT;
+    type ReturnType = HashMap<String, String>;
+
+    fn get_url(&self) -> String {
+        "/lol-honeyfruit/v1/account-claim/auto-dismiss".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn put_lol_honeyfruit_v_1_account_claim_auto_dismiss(body: bool) -> PutLolHoneyfruitV1AccountClaimAutoDismiss {
+    PutLolHoneyfruitV1AccountClaimAutoDismiss {
+        body
+    }
+}
+
+
 // OBJECTS
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolHoneyfruitHoneyfruitLinkingServiceResponse {
-    pub eligible: bool,
-    pub reason_code: LolHoneyfruitHoneyfruitLinkingFailureReason,
-    pub email: String,
-    pub account_details: Option<LolHoneyfruitGarenaRegionLeagueAccount>,
+pub struct LolHoneyfruitAccountClaimStatus {
+    pub linking_status: Option<LolHoneyfruitHoneyfruitLinkingServiceResponse>,
+    pub migration_status: Option<String>,
 }
 
 
@@ -319,9 +317,11 @@ pub struct LolHoneyfruitGarenaRegionLeagueAccount {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolHoneyfruitAccountClaimStatus {
-    pub linking_status: Option<LolHoneyfruitHoneyfruitLinkingServiceResponse>,
-    pub migration_status: Option<String>,
+pub struct LolHoneyfruitHoneyfruitLinkingServiceResponse {
+    pub eligible: bool,
+    pub reason_code: LolHoneyfruitHoneyfruitLinkingFailureReason,
+    pub email: String,
+    pub account_details: Option<LolHoneyfruitGarenaRegionLeagueAccount>,
 }
 
 

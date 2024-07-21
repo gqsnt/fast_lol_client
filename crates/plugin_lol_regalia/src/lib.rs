@@ -65,35 +65,6 @@ pub fn get_lol_regalia_v_2_current_summoner_regalia() -> GetLolRegaliaV2CurrentS
 }
 
 
-pub struct PutLolRegaliaV2CurrentSummonerRegalia {
-
-    pub body: LolRegaliaRegaliaPreferences,
-}
-
-impl IsApiRequest for PutLolRegaliaV2CurrentSummonerRegalia {
-    const METHOD: Method = Method::PUT;
-    type ReturnType = LolRegaliaRegaliaWithPreferences;
-
-    fn get_url(&self) -> String {
-        "/lol-regalia/v2/current-summoner/regalia".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn put_lol_regalia_v_2_current_summoner_regalia(body: LolRegaliaRegaliaPreferences) -> PutLolRegaliaV2CurrentSummonerRegalia {
-    PutLolRegaliaV2CurrentSummonerRegalia {
-        body
-    }
-}
-
-
 pub struct GetLolRegaliaV2SummonersBySummonerIdQueuesByQueuePositionsByPositionRegalia {
 
     pub summoner_id: u64,
@@ -274,6 +245,35 @@ pub fn get_lol_regalia_v_3_summoners_by_summoner_id_regalia(summoner_id: u64) ->
 }
 
 
+pub struct PutLolRegaliaV2CurrentSummonerRegalia {
+
+    pub body: LolRegaliaRegaliaPreferences,
+}
+
+impl IsApiRequest for PutLolRegaliaV2CurrentSummonerRegalia {
+    const METHOD: Method = Method::PUT;
+    type ReturnType = LolRegaliaRegaliaWithPreferences;
+
+    fn get_url(&self) -> String {
+        "/lol-regalia/v2/current-summoner/regalia".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn put_lol_regalia_v_2_current_summoner_regalia(body: LolRegaliaRegaliaPreferences) -> PutLolRegaliaV2CurrentSummonerRegalia {
+    PutLolRegaliaV2CurrentSummonerRegalia {
+        body
+    }
+}
+
+
 // OBJECTS
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
@@ -291,15 +291,6 @@ pub struct LolRegaliaGameDataRegalia {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolRegaliaRegaliaPreferences {
-    pub preferred_crest_type: String,
-    pub preferred_banner_type: String,
-    pub selected_prestige_crest: u8,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LolRegaliaRegalia {
     pub profile_icon_id: i32,
     pub crest_type: String,
@@ -308,31 +299,6 @@ pub struct LolRegaliaRegalia {
     pub last_season_highest_rank: Option<String>,
     pub highest_ranked_entry: Option<LolRegaliaRegaliaRankedEntry>,
     pub selected_prestige_crest: u8,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolRegaliaRegaliaWithPreferences {
-    pub profile_icon_id: i32,
-    pub crest_type: String,
-    pub banner_type: String,
-    pub preferred_crest_type: String,
-    pub preferred_banner_type: String,
-    pub selected_prestige_crest: u8,
-    pub summoner_level: u32,
-    pub last_season_highest_rank: Option<String>,
-    pub highest_ranked_entry: Option<LolRegaliaRegaliaRankedEntry>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolRegaliaRegaliaRankedEntry {
-    pub queue_type: LolRegaliaLeagueQueueType,
-    pub tier: String,
-    pub division: LolRegaliaLeagueDivision,
-    pub split_reward_level: i32,
 }
 
 
@@ -356,10 +322,61 @@ pub struct LolRegaliaRegaliaFrontendConfig {
 pub struct LolRegaliaRegaliaInventoryItem {
     pub items: Vec<LolRegaliaGameDataRegalia>,
     pub is_owned: bool,
+    pub purchase_date: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolRegaliaRegaliaPreferences {
+    pub preferred_crest_type: String,
+    pub preferred_banner_type: String,
+    pub selected_prestige_crest: u8,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolRegaliaRegaliaRankedEntry {
+    pub queue_type: LolRegaliaLeagueQueueType,
+    pub tier: String,
+    pub division: LolRegaliaLeagueDivision,
+    pub split_reward_level: i32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolRegaliaRegaliaWithPreferences {
+    pub profile_icon_id: i32,
+    pub crest_type: String,
+    pub banner_type: String,
+    pub preferred_crest_type: String,
+    pub preferred_banner_type: String,
+    pub selected_prestige_crest: u8,
+    pub summoner_level: u32,
+    pub last_season_highest_rank: Option<String>,
+    pub highest_ranked_entry: Option<LolRegaliaRegaliaRankedEntry>,
 }
 
 
 // ENUMS
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum LolRegaliaLeagueDivision {
+    #[default]
+    #[serde(rename = "NA")]
+    Na,
+    V,
+    #[serde(rename = "IV")]
+    Iv,
+    #[serde(rename = "III")]
+    Iii,
+    #[serde(rename = "II")]
+    Ii,
+    I,
+}
+
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
 pub enum LolRegaliaLeagueQueueType {
@@ -382,21 +399,5 @@ pub enum LolRegaliaLeagueQueueType {
     RankedSolo5X5,
     #[serde(rename = "NONE")]
     None,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum LolRegaliaLeagueDivision {
-    #[default]
-    #[serde(rename = "NA")]
-    Na,
-    V,
-    #[serde(rename = "IV")]
-    Iv,
-    #[serde(rename = "III")]
-    Iii,
-    #[serde(rename = "II")]
-    Ii,
-    I,
 }
 

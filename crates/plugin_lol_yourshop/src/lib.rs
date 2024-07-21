@@ -275,18 +275,20 @@ pub struct LolYourshopPlayerPermissions {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolYourshopUiStatus {
-    pub hub_enabled: bool,
-    pub name: String,
-    pub start_time: String,
-    pub end_time: String,
+pub struct LolYourshopPurchaseItem {
+    pub offer_id: String,
+    pub inventory_type: String,
+    pub item_id: i32,
+    pub price_paid: i64,
+    pub order_id: String,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolYourshopWallet {
-    pub rp: i64,
+pub struct LolYourshopPurchaseResponse {
+    pub items: Vec<LolYourshopPurchaseItem>,
+    pub wallet: LolYourshopWallet,
 }
 
 
@@ -309,20 +311,18 @@ pub struct LolYourshopUiOffer {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolYourshopPurchaseItem {
-    pub offer_id: String,
-    pub inventory_type: String,
-    pub item_id: i32,
-    pub price_paid: i64,
-    pub order_id: String,
+pub struct LolYourshopUiStatus {
+    pub hub_enabled: bool,
+    pub name: String,
+    pub start_time: String,
+    pub end_time: String,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolYourshopPurchaseResponse {
-    pub items: Vec<LolYourshopPurchaseItem>,
-    pub wallet: LolYourshopWallet,
+pub struct LolYourshopWallet {
+    pub rp: i64,
 }
 
 

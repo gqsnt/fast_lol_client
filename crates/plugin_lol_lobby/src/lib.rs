@@ -9,35 +9,6 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct PostLolLobbyV1Clash {
-
-    pub body: String,
-}
-
-impl IsApiRequest for PostLolLobbyV1Clash {
-    const METHOD: Method = Method::POST;
-    type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v1/clash".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn post_lol_lobby_v_1_clash(body: String) -> PostLolLobbyV1Clash {
-    PostLolLobbyV1Clash {
-        body
-    }
-}
-
-
 pub struct DeleteLolLobbyV1Clash {
 
 }
@@ -97,63 +68,6 @@ pub fn delete_lol_lobby_v_1_lobby_custom_bots_by_summoner_internal_name_by_bot_u
 }
 
 
-pub struct GetLolLobbyV2Lobby {
-
-}
-
-impl IsApiRequest for GetLolLobbyV2Lobby {
-    const METHOD: Method = Method::GET;
-    type ReturnType = LolLobbyLobbyDto;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v2/lobby".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn get_lol_lobby_v_2_lobby() -> GetLolLobbyV2Lobby {
-    GetLolLobbyV2Lobby {
-        
-    }
-}
-
-
-pub struct PostLolLobbyV2Lobby {
-
-    pub body: LolLobbyLobbyChangeGameDto,
-}
-
-impl IsApiRequest for PostLolLobbyV2Lobby {
-    const METHOD: Method = Method::POST;
-    type ReturnType = LolLobbyLobbyDto;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v2/lobby".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn post_lol_lobby_v_2_lobby(body: LolLobbyLobbyChangeGameDto) -> PostLolLobbyV2Lobby {
-    PostLolLobbyV2Lobby {
-        body
-    }
-}
-
-
 pub struct DeleteLolLobbyV2Lobby {
 
 }
@@ -177,34 +91,6 @@ impl IsApiRequest for DeleteLolLobbyV2Lobby {
 
 pub fn delete_lol_lobby_v_2_lobby() -> DeleteLolLobbyV2Lobby {
     DeleteLolLobbyV2Lobby {
-        
-    }
-}
-
-
-pub struct PostLolLobbyV2LobbyMatchmakingSearch {
-
-}
-
-impl IsApiRequest for PostLolLobbyV2LobbyMatchmakingSearch {
-    const METHOD: Method = Method::POST;
-    type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v2/lobby/matchmaking/search".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn post_lol_lobby_v_2_lobby_matchmaking_search() -> PostLolLobbyV2LobbyMatchmakingSearch {
-    PostLolLobbyV2LobbyMatchmakingSearch {
         
     }
 }
@@ -290,34 +176,6 @@ impl IsApiRequest for GetLolLobbyV1AutofillDisplayed {
 
 pub fn get_lol_lobby_v_1_autofill_displayed() -> GetLolLobbyV1AutofillDisplayed {
     GetLolLobbyV1AutofillDisplayed {
-        
-    }
-}
-
-
-pub struct PutLolLobbyV1AutofillDisplayed {
-
-}
-
-impl IsApiRequest for PutLolLobbyV1AutofillDisplayed {
-    const METHOD: Method = Method::PUT;
-    type ReturnType = bool;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v1/autofill-displayed".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn put_lol_lobby_v_1_autofill_displayed() -> PutLolLobbyV1AutofillDisplayed {
-    PutLolLobbyV1AutofillDisplayed {
         
     }
 }
@@ -464,35 +322,6 @@ pub fn get_lol_lobby_v_1_lobby_invitations() -> GetLolLobbyV1LobbyInvitations {
 }
 
 
-pub struct PostLolLobbyV1LobbyInvitations {
-
-    pub body: LolLobbyLobbyInvitation,
-}
-
-impl IsApiRequest for PostLolLobbyV1LobbyInvitations {
-    const METHOD: Method = Method::POST;
-    type ReturnType = LolLobbyLobbyInvitation;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v1/lobby/invitations".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn post_lol_lobby_v_1_lobby_invitations(body: LolLobbyLobbyInvitation) -> PostLolLobbyV1LobbyInvitations {
-    PostLolLobbyV1LobbyInvitations {
-        body
-    }
-}
-
-
 pub struct GetLolLobbyV1LobbyInvitationsById {
 
     pub id: String,
@@ -546,35 +375,6 @@ impl IsApiRequest for GetLolLobbyV1LobbyMembersLocalMemberPlayerSlots {
 pub fn get_lol_lobby_v_1_lobby_members_local_member_player_slots() -> GetLolLobbyV1LobbyMembersLocalMemberPlayerSlots {
     GetLolLobbyV1LobbyMembersLocalMemberPlayerSlots {
         
-    }
-}
-
-
-pub struct PutLolLobbyV1LobbyMembersLocalMemberPlayerSlots {
-
-    pub body: Vec<LolLobbyQuickPlayPresetSlotDto>,
-}
-
-impl IsApiRequest for PutLolLobbyV1LobbyMembersLocalMemberPlayerSlots {
-    const METHOD: Method = Method::PUT;
-    type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v1/lobby/members/localMember/player-slots".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn put_lol_lobby_v_1_lobby_members_local_member_player_slots(body: Vec<LolLobbyQuickPlayPresetSlotDto>) -> PutLolLobbyV1LobbyMembersLocalMemberPlayerSlots {
-    PutLolLobbyV1LobbyMembersLocalMemberPlayerSlots {
-        body
     }
 }
 
@@ -803,6 +603,34 @@ pub fn get_lol_lobby_v_2_eligibility_initial_configuration_complete() -> GetLolL
 }
 
 
+pub struct GetLolLobbyV2Lobby {
+
+}
+
+impl IsApiRequest for GetLolLobbyV2Lobby {
+    const METHOD: Method = Method::GET;
+    type ReturnType = LolLobbyLobbyDto;
+
+    fn get_url(&self) -> String {
+        "/lol-lobby/v2/lobby".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        None
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn get_lol_lobby_v_2_lobby() -> GetLolLobbyV2Lobby {
+    GetLolLobbyV2Lobby {
+        
+    }
+}
+
+
 pub struct GetLolLobbyV2LobbyCustomAvailableBots {
 
 }
@@ -887,35 +715,6 @@ pub fn get_lol_lobby_v_2_lobby_invitations() -> GetLolLobbyV2LobbyInvitations {
 }
 
 
-pub struct PostLolLobbyV2LobbyInvitations {
-
-    pub body: Vec<LolLobbyLobbyInvitationDto>,
-}
-
-impl IsApiRequest for PostLolLobbyV2LobbyInvitations {
-    const METHOD: Method = Method::POST;
-    type ReturnType = Vec<LolLobbyLobbyInvitationDto>;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v2/lobby/invitations".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn post_lol_lobby_v_2_lobby_invitations(body: Vec<LolLobbyLobbyInvitationDto>) -> PostLolLobbyV2LobbyInvitations {
-    PostLolLobbyV2LobbyInvitations {
-        body
-    }
-}
-
-
 pub struct GetLolLobbyV2LobbyMatchmakingSearchState {
 
 }
@@ -996,35 +795,6 @@ impl IsApiRequest for GetLolLobbyV2Notifications {
 pub fn get_lol_lobby_v_2_notifications() -> GetLolLobbyV2Notifications {
     GetLolLobbyV2Notifications {
         
-    }
-}
-
-
-pub struct PostLolLobbyV2Notifications {
-
-    pub body: LolLobbyLobbyNotification,
-}
-
-impl IsApiRequest for PostLolLobbyV2Notifications {
-    const METHOD: Method = Method::POST;
-    type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v2/notifications".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn post_lol_lobby_v_2_notifications(body: LolLobbyLobbyNotification) -> PostLolLobbyV2Notifications {
-    PostLolLobbyV2Notifications {
-        body
     }
 }
 
@@ -1137,6 +907,35 @@ impl IsApiRequest for GetLolLobbyV2RegistrationStatus {
 pub fn get_lol_lobby_v_2_registration_status() -> GetLolLobbyV2RegistrationStatus {
     GetLolLobbyV2RegistrationStatus {
         
+    }
+}
+
+
+pub struct PostLolLobbyV1Clash {
+
+    pub body: String,
+}
+
+impl IsApiRequest for PostLolLobbyV1Clash {
+    const METHOD: Method = Method::POST;
+    type ReturnType = HashMap<String, String>;
+
+    fn get_url(&self) -> String {
+        "/lol-lobby/v1/clash".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn post_lol_lobby_v_1_clash(body: String) -> PostLolLobbyV1Clash {
+    PostLolLobbyV1Clash {
+        body
     }
 }
 
@@ -1344,6 +1143,35 @@ pub fn post_lol_lobby_v_1_lobby_custom_switch_teams(body: String) -> PostLolLobb
 }
 
 
+pub struct PostLolLobbyV1LobbyInvitations {
+
+    pub body: LolLobbyLobbyInvitation,
+}
+
+impl IsApiRequest for PostLolLobbyV1LobbyInvitations {
+    const METHOD: Method = Method::POST;
+    type ReturnType = LolLobbyLobbyInvitation;
+
+    fn get_url(&self) -> String {
+        "/lol-lobby/v1/lobby/invitations".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn post_lol_lobby_v_1_lobby_invitations(body: LolLobbyLobbyInvitation) -> PostLolLobbyV1LobbyInvitations {
+    PostLolLobbyV1LobbyInvitations {
+        body
+    }
+}
+
+
 pub struct PostLolLobbyV1LobbyMembersLocalMemberPlayerSlotsBySlotsIndexByPerksString {
 
     pub slots_index: u64,
@@ -1484,6 +1312,92 @@ impl IsApiRequest for PostLolLobbyV2EogInvitations {
 pub fn post_lol_lobby_v_2_eog_invitations(body: Vec<LolLobbyLobbyInvitationDto>) -> PostLolLobbyV2EogInvitations {
     PostLolLobbyV2EogInvitations {
         body
+    }
+}
+
+
+pub struct PostLolLobbyV2Lobby {
+
+    pub body: LolLobbyLobbyChangeGameDto,
+}
+
+impl IsApiRequest for PostLolLobbyV2Lobby {
+    const METHOD: Method = Method::POST;
+    type ReturnType = LolLobbyLobbyDto;
+
+    fn get_url(&self) -> String {
+        "/lol-lobby/v2/lobby".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn post_lol_lobby_v_2_lobby(body: LolLobbyLobbyChangeGameDto) -> PostLolLobbyV2Lobby {
+    PostLolLobbyV2Lobby {
+        body
+    }
+}
+
+
+pub struct PostLolLobbyV2LobbyInvitations {
+
+    pub body: Vec<LolLobbyLobbyInvitationDto>,
+}
+
+impl IsApiRequest for PostLolLobbyV2LobbyInvitations {
+    const METHOD: Method = Method::POST;
+    type ReturnType = Vec<LolLobbyLobbyInvitationDto>;
+
+    fn get_url(&self) -> String {
+        "/lol-lobby/v2/lobby/invitations".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn post_lol_lobby_v_2_lobby_invitations(body: Vec<LolLobbyLobbyInvitationDto>) -> PostLolLobbyV2LobbyInvitations {
+    PostLolLobbyV2LobbyInvitations {
+        body
+    }
+}
+
+
+pub struct PostLolLobbyV2LobbyMatchmakingSearch {
+
+}
+
+impl IsApiRequest for PostLolLobbyV2LobbyMatchmakingSearch {
+    const METHOD: Method = Method::POST;
+    type ReturnType = HashMap<String, String>;
+
+    fn get_url(&self) -> String {
+        "/lol-lobby/v2/lobby/matchmaking/search".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        None
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn post_lol_lobby_v_2_lobby_matchmaking_search() -> PostLolLobbyV2LobbyMatchmakingSearch {
+    PostLolLobbyV2LobbyMatchmakingSearch {
+        
     }
 }
 
@@ -1662,6 +1576,35 @@ pub fn post_lol_lobby_v_2_matchmaking_quick_search(body: LolLobbyLobbyChangeGame
 }
 
 
+pub struct PostLolLobbyV2Notifications {
+
+    pub body: LolLobbyLobbyNotification,
+}
+
+impl IsApiRequest for PostLolLobbyV2Notifications {
+    const METHOD: Method = Method::POST;
+    type ReturnType = Value;
+
+    fn get_url(&self) -> String {
+        "/lol-lobby/v2/notifications".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn post_lol_lobby_v_2_notifications(body: LolLobbyLobbyNotification) -> PostLolLobbyV2Notifications {
+    PostLolLobbyV2Notifications {
+        body
+    }
+}
+
+
 pub struct PostLolLobbyV2PartiesOverridesEnabledForTeamBuilderQueues {
 
     pub body: bool,
@@ -1831,6 +1774,63 @@ impl IsApiRequest for PostLolLobbyV2ReceivedInvitationsByInvitationIdDecline {
 pub fn post_lol_lobby_v_2_received_invitations_by_invitation_id_decline(invitation_id: String) -> PostLolLobbyV2ReceivedInvitationsByInvitationIdDecline {
     PostLolLobbyV2ReceivedInvitationsByInvitationIdDecline {
         invitation_id
+    }
+}
+
+
+pub struct PutLolLobbyV1AutofillDisplayed {
+
+}
+
+impl IsApiRequest for PutLolLobbyV1AutofillDisplayed {
+    const METHOD: Method = Method::PUT;
+    type ReturnType = bool;
+
+    fn get_url(&self) -> String {
+        "/lol-lobby/v1/autofill-displayed".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        None
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn put_lol_lobby_v_1_autofill_displayed() -> PutLolLobbyV1AutofillDisplayed {
+    PutLolLobbyV1AutofillDisplayed {
+        
+    }
+}
+
+
+pub struct PutLolLobbyV1LobbyMembersLocalMemberPlayerSlots {
+
+    pub body: Vec<LolLobbyQuickPlayPresetSlotDto>,
+}
+
+impl IsApiRequest for PutLolLobbyV1LobbyMembersLocalMemberPlayerSlots {
+    const METHOD: Method = Method::PUT;
+    type ReturnType = HashMap<String, String>;
+
+    fn get_url(&self) -> String {
+        "/lol-lobby/v1/lobby/members/localMember/player-slots".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn put_lol_lobby_v_1_lobby_members_local_member_player_slots(body: Vec<LolLobbyQuickPlayPresetSlotDto>) -> PutLolLobbyV1LobbyMembersLocalMemberPlayerSlots {
+    PutLolLobbyV1LobbyMembersLocalMemberPlayerSlots {
+        body
     }
 }
 
@@ -2160,69 +2160,36 @@ pub fn put_lol_lobby_v_2_lobby_subteam_data(body: LolLobbySubteamDataDto) -> Put
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolLobbyPartyMemberDto {
-    pub platform_id: String,
-    pub puuid: String,
-    pub account_id: u64,
-    pub summoner_id: u64,
-    pub party_id: String,
-    pub party_version: i64,
-    pub role: LolLobbyPartyMemberRoleEnum,
-    pub game_mode: Option<LolLobbyGameModeDto>,
-    pub ready: Option<bool>,
-    pub metadata: LolLobbyPartyMemberMetadataDto,
-    pub invited_by_summoner_id: Option<u64>,
-    pub invite_timestamp: Option<u64>,
-    pub can_invite: Option<bool>,
+pub struct LolLobbyBotParticipantDto {
+    pub champion_id: i32,
+    pub bot_skill_level: i32,
     pub team: String,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolLobbyQueueRestrictionDto {
-    pub gatekeeper_restrictions: Vec<LolLobbyGatekeeperRestrictionDto>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolLobbyPartyChatDto {
-    pub jid: String,
-    pub muc_jwt_dto: LolLobbyMucJwtDto,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolLobbyLobbyDto {
-    pub party_id: String,
-    pub party_type: String,
-    pub members: Vec<LolLobbyLobbyParticipantDto>,
-    pub local_member: LolLobbyLobbyParticipantDto,
-    pub invitations: Vec<LolLobbyLobbyInvitationDto>,
-    pub can_start_activity: bool,
-    pub restrictions: Option<Vec<LolLobbyEligibilityRestriction>>,
-    pub warnings: Option<Vec<LolLobbyEligibilityRestriction>>,
-    pub game_config: LolLobbyLobbyGameConfigDto,
-    pub multi_user_chat_id: String,
-    pub multi_user_chat_password: String,
-    pub muc_jwt_dto: LolLobbyMucJwtDto,
-    pub scarce_positions: Vec<String>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolLobbyLobbyCustomGameLobby {
+pub struct LolLobbyCustomGameSettingsDto {
     pub lobby_name: String,
     pub lobby_password: String,
-    pub configuration: LolLobbyLobbyCustomGameConfiguration,
-    pub team_one: Vec<LolLobbyLobbyMember>,
-    pub team_two: Vec<LolLobbyLobbyMember>,
-    pub spectators: Vec<LolLobbyLobbyMember>,
-    pub practice_game_rewards_disabled_reasons: Vec<String>,
     pub game_id: u64,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLobbyCustomJoinOptionsDto {
+    pub lobby_password: String,
+    pub team: Option<String>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLobbyEligibility {
+    pub queue_id: i32,
+    pub eligible: bool,
+    pub restrictions: Vec<LolLobbyEligibilityRestriction>,
 }
 
 
@@ -2239,39 +2206,78 @@ pub struct LolLobbyEligibilityRestriction {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolLobbyLobbyInvitationDto {
-    pub invitation_id: String,
-    pub to_summoner_id: u64,
-    pub state: LolLobbyLobbyInvitationState,
-    pub timestamp: String,
-    pub to_summoner_name: String,
-    pub invitation_type: LolLobbyInvitationType,
+pub struct LolLobbyGameModeDto {
+    pub game_type: String,
+    pub max_team_size: i32,
+    pub max_party_size: i32,
+    pub bot_difficulty: Option<String>,
+    pub queue_id: Option<i32>,
+    pub game_customization: Option<HashMap<String, String>>,
+    pub customs_settings: Option<LolLobbyCustomGameSettingsDto>,
+    pub game_type_config_id: Option<i64>,
+    pub map_id: Option<i32>,
+    pub allow_spectators: Option<String>,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolLobbyBotParticipantDto {
+pub struct LolLobbyGatekeeperRestrictionDto {
+    pub account_id: u64,
+    pub reason: String,
+    pub remaining_millis: i64,
+    pub payload: String,
+    pub queue_id: i32,
+    pub puuid: String,
+    pub details: HashMap<String, String>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLobbyLobbyBotChampion {
+    pub active: bool,
+    pub id: i32,
+    pub name: String,
+    pub bot_difficulties: Vec<LolLobbyLobbyBotDifficulty>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLobbyLobbyBotParams {
     pub champion_id: i32,
-    pub bot_skill_level: i32,
-    pub team: String,
+    pub bot_difficulty: LolLobbyLobbyBotDifficulty,
+    pub team_id: String,
+    pub position: String,
+    pub bot_uuid: String,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolLobbySubteamDataDto {
-    pub subteam_index: i8,
-    pub intra_subteam_position: i8,
+pub struct LolLobbyLobbyChangeGameDto {
+    pub queue_id: i32,
+    pub is_custom: bool,
+    pub custom_game_lobby: Option<LolLobbyLobbyCustomGameLobby>,
+    pub game_customization: Option<HashMap<String, String>>,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolLobbyCustomGameSettingsDto {
-    pub lobby_name: String,
-    pub lobby_password: String,
-    pub game_id: u64,
+pub struct LolLobbyLobbyCustomChampSelectStartResponse {
+    pub success: bool,
+    pub failed_players: Vec<LolLobbyLobbyCustomFailedPlayer>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLobbyLobbyCustomFailedPlayer {
+    pub summoner_id: u64,
+    pub summoner_name: String,
+    pub reason: String,
 }
 
 
@@ -2296,65 +2302,6 @@ pub struct LolLobbyLobbyCustomGame {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolLobbyLobbyMatchmakingSearchErrorResource {
-    pub id: i32,
-    pub error_type: String,
-    pub penalized_summoner_id: u64,
-    pub penalty_time_remaining: f64,
-    pub message: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolLobbyPartyStatusDto {
-    pub ready_players: Vec<String>,
-    pub left_players: Vec<String>,
-    pub eog_players: Vec<String>,
-    pub party_size: i32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolLobbyEligibility {
-    pub queue_id: i32,
-    pub eligible: bool,
-    pub restrictions: Vec<LolLobbyEligibilityRestriction>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolLobbyMucJwtDto {
-    pub jwt: String,
-    pub channel_claim: String,
-    pub domain: String,
-    pub target_region: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolLobbyPartyReward {
-    pub premade_size: i32,
-    pub type_: LolLobbyLobbyPartyRewardType,
-    pub value: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolLobbyLobbyNotification {
-    pub notification_id: String,
-    pub notification_reason: String,
-    pub summoner_ids: Vec<u64>,
-    pub timestamp: u64,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LolLobbyLobbyCustomGameConfiguration {
     pub map_id: i32,
     pub game_mode: String,
@@ -2373,34 +2320,15 @@ pub struct LolLobbyLobbyCustomGameConfiguration {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolLobbyLobbyMatchmakingLowPriorityDataResource {
-    pub penalized_summoner_ids: Vec<u64>,
-    pub penalty_time: f64,
-    pub penalty_time_remaining: f64,
-    pub busted_leaver_access_token: String,
-    pub reason: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolLobbyPartyDto {
-    pub party_id: String,
-    pub platform_id: String,
-    pub players: Vec<LolLobbyPartyMemberDto>,
-    pub chat: LolLobbyPartyChatDto,
-    pub max_party_size: i32,
-    pub party_type: String,
-    pub game_mode: LolLobbyGameModeDto,
-    pub activity_locked: bool,
-    pub version: u64,
-    pub activity_started_utc_millis: u64,
-    pub activity_resume_utc_millis: u64,
-    pub active_restrictions: LolLobbyQueueRestrictionDto,
-    pub eligibility_hash: i64,
-    pub eligibility_restrictions: Option<Vec<LolLobbyGatekeeperRestrictionDto>>,
-    pub eligibility_warnings: Option<Vec<LolLobbyGatekeeperRestrictionDto>>,
-    pub bot_participants: Option<Vec<LolLobbyBotParticipantDto>>,
+pub struct LolLobbyLobbyCustomGameLobby {
+    pub lobby_name: String,
+    pub lobby_password: String,
+    pub configuration: LolLobbyLobbyCustomGameConfiguration,
+    pub team_one: Vec<LolLobbyLobbyMember>,
+    pub team_two: Vec<LolLobbyLobbyMember>,
+    pub spectators: Vec<LolLobbyLobbyMember>,
+    pub practice_game_rewards_disabled_reasons: Vec<String>,
+    pub game_id: u64,
 }
 
 
@@ -2414,33 +2342,20 @@ pub struct LolLobbyLobbyCustomJoinParameters {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolLobbyPremadeMemberDto {
-    pub display_name: String,
-    pub game_name: String,
-    pub tag_line: String,
-    pub puuid: String,
+pub struct LolLobbyLobbyDto {
     pub party_id: String,
-    pub summoner_id: u64,
-    pub role: LolLobbyPartyMemberRoleEnum,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolLobbyLobbyMatchmakingSearchResource {
-    pub search_state: LolLobbyLobbyMatchmakingSearchState,
-    pub low_priority_data: LolLobbyLobbyMatchmakingLowPriorityDataResource,
-    pub errors: Vec<LolLobbyLobbyMatchmakingSearchErrorResource>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolLobbyLobbyChangeGameDto {
-    pub queue_id: i32,
-    pub is_custom: bool,
-    pub custom_game_lobby: Option<LolLobbyLobbyCustomGameLobby>,
-    pub game_customization: Option<HashMap<String, String>>,
+    pub party_type: String,
+    pub members: Vec<LolLobbyLobbyParticipantDto>,
+    pub local_member: LolLobbyLobbyParticipantDto,
+    pub invitations: Vec<LolLobbyLobbyInvitationDto>,
+    pub can_start_activity: bool,
+    pub restrictions: Option<Vec<LolLobbyEligibilityRestriction>>,
+    pub warnings: Option<Vec<LolLobbyEligibilityRestriction>>,
+    pub game_config: LolLobbyLobbyGameConfigDto,
+    pub multi_user_chat_id: String,
+    pub multi_user_chat_password: String,
+    pub muc_jwt_dto: LolLobbyMucJwtDto,
+    pub scarce_positions: Vec<String>,
 }
 
 
@@ -2474,46 +2389,6 @@ pub struct LolLobbyLobbyGameConfigDto {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolLobbyQueueGameTypeConfig {
-    pub id: i64,
-    pub name: String,
-    pub max_allowable_bans: i32,
-    pub allow_trades: bool,
-    pub exclusive_pick: bool,
-    pub duplicate_pick: bool,
-    pub team_champion_pool: bool,
-    pub cross_team_champion_pool: bool,
-    pub advanced_learning_quests: bool,
-    pub battle_boost: bool,
-    pub death_match: bool,
-    pub do_not_remove: bool,
-    pub learning_quests: bool,
-    pub onboard_coop_beginner: bool,
-    pub reroll: bool,
-    pub main_pick_timer_duration: i32,
-    pub post_pick_timer_duration: i32,
-    pub ban_timer_duration: i32,
-    pub pick_mode: String,
-    pub ban_mode: String,
-    pub game_mode_override: Option<String>,
-    pub num_players_per_team_override: Option<i32>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolLobbyQuickPlayPresetSlotDto {
-    pub champion_id: i32,
-    pub skin_id: i32,
-    pub position_preference: String,
-    pub perks: String,
-    pub spell_1: u64,
-    pub spell_2: u64,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LolLobbyLobbyInvitation {
     pub id: String,
     pub from_summoner_id: u64,
@@ -2530,129 +2405,44 @@ pub struct LolLobbyLobbyInvitation {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolLobbyLobbyPartyRewards {
-    pub is_enabled: bool,
-    pub queue_id: i32,
-    pub is_custom: bool,
-    pub party_rewards: Vec<LolLobbyPartyReward>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolLobbyReceivedInvitationDto {
+pub struct LolLobbyLobbyInvitationDto {
     pub invitation_id: String,
-    pub from_summoner_id: u64,
+    pub to_summoner_id: u64,
     pub state: LolLobbyLobbyInvitationState,
     pub timestamp: String,
-    pub from_summoner_name: String,
-    pub can_accept_invitation: bool,
-    pub restrictions: Vec<LolLobbyEligibilityRestriction>,
-    pub game_config: LolLobbyReceivedInvitationGameConfigDto,
+    pub to_summoner_name: String,
     pub invitation_type: LolLobbyInvitationType,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolLobbyGatekeeperRestrictionDto {
-    pub account_id: u64,
-    pub reason: String,
-    pub remaining_millis: i64,
-    pub payload: String,
-    pub queue_id: i32,
-    pub puuid: String,
-    pub details: HashMap<String, String>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolLobbyReceivedInvitationGameConfigDto {
-    pub game_mode: String,
-    pub queue_id: i32,
-    pub map_id: i32,
-    pub invite_game_type: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolLobbyRegistrationCredentials {
-    pub summoner_token: Option<String>,
-    pub inventory_token: Option<String>,
-    pub inventory_tokens: Option<Vec<String>>,
-    pub simple_inventory_token: Option<String>,
-    pub ranked_overview_token: Option<String>,
-    pub game_client_version: Option<String>,
-    pub player_tokens: Option<HashMap<String, String>>,
-    pub experiments: Option<HashMap<String, String>>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolLobbyLobbyBotParams {
-    pub champion_id: i32,
-    pub bot_difficulty: LolLobbyLobbyBotDifficulty,
-    pub team_id: String,
-    pub position: String,
-    pub bot_uuid: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolLobbyLobbyCustomFailedPlayer {
-    pub summoner_id: u64,
-    pub summoner_name: String,
+pub struct LolLobbyLobbyMatchmakingLowPriorityDataResource {
+    pub penalized_summoner_ids: Vec<u64>,
+    pub penalty_time: f64,
+    pub penalty_time_remaining: f64,
+    pub busted_leaver_access_token: String,
     pub reason: String,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolLobbyCustomJoinOptionsDto {
-    pub lobby_password: String,
-    pub team: Option<String>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolLobbyLobbyPositionPreferences {
-    pub first_preference: String,
-    pub second_preference: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolLobbyPartyMemberMetadataDto {
-    pub position_pref: Vec<String>,
-    pub properties: Option<HashMap<String, String>>,
-    pub player_slots: Vec<LolLobbyQuickPlayPresetSlotDto>,
-    pub subteam_data: Option<LolLobbySubteamDataDto>,
-    pub tft_npe_queue_bypass: Option<bool>,
-    pub quickplay_player_state: Option<String>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolLobbyLobbyBotChampion {
-    pub active: bool,
+pub struct LolLobbyLobbyMatchmakingSearchErrorResource {
     pub id: i32,
-    pub name: String,
-    pub bot_difficulties: Vec<LolLobbyLobbyBotDifficulty>,
+    pub error_type: String,
+    pub penalized_summoner_id: u64,
+    pub penalty_time_remaining: f64,
+    pub message: String,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolLobbyStrawberryMapUpdateDto {
-    pub content_id: String,
-    pub item_id: i32,
+pub struct LolLobbyLobbyMatchmakingSearchResource {
+    pub search_state: LolLobbyLobbyMatchmakingSearchState,
+    pub low_priority_data: LolLobbyLobbyMatchmakingLowPriorityDataResource,
+    pub errors: Vec<LolLobbyLobbyMatchmakingSearchErrorResource>,
 }
 
 
@@ -2681,17 +2471,11 @@ pub struct LolLobbyLobbyMember {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolLobbyGameModeDto {
-    pub game_type: String,
-    pub max_team_size: i32,
-    pub max_party_size: i32,
-    pub bot_difficulty: Option<String>,
-    pub queue_id: Option<i32>,
-    pub game_customization: Option<HashMap<String, String>>,
-    pub customs_settings: Option<LolLobbyCustomGameSettingsDto>,
-    pub game_type_config_id: Option<i64>,
-    pub map_id: Option<i32>,
-    pub allow_spectators: Option<String>,
+pub struct LolLobbyLobbyNotification {
+    pub notification_id: String,
+    pub notification_reason: String,
+    pub summoner_ids: Vec<u64>,
+    pub timestamp: u64,
 }
 
 
@@ -2738,18 +2522,110 @@ pub struct LolLobbyLobbyParticipantDto {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolLobbyPremadePartyDto {
-    pub party_id: String,
-    pub comms_enabled: bool,
-    pub players: LolLobbyPremadeMemberDto,
+pub struct LolLobbyLobbyPartyRewards {
+    pub is_enabled: bool,
+    pub queue_id: i32,
+    pub is_custom: bool,
+    pub party_rewards: Vec<LolLobbyPartyReward>,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolLobbyLobbyCustomChampSelectStartResponse {
-    pub success: bool,
-    pub failed_players: Vec<LolLobbyLobbyCustomFailedPlayer>,
+pub struct LolLobbyLobbyPositionPreferences {
+    pub first_preference: String,
+    pub second_preference: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLobbyMucJwtDto {
+    pub jwt: String,
+    pub channel_claim: String,
+    pub domain: String,
+    pub target_region: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLobbyPartyChatDto {
+    pub jid: String,
+    pub muc_jwt_dto: LolLobbyMucJwtDto,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLobbyPartyDto {
+    pub party_id: String,
+    pub platform_id: String,
+    pub players: Vec<LolLobbyPartyMemberDto>,
+    pub chat: LolLobbyPartyChatDto,
+    pub max_party_size: i32,
+    pub party_type: String,
+    pub game_mode: LolLobbyGameModeDto,
+    pub activity_locked: bool,
+    pub version: u64,
+    pub activity_started_utc_millis: u64,
+    pub activity_resume_utc_millis: u64,
+    pub active_restrictions: LolLobbyQueueRestrictionDto,
+    pub eligibility_hash: i64,
+    pub eligibility_restrictions: Option<Vec<LolLobbyGatekeeperRestrictionDto>>,
+    pub eligibility_warnings: Option<Vec<LolLobbyGatekeeperRestrictionDto>>,
+    pub bot_participants: Option<Vec<LolLobbyBotParticipantDto>>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLobbyPartyMemberDto {
+    pub platform_id: String,
+    pub puuid: String,
+    pub account_id: u64,
+    pub summoner_id: u64,
+    pub party_id: String,
+    pub party_version: i64,
+    pub role: LolLobbyPartyMemberRoleEnum,
+    pub game_mode: Option<LolLobbyGameModeDto>,
+    pub ready: Option<bool>,
+    pub metadata: LolLobbyPartyMemberMetadataDto,
+    pub invited_by_summoner_id: Option<u64>,
+    pub invite_timestamp: Option<u64>,
+    pub can_invite: Option<bool>,
+    pub team: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLobbyPartyMemberMetadataDto {
+    pub position_pref: Vec<String>,
+    pub properties: Option<HashMap<String, String>>,
+    pub player_slots: Vec<LolLobbyQuickPlayPresetSlotDto>,
+    pub subteam_data: Option<LolLobbySubteamDataDto>,
+    pub tft_npe_queue_bypass: Option<bool>,
+    pub quickplay_player_state: Option<String>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLobbyPartyReward {
+    pub premade_size: i32,
+    pub type_: LolLobbyLobbyPartyRewardType,
+    pub value: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLobbyPartyStatusDto {
+    pub ready_players: Vec<String>,
+    pub left_players: Vec<String>,
+    pub eog_players: Vec<String>,
+    pub party_size: i32,
 }
 
 
@@ -2772,121 +2648,131 @@ pub struct LolLobbyPlayerDto {
 }
 
 
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLobbyPremadeMemberDto {
+    pub display_name: String,
+    pub game_name: String,
+    pub tag_line: String,
+    pub puuid: String,
+    pub party_id: String,
+    pub summoner_id: u64,
+    pub role: LolLobbyPartyMemberRoleEnum,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLobbyPremadePartyDto {
+    pub party_id: String,
+    pub comms_enabled: bool,
+    pub players: LolLobbyPremadeMemberDto,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLobbyQueueGameTypeConfig {
+    pub id: i64,
+    pub name: String,
+    pub max_allowable_bans: i32,
+    pub allow_trades: bool,
+    pub exclusive_pick: bool,
+    pub duplicate_pick: bool,
+    pub team_champion_pool: bool,
+    pub cross_team_champion_pool: bool,
+    pub advanced_learning_quests: bool,
+    pub battle_boost: bool,
+    pub death_match: bool,
+    pub do_not_remove: bool,
+    pub learning_quests: bool,
+    pub onboard_coop_beginner: bool,
+    pub reroll: bool,
+    pub main_pick_timer_duration: i32,
+    pub post_pick_timer_duration: i32,
+    pub ban_timer_duration: i32,
+    pub pick_mode: String,
+    pub ban_mode: String,
+    pub game_mode_override: Option<String>,
+    pub num_players_per_team_override: Option<i32>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLobbyQueueRestrictionDto {
+    pub gatekeeper_restrictions: Vec<LolLobbyGatekeeperRestrictionDto>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLobbyQuickPlayPresetSlotDto {
+    pub champion_id: i32,
+    pub skin_id: i32,
+    pub position_preference: String,
+    pub perks: String,
+    pub spell_1: u64,
+    pub spell_2: u64,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLobbyReceivedInvitationDto {
+    pub invitation_id: String,
+    pub from_summoner_id: u64,
+    pub state: LolLobbyLobbyInvitationState,
+    pub timestamp: String,
+    pub from_summoner_name: String,
+    pub can_accept_invitation: bool,
+    pub restrictions: Vec<LolLobbyEligibilityRestriction>,
+    pub game_config: LolLobbyReceivedInvitationGameConfigDto,
+    pub invitation_type: LolLobbyInvitationType,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLobbyReceivedInvitationGameConfigDto {
+    pub game_mode: String,
+    pub queue_id: i32,
+    pub map_id: i32,
+    pub invite_game_type: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLobbyRegistrationCredentials {
+    pub summoner_token: Option<String>,
+    pub inventory_token: Option<String>,
+    pub inventory_tokens: Option<Vec<String>>,
+    pub simple_inventory_token: Option<String>,
+    pub ranked_overview_token: Option<String>,
+    pub game_client_version: Option<String>,
+    pub player_tokens: Option<HashMap<String, String>>,
+    pub experiments: Option<HashMap<String, String>>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLobbyStrawberryMapUpdateDto {
+    pub content_id: String,
+    pub item_id: i32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolLobbySubteamDataDto {
+    pub subteam_index: i8,
+    pub intra_subteam_position: i8,
+}
+
+
 // ENUMS
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum LolLobbyInvitationType {
-    #[default]
-    #[serde(rename = "party")]
-    Party,
-    #[serde(rename = "lobby")]
-    Lobby,
-    #[serde(rename = "invalid")]
-    Invalid,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum LolLobbyQueueAvailability {
-    #[default]
-    DoesntMeetRequirements,
-    PlatformDisabled,
-    Available,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum LolLobbyLobbyInvitationState {
-    #[default]
-    Error,
-    OnHold,
-    Kicked,
-    Declined,
-    Joined,
-    Accepted,
-    Pending,
-    Requested,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum LolLobbyQueueCustomGameSpectatorPolicy {
-    #[default]
-    AllAllowed,
-    FriendsAllowed,
-    LobbyAllowed,
-    NotAllowed,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum LolLobbyLobbyBotDifficulty {
-    #[default]
-    #[serde(rename = "RSINTERMEDIATE")]
-    Rsintermediate,
-    #[serde(rename = "RSBEGINNER")]
-    Rsbeginner,
-    #[serde(rename = "RSINTRO")]
-    Rsintro,
-    #[serde(rename = "INTRO")]
-    Intro,
-    #[serde(rename = "TUTORIAL")]
-    Tutorial,
-    #[serde(rename = "UBER")]
-    Uber,
-    #[serde(rename = "HARD")]
-    Hard,
-    #[serde(rename = "MEDIUM")]
-    Medium,
-    #[serde(rename = "EASY")]
-    Easy,
-    #[serde(rename = "NONE")]
-    None,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum LolLobbyPartyMemberRoleEnum {
-    #[default]
-    #[serde(rename = "NONE")]
-    None,
-    #[serde(rename = "DECLINED")]
-    Declined,
-    #[serde(rename = "KICKED")]
-    Kicked,
-    #[serde(rename = "HOLD")]
-    Hold,
-    #[serde(rename = "INVITED")]
-    Invited,
-    #[serde(rename = "MEMBER")]
-    Member,
-    #[serde(rename = "LEADER")]
-    Leader,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum LolLobbyLobbyMatchmakingSearchState {
-    #[default]
-    ServiceShutdown,
-    ServiceError,
-    Error,
-    Found,
-    Searching,
-    Canceled,
-    AbandonedLowPriorityQueue,
-    Invalid,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum LolLobbyLobbyPartyRewardType {
-    #[default]
-    None,
-    Icon,
-    Ip,
-}
-
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
 pub enum LolLobbyEligibilityRestrictionCode {
@@ -2959,5 +2845,119 @@ pub enum LolLobbyEligibilityRestrictionCode {
     PlayerLevelRestriction,
     QueueUnsupported,
     QueueDisabled,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum LolLobbyInvitationType {
+    #[default]
+    #[serde(rename = "party")]
+    Party,
+    #[serde(rename = "lobby")]
+    Lobby,
+    #[serde(rename = "invalid")]
+    Invalid,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum LolLobbyLobbyBotDifficulty {
+    #[default]
+    #[serde(rename = "RSINTERMEDIATE")]
+    Rsintermediate,
+    #[serde(rename = "RSBEGINNER")]
+    Rsbeginner,
+    #[serde(rename = "RSINTRO")]
+    Rsintro,
+    #[serde(rename = "INTRO")]
+    Intro,
+    #[serde(rename = "TUTORIAL")]
+    Tutorial,
+    #[serde(rename = "UBER")]
+    Uber,
+    #[serde(rename = "HARD")]
+    Hard,
+    #[serde(rename = "MEDIUM")]
+    Medium,
+    #[serde(rename = "EASY")]
+    Easy,
+    #[serde(rename = "NONE")]
+    None,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum LolLobbyLobbyInvitationState {
+    #[default]
+    Error,
+    OnHold,
+    Kicked,
+    Declined,
+    Joined,
+    Accepted,
+    Pending,
+    Requested,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum LolLobbyLobbyMatchmakingSearchState {
+    #[default]
+    ServiceShutdown,
+    ServiceError,
+    Error,
+    Found,
+    Searching,
+    Canceled,
+    AbandonedLowPriorityQueue,
+    Invalid,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum LolLobbyLobbyPartyRewardType {
+    #[default]
+    None,
+    Icon,
+    Ip,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum LolLobbyPartyMemberRoleEnum {
+    #[default]
+    #[serde(rename = "NONE")]
+    None,
+    #[serde(rename = "DECLINED")]
+    Declined,
+    #[serde(rename = "KICKED")]
+    Kicked,
+    #[serde(rename = "HOLD")]
+    Hold,
+    #[serde(rename = "INVITED")]
+    Invited,
+    #[serde(rename = "MEMBER")]
+    Member,
+    #[serde(rename = "LEADER")]
+    Leader,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum LolLobbyQueueAvailability {
+    #[default]
+    DoesntMeetRequirements,
+    PlatformDisabled,
+    Available,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum LolLobbyQueueCustomGameSpectatorPolicy {
+    #[default]
+    AllAllowed,
+    FriendsAllowed,
+    LobbyAllowed,
+    NotAllowed,
 }
 

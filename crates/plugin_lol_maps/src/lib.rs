@@ -188,16 +188,6 @@ pub fn post_lol_maps_v_1_map(body: LolMapsMaps) -> PostLolMapsV1Map {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolMapsTutorialCard {
-    pub header: Option<String>,
-    pub footer: Option<String>,
-    pub description: Option<String>,
-    pub image_path: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LolMapsGameModeSpellList {
     pub spells: Vec<u64>,
 }
@@ -226,6 +216,17 @@ pub struct LolMapsMaps {
     pub properties: HashMap<String, String>,
     pub per_position_required_summoner_spells: LolMapsGameModeSpellList,
     pub per_position_disallowed_summoner_spells: LolMapsGameModeSpellList,
+    pub tft_set_override: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolMapsTutorialCard {
+    pub header: Option<String>,
+    pub footer: Option<String>,
+    pub description: Option<String>,
+    pub image_path: String,
 }
 
 

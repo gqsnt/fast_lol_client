@@ -470,6 +470,16 @@ pub fn post_lol_challenges_v_1_update_player_preferences(body: LolChallengesChal
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct LolChallengesChallengeSeason {
+    pub season_id: i32,
+    pub season_start: i64,
+    pub season_end: i64,
+    pub is_active: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct LolChallengesChallengeSignedUpdatePayload {
     pub tokens_by_type: HashMap<String, HashMap<String, String>>,
 }
@@ -488,9 +498,32 @@ pub struct LolChallengesChallengeTitleData {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct LolChallengesChallengesPlayerPreferences {
+    pub banner_accent: String,
+    pub title: String,
+    pub challenge_ids: Vec<i64>,
+    pub crest_border: String,
+    pub prestige_crest_border_level: i32,
+    pub signed_jwt_payload: LolChallengesChallengeSignedUpdatePayload,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct LolChallengesFriendLevelsData {
     pub level: String,
     pub friends: Vec<String>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChallengesUiCategoryProgress {
+    pub level: String,
+    pub category: String,
+    pub position_percentile: f64,
+    pub current: i32,
+    pub max: i32,
 }
 
 
@@ -541,36 +574,8 @@ pub struct LolChallengesUiChallenge {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolChallengesChallengeSeason {
-    pub season_id: i32,
-    pub season_start: i64,
-    pub season_end: i64,
-    pub is_active: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChallengesUiTitle {
-    pub item_id: i32,
-    pub content_id: String,
-    pub name: String,
-    pub purchase_date: String,
-    pub title_acquisition_type: String,
-    pub title_acquisition_name: Option<String>,
-    pub title_requirement_description: Option<String>,
-    pub is_permanent_title: Option<bool>,
-    pub challenge_title_data: Option<LolChallengesChallengeTitleData>,
-    pub icon_path: Option<String>,
-    pub background_image_path: Option<String>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChallengesUiChallengeThreshold {
-    pub value: f64,
-    pub rewards: Vec<LolChallengesUiChallengeReward>,
+pub struct LolChallengesUiChallengePenalty {
+    pub reason: String,
 }
 
 
@@ -586,19 +591,9 @@ pub struct LolChallengesUiChallengeReward {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolChallengesUiChallengePenalty {
-    pub reason: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChallengesUiCategoryProgress {
-    pub level: String,
-    pub category: String,
-    pub position_percentile: f64,
-    pub current: i32,
-    pub max: i32,
+pub struct LolChallengesUiChallengeThreshold {
+    pub value: f64,
+    pub rewards: Vec<LolChallengesUiChallengeReward>,
 }
 
 
@@ -624,13 +619,18 @@ pub struct LolChallengesUiPlayerSummary {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolChallengesChallengesPlayerPreferences {
-    pub banner_accent: String,
-    pub title: String,
-    pub challenge_ids: Vec<i64>,
-    pub crest_border: String,
-    pub prestige_crest_border_level: i32,
-    pub signed_jwt_payload: LolChallengesChallengeSignedUpdatePayload,
+pub struct LolChallengesUiTitle {
+    pub item_id: i32,
+    pub content_id: String,
+    pub name: String,
+    pub purchase_date: String,
+    pub title_acquisition_type: String,
+    pub title_acquisition_name: Option<String>,
+    pub title_requirement_description: Option<String>,
+    pub is_permanent_title: Option<bool>,
+    pub challenge_title_data: Option<LolChallengesChallengeTitleData>,
+    pub icon_path: Option<String>,
+    pub background_image_path: Option<String>,
 }
 
 

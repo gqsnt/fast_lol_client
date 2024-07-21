@@ -565,7 +565,7 @@ pub struct GetLolEventHubV1NavigationButtonData {
 
 impl IsApiRequest for GetLolEventHubV1NavigationButtonData {
     const METHOD: Method = Method::GET;
-    type ReturnType = LolEventHubNavigationButtonUiData;
+    type ReturnType = Vec<LolEventHubNavigationButtonUiData>;
 
     fn get_url(&self) -> String {
         "/lol-event-hub/v1/navigation-button-data".to_string()
@@ -735,29 +735,9 @@ pub fn post_lol_event_hub_v_1_purchase_item(body: LolEventHubItemOrderDto) -> Po
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolEventHubPurchaseOrderResponseDto {
-    pub rp_balance: i64,
-    pub ip_balance: i64,
-    pub transactions: Vec<LolEventHubTransactionResponseDto>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolEventHubNarrativeVideo {
-    pub localized_narrative_video_url: String,
-    pub localized_play_narrative_button_label: String,
-    pub narrative_video_is_locked_on_level: Option<bool>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolEventHubCatalogEntry {
-    pub content_id: String,
-    pub item_id: i32,
-    pub offer_id: String,
-    pub type_id: String,
+pub struct LolEventHubActiveEventUiData {
+    pub event_id: String,
+    pub event_info: LolEventHubEventInfoUiData,
 }
 
 
@@ -771,54 +751,6 @@ pub struct LolEventHubBundleOfferUiData {
     pub is_purchasable: bool,
     pub discount_percentage: f64,
     pub bundled_items: Vec<LolEventHubBundledItemUiData>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolEventHubCategoryOffersUiData {
-    pub category: LolEventHubOfferCategory,
-    pub category_icon_path: String,
-    pub offers: Vec<LolEventHubOfferUiData>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolEventHubNavigationButtonUiData {
-    pub active_event_id: String,
-    pub show_pip: bool,
-    pub show_glow: bool,
-    pub icon_path: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolEventHubEventInfoUiData {
-    pub event_id: String,
-    pub event_name: String,
-    pub event_type: String,
-    pub event_icon: String,
-    pub event_token_image: String,
-    pub current_token_balance: i32,
-    pub locked_token_count: i32,
-    pub unclaimed_reward_count: i32,
-    pub time_of_last_unclaimed_reward: i64,
-    pub is_pass_purchased: bool,
-    pub event_pass_bundles: Vec<LolEventHubCatalogEntry>,
-    pub token_bundles: Vec<LolEventHubCatalogEntry>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolEventHubCapOrdersDataDto {
-    pub id: String,
-    pub sub_orders: Vec<LolEventHubCapOrdersSubOrderDto>,
-    pub purchaser: LolEventHubCapOrdersTypedIdentifierDto,
-    pub location: String,
-    pub source: String,
 }
 
 
@@ -839,9 +771,43 @@ pub struct LolEventHubBundledItemUiData {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolEventHubEventHubError {
-    pub error_message: String,
-    pub error_id: String,
+pub struct LolEventHubCapOrdersDataDto {
+    pub id: String,
+    pub sub_orders: Vec<LolEventHubCapOrdersSubOrderDto>,
+    pub purchaser: LolEventHubCapOrdersTypedIdentifierDto,
+    pub location: String,
+    pub source: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolEventHubCapOrdersMetaDto {
+    pub xid: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolEventHubCapOrdersOfferContextDto {
+    pub quantity: u32,
+    pub payment_option: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolEventHubCapOrdersOfferDto {
+    pub id: String,
+    pub product_id: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolEventHubCapOrdersOrderDto {
+    pub data: LolEventHubCapOrdersDataDto,
+    pub meta: LolEventHubCapOrdersMetaDto,
 }
 
 
@@ -851,6 +817,40 @@ pub struct LolEventHubCapOrdersSubOrderDto {
     pub recipient_id: String,
     pub offer_context: LolEventHubCapOrdersOfferContextDto,
     pub offer: LolEventHubCapOrdersOfferDto,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolEventHubCapOrdersTypedIdentifierDto {
+    pub id: String,
+    pub type_id: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolEventHubCatalogEntry {
+    pub content_id: String,
+    pub item_id: i32,
+    pub offer_id: String,
+    pub type_id: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolEventHubCategoryOffersUiData {
+    pub category: LolEventHubOfferCategory,
+    pub category_icon_path: String,
+    pub offers: Vec<LolEventHubOfferUiData>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolEventHubEventBackgroundUiData {
+    pub background_image_path: String,
 }
 
 
@@ -871,28 +871,28 @@ pub struct LolEventHubEventDetailsUiData {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolEventHubProgressionPurchaseUiData {
-    pub offer_id: String,
-    pub price_per_level: i64,
-    pub rp_balance: i64,
+pub struct LolEventHubEventHubError {
+    pub error_message: String,
+    pub error_id: String,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolEventHubCapOrdersTypedIdentifierDto {
-    pub id: String,
-    pub type_id: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolEventHubItemUiData {
-    pub item_id: String,
-    pub inventory_type: String,
-    pub price: u32,
-    pub quantity: u32,
+pub struct LolEventHubEventInfoUiData {
+    pub event_id: String,
+    pub event_name: String,
+    pub event_type: String,
+    pub event_icon: String,
+    pub nav_bar_icon: String,
+    pub event_token_image: String,
+    pub current_token_balance: i32,
+    pub locked_token_count: i32,
+    pub unclaimed_reward_count: i32,
+    pub time_of_last_unclaimed_reward: i64,
+    pub is_pass_purchased: bool,
+    pub event_pass_bundles: Vec<LolEventHubCatalogEntry>,
+    pub token_bundles: Vec<LolEventHubCatalogEntry>,
 }
 
 
@@ -901,40 +901,6 @@ pub struct LolEventHubItemUiData {
 pub struct LolEventHubEventPassInfo {
     pub event_id: String,
     pub is_pass_purchased: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolEventHubCapOrdersOfferDto {
-    pub id: String,
-    pub product_id: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolEventHubRewardTrackItem {
-    pub state: LolEventHubRewardTrackItemStates,
-    pub reward_options: Vec<LolEventHubRewardTrackItemOption>,
-    pub reward_tags: Vec<LolEventHubRewardTrackItemTag>,
-    pub progress_required: i64,
-    pub threshold: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolEventHubActiveEventUiData {
-    pub event_id: String,
-    pub event_info: LolEventHubEventInfoUiData,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolEventHubCapOrdersMetaDto {
-    pub xid: String,
 }
 
 
@@ -950,58 +916,42 @@ pub struct LolEventHubItemOrderDto {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolEventHubTransactionResponseDto {
-    pub id: String,
+pub struct LolEventHubItemUiData {
+    pub item_id: String,
     pub inventory_type: String,
-    pub item_id: i32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolEventHubCapOrdersOfferContextDto {
+    pub price: u32,
     pub quantity: u32,
-    pub payment_option: String,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolEventHubProgressInfoUiData {
-    pub token_image: String,
-    pub pass_purchased: bool,
-    pub event_pass_bundles_catalog_entry: Vec<LolEventHubCatalogEntry>,
+pub struct LolEventHubNarrativeElement {
+    pub localized_narrative_title: String,
+    pub localized_narrative_description: String,
+    pub narrative_background_image: String,
+    pub narrative_starting_track_level: u16,
+    pub narrative_video: LolEventHubNarrativeVideo,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolEventHubUnclaimedRewardsUiData {
-    pub rewards_count: i32,
-    pub locked_tokens_count: i32,
-    pub time_of_last_unclaimed_reward: i64,
+pub struct LolEventHubNarrativeVideo {
+    pub localized_narrative_video_url: String,
+    pub localized_play_narrative_button_label: String,
+    pub narrative_video_is_locked_on_level: Option<bool>,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolEventHubRewardTrackProgress {
-    pub level: i16,
-    pub total_levels: i16,
-    pub level_progress: u16,
-    pub future_level_progress: u16,
-    pub pass_progress: i64,
-    pub current_level_xp: i64,
-    pub total_level_xp: i64,
-    pub iteration: u32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolEventHubPurchaseOfferRequest {
-    pub offer_id: String,
-    pub purchase_quantity: u32,
+pub struct LolEventHubNavigationButtonUiData {
+    pub active_event_id: String,
+    pub show_pip: bool,
+    pub show_glow: bool,
+    pub icon_path: String,
+    pub event_name: String,
 }
 
 
@@ -1022,8 +972,55 @@ pub struct LolEventHubOfferUiData {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolEventHubEventBackgroundUiData {
-    pub background_image_path: String,
+pub struct LolEventHubProgressInfoUiData {
+    pub token_image: String,
+    pub pass_purchased: bool,
+    pub event_pass_bundles_catalog_entry: Vec<LolEventHubCatalogEntry>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolEventHubProgressionPurchaseUiData {
+    pub offer_id: String,
+    pub price_per_level: i64,
+    pub rp_balance: i64,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolEventHubPurchaseOfferRequest {
+    pub offer_id: String,
+    pub purchase_quantity: u32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolEventHubPurchaseOfferResponseV3 {
+    pub legacy: bool,
+    pub order_dto: Option<LolEventHubCapOrdersOrderDto>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolEventHubPurchaseOrderResponseDto {
+    pub rp_balance: i64,
+    pub ip_balance: i64,
+    pub transactions: Vec<LolEventHubTransactionResponseDto>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolEventHubRewardTrackItem {
+    pub state: LolEventHubRewardTrackItemStates,
+    pub reward_options: Vec<LolEventHubRewardTrackItemOption>,
+    pub reward_tags: Vec<LolEventHubRewardTrackItemTag>,
+    pub progress_required: i64,
+    pub threshold: String,
 }
 
 
@@ -1046,39 +1043,15 @@ pub struct LolEventHubRewardTrackItemOption {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolEventHubPurchaseOfferResponseV3 {
-    pub legacy: bool,
-    pub order_dto: Option<LolEventHubCapOrdersOrderDto>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolEventHubTokenShopUiData {
-    pub token_name: String,
-    pub token_image: String,
-    pub token_uuid: String,
-    pub offers_version: u32,
-    pub token_bundles_catalog_entry: Vec<LolEventHubCatalogEntry>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolEventHubCapOrdersOrderDto {
-    pub data: LolEventHubCapOrdersDataDto,
-    pub meta: LolEventHubCapOrdersMetaDto,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolEventHubNarrativeElement {
-    pub localized_narrative_title: String,
-    pub localized_narrative_description: String,
-    pub narrative_background_image: String,
-    pub narrative_starting_track_level: u16,
-    pub narrative_video: LolEventHubNarrativeVideo,
+pub struct LolEventHubRewardTrackProgress {
+    pub level: i16,
+    pub total_levels: i16,
+    pub level_progress: u16,
+    pub future_level_progress: u16,
+    pub pass_progress: i64,
+    pub current_level_xp: i64,
+    pub total_level_xp: i64,
+    pub iteration: u32,
 }
 
 
@@ -1090,6 +1063,17 @@ pub struct LolEventHubRewardTrackXp {
     pub total_level_xp: i64,
     pub is_bonus_phase: bool,
     pub iteration: u32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolEventHubTokenShopUiData {
+    pub token_name: String,
+    pub token_image: String,
+    pub token_uuid: String,
+    pub offers_version: u32,
+    pub token_bundles_catalog_entry: Vec<LolEventHubCatalogEntry>,
 }
 
 
@@ -1116,6 +1100,24 @@ pub struct LolEventHubTokenUpsell {
 }
 
 
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolEventHubTransactionResponseDto {
+    pub id: String,
+    pub inventory_type: String,
+    pub item_id: i32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolEventHubUnclaimedRewardsUiData {
+    pub rewards_count: i32,
+    pub locked_tokens_count: i32,
+    pub time_of_last_unclaimed_reward: i64,
+}
+
+
 // ENUMS
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
@@ -1127,27 +1129,6 @@ pub enum LolEventHubCelebrationType {
     Toast,
     #[serde(rename = "NONE")]
     None,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum LolEventHubRewardTrackItemStates {
-    #[default]
-    Selected,
-    Unselected,
-    Unlocked,
-    Locked,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum LolEventHubRewardTrackItemTag {
-    #[default]
-    Multiple,
-    Choice,
-    Instant,
-    Free,
-    Rare,
 }
 
 
@@ -1181,18 +1162,6 @@ pub enum LolEventHubOfferStates {
 
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum LolEventHubTokenUpsellLockedType {
-    #[default]
-    #[serde(rename = "UNLOCKED")]
-    Unlocked,
-    #[serde(rename = "LOCKED")]
-    Locked,
-    #[serde(rename = "UNASSIGNED")]
-    Unassigned,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
 pub enum LolEventHubRewardTrackItemHeaderType {
     #[default]
     #[serde(rename = "NONE")]
@@ -1201,5 +1170,38 @@ pub enum LolEventHubRewardTrackItemHeaderType {
     Free,
     #[serde(rename = "PREMIUM")]
     Premium,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum LolEventHubRewardTrackItemStates {
+    #[default]
+    Selected,
+    Unselected,
+    Unlocked,
+    Locked,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum LolEventHubRewardTrackItemTag {
+    #[default]
+    Multiple,
+    Choice,
+    Instant,
+    Free,
+    Rare,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum LolEventHubTokenUpsellLockedType {
+    #[default]
+    #[serde(rename = "UNLOCKED")]
+    Unlocked,
+    #[serde(rename = "LOCKED")]
+    Locked,
+    #[serde(rename = "UNASSIGNED")]
+    Unassigned,
 }
 

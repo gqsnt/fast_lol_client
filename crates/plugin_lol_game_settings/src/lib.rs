@@ -65,35 +65,6 @@ pub fn get_lol_game_settings_v_1_game_settings() -> GetLolGameSettingsV1GameSett
 }
 
 
-pub struct PatchLolGameSettingsV1GameSettings {
-
-    pub body: HashMap<String, String>,
-}
-
-impl IsApiRequest for PatchLolGameSettingsV1GameSettings {
-    const METHOD: Method = Method::PATCH;
-    type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-game-settings/v1/game-settings".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn patch_lol_game_settings_v_1_game_settings(body: HashMap<String, String>) -> PatchLolGameSettingsV1GameSettings {
-    PatchLolGameSettingsV1GameSettings {
-        body
-    }
-}
-
-
 pub struct GetLolGameSettingsV1GameSettingsSchema {
 
 }
@@ -150,35 +121,6 @@ pub fn get_lol_game_settings_v_1_input_settings() -> GetLolGameSettingsV1InputSe
 }
 
 
-pub struct PatchLolGameSettingsV1InputSettings {
-
-    pub body: HashMap<String, String>,
-}
-
-impl IsApiRequest for PatchLolGameSettingsV1InputSettings {
-    const METHOD: Method = Method::PATCH;
-    type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-game-settings/v1/input-settings".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn patch_lol_game_settings_v_1_input_settings(body: HashMap<String, String>) -> PatchLolGameSettingsV1InputSettings {
-    PatchLolGameSettingsV1InputSettings {
-        body
-    }
-}
-
-
 pub struct GetLolGameSettingsV1InputSettingsSchema {
 
 }
@@ -231,6 +173,64 @@ impl IsApiRequest for GetLolGameSettingsV1Ready {
 pub fn get_lol_game_settings_v_1_ready() -> GetLolGameSettingsV1Ready {
     GetLolGameSettingsV1Ready {
         
+    }
+}
+
+
+pub struct PatchLolGameSettingsV1GameSettings {
+
+    pub body: HashMap<String, String>,
+}
+
+impl IsApiRequest for PatchLolGameSettingsV1GameSettings {
+    const METHOD: Method = Method::PATCH;
+    type ReturnType = HashMap<String, String>;
+
+    fn get_url(&self) -> String {
+        "/lol-game-settings/v1/game-settings".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn patch_lol_game_settings_v_1_game_settings(body: HashMap<String, String>) -> PatchLolGameSettingsV1GameSettings {
+    PatchLolGameSettingsV1GameSettings {
+        body
+    }
+}
+
+
+pub struct PatchLolGameSettingsV1InputSettings {
+
+    pub body: HashMap<String, String>,
+}
+
+impl IsApiRequest for PatchLolGameSettingsV1InputSettings {
+    const METHOD: Method = Method::PATCH;
+    type ReturnType = HashMap<String, String>;
+
+    fn get_url(&self) -> String {
+        "/lol-game-settings/v1/input-settings".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn patch_lol_game_settings_v_1_input_settings(body: HashMap<String, String>) -> PatchLolGameSettingsV1InputSettings {
+    PatchLolGameSettingsV1InputSettings {
+        body
     }
 }
 

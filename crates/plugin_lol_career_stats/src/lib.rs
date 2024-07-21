@@ -424,6 +424,19 @@ pub struct LolCareerStatsChampionQueueStatsResponse {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct LolCareerStatsExpertPlayer {
+    pub champion_id: i32,
+    pub position: LolCareerStatsSummonersRiftPosition,
+    pub summoner_id: u64,
+    pub summoner_name: String,
+    pub num_of_games: i32,
+    pub win_rate: f32,
+    pub expert_rank: i32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct LolCareerStatsPositionStatsQueryRequest {
     pub queue_type: LolCareerStatsCareerStatsQueueType,
     pub position: LolCareerStatsSummonersRiftPosition,
@@ -455,40 +468,7 @@ pub struct LolCareerStatsStatsQueryRequest {
 }
 
 
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolCareerStatsExpertPlayer {
-    pub champion_id: i32,
-    pub position: LolCareerStatsSummonersRiftPosition,
-    pub summoner_id: u64,
-    pub summoner_name: String,
-    pub num_of_games: i32,
-    pub win_rate: f32,
-    pub expert_rank: i32,
-}
-
-
 // ENUMS
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum LolCareerStatsSummonersRiftPosition {
-    #[default]
-    #[serde(rename = "SUPPORT")]
-    Support,
-    #[serde(rename = "BOTTOM")]
-    Bottom,
-    #[serde(rename = "MID")]
-    Mid,
-    #[serde(rename = "JUNGLE")]
-    Jungle,
-    #[serde(rename = "TOP")]
-    Top,
-    #[serde(rename = "UNKNOWN")]
-    Unknown,
-    #[serde(rename = "ALL")]
-    All,
-}
-
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
 pub enum LolCareerStatsCareerStatsQueueType {
@@ -511,5 +491,25 @@ pub enum LolCareerStatsCareerStatsQueueType {
     Rank5Flex,
     #[serde(rename = "draft5")]
     Draft5,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum LolCareerStatsSummonersRiftPosition {
+    #[default]
+    #[serde(rename = "SUPPORT")]
+    Support,
+    #[serde(rename = "BOTTOM")]
+    Bottom,
+    #[serde(rename = "MID")]
+    Mid,
+    #[serde(rename = "JUNGLE")]
+    Jungle,
+    #[serde(rename = "TOP")]
+    Top,
+    #[serde(rename = "UNKNOWN")]
+    Unknown,
+    #[serde(rename = "ALL")]
+    All,
 }
 

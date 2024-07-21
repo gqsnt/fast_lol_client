@@ -9,35 +9,6 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct PostTracingV1PerformanceByName {
-    // Starts recording of a performance metric.
-    pub name: String,
-}
-
-impl IsApiRequest for PostTracingV1PerformanceByName {
-    const METHOD: Method = Method::POST;
-    type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        format!("/tracing/v1/performance/{}", self.name)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn post_tracing_v_1_performance_by_name(name: String) -> PostTracingV1PerformanceByName {
-    PostTracingV1PerformanceByName {
-        name
-    }
-}
-
-
 pub struct DeleteTracingV1PerformanceByName {
     // Ends recording of a performance metric.
     pub name: String,
@@ -63,36 +34,6 @@ impl IsApiRequest for DeleteTracingV1PerformanceByName {
 pub fn delete_tracing_v_1_performance_by_name(name: String) -> DeleteTracingV1PerformanceByName {
     DeleteTracingV1PerformanceByName {
         name
-    }
-}
-
-
-pub struct PostTracingV1TraceTimeSeriesEventByEventName {
-    // Record the beginning of a time series event.
-    pub event_name: String,
-    pub body: u64,
-}
-
-impl IsApiRequest for PostTracingV1TraceTimeSeriesEventByEventName {
-    const METHOD: Method = Method::POST;
-    type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        format!("/tracing/v1/trace/time-series-event/{}", self.event_name)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn post_tracing_v_1_trace_time_series_event_by_event_name(event_name: String, body: u64) -> PostTracingV1TraceTimeSeriesEventByEventName {
-    PostTracingV1TraceTimeSeriesEventByEventName {
-        event_name, body
     }
 }
 
@@ -155,6 +96,35 @@ impl IsApiRequest for GetTracingV1TracePayloadsEnabled {
 pub fn get_tracing_v_1_trace_payloads_enabled() -> GetTracingV1TracePayloadsEnabled {
     GetTracingV1TracePayloadsEnabled {
         
+    }
+}
+
+
+pub struct PostTracingV1PerformanceByName {
+    // Starts recording of a performance metric.
+    pub name: String,
+}
+
+impl IsApiRequest for PostTracingV1PerformanceByName {
+    const METHOD: Method = Method::POST;
+    type ReturnType = Value;
+
+    fn get_url(&self) -> String {
+        format!("/tracing/v1/performance/{}", self.name)
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        None
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn post_tracing_v_1_performance_by_name(name: String) -> PostTracingV1PerformanceByName {
+    PostTracingV1PerformanceByName {
+        name
     }
 }
 
@@ -369,6 +339,36 @@ pub fn post_tracing_v_1_trace_step_event(body: String) -> PostTracingV1TraceStep
 }
 
 
+pub struct PostTracingV1TraceTimeSeriesEventByEventName {
+    // Record the beginning of a time series event.
+    pub event_name: String,
+    pub body: u64,
+}
+
+impl IsApiRequest for PostTracingV1TraceTimeSeriesEventByEventName {
+    const METHOD: Method = Method::POST;
+    type ReturnType = Value;
+
+    fn get_url(&self) -> String {
+        format!("/tracing/v1/trace/time-series-event/{}", self.event_name)
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn post_tracing_v_1_trace_time_series_event_by_event_name(event_name: String, body: u64) -> PostTracingV1TraceTimeSeriesEventByEventName {
+    PostTracingV1TraceTimeSeriesEventByEventName {
+        event_name, body
+    }
+}
+
+
 pub struct PostTracingV1TraceTimeSeriesEventByEventNameMarkerByMarkerName {
     // Record a marker within a time series event.
     pub event_name: String,
@@ -436,14 +436,6 @@ pub struct TracingModuleV1 {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct TracingPhaseEndV1 {
-    pub when: u64,
-    pub name: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct TracingPhaseBeginV1 {
     pub when: u64,
     pub name: String,
@@ -451,7 +443,33 @@ pub struct TracingPhaseBeginV1 {
 }
 
 
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct TracingPhaseEndV1 {
+    pub when: u64,
+    pub name: String,
+}
+
+
 // ENUMS
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum TracingModuleThreadingModelV1 {
+    #[default]
+    #[serde(rename = "kParallel")]
+    KParallel,
+    #[serde(rename = "kConcurrent")]
+    KConcurrent,
+    #[serde(rename = "kSequential")]
+    KSequential,
+    #[serde(rename = "kDedicated")]
+    KDedicated,
+    #[serde(rename = "kMainThread")]
+    KMainThread,
+    #[serde(rename = "kNone")]
+    KNone,
+}
+
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
 pub enum TracingModuleTypeV1 {
@@ -480,23 +498,5 @@ pub enum TracingPhaseImportanceV1 {
     Minor,
     #[serde(rename = "trivial")]
     Trivial,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum TracingModuleThreadingModelV1 {
-    #[default]
-    #[serde(rename = "kParallel")]
-    KParallel,
-    #[serde(rename = "kConcurrent")]
-    KConcurrent,
-    #[serde(rename = "kSequential")]
-    KSequential,
-    #[serde(rename = "kDedicated")]
-    KDedicated,
-    #[serde(rename = "kMainThread")]
-    KMainThread,
-    #[serde(rename = "kNone")]
-    KNone,
 }
 

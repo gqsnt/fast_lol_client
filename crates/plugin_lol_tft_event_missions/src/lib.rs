@@ -93,6 +93,35 @@ pub fn get_lol_missions_v_1_missions() -> GetLolMissionsV1Missions {
 }
 
 
+pub struct GetLolMissionsV1MissionsSeriesBySeriesName {
+
+    pub series_name: String,
+}
+
+impl IsApiRequest for GetLolMissionsV1MissionsSeriesBySeriesName {
+    const METHOD: Method = Method::GET;
+    type ReturnType = Vec<PlayerMissionDto>;
+
+    fn get_url(&self) -> String {
+        format!("/lol-missions/v1/missions/series/{}", self.series_name)
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        None
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn get_lol_missions_v_1_missions_series_by_series_name(series_name: String) -> GetLolMissionsV1MissionsSeriesBySeriesName {
+    GetLolMissionsV1MissionsSeriesBySeriesName {
+        series_name
+    }
+}
+
+
 pub struct GetLolMissionsV1Series {
 
 }
@@ -241,45 +270,80 @@ pub fn put_lol_missions_v_2_player_opt(body: LolMissionsSeriesOpt) -> PutLolMiss
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct PlayerMissionEligibilityData {
-    pub level: i32,
-    pub loyalty_enabled: bool,
-    pub player_inventory: PlayerInventory,
-    pub user_info_token: Option<String>,
+pub struct AlertDto {
+    pub alert_time: i64,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct PlayerInventory {
-    pub ward_skins: Vec<i64>,
-    pub champions: Vec<i32>,
-    pub skins: Vec<i32>,
-    pub icons: Vec<i32>,
-    pub inventory_jwts: Vec<String>,
+pub struct IdsDto {
+    pub mission_ids: Vec<String>,
+    pub series_ids: Vec<String>,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct PlayerMissionObjectiveDto {
-    pub type_: String,
-    pub description: String,
-    pub progress: MissionProgressDto,
-    pub sequence: i32,
+pub struct LolMissionsRewardGroupsSelection {
     pub reward_groups: Vec<String>,
-    pub has_objective_based_reward: bool,
-    pub status: String,
-    pub requirements: Vec<String>,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct RewardStrategy {
-    pub group_strategy: String,
-    pub select_max_group_count: u16,
-    pub select_min_group_count: u16,
+pub struct LolMissionsSeriesOpt {
+    pub series_id: String,
+    pub option: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolTftEventTftEventMissionChain {
+    pub chain_index: i32,
+    pub chain_size: u32,
+    pub missions: Vec<PlayerMissionDto>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct MissionAlertDto {
+    pub type_: String,
+    pub message: String,
+    pub alert_time: i64,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct MissionDisplay {
+    pub attributes: Vec<String>,
+    pub locations: Vec<String>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct MissionMetadata {
+    pub tutorial: TutorialMetadata,
+    pub npe_reward_pack: NpeRewardPackMetadata,
+    pub mission_type: String,
+    pub week_num: i32,
+    pub xp_reward: i32,
+    pub chain: i32,
+    pub order: i32,
+    pub chain_size: i32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct MissionProgressDto {
+    pub last_viewed_progress: i32,
+    pub current_progress: i32,
+    pub total_count: i32,
 }
 
 
@@ -293,26 +357,23 @@ pub struct NpeReward {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct SeriesDto {
-    pub id: String,
-    pub internal_name: String,
-    pub parent_internal_name: String,
-    pub type_: String,
-    pub eligibility_type: String,
-    pub display_type: String,
-    pub title: String,
-    pub description: String,
-    pub opt_in_button_text: String,
-    pub opt_out_button_text: String,
-    pub status: String,
-    pub start_date: i64,
-    pub end_date: i64,
-    pub created_date: i64,
-    pub last_updated_timestamp: i64,
-    pub viewed: bool,
-    pub media: SeriesMediaDto,
-    pub tags: Vec<String>,
-    pub warnings: Vec<AlertDto>,
+pub struct NpeRewardPackMetadata {
+    pub index: i32,
+    pub premium_reward: bool,
+    pub reward_key: String,
+    pub major_reward: NpeReward,
+    pub minor_rewards: Vec<NpeReward>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct PlayerInventory {
+    pub ward_skins: Vec<i64>,
+    pub champions: Vec<i32>,
+    pub skins: Vec<i32>,
+    pub icons: Vec<i32>,
+    pub inventory_jwts: Vec<String>,
 }
 
 
@@ -356,41 +417,25 @@ pub struct PlayerMissionDto {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct TutorialMetadata {
-    pub step_number: i32,
-    pub queue_id: String,
-    pub display_rewards: HashMap<String, String>,
-    pub use_quick_search_matchmaking: bool,
-    pub use_chosen_champion: bool,
+pub struct PlayerMissionEligibilityData {
+    pub level: i32,
+    pub loyalty_enabled: bool,
+    pub player_inventory: PlayerInventory,
+    pub user_info_token: Option<String>,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct SeriesMediaDto {
-    pub background_url: String,
-    pub background_image_large_url: String,
-    pub background_image_small_url: String,
-    pub tracker_icon_url: String,
-    pub tracker_icon: String,
-    pub accent_color: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct MissionAlertDto {
+pub struct PlayerMissionObjectiveDto {
     pub type_: String,
-    pub message: String,
-    pub alert_time: i64,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct IdsDto {
-    pub mission_ids: Vec<String>,
-    pub series_ids: Vec<String>,
+    pub description: String,
+    pub progress: MissionProgressDto,
+    pub sequence: i32,
+    pub reward_groups: Vec<String>,
+    pub has_objective_based_reward: bool,
+    pub status: String,
+    pub requirements: Vec<String>,
 }
 
 
@@ -416,74 +461,58 @@ pub struct PlayerMissionRewardDto {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct MissionProgressDto {
-    pub last_viewed_progress: i32,
-    pub current_progress: i32,
-    pub total_count: i32,
+pub struct RewardStrategy {
+    pub group_strategy: String,
+    pub select_max_group_count: u16,
+    pub select_min_group_count: u16,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolTftEventTftEventMissionChain {
-    pub chain_index: i32,
-    pub chain_size: u32,
-    pub missions: Vec<PlayerMissionDto>,
+pub struct SeriesDto {
+    pub id: String,
+    pub internal_name: String,
+    pub parent_internal_name: String,
+    pub type_: String,
+    pub eligibility_type: String,
+    pub display_type: String,
+    pub title: String,
+    pub description: String,
+    pub opt_in_button_text: String,
+    pub opt_out_button_text: String,
+    pub status: String,
+    pub start_date: i64,
+    pub end_date: i64,
+    pub created_date: i64,
+    pub last_updated_timestamp: i64,
+    pub viewed: bool,
+    pub media: SeriesMediaDto,
+    pub tags: Vec<String>,
+    pub warnings: Vec<AlertDto>,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct MissionDisplay {
-    pub attributes: Vec<String>,
-    pub locations: Vec<String>,
+pub struct SeriesMediaDto {
+    pub background_url: String,
+    pub background_image_large_url: String,
+    pub background_image_small_url: String,
+    pub tracker_icon_url: String,
+    pub tracker_icon: String,
+    pub accent_color: String,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct NpeRewardPackMetadata {
-    pub index: i32,
-    pub premium_reward: bool,
-    pub reward_key: String,
-    pub major_reward: NpeReward,
-    pub minor_rewards: Vec<NpeReward>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct MissionMetadata {
-    pub tutorial: TutorialMetadata,
-    pub npe_reward_pack: NpeRewardPackMetadata,
-    pub mission_type: String,
-    pub week_num: i32,
-    pub xp_reward: i32,
-    pub chain: i32,
-    pub order: i32,
-    pub chain_size: i32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolMissionsRewardGroupsSelection {
-    pub reward_groups: Vec<String>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct AlertDto {
-    pub alert_time: i64,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolMissionsSeriesOpt {
-    pub series_id: String,
-    pub option: String,
+pub struct TutorialMetadata {
+    pub step_number: i32,
+    pub queue_id: String,
+    pub display_rewards: HashMap<String, String>,
+    pub use_quick_search_matchmaking: bool,
+    pub use_chosen_champion: bool,
 }
 
 

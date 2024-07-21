@@ -9,65 +9,6 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct GetLolHighlightsV1HighlightsById {
-
-    pub id: u64,
-}
-
-impl IsApiRequest for GetLolHighlightsV1HighlightsById {
-    const METHOD: Method = Method::GET;
-    type ReturnType = LolHighlightsHighlight;
-
-    fn get_url(&self) -> String {
-        format!("/lol-highlights/v1/highlights/{}", self.id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn get_lol_highlights_v_1_highlights_by_id(id: u64) -> GetLolHighlightsV1HighlightsById {
-    GetLolHighlightsV1HighlightsById {
-        id
-    }
-}
-
-
-pub struct PutLolHighlightsV1HighlightsById {
-
-    pub id: u64,
-    pub body: LolHighlightsHighlight,
-}
-
-impl IsApiRequest for PutLolHighlightsV1HighlightsById {
-    const METHOD: Method = Method::PUT;
-    type ReturnType = LolHighlightsHighlight;
-
-    fn get_url(&self) -> String {
-        format!("/lol-highlights/v1/highlights/{}", self.id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn put_lol_highlights_v_1_highlights_by_id(id: u64, body: LolHighlightsHighlight) -> PutLolHighlightsV1HighlightsById {
-    PutLolHighlightsV1HighlightsById {
-        id, body
-    }
-}
-
-
 pub struct DeleteLolHighlightsV1HighlightsById {
 
     pub id: u64,
@@ -153,16 +94,17 @@ pub fn get_lol_highlights_v_1_highlights() -> GetLolHighlightsV1Highlights {
 }
 
 
-pub struct PostLolHighlightsV1Highlights {
+pub struct GetLolHighlightsV1HighlightsById {
 
+    pub id: u64,
 }
 
-impl IsApiRequest for PostLolHighlightsV1Highlights {
-    const METHOD: Method = Method::POST;
-    type ReturnType = Vec<LolHighlightsHighlight>;
+impl IsApiRequest for GetLolHighlightsV1HighlightsById {
+    const METHOD: Method = Method::GET;
+    type ReturnType = LolHighlightsHighlight;
 
     fn get_url(&self) -> String {
-        "/lol-highlights/v1/highlights".to_string()
+        format!("/lol-highlights/v1/highlights/{}", self.id)
     }
 
     fn get_body(&self) -> Option<Value> {
@@ -174,9 +116,9 @@ impl IsApiRequest for PostLolHighlightsV1Highlights {
     }
 }
 
-pub fn post_lol_highlights_v_1_highlights() -> PostLolHighlightsV1Highlights {
-    PostLolHighlightsV1Highlights {
-        
+pub fn get_lol_highlights_v_1_highlights_by_id(id: u64) -> GetLolHighlightsV1HighlightsById {
+    GetLolHighlightsV1HighlightsById {
+        id
     }
 }
 
@@ -262,6 +204,64 @@ impl IsApiRequest for PostLolHighlightsV1FileBrowserByHighlightId {
 pub fn post_lol_highlights_v_1_file_browser_by_highlight_id(highlight_id: u64) -> PostLolHighlightsV1FileBrowserByHighlightId {
     PostLolHighlightsV1FileBrowserByHighlightId {
         highlight_id
+    }
+}
+
+
+pub struct PostLolHighlightsV1Highlights {
+
+}
+
+impl IsApiRequest for PostLolHighlightsV1Highlights {
+    const METHOD: Method = Method::POST;
+    type ReturnType = Vec<LolHighlightsHighlight>;
+
+    fn get_url(&self) -> String {
+        "/lol-highlights/v1/highlights".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        None
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn post_lol_highlights_v_1_highlights() -> PostLolHighlightsV1Highlights {
+    PostLolHighlightsV1Highlights {
+        
+    }
+}
+
+
+pub struct PutLolHighlightsV1HighlightsById {
+
+    pub id: u64,
+    pub body: LolHighlightsHighlight,
+}
+
+impl IsApiRequest for PutLolHighlightsV1HighlightsById {
+    const METHOD: Method = Method::PUT;
+    type ReturnType = LolHighlightsHighlight;
+
+    fn get_url(&self) -> String {
+        format!("/lol-highlights/v1/highlights/{}", self.id)
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn put_lol_highlights_v_1_highlights_by_id(id: u64, body: LolHighlightsHighlight) -> PutLolHighlightsV1HighlightsById {
+    PutLolHighlightsV1HighlightsById {
+        id, body
     }
 }
 

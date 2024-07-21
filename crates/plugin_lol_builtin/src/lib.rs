@@ -186,35 +186,6 @@ pub fn help(target: Option<String>, format: Option<RemotingHelpFormat>) -> Help 
 }
 
 
-pub struct HttpAsyncStatus {
-    // Retrieves details on the current state of an asynchronous operation.
-    pub async_token: u32,
-}
-
-impl IsApiRequest for HttpAsyncStatus {
-    const METHOD: Method = Method::GET;
-    type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/async/v1/status/{}", self.async_token)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn http_async_status(async_token: u32) -> HttpAsyncStatus {
-    HttpAsyncStatus {
-        async_token
-    }
-}
-
-
 pub struct HttpAsyncDelete {
     // Cancels the asynchronous operation or removes its completion status.
     pub async_token: u32,
@@ -268,6 +239,35 @@ impl IsApiRequest for HttpAsyncResult {
 
 pub fn http_async_result(async_token: u32) -> HttpAsyncResult {
     HttpAsyncResult {
+        async_token
+    }
+}
+
+
+pub struct HttpAsyncStatus {
+    // Retrieves details on the current state of an asynchronous operation.
+    pub async_token: u32,
+}
+
+impl IsApiRequest for HttpAsyncStatus {
+    const METHOD: Method = Method::GET;
+    type ReturnType = HashMap<String, String>;
+
+    fn get_url(&self) -> String {
+        format!("/async/v1/status/{}", self.async_token)
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        None
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn http_async_status(async_token: u32) -> HttpAsyncStatus {
+    HttpAsyncStatus {
         async_token
     }
 }

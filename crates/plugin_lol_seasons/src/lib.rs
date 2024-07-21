@@ -135,23 +135,23 @@ pub struct LolSeasonsAllProductSeasonQuery {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolSeasonsSeasonMetaData {
-    pub year: u16,
-    pub loc_key: String,
-    pub public_name: String,
-    pub current_split: i32,
-    pub total_split: i32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LolSeasonsAllSeasonsProduct {
     pub season_id: i32,
     pub season_start: i64,
     pub season_end: i64,
     pub act: bool,
     pub metadata: LolSeasonsSeasonMetaData,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolSeasonsSeasonMetaData {
+    pub year: u16,
+    pub loc_key: String,
+    pub public_name: String,
+    pub current_split: i32,
+    pub total_split: i32,
 }
 
 

@@ -95,35 +95,6 @@ pub fn get_patcher_v_1_notifications() -> GetPatcherV1Notifications {
 }
 
 
-pub struct PostPatcherV1Notifications {
-
-    pub body: PatcherNotificationId,
-}
-
-impl IsApiRequest for PostPatcherV1Notifications {
-    const METHOD: Method = Method::POST;
-    type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/patcher/v1/notifications".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn post_patcher_v_1_notifications(body: PatcherNotificationId) -> PostPatcherV1Notifications {
-    PostPatcherV1Notifications {
-        body
-    }
-}
-
-
 pub struct GetPatcherV1P2pStatus {
 
 }
@@ -148,35 +119,6 @@ impl IsApiRequest for GetPatcherV1P2pStatus {
 pub fn get_patcher_v_1_p_2_p_status() -> GetPatcherV1P2pStatus {
     GetPatcherV1P2pStatus {
         
-    }
-}
-
-
-pub struct PatchPatcherV1P2pStatus {
-
-    pub body: PatcherP2PStatusUpdate,
-}
-
-impl IsApiRequest for PatchPatcherV1P2pStatus {
-    const METHOD: Method = Method::PATCH;
-    type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/patcher/v1/p2p/status".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn patch_patcher_v_1_p_2_p_status(body: PatcherP2PStatusUpdate) -> PatchPatcherV1P2pStatus {
-    PatchPatcherV1P2pStatus {
-        body
     }
 }
 
@@ -320,6 +262,64 @@ impl IsApiRequest for GetPatcherV1Status {
 pub fn get_patcher_v_1_status() -> GetPatcherV1Status {
     GetPatcherV1Status {
         
+    }
+}
+
+
+pub struct PatchPatcherV1P2pStatus {
+
+    pub body: PatcherP2PStatusUpdate,
+}
+
+impl IsApiRequest for PatchPatcherV1P2pStatus {
+    const METHOD: Method = Method::PATCH;
+    type ReturnType = HashMap<String, String>;
+
+    fn get_url(&self) -> String {
+        "/patcher/v1/p2p/status".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn patch_patcher_v_1_p_2_p_status(body: PatcherP2PStatusUpdate) -> PatchPatcherV1P2pStatus {
+    PatchPatcherV1P2pStatus {
+        body
+    }
+}
+
+
+pub struct PostPatcherV1Notifications {
+
+    pub body: PatcherNotificationId,
+}
+
+impl IsApiRequest for PostPatcherV1Notifications {
+    const METHOD: Method = Method::POST;
+    type ReturnType = Value;
+
+    fn get_url(&self) -> String {
+        "/patcher/v1/notifications".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn post_patcher_v_1_notifications(body: PatcherNotificationId) -> PostPatcherV1Notifications {
+    PostPatcherV1Notifications {
+        body
     }
 }
 
@@ -560,10 +560,51 @@ pub fn put_patcher_v_1_ux(body: PatcherUxResource) -> PutPatcherV1Ux {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct PatcherComponentActionProgress {
+    pub current_item: String,
+    pub total: PatcherComponentStateProgress,
+    pub network: PatcherComponentStateProgress,
+    pub primary_work: PatcherComponentStateWorkType,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct PatcherComponentState {
+    pub id: String,
+    pub action: PatcherComponentStateAction,
+    pub is_up_to_date: bool,
+    pub is_update_available: bool,
+    pub time_of_last_up_to_date_check_iso_8601: Option<String>,
+    pub is_corrupted: bool,
+    pub progress: Option<PatcherComponentActionProgress>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct PatcherComponentStateProgress {
+    pub bytes_complete: u64,
+    pub bytes_required: u64,
+    pub bytes_per_second: f64,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct PatcherNotification {
     pub id: String,
     pub notification_id: PatcherNotificationId,
     pub data: HashMap<String, HashMap<String, String>>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct PatcherP2PStatus {
+    pub is_enabled_for_patchline: bool,
+    pub is_allowed_by_user: bool,
+    pub requires_restart: bool,
 }
 
 
@@ -598,53 +639,23 @@ pub struct PatcherStatus {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct PatcherComponentStateProgress {
-    pub bytes_complete: u64,
-    pub bytes_required: u64,
-    pub bytes_per_second: f64,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct PatcherUxResource {
     pub visible: bool,
 }
 
 
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct PatcherComponentActionProgress {
-    pub current_item: String,
-    pub total: PatcherComponentStateProgress,
-    pub network: PatcherComponentStateProgress,
-    pub primary_work: PatcherComponentStateWorkType,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct PatcherComponentState {
-    pub id: String,
-    pub action: PatcherComponentStateAction,
-    pub is_up_to_date: bool,
-    pub is_update_available: bool,
-    pub time_of_last_up_to_date_check_iso_8601: Option<String>,
-    pub is_corrupted: bool,
-    pub progress: Option<PatcherComponentActionProgress>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct PatcherP2PStatus {
-    pub is_enabled_for_patchline: bool,
-    pub is_allowed_by_user: bool,
-    pub requires_restart: bool,
-}
-
-
 // ENUMS
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum PatcherComponentStateAction {
+    #[default]
+    Migrating,
+    Repairing,
+    Patching,
+    CheckingForUpdates,
+    Idle,
+}
+
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
 pub enum PatcherComponentStateWorkType {
@@ -665,16 +676,5 @@ pub enum PatcherNotificationId {
     MissingFilesError,
     ConnectionError,
     UnspecifiedError,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum PatcherComponentStateAction {
-    #[default]
-    Migrating,
-    Repairing,
-    Patching,
-    CheckingForUpdates,
-    Idle,
 }
 

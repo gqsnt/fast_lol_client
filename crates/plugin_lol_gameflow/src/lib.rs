@@ -9,34 +9,6 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct GetLolGameflowV1EarlyExitNotificationsEog {
-
-}
-
-impl IsApiRequest for GetLolGameflowV1EarlyExitNotificationsEog {
-    const METHOD: Method = Method::GET;
-    type ReturnType = Vec<HashMap<String, String>>;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/early-exit-notifications/eog".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn get_lol_gameflow_v_1_early_exit_notifications_eog() -> GetLolGameflowV1EarlyExitNotificationsEog {
-    GetLolGameflowV1EarlyExitNotificationsEog {
-        
-    }
-}
-
-
 pub struct DeleteLolGameflowV1EarlyExitNotificationsEog {
 
 }
@@ -90,34 +62,6 @@ impl IsApiRequest for DeleteLolGameflowV1EarlyExitNotificationsEogByKey {
 pub fn delete_lol_gameflow_v_1_early_exit_notifications_eog_by_key(key: i32) -> DeleteLolGameflowV1EarlyExitNotificationsEogByKey {
     DeleteLolGameflowV1EarlyExitNotificationsEogByKey {
         key
-    }
-}
-
-
-pub struct GetLolGameflowV1EarlyExitNotificationsMissions {
-
-}
-
-impl IsApiRequest for GetLolGameflowV1EarlyExitNotificationsMissions {
-    const METHOD: Method = Method::GET;
-    type ReturnType = Vec<HashMap<String, String>>;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/early-exit-notifications/missions".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn get_lol_gameflow_v_1_early_exit_notifications_missions() -> GetLolGameflowV1EarlyExitNotificationsMissions {
-    GetLolGameflowV1EarlyExitNotificationsMissions {
-        
     }
 }
 
@@ -319,6 +263,62 @@ pub fn get_lol_gameflow_v_1_early_exit_enabled() -> GetLolGameflowV1EarlyExitEna
 }
 
 
+pub struct GetLolGameflowV1EarlyExitNotificationsEog {
+
+}
+
+impl IsApiRequest for GetLolGameflowV1EarlyExitNotificationsEog {
+    const METHOD: Method = Method::GET;
+    type ReturnType = Vec<HashMap<String, String>>;
+
+    fn get_url(&self) -> String {
+        "/lol-gameflow/v1/early-exit-notifications/eog".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        None
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn get_lol_gameflow_v_1_early_exit_notifications_eog() -> GetLolGameflowV1EarlyExitNotificationsEog {
+    GetLolGameflowV1EarlyExitNotificationsEog {
+        
+    }
+}
+
+
+pub struct GetLolGameflowV1EarlyExitNotificationsMissions {
+
+}
+
+impl IsApiRequest for GetLolGameflowV1EarlyExitNotificationsMissions {
+    const METHOD: Method = Method::GET;
+    type ReturnType = Vec<HashMap<String, String>>;
+
+    fn get_url(&self) -> String {
+        "/lol-gameflow/v1/early-exit-notifications/missions".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        None
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn get_lol_gameflow_v_1_early_exit_notifications_missions() -> GetLolGameflowV1EarlyExitNotificationsMissions {
+    GetLolGameflowV1EarlyExitNotificationsMissions {
+        
+    }
+}
+
+
 pub struct GetLolGameflowV1EarlyExitQuitEnabled {
 
 }
@@ -371,35 +371,6 @@ impl IsApiRequest for GetLolGameflowV1ExtraGameClientArgs {
 pub fn get_lol_gameflow_v_1_extra_game_client_args() -> GetLolGameflowV1ExtraGameClientArgs {
     GetLolGameflowV1ExtraGameClientArgs {
         
-    }
-}
-
-
-pub struct PostLolGameflowV1ExtraGameClientArgs {
-
-    pub body: Vec<String>,
-}
-
-impl IsApiRequest for PostLolGameflowV1ExtraGameClientArgs {
-    const METHOD: Method = Method::POST;
-    type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/extra-game-client-args".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn post_lol_gameflow_v_1_extra_game_client_args(body: Vec<String>) -> PostLolGameflowV1ExtraGameClientArgs {
-    PostLolGameflowV1ExtraGameClientArgs {
-        body
     }
 }
 
@@ -460,35 +431,6 @@ pub fn get_lol_gameflow_v_1_gameflow_metadata_player_status() -> GetLolGameflowV
 }
 
 
-pub struct PostLolGameflowV1GameflowMetadataPlayerStatus {
-
-    pub body: LolGameflowPlayerStatus,
-}
-
-impl IsApiRequest for PostLolGameflowV1GameflowMetadataPlayerStatus {
-    const METHOD: Method = Method::POST;
-    type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/gameflow-metadata/player-status".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn post_lol_gameflow_v_1_gameflow_metadata_player_status(body: LolGameflowPlayerStatus) -> PostLolGameflowV1GameflowMetadataPlayerStatus {
-    PostLolGameflowV1GameflowMetadataPlayerStatus {
-        body
-    }
-}
-
-
 pub struct GetLolGameflowV1GameflowMetadataRegistrationStatus {
 
 }
@@ -513,35 +455,6 @@ impl IsApiRequest for GetLolGameflowV1GameflowMetadataRegistrationStatus {
 pub fn get_lol_gameflow_v_1_gameflow_metadata_registration_status() -> GetLolGameflowV1GameflowMetadataRegistrationStatus {
     GetLolGameflowV1GameflowMetadataRegistrationStatus {
         
-    }
-}
-
-
-pub struct PostLolGameflowV1GameflowMetadataRegistrationStatus {
-
-    pub body: LolGameflowRegistrationStatus,
-}
-
-impl IsApiRequest for PostLolGameflowV1GameflowMetadataRegistrationStatus {
-    const METHOD: Method = Method::POST;
-    type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/gameflow-metadata/registration-status".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn post_lol_gameflow_v_1_gameflow_metadata_registration_status(body: LolGameflowRegistrationStatus) -> PostLolGameflowV1GameflowMetadataRegistrationStatus {
-    PostLolGameflowV1GameflowMetadataRegistrationStatus {
-        body
     }
 }
 
@@ -962,6 +875,93 @@ impl IsApiRequest for PostLolGameflowV1EarlyExit {
 pub fn post_lol_gameflow_v_1_early_exit() -> PostLolGameflowV1EarlyExit {
     PostLolGameflowV1EarlyExit {
         
+    }
+}
+
+
+pub struct PostLolGameflowV1ExtraGameClientArgs {
+
+    pub body: Vec<String>,
+}
+
+impl IsApiRequest for PostLolGameflowV1ExtraGameClientArgs {
+    const METHOD: Method = Method::POST;
+    type ReturnType = Value;
+
+    fn get_url(&self) -> String {
+        "/lol-gameflow/v1/extra-game-client-args".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn post_lol_gameflow_v_1_extra_game_client_args(body: Vec<String>) -> PostLolGameflowV1ExtraGameClientArgs {
+    PostLolGameflowV1ExtraGameClientArgs {
+        body
+    }
+}
+
+
+pub struct PostLolGameflowV1GameflowMetadataPlayerStatus {
+
+    pub body: LolGameflowPlayerStatus,
+}
+
+impl IsApiRequest for PostLolGameflowV1GameflowMetadataPlayerStatus {
+    const METHOD: Method = Method::POST;
+    type ReturnType = Value;
+
+    fn get_url(&self) -> String {
+        "/lol-gameflow/v1/gameflow-metadata/player-status".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn post_lol_gameflow_v_1_gameflow_metadata_player_status(body: LolGameflowPlayerStatus) -> PostLolGameflowV1GameflowMetadataPlayerStatus {
+    PostLolGameflowV1GameflowMetadataPlayerStatus {
+        body
+    }
+}
+
+
+pub struct PostLolGameflowV1GameflowMetadataRegistrationStatus {
+
+    pub body: LolGameflowRegistrationStatus,
+}
+
+impl IsApiRequest for PostLolGameflowV1GameflowMetadataRegistrationStatus {
+    const METHOD: Method = Method::POST;
+    type ReturnType = Value;
+
+    fn get_url(&self) -> String {
+        "/lol-gameflow/v1/gameflow-metadata/registration-status".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn post_lol_gameflow_v_1_gameflow_metadata_registration_status(body: LolGameflowRegistrationStatus) -> PostLolGameflowV1GameflowMetadataRegistrationStatus {
+    PostLolGameflowV1GameflowMetadataRegistrationStatus {
+        body
     }
 }
 
@@ -1399,42 +1399,28 @@ pub fn post_lol_gameflow_v_2_spectate_launch(body: LolGameflowSpectateGameInfoRe
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolGameflowGameflowSession {
-    pub phase: LolGameflowGameflowPhase,
-    pub game_data: LolGameflowGameflowGameData,
-    pub game_client: LolGameflowGameflowGameClient,
-    pub map: LolGameflowGameflowGameMap,
-    pub game_dodge: LolGameflowGameflowGameDodge,
+pub struct LolGameflowGameModeSpellList {
+    pub spells: Vec<u64>,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolGameflowGameflowGameMap {
-    pub id: i64,
-    pub name: String,
-    pub map_string_id: String,
-    pub game_mode: String,
-    pub game_mode_name: String,
-    pub game_mode_short_name: String,
-    pub game_mutator: String,
-    pub is_rgm: bool,
-    pub description: String,
-    pub platform_id: String,
-    pub platform_name: String,
-    pub assets: HashMap<String, String>,
-    pub categorized_content_bundles: HashMap<String, String>,
-    pub properties: HashMap<String, String>,
-    pub per_position_required_summoner_spells: LolGameflowGameModeSpellList,
-    pub per_position_disallowed_summoner_spells: LolGameflowGameModeSpellList,
+pub struct LolGameflowGameflowAvailability {
+    pub is_available: bool,
+    pub state: LolGameflowGameflowAvailabilityState,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolGameflowRegistrationStatus {
-    pub complete: bool,
-    pub error_codes: Vec<String>,
+pub struct LolGameflowGameflowGameClient {
+    pub server_ip: String,
+    pub server_port: u16,
+    pub observer_server_ip: String,
+    pub observer_server_port: u16,
+    pub running: bool,
+    pub visible: bool,
 }
 
 
@@ -1464,22 +1450,59 @@ pub struct LolGameflowGameflowGameDodge {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolGameflowPlayerStatus {
-    pub current_lobby_status: Option<LolGameflowLobbyStatus>,
-    pub last_queued_lobby_status: Option<LolGameflowLobbyStatus>,
-    pub can_invite_others_at_eog: bool,
+pub struct LolGameflowGameflowGameMap {
+    pub id: i64,
+    pub name: String,
+    pub map_string_id: String,
+    pub game_mode: String,
+    pub game_mode_name: String,
+    pub game_mode_short_name: String,
+    pub game_mutator: String,
+    pub is_rgm: bool,
+    pub description: String,
+    pub platform_id: String,
+    pub platform_name: String,
+    pub assets: HashMap<String, String>,
+    pub categorized_content_bundles: HashMap<String, String>,
+    pub properties: HashMap<String, String>,
+    pub per_position_required_summoner_spells: LolGameflowGameModeSpellList,
+    pub per_position_disallowed_summoner_spells: LolGameflowGameModeSpellList,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolGameflowGameflowGameClient {
-    pub server_ip: String,
-    pub server_port: u16,
-    pub observer_server_ip: String,
-    pub observer_server_port: u16,
-    pub running: bool,
-    pub visible: bool,
+pub struct LolGameflowGameflowSession {
+    pub phase: LolGameflowGameflowPhase,
+    pub game_data: LolGameflowGameflowGameData,
+    pub game_client: LolGameflowGameflowGameClient,
+    pub map: LolGameflowGameflowGameMap,
+    pub game_dodge: LolGameflowGameflowGameDodge,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolGameflowLobbyStatus {
+    pub queue_id: i32,
+    pub is_custom: bool,
+    pub is_practice_tool: bool,
+    pub is_leader: bool,
+    pub is_spectator: bool,
+    pub allowed_play_again: bool,
+    pub member_summoner_ids: Vec<u64>,
+    pub invited_summoner_ids: Vec<u64>,
+    pub lobby_id: Option<String>,
+    pub custom_spectator_policy: LolGameflowQueueCustomGameSpectatorPolicy,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolGameflowPlayerStatus {
+    pub current_lobby_status: Option<LolGameflowLobbyStatus>,
+    pub last_queued_lobby_status: Option<LolGameflowLobbyStatus>,
+    pub can_invite_others_at_eog: bool,
 }
 
 
@@ -1514,31 +1537,6 @@ pub struct LolGameflowQueue {
     pub last_toggled_on_time: u64,
     pub removal_from_game_allowed: bool,
     pub removal_from_game_delay_minutes: i32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolGameflowSpectateGameInfoResource {
-    pub drop_in_spectate_game_id: String,
-    pub game_queue_type: String,
-    pub allow_observe_mode: String,
-    pub puuid: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolGameflowGameflowAvailability {
-    pub is_available: bool,
-    pub state: LolGameflowGameflowAvailabilityState,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolGameflowGameModeSpellList {
-    pub spells: Vec<u64>,
 }
 
 
@@ -1580,21 +1578,46 @@ pub struct LolGameflowQueueReward {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolGameflowLobbyStatus {
-    pub queue_id: i32,
-    pub is_custom: bool,
-    pub is_practice_tool: bool,
-    pub is_leader: bool,
-    pub is_spectator: bool,
-    pub allowed_play_again: bool,
-    pub member_summoner_ids: Vec<u64>,
-    pub invited_summoner_ids: Vec<u64>,
-    pub lobby_id: Option<String>,
-    pub custom_spectator_policy: LolGameflowQueueCustomGameSpectatorPolicy,
+pub struct LolGameflowRegistrationStatus {
+    pub complete: bool,
+    pub error_codes: Vec<String>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolGameflowSpectateGameInfoResource {
+    pub drop_in_spectate_game_id: String,
+    pub game_queue_type: String,
+    pub allow_observe_mode: String,
+    pub puuid: String,
 }
 
 
 // ENUMS
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum LolGameflowGameflowAvailabilityState {
+    #[default]
+    EligibilityInfoMissing,
+    Configuration,
+    InGameFlow,
+    PlayerBanned,
+    Patching,
+    Initializing,
+    Available,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum LolGameflowGameflowGameDodgeState {
+    #[default]
+    TournamentDodged,
+    StrangerDodged,
+    PartyDodged,
+    Invalid,
+}
+
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
 pub enum LolGameflowGameflowPhase {
@@ -1617,14 +1640,20 @@ pub enum LolGameflowGameflowPhase {
 
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum LolGameflowGameflowAvailabilityState {
+pub enum LolGameflowGameflowWatchPhase {
     #[default]
-    EligibilityInfoMissing,
-    Configuration,
-    InGameFlow,
-    PlayerBanned,
-    Patching,
-    Initializing,
+    WatchFailedToLaunch,
+    WatchInProgress,
+    WatchStarted,
+    None,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum LolGameflowQueueAvailability {
+    #[default]
+    DoesntMeetRequirements,
+    PlatformDisabled,
     Available,
 }
 
@@ -1646,35 +1675,6 @@ pub enum LolGameflowQueueGameCategory {
     VersusAi,
     PvP,
     Custom,
-    None,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum LolGameflowGameflowGameDodgeState {
-    #[default]
-    TournamentDodged,
-    StrangerDodged,
-    PartyDodged,
-    Invalid,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum LolGameflowQueueAvailability {
-    #[default]
-    DoesntMeetRequirements,
-    PlatformDisabled,
-    Available,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum LolGameflowGameflowWatchPhase {
-    #[default]
-    WatchFailedToLaunch,
-    WatchInProgress,
-    WatchStarted,
     None,
 }
 

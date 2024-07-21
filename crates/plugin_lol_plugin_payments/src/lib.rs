@@ -71,13 +71,6 @@ pub fn post_payments_v_1_update_payment_telemetry_state(body: PaymentsPaymentsTe
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct PaymentsFrontEndResult {
-    pub url: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct PaymentsFrontEndRequest {
     pub is_prepaid: bool,
     pub locale_id: String,
@@ -88,6 +81,13 @@ pub struct PaymentsFrontEndRequest {
     pub use_pmc_sessions: bool,
     pub game: String,
     pub opened_from: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct PaymentsFrontEndResult {
+    pub url: String,
 }
 
 

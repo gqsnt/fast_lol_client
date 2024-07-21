@@ -68,6 +68,35 @@ pub fn post_lol_item_sets_v_1_item_sets_by_summoner_id_sets(summoner_id: u64, bo
 }
 
 
+pub struct PostLolItemSetsV1ItemSetsValidate {
+
+    pub body: LolItemSetsValidateItemSetNameInput,
+}
+
+impl IsApiRequest for PostLolItemSetsV1ItemSetsValidate {
+    const METHOD: Method = Method::POST;
+    type ReturnType = LolItemSetsValidateItemSetNameResponse;
+
+    fn get_url(&self) -> String {
+        "/lol-item-sets/v1/item-sets/validate".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn post_lol_item_sets_v_1_item_sets_validate(body: LolItemSetsValidateItemSetNameInput) -> PostLolItemSetsV1ItemSetsValidate {
+    PostLolItemSetsV1ItemSetsValidate {
+        body
+    }
+}
+
+
 pub struct PutLolItemSetsV1ItemSetsBySummonerIdSets {
 
     pub summoner_id: u64,
@@ -98,36 +127,24 @@ pub fn put_lol_item_sets_v_1_item_sets_by_summoner_id_sets(summoner_id: u64, bod
 }
 
 
-pub struct PostLolItemSetsV1ItemSetsValidate {
-
-    pub body: LolItemSetsValidateItemSetNameInput,
-}
-
-impl IsApiRequest for PostLolItemSetsV1ItemSetsValidate {
-    const METHOD: Method = Method::POST;
-    type ReturnType = LolItemSetsValidateItemSetNameResponse;
-
-    fn get_url(&self) -> String {
-        "/lol-item-sets/v1/item-sets/validate".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn post_lol_item_sets_v_1_item_sets_validate(body: LolItemSetsValidateItemSetNameInput) -> PostLolItemSetsV1ItemSetsValidate {
-    PostLolItemSetsV1ItemSetsValidate {
-        body
-    }
-}
-
-
 // OBJECTS
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolItemSetsItemSet {
+    pub uid: String,
+    pub title: String,
+    pub mode: String,
+    pub map: String,
+    pub type_: String,
+    pub sortrank: i32,
+    pub started_from: String,
+    pub associated_champions: Vec<i32>,
+    pub associated_maps: Vec<i32>,
+    pub blocks: Vec<LolItemSetsItemSetBlock>,
+    pub preferred_item_slots: Vec<LolItemSetsPreferredItemSlot>,
+}
+
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
@@ -149,8 +166,10 @@ pub struct LolItemSetsItemSetItem {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolItemSetsValidateItemSetNameInput {
-    pub name: String,
+pub struct LolItemSetsItemSets {
+    pub timestamp: u64,
+    pub account_id: u64,
+    pub item_sets: Vec<LolItemSetsItemSet>,
 }
 
 
@@ -158,14 +177,6 @@ pub struct LolItemSetsValidateItemSetNameInput {
 #[serde(rename_all = "camelCase")]
 pub struct LolItemSetsNamecheckResponse {
     pub errors: Vec<String>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolItemSetsValidateItemSetNameResponse {
-    pub success: bool,
-    pub name_check_response: LolItemSetsNamecheckResponse,
 }
 
 
@@ -179,27 +190,16 @@ pub struct LolItemSetsPreferredItemSlot {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolItemSetsItemSets {
-    pub timestamp: u64,
-    pub account_id: u64,
-    pub item_sets: Vec<LolItemSetsItemSet>,
+pub struct LolItemSetsValidateItemSetNameInput {
+    pub name: String,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolItemSetsItemSet {
-    pub uid: String,
-    pub title: String,
-    pub mode: String,
-    pub map: String,
-    pub type_: String,
-    pub sortrank: i32,
-    pub started_from: String,
-    pub associated_champions: Vec<i32>,
-    pub associated_maps: Vec<i32>,
-    pub blocks: Vec<LolItemSetsItemSetBlock>,
-    pub preferred_item_slots: Vec<LolItemSetsPreferredItemSlot>,
+pub struct LolItemSetsValidateItemSetNameResponse {
+    pub success: bool,
+    pub name_check_response: LolItemSetsNamecheckResponse,
 }
 
 

@@ -9,35 +9,6 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct GetLolLeaverBusterV1NotificationsById {
-
-    pub id: u32,
-}
-
-impl IsApiRequest for GetLolLeaverBusterV1NotificationsById {
-    const METHOD: Method = Method::GET;
-    type ReturnType = LolLeaverBusterLeaverBusterNotificationResource;
-
-    fn get_url(&self) -> String {
-        format!("/lol-leaver-buster/v1/notifications/{}", self.id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn get_lol_leaver_buster_v_1_notifications_by_id(id: u32) -> GetLolLeaverBusterV1NotificationsById {
-    GetLolLeaverBusterV1NotificationsById {
-        id
-    }
-}
-
-
 pub struct DeleteLolLeaverBusterV1NotificationsById {
 
     pub id: u32,
@@ -95,6 +66,35 @@ pub fn get_lol_leaver_buster_v_1_notifications() -> GetLolLeaverBusterV1Notifica
 }
 
 
+pub struct GetLolLeaverBusterV1NotificationsById {
+
+    pub id: u32,
+}
+
+impl IsApiRequest for GetLolLeaverBusterV1NotificationsById {
+    const METHOD: Method = Method::GET;
+    type ReturnType = LolLeaverBusterLeaverBusterNotificationResource;
+
+    fn get_url(&self) -> String {
+        format!("/lol-leaver-buster/v1/notifications/{}", self.id)
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        None
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn get_lol_leaver_buster_v_1_notifications_by_id(id: u32) -> GetLolLeaverBusterV1NotificationsById {
+    GetLolLeaverBusterV1NotificationsById {
+        id
+    }
+}
+
+
 pub struct GetLolLeaverBusterV1RankedRestriction {
 
 }
@@ -134,6 +134,7 @@ pub struct LolLeaverBusterLeaverBusterNotificationResource {
     pub type_: LolLeaverBusterLeaverBusterNotificationType,
     pub punished_games_remaining: i32,
     pub queue_lockout_timer_expiry_utc_millis_diff: u64,
+    pub is_win_required: bool,
     pub from_rms: bool,
 }
 
@@ -142,6 +143,7 @@ pub struct LolLeaverBusterLeaverBusterNotificationResource {
 #[serde(rename_all = "camelCase")]
 pub struct LolLeaverBusterRankedRestrictionInfo {
     pub punished_games_remaining: i32,
+    pub is_win_required: bool,
     pub needs_ack: bool,
 }
 

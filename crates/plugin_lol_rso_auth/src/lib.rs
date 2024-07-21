@@ -9,34 +9,6 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct GetLolRsoAuthV1Authorization {
-
-}
-
-impl IsApiRequest for GetLolRsoAuthV1Authorization {
-    const METHOD: Method = Method::GET;
-    type ReturnType = LolRsoAuthAuthorization;
-
-    fn get_url(&self) -> String {
-        "/lol-rso-auth/v1/authorization".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn get_lol_rso_auth_v_1_authorization() -> GetLolRsoAuthV1Authorization {
-    GetLolRsoAuthV1Authorization {
-        
-    }
-}
-
-
 pub struct DeleteLolRsoAuthV1Authorization {
 
 }
@@ -93,35 +65,6 @@ pub fn delete_lol_rso_auth_v_1_session() -> DeleteLolRsoAuthV1Session {
 }
 
 
-pub struct PostLolRsoAuthV2Config {
-
-    pub body: LolRsoAuthPublicClientConfig,
-}
-
-impl IsApiRequest for PostLolRsoAuthV2Config {
-    const METHOD: Method = Method::POST;
-    type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-rso-auth/v2/config".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn post_lol_rso_auth_v_2_config(body: LolRsoAuthPublicClientConfig) -> PostLolRsoAuthV2Config {
-    PostLolRsoAuthV2Config {
-        body
-    }
-}
-
-
 pub struct DeleteLolRsoAuthV2Config {
 
 }
@@ -173,6 +116,34 @@ impl IsApiRequest for GetLolRsoAuthConfigurationV3ReadyState {
 
 pub fn get_lol_rso_auth_configuration_v_3_ready_state() -> GetLolRsoAuthConfigurationV3ReadyState {
     GetLolRsoAuthConfigurationV3ReadyState {
+        
+    }
+}
+
+
+pub struct GetLolRsoAuthV1Authorization {
+
+}
+
+impl IsApiRequest for GetLolRsoAuthV1Authorization {
+    const METHOD: Method = Method::GET;
+    type ReturnType = LolRsoAuthAuthorization;
+
+    fn get_url(&self) -> String {
+        "/lol-rso-auth/v1/authorization".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        None
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn get_lol_rso_auth_v_1_authorization() -> GetLolRsoAuthV1Authorization {
+    GetLolRsoAuthV1Authorization {
         
     }
 }
@@ -318,34 +289,6 @@ pub fn get_lol_rso_auth_v_1_authorization_userinfo() -> GetLolRsoAuthV1Authoriza
 }
 
 
-pub struct PostLolRsoAuthV1AuthorizationUserinfo {
-
-}
-
-impl IsApiRequest for PostLolRsoAuthV1AuthorizationUserinfo {
-    const METHOD: Method = Method::POST;
-    type ReturnType = LolRsoAuthUserInfo;
-
-    fn get_url(&self) -> String {
-        "/lol-rso-auth/v1/authorization/userinfo".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn post_lol_rso_auth_v_1_authorization_userinfo() -> PostLolRsoAuthV1AuthorizationUserinfo {
-    PostLolRsoAuthV1AuthorizationUserinfo {
-        
-    }
-}
-
-
 pub struct GetLolRsoAuthV1StatusByPlatformId {
 
     pub platform_id: String,
@@ -432,6 +375,34 @@ pub fn post_lol_rso_auth_v_1_authorization_refresh() -> PostLolRsoAuthV1Authoriz
 }
 
 
+pub struct PostLolRsoAuthV1AuthorizationUserinfo {
+
+}
+
+impl IsApiRequest for PostLolRsoAuthV1AuthorizationUserinfo {
+    const METHOD: Method = Method::POST;
+    type ReturnType = LolRsoAuthUserInfo;
+
+    fn get_url(&self) -> String {
+        "/lol-rso-auth/v1/authorization/userinfo".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        None
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn post_lol_rso_auth_v_1_authorization_userinfo() -> PostLolRsoAuthV1AuthorizationUserinfo {
+    PostLolRsoAuthV1AuthorizationUserinfo {
+        
+    }
+}
+
+
 pub struct PostLolRsoAuthV1DeviceId {
 
 }
@@ -489,20 +460,60 @@ pub fn post_lol_rso_auth_v_1_external_session_config(body: HashMap<String, Strin
 }
 
 
+pub struct PostLolRsoAuthV2Config {
+
+    pub body: LolRsoAuthPublicClientConfig,
+}
+
+impl IsApiRequest for PostLolRsoAuthV2Config {
+    const METHOD: Method = Method::POST;
+    type ReturnType = Value;
+
+    fn get_url(&self) -> String {
+        "/lol-rso-auth/v2/config".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn post_lol_rso_auth_v_2_config(body: LolRsoAuthPublicClientConfig) -> PostLolRsoAuthV2Config {
+    PostLolRsoAuthV2Config {
+        body
+    }
+}
+
+
 // OBJECTS
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolRsoAuthPublicClientConfig {
-    pub url: String,
-    pub client_id: String,
+pub struct LolRsoAuthAccessToken {
+    pub token: String,
+    pub scopes: Vec<String>,
+    pub expiry: u64,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolRsoAuthRsoConfigReadyState {
-    pub ready: bool,
+pub struct LolRsoAuthAuthError {
+    pub error: String,
+    pub error_description: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolRsoAuthAuthorization {
+    pub current_platform_id: String,
+    pub current_account_id: u64,
+    pub subject: String,
 }
 
 
@@ -527,18 +538,9 @@ pub struct LolRsoAuthIdToken {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolRsoAuthAuthError {
-    pub error: String,
-    pub error_description: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolRsoAuthAuthorization {
-    pub current_platform_id: String,
-    pub current_account_id: u64,
-    pub subject: String,
+pub struct LolRsoAuthPublicClientConfig {
+    pub url: String,
+    pub client_id: String,
 }
 
 
@@ -554,8 +556,8 @@ pub struct LolRsoAuthRegionStatus {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolRsoAuthUserInfo {
-    pub user_info: String,
+pub struct LolRsoAuthRsoConfigReadyState {
+    pub ready: bool,
 }
 
 
@@ -570,10 +572,8 @@ pub struct LolRsoAuthRsoPlayerCredentials {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolRsoAuthAccessToken {
-    pub token: String,
-    pub scopes: Vec<String>,
-    pub expiry: u64,
+pub struct LolRsoAuthUserInfo {
+    pub user_info: String,
 }
 
 

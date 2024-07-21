@@ -127,10 +127,12 @@ pub fn get_lol_progression_v_1_ready() -> GetLolProgressionV1Ready {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolProgressionTrigger {
-    pub type_: String,
-    pub counter_id: String,
-    pub trigger_value: u64,
+pub struct LolProgressionCounter {
+    pub id: String,
+    pub name: String,
+    pub group_id: String,
+    pub direction: String,
+    pub start_value: i64,
 }
 
 
@@ -142,6 +144,27 @@ pub struct LolProgressionCounterInstance {
     pub group_id: String,
     pub counter_id: String,
     pub counter_value: i64,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolProgressionEntityInstance {
+    pub group_id: String,
+    pub counters: Vec<LolProgressionCounterInstance>,
+    pub milestones: Vec<LolProgressionMilestoneInstance>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolProgressionGroup {
+    pub id: String,
+    pub product_id: String,
+    pub name: String,
+    pub repeat: LolProgressionRepeat,
+    pub counters: Vec<LolProgressionCounter>,
+    pub milestones: Vec<LolProgressionMilestone>,
 }
 
 
@@ -159,13 +182,18 @@ pub struct LolProgressionMilestone {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolProgressionGroup {
-    pub id: String,
+pub struct LolProgressionMilestoneInstance {
+    pub milestone_id: String,
+    pub instance_id: String,
+    pub owner_id: String,
     pub product_id: String,
-    pub name: String,
-    pub repeat: LolProgressionRepeat,
-    pub counters: Vec<LolProgressionCounter>,
-    pub milestones: Vec<LolProgressionMilestone>,
+    pub group_id: String,
+    pub counter_id: String,
+    pub trigger_value: i64,
+    pub repeat_sequence: u32,
+    pub triggered: bool,
+    pub triggered_timestamp: String,
+    pub triggers: Vec<LolProgressionTrigger>,
 }
 
 
@@ -193,38 +221,10 @@ pub struct LolProgressionRepeatGroupTrigger {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolProgressionCounter {
-    pub id: String,
-    pub name: String,
-    pub group_id: String,
-    pub direction: String,
-    pub start_value: i64,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolProgressionEntityInstance {
-    pub group_id: String,
-    pub counters: Vec<LolProgressionCounterInstance>,
-    pub milestones: Vec<LolProgressionMilestoneInstance>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolProgressionMilestoneInstance {
-    pub milestone_id: String,
-    pub instance_id: String,
-    pub owner_id: String,
-    pub product_id: String,
-    pub group_id: String,
+pub struct LolProgressionTrigger {
+    pub type_: String,
     pub counter_id: String,
-    pub trigger_value: i64,
-    pub repeat_sequence: u32,
-    pub triggered: bool,
-    pub triggered_timestamp: String,
-    pub triggers: Vec<LolProgressionTrigger>,
+    pub trigger_value: u64,
 }
 
 

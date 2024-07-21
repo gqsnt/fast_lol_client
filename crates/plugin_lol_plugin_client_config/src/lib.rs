@@ -244,17 +244,17 @@ pub fn put_client_config_v_2_namespace_changes(body: ClientConfigConfigNamespace
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct ClientConfigConfigStatus {
-    pub readiness: ClientConfigConfigReadinessEnum,
-    pub update_id: u64,
+pub struct ClientConfigConfigNamespaceUpdate {
+    pub public: Vec<String>,
+    pub player: Vec<String>,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct ClientConfigEntitlementsUpdate {
-    pub update_type: ClientConfigUpdateType,
-    pub entitlements_token_resource: ClientConfigEntitlements,
+pub struct ClientConfigConfigStatus {
+    pub readiness: ClientConfigConfigReadinessEnum,
+    pub update_id: u64,
 }
 
 
@@ -271,9 +271,9 @@ pub struct ClientConfigEntitlements {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct ClientConfigConfigNamespaceUpdate {
-    pub public: Vec<String>,
-    pub player: Vec<String>,
+pub struct ClientConfigEntitlementsUpdate {
+    pub update_type: ClientConfigUpdateType,
+    pub entitlements_token_resource: ClientConfigEntitlements,
 }
 
 
@@ -289,20 +289,20 @@ pub enum ClientConfigConfigReadinessEnum {
 
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum ClientConfigUpdateType {
-    #[default]
-    Delete,
-    Update,
-    Create,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
 pub enum ClientConfigConfigType {
     #[default]
     #[serde(rename = "player")]
     Player,
     #[serde(rename = "public")]
     Public,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum ClientConfigUpdateType {
+    #[default]
+    Delete,
+    Update,
+    Create,
 }
 

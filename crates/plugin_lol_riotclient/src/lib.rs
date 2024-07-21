@@ -9,63 +9,6 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct GetRiotclientAffinity {
-    // Get the current runtime affinity of the application.
-}
-
-impl IsApiRequest for GetRiotclientAffinity {
-    const METHOD: Method = Method::GET;
-    type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/riotclient/affinity".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn get_riotclient_affinity() -> GetRiotclientAffinity {
-    GetRiotclientAffinity {
-        
-    }
-}
-
-
-pub struct PostRiotclientAffinity {
-    // Sets the current runtime affinity of the application.
-    pub body: String,
-}
-
-impl IsApiRequest for PostRiotclientAffinity {
-    const METHOD: Method = Method::POST;
-    type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/riotclient/affinity".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn post_riotclient_affinity(body: String) -> PostRiotclientAffinity {
-    PostRiotclientAffinity {
-        body
-    }
-}
-
-
 pub struct DeleteRiotclientAffinity {
     // Deletes the current runtime affinity of the application.
 }
@@ -90,35 +33,6 @@ impl IsApiRequest for DeleteRiotclientAffinity {
 pub fn delete_riotclient_affinity() -> DeleteRiotclientAffinity {
     DeleteRiotclientAffinity {
         
-    }
-}
-
-
-pub struct PutRiotclientSplash {
-    // Show the splash screen.
-    pub body: String,
-}
-
-impl IsApiRequest for PutRiotclientSplash {
-    const METHOD: Method = Method::PUT;
-    type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/riotclient/splash".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn put_riotclient_splash(body: String) -> PutRiotclientSplash {
-    PutRiotclientSplash {
-        body
     }
 }
 
@@ -151,35 +65,6 @@ pub fn delete_riotclient_splash() -> DeleteRiotclientSplash {
 }
 
 
-pub struct PutRiotclientV1AuthTokensByAuthToken {
-    // Register an auth token.  This is any alpha-numeric string that will be used as a password with the `riot` user when making requests.
-    pub auth_token: String,
-}
-
-impl IsApiRequest for PutRiotclientV1AuthTokensByAuthToken {
-    const METHOD: Method = Method::PUT;
-    type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/riotclient/v1/auth-tokens/{}", self.auth_token)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn put_riotclient_v_1_auth_tokens_by_auth_token(auth_token: String) -> PutRiotclientV1AuthTokensByAuthToken {
-    PutRiotclientV1AuthTokensByAuthToken {
-        auth_token
-    }
-}
-
-
 pub struct DeleteRiotclientV1AuthTokensByAuthToken {
     // Unregister an existing auth token.
     pub auth_token: String,
@@ -205,6 +90,34 @@ impl IsApiRequest for DeleteRiotclientV1AuthTokensByAuthToken {
 pub fn delete_riotclient_v_1_auth_tokens_by_auth_token(auth_token: String) -> DeleteRiotclientV1AuthTokensByAuthToken {
     DeleteRiotclientV1AuthTokensByAuthToken {
         auth_token
+    }
+}
+
+
+pub struct GetRiotclientAffinity {
+    // Get the current runtime affinity of the application.
+}
+
+impl IsApiRequest for GetRiotclientAffinity {
+    const METHOD: Method = Method::GET;
+    type ReturnType = HashMap<String, String>;
+
+    fn get_url(&self) -> String {
+        "/riotclient/affinity".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        None
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn get_riotclient_affinity() -> GetRiotclientAffinity {
+    GetRiotclientAffinity {
+        
     }
 }
 
@@ -517,35 +430,6 @@ pub fn get_riotclient_v_1_crash_reporting_environment() -> GetRiotclientV1CrashR
 }
 
 
-pub struct PutRiotclientV1CrashReportingEnvironment {
-    // Tags the crash with an environment so it can be filtered more easily.
-    pub body: CrashReportingEnvironment,
-}
-
-impl IsApiRequest for PutRiotclientV1CrashReportingEnvironment {
-    const METHOD: Method = Method::PUT;
-    type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/riotclient/v1/crash-reporting/environment".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn put_riotclient_v_1_crash_reporting_environment(body: CrashReportingEnvironment) -> PutRiotclientV1CrashReportingEnvironment {
-    PutRiotclientV1CrashReportingEnvironment {
-        body
-    }
-}
-
-
 pub struct GetRiotclientZoomScale {
     // Gets the last known posted zoom-scale value.
 }
@@ -574,17 +458,17 @@ pub fn get_riotclient_zoom_scale() -> GetRiotclientZoomScale {
 }
 
 
-pub struct PostRiotclientZoomScale {
-    // Handles changing the zoom scale value.
-    pub body: f64,
+pub struct PostRiotclientAffinity {
+    // Sets the current runtime affinity of the application.
+    pub body: String,
 }
 
-impl IsApiRequest for PostRiotclientZoomScale {
+impl IsApiRequest for PostRiotclientAffinity {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
 
     fn get_url(&self) -> String {
-        "/riotclient/zoom-scale".to_string()
+        "/riotclient/affinity".to_string()
     }
 
     fn get_body(&self) -> Option<Value> {
@@ -596,8 +480,8 @@ impl IsApiRequest for PostRiotclientZoomScale {
     }
 }
 
-pub fn post_riotclient_zoom_scale(body: f64) -> PostRiotclientZoomScale {
-    PostRiotclientZoomScale {
+pub fn post_riotclient_affinity(body: String) -> PostRiotclientAffinity {
+    PostRiotclientAffinity {
         body
     }
 }
@@ -971,6 +855,64 @@ pub fn post_riotclient_v_1_elevation_requests(body: ElevationRequest) -> PostRio
 }
 
 
+pub struct PostRiotclientZoomScale {
+    // Handles changing the zoom scale value.
+    pub body: f64,
+}
+
+impl IsApiRequest for PostRiotclientZoomScale {
+    const METHOD: Method = Method::POST;
+    type ReturnType = Value;
+
+    fn get_url(&self) -> String {
+        "/riotclient/zoom-scale".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn post_riotclient_zoom_scale(body: f64) -> PostRiotclientZoomScale {
+    PostRiotclientZoomScale {
+        body
+    }
+}
+
+
+pub struct PutRiotclientSplash {
+    // Show the splash screen.
+    pub body: String,
+}
+
+impl IsApiRequest for PutRiotclientSplash {
+    const METHOD: Method = Method::PUT;
+    type ReturnType = Value;
+
+    fn get_url(&self) -> String {
+        "/riotclient/splash".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn put_riotclient_splash(body: String) -> PutRiotclientSplash {
+    PutRiotclientSplash {
+        body
+    }
+}
+
+
 pub struct PutRiotclientUxLoadComplete {
     // Ux notification that it has completed loading the main window.
 }
@@ -1028,26 +970,65 @@ pub fn put_riotclient_ux_state_ack(body: u32) -> PutRiotclientUxStateAck {
 }
 
 
+pub struct PutRiotclientV1AuthTokensByAuthToken {
+    // Register an auth token.  This is any alpha-numeric string that will be used as a password with the `riot` user when making requests.
+    pub auth_token: String,
+}
+
+impl IsApiRequest for PutRiotclientV1AuthTokensByAuthToken {
+    const METHOD: Method = Method::PUT;
+    type ReturnType = HashMap<String, String>;
+
+    fn get_url(&self) -> String {
+        format!("/riotclient/v1/auth-tokens/{}", self.auth_token)
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        None
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn put_riotclient_v_1_auth_tokens_by_auth_token(auth_token: String) -> PutRiotclientV1AuthTokensByAuthToken {
+    PutRiotclientV1AuthTokensByAuthToken {
+        auth_token
+    }
+}
+
+
+pub struct PutRiotclientV1CrashReportingEnvironment {
+    // Tags the crash with an environment so it can be filtered more easily.
+    pub body: CrashReportingEnvironment,
+}
+
+impl IsApiRequest for PutRiotclientV1CrashReportingEnvironment {
+    const METHOD: Method = Method::PUT;
+    type ReturnType = Value;
+
+    fn get_url(&self) -> String {
+        "/riotclient/v1/crash-reporting/environment".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn put_riotclient_v_1_crash_reporting_environment(body: CrashReportingEnvironment) -> PutRiotclientV1CrashReportingEnvironment {
+    PutRiotclientV1CrashReportingEnvironment {
+        body
+    }
+}
+
+
 // OBJECTS
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolL10NRegionLocale {
-    pub region: String,
-    pub locale: String,
-    pub web_region: String,
-    pub web_language: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct BasicSystemInfo {
-    pub operating_system: BasicOperatingSystemInfo,
-    pub physical_memory: u64,
-    pub physical_processor_cores: u64,
-}
-
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
@@ -1057,6 +1038,15 @@ pub struct BasicOperatingSystemInfo {
     pub version_major: String,
     pub version_minor: String,
     pub build_number: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct BasicSystemInfo {
+    pub operating_system: BasicOperatingSystemInfo,
+    pub physical_memory: u64,
+    pub physical_processor_cores: u64,
 }
 
 
@@ -1073,6 +1063,16 @@ pub struct CrashReportingEnvironment {
 #[serde(rename_all = "camelCase")]
 pub struct ElevationRequest {
     pub action: ElevationAction,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolL10NRegionLocale {
+    pub region: String,
+    pub locale: String,
+    pub web_region: String,
+    pub web_language: String,
 }
 
 

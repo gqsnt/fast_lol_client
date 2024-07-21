@@ -9,35 +9,6 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct GetLolChatV1BlockedPlayersById {
-
-    pub id: String,
-}
-
-impl IsApiRequest for GetLolChatV1BlockedPlayersById {
-    const METHOD: Method = Method::GET;
-    type ReturnType = LolChatBlockedPlayerResource;
-
-    fn get_url(&self) -> String {
-        format!("/lol-chat/v1/blocked-players/{}", self.id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn get_lol_chat_v_1_blocked_players_by_id(id: String) -> GetLolChatV1BlockedPlayersById {
-    GetLolChatV1BlockedPlayersById {
-        id
-    }
-}
-
-
 pub struct DeleteLolChatV1BlockedPlayersById {
 
     pub id: String,
@@ -63,63 +34,6 @@ impl IsApiRequest for DeleteLolChatV1BlockedPlayersById {
 pub fn delete_lol_chat_v_1_blocked_players_by_id(id: String) -> DeleteLolChatV1BlockedPlayersById {
     DeleteLolChatV1BlockedPlayersById {
         id
-    }
-}
-
-
-pub struct GetLolChatV1ConversationsActive {
-
-}
-
-impl IsApiRequest for GetLolChatV1ConversationsActive {
-    const METHOD: Method = Method::GET;
-    type ReturnType = LolChatActiveConversationResource;
-
-    fn get_url(&self) -> String {
-        "/lol-chat/v1/conversations/active".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn get_lol_chat_v_1_conversations_active() -> GetLolChatV1ConversationsActive {
-    GetLolChatV1ConversationsActive {
-        
-    }
-}
-
-
-pub struct PutLolChatV1ConversationsActive {
-
-    pub body: LolChatActiveConversationResource,
-}
-
-impl IsApiRequest for PutLolChatV1ConversationsActive {
-    const METHOD: Method = Method::PUT;
-    type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-chat/v1/conversations/active".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn put_lol_chat_v_1_conversations_active(body: LolChatActiveConversationResource) -> PutLolChatV1ConversationsActive {
-    PutLolChatV1ConversationsActive {
-        body
     }
 }
 
@@ -152,65 +66,6 @@ pub fn delete_lol_chat_v_1_conversations_active() -> DeleteLolChatV1Conversation
 }
 
 
-pub struct GetLolChatV1ConversationsById {
-
-    pub id: String,
-}
-
-impl IsApiRequest for GetLolChatV1ConversationsById {
-    const METHOD: Method = Method::GET;
-    type ReturnType = LolChatConversationResource;
-
-    fn get_url(&self) -> String {
-        format!("/lol-chat/v1/conversations/{}", self.id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn get_lol_chat_v_1_conversations_by_id(id: String) -> GetLolChatV1ConversationsById {
-    GetLolChatV1ConversationsById {
-        id
-    }
-}
-
-
-pub struct PutLolChatV1ConversationsById {
-
-    pub id: String,
-    pub body: LolChatConversationResource,
-}
-
-impl IsApiRequest for PutLolChatV1ConversationsById {
-    const METHOD: Method = Method::PUT;
-    type ReturnType = LolChatConversationResource;
-
-    fn get_url(&self) -> String {
-        format!("/lol-chat/v1/conversations/{}", self.id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn put_lol_chat_v_1_conversations_by_id(id: String, body: LolChatConversationResource) -> PutLolChatV1ConversationsById {
-    PutLolChatV1ConversationsById {
-        id, body
-    }
-}
-
-
 pub struct DeleteLolChatV1ConversationsById {
 
     pub id: String,
@@ -236,65 +91,6 @@ impl IsApiRequest for DeleteLolChatV1ConversationsById {
 pub fn delete_lol_chat_v_1_conversations_by_id(id: String) -> DeleteLolChatV1ConversationsById {
     DeleteLolChatV1ConversationsById {
         id
-    }
-}
-
-
-pub struct GetLolChatV1ConversationsByIdMessages {
-
-    pub id: String,
-}
-
-impl IsApiRequest for GetLolChatV1ConversationsByIdMessages {
-    const METHOD: Method = Method::GET;
-    type ReturnType = Vec<LolChatConversationMessageResource>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-chat/v1/conversations/{}/messages", self.id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn get_lol_chat_v_1_conversations_by_id_messages(id: String) -> GetLolChatV1ConversationsByIdMessages {
-    GetLolChatV1ConversationsByIdMessages {
-        id
-    }
-}
-
-
-pub struct PostLolChatV1ConversationsByIdMessages {
-
-    pub id: String,
-    pub body: LolChatConversationMessageResource,
-}
-
-impl IsApiRequest for PostLolChatV1ConversationsByIdMessages {
-    const METHOD: Method = Method::POST;
-    type ReturnType = LolChatConversationMessageResource;
-
-    fn get_url(&self) -> String {
-        format!("/lol-chat/v1/conversations/{}/messages", self.id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn post_lol_chat_v_1_conversations_by_id_messages(id: String, body: LolChatConversationMessageResource) -> PostLolChatV1ConversationsByIdMessages {
-    PostLolChatV1ConversationsByIdMessages {
-        id, body
     }
 }
 
@@ -357,65 +153,6 @@ pub fn delete_lol_chat_v_1_errors_by_id(id: u64) -> DeleteLolChatV1ErrorsById {
 }
 
 
-pub struct GetLolChatV1FriendGroupsById {
-
-    pub id: u32,
-}
-
-impl IsApiRequest for GetLolChatV1FriendGroupsById {
-    const METHOD: Method = Method::GET;
-    type ReturnType = LolChatGroupResource;
-
-    fn get_url(&self) -> String {
-        format!("/lol-chat/v1/friend-groups/{}", self.id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn get_lol_chat_v_1_friend_groups_by_id(id: u32) -> GetLolChatV1FriendGroupsById {
-    GetLolChatV1FriendGroupsById {
-        id
-    }
-}
-
-
-pub struct PutLolChatV1FriendGroupsById {
-
-    pub id: u32,
-    pub body: LolChatGroupResource,
-}
-
-impl IsApiRequest for PutLolChatV1FriendGroupsById {
-    const METHOD: Method = Method::PUT;
-    type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-chat/v1/friend-groups/{}", self.id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn put_lol_chat_v_1_friend_groups_by_id(id: u32, body: LolChatGroupResource) -> PutLolChatV1FriendGroupsById {
-    PutLolChatV1FriendGroupsById {
-        id, body
-    }
-}
-
-
 pub struct DeleteLolChatV1FriendGroupsById {
 
     pub id: u32,
@@ -441,65 +178,6 @@ impl IsApiRequest for DeleteLolChatV1FriendGroupsById {
 pub fn delete_lol_chat_v_1_friend_groups_by_id(id: u32) -> DeleteLolChatV1FriendGroupsById {
     DeleteLolChatV1FriendGroupsById {
         id
-    }
-}
-
-
-pub struct GetLolChatV1FriendsById {
-
-    pub id: String,
-}
-
-impl IsApiRequest for GetLolChatV1FriendsById {
-    const METHOD: Method = Method::GET;
-    type ReturnType = LolChatFriendResource;
-
-    fn get_url(&self) -> String {
-        format!("/lol-chat/v1/friends/{}", self.id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn get_lol_chat_v_1_friends_by_id(id: String) -> GetLolChatV1FriendsById {
-    GetLolChatV1FriendsById {
-        id
-    }
-}
-
-
-pub struct PutLolChatV1FriendsById {
-
-    pub id: String,
-    pub body: LolChatFriendResource,
-}
-
-impl IsApiRequest for PutLolChatV1FriendsById {
-    const METHOD: Method = Method::PUT;
-    type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-chat/v1/friends/{}", self.id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn put_lol_chat_v_1_friends_by_id(id: String, body: LolChatFriendResource) -> PutLolChatV1FriendsById {
-    PutLolChatV1FriendsById {
-        id, body
     }
 }
 
@@ -533,63 +211,6 @@ pub fn delete_lol_chat_v_1_friends_by_id(id: String) -> DeleteLolChatV1FriendsBy
 }
 
 
-pub struct GetLolChatV1PlayerMutes {
-
-}
-
-impl IsApiRequest for GetLolChatV1PlayerMutes {
-    const METHOD: Method = Method::GET;
-    type ReturnType = LolChatPlayerMuteStatus;
-
-    fn get_url(&self) -> String {
-        "/lol-chat/v1/player-mutes".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn get_lol_chat_v_1_player_mutes() -> GetLolChatV1PlayerMutes {
-    GetLolChatV1PlayerMutes {
-        
-    }
-}
-
-
-pub struct PostLolChatV1PlayerMutes {
-
-    pub body: LolChatPlayerMuteUpdate,
-}
-
-impl IsApiRequest for PostLolChatV1PlayerMutes {
-    const METHOD: Method = Method::POST;
-    type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-chat/v1/player-mutes".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn post_lol_chat_v_1_player_mutes(body: LolChatPlayerMuteUpdate) -> PostLolChatV1PlayerMutes {
-    PostLolChatV1PlayerMutes {
-        body
-    }
-}
-
-
 pub struct DeleteLolChatV1PlayerMutes {
 
 }
@@ -614,36 +235,6 @@ impl IsApiRequest for DeleteLolChatV1PlayerMutes {
 pub fn delete_lol_chat_v_1_player_mutes() -> DeleteLolChatV1PlayerMutes {
     DeleteLolChatV1PlayerMutes {
         
-    }
-}
-
-
-pub struct PutLolChatV2FriendRequestsById {
-
-    pub id: String,
-    pub body: LolChatFriendRequestResource,
-}
-
-impl IsApiRequest for PutLolChatV2FriendRequestsById {
-    const METHOD: Method = Method::PUT;
-    type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-chat/v2/friend-requests/{}", self.id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn put_lol_chat_v_2_friend_requests_by_id(id: String, body: LolChatFriendRequestResource) -> PutLolChatV2FriendRequestsById {
-    PutLolChatV2FriendRequestsById {
-        id, body
     }
 }
 
@@ -705,21 +296,21 @@ pub fn get_lol_chat_v_1_blocked_players() -> GetLolChatV1BlockedPlayers {
 }
 
 
-pub struct PostLolChatV1BlockedPlayers {
+pub struct GetLolChatV1BlockedPlayersById {
 
-    pub body: LolChatBlockedPlayerResource,
+    pub id: String,
 }
 
-impl IsApiRequest for PostLolChatV1BlockedPlayers {
-    const METHOD: Method = Method::POST;
-    type ReturnType = HashMap<String, String>;
+impl IsApiRequest for GetLolChatV1BlockedPlayersById {
+    const METHOD: Method = Method::GET;
+    type ReturnType = LolChatBlockedPlayerResource;
 
     fn get_url(&self) -> String {
-        "/lol-chat/v1/blocked-players".to_string()
+        format!("/lol-chat/v1/blocked-players/{}", self.id)
     }
 
     fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
+        None
     }
 
     fn get_query_params(&self) -> Option<Value> {
@@ -727,9 +318,9 @@ impl IsApiRequest for PostLolChatV1BlockedPlayers {
     }
 }
 
-pub fn post_lol_chat_v_1_blocked_players(body: LolChatBlockedPlayerResource) -> PostLolChatV1BlockedPlayers {
-    PostLolChatV1BlockedPlayers {
-        body
+pub fn get_lol_chat_v_1_blocked_players_by_id(id: String) -> GetLolChatV1BlockedPlayersById {
+    GetLolChatV1BlockedPlayersById {
+        id
     }
 }
 
@@ -790,21 +381,20 @@ pub fn get_lol_chat_v_1_conversations() -> GetLolChatV1Conversations {
 }
 
 
-pub struct PostLolChatV1Conversations {
+pub struct GetLolChatV1ConversationsActive {
 
-    pub body: LolChatConversationResource,
 }
 
-impl IsApiRequest for PostLolChatV1Conversations {
-    const METHOD: Method = Method::POST;
-    type ReturnType = LolChatConversationResource;
+impl IsApiRequest for GetLolChatV1ConversationsActive {
+    const METHOD: Method = Method::GET;
+    type ReturnType = LolChatActiveConversationResource;
 
     fn get_url(&self) -> String {
-        "/lol-chat/v1/conversations".to_string()
+        "/lol-chat/v1/conversations/active".to_string()
     }
 
     fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
+        None
     }
 
     fn get_query_params(&self) -> Option<Value> {
@@ -812,9 +402,67 @@ impl IsApiRequest for PostLolChatV1Conversations {
     }
 }
 
-pub fn post_lol_chat_v_1_conversations(body: LolChatConversationResource) -> PostLolChatV1Conversations {
-    PostLolChatV1Conversations {
-        body
+pub fn get_lol_chat_v_1_conversations_active() -> GetLolChatV1ConversationsActive {
+    GetLolChatV1ConversationsActive {
+        
+    }
+}
+
+
+pub struct GetLolChatV1ConversationsById {
+
+    pub id: String,
+}
+
+impl IsApiRequest for GetLolChatV1ConversationsById {
+    const METHOD: Method = Method::GET;
+    type ReturnType = LolChatConversationResource;
+
+    fn get_url(&self) -> String {
+        format!("/lol-chat/v1/conversations/{}", self.id)
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        None
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn get_lol_chat_v_1_conversations_by_id(id: String) -> GetLolChatV1ConversationsById {
+    GetLolChatV1ConversationsById {
+        id
+    }
+}
+
+
+pub struct GetLolChatV1ConversationsByIdMessages {
+
+    pub id: String,
+}
+
+impl IsApiRequest for GetLolChatV1ConversationsByIdMessages {
+    const METHOD: Method = Method::GET;
+    type ReturnType = Vec<LolChatConversationMessageResource>;
+
+    fn get_url(&self) -> String {
+        format!("/lol-chat/v1/conversations/{}/messages", self.id)
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        None
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn get_lol_chat_v_1_conversations_by_id_messages(id: String) -> GetLolChatV1ConversationsByIdMessages {
+    GetLolChatV1ConversationsByIdMessages {
+        id
     }
 }
 
@@ -1019,21 +667,21 @@ pub fn get_lol_chat_v_1_friend_groups() -> GetLolChatV1FriendGroups {
 }
 
 
-pub struct PostLolChatV1FriendGroups {
+pub struct GetLolChatV1FriendGroupsById {
 
-    pub body: LolChatGroupResource,
+    pub id: u32,
 }
 
-impl IsApiRequest for PostLolChatV1FriendGroups {
-    const METHOD: Method = Method::POST;
-    type ReturnType = HashMap<String, String>;
+impl IsApiRequest for GetLolChatV1FriendGroupsById {
+    const METHOD: Method = Method::GET;
+    type ReturnType = LolChatGroupResource;
 
     fn get_url(&self) -> String {
-        "/lol-chat/v1/friend-groups".to_string()
+        format!("/lol-chat/v1/friend-groups/{}", self.id)
     }
 
     fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
+        None
     }
 
     fn get_query_params(&self) -> Option<Value> {
@@ -1041,9 +689,9 @@ impl IsApiRequest for PostLolChatV1FriendGroups {
     }
 }
 
-pub fn post_lol_chat_v_1_friend_groups(body: LolChatGroupResource) -> PostLolChatV1FriendGroups {
-    PostLolChatV1FriendGroups {
-        body
+pub fn get_lol_chat_v_1_friend_groups_by_id(id: u32) -> GetLolChatV1FriendGroupsById {
+    GetLolChatV1FriendGroupsById {
+        id
     }
 }
 
@@ -1076,6 +724,35 @@ pub fn get_lol_chat_v_1_friends() -> GetLolChatV1Friends {
 }
 
 
+pub struct GetLolChatV1FriendsById {
+
+    pub id: String,
+}
+
+impl IsApiRequest for GetLolChatV1FriendsById {
+    const METHOD: Method = Method::GET;
+    type ReturnType = LolChatFriendResource;
+
+    fn get_url(&self) -> String {
+        format!("/lol-chat/v1/friends/{}", self.id)
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        None
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn get_lol_chat_v_1_friends_by_id(id: String) -> GetLolChatV1FriendsById {
+    GetLolChatV1FriendsById {
+        id
+    }
+}
+
+
 pub struct GetLolChatV1Me {
 
 }
@@ -1104,21 +781,20 @@ pub fn get_lol_chat_v_1_me() -> GetLolChatV1Me {
 }
 
 
-pub struct PutLolChatV1Me {
+pub struct GetLolChatV1PlayerMutes {
 
-    pub body: LolChatUserResource,
 }
 
-impl IsApiRequest for PutLolChatV1Me {
-    const METHOD: Method = Method::PUT;
-    type ReturnType = LolChatUserResource;
+impl IsApiRequest for GetLolChatV1PlayerMutes {
+    const METHOD: Method = Method::GET;
+    type ReturnType = LolChatPlayerMuteStatus;
 
     fn get_url(&self) -> String {
-        "/lol-chat/v1/me".to_string()
+        "/lol-chat/v1/player-mutes".to_string()
     }
 
     fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
+        None
     }
 
     fn get_query_params(&self) -> Option<Value> {
@@ -1126,9 +802,9 @@ impl IsApiRequest for PutLolChatV1Me {
     }
 }
 
-pub fn put_lol_chat_v_1_me(body: LolChatUserResource) -> PutLolChatV1Me {
-    PutLolChatV1Me {
-        body
+pub fn get_lol_chat_v_1_player_mutes() -> GetLolChatV1PlayerMutes {
+    GetLolChatV1PlayerMutes {
+        
     }
 }
 
@@ -1217,39 +893,6 @@ pub fn get_lol_chat_v_1_settings() -> GetLolChatV1Settings {
 }
 
 
-pub struct PutLolChatV1Settings {
-
-    pub data: HashMap<String, String>,
-    pub do_async: Option<bool>,
-}
-
-impl IsApiRequest for PutLolChatV1Settings {
-    const METHOD: Method = Method::PUT;
-    type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-chat/v1/settings".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        Some(json!({
-            "data" : self.data,
-            "doAsync" : self.do_async,
-        }))
-    }
-}
-
-pub fn put_lol_chat_v_1_settings(data: HashMap<String, String>, do_async: Option<bool>) -> PutLolChatV1Settings {
-    PutLolChatV1Settings {
-        data, do_async
-    }
-}
-
-
 pub struct GetLolChatV2FriendRequests {
 
 }
@@ -1278,17 +921,17 @@ pub fn get_lol_chat_v_2_friend_requests() -> GetLolChatV2FriendRequests {
 }
 
 
-pub struct PostLolChatV2FriendRequests {
+pub struct PostLolChatV1BlockedPlayers {
 
-    pub body: LolChatFriendRequestResource,
+    pub body: LolChatBlockedPlayerResource,
 }
 
-impl IsApiRequest for PostLolChatV2FriendRequests {
+impl IsApiRequest for PostLolChatV1BlockedPlayers {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
 
     fn get_url(&self) -> String {
-        "/lol-chat/v2/friend-requests".to_string()
+        "/lol-chat/v1/blocked-players".to_string()
     }
 
     fn get_body(&self) -> Option<Value> {
@@ -1300,9 +943,68 @@ impl IsApiRequest for PostLolChatV2FriendRequests {
     }
 }
 
-pub fn post_lol_chat_v_2_friend_requests(body: LolChatFriendRequestResource) -> PostLolChatV2FriendRequests {
-    PostLolChatV2FriendRequests {
+pub fn post_lol_chat_v_1_blocked_players(body: LolChatBlockedPlayerResource) -> PostLolChatV1BlockedPlayers {
+    PostLolChatV1BlockedPlayers {
         body
+    }
+}
+
+
+pub struct PostLolChatV1Conversations {
+
+    pub body: LolChatConversationResource,
+}
+
+impl IsApiRequest for PostLolChatV1Conversations {
+    const METHOD: Method = Method::POST;
+    type ReturnType = LolChatConversationResource;
+
+    fn get_url(&self) -> String {
+        "/lol-chat/v1/conversations".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn post_lol_chat_v_1_conversations(body: LolChatConversationResource) -> PostLolChatV1Conversations {
+    PostLolChatV1Conversations {
+        body
+    }
+}
+
+
+pub struct PostLolChatV1ConversationsByIdMessages {
+
+    pub id: String,
+    pub body: LolChatConversationMessageResource,
+}
+
+impl IsApiRequest for PostLolChatV1ConversationsByIdMessages {
+    const METHOD: Method = Method::POST;
+    type ReturnType = LolChatConversationMessageResource;
+
+    fn get_url(&self) -> String {
+        format!("/lol-chat/v1/conversations/{}/messages", self.id)
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn post_lol_chat_v_1_conversations_by_id_messages(id: String, body: LolChatConversationMessageResource) -> PostLolChatV1ConversationsByIdMessages {
+    PostLolChatV1ConversationsByIdMessages {
+        id, body
     }
 }
 
@@ -1331,6 +1033,64 @@ impl IsApiRequest for PostLolChatV1ConversationsEogChatToggle {
 
 pub fn post_lol_chat_v_1_conversations_eog_chat_toggle(body: bool) -> PostLolChatV1ConversationsEogChatToggle {
     PostLolChatV1ConversationsEogChatToggle {
+        body
+    }
+}
+
+
+pub struct PostLolChatV1FriendGroups {
+
+    pub body: LolChatGroupResource,
+}
+
+impl IsApiRequest for PostLolChatV1FriendGroups {
+    const METHOD: Method = Method::POST;
+    type ReturnType = HashMap<String, String>;
+
+    fn get_url(&self) -> String {
+        "/lol-chat/v1/friend-groups".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn post_lol_chat_v_1_friend_groups(body: LolChatGroupResource) -> PostLolChatV1FriendGroups {
+    PostLolChatV1FriendGroups {
+        body
+    }
+}
+
+
+pub struct PostLolChatV1PlayerMutes {
+
+    pub body: LolChatPlayerMuteUpdate,
+}
+
+impl IsApiRequest for PostLolChatV1PlayerMutes {
+    const METHOD: Method = Method::POST;
+    type ReturnType = HashMap<String, String>;
+
+    fn get_url(&self) -> String {
+        "/lol-chat/v1/player-mutes".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn post_lol_chat_v_1_player_mutes(body: LolChatPlayerMuteUpdate) -> PostLolChatV1PlayerMutes {
+    PostLolChatV1PlayerMutes {
         body
     }
 }
@@ -1365,6 +1125,124 @@ pub fn post_lol_chat_v_1_system_mutes(body: LolChatPlayerMuteUpdate) -> PostLolC
 }
 
 
+pub struct PostLolChatV2FriendRequests {
+
+    pub body: LolChatFriendRequestResource,
+}
+
+impl IsApiRequest for PostLolChatV2FriendRequests {
+    const METHOD: Method = Method::POST;
+    type ReturnType = HashMap<String, String>;
+
+    fn get_url(&self) -> String {
+        "/lol-chat/v2/friend-requests".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn post_lol_chat_v_2_friend_requests(body: LolChatFriendRequestResource) -> PostLolChatV2FriendRequests {
+    PostLolChatV2FriendRequests {
+        body
+    }
+}
+
+
+pub struct PutLolChatV1ConversationsActive {
+
+    pub body: LolChatActiveConversationResource,
+}
+
+impl IsApiRequest for PutLolChatV1ConversationsActive {
+    const METHOD: Method = Method::PUT;
+    type ReturnType = HashMap<String, String>;
+
+    fn get_url(&self) -> String {
+        "/lol-chat/v1/conversations/active".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn put_lol_chat_v_1_conversations_active(body: LolChatActiveConversationResource) -> PutLolChatV1ConversationsActive {
+    PutLolChatV1ConversationsActive {
+        body
+    }
+}
+
+
+pub struct PutLolChatV1ConversationsById {
+
+    pub id: String,
+    pub body: LolChatConversationResource,
+}
+
+impl IsApiRequest for PutLolChatV1ConversationsById {
+    const METHOD: Method = Method::PUT;
+    type ReturnType = LolChatConversationResource;
+
+    fn get_url(&self) -> String {
+        format!("/lol-chat/v1/conversations/{}", self.id)
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn put_lol_chat_v_1_conversations_by_id(id: String, body: LolChatConversationResource) -> PutLolChatV1ConversationsById {
+    PutLolChatV1ConversationsById {
+        id, body
+    }
+}
+
+
+pub struct PutLolChatV1FriendGroupsById {
+
+    pub id: u32,
+    pub body: LolChatGroupResource,
+}
+
+impl IsApiRequest for PutLolChatV1FriendGroupsById {
+    const METHOD: Method = Method::PUT;
+    type ReturnType = HashMap<String, String>;
+
+    fn get_url(&self) -> String {
+        format!("/lol-chat/v1/friend-groups/{}", self.id)
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn put_lol_chat_v_1_friend_groups_by_id(id: u32, body: LolChatGroupResource) -> PutLolChatV1FriendGroupsById {
+    PutLolChatV1FriendGroupsById {
+        id, body
+    }
+}
+
+
 pub struct PutLolChatV1FriendGroupsOrder {
 
     pub body: LolChatFriendGroupOrder,
@@ -1394,40 +1272,148 @@ pub fn put_lol_chat_v_1_friend_groups_order(body: LolChatFriendGroupOrder) -> Pu
 }
 
 
+pub struct PutLolChatV1FriendsById {
+
+    pub id: String,
+    pub body: LolChatFriendResource,
+}
+
+impl IsApiRequest for PutLolChatV1FriendsById {
+    const METHOD: Method = Method::PUT;
+    type ReturnType = HashMap<String, String>;
+
+    fn get_url(&self) -> String {
+        format!("/lol-chat/v1/friends/{}", self.id)
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn put_lol_chat_v_1_friends_by_id(id: String, body: LolChatFriendResource) -> PutLolChatV1FriendsById {
+    PutLolChatV1FriendsById {
+        id, body
+    }
+}
+
+
+pub struct PutLolChatV1Me {
+
+    pub body: LolChatUserResource,
+}
+
+impl IsApiRequest for PutLolChatV1Me {
+    const METHOD: Method = Method::PUT;
+    type ReturnType = LolChatUserResource;
+
+    fn get_url(&self) -> String {
+        "/lol-chat/v1/me".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn put_lol_chat_v_1_me(body: LolChatUserResource) -> PutLolChatV1Me {
+    PutLolChatV1Me {
+        body
+    }
+}
+
+
+pub struct PutLolChatV1Settings {
+
+    pub data: HashMap<String, String>,
+    pub do_async: Option<bool>,
+}
+
+impl IsApiRequest for PutLolChatV1Settings {
+    const METHOD: Method = Method::PUT;
+    type ReturnType = HashMap<String, String>;
+
+    fn get_url(&self) -> String {
+        "/lol-chat/v1/settings".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        None
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        Some(json!({
+            "data" : self.data,
+            "doAsync" : self.do_async,
+        }))
+    }
+}
+
+pub fn put_lol_chat_v_1_settings(data: HashMap<String, String>, do_async: Option<bool>) -> PutLolChatV1Settings {
+    PutLolChatV1Settings {
+        data, do_async
+    }
+}
+
+
+pub struct PutLolChatV2FriendRequestsById {
+
+    pub id: String,
+    pub body: LolChatFriendRequestResource,
+}
+
+impl IsApiRequest for PutLolChatV2FriendRequestsById {
+    const METHOD: Method = Method::PUT;
+    type ReturnType = HashMap<String, String>;
+
+    fn get_url(&self) -> String {
+        format!("/lol-chat/v2/friend-requests/{}", self.id)
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn put_lol_chat_v_2_friend_requests_by_id(id: String, body: LolChatFriendRequestResource) -> PutLolChatV2FriendRequestsById {
+    PutLolChatV2FriendRequestsById {
+        id, body
+    }
+}
+
+
 // OBJECTS
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolChatGroupResource {
-    pub id: u32,
-    pub name: String,
-    pub is_meta_group: bool,
-    pub is_localized: bool,
-    pub priority: i32,
-    pub collapsed: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChatChatServiceDynamicClientConfig {
-    pub lcu_social: Option<LolChatLcuSocialConfig>,
-    pub chat_domain: Option<LolChatChatDomainConfig>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChatConversationMessageResource {
+pub struct LolChatActiveConversationResource {
     pub id: String,
-    pub type_: String,
-    pub from_summoner_id: u64,
-    pub from_id: String,
-    pub from_pid: String,
-    pub from_obfuscated_summoner_id: u64,
-    pub body: String,
-    pub timestamp: String,
-    pub is_historical: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChatBlockedPlayerResource {
+    pub summoner_id: u64,
+    pub icon: i32,
+    pub id: String,
+    pub name: String,
+    pub pid: String,
+    pub puuid: String,
+    pub game_name: String,
+    pub game_tag: String,
 }
 
 
@@ -1444,21 +1430,33 @@ pub struct LolChatChatDomainConfig {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolChatErrorResource {
-    pub id: u64,
-    pub from: String,
-    pub code: u64,
-    pub message: String,
-    pub text: String,
+pub struct LolChatChatServiceDynamicClientConfig {
+    pub lcu_social: Option<LolChatLcuSocialConfig>,
+    pub chat_domain: Option<LolChatChatDomainConfig>,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolChatProductMetadata {
+pub struct LolChatContentCookies {
+    pub content_id: String,
+    pub content_path: String,
+    pub cookies: Vec<LolChatcookie>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChatConversationMessageResource {
     pub id: String,
-    pub name: String,
-    pub patchlines: LolChatPatchlineMetadata,
+    pub type_: String,
+    pub from_summoner_id: u64,
+    pub from_id: String,
+    pub from_pid: String,
+    pub from_obfuscated_summoner_id: u64,
+    pub body: String,
+    pub timestamp: String,
+    pub is_historical: bool,
 }
 
 
@@ -1483,9 +1481,49 @@ pub struct LolChatConversationResource {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolChatSessionResource {
-    pub session_state: LolChatSessionState,
-    pub session_expire: u32,
+pub struct LolChatErrorResource {
+    pub id: u64,
+    pub from: String,
+    pub code: u64,
+    pub message: String,
+    pub text: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChatFriendCountsResource {
+    pub num_friends: u32,
+    pub num_friends_online: u32,
+    pub num_friends_available: u32,
+    pub num_friends_away: u32,
+    pub num_friends_in_queue: u32,
+    pub num_friends_in_champ_select: u32,
+    pub num_friends_in_game: u32,
+    pub num_friends_mobile: u32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChatFriendGroupOrder {
+    pub groups: Vec<String>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChatFriendRequestResource {
+    pub summoner_id: u64,
+    pub icon: i32,
+    pub id: String,
+    pub name: String,
+    pub pid: String,
+    pub puuid: String,
+    pub game_name: String,
+    pub tag_line: String,
+    pub note: String,
+    pub direction: LolChatFriendRequestDirection,
 }
 
 
@@ -1521,11 +1559,58 @@ pub struct LolChatFriendResource {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct LolChatGroupResource {
+    pub id: u32,
+    pub name: String,
+    pub is_meta_group: bool,
+    pub is_localized: bool,
+    pub priority: i32,
+    pub collapsed: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChatLcuSocialConfig {
+    pub force_chat_filter: bool,
+    pub queue_job_grace_seconds: u64,
+    pub silence_chat_while_in_game: bool,
+    pub aggressive_scanning: bool,
+    pub replace_rich_messages: bool,
+    pub game_name_tagline_enabled: bool,
+    pub allow_group_by_game: bool,
+    pub platform_to_region_map: HashMap<String, String>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct LolChatMucJwtDto {
     pub jwt: String,
     pub channel_claim: String,
     pub domain: String,
     pub target_region: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChatPatchlineMetadata {
+    pub product_id: String,
+    pub id: String,
+    pub content_paths: HashMap<String, String>,
+    pub content_cookies: Vec<LolChatContentCookies>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChatPlayerMuteStatus {
+    pub puuid: String,
+    pub obfuscated_puuid: String,
+    pub is_player_muted: bool,
+    pub is_settings_muted: bool,
+    pub is_system_muted: bool,
 }
 
 
@@ -1539,40 +1624,25 @@ pub struct LolChatPlayerMuteUpdate {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolChatFriendRequestResource {
-    pub summoner_id: u64,
-    pub icon: i32,
+pub struct LolChatProductMetadata {
     pub id: String,
     pub name: String,
-    pub pid: String,
-    pub puuid: String,
-    pub game_name: String,
-    pub tag_line: String,
-    pub note: String,
-    pub direction: LolChatFriendRequestDirection,
+    pub patchlines: LolChatPatchlineMetadata,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolChatFriendCountsResource {
-    pub num_friends: u32,
-    pub num_friends_online: u32,
-    pub num_friends_available: u32,
-    pub num_friends_away: u32,
-    pub num_friends_in_queue: u32,
-    pub num_friends_in_champ_select: u32,
-    pub num_friends_in_game: u32,
-    pub num_friends_mobile: u32,
+pub struct LolChatProductMetadataMap {
+    pub products: LolChatProductMetadata,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolChatContentCookies {
-    pub content_id: String,
-    pub content_path: String,
-    pub cookies: Vec<LolChatcookie>,
+pub struct LolChatSessionResource {
+    pub session_state: LolChatSessionState,
+    pub session_expire: u32,
 }
 
 
@@ -1603,27 +1673,6 @@ pub struct LolChatUserResource {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolChatBlockedPlayerResource {
-    pub summoner_id: u64,
-    pub icon: i32,
-    pub id: String,
-    pub name: String,
-    pub pid: String,
-    pub puuid: String,
-    pub game_name: String,
-    pub game_tag: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChatActiveConversationResource {
-    pub id: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LolChatcookie {
     pub url: String,
     pub name: String,
@@ -1633,55 +1682,6 @@ pub struct LolChatcookie {
     pub secure: bool,
     pub httponly: bool,
     pub expires: Option<i64>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChatPatchlineMetadata {
-    pub product_id: String,
-    pub id: String,
-    pub content_paths: HashMap<String, String>,
-    pub content_cookies: Vec<LolChatContentCookies>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChatFriendGroupOrder {
-    pub groups: Vec<String>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChatProductMetadataMap {
-    pub products: LolChatProductMetadata,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChatLcuSocialConfig {
-    pub force_chat_filter: bool,
-    pub queue_job_grace_seconds: u64,
-    pub silence_chat_while_in_game: bool,
-    pub aggressive_scanning: bool,
-    pub replace_rich_messages: bool,
-    pub game_name_tagline_enabled: bool,
-    pub allow_group_by_game: bool,
-    pub platform_to_region_map: HashMap<String, String>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChatPlayerMuteStatus {
-    pub puuid: String,
-    pub obfuscated_puuid: String,
-    pub is_player_muted: bool,
-    pub is_settings_muted: bool,
-    pub is_system_muted: bool,
 }
 
 

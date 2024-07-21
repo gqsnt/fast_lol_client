@@ -574,6 +574,17 @@ pub fn post_lol_inventory_v_1_notification_acknowledge(body: i64) -> PostLolInve
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct LolInventoryInventoryCacheEntry {
+    pub signed_inventory_jwt: String,
+    pub expiration_ms: u64,
+    pub issued_at_ms: u64,
+    pub received_at_ms: u64,
+    pub valid: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct LolInventoryInventoryItemWithPayload {
     pub uuid: String,
     pub item_id: i32,
@@ -594,12 +605,12 @@ pub struct LolInventoryInventoryItemWithPayload {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolInventoryInventoryCacheEntry {
-    pub signed_inventory_jwt: String,
-    pub expiration_ms: u64,
-    pub issued_at_ms: u64,
-    pub received_at_ms: u64,
-    pub valid: bool,
+pub struct LolInventoryInventoryNotification {
+    pub id: i64,
+    pub item_id: i32,
+    pub inventory_type: String,
+    pub type_: String,
+    pub acknowledged: bool,
 }
 
 
@@ -608,17 +619,6 @@ pub struct LolInventoryInventoryCacheEntry {
 pub struct LolInventoryXboxSubscriptionStatus {
     pub active: String,
     pub subscription_id: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolInventoryInventoryNotification {
-    pub id: i64,
-    pub item_id: i32,
-    pub inventory_type: String,
-    pub type_: String,
-    pub acknowledged: bool,
 }
 
 

@@ -279,122 +279,16 @@ pub fn get_lol_champions_v_1_owned_champions_minimal() -> GetLolChampionsV1Owned
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolChampionsCollectionsChampionSkinEmblemPath {
-    pub large: String,
-    pub small: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChampionsCollectionsChampionSpell {
+pub struct LolChampionsChampionQuestSkinInfo {
     pub name: String,
-    pub description: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChampionsCollectionsChampionSkinAugments {
-    pub augments: Vec<LolChampionsCollectionsChampionSkinAugment>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChampionsCollectionsChampionSkinAugmentOverlays {
-    pub centered_lc_overlay_path: String,
-    pub social_card_lc_overlay_path: String,
-    pub tile_lc_overlay_path: String,
-    pub uncentered_lc_overlay_path: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChampionsCollectionsChampionSkinEmblemPosition {
-    pub vertical: String,
-    pub horizontal: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChampionsQuestSkinDescriptionInfo {
-    pub title: String,
-    pub description: String,
-    pub icon_path: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChampionsCollectionsChampionMinimal {
-    pub alias: String,
-    pub title: String,
-    pub ban_vo_path: String,
-    pub choose_vo_path: String,
-    pub disabled_queues: Vec<String>,
-    pub id: i32,
-    pub name: String,
-    pub ownership: LolChampionsCollectionsOwnership,
-    pub purchased: u64,
-    pub roles: Vec<String>,
-    pub square_portrait_path: String,
-    pub stinger_sfx_path: String,
-    pub base_load_screen_path: String,
-    pub base_splash_path: String,
-    pub active: bool,
-    pub bot_enabled: bool,
-    pub free_to_play: bool,
-    pub ranked_play_enabled: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChampionsCollectionsChampionPlayableCounts {
-    pub champions_owned: u32,
-    pub champions_rented: u32,
-    pub champions_free_to_play: u32,
-    pub champions_loyalty_reward: u32,
-    pub champions_xbox_gp_reward: u32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChampionsCollectionsChampionSkinMinimal {
-    pub champion_id: i32,
-    pub chroma_path: Option<String>,
-    pub id: i32,
-    pub name: String,
-    pub ownership: LolChampionsCollectionsOwnership,
-    pub is_base: bool,
-    pub disabled: bool,
-    pub still_obtainable: bool,
-    pub last_selected: bool,
-    pub skin_augments: LolChampionsCollectionsChampionSkinAugments,
+    pub description_info: Vec<LolChampionsQuestSkinDescriptionInfo>,
     pub splash_path: String,
+    pub uncentered_splash_path: String,
     pub tile_path: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChampionsCollectionsOwnership {
-    pub loyalty_reward: bool,
-    pub xbox_gp_reward: bool,
-    pub owned: bool,
-    pub rental: LolChampionsCollectionsRental,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChampionsCollectionsChampionSkinAugment {
-    pub content_id: String,
-    pub overlays: Vec<LolChampionsCollectionsChampionSkinAugmentOverlays>,
+    pub collection_card_path: String,
+    pub collection_description: String,
+    pub tiers: Vec<LolChampionsCollectionsChampionQuestSkin>,
+    pub product_type: Option<LolChampionsQuestSkinProductType>,
 }
 
 
@@ -444,6 +338,41 @@ pub struct LolChampionsCollectionsChampionChroma {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct LolChampionsCollectionsChampionMinimal {
+    pub alias: String,
+    pub title: String,
+    pub ban_vo_path: String,
+    pub choose_vo_path: String,
+    pub disabled_queues: Vec<String>,
+    pub id: i32,
+    pub name: String,
+    pub ownership: LolChampionsCollectionsOwnership,
+    pub purchased: u64,
+    pub roles: Vec<String>,
+    pub square_portrait_path: String,
+    pub stinger_sfx_path: String,
+    pub base_load_screen_path: String,
+    pub base_splash_path: String,
+    pub active: bool,
+    pub bot_enabled: bool,
+    pub free_to_play: bool,
+    pub ranked_play_enabled: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChampionsCollectionsChampionPlayableCounts {
+    pub champions_owned: u32,
+    pub champions_rented: u32,
+    pub champions_free_to_play: u32,
+    pub champions_loyalty_reward: u32,
+    pub champions_xbox_gp_reward: u32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct LolChampionsCollectionsChampionQuestSkin {
     pub champion_id: i32,
     pub chroma_path: Option<String>,
@@ -464,40 +393,6 @@ pub struct LolChampionsCollectionsChampionQuestSkin {
     pub short_name: String,
     pub splash_video_path: String,
     pub collection_splash_video_path: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChampionsCollectionsRental {
-    pub end_date: u64,
-    pub purchase_date: u64,
-    pub win_count_remaining: i32,
-    pub rented: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChampionsChampionQuestSkinInfo {
-    pub name: String,
-    pub description_info: Vec<LolChampionsQuestSkinDescriptionInfo>,
-    pub splash_path: String,
-    pub uncentered_splash_path: String,
-    pub tile_path: String,
-    pub collection_card_path: String,
-    pub collection_description: String,
-    pub tiers: Vec<LolChampionsCollectionsChampionQuestSkin>,
-    pub product_type: Option<LolChampionsQuestSkinProductType>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChampionsCollectionsChampionSkinEmblem {
-    pub name: String,
-    pub emblem_path: LolChampionsCollectionsChampionSkinEmblemPath,
-    pub positions: LolChampionsCollectionsChampionSkinEmblemPosition,
 }
 
 
@@ -531,10 +426,115 @@ pub struct LolChampionsCollectionsChampionSkin {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct LolChampionsCollectionsChampionSkinAugment {
+    pub content_id: String,
+    pub overlays: Vec<LolChampionsCollectionsChampionSkinAugmentOverlays>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChampionsCollectionsChampionSkinAugmentOverlays {
+    pub centered_lc_overlay_path: String,
+    pub social_card_lc_overlay_path: String,
+    pub tile_lc_overlay_path: String,
+    pub uncentered_lc_overlay_path: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChampionsCollectionsChampionSkinAugments {
+    pub augments: Vec<LolChampionsCollectionsChampionSkinAugment>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChampionsCollectionsChampionSkinEmblem {
+    pub name: String,
+    pub emblem_path: LolChampionsCollectionsChampionSkinEmblemPath,
+    pub positions: LolChampionsCollectionsChampionSkinEmblemPosition,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChampionsCollectionsChampionSkinEmblemPath {
+    pub large: String,
+    pub small: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChampionsCollectionsChampionSkinEmblemPosition {
+    pub vertical: String,
+    pub horizontal: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChampionsCollectionsChampionSkinMinimal {
+    pub champion_id: i32,
+    pub chroma_path: Option<String>,
+    pub id: i32,
+    pub name: String,
+    pub ownership: LolChampionsCollectionsOwnership,
+    pub is_base: bool,
+    pub disabled: bool,
+    pub still_obtainable: bool,
+    pub last_selected: bool,
+    pub skin_augments: LolChampionsCollectionsChampionSkinAugments,
+    pub splash_path: String,
+    pub tile_path: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChampionsCollectionsChampionSpell {
+    pub name: String,
+    pub description: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct LolChampionsCollectionsChampionTacticalInfo {
     pub style: u32,
     pub difficulty: u32,
     pub damage_type: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChampionsCollectionsOwnership {
+    pub loyalty_reward: bool,
+    pub xbox_gp_reward: bool,
+    pub owned: bool,
+    pub rental: LolChampionsCollectionsRental,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChampionsCollectionsRental {
+    pub end_date: u64,
+    pub purchase_date: u64,
+    pub win_count_remaining: i32,
+    pub rented: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChampionsQuestSkinDescriptionInfo {
+    pub title: String,
+    pub description: String,
+    pub icon_path: String,
 }
 
 

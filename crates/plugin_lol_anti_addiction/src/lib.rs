@@ -70,16 +70,16 @@ pub fn get_lol_anti_addiction_v_1_anti_addiction_token() -> GetLolAntiAddictionV
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolAntiAddictionAntiAddictionToken {
+pub struct LolAntiAddictionAntiAddictionState {
+    pub policy_type: LolAntiAddictionPolicyType,
+    pub localization_key: String,
     pub anti_addiction_token: String,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolAntiAddictionAntiAddictionState {
-    pub policy_type: LolAntiAddictionPolicyType,
-    pub localization_key: String,
+pub struct LolAntiAddictionAntiAddictionToken {
     pub anti_addiction_token: String,
 }
 

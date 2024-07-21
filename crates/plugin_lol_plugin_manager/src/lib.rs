@@ -42,39 +42,6 @@ pub fn get_by_plugin_assets_by_path(plugin: String, path_: String, if_none_match
 }
 
 
-pub struct HeadByPluginAssetsByPath {
-    // Download the header for a backend asset
-    pub plugin: String,
-    pub path_: String,
-    pub if_none_match: Option<String>,
-}
-
-impl IsApiRequest for HeadByPluginAssetsByPath {
-    const METHOD: Method = Method::HEAD;
-    type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/{}/assets/{}", self.plugin, self.path_)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        Some(json!({
-            "if-none-match" : self.if_none_match,
-        }))
-    }
-}
-
-pub fn head_by_plugin_assets_by_path(plugin: String, path_: String, if_none_match: Option<String>) -> HeadByPluginAssetsByPath {
-    HeadByPluginAssetsByPath {
-        plugin, path_, if_none_match
-    }
-}
-
-
 pub struct GetPluginManagerV1ExternalPluginsAvailability {
     // Get the status of the external plugin connection.
 }
@@ -273,12 +240,78 @@ pub fn get_plugin_manager_v_3_plugins_manifest() -> GetPluginManagerV3PluginsMan
 }
 
 
+pub struct HeadByPluginAssetsByPath {
+    // Download the header for a backend asset
+    pub plugin: String,
+    pub path_: String,
+    pub if_none_match: Option<String>,
+}
+
+impl IsApiRequest for HeadByPluginAssetsByPath {
+    const METHOD: Method = Method::HEAD;
+    type ReturnType = HashMap<String, String>;
+
+    fn get_url(&self) -> String {
+        format!("/{}/assets/{}", self.plugin, self.path_)
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        None
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        Some(json!({
+            "if-none-match" : self.if_none_match,
+        }))
+    }
+}
+
+pub fn head_by_plugin_assets_by_path(plugin: String, path_: String, if_none_match: Option<String>) -> HeadByPluginAssetsByPath {
+    HeadByPluginAssetsByPath {
+        plugin, path_, if_none_match
+    }
+}
+
+
 // OBJECTS
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct ExternalPluginsResource {
+    pub state: ExternalPluginsAvailability,
+    pub error_string: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct PluginDescriptionResource {
+    pub name: String,
+    pub riot_meta: PluginMetadataResource,
+    pub plugin_dependencies: Vec<String>,
+}
+
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct PluginManagerResource {
     pub state: PluginManagerState,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct PluginMetadataResource {
+    pub type_: String,
+    pub subtype: String,
+    pub app: String,
+    pub feature: String,
+    pub mock: String,
+    pub has_bundled_assets: bool,
+    pub global_asset_bundles: Vec<String>,
+    pub per_locale_asset_bundles: HashMap<String, HashMap<String, String>>,
+    pub implements: Vec<String>,
+    pub threading: PluginThreadingModel,
 }
 
 
@@ -302,59 +335,12 @@ pub struct PluginResource {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct PluginMetadataResource {
-    pub type_: String,
-    pub subtype: String,
-    pub app: String,
-    pub feature: String,
-    pub mock: String,
-    pub has_bundled_assets: bool,
-    pub global_asset_bundles: Vec<String>,
-    pub per_locale_asset_bundles: HashMap<String, HashMap<String, String>>,
-    pub implements: Vec<String>,
-    pub threading: PluginThreadingModel,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct PluginDescriptionResource {
-    pub name: String,
-    pub riot_meta: PluginMetadataResource,
-    pub plugin_dependencies: Vec<String>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct PluginResourceContract {
     pub full_name: String,
 }
 
 
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct ExternalPluginsResource {
-    pub state: ExternalPluginsAvailability,
-    pub error_string: String,
-}
-
-
 // ENUMS
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum PluginThreadingModel {
-    #[default]
-    #[serde(rename = "parallel")]
-    Parallel,
-    #[serde(rename = "concurrent")]
-    Concurrent,
-    #[serde(rename = "sequential")]
-    Sequential,
-    #[serde(rename = "dedicated")]
-    Dedicated,
-}
-
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
 pub enum ExternalPluginsAvailability {
@@ -372,5 +358,19 @@ pub enum PluginManagerState {
     #[default]
     PluginsInitialized,
     NotReady,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum PluginThreadingModel {
+    #[default]
+    #[serde(rename = "parallel")]
+    Parallel,
+    #[serde(rename = "concurrent")]
+    Concurrent,
+    #[serde(rename = "sequential")]
+    Sequential,
+    #[serde(rename = "dedicated")]
+    Dedicated,
 }
 

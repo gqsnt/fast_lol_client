@@ -37,6 +37,34 @@ pub fn get_lol_email_verification_v_1_email() -> GetLolEmailVerificationV1Email 
 }
 
 
+pub struct PostLolEmailVerificationV1ConfirmEmail {
+
+}
+
+impl IsApiRequest for PostLolEmailVerificationV1ConfirmEmail {
+    const METHOD: Method = Method::POST;
+    type ReturnType = HashMap<String, String>;
+
+    fn get_url(&self) -> String {
+        "/lol-email-verification/v1/confirm-email".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        None
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn post_lol_email_verification_v_1_confirm_email() -> PostLolEmailVerificationV1ConfirmEmail {
+    PostLolEmailVerificationV1ConfirmEmail {
+        
+    }
+}
+
+
 pub struct PutLolEmailVerificationV1Email {
 
     pub body: LolEmailVerificationEmailUpdate,
@@ -66,35 +94,15 @@ pub fn put_lol_email_verification_v_1_email(body: LolEmailVerificationEmailUpdat
 }
 
 
-pub struct PostLolEmailVerificationV1ConfirmEmail {
-
-}
-
-impl IsApiRequest for PostLolEmailVerificationV1ConfirmEmail {
-    const METHOD: Method = Method::POST;
-    type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-email-verification/v1/confirm-email".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn post_lol_email_verification_v_1_confirm_email() -> PostLolEmailVerificationV1ConfirmEmail {
-    PostLolEmailVerificationV1ConfirmEmail {
-        
-    }
-}
-
-
 // OBJECTS
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolEmailVerificationEmailUpdate {
+    pub email: String,
+    pub password: String,
+}
+
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
@@ -102,14 +110,6 @@ pub struct LolEmailVerificationEmailVerificationSession {
     pub email: String,
     pub email_verified: bool,
     pub fatal_error: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolEmailVerificationEmailUpdate {
-    pub email: String,
-    pub password: String,
 }
 
 

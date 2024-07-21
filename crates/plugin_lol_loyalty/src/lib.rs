@@ -70,10 +70,8 @@ pub fn post_lol_loyalty_v_1_update_loyalty_inventory(body: LolLoyaltyLoyaltyRewa
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolLoyaltyLoyaltyStatusNotification {
-    pub status: LolLoyaltyLoyaltyStatus,
-    pub rewards: LolLoyaltyLoyaltyRewardsSimplified,
-    pub reload_inventory: bool,
+pub struct LolLoyaltyGlobalRewards {
+    pub all_champions: bool,
 }
 
 
@@ -113,8 +111,10 @@ pub struct LolLoyaltyLoyaltyRewardsSimplified {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolLoyaltyGlobalRewards {
-    pub all_champions: bool,
+pub struct LolLoyaltyLoyaltyStatusNotification {
+    pub status: LolLoyaltyLoyaltyStatus,
+    pub rewards: LolLoyaltyLoyaltyRewardsSimplified,
+    pub reload_inventory: bool,
 }
 
 

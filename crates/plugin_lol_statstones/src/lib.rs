@@ -9,34 +9,6 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct GetLolStatstonesV1VignetteNotifications {
-
-}
-
-impl IsApiRequest for GetLolStatstonesV1VignetteNotifications {
-    const METHOD: Method = Method::GET;
-    type ReturnType = Vec<HashMap<String, String>>;
-
-    fn get_url(&self) -> String {
-        "/lol-statstones/v1/vignette-notifications".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn get_lol_statstones_v_1_vignette_notifications() -> GetLolStatstonesV1VignetteNotifications {
-    GetLolStatstonesV1VignetteNotifications {
-        
-    }
-}
-
-
 pub struct DeleteLolStatstonesV1VignetteNotifications {
 
 }
@@ -238,6 +210,34 @@ pub fn get_lol_statstones_v_1_statstones_enabled_queue_ids() -> GetLolStatstones
 }
 
 
+pub struct GetLolStatstonesV1VignetteNotifications {
+
+}
+
+impl IsApiRequest for GetLolStatstonesV1VignetteNotifications {
+    const METHOD: Method = Method::GET;
+    type ReturnType = Vec<HashMap<String, String>>;
+
+    fn get_url(&self) -> String {
+        "/lol-statstones/v1/vignette-notifications".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        None
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn get_lol_statstones_v_1_vignette_notifications() -> GetLolStatstonesV1VignetteNotifications {
+    GetLolStatstonesV1VignetteNotifications {
+        
+    }
+}
+
+
 pub struct GetLolStatstonesV2PlayerStatstonesSelfByChampionItemId {
 
     pub champion_item_id: i32,
@@ -330,59 +330,24 @@ pub fn post_lol_statstones_v_1_featured_champion_statstones_by_champion_item_id_
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolStatstonesStatstone {
+pub struct LolStatstonesChampionStatstoneSetSummary {
     pub name: String,
-    pub statstone_id: String,
-    pub bound_champion_item_id: u32,
-    pub next_milestone: String,
-    pub completion_value: f32,
-    pub is_complete: bool,
-    pub is_featured: bool,
-    pub is_epic: bool,
-    pub is_retired: bool,
-    pub category: String,
-    pub image_url: String,
-    pub description: String,
-    pub formatted_value: String,
-    pub formatted_personal_best: String,
-    pub formatted_milestone_level: String,
-    pub player_record: Option<LolStatstonesStatstonePlayerRecord>,
+    pub stones_available: u32,
+    pub stones_owned: u32,
+    pub stones_illuminated: u32,
+    pub milestones_passed: u32,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolStatstonesPersonalBestNotification {
-    pub summoner: LolStatstonesSummoner,
-    pub statstone_id: String,
-    pub statstone_name: String,
-    pub personal_best: String,
-    pub image_url: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolStatstonesStatstonePlayerRecord {
-    pub puuid: String,
-    pub statstone_id: String,
-    pub value: u32,
-    pub personal_best: u32,
-    pub milestone_level: u32,
-    pub date_acquired: String,
-    pub date_modified: String,
-    pub date_completed: String,
-    pub date_archived: String,
-    pub entitled: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolStatstonesSummoner {
-    pub summoner_id: u64,
-    pub puuid: String,
-    pub display_name: String,
+pub struct LolStatstonesChampionStatstoneSummary {
+    pub champion_id: i32,
+    pub stones_available: u32,
+    pub stones_owned: u32,
+    pub stones_illuminated: u32,
+    pub milestones_passed: u32,
+    pub sets: Vec<LolStatstonesChampionStatstoneSetSummary>,
 }
 
 
@@ -398,17 +363,33 @@ pub struct LolStatstonesEogNotificationEnvelope {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolStatstonesStatstoneSet {
+pub struct LolStatstonesGameDataStatstonePack {
     pub name: String,
-    pub statstones: Vec<LolStatstonesStatstone>,
-    pub stones_owned: u32,
-    pub milestones_passed: u32,
-    pub item_id: u32,
-    pub inventory_type: String,
-    pub sub_inventory_type: String,
-    pub item_instance_id: String,
-    pub prices: Vec<LolStatstonesPriceInfo>,
-    pub owned_from_packs: Vec<LolStatstonesGameDataStatstonePack>,
+    pub description: String,
+    pub content_id: String,
+    pub item_id: i32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolStatstonesMilestoneProgressNotification {
+    pub statstone_id: String,
+    pub statstone_name: String,
+    pub threshold: i32,
+    pub image_url: String,
+    pub level: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolStatstonesPersonalBestNotification {
+    pub summoner: LolStatstonesSummoner,
+    pub statstone_id: String,
+    pub statstone_name: String,
+    pub personal_best: String,
+    pub image_url: String,
 }
 
 
@@ -433,23 +414,23 @@ pub struct LolStatstonesProfileStatstoneSummary {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolStatstonesChampionStatstoneSummary {
-    pub champion_id: i32,
-    pub stones_available: u32,
-    pub stones_owned: u32,
-    pub stones_illuminated: u32,
-    pub milestones_passed: u32,
-    pub sets: Vec<LolStatstonesChampionStatstoneSetSummary>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolStatstonesGameDataStatstonePack {
+pub struct LolStatstonesStatstone {
     pub name: String,
+    pub statstone_id: String,
+    pub bound_champion_item_id: u32,
+    pub next_milestone: String,
+    pub completion_value: f32,
+    pub is_complete: bool,
+    pub is_featured: bool,
+    pub is_epic: bool,
+    pub is_retired: bool,
+    pub category: String,
+    pub image_url: String,
     pub description: String,
-    pub content_id: String,
-    pub item_id: i32,
+    pub formatted_value: String,
+    pub formatted_personal_best: String,
+    pub formatted_milestone_level: String,
+    pub player_record: Option<LolStatstonesStatstonePlayerRecord>,
 }
 
 
@@ -463,23 +444,17 @@ pub struct LolStatstonesStatstoneFeaturedRequest {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolStatstonesChampionStatstoneSetSummary {
-    pub name: String,
-    pub stones_available: u32,
-    pub stones_owned: u32,
-    pub stones_illuminated: u32,
-    pub milestones_passed: u32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolStatstonesMilestoneProgressNotification {
+pub struct LolStatstonesStatstonePlayerRecord {
+    pub puuid: String,
     pub statstone_id: String,
-    pub statstone_name: String,
-    pub threshold: i32,
-    pub image_url: String,
-    pub level: String,
+    pub value: u32,
+    pub personal_best: u32,
+    pub milestone_level: u32,
+    pub date_acquired: String,
+    pub date_modified: String,
+    pub date_completed: String,
+    pub date_archived: String,
+    pub entitled: bool,
 }
 
 
@@ -501,6 +476,31 @@ pub struct LolStatstonesStatstoneProgress {
     pub level: i32,
     pub best: i32,
     pub is_new_best: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolStatstonesStatstoneSet {
+    pub name: String,
+    pub statstones: Vec<LolStatstonesStatstone>,
+    pub stones_owned: u32,
+    pub milestones_passed: u32,
+    pub item_id: u32,
+    pub inventory_type: String,
+    pub sub_inventory_type: String,
+    pub item_instance_id: String,
+    pub prices: Vec<LolStatstonesPriceInfo>,
+    pub owned_from_packs: Vec<LolStatstonesGameDataStatstonePack>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolStatstonesSummoner {
+    pub summoner_id: u64,
+    pub puuid: String,
+    pub display_name: String,
 }
 
 

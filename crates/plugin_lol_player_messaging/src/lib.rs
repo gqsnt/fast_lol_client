@@ -127,18 +127,6 @@ pub fn get_lol_player_messaging_v_1_notification() -> GetLolPlayerMessagingV1Not
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolPlayerMessagingPlayerMessagingNotificationResource {
-    pub id: i32,
-    pub account_id: u64,
-    pub msg_id: String,
-    pub title: String,
-    pub body: String,
-    pub status: i32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LolPlayerMessagingDynamicCelebrationMessagingNotificationResource {
     pub id: i32,
     pub account_id: u64,
@@ -150,6 +138,18 @@ pub struct LolPlayerMessagingDynamicCelebrationMessagingNotificationResource {
     pub item_id: String,
     pub item_quantity: String,
     pub celebration_type: String,
+    pub status: i32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolPlayerMessagingPlayerMessagingNotificationResource {
+    pub id: i32,
+    pub account_id: u64,
+    pub msg_id: String,
+    pub title: String,
+    pub body: String,
     pub status: i32,
 }
 

@@ -66,6 +66,35 @@ pub fn get_data_store_v_1_install_settings_by_path(path_: String) -> GetDataStor
 }
 
 
+pub struct GetDataStoreV1SystemSettingsByPath {
+    // Get the setting for the specified key.
+    pub path_: String,
+}
+
+impl IsApiRequest for GetDataStoreV1SystemSettingsByPath {
+    const METHOD: Method = Method::GET;
+    type ReturnType = HashMap<String, String>;
+
+    fn get_url(&self) -> String {
+        format!("/data-store/v1/system-settings/{}", self.path_)
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        None
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn get_data_store_v_1_system_settings_by_path(path_: String) -> GetDataStoreV1SystemSettingsByPath {
+    GetDataStoreV1SystemSettingsByPath {
+        path_
+    }
+}
+
+
 pub struct PostDataStoreV1InstallSettingsByPath {
     // Set the data for the specified key from the install settings.
     pub path_: String,
@@ -92,35 +121,6 @@ impl IsApiRequest for PostDataStoreV1InstallSettingsByPath {
 pub fn post_data_store_v_1_install_settings_by_path(path_: String, body: HashMap<String, String>) -> PostDataStoreV1InstallSettingsByPath {
     PostDataStoreV1InstallSettingsByPath {
         path_, body
-    }
-}
-
-
-pub struct GetDataStoreV1SystemSettingsByPath {
-    // Get the setting for the specified key.
-    pub path_: String,
-}
-
-impl IsApiRequest for GetDataStoreV1SystemSettingsByPath {
-    const METHOD: Method = Method::GET;
-    type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/data-store/v1/system-settings/{}", self.path_)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn get_data_store_v_1_system_settings_by_path(path_: String) -> GetDataStoreV1SystemSettingsByPath {
-    GetDataStoreV1SystemSettingsByPath {
-        path_
     }
 }
 

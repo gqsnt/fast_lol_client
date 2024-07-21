@@ -323,6 +323,15 @@ pub struct LolReplaysReplayCreateMetadata {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct LolReplaysReplayMetadata {
+    pub state: LolReplaysMetadataState,
+    pub game_id: u64,
+    pub download_progress: u32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct LolReplaysReplaysConfiguration {
     pub is_replays_enabled: bool,
     pub is_replays_for_end_of_game_enabled: bool,
@@ -335,15 +344,6 @@ pub struct LolReplaysReplaysConfiguration {
     pub game_version: String,
     pub min_server_version: String,
     pub minutes_until_replay_considered_lost: i32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolReplaysReplayMetadata {
-    pub state: LolReplaysMetadataState,
-    pub game_id: u64,
-    pub download_progress: u32,
 }
 
 

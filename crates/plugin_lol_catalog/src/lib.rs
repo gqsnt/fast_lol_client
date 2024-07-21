@@ -170,60 +170,6 @@ pub fn get_lol_catalog_v_1_items_list_details_skip_cache(catalog_items_keys: Vec
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolCatalogSale {
-    pub start_date: String,
-    pub end_date: String,
-    pub prices: Vec<LolCatalogItemCost>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolCatalogItemMetadataEntry {
-    pub type_: String,
-    pub value: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolCatalogChampionSkinEmblem {
-    pub name: String,
-    pub emblem_path: LolCatalogChampionSkinEmblemPath,
-    pub emblem_position: LolCatalogChampionSkinEmblemPosition,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolCatalogCatalogPluginItemWithDetails {
-    pub item: LolCatalogCatalogPluginItem,
-    pub quantity: u32,
-    pub required_items: Option<Vec<LolCatalogCatalogPluginItemWithDetails>>,
-    pub bundled_items: Option<Vec<LolCatalogCatalogPluginItemWithDetails>>,
-    pub minimum_bundle_prices: Option<Vec<LolCatalogCatalogPluginPrice>>,
-    pub bundled_discount_prices: Option<Vec<LolCatalogCatalogPluginPrice>>,
-    pub assets: LolCatalogCatalogPluginItemAssets,
-    pub metadata: Vec<LolCatalogItemMetadataEntry>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolCatalogSkinLineInfo {
-    pub name: String,
-    pub description_info: Vec<LolCatalogSkinLineDescriptionInfo>,
-    pub splash_path: String,
-    pub tile_path: String,
-    pub collection_card_path: String,
-    pub uncentered_splash_path: String,
-    pub collection_description: String,
-    pub tiers: Vec<LolCatalogSkinLineTier>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LolCatalogCatalogPluginItem {
     pub item_id: i32,
     pub item_instance_id: String,
@@ -251,14 +197,26 @@ pub struct LolCatalogCatalogPluginItem {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolCatalogItemChoiceDetails {
+pub struct LolCatalogCatalogPluginItemAssets {
+    pub splash_path: String,
+    pub icon_path: String,
+    pub tile_path: String,
+    pub emblems: Vec<LolCatalogChampionSkinEmblem>,
+    pub colors: Vec<String>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolCatalogCatalogPluginItemWithDetails {
     pub item: LolCatalogCatalogPluginItem,
-    pub background_image: String,
-    pub contents: Vec<LolCatalogItemDetails>,
-    pub discount: String,
-    pub full_price: i64,
-    pub display_type: String,
-    pub metadata: HashMap<String, String>,
+    pub quantity: u32,
+    pub required_items: Option<Vec<LolCatalogCatalogPluginItemWithDetails>>,
+    pub bundled_items: Option<Vec<LolCatalogCatalogPluginItemWithDetails>>,
+    pub minimum_bundle_prices: Option<Vec<LolCatalogCatalogPluginPrice>>,
+    pub bundled_discount_prices: Option<Vec<LolCatalogCatalogPluginPrice>>,
+    pub assets: LolCatalogCatalogPluginItemAssets,
+    pub metadata: Vec<LolCatalogItemMetadataEntry>,
 }
 
 
@@ -274,20 +232,20 @@ pub struct LolCatalogCatalogPluginPrice {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolCatalogCatalogPluginItemAssets {
-    pub splash_path: String,
-    pub icon_path: String,
-    pub tile_path: String,
-    pub emblems: Vec<LolCatalogChampionSkinEmblem>,
-    pub colors: Vec<String>,
+pub struct LolCatalogCatalogPluginRetailDiscount {
+    pub start_date: String,
+    pub end_date: String,
+    pub discount: Option<f32>,
+    pub cost: i64,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolCatalogItemKey {
-    pub inventory_type: String,
-    pub item_id: i32,
+pub struct LolCatalogChampionSkinEmblem {
+    pub name: String,
+    pub emblem_path: LolCatalogChampionSkinEmblemPath,
+    pub emblem_position: LolCatalogChampionSkinEmblemPosition,
 }
 
 
@@ -301,16 +259,6 @@ pub struct LolCatalogChampionSkinEmblemPath {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolCatalogCatalogPluginRetailDiscount {
-    pub start_date: String,
-    pub end_date: String,
-    pub discount: Option<f32>,
-    pub cost: i64,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LolCatalogChampionSkinEmblemPosition {
     pub vertical: String,
     pub horizontal: String,
@@ -319,10 +267,14 @@ pub struct LolCatalogChampionSkinEmblemPosition {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolCatalogSkinLineDescriptionInfo {
-    pub title: String,
-    pub description: String,
-    pub icon_path: String,
+pub struct LolCatalogItemChoiceDetails {
+    pub item: LolCatalogCatalogPluginItem,
+    pub background_image: String,
+    pub contents: Vec<LolCatalogItemDetails>,
+    pub discount: String,
+    pub full_price: i64,
+    pub display_type: String,
+    pub metadata: HashMap<String, String>,
 }
 
 
@@ -342,6 +294,54 @@ pub struct LolCatalogItemDetails {
     pub sub_title: String,
     pub description: String,
     pub icon_url: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolCatalogItemKey {
+    pub inventory_type: String,
+    pub item_id: i32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolCatalogItemMetadataEntry {
+    pub type_: String,
+    pub value: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolCatalogSale {
+    pub start_date: String,
+    pub end_date: String,
+    pub prices: Vec<LolCatalogItemCost>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolCatalogSkinLineDescriptionInfo {
+    pub title: String,
+    pub description: String,
+    pub icon_path: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolCatalogSkinLineInfo {
+    pub name: String,
+    pub description_info: Vec<LolCatalogSkinLineDescriptionInfo>,
+    pub splash_path: String,
+    pub tile_path: String,
+    pub collection_card_path: String,
+    pub uncentered_splash_path: String,
+    pub collection_description: String,
+    pub tiers: Vec<LolCatalogSkinLineTier>,
 }
 
 

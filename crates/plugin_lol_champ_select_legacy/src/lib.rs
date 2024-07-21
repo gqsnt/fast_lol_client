@@ -233,35 +233,6 @@ pub fn get_lol_champ_select_legacy_v_1_session_my_selection() -> GetLolChampSele
 }
 
 
-pub struct PatchLolChampSelectLegacyV1SessionMySelection {
-
-    pub body: LolChampSelectLegacyChampSelectMySelection,
-}
-
-impl IsApiRequest for PatchLolChampSelectLegacyV1SessionMySelection {
-    const METHOD: Method = Method::PATCH;
-    type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-champ-select-legacy/v1/session/my-selection".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn patch_lol_champ_select_legacy_v_1_session_my_selection(body: LolChampSelectLegacyChampSelectMySelection) -> PatchLolChampSelectLegacyV1SessionMySelection {
-    PatchLolChampSelectLegacyV1SessionMySelection {
-        body
-    }
-}
-
-
 pub struct GetLolChampSelectLegacyV1SessionTimer {
 
 }
@@ -401,6 +372,35 @@ impl IsApiRequest for PatchLolChampSelectLegacyV1SessionActionsById {
 pub fn patch_lol_champ_select_legacy_v_1_session_actions_by_id(id: u64, body: LolChampSelectLegacyChampSelectAction) -> PatchLolChampSelectLegacyV1SessionActionsById {
     PatchLolChampSelectLegacyV1SessionActionsById {
         id, body
+    }
+}
+
+
+pub struct PatchLolChampSelectLegacyV1SessionMySelection {
+
+    pub body: LolChampSelectLegacyChampSelectMySelection,
+}
+
+impl IsApiRequest for PatchLolChampSelectLegacyV1SessionMySelection {
+    const METHOD: Method = Method::PATCH;
+    type ReturnType = HashMap<String, String>;
+
+    fn get_url(&self) -> String {
+        "/lol-champ-select-legacy/v1/session/my-selection".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn patch_lol_champ_select_legacy_v_1_session_my_selection(body: LolChampSelectLegacyChampSelectMySelection) -> PatchLolChampSelectLegacyV1SessionMySelection {
+    PatchLolChampSelectLegacyV1SessionMySelection {
+        body
     }
 }
 
@@ -610,41 +610,6 @@ pub fn post_lol_champ_select_legacy_v_1_session_trades_by_id_request(id: i64) ->
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolChampSelectLegacyChampSelectTimer {
-    pub adjusted_time_left_in_phase: i64,
-    pub total_time_in_phase: i64,
-    pub phase: String,
-    pub is_infinite: bool,
-    pub internal_now_in_epoch_ms: u64,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChampSelectLegacyChampSelectMySelection {
-    pub selected_skin_id: Option<i32>,
-    pub spell_1_id: Option<u64>,
-    pub spell_2_id: Option<u64>,
-    pub ward_skin_id: Option<i64>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChampSelectLegacyTeamBoost {
-    pub summoner_id: i64,
-    pub puuid: String,
-    pub skin_unlock_mode: String,
-    pub price: i64,
-    pub ip_reward: i64,
-    pub ip_reward_for_purchaser: i64,
-    pub available_skins: Vec<i64>,
-    pub unlocked: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LolChampSelectLegacyChampSelectAction {
     pub id: i64,
     pub actor_cell_id: i64,
@@ -659,10 +624,29 @@ pub struct LolChampSelectLegacyChampSelectAction {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolChampSelectLegacyChampSelectTradeContract {
-    pub id: i64,
-    pub cell_id: i64,
-    pub state: LolChampSelectLegacyChampSelectTradeState,
+pub struct LolChampSelectLegacyChampSelectBannedChampions {
+    pub my_team_bans: Vec<i32>,
+    pub their_team_bans: Vec<i32>,
+    pub num_bans: i32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChampSelectLegacyChampSelectChatRoomDetails {
+    pub multi_user_chat_id: String,
+    pub multi_user_chat_password: String,
+    pub muc_jwt_dto: LolChampSelectLegacyMucJwtDto,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChampSelectLegacyChampSelectMySelection {
+    pub selected_skin_id: Option<i32>,
+    pub spell_1_id: Option<u64>,
+    pub spell_2_id: Option<u64>,
+    pub ward_skin_id: Option<i64>,
 }
 
 
@@ -681,25 +665,6 @@ pub struct LolChampSelectLegacyChampSelectPlayerSelection {
     pub player_type: String,
     pub summoner_id: u64,
     pub puuid: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChampSelectLegacyChampSelectChatRoomDetails {
-    pub multi_user_chat_id: String,
-    pub multi_user_chat_password: String,
-    pub muc_jwt_dto: LolChampSelectLegacyMucJwtDto,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolChampSelectLegacyMucJwtDto {
-    pub jwt: String,
-    pub channel_claim: String,
-    pub domain: String,
-    pub target_region: String,
 }
 
 
@@ -727,10 +692,45 @@ pub struct LolChampSelectLegacyChampSelectSession {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolChampSelectLegacyChampSelectBannedChampions {
-    pub my_team_bans: Vec<i32>,
-    pub their_team_bans: Vec<i32>,
-    pub num_bans: i32,
+pub struct LolChampSelectLegacyChampSelectTimer {
+    pub adjusted_time_left_in_phase: i64,
+    pub total_time_in_phase: i64,
+    pub phase: String,
+    pub is_infinite: bool,
+    pub internal_now_in_epoch_ms: u64,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChampSelectLegacyChampSelectTradeContract {
+    pub id: i64,
+    pub cell_id: i64,
+    pub state: LolChampSelectLegacyChampSelectTradeState,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChampSelectLegacyMucJwtDto {
+    pub jwt: String,
+    pub channel_claim: String,
+    pub domain: String,
+    pub target_region: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolChampSelectLegacyTeamBoost {
+    pub summoner_id: i64,
+    pub puuid: String,
+    pub skin_unlock_mode: String,
+    pub price: i64,
+    pub ip_reward: i64,
+    pub ip_reward_for_purchaser: i64,
+    pub available_skins: Vec<i64>,
+    pub unlocked: bool,
 }
 
 

@@ -99,18 +99,18 @@ pub fn post_lol_simple_dialog_messages_v_1_messages(body: LolSimpleDialogMessage
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolSimpleDialogMessagesMessage {
-    pub id: i64,
-    pub type_: String,
-    pub body: HashMap<String, String>,
+pub struct LolSimpleDialogMessagesLocalMessageRequest {
+    pub msg_type: String,
+    pub msg_body: Vec<String>,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolSimpleDialogMessagesLocalMessageRequest {
-    pub msg_type: String,
-    pub msg_body: Vec<String>,
+pub struct LolSimpleDialogMessagesMessage {
+    pub id: i64,
+    pub type_: String,
+    pub body: HashMap<String, String>,
 }
 
 

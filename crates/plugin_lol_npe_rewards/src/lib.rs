@@ -181,15 +181,17 @@ pub fn post_lol_npe_rewards_v_1_challenges_opt() -> PostLolNpeRewardsV1Challenge
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolNpeRewardsRewardSeriesState {
-    pub all_rewards_claimed: bool,
+pub struct LolNpeRewardsChallengesProgress {
+    pub progress: LolNpeRewardsProgress,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolNpeRewardsRewardSeries {
-    pub reward_packs: Vec<LolNpeRewardsRewardPack>,
+pub struct LolNpeRewardsProgress {
+    pub last_viewed_progress: i32,
+    pub current_progress: i32,
+    pub total_count: i32,
 }
 
 
@@ -204,8 +206,9 @@ pub struct LolNpeRewardsRequirements {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolNpeRewardsChallengesProgress {
-    pub progress: LolNpeRewardsProgress,
+pub struct LolNpeRewardsReward {
+    pub renderer: String,
+    pub data: HashMap<String, String>,
 }
 
 
@@ -227,18 +230,15 @@ pub struct LolNpeRewardsRewardPack {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolNpeRewardsProgress {
-    pub last_viewed_progress: i32,
-    pub current_progress: i32,
-    pub total_count: i32,
+pub struct LolNpeRewardsRewardSeries {
+    pub reward_packs: Vec<LolNpeRewardsRewardPack>,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolNpeRewardsReward {
-    pub renderer: String,
-    pub data: HashMap<String, String>,
+pub struct LolNpeRewardsRewardSeriesState {
+    pub all_rewards_claimed: bool,
 }
 
 

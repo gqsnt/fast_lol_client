@@ -3,16 +3,17 @@ use serde_json;
 use openapiv3::OpenAPI;
 use lol_api_generator::generator::ConvertOpenApiToRust;
 
-fn main() {
-    let path = PathBuf::from("openapi.json");
-    if !path.exists() {
-        panic!("File not found: {:?}", path);
+#[tokio::main]
+async fn main() ->Result<(), reqwest::Error> {
+
+    let response = reqwest::get("https://raw.githubusercontent.com/dysolix/hasagi-types/main/swagger.json").await?;
+    if !response.status().is_success() {
+        panic!("Failed to get swagger.json from hasagi-types");
     }
-    let data=  std::fs::read_to_string(&path).unwrap();
-    println!("data len: {}", data.len());
+    let data = response.text().await?;
     let spec : OpenAPI =serde_json::from_str(&data).unwrap();
     let mut open_api = ConvertOpenApiToRust::new(spec);
     open_api.parse_all().unwrap();
     open_api.generate_all().unwrap();
-
+    Ok(())
 }

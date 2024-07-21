@@ -269,6 +269,36 @@ pub fn put_lol_tft_pass_v_1_pass_by_id_milestone_claim_all_rewards(id: String) -
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct LolTftPassTftBattlepass {
+    pub total_points_earned: i32,
+    pub milestones: Vec<LolTftPassTftBattlepassMilestone>,
+    pub bonuses: Vec<LolTftPassTftBattlepassMilestone>,
+    pub active_milestone: LolTftPassTftBattlepassMilestone,
+    pub info: LolTftPassTftBattlepassInfo,
+    pub last_viewed_progress: i32,
+    pub last_viewed_milestone: LolTftPassTftBattlepassMilestone,
+    pub current_level: i32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolTftPassTftBattlepassInfo {
+    pub title: String,
+    pub description: String,
+    pub start_date: u64,
+    pub end_date: u64,
+    pub premium: bool,
+    pub premium_title: String,
+    pub premium_entitlement_id: String,
+    pub pc_purchase_requirement: String,
+    pub pass_id: String,
+    pub media: HashMap<String, String>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct LolTftPassTftBattlepassMilestone {
     pub milestone_id: String,
     pub title: String,
@@ -291,32 +321,6 @@ pub struct LolTftPassTftBattlepassMilestone {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolTftPassTftPassRewardNotification {
-    pub title: String,
-    pub description: String,
-    pub icon_url: String,
-    pub framed_icon: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolTftPassTftBattlepassInfo {
-    pub title: String,
-    pub description: String,
-    pub start_date: u64,
-    pub end_date: u64,
-    pub premium: bool,
-    pub premium_title: String,
-    pub premium_entitlement_id: String,
-    pub pc_purchase_requirement: String,
-    pub pass_id: String,
-    pub media: HashMap<String, String>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LolTftPassTftBattlepassReward {
     pub description: String,
     pub icon_url: String,
@@ -326,15 +330,11 @@ pub struct LolTftPassTftBattlepassReward {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolTftPassTftBattlepass {
-    pub total_points_earned: i32,
-    pub milestones: Vec<LolTftPassTftBattlepassMilestone>,
-    pub bonuses: Vec<LolTftPassTftBattlepassMilestone>,
-    pub active_milestone: LolTftPassTftBattlepassMilestone,
-    pub info: LolTftPassTftBattlepassInfo,
-    pub last_viewed_progress: i32,
-    pub last_viewed_milestone: LolTftPassTftBattlepassMilestone,
-    pub current_level: i32,
+pub struct LolTftPassTftPassRewardNotification {
+    pub title: String,
+    pub description: String,
+    pub icon_url: String,
+    pub framed_icon: bool,
 }
 
 

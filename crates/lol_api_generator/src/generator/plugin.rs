@@ -91,20 +91,25 @@ impl Plugin{
             let _ = std::fs::write(&additional_path, "");
         }
 
-        let endpoints = self.endpoints.iter().map(|endpoint| {
+        let mut endpoints_copy = self.endpoints.clone();
+        endpoints_copy.sort_by(|a,b | a.name.cmp(&b.name));
+
+        let endpoints = endpoints_copy.into_iter().map(|endpoint| {
             endpoint.to_string()
         }).collect::<Vec<String>>().join("\n");
 
 
+        let mut objects_copy = self.objects.values().collect::<Vec<&ObjectType>>();
+        objects_copy.sort_by(|a,b| a.get_inner_name().cmp(&b.get_inner_name()));
 
-        let objects = self.objects.iter().filter_map(|(_, object)| {
+        let objects = objects_copy.iter().filter_map(|object| {
             match object {
                 ObjectType::Object(object_) => Some(object_.to_string()),
                 ObjectType::Enum(_) => None,
             }
         }).collect::<Vec<String>>().join("\n");
 
-        let enums = self.objects.iter().filter_map(|(_, object)| {
+        let enums = objects_copy.iter().filter_map(|object| {
             match object {
                 ObjectType::Object(_) => None,
                 ObjectType::Enum(enum_) => Some(enum_.to_string()),

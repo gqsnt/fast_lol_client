@@ -9,35 +9,6 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct PostRiotMessagingServiceV1Connect {
-
-    pub body: String,
-}
-
-impl IsApiRequest for PostRiotMessagingServiceV1Connect {
-    const METHOD: Method = Method::POST;
-    type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/riot-messaging-service/v1/connect".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn post_riot_messaging_service_v_1_connect(body: String) -> PostRiotMessagingServiceV1Connect {
-    PostRiotMessagingServiceV1Connect {
-        body
-    }
-}
-
-
 pub struct DeleteRiotMessagingServiceV1Connect {
 
 }
@@ -66,35 +37,6 @@ pub fn delete_riot_messaging_service_v_1_connect() -> DeleteRiotMessagingService
 }
 
 
-pub struct PostRiotMessagingServiceV1Entitlements {
-
-    pub body: RiotMessagingServiceEntitlementsToken,
-}
-
-impl IsApiRequest for PostRiotMessagingServiceV1Entitlements {
-    const METHOD: Method = Method::POST;
-    type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/riot-messaging-service/v1/entitlements".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn post_riot_messaging_service_v_1_entitlements(body: RiotMessagingServiceEntitlementsToken) -> PostRiotMessagingServiceV1Entitlements {
-    PostRiotMessagingServiceV1Entitlements {
-        body
-    }
-}
-
-
 pub struct DeleteRiotMessagingServiceV1Entitlements {
 
 }
@@ -118,34 +60,6 @@ impl IsApiRequest for DeleteRiotMessagingServiceV1Entitlements {
 
 pub fn delete_riot_messaging_service_v_1_entitlements() -> DeleteRiotMessagingServiceV1Entitlements {
     DeleteRiotMessagingServiceV1Entitlements {
-        
-    }
-}
-
-
-pub struct GetRiotMessagingServiceV1Session {
-
-}
-
-impl IsApiRequest for GetRiotMessagingServiceV1Session {
-    const METHOD: Method = Method::GET;
-    type ReturnType = RiotMessagingServiceSession;
-
-    fn get_url(&self) -> String {
-        "/riot-messaging-service/v1/session".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn get_riot_messaging_service_v_1_session() -> GetRiotMessagingServiceV1Session {
-    GetRiotMessagingServiceV1Session {
         
     }
 }
@@ -368,6 +282,34 @@ pub fn get_riot_messaging_service_v_1_message_by_a_by_b_by_c_by_d_by_e_by_f(a: S
 }
 
 
+pub struct GetRiotMessagingServiceV1Session {
+
+}
+
+impl IsApiRequest for GetRiotMessagingServiceV1Session {
+    const METHOD: Method = Method::GET;
+    type ReturnType = RiotMessagingServiceSession;
+
+    fn get_url(&self) -> String {
+        "/riot-messaging-service/v1/session".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        None
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn get_riot_messaging_service_v_1_session() -> GetRiotMessagingServiceV1Session {
+    GetRiotMessagingServiceV1Session {
+        
+    }
+}
+
+
 pub struct GetRiotMessagingServiceV1State {
 
 }
@@ -392,6 +334,64 @@ impl IsApiRequest for GetRiotMessagingServiceV1State {
 pub fn get_riot_messaging_service_v_1_state() -> GetRiotMessagingServiceV1State {
     GetRiotMessagingServiceV1State {
         
+    }
+}
+
+
+pub struct PostRiotMessagingServiceV1Connect {
+
+    pub body: String,
+}
+
+impl IsApiRequest for PostRiotMessagingServiceV1Connect {
+    const METHOD: Method = Method::POST;
+    type ReturnType = Value;
+
+    fn get_url(&self) -> String {
+        "/riot-messaging-service/v1/connect".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn post_riot_messaging_service_v_1_connect(body: String) -> PostRiotMessagingServiceV1Connect {
+    PostRiotMessagingServiceV1Connect {
+        body
+    }
+}
+
+
+pub struct PostRiotMessagingServiceV1Entitlements {
+
+    pub body: RiotMessagingServiceEntitlementsToken,
+}
+
+impl IsApiRequest for PostRiotMessagingServiceV1Entitlements {
+    const METHOD: Method = Method::POST;
+    type ReturnType = Value;
+
+    fn get_url(&self) -> String {
+        "/riot-messaging-service/v1/entitlements".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn post_riot_messaging_service_v_1_entitlements(body: RiotMessagingServiceEntitlementsToken) -> PostRiotMessagingServiceV1Entitlements {
+    PostRiotMessagingServiceV1Entitlements {
+        body
     }
 }
 
@@ -434,20 +434,20 @@ pub struct RmsMessage {
 // ENUMS
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum RiotMessagingServiceTokenType {
-    #[default]
-    Identity,
-    Access,
-    Unavailable,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
 pub enum RiotMessagingServiceState {
     #[default]
     Connected,
     Connecting,
     Disconnected,
     Disconnecting,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum RiotMessagingServiceTokenType {
+    #[default]
+    Identity,
+    Access,
+    Unavailable,
 }
 

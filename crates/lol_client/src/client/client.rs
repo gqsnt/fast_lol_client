@@ -52,26 +52,19 @@ impl LolClient {
             .await
             .map_err(|e| AppError::DisconnectedError(e.to_string()))?;
 
-        if response.status().is_success() {
-            let response_text = response.text().await?;
-            if response_text.is_empty() {
-                Ok(serde_json::from_str::<S::ReturnType>("{}").unwrap())
-            } else {
-                let json = serde_json::from_str::<S::ReturnType>(&response_text);
-                match json {
-                    Ok(result) => {
-                        Ok(result)
-                    }
-                    Err(e) => {
-                        println!("Error parsing response: {:?}", e);
-                        println!("Response: {:?}", response_text);
-                        Err(AppError::ParsingError(e.to_string()))
-                    }
-                }
-            }
-        } else {
-            Err(AppError::ApiRequestError(format!("API request failed with status: {:?}", response.text().await?)))
+        if !response.status().is_success(){
+            return Err(AppError::ApiRequestError(format!("API request failed with status: {:?}", response.text().await?)));
         }
+
+        let mut response_text = response.text().await?;
+        if response_text.is_empty() {
+            response_text = "{}".to_string();
+        }
+        serde_json::from_str::<S::ReturnType>(&response_text).or_else(|e| {
+            println!("Error parsing response: {:?}", e);
+            println!("Response: {:?}", response_text);
+            Err(AppError::ParsingError(e.to_string()))
+        })
     }
 
     pub async fn execute_with_delay<S: IsApiRequest>(&self, request: S, delay_ms: u64) -> AppResult<S::ReturnType> {
@@ -87,35 +80,31 @@ impl LolClient {
     pub async fn execute_and_save<S: IsApiRequest>(&self, request: S, file_name: &str) -> AppResult<S::ReturnType> {
         let response = self.execute(request).await;
         let timestamp = chrono::Utc::now().timestamp_millis();
-        let path = std::fs::File::create(PathBuf::from("temp").join(format!("{}_{}.json", file_name, timestamp)))?;
-        match response {
-            Ok(r) => {
-                serde_json::to_writer_pretty(&path, &r).unwrap();
-                Ok(r)
+        let file_path = PathBuf::from("temp").join(format!("{}_{}.json", file_name, timestamp));
+        let path = std::fs::File::create(&file_path)?;
+        match &response {
+            Ok(response) => {
+                serde_json::to_writer_pretty(&path, &response).unwrap();
             }
-            Err(e) => {
-                serde_json::to_writer_pretty(&path, &Value::String(e.to_string())).unwrap();
-                Err(e)
+            Err(er) => {
+                let err = Value::String(er.to_string());
+                serde_json::to_writer_pretty(&path, &err).unwrap();
             }
         }
+        response
     }
 }
 
 
 pub fn get_lockfile_info(riot_path: &str) -> AppResult<(String, String)> {
-    let live_lockfile_path = ClientType::Live.get_lock_file_path(riot_path);
-    let pbe_lockfile_path = ClientType::Pbe.get_lock_file_path(riot_path);
-    let (lockfile_path, client_type) = if live_lockfile_path.exists() {
-        (live_lockfile_path, ClientType::Live)
-    } else if pbe_lockfile_path.exists() {
-        (pbe_lockfile_path, ClientType::Pbe)
-    } else {
-        return Err(AppError::IoError("lockfile not found".to_string()));
-    };
-    let lockfile = std::fs::read_to_string(lockfile_path)?;
-    let lockfile_parts: Vec<&str> = lockfile.split(':').collect();
+    let lockfile_path = [ClientType::Live, ClientType::Pbe]
+        .iter()
+        .find_map(|client_type| client_type.get_lock_file_path(riot_path).exists().then(|| client_type.get_lock_file_path(riot_path)))
+        .ok_or_else(|| AppError::IoError("lockfile not found".to_string()))?;
+    let lockfile_content = std::fs::read_to_string(lockfile_path)?;
+    let parts: Vec<&str> = lockfile_content.split(':').collect();
     Ok((
-        lockfile_parts[2].to_string(),
-        BASE64_STANDARD.encode(format!("riot:{}", lockfile_parts[3].to_string()).as_str())
+        parts[2].to_string(),
+        BASE64_STANDARD.encode(format!("riot:{}", parts[3]).as_str())
     ))
 }

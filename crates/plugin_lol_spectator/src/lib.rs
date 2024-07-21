@@ -205,15 +205,15 @@ pub struct LolSpectatorSpectatorConfig {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolSpectatorSummonerOrTeamAvailabilty {
-    pub available_for_watching: Vec<String>,
+pub struct LolSpectatorSummonerIdAvailability {
+    pub available_for_watching: Vec<u64>,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolSpectatorSummonerIdAvailability {
-    pub available_for_watching: Vec<u64>,
+pub struct LolSpectatorSummonerOrTeamAvailabilty {
+    pub available_for_watching: Vec<String>,
 }
 
 

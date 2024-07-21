@@ -493,24 +493,6 @@ pub fn put_lol_patch_v_1_ux(body: LolPatchUxResource) -> PutLolPatchV1Ux {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolPatchNotification {
-    pub id: String,
-    pub notification_id: LolPatchNotificationId,
-    pub data: HashMap<String, HashMap<String, String>>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolPatchComponentStateProgress {
-    pub bytes_complete: u64,
-    pub bytes_required: u64,
-    pub bytes_per_second: f64,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LolPatchChunkingPatcherEnvironment {
     pub game_patcher_available: bool,
     pub game_patcher_enabled: bool,
@@ -529,10 +511,23 @@ pub struct LolPatchComponentActionProgress {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolPatchSupportedGameRelease {
-    pub artifact_id: String,
-    pub download: LolPatchPatchSieveDownload,
-    pub selected: bool,
+pub struct LolPatchComponentState {
+    pub id: String,
+    pub action: LolPatchComponentStateAction,
+    pub is_up_to_date: bool,
+    pub is_update_available: bool,
+    pub time_of_last_up_to_date_check_iso_8601: Option<String>,
+    pub is_corrupted: bool,
+    pub progress: Option<LolPatchComponentActionProgress>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolPatchComponentStateProgress {
+    pub bytes_complete: u64,
+    pub bytes_required: u64,
+    pub bytes_per_second: f64,
 }
 
 
@@ -546,21 +541,18 @@ pub struct LolPatchInstallPaths {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolPatchSupportedGameReleases {
-    pub supported_game_releases: Vec<LolPatchSupportedGameRelease>,
+pub struct LolPatchNotification {
+    pub id: String,
+    pub notification_id: LolPatchNotificationId,
+    pub data: HashMap<String, HashMap<String, String>>,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolPatchComponentState {
-    pub id: String,
-    pub action: LolPatchComponentStateAction,
-    pub is_up_to_date: bool,
-    pub is_update_available: bool,
-    pub time_of_last_up_to_date_check_iso_8601: Option<String>,
-    pub is_corrupted: bool,
-    pub progress: Option<LolPatchComponentActionProgress>,
+pub struct LolPatchPatchSieveDownload {
+    pub url: String,
+    pub scd_required: bool,
 }
 
 
@@ -580,9 +572,24 @@ pub struct LolPatchProductState {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolPatchPatchSieveDownload {
-    pub url: String,
-    pub scd_required: bool,
+pub struct LolPatchStatus {
+    pub connected_to_patch_server: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolPatchSupportedGameRelease {
+    pub artifact_id: String,
+    pub download: LolPatchPatchSieveDownload,
+    pub selected: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolPatchSupportedGameReleases {
+    pub supported_game_releases: Vec<LolPatchSupportedGameRelease>,
 }
 
 
@@ -593,23 +600,7 @@ pub struct LolPatchUxResource {
 }
 
 
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolPatchStatus {
-    pub connected_to_patch_server: bool,
-}
-
-
 // ENUMS
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum LolPatchComponentStateWorkType {
-    #[default]
-    Disk,
-    Network,
-    Scanning,
-}
-
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
 pub enum LolPatchComponentStateAction {
@@ -619,6 +610,15 @@ pub enum LolPatchComponentStateAction {
     Patching,
     CheckingForUpdates,
     Idle,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum LolPatchComponentStateWorkType {
+    #[default]
+    Disk,
+    Network,
+    Scanning,
 }
 
 

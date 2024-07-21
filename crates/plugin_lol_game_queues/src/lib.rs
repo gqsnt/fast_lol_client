@@ -214,11 +214,53 @@ pub fn get_lol_game_queues_v_1_queues_type_by_queue_type(queue_type: String) -> 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolGameQueuesQueueReward {
-    pub is_ip_enabled: bool,
-    pub is_xp_enabled: bool,
-    pub is_champion_points_enabled: bool,
-    pub party_size_ip_rewards: Vec<i32>,
+pub struct LolGameQueuesQueue {
+    pub id: i32,
+    pub map_id: i32,
+    pub name: String,
+    pub short_name: String,
+    pub description: String,
+    pub detailed_description: String,
+    pub type_: String,
+    pub game_mode: String,
+    pub asset_mutator: String,
+    pub max_tier_for_premade_size_2: String,
+    pub max_division_for_premade_size_2: String,
+    pub category: LolGameQueuesQueueGameCategory,
+    pub game_type_config: LolGameQueuesQueueGameTypeConfig,
+    pub num_players_per_team: i32,
+    pub minimum_participant_list_size: i32,
+    pub maximum_participant_list_size: i32,
+    pub min_level: u32,
+    pub is_ranked: bool,
+    pub are_free_champions_allowed: bool,
+    pub is_team_builder_managed: bool,
+    pub queue_availability: LolGameQueuesQueueAvailability,
+    pub is_visible: bool,
+    pub queue_rewards: LolGameQueuesQueueReward,
+    pub spectator_enabled: bool,
+    pub champions_required_to_play: u32,
+    pub allowable_premade_sizes: Vec<i32>,
+    pub show_position_selector: bool,
+    pub show_quick_play_slot_selection: bool,
+    pub last_toggled_off_time: u64,
+    pub last_toggled_on_time: u64,
+    pub removal_from_game_allowed: bool,
+    pub removal_from_game_delay_minutes: i32,
+    pub game_select_mode_group: String,
+    pub game_select_category: String,
+    pub game_select_priority: u8,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolGameQueuesQueueCustomGame {
+    pub subcategories: Vec<LolGameQueuesQueueCustomGameSubcategory>,
+    pub queue_availability: LolGameQueuesQueueAvailability,
+    pub spectator_policies: Vec<LolGameQueuesQueueCustomGameSpectatorPolicy>,
+    pub spectator_slot_limit: u32,
+    pub game_server_regions: Option<Vec<String>>,
 }
 
 
@@ -268,50 +310,11 @@ pub struct LolGameQueuesQueueGameTypeConfig {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolGameQueuesQueueCustomGame {
-    pub subcategories: Vec<LolGameQueuesQueueCustomGameSubcategory>,
-    pub queue_availability: LolGameQueuesQueueAvailability,
-    pub spectator_policies: Vec<LolGameQueuesQueueCustomGameSpectatorPolicy>,
-    pub spectator_slot_limit: u32,
-    pub game_server_regions: Option<Vec<String>>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolGameQueuesQueue {
-    pub id: i32,
-    pub map_id: i32,
-    pub name: String,
-    pub short_name: String,
-    pub description: String,
-    pub detailed_description: String,
-    pub type_: String,
-    pub game_mode: String,
-    pub asset_mutator: String,
-    pub max_tier_for_premade_size_2: String,
-    pub max_division_for_premade_size_2: String,
-    pub category: LolGameQueuesQueueGameCategory,
-    pub game_type_config: LolGameQueuesQueueGameTypeConfig,
-    pub num_players_per_team: i32,
-    pub minimum_participant_list_size: i32,
-    pub maximum_participant_list_size: i32,
-    pub min_level: u32,
-    pub is_ranked: bool,
-    pub are_free_champions_allowed: bool,
-    pub is_team_builder_managed: bool,
-    pub queue_availability: LolGameQueuesQueueAvailability,
-    pub is_visible: bool,
-    pub queue_rewards: LolGameQueuesQueueReward,
-    pub spectator_enabled: bool,
-    pub champions_required_to_play: u32,
-    pub allowable_premade_sizes: Vec<i32>,
-    pub show_position_selector: bool,
-    pub show_quick_play_slot_selection: bool,
-    pub last_toggled_off_time: u64,
-    pub last_toggled_on_time: u64,
-    pub removal_from_game_allowed: bool,
-    pub removal_from_game_delay_minutes: i32,
+pub struct LolGameQueuesQueueReward {
+    pub is_ip_enabled: bool,
+    pub is_xp_enabled: bool,
+    pub is_champion_points_enabled: bool,
+    pub party_size_ip_rewards: Vec<i32>,
 }
 
 
@@ -327,6 +330,16 @@ pub enum LolGameQueuesQueueAvailability {
 
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
+pub enum LolGameQueuesQueueCustomGameSpectatorPolicy {
+    #[default]
+    AllAllowed,
+    FriendsAllowed,
+    LobbyAllowed,
+    NotAllowed,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
 pub enum LolGameQueuesQueueGameCategory {
     #[default]
     Alpha,
@@ -334,15 +347,5 @@ pub enum LolGameQueuesQueueGameCategory {
     PvP,
     Custom,
     None,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Default, Debug)]
-pub enum LolGameQueuesQueueCustomGameSpectatorPolicy {
-    #[default]
-    AllAllowed,
-    FriendsAllowed,
-    LobbyAllowed,
-    NotAllowed,
 }
 

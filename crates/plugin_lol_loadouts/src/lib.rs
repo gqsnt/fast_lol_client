@@ -9,66 +9,6 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct PutLolLoadoutsV4LoadoutsById {
-
-    pub id: String,
-    pub body: LolLoadoutsUpdateLoadoutDto,
-}
-
-impl IsApiRequest for PutLolLoadoutsV4LoadoutsById {
-    const METHOD: Method = Method::PUT;
-    type ReturnType = LolLoadoutsScopedLoadout;
-
-    fn get_url(&self) -> String {
-        format!("/lol-loadouts/v4/loadouts/{}", self.id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn put_lol_loadouts_v_4_loadouts_by_id(id: String, body: LolLoadoutsUpdateLoadoutDto) -> PutLolLoadoutsV4LoadoutsById {
-    PutLolLoadoutsV4LoadoutsById {
-        id, body
-    }
-}
-
-
-pub struct PatchLolLoadoutsV4LoadoutsById {
-
-    pub id: String,
-    pub body: LolLoadoutsUpdateLoadoutDto,
-}
-
-impl IsApiRequest for PatchLolLoadoutsV4LoadoutsById {
-    const METHOD: Method = Method::PATCH;
-    type ReturnType = LolLoadoutsScopedLoadout;
-
-    fn get_url(&self) -> String {
-        format!("/lol-loadouts/v4/loadouts/{}", self.id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn patch_lol_loadouts_v_4_loadouts_by_id(id: String, body: LolLoadoutsUpdateLoadoutDto) -> PatchLolLoadoutsV4LoadoutsById {
-    PatchLolLoadoutsV4LoadoutsById {
-        id, body
-    }
-}
-
-
 pub struct DeleteLolLoadoutsV4LoadoutsById {
 
     pub id: String,
@@ -213,6 +153,36 @@ pub fn get_lol_loadouts_v_4_loadouts_scope_by_scope_by_scope_item_id(scope: Stri
 }
 
 
+pub struct PatchLolLoadoutsV4LoadoutsById {
+
+    pub id: String,
+    pub body: LolLoadoutsUpdateLoadoutDto,
+}
+
+impl IsApiRequest for PatchLolLoadoutsV4LoadoutsById {
+    const METHOD: Method = Method::PATCH;
+    type ReturnType = LolLoadoutsScopedLoadout;
+
+    fn get_url(&self) -> String {
+        format!("/lol-loadouts/v4/loadouts/{}", self.id)
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn patch_lol_loadouts_v_4_loadouts_by_id(id: String, body: LolLoadoutsUpdateLoadoutDto) -> PatchLolLoadoutsV4LoadoutsById {
+    PatchLolLoadoutsV4LoadoutsById {
+        id, body
+    }
+}
+
+
 pub struct PostLolLoadoutsV4Loadouts {
 
     pub body: LolLoadoutsCreateLoadoutDto,
@@ -242,14 +212,46 @@ pub fn post_lol_loadouts_v_4_loadouts(body: LolLoadoutsCreateLoadoutDto) -> Post
 }
 
 
+pub struct PutLolLoadoutsV4LoadoutsById {
+
+    pub id: String,
+    pub body: LolLoadoutsUpdateLoadoutDto,
+}
+
+impl IsApiRequest for PutLolLoadoutsV4LoadoutsById {
+    const METHOD: Method = Method::PUT;
+    type ReturnType = LolLoadoutsScopedLoadout;
+
+    fn get_url(&self) -> String {
+        format!("/lol-loadouts/v4/loadouts/{}", self.id)
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn put_lol_loadouts_v_4_loadouts_by_id(id: String, body: LolLoadoutsUpdateLoadoutDto) -> PutLolLoadoutsV4LoadoutsById {
+    PutLolLoadoutsV4LoadoutsById {
+        id, body
+    }
+}
+
+
 // OBJECTS
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolLoadoutsUpdateLoadoutDto {
-    pub id: String,
+pub struct LolLoadoutsCreateLoadoutDto {
+    pub scope: String,
+    pub item_id: Option<u32>,
     pub name: String,
     pub loadout: LolLoadoutsItemKey,
+    pub refresh_time: String,
 }
 
 
@@ -276,12 +278,10 @@ pub struct LolLoadoutsScopedLoadout {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolLoadoutsCreateLoadoutDto {
-    pub scope: String,
-    pub item_id: Option<u32>,
+pub struct LolLoadoutsUpdateLoadoutDto {
+    pub id: String,
     pub name: String,
     pub loadout: LolLoadoutsItemKey,
-    pub refresh_time: String,
 }
 
 

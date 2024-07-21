@@ -9,63 +9,6 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct GetLolPerksV1Pages {
-
-}
-
-impl IsApiRequest for GetLolPerksV1Pages {
-    const METHOD: Method = Method::GET;
-    type ReturnType = Vec<LolPerksPerkPageResource>;
-
-    fn get_url(&self) -> String {
-        "/lol-perks/v1/pages".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn get_lol_perks_v_1_pages() -> GetLolPerksV1Pages {
-    GetLolPerksV1Pages {
-        
-    }
-}
-
-
-pub struct PostLolPerksV1Pages {
-
-    pub body: LolPerksPerkPageResource,
-}
-
-impl IsApiRequest for PostLolPerksV1Pages {
-    const METHOD: Method = Method::POST;
-    type ReturnType = LolPerksPerkPageResource;
-
-    fn get_url(&self) -> String {
-        "/lol-perks/v1/pages".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn post_lol_perks_v_1_pages(body: LolPerksPerkPageResource) -> PostLolPerksV1Pages {
-    PostLolPerksV1Pages {
-        body
-    }
-}
-
-
 pub struct DeleteLolPerksV1Pages {
 
 }
@@ -90,65 +33,6 @@ impl IsApiRequest for DeleteLolPerksV1Pages {
 pub fn delete_lol_perks_v_1_pages() -> DeleteLolPerksV1Pages {
     DeleteLolPerksV1Pages {
         
-    }
-}
-
-
-pub struct GetLolPerksV1PagesById {
-
-    pub id: i32,
-}
-
-impl IsApiRequest for GetLolPerksV1PagesById {
-    const METHOD: Method = Method::GET;
-    type ReturnType = LolPerksPerkPageResource;
-
-    fn get_url(&self) -> String {
-        format!("/lol-perks/v1/pages/{}", self.id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn get_lol_perks_v_1_pages_by_id(id: i32) -> GetLolPerksV1PagesById {
-    GetLolPerksV1PagesById {
-        id
-    }
-}
-
-
-pub struct PutLolPerksV1PagesById {
-
-    pub id: i32,
-    pub body: LolPerksPerkPageResource,
-}
-
-impl IsApiRequest for PutLolPerksV1PagesById {
-    const METHOD: Method = Method::PUT;
-    type ReturnType = LolPerksPerkPageResource;
-
-    fn get_url(&self) -> String {
-        format!("/lol-perks/v1/pages/{}", self.id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn put_lol_perks_v_1_pages_by_id(id: i32, body: LolPerksPerkPageResource) -> PutLolPerksV1PagesById {
-    PutLolPerksV1PagesById {
-        id, body
     }
 }
 
@@ -239,35 +123,6 @@ pub fn get_lol_perks_v_1_currentpage() -> GetLolPerksV1Currentpage {
 }
 
 
-pub struct PutLolPerksV1Currentpage {
-
-    pub body: i32,
-}
-
-impl IsApiRequest for PutLolPerksV1Currentpage {
-    const METHOD: Method = Method::PUT;
-    type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-perks/v1/currentpage".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn put_lol_perks_v_1_currentpage(body: i32) -> PutLolPerksV1Currentpage {
-    PutLolPerksV1Currentpage {
-        body
-    }
-}
-
-
 pub struct GetLolPerksV1Inventory {
 
 }
@@ -292,6 +147,63 @@ impl IsApiRequest for GetLolPerksV1Inventory {
 pub fn get_lol_perks_v_1_inventory() -> GetLolPerksV1Inventory {
     GetLolPerksV1Inventory {
         
+    }
+}
+
+
+pub struct GetLolPerksV1Pages {
+
+}
+
+impl IsApiRequest for GetLolPerksV1Pages {
+    const METHOD: Method = Method::GET;
+    type ReturnType = Vec<LolPerksPerkPageResource>;
+
+    fn get_url(&self) -> String {
+        "/lol-perks/v1/pages".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        None
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn get_lol_perks_v_1_pages() -> GetLolPerksV1Pages {
+    GetLolPerksV1Pages {
+        
+    }
+}
+
+
+pub struct GetLolPerksV1PagesById {
+
+    pub id: i32,
+}
+
+impl IsApiRequest for GetLolPerksV1PagesById {
+    const METHOD: Method = Method::GET;
+    type ReturnType = LolPerksPerkPageResource;
+
+    fn get_url(&self) -> String {
+        format!("/lol-perks/v1/pages/{}", self.id)
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        None
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn get_lol_perks_v_1_pages_by_id(id: i32) -> GetLolPerksV1PagesById {
+    GetLolPerksV1PagesById {
+        id
     }
 }
 
@@ -526,34 +438,6 @@ pub fn get_lol_perks_v_1_rune_recommender_auto_select() -> GetLolPerksV1RuneReco
 }
 
 
-pub struct PostLolPerksV1RuneRecommenderAutoSelect {
-
-}
-
-impl IsApiRequest for PostLolPerksV1RuneRecommenderAutoSelect {
-    const METHOD: Method = Method::POST;
-    type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-perks/v1/rune-recommender-auto-select".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn post_lol_perks_v_1_rune_recommender_auto_select() -> PostLolPerksV1RuneRecommenderAutoSelect {
-    PostLolPerksV1RuneRecommenderAutoSelect {
-        
-    }
-}
-
-
 pub struct GetLolPerksV1Settings {
 
 }
@@ -578,35 +462,6 @@ impl IsApiRequest for GetLolPerksV1Settings {
 pub fn get_lol_perks_v_1_settings() -> GetLolPerksV1Settings {
     GetLolPerksV1Settings {
         
-    }
-}
-
-
-pub struct PutLolPerksV1Settings {
-
-    pub body: LolPerksUiSettings,
-}
-
-impl IsApiRequest for PutLolPerksV1Settings {
-    const METHOD: Method = Method::PUT;
-    type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-perks/v1/settings".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn put_lol_perks_v_1_settings(body: LolPerksUiSettings) -> PutLolPerksV1Settings {
-    PutLolPerksV1Settings {
-        body
     }
 }
 
@@ -639,34 +494,6 @@ pub fn get_lol_perks_v_1_show_auto_modified_pages_notification() -> GetLolPerksV
 }
 
 
-pub struct PostLolPerksV1ShowAutoModifiedPagesNotification {
-
-}
-
-impl IsApiRequest for PostLolPerksV1ShowAutoModifiedPagesNotification {
-    const METHOD: Method = Method::POST;
-    type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-perks/v1/show-auto-modified-pages-notification".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn post_lol_perks_v_1_show_auto_modified_pages_notification() -> PostLolPerksV1ShowAutoModifiedPagesNotification {
-    PostLolPerksV1ShowAutoModifiedPagesNotification {
-        
-    }
-}
-
-
 pub struct GetLolPerksV1Styles {
 
 }
@@ -691,6 +518,35 @@ impl IsApiRequest for GetLolPerksV1Styles {
 pub fn get_lol_perks_v_1_styles() -> GetLolPerksV1Styles {
     GetLolPerksV1Styles {
         
+    }
+}
+
+
+pub struct PostLolPerksV1Pages {
+
+    pub body: LolPerksPerkPageResource,
+}
+
+impl IsApiRequest for PostLolPerksV1Pages {
+    const METHOD: Method = Method::POST;
+    type ReturnType = LolPerksPerkPageResource;
+
+    fn get_url(&self) -> String {
+        "/lol-perks/v1/pages".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn post_lol_perks_v_1_pages(body: LolPerksPerkPageResource) -> PostLolPerksV1Pages {
+    PostLolPerksV1Pages {
+        body
     }
 }
 
@@ -725,6 +581,62 @@ pub fn post_lol_perks_v_1_recommended_pages_position_champion_by_champion_id_pos
 }
 
 
+pub struct PostLolPerksV1RuneRecommenderAutoSelect {
+
+}
+
+impl IsApiRequest for PostLolPerksV1RuneRecommenderAutoSelect {
+    const METHOD: Method = Method::POST;
+    type ReturnType = HashMap<String, String>;
+
+    fn get_url(&self) -> String {
+        "/lol-perks/v1/rune-recommender-auto-select".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        None
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn post_lol_perks_v_1_rune_recommender_auto_select() -> PostLolPerksV1RuneRecommenderAutoSelect {
+    PostLolPerksV1RuneRecommenderAutoSelect {
+        
+    }
+}
+
+
+pub struct PostLolPerksV1ShowAutoModifiedPagesNotification {
+
+}
+
+impl IsApiRequest for PostLolPerksV1ShowAutoModifiedPagesNotification {
+    const METHOD: Method = Method::POST;
+    type ReturnType = HashMap<String, String>;
+
+    fn get_url(&self) -> String {
+        "/lol-perks/v1/show-auto-modified-pages-notification".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        None
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn post_lol_perks_v_1_show_auto_modified_pages_notification() -> PostLolPerksV1ShowAutoModifiedPagesNotification {
+    PostLolPerksV1ShowAutoModifiedPagesNotification {
+        
+    }
+}
+
+
 pub struct PostLolPerksV1UpdatePageOrder {
 
     pub body: LolPerksUpdatePageOrderRequest,
@@ -750,6 +662,65 @@ impl IsApiRequest for PostLolPerksV1UpdatePageOrder {
 pub fn post_lol_perks_v_1_update_page_order(body: LolPerksUpdatePageOrderRequest) -> PostLolPerksV1UpdatePageOrder {
     PostLolPerksV1UpdatePageOrder {
         body
+    }
+}
+
+
+pub struct PutLolPerksV1Currentpage {
+
+    pub body: i32,
+}
+
+impl IsApiRequest for PutLolPerksV1Currentpage {
+    const METHOD: Method = Method::PUT;
+    type ReturnType = HashMap<String, String>;
+
+    fn get_url(&self) -> String {
+        "/lol-perks/v1/currentpage".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn put_lol_perks_v_1_currentpage(body: i32) -> PutLolPerksV1Currentpage {
+    PutLolPerksV1Currentpage {
+        body
+    }
+}
+
+
+pub struct PutLolPerksV1PagesById {
+
+    pub id: i32,
+    pub body: LolPerksPerkPageResource,
+}
+
+impl IsApiRequest for PutLolPerksV1PagesById {
+    const METHOD: Method = Method::PUT;
+    type ReturnType = LolPerksPerkPageResource;
+
+    fn get_url(&self) -> String {
+        format!("/lol-perks/v1/pages/{}", self.id)
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn put_lol_perks_v_1_pages_by_id(id: i32, body: LolPerksPerkPageResource) -> PutLolPerksV1PagesById {
+    PutLolPerksV1PagesById {
+        id, body
     }
 }
 
@@ -812,23 +783,41 @@ pub fn put_lol_perks_v_1_perks_ack_gameplay_updated(body: Vec<i32>) -> PutLolPer
 }
 
 
+pub struct PutLolPerksV1Settings {
+
+    pub body: LolPerksUiSettings,
+}
+
+impl IsApiRequest for PutLolPerksV1Settings {
+    const METHOD: Method = Method::PUT;
+    type ReturnType = HashMap<String, String>;
+
+    fn get_url(&self) -> String {
+        "/lol-perks/v1/settings".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn put_lol_perks_v_1_settings(body: LolPerksUiSettings) -> PutLolPerksV1Settings {
+    PutLolPerksV1Settings {
+        body
+    }
+}
+
+
 // OBJECTS
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolPerksPlayerInventory {
-    pub owned_page_count: u32,
-    pub custom_page_count: u32,
-    pub can_add_custom_page: bool,
-    pub is_custom_page_creation_unlocked: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolPerksPerkSubStyleBonusResource {
-    pub perk_id: i32,
-    pub style_id: i32,
+pub struct LolPerksNamecheckResponse {
+    pub errors: Vec<String>,
 }
 
 
@@ -866,54 +855,9 @@ pub struct LolPerksPerkPageResource {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolPerksUiPerkMinimal {
-    pub id: i32,
+pub struct LolPerksPerkSubStyleBonusResource {
+    pub perk_id: i32,
     pub style_id: i32,
-    pub name: String,
-    pub slot_type: String,
-    pub icon_path: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolPerksPerkUiStyle {
-    pub allowed_sub_styles: Vec<i32>,
-    pub icon_path: String,
-    pub asset_map: HashMap<String, String>,
-    pub id: i32,
-    pub name: String,
-    pub slots: Vec<LolPerksPerkUiSlot>,
-    pub sub_style_bonus: Vec<LolPerksPerkSubStyleBonusResource>,
-    pub tooltip: String,
-    pub default_sub_style: i32,
-    pub default_perks: Vec<i32>,
-    pub default_page_name: String,
-    pub id_name: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolPerksValidatePageNameData {
-    pub id: i32,
-    pub name: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolPerksUpdatePageOrderRequest {
-    pub target_page_id: i32,
-    pub destination_page_id: i32,
-    pub offset: i32,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolPerksNamecheckResponse {
-    pub errors: Vec<String>,
 }
 
 
@@ -930,32 +874,6 @@ pub struct LolPerksPerkUiPerk {
     pub tooltip: String,
     pub recommendation_descriptor: String,
     pub slot_type: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolPerksValidateItemSetNameResponse {
-    pub success: bool,
-    pub name_check_response: LolPerksNamecheckResponse,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolPerksRecommendedPositionsMapResource {
-    pub recommended_positions: Vec<String>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolPerksUiSettings {
-    pub show_long_descriptions: bool,
-    pub grid_mode_enabled: bool,
-    pub show_preset_pages: bool,
-    pub gameplay_patch_version_seen: String,
-    pub gameplay_updated_perks_seen: Vec<i32>,
 }
 
 
@@ -983,6 +901,88 @@ pub struct LolPerksPerkUiSlot {
     pub perks: Vec<i32>,
     pub type_: String,
     pub slot_label: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolPerksPerkUiStyle {
+    pub allowed_sub_styles: Vec<i32>,
+    pub icon_path: String,
+    pub asset_map: HashMap<String, String>,
+    pub id: i32,
+    pub name: String,
+    pub slots: Vec<LolPerksPerkUiSlot>,
+    pub sub_style_bonus: Vec<LolPerksPerkSubStyleBonusResource>,
+    pub tooltip: String,
+    pub default_sub_style: i32,
+    pub default_perks: Vec<i32>,
+    pub default_page_name: String,
+    pub id_name: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolPerksPlayerInventory {
+    pub owned_page_count: u32,
+    pub custom_page_count: u32,
+    pub can_add_custom_page: bool,
+    pub is_custom_page_creation_unlocked: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolPerksRecommendedPositionsMapResource {
+    pub recommended_positions: Vec<String>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolPerksUiPerkMinimal {
+    pub id: i32,
+    pub style_id: i32,
+    pub name: String,
+    pub slot_type: String,
+    pub icon_path: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolPerksUiSettings {
+    pub show_long_descriptions: bool,
+    pub grid_mode_enabled: bool,
+    pub show_preset_pages: bool,
+    pub gameplay_patch_version_seen: String,
+    pub gameplay_updated_perks_seen: Vec<i32>,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolPerksUpdatePageOrderRequest {
+    pub target_page_id: i32,
+    pub destination_page_id: i32,
+    pub offset: i32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolPerksValidateItemSetNameResponse {
+    pub success: bool,
+    pub name_check_response: LolPerksNamecheckResponse,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolPerksValidatePageNameData {
+    pub id: i32,
+    pub name: String,
 }
 
 

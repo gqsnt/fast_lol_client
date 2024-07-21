@@ -2,6 +2,7 @@
 
 Fast LoL Client is a custom client for League of Legends built using the Iced framework. This project is under active development and aims to provide a functional and efficient alternative to the official Riot client.
 
+
 ## Installation
 
 ### Prerequisites
@@ -30,10 +31,4 @@ cargo build --release
 riot_path="C:\\Riot Games"
 ```
 
-## Usage
-
-To run the client, execute the following command:
-
-```bash
-cargo run --release
-```
+### Thank to [dysolix](https://github.com/dysolix) for the swagger.json file.

@@ -9,62 +9,6 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct GetLolPremadeVoiceV1MicTest {
-
-}
-
-impl IsApiRequest for GetLolPremadeVoiceV1MicTest {
-    const METHOD: Method = Method::GET;
-    type ReturnType = LolPremadeVoiceAudioPropertiesResource;
-
-    fn get_url(&self) -> String {
-        "/lol-premade-voice/v1/mic-test".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn get_lol_premade_voice_v_1_mic_test() -> GetLolPremadeVoiceV1MicTest {
-    GetLolPremadeVoiceV1MicTest {
-        
-    }
-}
-
-
-pub struct PostLolPremadeVoiceV1MicTest {
-
-}
-
-impl IsApiRequest for PostLolPremadeVoiceV1MicTest {
-    const METHOD: Method = Method::POST;
-    type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-premade-voice/v1/mic-test".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn post_lol_premade_voice_v_1_mic_test() -> PostLolPremadeVoiceV1MicTest {
-    PostLolPremadeVoiceV1MicTest {
-        
-    }
-}
-
-
 pub struct DeleteLolPremadeVoiceV1MicTest {
 
 }
@@ -88,34 +32,6 @@ impl IsApiRequest for DeleteLolPremadeVoiceV1MicTest {
 
 pub fn delete_lol_premade_voice_v_1_mic_test() -> DeleteLolPremadeVoiceV1MicTest {
     DeleteLolPremadeVoiceV1MicTest {
-        
-    }
-}
-
-
-pub struct PostLolPremadeVoiceV1Session {
-
-}
-
-impl IsApiRequest for PostLolPremadeVoiceV1Session {
-    const METHOD: Method = Method::POST;
-    type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-premade-voice/v1/session".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn post_lol_premade_voice_v_1_session() -> PostLolPremadeVoiceV1Session {
-    PostLolPremadeVoiceV1Session {
         
     }
 }
@@ -205,35 +121,6 @@ pub fn get_lol_premade_voice_v_1_capturedevices() -> GetLolPremadeVoiceV1Capture
 }
 
 
-pub struct PutLolPremadeVoiceV1Capturedevices {
-
-    pub body: String,
-}
-
-impl IsApiRequest for PutLolPremadeVoiceV1Capturedevices {
-    const METHOD: Method = Method::PUT;
-    type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-premade-voice/v1/capturedevices".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn put_lol_premade_voice_v_1_capturedevices(body: String) -> PutLolPremadeVoiceV1Capturedevices {
-    PutLolPremadeVoiceV1Capturedevices {
-        body
-    }
-}
-
-
 pub struct GetLolPremadeVoiceV1FirstExperience {
 
 }
@@ -257,6 +144,34 @@ impl IsApiRequest for GetLolPremadeVoiceV1FirstExperience {
 
 pub fn get_lol_premade_voice_v_1_first_experience() -> GetLolPremadeVoiceV1FirstExperience {
     GetLolPremadeVoiceV1FirstExperience {
+        
+    }
+}
+
+
+pub struct GetLolPremadeVoiceV1MicTest {
+
+}
+
+impl IsApiRequest for GetLolPremadeVoiceV1MicTest {
+    const METHOD: Method = Method::GET;
+    type ReturnType = LolPremadeVoiceAudioPropertiesResource;
+
+    fn get_url(&self) -> String {
+        "/lol-premade-voice/v1/mic-test".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        None
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn get_lol_premade_voice_v_1_mic_test() -> GetLolPremadeVoiceV1MicTest {
+    GetLolPremadeVoiceV1MicTest {
         
     }
 }
@@ -459,6 +374,34 @@ pub fn post_lol_premade_voice_v_1_game_client_updated_ptt_key(body: String) -> P
 }
 
 
+pub struct PostLolPremadeVoiceV1MicTest {
+
+}
+
+impl IsApiRequest for PostLolPremadeVoiceV1MicTest {
+    const METHOD: Method = Method::POST;
+    type ReturnType = HashMap<String, String>;
+
+    fn get_url(&self) -> String {
+        "/lol-premade-voice/v1/mic-test".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        None
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn post_lol_premade_voice_v_1_mic_test() -> PostLolPremadeVoiceV1MicTest {
+    PostLolPremadeVoiceV1MicTest {
+        
+    }
+}
+
+
 pub struct PostLolPremadeVoiceV1PushToTalkCheckAvailable {
 
     pub body: i32,
@@ -488,6 +431,34 @@ pub fn post_lol_premade_voice_v_1_push_to_talk_check_available(body: i32) -> Pos
 }
 
 
+pub struct PostLolPremadeVoiceV1Session {
+
+}
+
+impl IsApiRequest for PostLolPremadeVoiceV1Session {
+    const METHOD: Method = Method::POST;
+    type ReturnType = Value;
+
+    fn get_url(&self) -> String {
+        "/lol-premade-voice/v1/session".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        None
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn post_lol_premade_voice_v_1_session() -> PostLolPremadeVoiceV1Session {
+    PostLolPremadeVoiceV1Session {
+        
+    }
+}
+
+
 pub struct PostLolPremadeVoiceV1SettingsReset {
 
 }
@@ -512,6 +483,35 @@ impl IsApiRequest for PostLolPremadeVoiceV1SettingsReset {
 pub fn post_lol_premade_voice_v_1_settings_reset() -> PostLolPremadeVoiceV1SettingsReset {
     PostLolPremadeVoiceV1SettingsReset {
         
+    }
+}
+
+
+pub struct PutLolPremadeVoiceV1Capturedevices {
+
+    pub body: String,
+}
+
+impl IsApiRequest for PutLolPremadeVoiceV1Capturedevices {
+    const METHOD: Method = Method::PUT;
+    type ReturnType = Value;
+
+    fn get_url(&self) -> String {
+        "/lol-premade-voice/v1/capturedevices".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn put_lol_premade_voice_v_1_capturedevices(body: String) -> PutLolPremadeVoiceV1Capturedevices {
+    PutLolPremadeVoiceV1Capturedevices {
+        body
     }
 }
 
@@ -696,12 +696,28 @@ pub fn put_lol_premade_voice_v_1_self_mute(body: i32) -> PutLolPremadeVoiceV1Sel
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct LolPremadeVoiceAudioPropertiesResource {
+    pub is_loopback_enabled: bool,
+    pub mic_energy: u32,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct LolPremadeVoiceDeviceResource {
     pub handle: String,
     pub name: String,
     pub usable: bool,
     pub is_current_device: bool,
     pub is_default: bool,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolPremadeVoiceFirstExperience {
+    pub show_first_experience_in_lcu: bool,
+    pub show_first_experience_in_game: bool,
 }
 
 
@@ -721,14 +737,6 @@ pub struct LolPremadeVoicePremadeVoiceParticipantDto {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolPremadeVoiceFirstExperience {
-    pub show_first_experience_in_lcu: bool,
-    pub show_first_experience_in_game: bool,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LolPremadeVoiceSettingsResource {
     pub current_capture_device_handle: String,
     pub vad_hangover_time: u32,
@@ -742,14 +750,6 @@ pub struct LolPremadeVoiceSettingsResource {
     pub ptt_active: bool,
     pub input_mode: LolPremadeVoiceInputMode,
     pub ptt_key: Option<String>,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolPremadeVoiceAudioPropertiesResource {
-    pub is_loopback_enabled: bool,
-    pub mic_energy: u32,
 }
 
 

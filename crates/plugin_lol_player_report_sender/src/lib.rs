@@ -9,35 +9,6 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct GetLolPlayerReportSenderV1ReportedPlayersGameIdByGameId {
-
-    pub game_id: u64,
-}
-
-impl IsApiRequest for GetLolPlayerReportSenderV1ReportedPlayersGameIdByGameId {
-    const METHOD: Method = Method::GET;
-    type ReturnType = Vec<String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-player-report-sender/v1/reported-players/gameId/{}", self.game_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn get_lol_player_report_sender_v_1_reported_players_game_id_by_game_id(game_id: u64) -> GetLolPlayerReportSenderV1ReportedPlayersGameIdByGameId {
-    GetLolPlayerReportSenderV1ReportedPlayersGameIdByGameId {
-        game_id
-    }
-}
-
-
 pub struct DeleteLolPlayerReportSenderV1ReportedPlayersGameIdByGameId {
 
     pub game_id: u64,
@@ -123,21 +94,21 @@ pub fn get_lol_player_report_sender_v_1_in_game_reports() -> GetLolPlayerReportS
 }
 
 
-pub struct PostLolPlayerReportSenderV1InGameReports {
+pub struct GetLolPlayerReportSenderV1ReportedPlayersGameIdByGameId {
 
-    pub body: LolPlayerReportSenderPlayerReport,
+    pub game_id: u64,
 }
 
-impl IsApiRequest for PostLolPlayerReportSenderV1InGameReports {
-    const METHOD: Method = Method::POST;
-    type ReturnType = HashMap<String, String>;
+impl IsApiRequest for GetLolPlayerReportSenderV1ReportedPlayersGameIdByGameId {
+    const METHOD: Method = Method::GET;
+    type ReturnType = Vec<String>;
 
     fn get_url(&self) -> String {
-        "/lol-player-report-sender/v1/in-game-reports".to_string()
+        format!("/lol-player-report-sender/v1/reported-players/gameId/{}", self.game_id)
     }
 
     fn get_body(&self) -> Option<Value> {
-        Some(to_value(&self.body).unwrap())
+        None
     }
 
     fn get_query_params(&self) -> Option<Value> {
@@ -145,9 +116,9 @@ impl IsApiRequest for PostLolPlayerReportSenderV1InGameReports {
     }
 }
 
-pub fn post_lol_player_report_sender_v_1_in_game_reports(body: LolPlayerReportSenderPlayerReport) -> PostLolPlayerReportSenderV1InGameReports {
-    PostLolPlayerReportSenderV1InGameReports {
-        body
+pub fn get_lol_player_report_sender_v_1_reported_players_game_id_by_game_id(game_id: u64) -> GetLolPlayerReportSenderV1ReportedPlayersGameIdByGameId {
+    GetLolPlayerReportSenderV1ReportedPlayersGameIdByGameId {
+        game_id
     }
 }
 
@@ -205,6 +176,35 @@ impl IsApiRequest for PostLolPlayerReportSenderV1EndOfGameReports {
 
 pub fn post_lol_player_report_sender_v_1_end_of_game_reports(body: LolPlayerReportSenderPlayerReport) -> PostLolPlayerReportSenderV1EndOfGameReports {
     PostLolPlayerReportSenderV1EndOfGameReports {
+        body
+    }
+}
+
+
+pub struct PostLolPlayerReportSenderV1InGameReports {
+
+    pub body: LolPlayerReportSenderPlayerReport,
+}
+
+impl IsApiRequest for PostLolPlayerReportSenderV1InGameReports {
+    const METHOD: Method = Method::POST;
+    type ReturnType = HashMap<String, String>;
+
+    fn get_url(&self) -> String {
+        "/lol-player-report-sender/v1/in-game-reports".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn post_lol_player_report_sender_v_1_in_game_reports(body: LolPlayerReportSenderPlayerReport) -> PostLolPlayerReportSenderV1InGameReports {
+    PostLolPlayerReportSenderV1InGameReports {
         body
     }
 }

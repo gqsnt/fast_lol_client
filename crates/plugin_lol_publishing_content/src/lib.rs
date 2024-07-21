@@ -182,22 +182,6 @@ pub fn get_lol_publishing_content_v_1_tft_hub_cards() -> GetLolPublishingContent
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LolPublishingContentPubHubConfigEdge {
-    pub client_id: String,
-    pub client_region: String,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct LolPublishingContentPubHubConfig {
-    pub edge: LolPublishingContentPubHubConfigEdge,
-    pub app_context: LolPublishingContentPubHubConfigAppContext,
-}
-
-
-#[derive(Serialize, Deserialize, Clone, Default, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LolPublishingContentClientData {
     pub puuid: String,
     pub account_id: u64,
@@ -217,6 +201,14 @@ pub struct LolPublishingContentClientData {
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct LolPublishingContentPubHubConfig {
+    pub edge: LolPublishingContentPubHubConfigEdge,
+    pub app_context: LolPublishingContentPubHubConfigAppContext,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct LolPublishingContentPubHubConfigAppContext {
     pub user_id: String,
     pub user_region: String,
@@ -229,6 +221,14 @@ pub struct LolPublishingContentPubHubConfigAppContext {
     pub app_language: String,
     pub publishing_locale: String,
     pub app_session_id: String,
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct LolPublishingContentPubHubConfigEdge {
+    pub client_id: String,
+    pub client_region: String,
 }
 
 

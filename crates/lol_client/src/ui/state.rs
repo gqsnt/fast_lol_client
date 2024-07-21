@@ -19,37 +19,27 @@ pub struct ConnectedState {
 }
 
 pub async fn wait_client_available(riot_path: String) -> AppResult<ConnectedState> {
-    let mut client: Option<LolClient> = None;
+    let client = loop {
+        if let Some(client) = LolClient::new(&riot_path).await.ok() {
+            break client;
+        }
+        println!("Waiting for client...");
+        tokio::time::sleep(std::time::Duration::from_millis(500)).await;
+    };
+
     loop {
-        client = LolClient::new(riot_path.as_str()).await.ok();
-        if client.is_some() {
+        let availability = client.execute(plugin_lol_gameflow::get_lol_gameflow_v_1_availability()).await?;
+        if availability.is_available &&
+            matches!(availability.state, LolGameflowGameflowAvailabilityState::Available | LolGameflowGameflowAvailabilityState::InGameFlow) {
             break;
         }
-        println!("Waiting client...");
+        println!("Waiting for client to become available...");
         tokio::time::sleep(std::time::Duration::from_millis(500)).await;
     }
 
-    let client = client.unwrap();
-
-    loop {
-        let availability = client.execute(plugin_lol_gameflow::get_lol_gameflow_v_1_availability()).await;
-        if let Ok(availability) = availability {
-            if availability.is_available &&
-                (availability.state == LolGameflowGameflowAvailabilityState::Available
-                    || availability.state == LolGameflowGameflowAvailabilityState::InGameFlow
-                ) {
-                break;
-            }
-        }
-        println!("Waiting client available ...");
-        tokio::time::sleep(std::time::Duration::from_millis(500)).await;
-    }
-
-
-
-    let chat = ChatState{
-        me:client.execute(plugin_lol_chat::get_lol_chat_v_1_me()).await?,
-        friends:combo_box::State::new(client.execute(plugin_lol_chat::get_lol_chat_v_1_friends() ).await?),
+    let chat = ChatState {
+        me: client.execute(plugin_lol_chat::get_lol_chat_v_1_me()).await?,
+        friends: combo_box::State::new(client.execute(plugin_lol_chat::get_lol_chat_v_1_friends()).await?),
         ..Default::default()
     };
 
@@ -60,6 +50,7 @@ pub async fn wait_client_available(riot_path: String) -> AppResult<ConnectedStat
     let play = PlayState::new(queues, custom_queues, custom_non_default_queues);
     let summoner_info = client.execute(plugin_lol_summoner::get_lol_summoner_v_1_current_summoner()).await?;
     let state = client.execute(plugin_lol_gameflow::get_lol_gameflow_v_1_gameflow_phase()).await?;
+
     Ok(ConnectedState {
         client,
         summoner_info,
