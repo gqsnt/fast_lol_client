@@ -9,6 +9,34 @@ mod additional;
 
 // ENDPOINTS
 
+pub struct GetConfigV1Config {
+    // Returns a merged object of both public and player configs
+}
+
+impl IsApiRequest for GetConfigV1Config {
+    const METHOD: Method = Method::GET;
+    type ReturnType = HashMap<String, String>;
+
+    fn get_url(&self) -> String {
+        "/config/v1/config".to_string()
+    }
+
+    fn get_body(&self) -> Option<Value> {
+        None
+    }
+
+    fn get_query_params(&self) -> Option<Value> {
+        None
+    }
+}
+
+pub fn get_config_v_1_config() -> GetConfigV1Config {
+    GetConfigV1Config {
+        
+    }
+}
+
+
 pub struct GetCrashReportingV1CrashStatus {
     // Returns whether or not the game or client have crashed
 }

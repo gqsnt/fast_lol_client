@@ -93,35 +93,6 @@ pub fn get_lol_missions_v_1_missions() -> GetLolMissionsV1Missions {
 }
 
 
-pub struct GetLolMissionsV1MissionsSeriesBySeriesName {
-
-    pub series_name: String,
-}
-
-impl IsApiRequest for GetLolMissionsV1MissionsSeriesBySeriesName {
-    const METHOD: Method = Method::GET;
-    type ReturnType = Vec<PlayerMissionDto>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-missions/v1/missions/series/{}", self.series_name)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
-}
-
-pub fn get_lol_missions_v_1_missions_series_by_series_name(series_name: String) -> GetLolMissionsV1MissionsSeriesBySeriesName {
-    GetLolMissionsV1MissionsSeriesBySeriesName {
-        series_name
-    }
-}
-
-
 pub struct GetLolMissionsV1Series {
 
 }

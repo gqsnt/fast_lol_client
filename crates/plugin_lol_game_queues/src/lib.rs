@@ -247,9 +247,6 @@ pub struct LolGameQueuesQueue {
     pub last_toggled_on_time: u64,
     pub removal_from_game_allowed: bool,
     pub removal_from_game_delay_minutes: i32,
-    pub game_select_mode_group: String,
-    pub game_select_category: String,
-    pub game_select_priority: u8,
 }
 
 
