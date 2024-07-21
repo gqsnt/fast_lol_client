@@ -9,1389 +9,704 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct DeleteLolGameflowV1EarlyExitNotificationsEog {
-
-}
+pub struct DeleteLolGameflowV1EarlyExitNotificationsEog {}
 
 impl IsApiRequest for DeleteLolGameflowV1EarlyExitNotificationsEog {
     const METHOD: Method = Method::DELETE;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/early-exit-notifications/eog".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-gameflow/v1/early-exit-notifications/eog".to_string()}
 }
 
 pub fn delete_lol_gameflow_v_1_early_exit_notifications_eog() -> DeleteLolGameflowV1EarlyExitNotificationsEog {
-    DeleteLolGameflowV1EarlyExitNotificationsEog {
-        
-    }
+    DeleteLolGameflowV1EarlyExitNotificationsEog{}
 }
 
 
 pub struct DeleteLolGameflowV1EarlyExitNotificationsEogByKey {
-
     pub key: i32,
 }
 
 impl IsApiRequest for DeleteLolGameflowV1EarlyExitNotificationsEogByKey {
     const METHOD: Method = Method::DELETE;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        format!("/lol-gameflow/v1/early-exit-notifications/eog/{}", self.key)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-gameflow/v1/early-exit-notifications/eog/{}", self.key)}
 }
 
 pub fn delete_lol_gameflow_v_1_early_exit_notifications_eog_by_key(key: i32) -> DeleteLolGameflowV1EarlyExitNotificationsEogByKey {
-    DeleteLolGameflowV1EarlyExitNotificationsEogByKey {
-        key
-    }
+    DeleteLolGameflowV1EarlyExitNotificationsEogByKey{key}
 }
 
 
-pub struct DeleteLolGameflowV1EarlyExitNotificationsMissions {
-
-}
+pub struct DeleteLolGameflowV1EarlyExitNotificationsMissions {}
 
 impl IsApiRequest for DeleteLolGameflowV1EarlyExitNotificationsMissions {
     const METHOD: Method = Method::DELETE;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/early-exit-notifications/missions".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-gameflow/v1/early-exit-notifications/missions".to_string()}
 }
 
 pub fn delete_lol_gameflow_v_1_early_exit_notifications_missions() -> DeleteLolGameflowV1EarlyExitNotificationsMissions {
-    DeleteLolGameflowV1EarlyExitNotificationsMissions {
-        
-    }
+    DeleteLolGameflowV1EarlyExitNotificationsMissions{}
 }
 
 
 pub struct DeleteLolGameflowV1EarlyExitNotificationsMissionsByKey {
-
     pub key: i32,
 }
 
 impl IsApiRequest for DeleteLolGameflowV1EarlyExitNotificationsMissionsByKey {
     const METHOD: Method = Method::DELETE;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        format!("/lol-gameflow/v1/early-exit-notifications/missions/{}", self.key)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-gameflow/v1/early-exit-notifications/missions/{}", self.key)}
 }
 
 pub fn delete_lol_gameflow_v_1_early_exit_notifications_missions_by_key(key: i32) -> DeleteLolGameflowV1EarlyExitNotificationsMissionsByKey {
-    DeleteLolGameflowV1EarlyExitNotificationsMissionsByKey {
-        key
-    }
+    DeleteLolGameflowV1EarlyExitNotificationsMissionsByKey{key}
 }
 
 
-pub struct GetLolGameflowV1ActivePatcherLock {
-
-}
+pub struct GetLolGameflowV1ActivePatcherLock {}
 
 impl IsApiRequest for GetLolGameflowV1ActivePatcherLock {
     const METHOD: Method = Method::GET;
     type ReturnType = bool;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/active-patcher-lock".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-gameflow/v1/active-patcher-lock".to_string()}
 }
 
 pub fn get_lol_gameflow_v_1_active_patcher_lock() -> GetLolGameflowV1ActivePatcherLock {
-    GetLolGameflowV1ActivePatcherLock {
-        
-    }
+    GetLolGameflowV1ActivePatcherLock{}
 }
 
 
-pub struct GetLolGameflowV1Availability {
-
-}
+pub struct GetLolGameflowV1Availability {}
 
 impl IsApiRequest for GetLolGameflowV1Availability {
     const METHOD: Method = Method::GET;
     type ReturnType = LolGameflowGameflowAvailability;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/availability".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-gameflow/v1/availability".to_string()}
 }
 
 pub fn get_lol_gameflow_v_1_availability() -> GetLolGameflowV1Availability {
-    GetLolGameflowV1Availability {
-        
-    }
+    GetLolGameflowV1Availability{}
 }
 
 
-pub struct GetLolGameflowV1BasicTutorial {
-
-}
+pub struct GetLolGameflowV1BasicTutorial {}
 
 impl IsApiRequest for GetLolGameflowV1BasicTutorial {
     const METHOD: Method = Method::GET;
     type ReturnType = bool;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/basic-tutorial".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-gameflow/v1/basic-tutorial".to_string()}
 }
 
 pub fn get_lol_gameflow_v_1_basic_tutorial() -> GetLolGameflowV1BasicTutorial {
-    GetLolGameflowV1BasicTutorial {
-        
-    }
+    GetLolGameflowV1BasicTutorial{}
 }
 
 
-pub struct GetLolGameflowV1BattleTraining {
-
-}
+pub struct GetLolGameflowV1BattleTraining {}
 
 impl IsApiRequest for GetLolGameflowV1BattleTraining {
     const METHOD: Method = Method::GET;
     type ReturnType = bool;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/battle-training".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-gameflow/v1/battle-training".to_string()}
 }
 
 pub fn get_lol_gameflow_v_1_battle_training() -> GetLolGameflowV1BattleTraining {
-    GetLolGameflowV1BattleTraining {
-        
-    }
+    GetLolGameflowV1BattleTraining{}
 }
 
 
-pub struct GetLolGameflowV1EarlyExitEnabled {
-
-}
+pub struct GetLolGameflowV1EarlyExitEnabled {}
 
 impl IsApiRequest for GetLolGameflowV1EarlyExitEnabled {
     const METHOD: Method = Method::GET;
     type ReturnType = bool;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/early-exit-enabled".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-gameflow/v1/early-exit-enabled".to_string()}
 }
 
 pub fn get_lol_gameflow_v_1_early_exit_enabled() -> GetLolGameflowV1EarlyExitEnabled {
-    GetLolGameflowV1EarlyExitEnabled {
-        
-    }
+    GetLolGameflowV1EarlyExitEnabled{}
 }
 
 
-pub struct GetLolGameflowV1EarlyExitNotificationsEog {
-
-}
+pub struct GetLolGameflowV1EarlyExitNotificationsEog {}
 
 impl IsApiRequest for GetLolGameflowV1EarlyExitNotificationsEog {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<HashMap<String, String>>;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/early-exit-notifications/eog".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-gameflow/v1/early-exit-notifications/eog".to_string()}
 }
 
 pub fn get_lol_gameflow_v_1_early_exit_notifications_eog() -> GetLolGameflowV1EarlyExitNotificationsEog {
-    GetLolGameflowV1EarlyExitNotificationsEog {
-        
-    }
+    GetLolGameflowV1EarlyExitNotificationsEog{}
 }
 
 
-pub struct GetLolGameflowV1EarlyExitNotificationsMissions {
-
-}
+pub struct GetLolGameflowV1EarlyExitNotificationsMissions {}
 
 impl IsApiRequest for GetLolGameflowV1EarlyExitNotificationsMissions {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<HashMap<String, String>>;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/early-exit-notifications/missions".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-gameflow/v1/early-exit-notifications/missions".to_string()}
 }
 
 pub fn get_lol_gameflow_v_1_early_exit_notifications_missions() -> GetLolGameflowV1EarlyExitNotificationsMissions {
-    GetLolGameflowV1EarlyExitNotificationsMissions {
-        
-    }
+    GetLolGameflowV1EarlyExitNotificationsMissions{}
 }
 
 
-pub struct GetLolGameflowV1EarlyExitQuitEnabled {
-
-}
+pub struct GetLolGameflowV1EarlyExitQuitEnabled {}
 
 impl IsApiRequest for GetLolGameflowV1EarlyExitQuitEnabled {
     const METHOD: Method = Method::GET;
     type ReturnType = bool;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/early-exit-quit-enabled".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-gameflow/v1/early-exit-quit-enabled".to_string()}
 }
 
 pub fn get_lol_gameflow_v_1_early_exit_quit_enabled() -> GetLolGameflowV1EarlyExitQuitEnabled {
-    GetLolGameflowV1EarlyExitQuitEnabled {
-        
-    }
+    GetLolGameflowV1EarlyExitQuitEnabled{}
 }
 
 
-pub struct GetLolGameflowV1ExtraGameClientArgs {
-
-}
+pub struct GetLolGameflowV1ExtraGameClientArgs {}
 
 impl IsApiRequest for GetLolGameflowV1ExtraGameClientArgs {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<String>;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/extra-game-client-args".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-gameflow/v1/extra-game-client-args".to_string()}
 }
 
 pub fn get_lol_gameflow_v_1_extra_game_client_args() -> GetLolGameflowV1ExtraGameClientArgs {
-    GetLolGameflowV1ExtraGameClientArgs {
-        
-    }
+    GetLolGameflowV1ExtraGameClientArgs{}
 }
 
 
-pub struct GetLolGameflowV1GameExitEarlyVanguard {
-
-}
+pub struct GetLolGameflowV1GameExitEarlyVanguard {}
 
 impl IsApiRequest for GetLolGameflowV1GameExitEarlyVanguard {
     const METHOD: Method = Method::GET;
     type ReturnType = u64;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/game-exit-early-vanguard".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-gameflow/v1/game-exit-early-vanguard".to_string()}
 }
 
 pub fn get_lol_gameflow_v_1_game_exit_early_vanguard() -> GetLolGameflowV1GameExitEarlyVanguard {
-    GetLolGameflowV1GameExitEarlyVanguard {
-        
-    }
+    GetLolGameflowV1GameExitEarlyVanguard{}
 }
 
 
-pub struct GetLolGameflowV1GameflowMetadataPlayerStatus {
-
-}
+pub struct GetLolGameflowV1GameflowMetadataPlayerStatus {}
 
 impl IsApiRequest for GetLolGameflowV1GameflowMetadataPlayerStatus {
     const METHOD: Method = Method::GET;
     type ReturnType = LolGameflowPlayerStatus;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/gameflow-metadata/player-status".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-gameflow/v1/gameflow-metadata/player-status".to_string()}
 }
 
 pub fn get_lol_gameflow_v_1_gameflow_metadata_player_status() -> GetLolGameflowV1GameflowMetadataPlayerStatus {
-    GetLolGameflowV1GameflowMetadataPlayerStatus {
-        
-    }
+    GetLolGameflowV1GameflowMetadataPlayerStatus{}
 }
 
 
-pub struct GetLolGameflowV1GameflowMetadataRegistrationStatus {
-
-}
+pub struct GetLolGameflowV1GameflowMetadataRegistrationStatus {}
 
 impl IsApiRequest for GetLolGameflowV1GameflowMetadataRegistrationStatus {
     const METHOD: Method = Method::GET;
     type ReturnType = LolGameflowRegistrationStatus;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/gameflow-metadata/registration-status".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-gameflow/v1/gameflow-metadata/registration-status".to_string()}
 }
 
 pub fn get_lol_gameflow_v_1_gameflow_metadata_registration_status() -> GetLolGameflowV1GameflowMetadataRegistrationStatus {
-    GetLolGameflowV1GameflowMetadataRegistrationStatus {
-        
-    }
+    GetLolGameflowV1GameflowMetadataRegistrationStatus{}
 }
 
 
-pub struct GetLolGameflowV1GameflowPhase {
-
-}
+pub struct GetLolGameflowV1GameflowPhase {}
 
 impl IsApiRequest for GetLolGameflowV1GameflowPhase {
     const METHOD: Method = Method::GET;
     type ReturnType = LolGameflowGameflowPhase;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/gameflow-phase".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-gameflow/v1/gameflow-phase".to_string()}
 }
 
 pub fn get_lol_gameflow_v_1_gameflow_phase() -> GetLolGameflowV1GameflowPhase {
-    GetLolGameflowV1GameflowPhase {
-        
-    }
+    GetLolGameflowV1GameflowPhase{}
 }
 
 
-pub struct GetLolGameflowV1PlayerKickedVanguard {
-
-}
+pub struct GetLolGameflowV1PlayerKickedVanguard {}
 
 impl IsApiRequest for GetLolGameflowV1PlayerKickedVanguard {
     const METHOD: Method = Method::GET;
     type ReturnType = bool;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/player-kicked-vanguard".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-gameflow/v1/player-kicked-vanguard".to_string()}
 }
 
 pub fn get_lol_gameflow_v_1_player_kicked_vanguard() -> GetLolGameflowV1PlayerKickedVanguard {
-    GetLolGameflowV1PlayerKickedVanguard {
-        
-    }
+    GetLolGameflowV1PlayerKickedVanguard{}
 }
 
 
-pub struct GetLolGameflowV1Session {
-
-}
+pub struct GetLolGameflowV1Session {}
 
 impl IsApiRequest for GetLolGameflowV1Session {
     const METHOD: Method = Method::GET;
     type ReturnType = LolGameflowGameflowSession;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/session".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-gameflow/v1/session".to_string()}
 }
 
 pub fn get_lol_gameflow_v_1_session() -> GetLolGameflowV1Session {
-    GetLolGameflowV1Session {
-        
-    }
+    GetLolGameflowV1Session{}
 }
 
 
-pub struct GetLolGameflowV1SessionPerPositionSummonerSpellsDisallowed {
-
-}
+pub struct GetLolGameflowV1SessionPerPositionSummonerSpellsDisallowed {}
 
 impl IsApiRequest for GetLolGameflowV1SessionPerPositionSummonerSpellsDisallowed {
     const METHOD: Method = Method::GET;
     type ReturnType = LolGameflowGameModeSpellList;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/session/per-position-summoner-spells/disallowed".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-gameflow/v1/session/per-position-summoner-spells/disallowed".to_string()}
 }
 
 pub fn get_lol_gameflow_v_1_session_per_position_summoner_spells_disallowed() -> GetLolGameflowV1SessionPerPositionSummonerSpellsDisallowed {
-    GetLolGameflowV1SessionPerPositionSummonerSpellsDisallowed {
-        
-    }
+    GetLolGameflowV1SessionPerPositionSummonerSpellsDisallowed{}
 }
 
 
-pub struct GetLolGameflowV1SessionPerPositionSummonerSpellsDisallowedAsString {
-
-}
+pub struct GetLolGameflowV1SessionPerPositionSummonerSpellsDisallowedAsString {}
 
 impl IsApiRequest for GetLolGameflowV1SessionPerPositionSummonerSpellsDisallowedAsString {
     const METHOD: Method = Method::GET;
     type ReturnType = String;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/session/per-position-summoner-spells/disallowed/as-string".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-gameflow/v1/session/per-position-summoner-spells/disallowed/as-string".to_string()}
 }
 
 pub fn get_lol_gameflow_v_1_session_per_position_summoner_spells_disallowed_as_string() -> GetLolGameflowV1SessionPerPositionSummonerSpellsDisallowedAsString {
-    GetLolGameflowV1SessionPerPositionSummonerSpellsDisallowedAsString {
-        
-    }
+    GetLolGameflowV1SessionPerPositionSummonerSpellsDisallowedAsString{}
 }
 
 
-pub struct GetLolGameflowV1SessionPerPositionSummonerSpellsRequired {
-
-}
+pub struct GetLolGameflowV1SessionPerPositionSummonerSpellsRequired {}
 
 impl IsApiRequest for GetLolGameflowV1SessionPerPositionSummonerSpellsRequired {
     const METHOD: Method = Method::GET;
     type ReturnType = LolGameflowGameModeSpellList;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/session/per-position-summoner-spells/required".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-gameflow/v1/session/per-position-summoner-spells/required".to_string()}
 }
 
 pub fn get_lol_gameflow_v_1_session_per_position_summoner_spells_required() -> GetLolGameflowV1SessionPerPositionSummonerSpellsRequired {
-    GetLolGameflowV1SessionPerPositionSummonerSpellsRequired {
-        
-    }
+    GetLolGameflowV1SessionPerPositionSummonerSpellsRequired{}
 }
 
 
-pub struct GetLolGameflowV1SessionPerPositionSummonerSpellsRequiredAsString {
-
-}
+pub struct GetLolGameflowV1SessionPerPositionSummonerSpellsRequiredAsString {}
 
 impl IsApiRequest for GetLolGameflowV1SessionPerPositionSummonerSpellsRequiredAsString {
     const METHOD: Method = Method::GET;
     type ReturnType = String;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/session/per-position-summoner-spells/required/as-string".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-gameflow/v1/session/per-position-summoner-spells/required/as-string".to_string()}
 }
 
 pub fn get_lol_gameflow_v_1_session_per_position_summoner_spells_required_as_string() -> GetLolGameflowV1SessionPerPositionSummonerSpellsRequiredAsString {
-    GetLolGameflowV1SessionPerPositionSummonerSpellsRequiredAsString {
-        
-    }
+    GetLolGameflowV1SessionPerPositionSummonerSpellsRequiredAsString{}
 }
 
 
-pub struct GetLolGameflowV1Spectate {
-
-}
+pub struct GetLolGameflowV1Spectate {}
 
 impl IsApiRequest for GetLolGameflowV1Spectate {
     const METHOD: Method = Method::GET;
     type ReturnType = bool;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/spectate".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-gameflow/v1/spectate".to_string()}
 }
 
 pub fn get_lol_gameflow_v_1_spectate() -> GetLolGameflowV1Spectate {
-    GetLolGameflowV1Spectate {
-        
-    }
+    GetLolGameflowV1Spectate{}
 }
 
 
-pub struct GetLolGameflowV1SpectateDelayedLaunch {
-
-}
+pub struct GetLolGameflowV1SpectateDelayedLaunch {}
 
 impl IsApiRequest for GetLolGameflowV1SpectateDelayedLaunch {
     const METHOD: Method = Method::GET;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/spectate/delayed-launch".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-gameflow/v1/spectate/delayed-launch".to_string()}
 }
 
 pub fn get_lol_gameflow_v_1_spectate_delayed_launch() -> GetLolGameflowV1SpectateDelayedLaunch {
-    GetLolGameflowV1SpectateDelayedLaunch {
-        
-    }
+    GetLolGameflowV1SpectateDelayedLaunch{}
 }
 
 
-pub struct GetLolGameflowV1Watch {
-
-}
+pub struct GetLolGameflowV1Watch {}
 
 impl IsApiRequest for GetLolGameflowV1Watch {
     const METHOD: Method = Method::GET;
     type ReturnType = LolGameflowGameflowWatchPhase;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/watch".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-gameflow/v1/watch".to_string()}
 }
 
 pub fn get_lol_gameflow_v_1_watch() -> GetLolGameflowV1Watch {
-    GetLolGameflowV1Watch {
-        
-    }
+    GetLolGameflowV1Watch{}
 }
 
 
-pub struct PostLolGameflowV1AckFailedToLaunch {
-
-}
+pub struct PostLolGameflowV1AckFailedToLaunch {}
 
 impl IsApiRequest for PostLolGameflowV1AckFailedToLaunch {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/ack-failed-to-launch".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-gameflow/v1/ack-failed-to-launch".to_string()}
 }
 
 pub fn post_lol_gameflow_v_1_ack_failed_to_launch() -> PostLolGameflowV1AckFailedToLaunch {
-    PostLolGameflowV1AckFailedToLaunch {
-        
-    }
+    PostLolGameflowV1AckFailedToLaunch{}
 }
 
 
-pub struct PostLolGameflowV1BasicTutorialStart {
-
-}
+pub struct PostLolGameflowV1BasicTutorialStart {}
 
 impl IsApiRequest for PostLolGameflowV1BasicTutorialStart {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/basic-tutorial/start".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-gameflow/v1/basic-tutorial/start".to_string()}
 }
 
 pub fn post_lol_gameflow_v_1_basic_tutorial_start() -> PostLolGameflowV1BasicTutorialStart {
-    PostLolGameflowV1BasicTutorialStart {
-        
-    }
+    PostLolGameflowV1BasicTutorialStart{}
 }
 
 
-pub struct PostLolGameflowV1BattleTrainingStart {
-
-}
+pub struct PostLolGameflowV1BattleTrainingStart {}
 
 impl IsApiRequest for PostLolGameflowV1BattleTrainingStart {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/battle-training/start".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-gameflow/v1/battle-training/start".to_string()}
 }
 
 pub fn post_lol_gameflow_v_1_battle_training_start() -> PostLolGameflowV1BattleTrainingStart {
-    PostLolGameflowV1BattleTrainingStart {
-        
-    }
+    PostLolGameflowV1BattleTrainingStart{}
 }
 
 
-pub struct PostLolGameflowV1BattleTrainingStop {
-
-}
+pub struct PostLolGameflowV1BattleTrainingStop {}
 
 impl IsApiRequest for PostLolGameflowV1BattleTrainingStop {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/battle-training/stop".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-gameflow/v1/battle-training/stop".to_string()}
 }
 
 pub fn post_lol_gameflow_v_1_battle_training_stop() -> PostLolGameflowV1BattleTrainingStop {
-    PostLolGameflowV1BattleTrainingStop {
-        
-    }
+    PostLolGameflowV1BattleTrainingStop{}
 }
 
 
-pub struct PostLolGameflowV1EarlyExit {
-
-}
+pub struct PostLolGameflowV1EarlyExit {}
 
 impl IsApiRequest for PostLolGameflowV1EarlyExit {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/early-exit".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-gameflow/v1/early-exit".to_string()}
 }
 
 pub fn post_lol_gameflow_v_1_early_exit() -> PostLolGameflowV1EarlyExit {
-    PostLolGameflowV1EarlyExit {
-        
-    }
+    PostLolGameflowV1EarlyExit{}
 }
 
 
 pub struct PostLolGameflowV1ExtraGameClientArgs {
-
     pub body: Vec<String>,
 }
 
 impl IsApiRequest for PostLolGameflowV1ExtraGameClientArgs {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/extra-game-client-args".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-gameflow/v1/extra-game-client-args".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_gameflow_v_1_extra_game_client_args(body: Vec<String>) -> PostLolGameflowV1ExtraGameClientArgs {
-    PostLolGameflowV1ExtraGameClientArgs {
-        body
-    }
+    PostLolGameflowV1ExtraGameClientArgs{body}
 }
 
 
 pub struct PostLolGameflowV1GameflowMetadataPlayerStatus {
-
     pub body: LolGameflowPlayerStatus,
 }
 
 impl IsApiRequest for PostLolGameflowV1GameflowMetadataPlayerStatus {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/gameflow-metadata/player-status".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-gameflow/v1/gameflow-metadata/player-status".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_gameflow_v_1_gameflow_metadata_player_status(body: LolGameflowPlayerStatus) -> PostLolGameflowV1GameflowMetadataPlayerStatus {
-    PostLolGameflowV1GameflowMetadataPlayerStatus {
-        body
-    }
+    PostLolGameflowV1GameflowMetadataPlayerStatus{body}
 }
 
 
 pub struct PostLolGameflowV1GameflowMetadataRegistrationStatus {
-
     pub body: LolGameflowRegistrationStatus,
 }
 
 impl IsApiRequest for PostLolGameflowV1GameflowMetadataRegistrationStatus {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/gameflow-metadata/registration-status".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-gameflow/v1/gameflow-metadata/registration-status".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_gameflow_v_1_gameflow_metadata_registration_status(body: LolGameflowRegistrationStatus) -> PostLolGameflowV1GameflowMetadataRegistrationStatus {
-    PostLolGameflowV1GameflowMetadataRegistrationStatus {
-        body
-    }
+    PostLolGameflowV1GameflowMetadataRegistrationStatus{body}
 }
 
 
 pub struct PostLolGameflowV1PreEndGameTransition {
-
     pub body: bool,
 }
 
 impl IsApiRequest for PostLolGameflowV1PreEndGameTransition {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/pre-end-game-transition".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-gameflow/v1/pre-end-game-transition".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_gameflow_v_1_pre_end_game_transition(body: bool) -> PostLolGameflowV1PreEndGameTransition {
-    PostLolGameflowV1PreEndGameTransition {
-        body
-    }
+    PostLolGameflowV1PreEndGameTransition{body}
 }
 
 
-pub struct PostLolGameflowV1Reconnect {
-
-}
+pub struct PostLolGameflowV1Reconnect {}
 
 impl IsApiRequest for PostLolGameflowV1Reconnect {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/reconnect".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-gameflow/v1/reconnect".to_string()}
 }
 
 pub fn post_lol_gameflow_v_1_reconnect() -> PostLolGameflowV1Reconnect {
-    PostLolGameflowV1Reconnect {
-        
-    }
+    PostLolGameflowV1Reconnect{}
 }
 
 
 pub struct PostLolGameflowV1SessionChampSelectPhaseTimeRemaining {
-
     pub body: u64,
 }
 
 impl IsApiRequest for PostLolGameflowV1SessionChampSelectPhaseTimeRemaining {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/session/champ-select/phase-time-remaining".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-gameflow/v1/session/champ-select/phase-time-remaining".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_gameflow_v_1_session_champ_select_phase_time_remaining(body: u64) -> PostLolGameflowV1SessionChampSelectPhaseTimeRemaining {
-    PostLolGameflowV1SessionChampSelectPhaseTimeRemaining {
-        body
-    }
+    PostLolGameflowV1SessionChampSelectPhaseTimeRemaining{body}
 }
 
 
 pub struct PostLolGameflowV1SessionDodge {
-
     pub body: LolGameflowGameflowGameDodge,
 }
 
 impl IsApiRequest for PostLolGameflowV1SessionDodge {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/session/dodge".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-gameflow/v1/session/dodge".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_gameflow_v_1_session_dodge(body: LolGameflowGameflowGameDodge) -> PostLolGameflowV1SessionDodge {
-    PostLolGameflowV1SessionDodge {
-        body
-    }
+    PostLolGameflowV1SessionDodge{body}
 }
 
 
 pub struct PostLolGameflowV1SessionEvent {
-
     pub body: String,
 }
 
 impl IsApiRequest for PostLolGameflowV1SessionEvent {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/session/event".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-gameflow/v1/session/event".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_gameflow_v_1_session_event(body: String) -> PostLolGameflowV1SessionEvent {
-    PostLolGameflowV1SessionEvent {
-        body
-    }
+    PostLolGameflowV1SessionEvent{body}
 }
 
 
 pub struct PostLolGameflowV1SessionGameConfiguration {
-
     pub body: LolGameflowQueue,
 }
 
 impl IsApiRequest for PostLolGameflowV1SessionGameConfiguration {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/session/game-configuration".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-gameflow/v1/session/game-configuration".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_gameflow_v_1_session_game_configuration(body: LolGameflowQueue) -> PostLolGameflowV1SessionGameConfiguration {
-    PostLolGameflowV1SessionGameConfiguration {
-        body
-    }
+    PostLolGameflowV1SessionGameConfiguration{body}
 }
 
 
 pub struct PostLolGameflowV1SessionRequestEnterGameflow {
-
     pub body: String,
 }
 
 impl IsApiRequest for PostLolGameflowV1SessionRequestEnterGameflow {
     const METHOD: Method = Method::POST;
     type ReturnType = bool;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/session/request-enter-gameflow".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-gameflow/v1/session/request-enter-gameflow".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_gameflow_v_1_session_request_enter_gameflow(body: String) -> PostLolGameflowV1SessionRequestEnterGameflow {
-    PostLolGameflowV1SessionRequestEnterGameflow {
-        body
-    }
+    PostLolGameflowV1SessionRequestEnterGameflow{body}
 }
 
 
-pub struct PostLolGameflowV1SessionRequestLobby {
-
-}
+pub struct PostLolGameflowV1SessionRequestLobby {}
 
 impl IsApiRequest for PostLolGameflowV1SessionRequestLobby {
     const METHOD: Method = Method::POST;
     type ReturnType = bool;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/session/request-lobby".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-gameflow/v1/session/request-lobby".to_string()}
 }
 
 pub fn post_lol_gameflow_v_1_session_request_lobby() -> PostLolGameflowV1SessionRequestLobby {
-    PostLolGameflowV1SessionRequestLobby {
-        
-    }
+    PostLolGameflowV1SessionRequestLobby{}
 }
 
 
-pub struct PostLolGameflowV1SessionRequestTournamentCheckin {
-
-}
+pub struct PostLolGameflowV1SessionRequestTournamentCheckin {}
 
 impl IsApiRequest for PostLolGameflowV1SessionRequestTournamentCheckin {
     const METHOD: Method = Method::POST;
     type ReturnType = bool;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/session/request-tournament-checkin".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-gameflow/v1/session/request-tournament-checkin".to_string()}
 }
 
 pub fn post_lol_gameflow_v_1_session_request_tournament_checkin() -> PostLolGameflowV1SessionRequestTournamentCheckin {
-    PostLolGameflowV1SessionRequestTournamentCheckin {
-        
-    }
+    PostLolGameflowV1SessionRequestTournamentCheckin{}
 }
 
 
-pub struct PostLolGameflowV1SessionTournamentEnded {
-
-}
+pub struct PostLolGameflowV1SessionTournamentEnded {}
 
 impl IsApiRequest for PostLolGameflowV1SessionTournamentEnded {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/session/tournament-ended".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-gameflow/v1/session/tournament-ended".to_string()}
 }
 
 pub fn post_lol_gameflow_v_1_session_tournament_ended() -> PostLolGameflowV1SessionTournamentEnded {
-    PostLolGameflowV1SessionTournamentEnded {
-        
-    }
+    PostLolGameflowV1SessionTournamentEnded{}
 }
 
 
 pub struct PostLolGameflowV1SpectateLaunch {
-
     pub body: String,
 }
 
 impl IsApiRequest for PostLolGameflowV1SpectateLaunch {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/spectate/launch".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-gameflow/v1/spectate/launch".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_gameflow_v_1_spectate_launch(body: String) -> PostLolGameflowV1SpectateLaunch {
-    PostLolGameflowV1SpectateLaunch {
-        body
-    }
+    PostLolGameflowV1SpectateLaunch{body}
 }
 
 
-pub struct PostLolGameflowV1SpectateQuit {
-
-}
+pub struct PostLolGameflowV1SpectateQuit {}
 
 impl IsApiRequest for PostLolGameflowV1SpectateQuit {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/spectate/quit".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-gameflow/v1/spectate/quit".to_string()}
 }
 
 pub fn post_lol_gameflow_v_1_spectate_quit() -> PostLolGameflowV1SpectateQuit {
-    PostLolGameflowV1SpectateQuit {
-        
-    }
+    PostLolGameflowV1SpectateQuit{}
 }
 
 
-pub struct PostLolGameflowV1Tick {
-
-}
+pub struct PostLolGameflowV1Tick {}
 
 impl IsApiRequest for PostLolGameflowV1Tick {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/tick".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-gameflow/v1/tick".to_string()}
 }
 
 pub fn post_lol_gameflow_v_1_tick() -> PostLolGameflowV1Tick {
-    PostLolGameflowV1Tick {
-        
-    }
+    PostLolGameflowV1Tick{}
 }
 
 
 pub struct PostLolGameflowV1WatchLaunch {
-
     pub body: Vec<String>,
 }
 
 impl IsApiRequest for PostLolGameflowV1WatchLaunch {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v1/watch/launch".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-gameflow/v1/watch/launch".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_gameflow_v_1_watch_launch(body: Vec<String>) -> PostLolGameflowV1WatchLaunch {
-    PostLolGameflowV1WatchLaunch {
-        body
-    }
+    PostLolGameflowV1WatchLaunch{body}
 }
 
 
 pub struct PostLolGameflowV2SpectateLaunch {
-
     pub body: LolGameflowSpectateGameInfoResource,
 }
 
 impl IsApiRequest for PostLolGameflowV2SpectateLaunch {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-gameflow/v2/spectate/launch".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-gameflow/v2/spectate/launch".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_gameflow_v_2_spectate_launch(body: LolGameflowSpectateGameInfoResource) -> PostLolGameflowV2SpectateLaunch {
-    PostLolGameflowV2SpectateLaunch {
-        body
-    }
+    PostLolGameflowV2SpectateLaunch{body}
 }
 
 

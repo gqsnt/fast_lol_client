@@ -17,24 +17,14 @@ pub struct AsyncDelete {
 impl IsApiRequest for AsyncDelete {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/AsyncDelete".to_string()
-    }
-
+    fn get_url(&self) -> String {"/AsyncDelete".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn async_delete(body: u32) -> AsyncDelete {
-    AsyncDelete {
-        body
-    }
+    AsyncDelete{body}
 }
 
 
@@ -46,24 +36,14 @@ pub struct AsyncResult {
 impl IsApiRequest for AsyncResult {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/AsyncResult".to_string()
-    }
-
+    fn get_url(&self) -> String {"/AsyncResult".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn async_result(body: u32) -> AsyncResult {
-    AsyncResult {
-        body
-    }
+    AsyncResult{body}
 }
 
 
@@ -75,24 +55,14 @@ pub struct AsyncStatus {
 impl IsApiRequest for AsyncStatus {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/AsyncStatus".to_string()
-    }
-
+    fn get_url(&self) -> String {"/AsyncStatus".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn async_status(body: u32) -> AsyncStatus {
-    AsyncStatus {
-        body
-    }
+    AsyncStatus{body}
 }
 
 
@@ -104,52 +74,30 @@ pub struct Cancel {
 impl IsApiRequest for Cancel {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/Cancel".to_string()
-    }
-
+    fn get_url(&self) -> String {"/Cancel".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn cancel(body: u32) -> Cancel {
-    Cancel {
-        body
-    }
+    Cancel{body}
 }
 
 
 pub struct Exit {
     // Closes the connection.
+
 }
 
 impl IsApiRequest for Exit {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/Exit".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/Exit".to_string()}
 }
 
 pub fn exit() -> Exit {
-    Exit {
-        
-    }
+    Exit{}
 }
 
 
@@ -162,15 +110,7 @@ pub struct Help {
 impl IsApiRequest for Help {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/Help".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
+    fn get_url(&self) -> String {"/Help".to_string()}
     fn get_query_params(&self) -> Option<Value> {
         Some(json!({
             "target" : self.target,
@@ -180,9 +120,7 @@ impl IsApiRequest for Help {
 }
 
 pub fn help(target: Option<String>, format: Option<RemotingHelpFormat>) -> Help {
-    Help {
-        target, format
-    }
+    Help{target, format}
 }
 
 
@@ -194,24 +132,11 @@ pub struct HttpAsyncDelete {
 impl IsApiRequest for HttpAsyncDelete {
     const METHOD: Method = Method::DELETE;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/async/v1/status/{}", self.async_token)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/async/v1/status/{}", self.async_token)}
 }
 
 pub fn http_async_delete(async_token: u32) -> HttpAsyncDelete {
-    HttpAsyncDelete {
-        async_token
-    }
+    HttpAsyncDelete{async_token}
 }
 
 
@@ -223,24 +148,11 @@ pub struct HttpAsyncResult {
 impl IsApiRequest for HttpAsyncResult {
     const METHOD: Method = Method::GET;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/async/v1/result/{}", self.async_token)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/async/v1/result/{}", self.async_token)}
 }
 
 pub fn http_async_result(async_token: u32) -> HttpAsyncResult {
-    HttpAsyncResult {
-        async_token
-    }
+    HttpAsyncResult{async_token}
 }
 
 
@@ -252,24 +164,11 @@ pub struct HttpAsyncStatus {
 impl IsApiRequest for HttpAsyncStatus {
     const METHOD: Method = Method::GET;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/async/v1/status/{}", self.async_token)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/async/v1/status/{}", self.async_token)}
 }
 
 pub fn http_async_status(async_token: u32) -> HttpAsyncStatus {
-    HttpAsyncStatus {
-        async_token
-    }
+    HttpAsyncStatus{async_token}
 }
 
 
@@ -282,15 +181,7 @@ pub struct Subscribe {
 impl IsApiRequest for Subscribe {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/Subscribe".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
+    fn get_url(&self) -> String {"/Subscribe".to_string()}
     fn get_query_params(&self) -> Option<Value> {
         Some(json!({
             "eventName" : self.event_name,
@@ -300,9 +191,7 @@ impl IsApiRequest for Subscribe {
 }
 
 pub fn subscribe(event_name: String, format: Option<RemotingSerializedFormat>) -> Subscribe {
-    Subscribe {
-        event_name, format
-    }
+    Subscribe{event_name, format}
 }
 
 
@@ -314,24 +203,14 @@ pub struct Unsubscribe {
 impl IsApiRequest for Unsubscribe {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/Unsubscribe".to_string()
-    }
-
+    fn get_url(&self) -> String {"/Unsubscribe".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn unsubscribe(body: String) -> Unsubscribe {
-    Unsubscribe {
-        body
-    }
+    Unsubscribe{body}
 }
 
 
@@ -343,24 +222,14 @@ pub struct WebSocketFormat {
 impl IsApiRequest for WebSocketFormat {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/WebSocketFormat".to_string()
-    }
-
+    fn get_url(&self) -> String {"/WebSocketFormat".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn web_socket_format(body: RemotingSerializedFormat) -> WebSocketFormat {
-    WebSocketFormat {
-        body
-    }
+    WebSocketFormat{body}
 }
 
 

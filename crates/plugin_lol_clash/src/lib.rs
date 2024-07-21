@@ -9,756 +9,362 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct DeleteLolClashV1Voice {
-
-}
+pub struct DeleteLolClashV1Voice {}
 
 impl IsApiRequest for DeleteLolClashV1Voice {
     const METHOD: Method = Method::DELETE;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-clash/v1/voice".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-clash/v1/voice".to_string()}
 }
 
 pub fn delete_lol_clash_v_1_voice() -> DeleteLolClashV1Voice {
-    DeleteLolClashV1Voice {
-        
-    }
+    DeleteLolClashV1Voice{}
 }
 
 
 pub struct DeleteLolClashV1VoiceDelayByDelaySeconds {
-
     pub delay_seconds: f64,
 }
 
 impl IsApiRequest for DeleteLolClashV1VoiceDelayByDelaySeconds {
     const METHOD: Method = Method::DELETE;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-clash/v1/voice-delay/{}", self.delay_seconds)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-clash/v1/voice-delay/{}", self.delay_seconds)}
 }
 
 pub fn delete_lol_clash_v_1_voice_delay_by_delay_seconds(delay_seconds: f64) -> DeleteLolClashV1VoiceDelayByDelaySeconds {
-    DeleteLolClashV1VoiceDelayByDelaySeconds {
-        delay_seconds
-    }
+    DeleteLolClashV1VoiceDelayByDelaySeconds{delay_seconds}
 }
 
 
-pub struct GetLolClashV1AllTournaments {
-
-}
+pub struct GetLolClashV1AllTournaments {}
 
 impl IsApiRequest for GetLolClashV1AllTournaments {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<TournamentDto>;
-
-    fn get_url(&self) -> String {
-        "/lol-clash/v1/all-tournaments".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-clash/v1/all-tournaments".to_string()}
 }
 
 pub fn get_lol_clash_v_1_all_tournaments() -> GetLolClashV1AllTournaments {
-    GetLolClashV1AllTournaments {
-        
-    }
+    GetLolClashV1AllTournaments{}
 }
 
 
-pub struct GetLolClashV1AwaitingResentEog {
-
-}
+pub struct GetLolClashV1AwaitingResentEog {}
 
 impl IsApiRequest for GetLolClashV1AwaitingResentEog {
     const METHOD: Method = Method::GET;
     type ReturnType = bool;
-
-    fn get_url(&self) -> String {
-        "/lol-clash/v1/awaiting-resent-eog".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-clash/v1/awaiting-resent-eog".to_string()}
 }
 
 pub fn get_lol_clash_v_1_awaiting_resent_eog() -> GetLolClashV1AwaitingResentEog {
-    GetLolClashV1AwaitingResentEog {
-        
-    }
+    GetLolClashV1AwaitingResentEog{}
 }
 
 
 pub struct GetLolClashV1BracketByBracketId {
-
     pub bracket_id: i64,
 }
 
 impl IsApiRequest for GetLolClashV1BracketByBracketId {
     const METHOD: Method = Method::GET;
     type ReturnType = LolClashBracket;
-
-    fn get_url(&self) -> String {
-        format!("/lol-clash/v1/bracket/{}", self.bracket_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-clash/v1/bracket/{}", self.bracket_id)}
 }
 
 pub fn get_lol_clash_v_1_bracket_by_bracket_id(bracket_id: i64) -> GetLolClashV1BracketByBracketId {
-    GetLolClashV1BracketByBracketId {
-        bracket_id
-    }
+    GetLolClashV1BracketByBracketId{bracket_id}
 }
 
 
-pub struct GetLolClashV1CheckinAllowed {
-
-}
+pub struct GetLolClashV1CheckinAllowed {}
 
 impl IsApiRequest for GetLolClashV1CheckinAllowed {
     const METHOD: Method = Method::GET;
     type ReturnType = bool;
-
-    fn get_url(&self) -> String {
-        "/lol-clash/v1/checkin-allowed".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-clash/v1/checkin-allowed".to_string()}
 }
 
 pub fn get_lol_clash_v_1_checkin_allowed() -> GetLolClashV1CheckinAllowed {
-    GetLolClashV1CheckinAllowed {
-        
-    }
+    GetLolClashV1CheckinAllowed{}
 }
 
 
-pub struct GetLolClashV1CurrentTournamentIds {
-
-}
+pub struct GetLolClashV1CurrentTournamentIds {}
 
 impl IsApiRequest for GetLolClashV1CurrentTournamentIds {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<i64>;
-
-    fn get_url(&self) -> String {
-        "/lol-clash/v1/currentTournamentIds".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-clash/v1/currentTournamentIds".to_string()}
 }
 
 pub fn get_lol_clash_v_1_current_tournament_ids() -> GetLolClashV1CurrentTournamentIds {
-    GetLolClashV1CurrentTournamentIds {
-        
-    }
+    GetLolClashV1CurrentTournamentIds{}
 }
 
 
-pub struct GetLolClashV1DisabledConfig {
-
-}
+pub struct GetLolClashV1DisabledConfig {}
 
 impl IsApiRequest for GetLolClashV1DisabledConfig {
     const METHOD: Method = Method::GET;
     type ReturnType = LolClashClashDisabledConfig;
-
-    fn get_url(&self) -> String {
-        "/lol-clash/v1/disabled-config".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-clash/v1/disabled-config".to_string()}
 }
 
 pub fn get_lol_clash_v_1_disabled_config() -> GetLolClashV1DisabledConfig {
-    GetLolClashV1DisabledConfig {
-        
-    }
+    GetLolClashV1DisabledConfig{}
 }
 
 
-pub struct GetLolClashV1Enabled {
-
-}
+pub struct GetLolClashV1Enabled {}
 
 impl IsApiRequest for GetLolClashV1Enabled {
     const METHOD: Method = Method::GET;
     type ReturnType = bool;
-
-    fn get_url(&self) -> String {
-        "/lol-clash/v1/enabled".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-clash/v1/enabled".to_string()}
 }
 
 pub fn get_lol_clash_v_1_enabled() -> GetLolClashV1Enabled {
-    GetLolClashV1Enabled {
-        
-    }
+    GetLolClashV1Enabled{}
 }
 
 
-pub struct GetLolClashV1EogPlayerUpdate {
-
-}
+pub struct GetLolClashV1EogPlayerUpdate {}
 
 impl IsApiRequest for GetLolClashV1EogPlayerUpdate {
     const METHOD: Method = Method::GET;
     type ReturnType = LolClashEogPlayerUpdateDto;
-
-    fn get_url(&self) -> String {
-        "/lol-clash/v1/eog-player-update".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-clash/v1/eog-player-update".to_string()}
 }
 
 pub fn get_lol_clash_v_1_eog_player_update() -> GetLolClashV1EogPlayerUpdate {
-    GetLolClashV1EogPlayerUpdate {
-        
-    }
+    GetLolClashV1EogPlayerUpdate{}
 }
 
 
 pub struct GetLolClashV1EventByUuid {
-
     pub uuid: String,
 }
 
 impl IsApiRequest for GetLolClashV1EventByUuid {
     const METHOD: Method = Method::GET;
     type ReturnType = ClashEventData;
-
-    fn get_url(&self) -> String {
-        format!("/lol-clash/v1/event/{}", self.uuid)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-clash/v1/event/{}", self.uuid)}
 }
 
 pub fn get_lol_clash_v_1_event_by_uuid(uuid: String) -> GetLolClashV1EventByUuid {
-    GetLolClashV1EventByUuid {
-        uuid
-    }
+    GetLolClashV1EventByUuid{uuid}
 }
 
 
-pub struct GetLolClashV1GameEnd {
-
-}
+pub struct GetLolClashV1GameEnd {}
 
 impl IsApiRequest for GetLolClashV1GameEnd {
     const METHOD: Method = Method::GET;
     type ReturnType = LolClashTournamentGameEnd;
-
-    fn get_url(&self) -> String {
-        "/lol-clash/v1/game-end".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-clash/v1/game-end".to_string()}
 }
 
 pub fn get_lol_clash_v_1_game_end() -> GetLolClashV1GameEnd {
-    GetLolClashV1GameEnd {
-        
-    }
+    GetLolClashV1GameEnd{}
 }
 
 
-pub struct GetLolClashV1Historyandwinners {
-
-}
+pub struct GetLolClashV1Historyandwinners {}
 
 impl IsApiRequest for GetLolClashV1Historyandwinners {
     const METHOD: Method = Method::GET;
     type ReturnType = LolClashTournamentHistoryAndWinners;
-
-    fn get_url(&self) -> String {
-        "/lol-clash/v1/historyandwinners".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-clash/v1/historyandwinners".to_string()}
 }
 
 pub fn get_lol_clash_v_1_historyandwinners() -> GetLolClashV1Historyandwinners {
-    GetLolClashV1Historyandwinners {
-        
-    }
+    GetLolClashV1Historyandwinners{}
 }
 
 
-pub struct GetLolClashV1Iconconfig {
-
-}
+pub struct GetLolClashV1Iconconfig {}
 
 impl IsApiRequest for GetLolClashV1Iconconfig {
     const METHOD: Method = Method::GET;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-clash/v1/iconconfig".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-clash/v1/iconconfig".to_string()}
 }
 
 pub fn get_lol_clash_v_1_iconconfig() -> GetLolClashV1Iconconfig {
-    GetLolClashV1Iconconfig {
-        
-    }
+    GetLolClashV1Iconconfig{}
 }
 
 
-pub struct GetLolClashV1InvitedRosterIds {
-
-}
+pub struct GetLolClashV1InvitedRosterIds {}
 
 impl IsApiRequest for GetLolClashV1InvitedRosterIds {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<String>;
-
-    fn get_url(&self) -> String {
-        "/lol-clash/v1/invited-roster-ids".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-clash/v1/invited-roster-ids".to_string()}
 }
 
 pub fn get_lol_clash_v_1_invited_roster_ids() -> GetLolClashV1InvitedRosterIds {
-    GetLolClashV1InvitedRosterIds {
-        
-    }
+    GetLolClashV1InvitedRosterIds{}
 }
 
 
-pub struct GetLolClashV1LftTeamRequests {
-
-}
+pub struct GetLolClashV1LftTeamRequests {}
 
 impl IsApiRequest for GetLolClashV1LftTeamRequests {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<PendingOpenedTeamDto>;
-
-    fn get_url(&self) -> String {
-        "/lol-clash/v1/lft/team/requests".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-clash/v1/lft/team/requests".to_string()}
 }
 
 pub fn get_lol_clash_v_1_lft_team_requests() -> GetLolClashV1LftTeamRequests {
-    GetLolClashV1LftTeamRequests {
-        
-    }
+    GetLolClashV1LftTeamRequests{}
 }
 
 
-pub struct GetLolClashV1Notifications {
-
-}
+pub struct GetLolClashV1Notifications {}
 
 impl IsApiRequest for GetLolClashV1Notifications {
     const METHOD: Method = Method::GET;
     type ReturnType = LolClashPlayerNotificationData;
-
-    fn get_url(&self) -> String {
-        "/lol-clash/v1/notifications".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-clash/v1/notifications".to_string()}
 }
 
 pub fn get_lol_clash_v_1_notifications() -> GetLolClashV1Notifications {
-    GetLolClashV1Notifications {
-        
-    }
+    GetLolClashV1Notifications{}
 }
 
 
-pub struct GetLolClashV1Ping {
-
-}
+pub struct GetLolClashV1Ping {}
 
 impl IsApiRequest for GetLolClashV1Ping {
     const METHOD: Method = Method::GET;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-clash/v1/ping".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-clash/v1/ping".to_string()}
 }
 
 pub fn get_lol_clash_v_1_ping() -> GetLolClashV1Ping {
-    GetLolClashV1Ping {
-        
-    }
+    GetLolClashV1Ping{}
 }
 
 
-pub struct GetLolClashV1Player {
-
-}
+pub struct GetLolClashV1Player {}
 
 impl IsApiRequest for GetLolClashV1Player {
     const METHOD: Method = Method::GET;
     type ReturnType = LolClashPlayerData;
-
-    fn get_url(&self) -> String {
-        "/lol-clash/v1/player".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-clash/v1/player".to_string()}
 }
 
 pub fn get_lol_clash_v_1_player() -> GetLolClashV1Player {
-    GetLolClashV1Player {
-        
-    }
+    GetLolClashV1Player{}
 }
 
 
-pub struct GetLolClashV1PlayerChatRosters {
-
-}
+pub struct GetLolClashV1PlayerChatRosters {}
 
 impl IsApiRequest for GetLolClashV1PlayerChatRosters {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolClashPlayerChatRoster>;
-
-    fn get_url(&self) -> String {
-        "/lol-clash/v1/player/chat-rosters".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-clash/v1/player/chat-rosters".to_string()}
 }
 
 pub fn get_lol_clash_v_1_player_chat_rosters() -> GetLolClashV1PlayerChatRosters {
-    GetLolClashV1PlayerChatRosters {
-        
-    }
+    GetLolClashV1PlayerChatRosters{}
 }
 
 
-pub struct GetLolClashV1PlayerHistory {
-
-}
+pub struct GetLolClashV1PlayerHistory {}
 
 impl IsApiRequest for GetLolClashV1PlayerHistory {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolClashRosterStats>;
-
-    fn get_url(&self) -> String {
-        "/lol-clash/v1/player/history".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-clash/v1/player/history".to_string()}
 }
 
 pub fn get_lol_clash_v_1_player_history() -> GetLolClashV1PlayerHistory {
-    GetLolClashV1PlayerHistory {
-        
-    }
+    GetLolClashV1PlayerHistory{}
 }
 
 
-pub struct GetLolClashV1PlaymodeRestricted {
-
-}
+pub struct GetLolClashV1PlaymodeRestricted {}
 
 impl IsApiRequest for GetLolClashV1PlaymodeRestricted {
     const METHOD: Method = Method::GET;
     type ReturnType = bool;
-
-    fn get_url(&self) -> String {
-        "/lol-clash/v1/playmode-restricted".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-clash/v1/playmode-restricted".to_string()}
 }
 
 pub fn get_lol_clash_v_1_playmode_restricted() -> GetLolClashV1PlaymodeRestricted {
-    GetLolClashV1PlaymodeRestricted {
-        
-    }
+    GetLolClashV1PlaymodeRestricted{}
 }
 
 
-pub struct GetLolClashV1Ready {
-
-}
+pub struct GetLolClashV1Ready {}
 
 impl IsApiRequest for GetLolClashV1Ready {
     const METHOD: Method = Method::GET;
     type ReturnType = bool;
-
-    fn get_url(&self) -> String {
-        "/lol-clash/v1/ready".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-clash/v1/ready".to_string()}
 }
 
 pub fn get_lol_clash_v_1_ready() -> GetLolClashV1Ready {
-    GetLolClashV1Ready {
-        
-    }
+    GetLolClashV1Ready{}
 }
 
 
-pub struct GetLolClashV1Rewards {
-
-}
+pub struct GetLolClashV1Rewards {}
 
 impl IsApiRequest for GetLolClashV1Rewards {
     const METHOD: Method = Method::GET;
     type ReturnType = LolClashPlayerRewards;
-
-    fn get_url(&self) -> String {
-        "/lol-clash/v1/rewards".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-clash/v1/rewards".to_string()}
 }
 
 pub fn get_lol_clash_v_1_rewards() -> GetLolClashV1Rewards {
-    GetLolClashV1Rewards {
-        
-    }
+    GetLolClashV1Rewards{}
 }
 
 
 pub struct GetLolClashV1RosterByRosterId {
-
     pub roster_id: String,
 }
 
 impl IsApiRequest for GetLolClashV1RosterByRosterId {
     const METHOD: Method = Method::GET;
     type ReturnType = LolClashRoster;
-
-    fn get_url(&self) -> String {
-        format!("/lol-clash/v1/roster/{}", self.roster_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-clash/v1/roster/{}", self.roster_id)}
 }
 
 pub fn get_lol_clash_v_1_roster_by_roster_id(roster_id: String) -> GetLolClashV1RosterByRosterId {
-    GetLolClashV1RosterByRosterId {
-        roster_id
-    }
+    GetLolClashV1RosterByRosterId{roster_id}
 }
 
 
 pub struct GetLolClashV1RosterByRosterIdStats {
-
     pub roster_id: i64,
 }
 
 impl IsApiRequest for GetLolClashV1RosterByRosterIdStats {
     const METHOD: Method = Method::GET;
     type ReturnType = LolClashRosterStats;
-
-    fn get_url(&self) -> String {
-        format!("/lol-clash/v1/roster/{}/stats", self.roster_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-clash/v1/roster/{}/stats", self.roster_id)}
 }
 
 pub fn get_lol_clash_v_1_roster_by_roster_id_stats(roster_id: i64) -> GetLolClashV1RosterByRosterIdStats {
-    GetLolClashV1RosterByRosterIdStats {
-        roster_id
-    }
+    GetLolClashV1RosterByRosterIdStats{roster_id}
 }
 
 
 pub struct GetLolClashV1ScoutingChampions {
-
     pub puuids: Vec<String>,
 }
 
 impl IsApiRequest for GetLolClashV1ScoutingChampions {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolClashScoutingChampions>;
-
-    fn get_url(&self) -> String {
-        "/lol-clash/v1/scouting/champions".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
+    fn get_url(&self) -> String {"/lol-clash/v1/scouting/champions".to_string()}
     fn get_query_params(&self) -> Option<Value> {
         Some(json!({
             "puuids" : self.puuids,
@@ -767,29 +373,18 @@ impl IsApiRequest for GetLolClashV1ScoutingChampions {
 }
 
 pub fn get_lol_clash_v_1_scouting_champions(puuids: Vec<String>) -> GetLolClashV1ScoutingChampions {
-    GetLolClashV1ScoutingChampions {
-        puuids
-    }
+    GetLolClashV1ScoutingChampions{puuids}
 }
 
 
 pub struct GetLolClashV1ScoutingMatchhistory {
-
     pub summoner_ids: Vec<u64>,
 }
 
 impl IsApiRequest for GetLolClashV1ScoutingMatchhistory {
     const METHOD: Method = Method::GET;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-clash/v1/scouting/matchhistory".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
+    fn get_url(&self) -> String {"/lol-clash/v1/scouting/matchhistory".to_string()}
     fn get_query_params(&self) -> Option<Value> {
         Some(json!({
             "summonerIds" : self.summoner_ids,
@@ -798,156 +393,80 @@ impl IsApiRequest for GetLolClashV1ScoutingMatchhistory {
 }
 
 pub fn get_lol_clash_v_1_scouting_matchhistory(summoner_ids: Vec<u64>) -> GetLolClashV1ScoutingMatchhistory {
-    GetLolClashV1ScoutingMatchhistory {
-        summoner_ids
-    }
+    GetLolClashV1ScoutingMatchhistory{summoner_ids}
 }
 
 
 pub struct GetLolClashV1SeasonRewardsBySeasonId {
-
     pub season_id: i32,
 }
 
 impl IsApiRequest for GetLolClashV1SeasonRewardsBySeasonId {
     const METHOD: Method = Method::GET;
     type ReturnType = ClashSeasonRewardResult;
-
-    fn get_url(&self) -> String {
-        format!("/lol-clash/v1/season-rewards/{}", self.season_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-clash/v1/season-rewards/{}", self.season_id)}
 }
 
 pub fn get_lol_clash_v_1_season_rewards_by_season_id(season_id: i32) -> GetLolClashV1SeasonRewardsBySeasonId {
-    GetLolClashV1SeasonRewardsBySeasonId {
-        season_id
-    }
+    GetLolClashV1SeasonRewardsBySeasonId{season_id}
 }
 
 
-pub struct GetLolClashV1SimpleStateFlags {
-
-}
+pub struct GetLolClashV1SimpleStateFlags {}
 
 impl IsApiRequest for GetLolClashV1SimpleStateFlags {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolClashSimpleStateFlag>;
-
-    fn get_url(&self) -> String {
-        "/lol-clash/v1/simple-state-flags".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-clash/v1/simple-state-flags".to_string()}
 }
 
 pub fn get_lol_clash_v_1_simple_state_flags() -> GetLolClashV1SimpleStateFlags {
-    GetLolClashV1SimpleStateFlags {
-        
-    }
+    GetLolClashV1SimpleStateFlags{}
 }
 
 
-pub struct GetLolClashV1ThirdpartyTeamData {
-
-}
+pub struct GetLolClashV1ThirdpartyTeamData {}
 
 impl IsApiRequest for GetLolClashV1ThirdpartyTeamData {
     const METHOD: Method = Method::GET;
     type ReturnType = LolClashThirdPartyApiRoster;
-
-    fn get_url(&self) -> String {
-        "/lol-clash/v1/thirdparty/team-data".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-clash/v1/thirdparty/team-data".to_string()}
 }
 
 pub fn get_lol_clash_v_1_thirdparty_team_data() -> GetLolClashV1ThirdpartyTeamData {
-    GetLolClashV1ThirdpartyTeamData {
-        
-    }
+    GetLolClashV1ThirdpartyTeamData{}
 }
 
 
-pub struct GetLolClashV1Time {
-
-}
+pub struct GetLolClashV1Time {}
 
 impl IsApiRequest for GetLolClashV1Time {
     const METHOD: Method = Method::GET;
     type ReturnType = i64;
-
-    fn get_url(&self) -> String {
-        "/lol-clash/v1/time".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-clash/v1/time".to_string()}
 }
 
 pub fn get_lol_clash_v_1_time() -> GetLolClashV1Time {
-    GetLolClashV1Time {
-        
-    }
+    GetLolClashV1Time{}
 }
 
 
 pub struct GetLolClashV1TournamentByTournamentId {
-
     pub tournament_id: i64,
 }
 
 impl IsApiRequest for GetLolClashV1TournamentByTournamentId {
     const METHOD: Method = Method::GET;
     type ReturnType = LolClashTournament;
-
-    fn get_url(&self) -> String {
-        format!("/lol-clash/v1/tournament/{}", self.tournament_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-clash/v1/tournament/{}", self.tournament_id)}
 }
 
 pub fn get_lol_clash_v_1_tournament_by_tournament_id(tournament_id: i64) -> GetLolClashV1TournamentByTournamentId {
-    GetLolClashV1TournamentByTournamentId {
-        tournament_id
-    }
+    GetLolClashV1TournamentByTournamentId{tournament_id}
 }
 
 
 pub struct GetLolClashV1TournamentByTournamentIdGetPlayerTiers {
-
     pub tournament_id: i64,
     pub summoner_ids: Vec<u64>,
 }
@@ -955,15 +474,7 @@ pub struct GetLolClashV1TournamentByTournamentIdGetPlayerTiers {
 impl IsApiRequest for GetLolClashV1TournamentByTournamentIdGetPlayerTiers {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<PlayerTierDto>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-clash/v1/tournament/{}/get-player-tiers", self.tournament_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
+    fn get_url(&self) -> String {format!("/lol-clash/v1/tournament/{}/get-player-tiers", self.tournament_id)}
     fn get_query_params(&self) -> Option<Value> {
         Some(json!({
             "summonerIds" : self.summoner_ids,
@@ -972,699 +483,367 @@ impl IsApiRequest for GetLolClashV1TournamentByTournamentIdGetPlayerTiers {
 }
 
 pub fn get_lol_clash_v_1_tournament_by_tournament_id_get_player_tiers(tournament_id: i64, summoner_ids: Vec<u64>) -> GetLolClashV1TournamentByTournamentIdGetPlayerTiers {
-    GetLolClashV1TournamentByTournamentIdGetPlayerTiers {
-        tournament_id, summoner_ids
-    }
+    GetLolClashV1TournamentByTournamentIdGetPlayerTiers{tournament_id, summoner_ids}
 }
 
 
 pub struct GetLolClashV1TournamentByTournamentIdPlayer {
-
     pub tournament_id: i64,
 }
 
 impl IsApiRequest for GetLolClashV1TournamentByTournamentIdPlayer {
     const METHOD: Method = Method::GET;
     type ReturnType = LolClashPlayerTournamentData;
-
-    fn get_url(&self) -> String {
-        format!("/lol-clash/v1/tournament/{}/player", self.tournament_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-clash/v1/tournament/{}/player", self.tournament_id)}
 }
 
 pub fn get_lol_clash_v_1_tournament_by_tournament_id_player(tournament_id: i64) -> GetLolClashV1TournamentByTournamentIdPlayer {
-    GetLolClashV1TournamentByTournamentIdPlayer {
-        tournament_id
-    }
+    GetLolClashV1TournamentByTournamentIdPlayer{tournament_id}
 }
 
 
 pub struct GetLolClashV1TournamentByTournamentIdPlayerHonorRestricted {
-
     pub tournament_id: i64,
 }
 
 impl IsApiRequest for GetLolClashV1TournamentByTournamentIdPlayerHonorRestricted {
     const METHOD: Method = Method::GET;
     type ReturnType = bool;
-
-    fn get_url(&self) -> String {
-        format!("/lol-clash/v1/tournament/{}/player-honor-restricted", self.tournament_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-clash/v1/tournament/{}/player-honor-restricted", self.tournament_id)}
 }
 
 pub fn get_lol_clash_v_1_tournament_by_tournament_id_player_honor_restricted(tournament_id: i64) -> GetLolClashV1TournamentByTournamentIdPlayerHonorRestricted {
-    GetLolClashV1TournamentByTournamentIdPlayerHonorRestricted {
-        tournament_id
-    }
+    GetLolClashV1TournamentByTournamentIdPlayerHonorRestricted{tournament_id}
 }
 
 
 pub struct GetLolClashV1TournamentByTournamentIdStateInfo {
-
     pub tournament_id: i64,
 }
 
 impl IsApiRequest for GetLolClashV1TournamentByTournamentIdStateInfo {
     const METHOD: Method = Method::GET;
     type ReturnType = LolClashTournamentStateInfo;
-
-    fn get_url(&self) -> String {
-        format!("/lol-clash/v1/tournament/{}/stateInfo", self.tournament_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-clash/v1/tournament/{}/stateInfo", self.tournament_id)}
 }
 
 pub fn get_lol_clash_v_1_tournament_by_tournament_id_state_info(tournament_id: i64) -> GetLolClashV1TournamentByTournamentIdStateInfo {
-    GetLolClashV1TournamentByTournamentIdStateInfo {
-        tournament_id
-    }
+    GetLolClashV1TournamentByTournamentIdStateInfo{tournament_id}
 }
 
 
 pub struct GetLolClashV1TournamentByTournamentIdWinners {
-
     pub tournament_id: i64,
 }
 
 impl IsApiRequest for GetLolClashV1TournamentByTournamentIdWinners {
     const METHOD: Method = Method::GET;
     type ReturnType = LolClashTournamentWinnerHistory;
-
-    fn get_url(&self) -> String {
-        format!("/lol-clash/v1/tournament/{}/winners", self.tournament_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-clash/v1/tournament/{}/winners", self.tournament_id)}
 }
 
 pub fn get_lol_clash_v_1_tournament_by_tournament_id_winners(tournament_id: i64) -> GetLolClashV1TournamentByTournamentIdWinners {
-    GetLolClashV1TournamentByTournamentIdWinners {
-        tournament_id
-    }
+    GetLolClashV1TournamentByTournamentIdWinners{tournament_id}
 }
 
 
-pub struct GetLolClashV1TournamentCancelled {
-
-}
+pub struct GetLolClashV1TournamentCancelled {}
 
 impl IsApiRequest for GetLolClashV1TournamentCancelled {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<i64>;
-
-    fn get_url(&self) -> String {
-        "/lol-clash/v1/tournament/cancelled".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-clash/v1/tournament/cancelled".to_string()}
 }
 
 pub fn get_lol_clash_v_1_tournament_cancelled() -> GetLolClashV1TournamentCancelled {
-    GetLolClashV1TournamentCancelled {
-        
-    }
+    GetLolClashV1TournamentCancelled{}
 }
 
 
-pub struct GetLolClashV1TournamentGetAllPlayerTiers {
-
-}
+pub struct GetLolClashV1TournamentGetAllPlayerTiers {}
 
 impl IsApiRequest for GetLolClashV1TournamentGetAllPlayerTiers {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<PlayerTierDto>;
-
-    fn get_url(&self) -> String {
-        "/lol-clash/v1/tournament/get-all-player-tiers".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-clash/v1/tournament/get-all-player-tiers".to_string()}
 }
 
 pub fn get_lol_clash_v_1_tournament_get_all_player_tiers() -> GetLolClashV1TournamentGetAllPlayerTiers {
-    GetLolClashV1TournamentGetAllPlayerTiers {
-        
-    }
+    GetLolClashV1TournamentGetAllPlayerTiers{}
 }
 
 
-pub struct GetLolClashV1TournamentStateInfo {
-
-}
+pub struct GetLolClashV1TournamentStateInfo {}
 
 impl IsApiRequest for GetLolClashV1TournamentStateInfo {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolClashTournamentStateInfo>;
-
-    fn get_url(&self) -> String {
-        "/lol-clash/v1/tournament-state-info".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-clash/v1/tournament-state-info".to_string()}
 }
 
 pub fn get_lol_clash_v_1_tournament_state_info() -> GetLolClashV1TournamentStateInfo {
-    GetLolClashV1TournamentStateInfo {
-        
-    }
+    GetLolClashV1TournamentStateInfo{}
 }
 
 
-pub struct GetLolClashV1TournamentSummary {
-
-}
+pub struct GetLolClashV1TournamentSummary {}
 
 impl IsApiRequest for GetLolClashV1TournamentSummary {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolClashTournamentSummary>;
-
-    fn get_url(&self) -> String {
-        "/lol-clash/v1/tournament-summary".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-clash/v1/tournament-summary".to_string()}
 }
 
 pub fn get_lol_clash_v_1_tournament_summary() -> GetLolClashV1TournamentSummary {
-    GetLolClashV1TournamentSummary {
-        
-    }
+    GetLolClashV1TournamentSummary{}
 }
 
 
-pub struct GetLolClashV1Visible {
-
-}
+pub struct GetLolClashV1Visible {}
 
 impl IsApiRequest for GetLolClashV1Visible {
     const METHOD: Method = Method::GET;
     type ReturnType = bool;
-
-    fn get_url(&self) -> String {
-        "/lol-clash/v1/visible".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-clash/v1/visible".to_string()}
 }
 
 pub fn get_lol_clash_v_1_visible() -> GetLolClashV1Visible {
-    GetLolClashV1Visible {
-        
-    }
+    GetLolClashV1Visible{}
 }
 
 
-pub struct GetLolClashV1VoiceEnabled {
-
-}
+pub struct GetLolClashV1VoiceEnabled {}
 
 impl IsApiRequest for GetLolClashV1VoiceEnabled {
     const METHOD: Method = Method::GET;
     type ReturnType = bool;
-
-    fn get_url(&self) -> String {
-        "/lol-clash/v1/voice-enabled".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-clash/v1/voice-enabled".to_string()}
 }
 
 pub fn get_lol_clash_v_1_voice_enabled() -> GetLolClashV1VoiceEnabled {
-    GetLolClashV1VoiceEnabled {
-        
-    }
+    GetLolClashV1VoiceEnabled{}
 }
 
 
-pub struct GetLolClashV2PlaymodeRestricted {
-
-}
+pub struct GetLolClashV2PlaymodeRestricted {}
 
 impl IsApiRequest for GetLolClashV2PlaymodeRestricted {
     const METHOD: Method = Method::GET;
     type ReturnType = LolClashPlaymodeRestrictedInfo;
-
-    fn get_url(&self) -> String {
-        "/lol-clash/v2/playmode-restricted".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-clash/v2/playmode-restricted".to_string()}
 }
 
 pub fn get_lol_clash_v_2_playmode_restricted() -> GetLolClashV2PlaymodeRestricted {
-    GetLolClashV2PlaymodeRestricted {
-        
-    }
+    GetLolClashV2PlaymodeRestricted{}
 }
 
 
-pub struct PostLolClashV1EogPlayerUpdateAcknowledge {
-
-}
+pub struct PostLolClashV1EogPlayerUpdateAcknowledge {}
 
 impl IsApiRequest for PostLolClashV1EogPlayerUpdateAcknowledge {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-clash/v1/eog-player-update/acknowledge".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-clash/v1/eog-player-update/acknowledge".to_string()}
 }
 
 pub fn post_lol_clash_v_1_eog_player_update_acknowledge() -> PostLolClashV1EogPlayerUpdateAcknowledge {
-    PostLolClashV1EogPlayerUpdateAcknowledge {
-        
-    }
+    PostLolClashV1EogPlayerUpdateAcknowledge{}
 }
 
 
 pub struct PostLolClashV1Events {
-
     pub body: Vec<String>,
 }
 
 impl IsApiRequest for PostLolClashV1Events {
     const METHOD: Method = Method::POST;
     type ReturnType = ClashEventData;
-
-    fn get_url(&self) -> String {
-        "/lol-clash/v1/events".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-clash/v1/events".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_clash_v_1_events(body: Vec<String>) -> PostLolClashV1Events {
-    PostLolClashV1Events {
-        body
-    }
+    PostLolClashV1Events{body}
 }
 
 
-pub struct PostLolClashV1GameEndAcknowledge {
-
-}
+pub struct PostLolClashV1GameEndAcknowledge {}
 
 impl IsApiRequest for PostLolClashV1GameEndAcknowledge {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-clash/v1/game-end/acknowledge".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-clash/v1/game-end/acknowledge".to_string()}
 }
 
 pub fn post_lol_clash_v_1_game_end_acknowledge() -> PostLolClashV1GameEndAcknowledge {
-    PostLolClashV1GameEndAcknowledge {
-        
-    }
+    PostLolClashV1GameEndAcknowledge{}
 }
 
 
 pub struct PostLolClashV1LftPlayer {
-
     pub body: LolClashLftState,
 }
 
 impl IsApiRequest for PostLolClashV1LftPlayer {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-clash/v1/lft/player".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-clash/v1/lft/player".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_clash_v_1_lft_player(body: LolClashLftState) -> PostLolClashV1LftPlayer {
-    PostLolClashV1LftPlayer {
-        body
-    }
+    PostLolClashV1LftPlayer{body}
 }
 
 
 pub struct PostLolClashV1LftPlayerFind {
-
     pub body: LolClashFindPlayers,
 }
 
 impl IsApiRequest for PostLolClashV1LftPlayerFind {
     const METHOD: Method = Method::POST;
     type ReturnType = Vec<PlayerFinderDto>;
-
-    fn get_url(&self) -> String {
-        "/lol-clash/v1/lft/player/find".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-clash/v1/lft/player/find".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_clash_v_1_lft_player_find(body: LolClashFindPlayers) -> PostLolClashV1LftPlayerFind {
-    PostLolClashV1LftPlayerFind {
-        body
-    }
+    PostLolClashV1LftPlayerFind{body}
 }
 
 
 pub struct PostLolClashV1LftTeam {
-
     pub body: LolClashTeamOpenState,
 }
 
 impl IsApiRequest for PostLolClashV1LftTeam {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-clash/v1/lft/team".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-clash/v1/lft/team".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_clash_v_1_lft_team(body: LolClashTeamOpenState) -> PostLolClashV1LftTeam {
-    PostLolClashV1LftTeam {
-        body
-    }
+    PostLolClashV1LftTeam{body}
 }
 
 
 pub struct PostLolClashV1LftTeamByRosterIdRequest {
-
     pub roster_id: String,
 }
 
 impl IsApiRequest for PostLolClashV1LftTeamByRosterIdRequest {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-clash/v1/lft/team/{}/request", self.roster_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-clash/v1/lft/team/{}/request", self.roster_id)}
 }
 
 pub fn post_lol_clash_v_1_lft_team_by_roster_id_request(roster_id: String) -> PostLolClashV1LftTeamByRosterIdRequest {
-    PostLolClashV1LftTeamByRosterIdRequest {
-        roster_id
-    }
+    PostLolClashV1LftTeamByRosterIdRequest{roster_id}
 }
 
 
 pub struct PostLolClashV1LftTeamFetchRequests {
-
     pub body: i64,
 }
 
 impl IsApiRequest for PostLolClashV1LftTeamFetchRequests {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-clash/v1/lft/team/fetch-requests".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-clash/v1/lft/team/fetch-requests".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_clash_v_1_lft_team_fetch_requests(body: i64) -> PostLolClashV1LftTeamFetchRequests {
-    PostLolClashV1LftTeamFetchRequests {
-        body
-    }
+    PostLolClashV1LftTeamFetchRequests{body}
 }
 
 
 pub struct PostLolClashV1LftTeamFind {
-
     pub body: LolClashFindTeams,
 }
 
 impl IsApiRequest for PostLolClashV1LftTeamFind {
     const METHOD: Method = Method::POST;
     type ReturnType = Vec<OpenedTeamDto>;
-
-    fn get_url(&self) -> String {
-        "/lol-clash/v1/lft/team/find".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-clash/v1/lft/team/find".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_clash_v_1_lft_team_find(body: LolClashFindTeams) -> PostLolClashV1LftTeamFind {
-    PostLolClashV1LftTeamFind {
-        body
-    }
+    PostLolClashV1LftTeamFind{body}
 }
 
 
-pub struct PostLolClashV1NotificationsAcknowledge {
-
-}
+pub struct PostLolClashV1NotificationsAcknowledge {}
 
 impl IsApiRequest for PostLolClashV1NotificationsAcknowledge {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-clash/v1/notifications/acknowledge".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-clash/v1/notifications/acknowledge".to_string()}
 }
 
 pub fn post_lol_clash_v_1_notifications_acknowledge() -> PostLolClashV1NotificationsAcknowledge {
-    PostLolClashV1NotificationsAcknowledge {
-        
-    }
+    PostLolClashV1NotificationsAcknowledge{}
 }
 
 
-pub struct PostLolClashV1Refresh {
-
-}
+pub struct PostLolClashV1Refresh {}
 
 impl IsApiRequest for PostLolClashV1Refresh {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-clash/v1/refresh".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-clash/v1/refresh".to_string()}
 }
 
 pub fn post_lol_clash_v_1_refresh() -> PostLolClashV1Refresh {
-    PostLolClashV1Refresh {
-        
-    }
+    PostLolClashV1Refresh{}
 }
 
 
 pub struct PostLolClashV1RosterByRosterIdAccept {
-
     pub roster_id: String,
 }
 
 impl IsApiRequest for PostLolClashV1RosterByRosterIdAccept {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-clash/v1/roster/{}/accept", self.roster_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-clash/v1/roster/{}/accept", self.roster_id)}
 }
 
 pub fn post_lol_clash_v_1_roster_by_roster_id_accept(roster_id: String) -> PostLolClashV1RosterByRosterIdAccept {
-    PostLolClashV1RosterByRosterIdAccept {
-        roster_id
-    }
+    PostLolClashV1RosterByRosterIdAccept{roster_id}
 }
 
 
 pub struct PostLolClashV1RosterByRosterIdCancelWithdraw {
-
     pub roster_id: String,
 }
 
 impl IsApiRequest for PostLolClashV1RosterByRosterIdCancelWithdraw {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-clash/v1/roster/{}/cancel-withdraw", self.roster_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-clash/v1/roster/{}/cancel-withdraw", self.roster_id)}
 }
 
 pub fn post_lol_clash_v_1_roster_by_roster_id_cancel_withdraw(roster_id: String) -> PostLolClashV1RosterByRosterIdCancelWithdraw {
-    PostLolClashV1RosterByRosterIdCancelWithdraw {
-        roster_id
-    }
+    PostLolClashV1RosterByRosterIdCancelWithdraw{roster_id}
 }
 
 
 pub struct PostLolClashV1RosterByRosterIdChangeAllDetails {
-
     pub roster_id: String,
     pub body: LolClashRosterDetails,
 }
@@ -1672,29 +851,18 @@ pub struct PostLolClashV1RosterByRosterIdChangeAllDetails {
 impl IsApiRequest for PostLolClashV1RosterByRosterIdChangeAllDetails {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-clash/v1/roster/{}/change-all-details", self.roster_id)
-    }
-
+    fn get_url(&self) -> String {format!("/lol-clash/v1/roster/{}/change-all-details", self.roster_id)}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_clash_v_1_roster_by_roster_id_change_all_details(roster_id: String, body: LolClashRosterDetails) -> PostLolClashV1RosterByRosterIdChangeAllDetails {
-    PostLolClashV1RosterByRosterIdChangeAllDetails {
-        roster_id, body
-    }
+    PostLolClashV1RosterByRosterIdChangeAllDetails{roster_id, body}
 }
 
 
 pub struct PostLolClashV1RosterByRosterIdChangeIcon {
-
     pub roster_id: String,
     pub body: LolClashChangeIconRequest,
 }
@@ -1702,29 +870,18 @@ pub struct PostLolClashV1RosterByRosterIdChangeIcon {
 impl IsApiRequest for PostLolClashV1RosterByRosterIdChangeIcon {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-clash/v1/roster/{}/change-icon", self.roster_id)
-    }
-
+    fn get_url(&self) -> String {format!("/lol-clash/v1/roster/{}/change-icon", self.roster_id)}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_clash_v_1_roster_by_roster_id_change_icon(roster_id: String, body: LolClashChangeIconRequest) -> PostLolClashV1RosterByRosterIdChangeIcon {
-    PostLolClashV1RosterByRosterIdChangeIcon {
-        roster_id, body
-    }
+    PostLolClashV1RosterByRosterIdChangeIcon{roster_id, body}
 }
 
 
 pub struct PostLolClashV1RosterByRosterIdChangeName {
-
     pub roster_id: String,
     pub body: LolClashChangeNameRequest,
 }
@@ -1732,29 +889,18 @@ pub struct PostLolClashV1RosterByRosterIdChangeName {
 impl IsApiRequest for PostLolClashV1RosterByRosterIdChangeName {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-clash/v1/roster/{}/change-name", self.roster_id)
-    }
-
+    fn get_url(&self) -> String {format!("/lol-clash/v1/roster/{}/change-name", self.roster_id)}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_clash_v_1_roster_by_roster_id_change_name(roster_id: String, body: LolClashChangeNameRequest) -> PostLolClashV1RosterByRosterIdChangeName {
-    PostLolClashV1RosterByRosterIdChangeName {
-        roster_id, body
-    }
+    PostLolClashV1RosterByRosterIdChangeName{roster_id, body}
 }
 
 
 pub struct PostLolClashV1RosterByRosterIdChangeShortName {
-
     pub roster_id: String,
     pub body: LolClashChangeNameRequest,
 }
@@ -1762,87 +908,48 @@ pub struct PostLolClashV1RosterByRosterIdChangeShortName {
 impl IsApiRequest for PostLolClashV1RosterByRosterIdChangeShortName {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-clash/v1/roster/{}/change-short-name", self.roster_id)
-    }
-
+    fn get_url(&self) -> String {format!("/lol-clash/v1/roster/{}/change-short-name", self.roster_id)}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_clash_v_1_roster_by_roster_id_change_short_name(roster_id: String, body: LolClashChangeNameRequest) -> PostLolClashV1RosterByRosterIdChangeShortName {
-    PostLolClashV1RosterByRosterIdChangeShortName {
-        roster_id, body
-    }
+    PostLolClashV1RosterByRosterIdChangeShortName{roster_id, body}
 }
 
 
 pub struct PostLolClashV1RosterByRosterIdDecline {
-
     pub roster_id: String,
 }
 
 impl IsApiRequest for PostLolClashV1RosterByRosterIdDecline {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-clash/v1/roster/{}/decline", self.roster_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-clash/v1/roster/{}/decline", self.roster_id)}
 }
 
 pub fn post_lol_clash_v_1_roster_by_roster_id_decline(roster_id: String) -> PostLolClashV1RosterByRosterIdDecline {
-    PostLolClashV1RosterByRosterIdDecline {
-        roster_id
-    }
+    PostLolClashV1RosterByRosterIdDecline{roster_id}
 }
 
 
 pub struct PostLolClashV1RosterByRosterIdDisband {
-
     pub roster_id: String,
 }
 
 impl IsApiRequest for PostLolClashV1RosterByRosterIdDisband {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-clash/v1/roster/{}/disband", self.roster_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-clash/v1/roster/{}/disband", self.roster_id)}
 }
 
 pub fn post_lol_clash_v_1_roster_by_roster_id_disband(roster_id: String) -> PostLolClashV1RosterByRosterIdDisband {
-    PostLolClashV1RosterByRosterIdDisband {
-        roster_id
-    }
+    PostLolClashV1RosterByRosterIdDisband{roster_id}
 }
 
 
 pub struct PostLolClashV1RosterByRosterIdInvite {
-
     pub roster_id: String,
     pub body: Vec<u64>,
 }
@@ -1850,29 +957,18 @@ pub struct PostLolClashV1RosterByRosterIdInvite {
 impl IsApiRequest for PostLolClashV1RosterByRosterIdInvite {
     const METHOD: Method = Method::POST;
     type ReturnType = Vec<LolClashClientFailedInvite>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-clash/v1/roster/{}/invite", self.roster_id)
-    }
-
+    fn get_url(&self) -> String {format!("/lol-clash/v1/roster/{}/invite", self.roster_id)}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_clash_v_1_roster_by_roster_id_invite(roster_id: String, body: Vec<u64>) -> PostLolClashV1RosterByRosterIdInvite {
-    PostLolClashV1RosterByRosterIdInvite {
-        roster_id, body
-    }
+    PostLolClashV1RosterByRosterIdInvite{roster_id, body}
 }
 
 
 pub struct PostLolClashV1RosterByRosterIdKick {
-
     pub roster_id: String,
     pub body: LolClashKickRequest,
 }
@@ -1880,87 +976,48 @@ pub struct PostLolClashV1RosterByRosterIdKick {
 impl IsApiRequest for PostLolClashV1RosterByRosterIdKick {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-clash/v1/roster/{}/kick", self.roster_id)
-    }
-
+    fn get_url(&self) -> String {format!("/lol-clash/v1/roster/{}/kick", self.roster_id)}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_clash_v_1_roster_by_roster_id_kick(roster_id: String, body: LolClashKickRequest) -> PostLolClashV1RosterByRosterIdKick {
-    PostLolClashV1RosterByRosterIdKick {
-        roster_id, body
-    }
+    PostLolClashV1RosterByRosterIdKick{roster_id, body}
 }
 
 
 pub struct PostLolClashV1RosterByRosterIdLeave {
-
     pub roster_id: String,
 }
 
 impl IsApiRequest for PostLolClashV1RosterByRosterIdLeave {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-clash/v1/roster/{}/leave", self.roster_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-clash/v1/roster/{}/leave", self.roster_id)}
 }
 
 pub fn post_lol_clash_v_1_roster_by_roster_id_leave(roster_id: String) -> PostLolClashV1RosterByRosterIdLeave {
-    PostLolClashV1RosterByRosterIdLeave {
-        roster_id
-    }
+    PostLolClashV1RosterByRosterIdLeave{roster_id}
 }
 
 
 pub struct PostLolClashV1RosterByRosterIdLockin {
-
     pub roster_id: String,
 }
 
 impl IsApiRequest for PostLolClashV1RosterByRosterIdLockin {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-clash/v1/roster/{}/lockin", self.roster_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-clash/v1/roster/{}/lockin", self.roster_id)}
 }
 
 pub fn post_lol_clash_v_1_roster_by_roster_id_lockin(roster_id: String) -> PostLolClashV1RosterByRosterIdLockin {
-    PostLolClashV1RosterByRosterIdLockin {
-        roster_id
-    }
+    PostLolClashV1RosterByRosterIdLockin{roster_id}
 }
 
 
 pub struct PostLolClashV1RosterByRosterIdSetPosition {
-
     pub roster_id: String,
     pub body: LolClashSetPositionRequest,
 }
@@ -1968,29 +1025,18 @@ pub struct PostLolClashV1RosterByRosterIdSetPosition {
 impl IsApiRequest for PostLolClashV1RosterByRosterIdSetPosition {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-clash/v1/roster/{}/set-position", self.roster_id)
-    }
-
+    fn get_url(&self) -> String {format!("/lol-clash/v1/roster/{}/set-position", self.roster_id)}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_clash_v_1_roster_by_roster_id_set_position(roster_id: String, body: LolClashSetPositionRequest) -> PostLolClashV1RosterByRosterIdSetPosition {
-    PostLolClashV1RosterByRosterIdSetPosition {
-        roster_id, body
-    }
+    PostLolClashV1RosterByRosterIdSetPosition{roster_id, body}
 }
 
 
 pub struct PostLolClashV1RosterByRosterIdSetTicket {
-
     pub roster_id: String,
     pub body: LolClashSetTicketRequest,
 }
@@ -1998,29 +1044,18 @@ pub struct PostLolClashV1RosterByRosterIdSetTicket {
 impl IsApiRequest for PostLolClashV1RosterByRosterIdSetTicket {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-clash/v1/roster/{}/set-ticket", self.roster_id)
-    }
-
+    fn get_url(&self) -> String {format!("/lol-clash/v1/roster/{}/set-ticket", self.roster_id)}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_clash_v_1_roster_by_roster_id_set_ticket(roster_id: String, body: LolClashSetTicketRequest) -> PostLolClashV1RosterByRosterIdSetTicket {
-    PostLolClashV1RosterByRosterIdSetTicket {
-        roster_id, body
-    }
+    PostLolClashV1RosterByRosterIdSetTicket{roster_id, body}
 }
 
 
 pub struct PostLolClashV1RosterByRosterIdSuggest {
-
     pub roster_id: String,
     pub body: Vec<u64>,
 }
@@ -2028,29 +1063,18 @@ pub struct PostLolClashV1RosterByRosterIdSuggest {
 impl IsApiRequest for PostLolClashV1RosterByRosterIdSuggest {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-clash/v1/roster/{}/suggest", self.roster_id)
-    }
-
+    fn get_url(&self) -> String {format!("/lol-clash/v1/roster/{}/suggest", self.roster_id)}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_clash_v_1_roster_by_roster_id_suggest(roster_id: String, body: Vec<u64>) -> PostLolClashV1RosterByRosterIdSuggest {
-    PostLolClashV1RosterByRosterIdSuggest {
-        roster_id, body
-    }
+    PostLolClashV1RosterByRosterIdSuggest{roster_id, body}
 }
 
 
 pub struct PostLolClashV1RosterByRosterIdSuggestBySummonerIdAccept {
-
     pub roster_id: String,
     pub summoner_id: u64,
 }
@@ -2058,29 +1082,15 @@ pub struct PostLolClashV1RosterByRosterIdSuggestBySummonerIdAccept {
 impl IsApiRequest for PostLolClashV1RosterByRosterIdSuggestBySummonerIdAccept {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-clash/v1/roster/{}/suggest/{}/accept", self.roster_id, self.summoner_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-clash/v1/roster/{}/suggest/{}/accept", self.roster_id, self.summoner_id)}
 }
 
 pub fn post_lol_clash_v_1_roster_by_roster_id_suggest_by_summoner_id_accept(roster_id: String, summoner_id: u64) -> PostLolClashV1RosterByRosterIdSuggestBySummonerIdAccept {
-    PostLolClashV1RosterByRosterIdSuggestBySummonerIdAccept {
-        roster_id, summoner_id
-    }
+    PostLolClashV1RosterByRosterIdSuggestBySummonerIdAccept{roster_id, summoner_id}
 }
 
 
 pub struct PostLolClashV1RosterByRosterIdSuggestBySummonerIdDecline {
-
     pub roster_id: String,
     pub summoner_id: u64,
 }
@@ -2088,29 +1098,15 @@ pub struct PostLolClashV1RosterByRosterIdSuggestBySummonerIdDecline {
 impl IsApiRequest for PostLolClashV1RosterByRosterIdSuggestBySummonerIdDecline {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-clash/v1/roster/{}/suggest/{}/decline", self.roster_id, self.summoner_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-clash/v1/roster/{}/suggest/{}/decline", self.roster_id, self.summoner_id)}
 }
 
 pub fn post_lol_clash_v_1_roster_by_roster_id_suggest_by_summoner_id_decline(roster_id: String, summoner_id: u64) -> PostLolClashV1RosterByRosterIdSuggestBySummonerIdDecline {
-    PostLolClashV1RosterByRosterIdSuggestBySummonerIdDecline {
-        roster_id, summoner_id
-    }
+    PostLolClashV1RosterByRosterIdSuggestBySummonerIdDecline{roster_id, summoner_id}
 }
 
 
 pub struct PostLolClashV1RosterByRosterIdSuggestBySummonerIdRevoke {
-
     pub roster_id: String,
     pub summoner_id: u64,
 }
@@ -2118,29 +1114,15 @@ pub struct PostLolClashV1RosterByRosterIdSuggestBySummonerIdRevoke {
 impl IsApiRequest for PostLolClashV1RosterByRosterIdSuggestBySummonerIdRevoke {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-clash/v1/roster/{}/suggest/{}/revoke", self.roster_id, self.summoner_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-clash/v1/roster/{}/suggest/{}/revoke", self.roster_id, self.summoner_id)}
 }
 
 pub fn post_lol_clash_v_1_roster_by_roster_id_suggest_by_summoner_id_revoke(roster_id: String, summoner_id: u64) -> PostLolClashV1RosterByRosterIdSuggestBySummonerIdRevoke {
-    PostLolClashV1RosterByRosterIdSuggestBySummonerIdRevoke {
-        roster_id, summoner_id
-    }
+    PostLolClashV1RosterByRosterIdSuggestBySummonerIdRevoke{roster_id, summoner_id}
 }
 
 
 pub struct PostLolClashV1RosterByRosterIdTicketOfferBySummonerIdAccept {
-
     pub roster_id: String,
     pub summoner_id: u64,
 }
@@ -2148,29 +1130,15 @@ pub struct PostLolClashV1RosterByRosterIdTicketOfferBySummonerIdAccept {
 impl IsApiRequest for PostLolClashV1RosterByRosterIdTicketOfferBySummonerIdAccept {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-clash/v1/roster/{}/ticket-offer/{}/accept", self.roster_id, self.summoner_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-clash/v1/roster/{}/ticket-offer/{}/accept", self.roster_id, self.summoner_id)}
 }
 
 pub fn post_lol_clash_v_1_roster_by_roster_id_ticket_offer_by_summoner_id_accept(roster_id: String, summoner_id: u64) -> PostLolClashV1RosterByRosterIdTicketOfferBySummonerIdAccept {
-    PostLolClashV1RosterByRosterIdTicketOfferBySummonerIdAccept {
-        roster_id, summoner_id
-    }
+    PostLolClashV1RosterByRosterIdTicketOfferBySummonerIdAccept{roster_id, summoner_id}
 }
 
 
 pub struct PostLolClashV1RosterByRosterIdTicketOfferBySummonerIdDecline {
-
     pub roster_id: String,
     pub summoner_id: u64,
 }
@@ -2178,29 +1146,15 @@ pub struct PostLolClashV1RosterByRosterIdTicketOfferBySummonerIdDecline {
 impl IsApiRequest for PostLolClashV1RosterByRosterIdTicketOfferBySummonerIdDecline {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-clash/v1/roster/{}/ticket-offer/{}/decline", self.roster_id, self.summoner_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-clash/v1/roster/{}/ticket-offer/{}/decline", self.roster_id, self.summoner_id)}
 }
 
 pub fn post_lol_clash_v_1_roster_by_roster_id_ticket_offer_by_summoner_id_decline(roster_id: String, summoner_id: u64) -> PostLolClashV1RosterByRosterIdTicketOfferBySummonerIdDecline {
-    PostLolClashV1RosterByRosterIdTicketOfferBySummonerIdDecline {
-        roster_id, summoner_id
-    }
+    PostLolClashV1RosterByRosterIdTicketOfferBySummonerIdDecline{roster_id, summoner_id}
 }
 
 
 pub struct PostLolClashV1RosterByRosterIdTicketOfferBySummonerIdOffer {
-
     pub roster_id: String,
     pub summoner_id: u64,
     pub body: LolClashOfferTicketRequest,
@@ -2209,29 +1163,18 @@ pub struct PostLolClashV1RosterByRosterIdTicketOfferBySummonerIdOffer {
 impl IsApiRequest for PostLolClashV1RosterByRosterIdTicketOfferBySummonerIdOffer {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-clash/v1/roster/{}/ticket-offer/{}/offer", self.roster_id, self.summoner_id)
-    }
-
+    fn get_url(&self) -> String {format!("/lol-clash/v1/roster/{}/ticket-offer/{}/offer", self.roster_id, self.summoner_id)}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_clash_v_1_roster_by_roster_id_ticket_offer_by_summoner_id_offer(roster_id: String, summoner_id: u64, body: LolClashOfferTicketRequest) -> PostLolClashV1RosterByRosterIdTicketOfferBySummonerIdOffer {
-    PostLolClashV1RosterByRosterIdTicketOfferBySummonerIdOffer {
-        roster_id, summoner_id, body
-    }
+    PostLolClashV1RosterByRosterIdTicketOfferBySummonerIdOffer{roster_id, summoner_id, body}
 }
 
 
 pub struct PostLolClashV1RosterByRosterIdTicketOfferBySummonerIdRevoke {
-
     pub roster_id: String,
     pub summoner_id: u64,
 }
@@ -2239,29 +1182,15 @@ pub struct PostLolClashV1RosterByRosterIdTicketOfferBySummonerIdRevoke {
 impl IsApiRequest for PostLolClashV1RosterByRosterIdTicketOfferBySummonerIdRevoke {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-clash/v1/roster/{}/ticket-offer/{}/revoke", self.roster_id, self.summoner_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-clash/v1/roster/{}/ticket-offer/{}/revoke", self.roster_id, self.summoner_id)}
 }
 
 pub fn post_lol_clash_v_1_roster_by_roster_id_ticket_offer_by_summoner_id_revoke(roster_id: String, summoner_id: u64) -> PostLolClashV1RosterByRosterIdTicketOfferBySummonerIdRevoke {
-    PostLolClashV1RosterByRosterIdTicketOfferBySummonerIdRevoke {
-        roster_id, summoner_id
-    }
+    PostLolClashV1RosterByRosterIdTicketOfferBySummonerIdRevoke{roster_id, summoner_id}
 }
 
 
 pub struct PostLolClashV1RosterByRosterIdTransferCaptain {
-
     pub roster_id: String,
     pub body: u64,
 }
@@ -2269,174 +1198,93 @@ pub struct PostLolClashV1RosterByRosterIdTransferCaptain {
 impl IsApiRequest for PostLolClashV1RosterByRosterIdTransferCaptain {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-clash/v1/roster/{}/transfer-captain", self.roster_id)
-    }
-
+    fn get_url(&self) -> String {format!("/lol-clash/v1/roster/{}/transfer-captain", self.roster_id)}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_clash_v_1_roster_by_roster_id_transfer_captain(roster_id: String, body: u64) -> PostLolClashV1RosterByRosterIdTransferCaptain {
-    PostLolClashV1RosterByRosterIdTransferCaptain {
-        roster_id, body
-    }
+    PostLolClashV1RosterByRosterIdTransferCaptain{roster_id, body}
 }
 
 
 pub struct PostLolClashV1RosterByRosterIdUnlockin {
-
     pub roster_id: String,
 }
 
 impl IsApiRequest for PostLolClashV1RosterByRosterIdUnlockin {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-clash/v1/roster/{}/unlockin", self.roster_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-clash/v1/roster/{}/unlockin", self.roster_id)}
 }
 
 pub fn post_lol_clash_v_1_roster_by_roster_id_unlockin(roster_id: String) -> PostLolClashV1RosterByRosterIdUnlockin {
-    PostLolClashV1RosterByRosterIdUnlockin {
-        roster_id
-    }
+    PostLolClashV1RosterByRosterIdUnlockin{roster_id}
 }
 
 
 pub struct PostLolClashV1RosterByRosterIdUnwithdraw {
-
     pub roster_id: String,
 }
 
 impl IsApiRequest for PostLolClashV1RosterByRosterIdUnwithdraw {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-clash/v1/roster/{}/unwithdraw", self.roster_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-clash/v1/roster/{}/unwithdraw", self.roster_id)}
 }
 
 pub fn post_lol_clash_v_1_roster_by_roster_id_unwithdraw(roster_id: String) -> PostLolClashV1RosterByRosterIdUnwithdraw {
-    PostLolClashV1RosterByRosterIdUnwithdraw {
-        roster_id
-    }
+    PostLolClashV1RosterByRosterIdUnwithdraw{roster_id}
 }
 
 
 pub struct PostLolClashV1RosterByRosterIdUpdateLogos {
-
     pub roster_id: String,
 }
 
 impl IsApiRequest for PostLolClashV1RosterByRosterIdUpdateLogos {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-clash/v1/roster/{}/update-logos", self.roster_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-clash/v1/roster/{}/update-logos", self.roster_id)}
 }
 
 pub fn post_lol_clash_v_1_roster_by_roster_id_update_logos(roster_id: String) -> PostLolClashV1RosterByRosterIdUpdateLogos {
-    PostLolClashV1RosterByRosterIdUpdateLogos {
-        roster_id
-    }
+    PostLolClashV1RosterByRosterIdUpdateLogos{roster_id}
 }
 
 
 pub struct PostLolClashV1RosterByRosterIdWithdraw {
-
     pub roster_id: String,
 }
 
 impl IsApiRequest for PostLolClashV1RosterByRosterIdWithdraw {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-clash/v1/roster/{}/withdraw", self.roster_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-clash/v1/roster/{}/withdraw", self.roster_id)}
 }
 
 pub fn post_lol_clash_v_1_roster_by_roster_id_withdraw(roster_id: String) -> PostLolClashV1RosterByRosterIdWithdraw {
-    PostLolClashV1RosterByRosterIdWithdraw {
-        roster_id
-    }
+    PostLolClashV1RosterByRosterIdWithdraw{roster_id}
 }
 
 
 pub struct PostLolClashV1SimpleStateFlagsByIdAcknowledge {
-
     pub id: String,
 }
 
 impl IsApiRequest for PostLolClashV1SimpleStateFlagsByIdAcknowledge {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-clash/v1/simple-state-flags/{}/acknowledge", self.id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-clash/v1/simple-state-flags/{}/acknowledge", self.id)}
 }
 
 pub fn post_lol_clash_v_1_simple_state_flags_by_id_acknowledge(id: String) -> PostLolClashV1SimpleStateFlagsByIdAcknowledge {
-    PostLolClashV1SimpleStateFlagsByIdAcknowledge {
-        id
-    }
+    PostLolClashV1SimpleStateFlagsByIdAcknowledge{id}
 }
 
 
 pub struct PostLolClashV1TournamentByTournamentIdCreateRoster {
-
     pub tournament_id: i64,
     pub body: LolClashRosterDetails,
 }
@@ -2444,109 +1292,55 @@ pub struct PostLolClashV1TournamentByTournamentIdCreateRoster {
 impl IsApiRequest for PostLolClashV1TournamentByTournamentIdCreateRoster {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-clash/v1/tournament/{}/create-roster", self.tournament_id)
-    }
-
+    fn get_url(&self) -> String {format!("/lol-clash/v1/tournament/{}/create-roster", self.tournament_id)}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_clash_v_1_tournament_by_tournament_id_create_roster(tournament_id: i64, body: LolClashRosterDetails) -> PostLolClashV1TournamentByTournamentIdCreateRoster {
-    PostLolClashV1TournamentByTournamentIdCreateRoster {
-        tournament_id, body
-    }
+    PostLolClashV1TournamentByTournamentIdCreateRoster{tournament_id, body}
 }
 
 
-pub struct PostLolClashV1UpdateLogos {
-
-}
+pub struct PostLolClashV1UpdateLogos {}
 
 impl IsApiRequest for PostLolClashV1UpdateLogos {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-clash/v1/update-logos".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-clash/v1/update-logos".to_string()}
 }
 
 pub fn post_lol_clash_v_1_update_logos() -> PostLolClashV1UpdateLogos {
-    PostLolClashV1UpdateLogos {
-        
-    }
+    PostLolClashV1UpdateLogos{}
 }
 
 
-pub struct PostLolClashV1Voice {
-
-}
+pub struct PostLolClashV1Voice {}
 
 impl IsApiRequest for PostLolClashV1Voice {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-clash/v1/voice".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-clash/v1/voice".to_string()}
 }
 
 pub fn post_lol_clash_v_1_voice() -> PostLolClashV1Voice {
-    PostLolClashV1Voice {
-        
-    }
+    PostLolClashV1Voice{}
 }
 
 
 pub struct PostLolClashV1VoiceDelayByDelaySeconds {
-
     pub delay_seconds: f64,
 }
 
 impl IsApiRequest for PostLolClashV1VoiceDelayByDelaySeconds {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-clash/v1/voice-delay/{}", self.delay_seconds)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-clash/v1/voice-delay/{}", self.delay_seconds)}
 }
 
 pub fn post_lol_clash_v_1_voice_delay_by_delay_seconds(delay_seconds: f64) -> PostLolClashV1VoiceDelayByDelaySeconds {
-    PostLolClashV1VoiceDelayByDelaySeconds {
-        delay_seconds
-    }
+    PostLolClashV1VoiceDelayByDelaySeconds{delay_seconds}
 }
 
 

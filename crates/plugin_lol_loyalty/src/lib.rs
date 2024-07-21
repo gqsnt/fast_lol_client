@@ -9,60 +9,34 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct GetLolLoyaltyV1StatusNotification {
-
-}
+pub struct GetLolLoyaltyV1StatusNotification {}
 
 impl IsApiRequest for GetLolLoyaltyV1StatusNotification {
     const METHOD: Method = Method::GET;
     type ReturnType = LolLoyaltyLoyaltyStatusNotification;
-
-    fn get_url(&self) -> String {
-        "/lol-loyalty/v1/status-notification".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-loyalty/v1/status-notification".to_string()}
 }
 
 pub fn get_lol_loyalty_v_1_status_notification() -> GetLolLoyaltyV1StatusNotification {
-    GetLolLoyaltyV1StatusNotification {
-        
-    }
+    GetLolLoyaltyV1StatusNotification{}
 }
 
 
 pub struct PostLolLoyaltyV1UpdateLoyaltyInventory {
-
     pub body: LolLoyaltyLoyaltyRewards,
 }
 
 impl IsApiRequest for PostLolLoyaltyV1UpdateLoyaltyInventory {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-loyalty/v1/updateLoyaltyInventory".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-loyalty/v1/updateLoyaltyInventory".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_loyalty_v_1_update_loyalty_inventory(body: LolLoyaltyLoyaltyRewards) -> PostLolLoyaltyV1UpdateLoyaltyInventory {
-    PostLolLoyaltyV1UpdateLoyaltyInventory {
-        body
-    }
+    PostLolLoyaltyV1UpdateLoyaltyInventory{body}
 }
 
 

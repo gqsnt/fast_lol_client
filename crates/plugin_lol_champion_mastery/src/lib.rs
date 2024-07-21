@@ -10,205 +10,101 @@ mod additional;
 // ENDPOINTS
 
 pub struct DeleteLolChampionMasteryV1RewardGrantsById {
-
     pub id: String,
 }
 
 impl IsApiRequest for DeleteLolChampionMasteryV1RewardGrantsById {
     const METHOD: Method = Method::DELETE;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-champion-mastery/v1/reward-grants/{}", self.id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-champion-mastery/v1/reward-grants/{}", self.id)}
 }
 
 pub fn delete_lol_champion_mastery_v_1_reward_grants_by_id(id: String) -> DeleteLolChampionMasteryV1RewardGrantsById {
-    DeleteLolChampionMasteryV1RewardGrantsById {
-        id
-    }
+    DeleteLolChampionMasteryV1RewardGrantsById{id}
 }
 
 
 pub struct GetLolChampionMasteryV1ByPuuidChampionMastery {
-
     pub puuid: String,
 }
 
 impl IsApiRequest for GetLolChampionMasteryV1ByPuuidChampionMastery {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolChampionMasteryChampionMastery>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-champion-mastery/v1/{}/champion-mastery", self.puuid)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-champion-mastery/v1/{}/champion-mastery", self.puuid)}
 }
 
 pub fn get_lol_champion_mastery_v_1_by_puuid_champion_mastery(puuid: String) -> GetLolChampionMasteryV1ByPuuidChampionMastery {
-    GetLolChampionMasteryV1ByPuuidChampionMastery {
-        puuid
-    }
+    GetLolChampionMasteryV1ByPuuidChampionMastery{puuid}
 }
 
 
-pub struct GetLolChampionMasteryV1LocalPlayerChampionMastery {
-
-}
+pub struct GetLolChampionMasteryV1LocalPlayerChampionMastery {}
 
 impl IsApiRequest for GetLolChampionMasteryV1LocalPlayerChampionMastery {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolChampionMasteryChampionMastery>;
-
-    fn get_url(&self) -> String {
-        "/lol-champion-mastery/v1/local-player/champion-mastery".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-champion-mastery/v1/local-player/champion-mastery".to_string()}
 }
 
 pub fn get_lol_champion_mastery_v_1_local_player_champion_mastery() -> GetLolChampionMasteryV1LocalPlayerChampionMastery {
-    GetLolChampionMasteryV1LocalPlayerChampionMastery {
-        
-    }
+    GetLolChampionMasteryV1LocalPlayerChampionMastery{}
 }
 
 
-pub struct GetLolChampionMasteryV1LocalPlayerChampionMasteryScore {
-
-}
+pub struct GetLolChampionMasteryV1LocalPlayerChampionMasteryScore {}
 
 impl IsApiRequest for GetLolChampionMasteryV1LocalPlayerChampionMasteryScore {
     const METHOD: Method = Method::GET;
     type ReturnType = u64;
-
-    fn get_url(&self) -> String {
-        "/lol-champion-mastery/v1/local-player/champion-mastery-score".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-champion-mastery/v1/local-player/champion-mastery-score".to_string()}
 }
 
 pub fn get_lol_champion_mastery_v_1_local_player_champion_mastery_score() -> GetLolChampionMasteryV1LocalPlayerChampionMasteryScore {
-    GetLolChampionMasteryV1LocalPlayerChampionMasteryScore {
-        
-    }
+    GetLolChampionMasteryV1LocalPlayerChampionMasteryScore{}
 }
 
 
-pub struct GetLolChampionMasteryV1LocalPlayerChampionMasterySetsAndRewards {
-
-}
+pub struct GetLolChampionMasteryV1LocalPlayerChampionMasterySetsAndRewards {}
 
 impl IsApiRequest for GetLolChampionMasteryV1LocalPlayerChampionMasterySetsAndRewards {
     const METHOD: Method = Method::GET;
     type ReturnType = LolChampionMasteryUiAllChampionMasteryWithSets;
-
-    fn get_url(&self) -> String {
-        "/lol-champion-mastery/v1/local-player/champion-mastery-sets-and-rewards".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-champion-mastery/v1/local-player/champion-mastery-sets-and-rewards".to_string()}
 }
 
 pub fn get_lol_champion_mastery_v_1_local_player_champion_mastery_sets_and_rewards() -> GetLolChampionMasteryV1LocalPlayerChampionMasterySetsAndRewards {
-    GetLolChampionMasteryV1LocalPlayerChampionMasterySetsAndRewards {
-        
-    }
+    GetLolChampionMasteryV1LocalPlayerChampionMasterySetsAndRewards{}
 }
 
 
-pub struct GetLolChampionMasteryV1Notifications {
-
-}
+pub struct GetLolChampionMasteryV1Notifications {}
 
 impl IsApiRequest for GetLolChampionMasteryV1Notifications {
     const METHOD: Method = Method::GET;
     type ReturnType = LolChampionMasteryChampionMasteryChangeNotification;
-
-    fn get_url(&self) -> String {
-        "/lol-champion-mastery/v1/notifications".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-champion-mastery/v1/notifications".to_string()}
 }
 
 pub fn get_lol_champion_mastery_v_1_notifications() -> GetLolChampionMasteryV1Notifications {
-    GetLolChampionMasteryV1Notifications {
-        
-    }
+    GetLolChampionMasteryV1Notifications{}
 }
 
 
-pub struct GetLolChampionMasteryV1RewardGrants {
-
-}
+pub struct GetLolChampionMasteryV1RewardGrants {}
 
 impl IsApiRequest for GetLolChampionMasteryV1RewardGrants {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolChampionMasteryChampionMasteryRewardGrantNotification>;
-
-    fn get_url(&self) -> String {
-        "/lol-champion-mastery/v1/reward-grants".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-champion-mastery/v1/reward-grants".to_string()}
 }
 
 pub fn get_lol_champion_mastery_v_1_reward_grants() -> GetLolChampionMasteryV1RewardGrants {
-    GetLolChampionMasteryV1RewardGrants {
-        
-    }
+    GetLolChampionMasteryV1RewardGrants{}
 }
 
 
 pub struct PostLolChampionMasteryV1ByPuuidChampionMasteryTop {
-
     pub puuid: String,
     pub body: u32,
 }
@@ -216,81 +112,45 @@ pub struct PostLolChampionMasteryV1ByPuuidChampionMasteryTop {
 impl IsApiRequest for PostLolChampionMasteryV1ByPuuidChampionMasteryTop {
     const METHOD: Method = Method::POST;
     type ReturnType = LolChampionMasteryTopChampionMasteries;
-
-    fn get_url(&self) -> String {
-        format!("/lol-champion-mastery/v1/{}/champion-mastery/top", self.puuid)
-    }
-
+    fn get_url(&self) -> String {format!("/lol-champion-mastery/v1/{}/champion-mastery/top", self.puuid)}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_champion_mastery_v_1_by_puuid_champion_mastery_top(puuid: String, body: u32) -> PostLolChampionMasteryV1ByPuuidChampionMasteryTop {
-    PostLolChampionMasteryV1ByPuuidChampionMasteryTop {
-        puuid, body
-    }
+    PostLolChampionMasteryV1ByPuuidChampionMasteryTop{puuid, body}
 }
 
 
-pub struct PostLolChampionMasteryV1NotificationsAck {
-
-}
+pub struct PostLolChampionMasteryV1NotificationsAck {}
 
 impl IsApiRequest for PostLolChampionMasteryV1NotificationsAck {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-champion-mastery/v1/notifications/ack".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-champion-mastery/v1/notifications/ack".to_string()}
 }
 
 pub fn post_lol_champion_mastery_v_1_notifications_ack() -> PostLolChampionMasteryV1NotificationsAck {
-    PostLolChampionMasteryV1NotificationsAck {
-        
-    }
+    PostLolChampionMasteryV1NotificationsAck{}
 }
 
 
 pub struct PostLolChampionMasteryV1Scouting {
-
     pub body: Vec<String>,
 }
 
 impl IsApiRequest for PostLolChampionMasteryV1Scouting {
     const METHOD: Method = Method::POST;
     type ReturnType = Vec<RankedScoutingDto>;
-
-    fn get_url(&self) -> String {
-        "/lol-champion-mastery/v1/scouting".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-champion-mastery/v1/scouting".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_champion_mastery_v_1_scouting(body: Vec<String>) -> PostLolChampionMasteryV1Scouting {
-    PostLolChampionMasteryV1Scouting {
-        body
-    }
+    PostLolChampionMasteryV1Scouting{body}
 }
 
 

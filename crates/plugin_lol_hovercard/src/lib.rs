@@ -10,60 +10,32 @@ mod additional;
 // ENDPOINTS
 
 pub struct GetLolHovercardV1FriendInfoByPuuid {
-
     pub puuid: String,
 }
 
 impl IsApiRequest for GetLolHovercardV1FriendInfoByPuuid {
     const METHOD: Method = Method::GET;
     type ReturnType = LolHovercardHovercardUserInfo;
-
-    fn get_url(&self) -> String {
-        format!("/lol-hovercard/v1/friend-info/{}", self.puuid)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-hovercard/v1/friend-info/{}", self.puuid)}
 }
 
 pub fn get_lol_hovercard_v_1_friend_info_by_puuid(puuid: String) -> GetLolHovercardV1FriendInfoByPuuid {
-    GetLolHovercardV1FriendInfoByPuuid {
-        puuid
-    }
+    GetLolHovercardV1FriendInfoByPuuid{puuid}
 }
 
 
 pub struct GetLolHovercardV1FriendInfoBySummonerBySummonerId {
-
     pub summoner_id: u64,
 }
 
 impl IsApiRequest for GetLolHovercardV1FriendInfoBySummonerBySummonerId {
     const METHOD: Method = Method::GET;
     type ReturnType = LolHovercardHovercardUserInfo;
-
-    fn get_url(&self) -> String {
-        format!("/lol-hovercard/v1/friend-info-by-summoner/{}", self.summoner_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-hovercard/v1/friend-info-by-summoner/{}", self.summoner_id)}
 }
 
 pub fn get_lol_hovercard_v_1_friend_info_by_summoner_by_summoner_id(summoner_id: u64) -> GetLolHovercardV1FriendInfoBySummonerBySummonerId {
-    GetLolHovercardV1FriendInfoBySummonerBySummonerId {
-        summoner_id
-    }
+    GetLolHovercardV1FriendInfoBySummonerBySummonerId{summoner_id}
 }
 
 

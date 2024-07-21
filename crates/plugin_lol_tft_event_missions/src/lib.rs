@@ -9,177 +9,105 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct GetLolEventMissionV1EventMission {
-
-}
+pub struct GetLolEventMissionV1EventMission {}
 
 impl IsApiRequest for GetLolEventMissionV1EventMission {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolTftEventTftEventMissionChain>;
-
-    fn get_url(&self) -> String {
-        "/lol-event-mission/v1/event-mission".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-event-mission/v1/event-mission".to_string()}
 }
 
 pub fn get_lol_event_mission_v_1_event_mission() -> GetLolEventMissionV1EventMission {
-    GetLolEventMissionV1EventMission {
-        
-    }
+    GetLolEventMissionV1EventMission{}
 }
 
 
-pub struct GetLolMissionsV1Data {
-
-}
+pub struct GetLolMissionsV1Data {}
 
 impl IsApiRequest for GetLolMissionsV1Data {
     const METHOD: Method = Method::GET;
     type ReturnType = PlayerMissionEligibilityData;
-
-    fn get_url(&self) -> String {
-        "/lol-missions/v1/data".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-missions/v1/data".to_string()}
 }
 
 pub fn get_lol_missions_v_1_data() -> GetLolMissionsV1Data {
-    GetLolMissionsV1Data {
-        
-    }
+    GetLolMissionsV1Data{}
 }
 
 
-pub struct GetLolMissionsV1Missions {
-
-}
+pub struct GetLolMissionsV1Missions {}
 
 impl IsApiRequest for GetLolMissionsV1Missions {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<PlayerMissionDto>;
-
-    fn get_url(&self) -> String {
-        "/lol-missions/v1/missions".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-missions/v1/missions".to_string()}
 }
 
 pub fn get_lol_missions_v_1_missions() -> GetLolMissionsV1Missions {
-    GetLolMissionsV1Missions {
-        
-    }
+    GetLolMissionsV1Missions{}
 }
 
 
-pub struct GetLolMissionsV1Series {
-
+pub struct GetLolMissionsV1MissionsSeriesBySeriesName {
+    pub series_name: String,
 }
+
+impl IsApiRequest for GetLolMissionsV1MissionsSeriesBySeriesName {
+    const METHOD: Method = Method::GET;
+    type ReturnType = Vec<PlayerMissionDto>;
+    fn get_url(&self) -> String {format!("/lol-missions/v1/missions/series/{}", self.series_name)}
+}
+
+pub fn get_lol_missions_v_1_missions_series_by_series_name(series_name: String) -> GetLolMissionsV1MissionsSeriesBySeriesName {
+    GetLolMissionsV1MissionsSeriesBySeriesName{series_name}
+}
+
+
+pub struct GetLolMissionsV1Series {}
 
 impl IsApiRequest for GetLolMissionsV1Series {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<SeriesDto>;
-
-    fn get_url(&self) -> String {
-        "/lol-missions/v1/series".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-missions/v1/series".to_string()}
 }
 
 pub fn get_lol_missions_v_1_series() -> GetLolMissionsV1Series {
-    GetLolMissionsV1Series {
-        
-    }
+    GetLolMissionsV1Series{}
 }
 
 
-pub struct PostLolMissionsV1Force {
-
-}
+pub struct PostLolMissionsV1Force {}
 
 impl IsApiRequest for PostLolMissionsV1Force {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-missions/v1/force".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-missions/v1/force".to_string()}
 }
 
 pub fn post_lol_missions_v_1_force() -> PostLolMissionsV1Force {
-    PostLolMissionsV1Force {
-        
-    }
+    PostLolMissionsV1Force{}
 }
 
 
 pub struct PutLolMissionsV1Player {
-
     pub body: IdsDto,
 }
 
 impl IsApiRequest for PutLolMissionsV1Player {
     const METHOD: Method = Method::PUT;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-missions/v1/player".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-missions/v1/player".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn put_lol_missions_v_1_player(body: IdsDto) -> PutLolMissionsV1Player {
-    PutLolMissionsV1Player {
-        body
-    }
+    PutLolMissionsV1Player{body}
 }
 
 
 pub struct PutLolMissionsV1PlayerByMissionId {
-
     pub mission_id: String,
     pub body: LolMissionsRewardGroupsSelection,
 }
@@ -187,53 +115,32 @@ pub struct PutLolMissionsV1PlayerByMissionId {
 impl IsApiRequest for PutLolMissionsV1PlayerByMissionId {
     const METHOD: Method = Method::PUT;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        format!("/lol-missions/v1/player/{}", self.mission_id)
-    }
-
+    fn get_url(&self) -> String {format!("/lol-missions/v1/player/{}", self.mission_id)}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn put_lol_missions_v_1_player_by_mission_id(mission_id: String, body: LolMissionsRewardGroupsSelection) -> PutLolMissionsV1PlayerByMissionId {
-    PutLolMissionsV1PlayerByMissionId {
-        mission_id, body
-    }
+    PutLolMissionsV1PlayerByMissionId{mission_id, body}
 }
 
 
 pub struct PutLolMissionsV2PlayerOpt {
-
     pub body: LolMissionsSeriesOpt,
 }
 
 impl IsApiRequest for PutLolMissionsV2PlayerOpt {
     const METHOD: Method = Method::PUT;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-missions/v2/player/opt".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-missions/v2/player/opt".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn put_lol_missions_v_2_player_opt(body: LolMissionsSeriesOpt) -> PutLolMissionsV2PlayerOpt {
-    PutLolMissionsV2PlayerOpt {
-        body
-    }
+    PutLolMissionsV2PlayerOpt{body}
 }
 
 

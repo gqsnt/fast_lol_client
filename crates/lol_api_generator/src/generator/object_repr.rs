@@ -8,8 +8,7 @@ use crate::generator::utils::{crate_path_from_type_and_name, get_object_name_in_
 pub const OBJECT_TEMPLATE: &str = r#"
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct {object_name} {
-{fields}}
+pub struct {object_name} {{fields}}
 "#;
 
 
@@ -42,9 +41,11 @@ impl Object{
 
 impl fmt::Display for Object {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        let mut attributes = String::new();
-        for field in self.fields.iter() {
-            attributes.push_str(&format!("{}", field.to_string()));
+        let mut attributes = self.fields.iter().map(|field| {
+            field.to_string()
+        }).collect::<Vec<String>>().join("\n");
+        if !attributes.is_empty(){
+            attributes = format!("\n{}\n", attributes);
         }
         OBJECT_TEMPLATE
             .replace("{object_name}", &self.name)

@@ -9,64 +9,33 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct GetLolEsportStreamNotificationsV1LiveStreams {
-
-}
+pub struct GetLolEsportStreamNotificationsV1LiveStreams {}
 
 impl IsApiRequest for GetLolEsportStreamNotificationsV1LiveStreams {
     const METHOD: Method = Method::GET;
     type ReturnType = LolEsportStreamNotificationsESportsLiveStreams;
-
-    fn get_url(&self) -> String {
-        "/lol-esport-stream-notifications/v1/live-streams".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-esport-stream-notifications/v1/live-streams".to_string()}
 }
 
 pub fn get_lol_esport_stream_notifications_v_1_live_streams() -> GetLolEsportStreamNotificationsV1LiveStreams {
-    GetLolEsportStreamNotificationsV1LiveStreams {
-        
-    }
+    GetLolEsportStreamNotificationsV1LiveStreams{}
 }
 
 
-pub struct GetLolEsportStreamNotificationsV1StreamUrl {
-
-}
+pub struct GetLolEsportStreamNotificationsV1StreamUrl {}
 
 impl IsApiRequest for GetLolEsportStreamNotificationsV1StreamUrl {
     const METHOD: Method = Method::GET;
     type ReturnType = String;
-
-    fn get_url(&self) -> String {
-        "/lol-esport-stream-notifications/v1/stream-url".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-esport-stream-notifications/v1/stream-url".to_string()}
 }
 
 pub fn get_lol_esport_stream_notifications_v_1_stream_url() -> GetLolEsportStreamNotificationsV1StreamUrl {
-    GetLolEsportStreamNotificationsV1StreamUrl {
-        
-    }
+    GetLolEsportStreamNotificationsV1StreamUrl{}
 }
 
 
 pub struct PostLolEsportStreamNotificationsV1SendStats {
-
     pub event_type: String,
     pub match_id: String,
 }
@@ -74,15 +43,7 @@ pub struct PostLolEsportStreamNotificationsV1SendStats {
 impl IsApiRequest for PostLolEsportStreamNotificationsV1SendStats {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-esport-stream-notifications/v1/send-stats".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
+    fn get_url(&self) -> String {"/lol-esport-stream-notifications/v1/send-stats".to_string()}
     fn get_query_params(&self) -> Option<Value> {
         Some(json!({
             "eventType" : self.event_type,
@@ -92,9 +53,7 @@ impl IsApiRequest for PostLolEsportStreamNotificationsV1SendStats {
 }
 
 pub fn post_lol_esport_stream_notifications_v_1_send_stats(event_type: String, match_id: String) -> PostLolEsportStreamNotificationsV1SendStats {
-    PostLolEsportStreamNotificationsV1SendStats {
-        event_type, match_id
-    }
+    PostLolEsportStreamNotificationsV1SendStats{event_type, match_id}
 }
 
 

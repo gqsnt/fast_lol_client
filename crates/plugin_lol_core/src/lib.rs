@@ -11,85 +11,49 @@ mod additional;
 
 pub struct LoggingGetEntries {
     // Gets all buffered log entries since the last call.
+
 }
 
 impl IsApiRequest for LoggingGetEntries {
     const METHOD: Method = Method::POST;
     type ReturnType = Vec<LogEvent>;
-
-    fn get_url(&self) -> String {
-        "/LoggingGetEntries".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/LoggingGetEntries".to_string()}
 }
 
 pub fn logging_get_entries() -> LoggingGetEntries {
-    LoggingGetEntries {
-        
-    }
+    LoggingGetEntries{}
 }
 
 
 pub struct LoggingMetrics {
     // Returns all metrics
+
 }
 
 impl IsApiRequest for LoggingMetrics {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/LoggingMetrics".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/LoggingMetrics".to_string()}
 }
 
 pub fn logging_metrics() -> LoggingMetrics {
-    LoggingMetrics {
-        
-    }
+    LoggingMetrics{}
 }
 
 
 pub struct LoggingMetricsMetadata {
     // Returns metadata for all metrics
+
 }
 
 impl IsApiRequest for LoggingMetricsMetadata {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/LoggingMetricsMetadata".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/LoggingMetricsMetadata".to_string()}
 }
 
 pub fn logging_metrics_metadata() -> LoggingMetricsMetadata {
-    LoggingMetricsMetadata {
-        
-    }
+    LoggingMetricsMetadata{}
 }
 
 
@@ -102,15 +66,7 @@ pub struct LoggingStart {
 impl IsApiRequest for LoggingStart {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/LoggingStart".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
+    fn get_url(&self) -> String {"/LoggingStart".to_string()}
     fn get_query_params(&self) -> Option<Value> {
         Some(json!({
             "buffered" : self.buffered,
@@ -120,37 +76,23 @@ impl IsApiRequest for LoggingStart {
 }
 
 pub fn logging_start(buffered: Option<bool>, severity: Option<LogSeverityLevels>) -> LoggingStart {
-    LoggingStart {
-        buffered, severity
-    }
+    LoggingStart{buffered, severity}
 }
 
 
 pub struct LoggingStop {
     // Finalizes the logging system.
+
 }
 
 impl IsApiRequest for LoggingStop {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/LoggingStop".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/LoggingStop".to_string()}
 }
 
 pub fn logging_stop() -> LoggingStop {
-    LoggingStop {
-        
-    }
+    LoggingStop{}
 }
 
 
@@ -165,15 +107,7 @@ pub struct PostRiotclientAddorupdatemetric {
 impl IsApiRequest for PostRiotclientAddorupdatemetric {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/riotclient/addorupdatemetric".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
+    fn get_url(&self) -> String {"/riotclient/addorupdatemetric".to_string()}
     fn get_query_params(&self) -> Option<Value> {
         Some(json!({
             "group" : self.group,
@@ -185,9 +119,7 @@ impl IsApiRequest for PostRiotclientAddorupdatemetric {
 }
 
 pub fn post_riotclient_addorupdatemetric(group: String, object: String, name: String, value: u64) -> PostRiotclientAddorupdatemetric {
-    PostRiotclientAddorupdatemetric {
-        group, object, name, value
-    }
+    PostRiotclientAddorupdatemetric{group, object, name, value}
 }
 
 

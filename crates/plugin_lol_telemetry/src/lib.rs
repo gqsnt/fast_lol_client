@@ -11,29 +11,17 @@ mod additional;
 
 pub struct GetTelemetryV1ApplicationStartTime {
     // Gets the millisecond UNIX timestamp of when the application was started.
+
 }
 
 impl IsApiRequest for GetTelemetryV1ApplicationStartTime {
     const METHOD: Method = Method::GET;
     type ReturnType = u64;
-
-    fn get_url(&self) -> String {
-        "/telemetry/v1/application-start-time".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/telemetry/v1/application-start-time".to_string()}
 }
 
 pub fn get_telemetry_v_1_application_start_time() -> GetTelemetryV1ApplicationStartTime {
-    GetTelemetryV1ApplicationStartTime {
-        
-    }
+    GetTelemetryV1ApplicationStartTime{}
 }
 
 
@@ -45,24 +33,14 @@ pub struct PatchTelemetryV3SlisAddBoolDiagnostic {
 impl IsApiRequest for PatchTelemetryV3SlisAddBoolDiagnostic {
     const METHOD: Method = Method::PATCH;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/telemetry/v3/slis/add-bool-diagnostic".to_string()
-    }
-
+    fn get_url(&self) -> String {"/telemetry/v3/slis/add-bool-diagnostic".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn patch_telemetry_v_3_slis_add_bool_diagnostic(body: SliBoolDiagnostic) -> PatchTelemetryV3SlisAddBoolDiagnostic {
-    PatchTelemetryV3SlisAddBoolDiagnostic {
-        body
-    }
+    PatchTelemetryV3SlisAddBoolDiagnostic{body}
 }
 
 
@@ -74,24 +52,14 @@ pub struct PatchTelemetryV3SlisAddDoubleDiagnostic {
 impl IsApiRequest for PatchTelemetryV3SlisAddDoubleDiagnostic {
     const METHOD: Method = Method::PATCH;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/telemetry/v3/slis/add-double-diagnostic".to_string()
-    }
-
+    fn get_url(&self) -> String {"/telemetry/v3/slis/add-double-diagnostic".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn patch_telemetry_v_3_slis_add_double_diagnostic(body: SliDoubleDiagnostic) -> PatchTelemetryV3SlisAddDoubleDiagnostic {
-    PatchTelemetryV3SlisAddDoubleDiagnostic {
-        body
-    }
+    PatchTelemetryV3SlisAddDoubleDiagnostic{body}
 }
 
 
@@ -103,24 +71,14 @@ pub struct PatchTelemetryV3SlisAddIntDiagnostic {
 impl IsApiRequest for PatchTelemetryV3SlisAddIntDiagnostic {
     const METHOD: Method = Method::PATCH;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/telemetry/v3/slis/add-int-diagnostic".to_string()
-    }
-
+    fn get_url(&self) -> String {"/telemetry/v3/slis/add-int-diagnostic".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn patch_telemetry_v_3_slis_add_int_diagnostic(body: SliIntDiagnostic) -> PatchTelemetryV3SlisAddIntDiagnostic {
-    PatchTelemetryV3SlisAddIntDiagnostic {
-        body
-    }
+    PatchTelemetryV3SlisAddIntDiagnostic{body}
 }
 
 
@@ -132,24 +90,14 @@ pub struct PatchTelemetryV3SlisAddLabel {
 impl IsApiRequest for PatchTelemetryV3SlisAddLabel {
     const METHOD: Method = Method::PATCH;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/telemetry/v3/slis/add-label".to_string()
-    }
-
+    fn get_url(&self) -> String {"/telemetry/v3/slis/add-label".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn patch_telemetry_v_3_slis_add_label(body: SliLabel) -> PatchTelemetryV3SlisAddLabel {
-    PatchTelemetryV3SlisAddLabel {
-        body
-    }
+    PatchTelemetryV3SlisAddLabel{body}
 }
 
 
@@ -161,24 +109,14 @@ pub struct PatchTelemetryV3SlisAddStringDiagnostic {
 impl IsApiRequest for PatchTelemetryV3SlisAddStringDiagnostic {
     const METHOD: Method = Method::PATCH;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/telemetry/v3/slis/add-string-diagnostic".to_string()
-    }
-
+    fn get_url(&self) -> String {"/telemetry/v3/slis/add-string-diagnostic".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn patch_telemetry_v_3_slis_add_string_diagnostic(body: SliStringDiagnostic) -> PatchTelemetryV3SlisAddStringDiagnostic {
-    PatchTelemetryV3SlisAddStringDiagnostic {
-        body
-    }
+    PatchTelemetryV3SlisAddStringDiagnostic{body}
 }
 
 
@@ -191,24 +129,14 @@ pub struct PostTelemetryV1CommonDataByKey {
 impl IsApiRequest for PostTelemetryV1CommonDataByKey {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        format!("/telemetry/v1/common-data/{}", self.key)
-    }
-
+    fn get_url(&self) -> String {format!("/telemetry/v1/common-data/{}", self.key)}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_telemetry_v_1_common_data_by_key(key: String, body: String) -> PostTelemetryV1CommonDataByKey {
-    PostTelemetryV1CommonDataByKey {
-        key, body
-    }
+    PostTelemetryV1CommonDataByKey{key, body}
 }
 
 
@@ -221,24 +149,14 @@ pub struct PostTelemetryV1EventsByEventType {
 impl IsApiRequest for PostTelemetryV1EventsByEventType {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        format!("/telemetry/v1/events/{}", self.event_type)
-    }
-
+    fn get_url(&self) -> String {format!("/telemetry/v1/events/{}", self.event_type)}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_telemetry_v_1_events_by_event_type(event_type: String, body: HashMap<String, HashMap<String, String>>) -> PostTelemetryV1EventsByEventType {
-    PostTelemetryV1EventsByEventType {
-        event_type, body
-    }
+    PostTelemetryV1EventsByEventType{event_type, body}
 }
 
 
@@ -251,24 +169,14 @@ pub struct PostTelemetryV1EventsWithPerfInfoByEventType {
 impl IsApiRequest for PostTelemetryV1EventsWithPerfInfoByEventType {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        format!("/telemetry/v1/events-with-perf-info/{}", self.event_type)
-    }
-
+    fn get_url(&self) -> String {format!("/telemetry/v1/events-with-perf-info/{}", self.event_type)}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_telemetry_v_1_events_with_perf_info_by_event_type(event_type: String, body: HashMap<String, HashMap<String, String>>) -> PostTelemetryV1EventsWithPerfInfoByEventType {
-    PostTelemetryV1EventsWithPerfInfoByEventType {
-        event_type, body
-    }
+    PostTelemetryV1EventsWithPerfInfoByEventType{event_type, body}
 }
 
 
@@ -281,24 +189,14 @@ pub struct PostTelemetryV3EventsByEventType {
 impl IsApiRequest for PostTelemetryV3EventsByEventType {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        format!("/telemetry/v3/events/{}", self.event_type)
-    }
-
+    fn get_url(&self) -> String {format!("/telemetry/v3/events/{}", self.event_type)}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_telemetry_v_3_events_by_event_type(event_type: String, body: HashMap<String, HashMap<String, String>>) -> PostTelemetryV3EventsByEventType {
-    PostTelemetryV3EventsByEventType {
-        event_type, body
-    }
+    PostTelemetryV3EventsByEventType{event_type, body}
 }
 
 
@@ -312,24 +210,14 @@ pub struct PostTelemetryV3EventsOnceByEventTypeByOnceTag {
 impl IsApiRequest for PostTelemetryV3EventsOnceByEventTypeByOnceTag {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        format!("/telemetry/v3/events-once/{}/{}", self.event_type, self.once_tag)
-    }
-
+    fn get_url(&self) -> String {format!("/telemetry/v3/events-once/{}/{}", self.event_type, self.once_tag)}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_telemetry_v_3_events_once_by_event_type_by_once_tag(event_type: String, once_tag: String, body: HashMap<String, String>) -> PostTelemetryV3EventsOnceByEventTypeByOnceTag {
-    PostTelemetryV3EventsOnceByEventTypeByOnceTag {
-        event_type, once_tag, body
-    }
+    PostTelemetryV3EventsOnceByEventTypeByOnceTag{event_type, once_tag, body}
 }
 
 
@@ -341,24 +229,14 @@ pub struct PostTelemetryV3SlisCounts {
 impl IsApiRequest for PostTelemetryV3SlisCounts {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/telemetry/v3/slis/counts".to_string()
-    }
-
+    fn get_url(&self) -> String {"/telemetry/v3/slis/counts".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_telemetry_v_3_slis_counts(body: SliCount) -> PostTelemetryV3SlisCounts {
-    PostTelemetryV3SlisCounts {
-        body
-    }
+    PostTelemetryV3SlisCounts{body}
 }
 
 
@@ -370,24 +248,14 @@ pub struct PostTelemetryV3UptimeTrackingNotifyFailure {
 impl IsApiRequest for PostTelemetryV3UptimeTrackingNotifyFailure {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/telemetry/v3/uptime-tracking/notify-failure".to_string()
-    }
-
+    fn get_url(&self) -> String {"/telemetry/v3/uptime-tracking/notify-failure".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_telemetry_v_3_uptime_tracking_notify_failure(body: NotifyFailureRequest) -> PostTelemetryV3UptimeTrackingNotifyFailure {
-    PostTelemetryV3UptimeTrackingNotifyFailure {
-        body
-    }
+    PostTelemetryV3UptimeTrackingNotifyFailure{body}
 }
 
 
@@ -399,24 +267,14 @@ pub struct PostTelemetryV3UptimeTrackingNotifySuccess {
 impl IsApiRequest for PostTelemetryV3UptimeTrackingNotifySuccess {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/telemetry/v3/uptime-tracking/notify-success".to_string()
-    }
-
+    fn get_url(&self) -> String {"/telemetry/v3/uptime-tracking/notify-success".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_telemetry_v_3_uptime_tracking_notify_success(body: NotifySuccessRequest) -> PostTelemetryV3UptimeTrackingNotifySuccess {
-    PostTelemetryV3UptimeTrackingNotifySuccess {
-        body
-    }
+    PostTelemetryV3UptimeTrackingNotifySuccess{body}
 }
 
 

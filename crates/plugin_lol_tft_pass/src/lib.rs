@@ -9,205 +9,100 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct GetLolTftPassV1BattlePass {
-
-}
+pub struct GetLolTftPassV1BattlePass {}
 
 impl IsApiRequest for GetLolTftPassV1BattlePass {
     const METHOD: Method = Method::GET;
     type ReturnType = LolTftPassTftBattlepass;
-
-    fn get_url(&self) -> String {
-        "/lol-tft-pass/v1/battle-pass".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-tft-pass/v1/battle-pass".to_string()}
 }
 
 pub fn get_lol_tft_pass_v_1_battle_pass() -> GetLolTftPassV1BattlePass {
-    GetLolTftPassV1BattlePass {
-        
-    }
+    GetLolTftPassV1BattlePass{}
 }
 
 
-pub struct GetLolTftPassV1DailyLoginPass {
-
-}
+pub struct GetLolTftPassV1DailyLoginPass {}
 
 impl IsApiRequest for GetLolTftPassV1DailyLoginPass {
     const METHOD: Method = Method::GET;
     type ReturnType = LolTftPassTftBattlepass;
-
-    fn get_url(&self) -> String {
-        "/lol-tft-pass/v1/daily-login-pass".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-tft-pass/v1/daily-login-pass".to_string()}
 }
 
 pub fn get_lol_tft_pass_v_1_daily_login_pass() -> GetLolTftPassV1DailyLoginPass {
-    GetLolTftPassV1DailyLoginPass {
-        
-    }
+    GetLolTftPassV1DailyLoginPass{}
 }
 
 
-pub struct GetLolTftPassV1Enabled {
-
-}
+pub struct GetLolTftPassV1Enabled {}
 
 impl IsApiRequest for GetLolTftPassV1Enabled {
     const METHOD: Method = Method::GET;
     type ReturnType = bool;
-
-    fn get_url(&self) -> String {
-        "/lol-tft-pass/v1/enabled".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-tft-pass/v1/enabled".to_string()}
 }
 
 pub fn get_lol_tft_pass_v_1_enabled() -> GetLolTftPassV1Enabled {
-    GetLolTftPassV1Enabled {
-        
-    }
+    GetLolTftPassV1Enabled{}
 }
 
 
-pub struct GetLolTftPassV1EventPass {
-
-}
+pub struct GetLolTftPassV1EventPass {}
 
 impl IsApiRequest for GetLolTftPassV1EventPass {
     const METHOD: Method = Method::GET;
     type ReturnType = LolTftPassTftBattlepass;
-
-    fn get_url(&self) -> String {
-        "/lol-tft-pass/v1/event-pass".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-tft-pass/v1/event-pass".to_string()}
 }
 
 pub fn get_lol_tft_pass_v_1_event_pass() -> GetLolTftPassV1EventPass {
-    GetLolTftPassV1EventPass {
-        
-    }
+    GetLolTftPassV1EventPass{}
 }
 
 
-pub struct GetLolTftPassV1RewardNotification {
-
-}
+pub struct GetLolTftPassV1RewardNotification {}
 
 impl IsApiRequest for GetLolTftPassV1RewardNotification {
     const METHOD: Method = Method::GET;
     type ReturnType = LolTftPassTftPassRewardNotification;
-
-    fn get_url(&self) -> String {
-        "/lol-tft-pass/v1/reward-notification".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-tft-pass/v1/reward-notification".to_string()}
 }
 
 pub fn get_lol_tft_pass_v_1_reward_notification() -> GetLolTftPassV1RewardNotification {
-    GetLolTftPassV1RewardNotification {
-        
-    }
+    GetLolTftPassV1RewardNotification{}
 }
 
 
 pub struct PostLolTftPassV1PassById {
-
     pub id: String,
 }
 
 impl IsApiRequest for PostLolTftPassV1PassById {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        format!("/lol-tft-pass/v1/pass/{}", self.id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-tft-pass/v1/pass/{}", self.id)}
 }
 
 pub fn post_lol_tft_pass_v_1_pass_by_id(id: String) -> PostLolTftPassV1PassById {
-    PostLolTftPassV1PassById {
-        id
-    }
+    PostLolTftPassV1PassById{id}
 }
 
 
-pub struct PostLolTftPassV1Passes {
-
-}
+pub struct PostLolTftPassV1Passes {}
 
 impl IsApiRequest for PostLolTftPassV1Passes {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-tft-pass/v1/passes".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-tft-pass/v1/passes".to_string()}
 }
 
 pub fn post_lol_tft_pass_v_1_passes() -> PostLolTftPassV1Passes {
-    PostLolTftPassV1Passes {
-        
-    }
+    PostLolTftPassV1Passes{}
 }
 
 
 pub struct PutLolTftPassV1PassByIdMilestoneByMilestoneIdReward {
-
     pub id: String,
     pub milestone_id: String,
 }
@@ -215,53 +110,26 @@ pub struct PutLolTftPassV1PassByIdMilestoneByMilestoneIdReward {
 impl IsApiRequest for PutLolTftPassV1PassByIdMilestoneByMilestoneIdReward {
     const METHOD: Method = Method::PUT;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        format!("/lol-tft-pass/v1/pass/{}/milestone/{}/reward", self.id, self.milestone_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-tft-pass/v1/pass/{}/milestone/{}/reward", self.id, self.milestone_id)}
 }
 
 pub fn put_lol_tft_pass_v_1_pass_by_id_milestone_by_milestone_id_reward(id: String, milestone_id: String) -> PutLolTftPassV1PassByIdMilestoneByMilestoneIdReward {
-    PutLolTftPassV1PassByIdMilestoneByMilestoneIdReward {
-        id, milestone_id
-    }
+    PutLolTftPassV1PassByIdMilestoneByMilestoneIdReward{id, milestone_id}
 }
 
 
 pub struct PutLolTftPassV1PassByIdMilestoneClaimAllRewards {
-
     pub id: String,
 }
 
 impl IsApiRequest for PutLolTftPassV1PassByIdMilestoneClaimAllRewards {
     const METHOD: Method = Method::PUT;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        format!("/lol-tft-pass/v1/pass/{}/milestone/claimAllRewards", self.id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-tft-pass/v1/pass/{}/milestone/claimAllRewards", self.id)}
 }
 
 pub fn put_lol_tft_pass_v_1_pass_by_id_milestone_claim_all_rewards(id: String) -> PutLolTftPassV1PassByIdMilestoneClaimAllRewards {
-    PutLolTftPassV1PassByIdMilestoneClaimAllRewards {
-        id
-    }
+    PutLolTftPassV1PassByIdMilestoneClaimAllRewards{id}
 }
 
 

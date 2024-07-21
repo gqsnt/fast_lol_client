@@ -9,64 +9,33 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct GetLolPurchaseWidgetV1Configuration {
-
-}
+pub struct GetLolPurchaseWidgetV1Configuration {}
 
 impl IsApiRequest for GetLolPurchaseWidgetV1Configuration {
     const METHOD: Method = Method::GET;
     type ReturnType = LolPurchaseWidgetPurchaseWidgetConfig;
-
-    fn get_url(&self) -> String {
-        "/lol-purchase-widget/v1/configuration".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-purchase-widget/v1/configuration".to_string()}
 }
 
 pub fn get_lol_purchase_widget_v_1_configuration() -> GetLolPurchaseWidgetV1Configuration {
-    GetLolPurchaseWidgetV1Configuration {
-        
-    }
+    GetLolPurchaseWidgetV1Configuration{}
 }
 
 
-pub struct GetLolPurchaseWidgetV1OrderNotifications {
-
-}
+pub struct GetLolPurchaseWidgetV1OrderNotifications {}
 
 impl IsApiRequest for GetLolPurchaseWidgetV1OrderNotifications {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolPurchaseWidgetOrderNotificationResource>;
-
-    fn get_url(&self) -> String {
-        "/lol-purchase-widget/v1/order-notifications".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-purchase-widget/v1/order-notifications".to_string()}
 }
 
 pub fn get_lol_purchase_widget_v_1_order_notifications() -> GetLolPurchaseWidgetV1OrderNotifications {
-    GetLolPurchaseWidgetV1OrderNotifications {
-        
-    }
+    GetLolPurchaseWidgetV1OrderNotifications{}
 }
 
 
 pub struct GetLolPurchaseWidgetV1PurchasableItem {
-
     pub inventory_type: String,
     pub item_id: i64,
 }
@@ -74,15 +43,7 @@ pub struct GetLolPurchaseWidgetV1PurchasableItem {
 impl IsApiRequest for GetLolPurchaseWidgetV1PurchasableItem {
     const METHOD: Method = Method::GET;
     type ReturnType = LolPurchaseWidgetPurchasableItem;
-
-    fn get_url(&self) -> String {
-        "/lol-purchase-widget/v1/purchasable-item".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
+    fn get_url(&self) -> String {"/lol-purchase-widget/v1/purchasable-item".to_string()}
     fn get_query_params(&self) -> Option<Value> {
         Some(json!({
             "inventoryType" : self.inventory_type,
@@ -92,71 +53,39 @@ impl IsApiRequest for GetLolPurchaseWidgetV1PurchasableItem {
 }
 
 pub fn get_lol_purchase_widget_v_1_purchasable_item(inventory_type: String, item_id: i64) -> GetLolPurchaseWidgetV1PurchasableItem {
-    GetLolPurchaseWidgetV1PurchasableItem {
-        inventory_type, item_id
-    }
+    GetLolPurchaseWidgetV1PurchasableItem{inventory_type, item_id}
 }
 
 
 pub struct GetLolPurchaseWidgetV3BaseSkinLineDataByOfferId {
-
     pub offer_id: String,
 }
 
 impl IsApiRequest for GetLolPurchaseWidgetV3BaseSkinLineDataByOfferId {
     const METHOD: Method = Method::GET;
     type ReturnType = LolPurchaseWidgetBaseSkinLineDto;
-
-    fn get_url(&self) -> String {
-        format!("/lol-purchase-widget/v3/base-skin-line-data/{}", self.offer_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-purchase-widget/v3/base-skin-line-data/{}", self.offer_id)}
 }
 
 pub fn get_lol_purchase_widget_v_3_base_skin_line_data_by_offer_id(offer_id: String) -> GetLolPurchaseWidgetV3BaseSkinLineDataByOfferId {
-    GetLolPurchaseWidgetV3BaseSkinLineDataByOfferId {
-        offer_id
-    }
+    GetLolPurchaseWidgetV3BaseSkinLineDataByOfferId{offer_id}
 }
 
 
-pub struct GetLolPurchaseWidgetV3PurchaseOfferOrderStatuses {
-
-}
+pub struct GetLolPurchaseWidgetV3PurchaseOfferOrderStatuses {}
 
 impl IsApiRequest for GetLolPurchaseWidgetV3PurchaseOfferOrderStatuses {
     const METHOD: Method = Method::GET;
     type ReturnType = LolPurchaseWidgetPurchaseOfferOrderStatuses;
-
-    fn get_url(&self) -> String {
-        "/lol-purchase-widget/v3/purchase-offer-order-statuses".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-purchase-widget/v3/purchase-offer-order-statuses".to_string()}
 }
 
 pub fn get_lol_purchase_widget_v_3_purchase_offer_order_statuses() -> GetLolPurchaseWidgetV3PurchaseOfferOrderStatuses {
-    GetLolPurchaseWidgetV3PurchaseOfferOrderStatuses {
-        
-    }
+    GetLolPurchaseWidgetV3PurchaseOfferOrderStatuses{}
 }
 
 
 pub struct PostLolPurchaseWidgetV1PurchasableItemsByInventoryType {
-
     pub inventory_type: String,
     pub body: Vec<i64>,
 }
@@ -164,140 +93,86 @@ pub struct PostLolPurchaseWidgetV1PurchasableItemsByInventoryType {
 impl IsApiRequest for PostLolPurchaseWidgetV1PurchasableItemsByInventoryType {
     const METHOD: Method = Method::POST;
     type ReturnType = LolPurchaseWidgetItemChoices;
-
-    fn get_url(&self) -> String {
-        format!("/lol-purchase-widget/v1/purchasable-items/{}", self.inventory_type)
-    }
-
+    fn get_url(&self) -> String {format!("/lol-purchase-widget/v1/purchasable-items/{}", self.inventory_type)}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_purchase_widget_v_1_purchasable_items_by_inventory_type(inventory_type: String, body: Vec<i64>) -> PostLolPurchaseWidgetV1PurchasableItemsByInventoryType {
-    PostLolPurchaseWidgetV1PurchasableItemsByInventoryType {
-        inventory_type, body
-    }
+    PostLolPurchaseWidgetV1PurchasableItemsByInventoryType{inventory_type, body}
 }
 
 
 pub struct PostLolPurchaseWidgetV2PurchaseItems {
-
     pub body: LolPurchaseWidgetPurchaseRequest,
 }
 
 impl IsApiRequest for PostLolPurchaseWidgetV2PurchaseItems {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-purchase-widget/v2/purchaseItems".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-purchase-widget/v2/purchaseItems".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_purchase_widget_v_2_purchase_items(body: LolPurchaseWidgetPurchaseRequest) -> PostLolPurchaseWidgetV2PurchaseItems {
-    PostLolPurchaseWidgetV2PurchaseItems {
-        body
-    }
+    PostLolPurchaseWidgetV2PurchaseItems{body}
 }
 
 
 pub struct PostLolPurchaseWidgetV3PurchaseOffer {
-
     pub body: LolPurchaseWidgetPurchaseOfferRequestV3,
 }
 
 impl IsApiRequest for PostLolPurchaseWidgetV3PurchaseOffer {
     const METHOD: Method = Method::POST;
     type ReturnType = LolPurchaseWidgetPurchaseOfferResponseV3;
-
-    fn get_url(&self) -> String {
-        "/lol-purchase-widget/v3/purchaseOffer".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-purchase-widget/v3/purchaseOffer".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_purchase_widget_v_3_purchase_offer(body: LolPurchaseWidgetPurchaseOfferRequestV3) -> PostLolPurchaseWidgetV3PurchaseOffer {
-    PostLolPurchaseWidgetV3PurchaseOffer {
-        body
-    }
+    PostLolPurchaseWidgetV3PurchaseOffer{body}
 }
 
 
 pub struct PostLolPurchaseWidgetV3PurchaseOfferViaCap {
-
     pub body: LolPurchaseWidgetPurchaseOfferRequestV3,
 }
 
 impl IsApiRequest for PostLolPurchaseWidgetV3PurchaseOfferViaCap {
     const METHOD: Method = Method::POST;
     type ReturnType = LolPurchaseWidgetPurchaseOfferResponseV3;
-
-    fn get_url(&self) -> String {
-        "/lol-purchase-widget/v3/purchaseOfferViaCap".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-purchase-widget/v3/purchaseOfferViaCap".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_purchase_widget_v_3_purchase_offer_via_cap(body: LolPurchaseWidgetPurchaseOfferRequestV3) -> PostLolPurchaseWidgetV3PurchaseOfferViaCap {
-    PostLolPurchaseWidgetV3PurchaseOfferViaCap {
-        body
-    }
+    PostLolPurchaseWidgetV3PurchaseOfferViaCap{body}
 }
 
 
 pub struct PostLolPurchaseWidgetV3ValidateOffer {
-
     pub body: LolPurchaseWidgetValidateOfferRequestV3,
 }
 
 impl IsApiRequest for PostLolPurchaseWidgetV3ValidateOffer {
     const METHOD: Method = Method::POST;
     type ReturnType = LolPurchaseWidgetValidateOfferResponseV3;
-
-    fn get_url(&self) -> String {
-        "/lol-purchase-widget/v3/validateOffer".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-purchase-widget/v3/validateOffer".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_purchase_widget_v_3_validate_offer(body: LolPurchaseWidgetValidateOfferRequestV3) -> PostLolPurchaseWidgetV3ValidateOffer {
-    PostLolPurchaseWidgetV3ValidateOffer {
-        body
-    }
+    PostLolPurchaseWidgetV3ValidateOffer{body}
 }
 
 

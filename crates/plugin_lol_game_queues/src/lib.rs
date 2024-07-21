@@ -9,93 +9,48 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct GetLolGameQueuesV1Custom {
-
-}
+pub struct GetLolGameQueuesV1Custom {}
 
 impl IsApiRequest for GetLolGameQueuesV1Custom {
     const METHOD: Method = Method::GET;
     type ReturnType = LolGameQueuesQueueCustomGame;
-
-    fn get_url(&self) -> String {
-        "/lol-game-queues/v1/custom".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-game-queues/v1/custom".to_string()}
 }
 
 pub fn get_lol_game_queues_v_1_custom() -> GetLolGameQueuesV1Custom {
-    GetLolGameQueuesV1Custom {
-        
-    }
+    GetLolGameQueuesV1Custom{}
 }
 
 
-pub struct GetLolGameQueuesV1CustomNonDefault {
-
-}
+pub struct GetLolGameQueuesV1CustomNonDefault {}
 
 impl IsApiRequest for GetLolGameQueuesV1CustomNonDefault {
     const METHOD: Method = Method::GET;
     type ReturnType = LolGameQueuesQueueCustomGame;
-
-    fn get_url(&self) -> String {
-        "/lol-game-queues/v1/custom-non-default".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-game-queues/v1/custom-non-default".to_string()}
 }
 
 pub fn get_lol_game_queues_v_1_custom_non_default() -> GetLolGameQueuesV1CustomNonDefault {
-    GetLolGameQueuesV1CustomNonDefault {
-        
-    }
+    GetLolGameQueuesV1CustomNonDefault{}
 }
 
 
 pub struct GetLolGameQueuesV1GameTypeConfigByGameTypeConfigId {
-
     pub game_type_config_id: u32,
 }
 
 impl IsApiRequest for GetLolGameQueuesV1GameTypeConfigByGameTypeConfigId {
     const METHOD: Method = Method::GET;
     type ReturnType = LolGameQueuesQueueGameTypeConfig;
-
-    fn get_url(&self) -> String {
-        format!("/lol-game-queues/v1/game-type-config/{}", self.game_type_config_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-game-queues/v1/game-type-config/{}", self.game_type_config_id)}
 }
 
 pub fn get_lol_game_queues_v_1_game_type_config_by_game_type_config_id(game_type_config_id: u32) -> GetLolGameQueuesV1GameTypeConfigByGameTypeConfigId {
-    GetLolGameQueuesV1GameTypeConfigByGameTypeConfigId {
-        game_type_config_id
-    }
+    GetLolGameQueuesV1GameTypeConfigByGameTypeConfigId{game_type_config_id}
 }
 
 
 pub struct GetLolGameQueuesV1GameTypeConfigByGameTypeConfigIdMapByMapId {
-
     pub game_type_config_id: u32,
     pub map_id: i32,
 }
@@ -103,110 +58,54 @@ pub struct GetLolGameQueuesV1GameTypeConfigByGameTypeConfigIdMapByMapId {
 impl IsApiRequest for GetLolGameQueuesV1GameTypeConfigByGameTypeConfigIdMapByMapId {
     const METHOD: Method = Method::GET;
     type ReturnType = LolGameQueuesQueueGameTypeConfig;
-
-    fn get_url(&self) -> String {
-        format!("/lol-game-queues/v1/game-type-config/{}/map/{}", self.game_type_config_id, self.map_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-game-queues/v1/game-type-config/{}/map/{}", self.game_type_config_id, self.map_id)}
 }
 
 pub fn get_lol_game_queues_v_1_game_type_config_by_game_type_config_id_map_by_map_id(game_type_config_id: u32, map_id: i32) -> GetLolGameQueuesV1GameTypeConfigByGameTypeConfigIdMapByMapId {
-    GetLolGameQueuesV1GameTypeConfigByGameTypeConfigIdMapByMapId {
-        game_type_config_id, map_id
-    }
+    GetLolGameQueuesV1GameTypeConfigByGameTypeConfigIdMapByMapId{game_type_config_id, map_id}
 }
 
 
-pub struct GetLolGameQueuesV1Queues {
-
-}
+pub struct GetLolGameQueuesV1Queues {}
 
 impl IsApiRequest for GetLolGameQueuesV1Queues {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolGameQueuesQueue>;
-
-    fn get_url(&self) -> String {
-        "/lol-game-queues/v1/queues".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-game-queues/v1/queues".to_string()}
 }
 
 pub fn get_lol_game_queues_v_1_queues() -> GetLolGameQueuesV1Queues {
-    GetLolGameQueuesV1Queues {
-        
-    }
+    GetLolGameQueuesV1Queues{}
 }
 
 
 pub struct GetLolGameQueuesV1QueuesById {
-
     pub id: i32,
 }
 
 impl IsApiRequest for GetLolGameQueuesV1QueuesById {
     const METHOD: Method = Method::GET;
     type ReturnType = LolGameQueuesQueue;
-
-    fn get_url(&self) -> String {
-        format!("/lol-game-queues/v1/queues/{}", self.id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-game-queues/v1/queues/{}", self.id)}
 }
 
 pub fn get_lol_game_queues_v_1_queues_by_id(id: i32) -> GetLolGameQueuesV1QueuesById {
-    GetLolGameQueuesV1QueuesById {
-        id
-    }
+    GetLolGameQueuesV1QueuesById{id}
 }
 
 
 pub struct GetLolGameQueuesV1QueuesTypeByQueueType {
-
     pub queue_type: String,
 }
 
 impl IsApiRequest for GetLolGameQueuesV1QueuesTypeByQueueType {
     const METHOD: Method = Method::GET;
     type ReturnType = LolGameQueuesQueue;
-
-    fn get_url(&self) -> String {
-        format!("/lol-game-queues/v1/queues/type/{}", self.queue_type)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-game-queues/v1/queues/type/{}", self.queue_type)}
 }
 
 pub fn get_lol_game_queues_v_1_queues_type_by_queue_type(queue_type: String) -> GetLolGameQueuesV1QueuesTypeByQueueType {
-    GetLolGameQueuesV1QueuesTypeByQueueType {
-        queue_type
-    }
+    GetLolGameQueuesV1QueuesTypeByQueueType{queue_type}
 }
 
 

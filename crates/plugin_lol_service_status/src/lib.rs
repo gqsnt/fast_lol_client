@@ -9,59 +9,29 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct GetLolServiceStatusV1LcuStatus {
-
-}
+pub struct GetLolServiceStatusV1LcuStatus {}
 
 impl IsApiRequest for GetLolServiceStatusV1LcuStatus {
     const METHOD: Method = Method::GET;
     type ReturnType = LolServiceStatusServiceStatusResource;
-
-    fn get_url(&self) -> String {
-        "/lol-service-status/v1/lcu-status".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-service-status/v1/lcu-status".to_string()}
 }
 
 pub fn get_lol_service_status_v_1_lcu_status() -> GetLolServiceStatusV1LcuStatus {
-    GetLolServiceStatusV1LcuStatus {
-        
-    }
+    GetLolServiceStatusV1LcuStatus{}
 }
 
 
-pub struct GetLolServiceStatusV1TickerMessages {
-
-}
+pub struct GetLolServiceStatusV1TickerMessages {}
 
 impl IsApiRequest for GetLolServiceStatusV1TickerMessages {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolServiceStatusTickerMessage>;
-
-    fn get_url(&self) -> String {
-        "/lol-service-status/v1/ticker-messages".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-service-status/v1/ticker-messages".to_string()}
 }
 
 pub fn get_lol_service_status_v_1_ticker_messages() -> GetLolServiceStatusV1TickerMessages {
-    GetLolServiceStatusV1TickerMessages {
-        
-    }
+    GetLolServiceStatusV1TickerMessages{}
 }
 
 

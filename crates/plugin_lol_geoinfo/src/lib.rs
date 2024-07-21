@@ -10,22 +10,13 @@ mod additional;
 // ENDPOINTS
 
 pub struct GetLolGeoinfoV1Getlocation {
-
     pub ip_address: String,
 }
 
 impl IsApiRequest for GetLolGeoinfoV1Getlocation {
     const METHOD: Method = Method::GET;
     type ReturnType = LolGeoinfoGeoInfo;
-
-    fn get_url(&self) -> String {
-        "/lol-geoinfo/v1/getlocation".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
+    fn get_url(&self) -> String {"/lol-geoinfo/v1/getlocation".to_string()}
     fn get_query_params(&self) -> Option<Value> {
         Some(json!({
             "ip_address" : self.ip_address,
@@ -34,37 +25,20 @@ impl IsApiRequest for GetLolGeoinfoV1Getlocation {
 }
 
 pub fn get_lol_geoinfo_v_1_getlocation(ip_address: String) -> GetLolGeoinfoV1Getlocation {
-    GetLolGeoinfoV1Getlocation {
-        ip_address
-    }
+    GetLolGeoinfoV1Getlocation{ip_address}
 }
 
 
-pub struct GetLolGeoinfoV1Whereami {
-
-}
+pub struct GetLolGeoinfoV1Whereami {}
 
 impl IsApiRequest for GetLolGeoinfoV1Whereami {
     const METHOD: Method = Method::GET;
     type ReturnType = LolGeoinfoGeoInfoResponse;
-
-    fn get_url(&self) -> String {
-        "/lol-geoinfo/v1/whereami".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-geoinfo/v1/whereami".to_string()}
 }
 
 pub fn get_lol_geoinfo_v_1_whereami() -> GetLolGeoinfoV1Whereami {
-    GetLolGeoinfoV1Whereami {
-        
-    }
+    GetLolGeoinfoV1Whereami{}
 }
 
 

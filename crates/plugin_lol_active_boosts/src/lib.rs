@@ -9,31 +9,16 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct GetLolActiveBoostsV1ActiveBoosts {
-
-}
+pub struct GetLolActiveBoostsV1ActiveBoosts {}
 
 impl IsApiRequest for GetLolActiveBoostsV1ActiveBoosts {
     const METHOD: Method = Method::GET;
     type ReturnType = LolActiveBoostsActiveBoosts;
-
-    fn get_url(&self) -> String {
-        "/lol-active-boosts/v1/active-boosts".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-active-boosts/v1/active-boosts".to_string()}
 }
 
 pub fn get_lol_active_boosts_v_1_active_boosts() -> GetLolActiveBoostsV1ActiveBoosts {
-    GetLolActiveBoostsV1ActiveBoosts {
-        
-    }
+    GetLolActiveBoostsV1ActiveBoosts{}
 }
 
 

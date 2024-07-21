@@ -7,33 +7,31 @@ use crate::generator::utils::{crate_path_from_type_and_name, extract_version_num
 
 
 pub const ENDPOINT_TEMPLATE: &str = r#"
-pub struct {struct_name} {
-{description}
-{fields}}
+pub struct {struct_name} {{description_and_fields}}
 
 impl IsApiRequest for {struct_name} {
     const METHOD: Method = Method::{method};
     type ReturnType = {return_type};
-
-    fn get_url(&self) -> String {
-        {get_url}
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        {get_body}
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        {get_query_params}
-    }
+    fn get_url(&self) -> String {{get_url}}{get_body}{get_query_params}
 }
 
 pub fn {fn_name}({fn_params}) -> {struct_name} {
-    {struct_name} {
-        {init_params}
-    }
+    {struct_name}{{init_params}}
 }
 "#;
+
+
+pub const ENDPOINT_GET_BODY_TEMPLATE: &str = r#"
+    fn get_body(&self) -> Option<Value> {
+        Some(to_value(&self.body).unwrap())
+    }"#;
+
+pub const ENDPOINT_GET_QUERY_PARAMS_TEMPLATE: &str = r#"
+    fn get_query_params(&self) -> Option<Value> {
+        Some(json!({
+{get_query_params}
+        }))
+    }"#;
 
 
 #[derive(Debug, Clone)]
@@ -82,7 +80,7 @@ impl Endpoint{
             name:operation_id.unwrap(),
             plugin: plugin.to_case(Case::Snake),
             version:extract_version_number(&path),
-            related_objs: related_objs,
+            related_objs,
             path,
             method,
             description,
@@ -119,29 +117,37 @@ impl Endpoint{
 
 impl std::fmt::Display for Endpoint {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        let mut fields = String::new();
+        let mut fields = Vec::new();
         for param in self.parameters.iter() {
-            fields.push_str(&format!("{}", param.to_string()));
+            fields.push( param.to_string());
         }
         for query in self.queries.iter() {
-            fields.push_str(&format!("{}", query.to_string()));
+            fields.push(query.to_string());
         }
         if let Some(body) = &self.body{
-            fields.push_str(format!("    pub body: {},\n", body).as_str())
+            fields.push(format!("    pub body: {},", body))
         }
-        let description = if let Some(description) = &self.description {
-            if !description.is_empty() {
-                description.split("\n").map(|x| format!("    // {}", x)).collect::<String>()
-            } else {
-                "".to_string()
-            }
-        } else {
+        let mut description_and_fields = if !fields.is_empty(){
+            fields.join("\n")
+        }else{
             "".to_string()
         };
 
+        if let Some(desc) = &self.description{
+            if !desc.is_empty(){
+                description_and_fields= format!("{}\n{}", desc.split("\n").map(|x| format!("    // {}", x)).collect::<String>(), description_and_fields);
+            }
+        }
+
+        if !description_and_fields.is_empty(){
+            description_and_fields = format!("\n{}\n", description_and_fields);
+        }
+
+
+
+
+
         let struct_name = self.name.clone();
-
-
         let url_params = self.parameters.iter().map(|x| {
             match x.type_{
                 RustType::Object(_) => {
@@ -161,19 +167,17 @@ impl std::fmt::Display for Endpoint {
 
 
         let get_body = if let Some(body) = &self.body{
-            "Some(to_value(&self.body).unwrap())"
+            ENDPOINT_GET_BODY_TEMPLATE.to_string()
         }else{
-            "None"
+            "".to_string()
         };
         let get_query_params = if !self.queries.is_empty(){
-            let mut query_params = String::from("Some(json!({\n");
-            for query in self.queries.iter(){
-                query_params.push_str(format!("            \"{}\" : self.{},\n", query.name, query.get_name()).as_str());
-            }
-            query_params.push_str("        }))");
-            query_params
+            let mut query_params = self.queries.iter().map(|query|{
+                format!("            \"{}\" : self.{},", query.name, query.get_name())
+            }).collect::<Vec<String>>();
+            ENDPOINT_GET_QUERY_PARAMS_TEMPLATE.replace("{get_query_params}", &query_params.join("\n")).to_string()
         }else{
-            "None".to_string()
+            "".to_string()
         };
 
 
@@ -211,11 +215,10 @@ impl std::fmt::Display for Endpoint {
         }
 
         ENDPOINT_TEMPLATE.replace("{struct_name}", &struct_name)
-            .replace("{description}", &description)
-            .replace("{fields}", &fields)
+            .replace("{description_and_fields}", &description_and_fields)
             .replace("{get_url}", &get_url)
-            .replace("{get_body}", get_body)
-            .replace("{get_query_params}", get_query_params.as_str())
+            .replace("{get_body}", &get_body)
+            .replace("{get_query_params}", &get_query_params)
             .replace("{return_type}", &response_type.to_string())
             .replace("{method}", &method)
             .replace("{fn_name}", &helper_fn_name)

@@ -10,60 +10,38 @@ mod additional;
 // ENDPOINTS
 
 pub struct PostPaymentsV1PmcStartUrl {
-
     pub body: PaymentsFrontEndRequest,
 }
 
 impl IsApiRequest for PostPaymentsV1PmcStartUrl {
     const METHOD: Method = Method::POST;
     type ReturnType = PaymentsFrontEndResult;
-
-    fn get_url(&self) -> String {
-        "/payments/v1/pmc-start-url".to_string()
-    }
-
+    fn get_url(&self) -> String {"/payments/v1/pmc-start-url".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_payments_v_1_pmc_start_url(body: PaymentsFrontEndRequest) -> PostPaymentsV1PmcStartUrl {
-    PostPaymentsV1PmcStartUrl {
-        body
-    }
+    PostPaymentsV1PmcStartUrl{body}
 }
 
 
 pub struct PostPaymentsV1UpdatePaymentTelemetryState {
-
     pub body: PaymentsPaymentsTelemetryTransitions,
 }
 
 impl IsApiRequest for PostPaymentsV1UpdatePaymentTelemetryState {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/payments/v1/updatePaymentTelemetryState".to_string()
-    }
-
+    fn get_url(&self) -> String {"/payments/v1/updatePaymentTelemetryState".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_payments_v_1_update_payment_telemetry_state(body: PaymentsPaymentsTelemetryTransitions) -> PostPaymentsV1UpdatePaymentTelemetryState {
-    PostPaymentsV1UpdatePaymentTelemetryState {
-        body
-    }
+    PostPaymentsV1UpdatePaymentTelemetryState{body}
 }
 
 

@@ -9,65 +9,35 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct GetLolPlayerLevelUpV1LevelUp {
-
-}
+pub struct GetLolPlayerLevelUpV1LevelUp {}
 
 impl IsApiRequest for GetLolPlayerLevelUpV1LevelUp {
     const METHOD: Method = Method::GET;
     type ReturnType = LolPlayerLevelUpPlayerLevelUpEvent;
-
-    fn get_url(&self) -> String {
-        "/lol-player-level-up/v1/level-up".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-player-level-up/v1/level-up".to_string()}
 }
 
 pub fn get_lol_player_level_up_v_1_level_up() -> GetLolPlayerLevelUpV1LevelUp {
-    GetLolPlayerLevelUpV1LevelUp {
-        
-    }
+    GetLolPlayerLevelUpV1LevelUp{}
 }
 
 
 pub struct GetLolPlayerLevelUpV1LevelUpNotificationsByPluginName {
-
     pub plugin_name: String,
 }
 
 impl IsApiRequest for GetLolPlayerLevelUpV1LevelUpNotificationsByPluginName {
     const METHOD: Method = Method::GET;
     type ReturnType = LolPlayerLevelUpPlayerLevelUpEventAck;
-
-    fn get_url(&self) -> String {
-        format!("/lol-player-level-up/v1/level-up-notifications/{}", self.plugin_name)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-player-level-up/v1/level-up-notifications/{}", self.plugin_name)}
 }
 
 pub fn get_lol_player_level_up_v_1_level_up_notifications_by_plugin_name(plugin_name: String) -> GetLolPlayerLevelUpV1LevelUpNotificationsByPluginName {
-    GetLolPlayerLevelUpV1LevelUpNotificationsByPluginName {
-        plugin_name
-    }
+    GetLolPlayerLevelUpV1LevelUpNotificationsByPluginName{plugin_name}
 }
 
 
 pub struct PostLolPlayerLevelUpV1LevelUpNotificationsByPluginName {
-
     pub plugin_name: String,
     pub body: LolPlayerLevelUpPlayerLevelUpEventAck,
 }
@@ -75,24 +45,14 @@ pub struct PostLolPlayerLevelUpV1LevelUpNotificationsByPluginName {
 impl IsApiRequest for PostLolPlayerLevelUpV1LevelUpNotificationsByPluginName {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        format!("/lol-player-level-up/v1/level-up-notifications/{}", self.plugin_name)
-    }
-
+    fn get_url(&self) -> String {format!("/lol-player-level-up/v1/level-up-notifications/{}", self.plugin_name)}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_player_level_up_v_1_level_up_notifications_by_plugin_name(plugin_name: String, body: LolPlayerLevelUpPlayerLevelUpEventAck) -> PostLolPlayerLevelUpV1LevelUpNotificationsByPluginName {
-    PostLolPlayerLevelUpV1LevelUpNotificationsByPluginName {
-        plugin_name, body
-    }
+    PostLolPlayerLevelUpV1LevelUpNotificationsByPluginName{plugin_name, body}
 }
 
 

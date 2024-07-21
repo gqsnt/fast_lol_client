@@ -9,31 +9,16 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct GetLolKickoutV1Notification {
-
-}
+pub struct GetLolKickoutV1Notification {}
 
 impl IsApiRequest for GetLolKickoutV1Notification {
     const METHOD: Method = Method::GET;
     type ReturnType = LolKickoutKickoutMessage;
-
-    fn get_url(&self) -> String {
-        "/lol-kickout/v1/notification".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-kickout/v1/notification".to_string()}
 }
 
 pub fn get_lol_kickout_v_1_notification() -> GetLolKickoutV1Notification {
-    GetLolKickoutV1Notification {
-        
-    }
+    GetLolKickoutV1Notification{}
 }
 
 

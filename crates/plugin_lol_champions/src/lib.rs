@@ -10,36 +10,21 @@ mod additional;
 // ENDPOINTS
 
 pub struct GetLolChampionsV1InventoriesBySummonerIdChampions {
-
     pub summoner_id: u64,
 }
 
 impl IsApiRequest for GetLolChampionsV1InventoriesBySummonerIdChampions {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolChampionsCollectionsChampion>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-champions/v1/inventories/{}/champions", self.summoner_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-champions/v1/inventories/{}/champions", self.summoner_id)}
 }
 
 pub fn get_lol_champions_v_1_inventories_by_summoner_id_champions(summoner_id: u64) -> GetLolChampionsV1InventoriesBySummonerIdChampions {
-    GetLolChampionsV1InventoriesBySummonerIdChampions {
-        summoner_id
-    }
+    GetLolChampionsV1InventoriesBySummonerIdChampions{summoner_id}
 }
 
 
 pub struct GetLolChampionsV1InventoriesBySummonerIdChampionsByChampionId {
-
     pub summoner_id: u64,
     pub champion_id: i32,
 }
@@ -47,29 +32,15 @@ pub struct GetLolChampionsV1InventoriesBySummonerIdChampionsByChampionId {
 impl IsApiRequest for GetLolChampionsV1InventoriesBySummonerIdChampionsByChampionId {
     const METHOD: Method = Method::GET;
     type ReturnType = LolChampionsCollectionsChampion;
-
-    fn get_url(&self) -> String {
-        format!("/lol-champions/v1/inventories/{}/champions/{}", self.summoner_id, self.champion_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-champions/v1/inventories/{}/champions/{}", self.summoner_id, self.champion_id)}
 }
 
 pub fn get_lol_champions_v_1_inventories_by_summoner_id_champions_by_champion_id(summoner_id: u64, champion_id: i32) -> GetLolChampionsV1InventoriesBySummonerIdChampionsByChampionId {
-    GetLolChampionsV1InventoriesBySummonerIdChampionsByChampionId {
-        summoner_id, champion_id
-    }
+    GetLolChampionsV1InventoriesBySummonerIdChampionsByChampionId{summoner_id, champion_id}
 }
 
 
 pub struct GetLolChampionsV1InventoriesBySummonerIdChampionsByChampionIdSkins {
-
     pub summoner_id: u64,
     pub champion_id: i32,
 }
@@ -77,29 +48,15 @@ pub struct GetLolChampionsV1InventoriesBySummonerIdChampionsByChampionIdSkins {
 impl IsApiRequest for GetLolChampionsV1InventoriesBySummonerIdChampionsByChampionIdSkins {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolChampionsCollectionsChampionSkin>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-champions/v1/inventories/{}/champions/{}/skins", self.summoner_id, self.champion_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-champions/v1/inventories/{}/champions/{}/skins", self.summoner_id, self.champion_id)}
 }
 
 pub fn get_lol_champions_v_1_inventories_by_summoner_id_champions_by_champion_id_skins(summoner_id: u64, champion_id: i32) -> GetLolChampionsV1InventoriesBySummonerIdChampionsByChampionIdSkins {
-    GetLolChampionsV1InventoriesBySummonerIdChampionsByChampionIdSkins {
-        summoner_id, champion_id
-    }
+    GetLolChampionsV1InventoriesBySummonerIdChampionsByChampionIdSkins{summoner_id, champion_id}
 }
 
 
 pub struct GetLolChampionsV1InventoriesBySummonerIdChampionsByChampionIdSkinsByChampionSkinId {
-
     pub summoner_id: u64,
     pub champion_id: i32,
     pub champion_skin_id: i32,
@@ -108,29 +65,15 @@ pub struct GetLolChampionsV1InventoriesBySummonerIdChampionsByChampionIdSkinsByC
 impl IsApiRequest for GetLolChampionsV1InventoriesBySummonerIdChampionsByChampionIdSkinsByChampionSkinId {
     const METHOD: Method = Method::GET;
     type ReturnType = LolChampionsCollectionsChampionSkin;
-
-    fn get_url(&self) -> String {
-        format!("/lol-champions/v1/inventories/{}/champions/{}/skins/{}", self.summoner_id, self.champion_id, self.champion_skin_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-champions/v1/inventories/{}/champions/{}/skins/{}", self.summoner_id, self.champion_id, self.champion_skin_id)}
 }
 
 pub fn get_lol_champions_v_1_inventories_by_summoner_id_champions_by_champion_id_skins_by_champion_skin_id(summoner_id: u64, champion_id: i32, champion_skin_id: i32) -> GetLolChampionsV1InventoriesBySummonerIdChampionsByChampionIdSkinsByChampionSkinId {
-    GetLolChampionsV1InventoriesBySummonerIdChampionsByChampionIdSkinsByChampionSkinId {
-        summoner_id, champion_id, champion_skin_id
-    }
+    GetLolChampionsV1InventoriesBySummonerIdChampionsByChampionIdSkinsByChampionSkinId{summoner_id, champion_id, champion_skin_id}
 }
 
 
 pub struct GetLolChampionsV1InventoriesBySummonerIdChampionsByChampionIdSkinsBySkinIdChromas {
-
     pub summoner_id: u64,
     pub champion_id: i32,
     pub skin_id: i32,
@@ -139,139 +82,69 @@ pub struct GetLolChampionsV1InventoriesBySummonerIdChampionsByChampionIdSkinsByS
 impl IsApiRequest for GetLolChampionsV1InventoriesBySummonerIdChampionsByChampionIdSkinsBySkinIdChromas {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolChampionsCollectionsChampionChroma>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-champions/v1/inventories/{}/champions/{}/skins/{}/chromas", self.summoner_id, self.champion_id, self.skin_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-champions/v1/inventories/{}/champions/{}/skins/{}/chromas", self.summoner_id, self.champion_id, self.skin_id)}
 }
 
 pub fn get_lol_champions_v_1_inventories_by_summoner_id_champions_by_champion_id_skins_by_skin_id_chromas(summoner_id: u64, champion_id: i32, skin_id: i32) -> GetLolChampionsV1InventoriesBySummonerIdChampionsByChampionIdSkinsBySkinIdChromas {
-    GetLolChampionsV1InventoriesBySummonerIdChampionsByChampionIdSkinsBySkinIdChromas {
-        summoner_id, champion_id, skin_id
-    }
+    GetLolChampionsV1InventoriesBySummonerIdChampionsByChampionIdSkinsBySkinIdChromas{summoner_id, champion_id, skin_id}
 }
 
 
 pub struct GetLolChampionsV1InventoriesBySummonerIdChampionsMinimal {
-
     pub summoner_id: u64,
 }
 
 impl IsApiRequest for GetLolChampionsV1InventoriesBySummonerIdChampionsMinimal {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolChampionsCollectionsChampionMinimal>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-champions/v1/inventories/{}/champions-minimal", self.summoner_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-champions/v1/inventories/{}/champions-minimal", self.summoner_id)}
 }
 
 pub fn get_lol_champions_v_1_inventories_by_summoner_id_champions_minimal(summoner_id: u64) -> GetLolChampionsV1InventoriesBySummonerIdChampionsMinimal {
-    GetLolChampionsV1InventoriesBySummonerIdChampionsMinimal {
-        summoner_id
-    }
+    GetLolChampionsV1InventoriesBySummonerIdChampionsMinimal{summoner_id}
 }
 
 
 pub struct GetLolChampionsV1InventoriesBySummonerIdChampionsPlayableCount {
-
     pub summoner_id: u64,
 }
 
 impl IsApiRequest for GetLolChampionsV1InventoriesBySummonerIdChampionsPlayableCount {
     const METHOD: Method = Method::GET;
     type ReturnType = LolChampionsCollectionsChampionPlayableCounts;
-
-    fn get_url(&self) -> String {
-        format!("/lol-champions/v1/inventories/{}/champions-playable-count", self.summoner_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-champions/v1/inventories/{}/champions-playable-count", self.summoner_id)}
 }
 
 pub fn get_lol_champions_v_1_inventories_by_summoner_id_champions_playable_count(summoner_id: u64) -> GetLolChampionsV1InventoriesBySummonerIdChampionsPlayableCount {
-    GetLolChampionsV1InventoriesBySummonerIdChampionsPlayableCount {
-        summoner_id
-    }
+    GetLolChampionsV1InventoriesBySummonerIdChampionsPlayableCount{summoner_id}
 }
 
 
 pub struct GetLolChampionsV1InventoriesBySummonerIdSkinsMinimal {
-
     pub summoner_id: u64,
 }
 
 impl IsApiRequest for GetLolChampionsV1InventoriesBySummonerIdSkinsMinimal {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolChampionsCollectionsChampionSkinMinimal>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-champions/v1/inventories/{}/skins-minimal", self.summoner_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-champions/v1/inventories/{}/skins-minimal", self.summoner_id)}
 }
 
 pub fn get_lol_champions_v_1_inventories_by_summoner_id_skins_minimal(summoner_id: u64) -> GetLolChampionsV1InventoriesBySummonerIdSkinsMinimal {
-    GetLolChampionsV1InventoriesBySummonerIdSkinsMinimal {
-        summoner_id
-    }
+    GetLolChampionsV1InventoriesBySummonerIdSkinsMinimal{summoner_id}
 }
 
 
-pub struct GetLolChampionsV1OwnedChampionsMinimal {
-
-}
+pub struct GetLolChampionsV1OwnedChampionsMinimal {}
 
 impl IsApiRequest for GetLolChampionsV1OwnedChampionsMinimal {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolChampionsCollectionsChampionMinimal>;
-
-    fn get_url(&self) -> String {
-        "/lol-champions/v1/owned-champions-minimal".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-champions/v1/owned-champions-minimal".to_string()}
 }
 
 pub fn get_lol_champions_v_1_owned_champions_minimal() -> GetLolChampionsV1OwnedChampionsMinimal {
-    GetLolChampionsV1OwnedChampionsMinimal {
-        
-    }
+    GetLolChampionsV1OwnedChampionsMinimal{}
 }
 
 

@@ -9,171 +9,81 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct GetLolNpeRewardsV1ChallengesProgress {
-
-}
+pub struct GetLolNpeRewardsV1ChallengesProgress {}
 
 impl IsApiRequest for GetLolNpeRewardsV1ChallengesProgress {
     const METHOD: Method = Method::GET;
     type ReturnType = LolNpeRewardsChallengesProgress;
-
-    fn get_url(&self) -> String {
-        "/lol-npe-rewards/v1/challenges/progress".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-npe-rewards/v1/challenges/progress".to_string()}
 }
 
 pub fn get_lol_npe_rewards_v_1_challenges_progress() -> GetLolNpeRewardsV1ChallengesProgress {
-    GetLolNpeRewardsV1ChallengesProgress {
-        
-    }
+    GetLolNpeRewardsV1ChallengesProgress{}
 }
 
 
-pub struct GetLolNpeRewardsV1LevelRewards {
-
-}
+pub struct GetLolNpeRewardsV1LevelRewards {}
 
 impl IsApiRequest for GetLolNpeRewardsV1LevelRewards {
     const METHOD: Method = Method::GET;
     type ReturnType = LolNpeRewardsRewardSeries;
-
-    fn get_url(&self) -> String {
-        "/lol-npe-rewards/v1/level-rewards".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-npe-rewards/v1/level-rewards".to_string()}
 }
 
 pub fn get_lol_npe_rewards_v_1_level_rewards() -> GetLolNpeRewardsV1LevelRewards {
-    GetLolNpeRewardsV1LevelRewards {
-        
-    }
+    GetLolNpeRewardsV1LevelRewards{}
 }
 
 
-pub struct GetLolNpeRewardsV1LevelRewardsState {
-
-}
+pub struct GetLolNpeRewardsV1LevelRewardsState {}
 
 impl IsApiRequest for GetLolNpeRewardsV1LevelRewardsState {
     const METHOD: Method = Method::GET;
     type ReturnType = LolNpeRewardsRewardSeriesState;
-
-    fn get_url(&self) -> String {
-        "/lol-npe-rewards/v1/level-rewards/state".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-npe-rewards/v1/level-rewards/state".to_string()}
 }
 
 pub fn get_lol_npe_rewards_v_1_level_rewards_state() -> GetLolNpeRewardsV1LevelRewardsState {
-    GetLolNpeRewardsV1LevelRewardsState {
-        
-    }
+    GetLolNpeRewardsV1LevelRewardsState{}
 }
 
 
-pub struct GetLolNpeRewardsV1LoginRewards {
-
-}
+pub struct GetLolNpeRewardsV1LoginRewards {}
 
 impl IsApiRequest for GetLolNpeRewardsV1LoginRewards {
     const METHOD: Method = Method::GET;
     type ReturnType = LolNpeRewardsRewardSeries;
-
-    fn get_url(&self) -> String {
-        "/lol-npe-rewards/v1/login-rewards".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-npe-rewards/v1/login-rewards".to_string()}
 }
 
 pub fn get_lol_npe_rewards_v_1_login_rewards() -> GetLolNpeRewardsV1LoginRewards {
-    GetLolNpeRewardsV1LoginRewards {
-        
-    }
+    GetLolNpeRewardsV1LoginRewards{}
 }
 
 
-pub struct GetLolNpeRewardsV1LoginRewardsState {
-
-}
+pub struct GetLolNpeRewardsV1LoginRewardsState {}
 
 impl IsApiRequest for GetLolNpeRewardsV1LoginRewardsState {
     const METHOD: Method = Method::GET;
     type ReturnType = LolNpeRewardsRewardSeriesState;
-
-    fn get_url(&self) -> String {
-        "/lol-npe-rewards/v1/login-rewards/state".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-npe-rewards/v1/login-rewards/state".to_string()}
 }
 
 pub fn get_lol_npe_rewards_v_1_login_rewards_state() -> GetLolNpeRewardsV1LoginRewardsState {
-    GetLolNpeRewardsV1LoginRewardsState {
-        
-    }
+    GetLolNpeRewardsV1LoginRewardsState{}
 }
 
 
-pub struct PostLolNpeRewardsV1ChallengesOpt {
-
-}
+pub struct PostLolNpeRewardsV1ChallengesOpt {}
 
 impl IsApiRequest for PostLolNpeRewardsV1ChallengesOpt {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-npe-rewards/v1/challenges/opt".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-npe-rewards/v1/challenges/opt".to_string()}
 }
 
 pub fn post_lol_npe_rewards_v_1_challenges_opt() -> PostLolNpeRewardsV1ChallengesOpt {
-    PostLolNpeRewardsV1ChallengesOpt {
-        
-    }
+    PostLolNpeRewardsV1ChallengesOpt{}
 }
 
 

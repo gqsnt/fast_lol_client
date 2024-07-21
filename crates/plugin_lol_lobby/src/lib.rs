@@ -9,36 +9,20 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct DeleteLolLobbyV1Clash {
-
-}
+pub struct DeleteLolLobbyV1Clash {}
 
 impl IsApiRequest for DeleteLolLobbyV1Clash {
     const METHOD: Method = Method::DELETE;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v1/clash".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-lobby/v1/clash".to_string()}
 }
 
 pub fn delete_lol_lobby_v_1_clash() -> DeleteLolLobbyV1Clash {
-    DeleteLolLobbyV1Clash {
-        
-    }
+    DeleteLolLobbyV1Clash{}
 }
 
 
 pub struct DeleteLolLobbyV1LobbyCustomBotsBySummonerInternalNameByBotUuidToDeleteByTeamId {
-
     pub summoner_internal_name: String,
     pub bot_uuid_to_delete: String,
     pub team_id: String,
@@ -47,901 +31,429 @@ pub struct DeleteLolLobbyV1LobbyCustomBotsBySummonerInternalNameByBotUuidToDelet
 impl IsApiRequest for DeleteLolLobbyV1LobbyCustomBotsBySummonerInternalNameByBotUuidToDeleteByTeamId {
     const METHOD: Method = Method::DELETE;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-lobby/v1/lobby/custom/bots/{}/{}/{}", self.summoner_internal_name, self.bot_uuid_to_delete, self.team_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-lobby/v1/lobby/custom/bots/{}/{}/{}", self.summoner_internal_name, self.bot_uuid_to_delete, self.team_id)}
 }
 
 pub fn delete_lol_lobby_v_1_lobby_custom_bots_by_summoner_internal_name_by_bot_uuid_to_delete_by_team_id(summoner_internal_name: String, bot_uuid_to_delete: String, team_id: String) -> DeleteLolLobbyV1LobbyCustomBotsBySummonerInternalNameByBotUuidToDeleteByTeamId {
-    DeleteLolLobbyV1LobbyCustomBotsBySummonerInternalNameByBotUuidToDeleteByTeamId {
-        summoner_internal_name, bot_uuid_to_delete, team_id
-    }
+    DeleteLolLobbyV1LobbyCustomBotsBySummonerInternalNameByBotUuidToDeleteByTeamId{summoner_internal_name, bot_uuid_to_delete, team_id}
 }
 
 
-pub struct DeleteLolLobbyV2Lobby {
-
-}
+pub struct DeleteLolLobbyV2Lobby {}
 
 impl IsApiRequest for DeleteLolLobbyV2Lobby {
     const METHOD: Method = Method::DELETE;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v2/lobby".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-lobby/v2/lobby".to_string()}
 }
 
 pub fn delete_lol_lobby_v_2_lobby() -> DeleteLolLobbyV2Lobby {
-    DeleteLolLobbyV2Lobby {
-        
-    }
+    DeleteLolLobbyV2Lobby{}
 }
 
 
-pub struct DeleteLolLobbyV2LobbyMatchmakingSearch {
-
-}
+pub struct DeleteLolLobbyV2LobbyMatchmakingSearch {}
 
 impl IsApiRequest for DeleteLolLobbyV2LobbyMatchmakingSearch {
     const METHOD: Method = Method::DELETE;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v2/lobby/matchmaking/search".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-lobby/v2/lobby/matchmaking/search".to_string()}
 }
 
 pub fn delete_lol_lobby_v_2_lobby_matchmaking_search() -> DeleteLolLobbyV2LobbyMatchmakingSearch {
-    DeleteLolLobbyV2LobbyMatchmakingSearch {
-        
-    }
+    DeleteLolLobbyV2LobbyMatchmakingSearch{}
 }
 
 
 pub struct DeleteLolLobbyV2NotificationsByNotificationId {
-
     pub notification_id: String,
 }
 
 impl IsApiRequest for DeleteLolLobbyV2NotificationsByNotificationId {
     const METHOD: Method = Method::DELETE;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-lobby/v2/notifications/{}", self.notification_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-lobby/v2/notifications/{}", self.notification_id)}
 }
 
 pub fn delete_lol_lobby_v_2_notifications_by_notification_id(notification_id: String) -> DeleteLolLobbyV2NotificationsByNotificationId {
-    DeleteLolLobbyV2NotificationsByNotificationId {
-        notification_id
-    }
+    DeleteLolLobbyV2NotificationsByNotificationId{notification_id}
 }
 
 
-pub struct GetLolLobbyV1AutofillDisplayed {
-
-}
+pub struct GetLolLobbyV1AutofillDisplayed {}
 
 impl IsApiRequest for GetLolLobbyV1AutofillDisplayed {
     const METHOD: Method = Method::GET;
     type ReturnType = bool;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v1/autofill-displayed".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-lobby/v1/autofill-displayed".to_string()}
 }
 
 pub fn get_lol_lobby_v_1_autofill_displayed() -> GetLolLobbyV1AutofillDisplayed {
-    GetLolLobbyV1AutofillDisplayed {
-        
-    }
+    GetLolLobbyV1AutofillDisplayed{}
 }
 
 
-pub struct GetLolLobbyV1CustomGames {
-
-}
+pub struct GetLolLobbyV1CustomGames {}
 
 impl IsApiRequest for GetLolLobbyV1CustomGames {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolLobbyLobbyCustomGame>;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v1/custom-games".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-lobby/v1/custom-games".to_string()}
 }
 
 pub fn get_lol_lobby_v_1_custom_games() -> GetLolLobbyV1CustomGames {
-    GetLolLobbyV1CustomGames {
-        
-    }
+    GetLolLobbyV1CustomGames{}
 }
 
 
 pub struct GetLolLobbyV1CustomGamesById {
-
     pub id: i32,
 }
 
 impl IsApiRequest for GetLolLobbyV1CustomGamesById {
     const METHOD: Method = Method::GET;
     type ReturnType = LolLobbyLobbyCustomGame;
-
-    fn get_url(&self) -> String {
-        format!("/lol-lobby/v1/custom-games/{}", self.id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-lobby/v1/custom-games/{}", self.id)}
 }
 
 pub fn get_lol_lobby_v_1_custom_games_by_id(id: i32) -> GetLolLobbyV1CustomGamesById {
-    GetLolLobbyV1CustomGamesById {
-        id
-    }
+    GetLolLobbyV1CustomGamesById{id}
 }
 
 
-pub struct GetLolLobbyV1LobbyAvailability {
-
-}
+pub struct GetLolLobbyV1LobbyAvailability {}
 
 impl IsApiRequest for GetLolLobbyV1LobbyAvailability {
     const METHOD: Method = Method::GET;
     type ReturnType = LolLobbyQueueAvailability;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v1/lobby/availability".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-lobby/v1/lobby/availability".to_string()}
 }
 
 pub fn get_lol_lobby_v_1_lobby_availability() -> GetLolLobbyV1LobbyAvailability {
-    GetLolLobbyV1LobbyAvailability {
-        
-    }
+    GetLolLobbyV1LobbyAvailability{}
 }
 
 
-pub struct GetLolLobbyV1LobbyCountdown {
-
-}
+pub struct GetLolLobbyV1LobbyCountdown {}
 
 impl IsApiRequest for GetLolLobbyV1LobbyCountdown {
     const METHOD: Method = Method::GET;
     type ReturnType = i64;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v1/lobby/countdown".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-lobby/v1/lobby/countdown".to_string()}
 }
 
 pub fn get_lol_lobby_v_1_lobby_countdown() -> GetLolLobbyV1LobbyCountdown {
-    GetLolLobbyV1LobbyCountdown {
-        
-    }
+    GetLolLobbyV1LobbyCountdown{}
 }
 
 
-pub struct GetLolLobbyV1LobbyInvitations {
-
-}
+pub struct GetLolLobbyV1LobbyInvitations {}
 
 impl IsApiRequest for GetLolLobbyV1LobbyInvitations {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolLobbyLobbyInvitation>;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v1/lobby/invitations".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-lobby/v1/lobby/invitations".to_string()}
 }
 
 pub fn get_lol_lobby_v_1_lobby_invitations() -> GetLolLobbyV1LobbyInvitations {
-    GetLolLobbyV1LobbyInvitations {
-        
-    }
+    GetLolLobbyV1LobbyInvitations{}
 }
 
 
 pub struct GetLolLobbyV1LobbyInvitationsById {
-
     pub id: String,
 }
 
 impl IsApiRequest for GetLolLobbyV1LobbyInvitationsById {
     const METHOD: Method = Method::GET;
     type ReturnType = LolLobbyLobbyInvitation;
-
-    fn get_url(&self) -> String {
-        format!("/lol-lobby/v1/lobby/invitations/{}", self.id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-lobby/v1/lobby/invitations/{}", self.id)}
 }
 
 pub fn get_lol_lobby_v_1_lobby_invitations_by_id(id: String) -> GetLolLobbyV1LobbyInvitationsById {
-    GetLolLobbyV1LobbyInvitationsById {
-        id
-    }
+    GetLolLobbyV1LobbyInvitationsById{id}
 }
 
 
-pub struct GetLolLobbyV1LobbyMembersLocalMemberPlayerSlots {
-
-}
+pub struct GetLolLobbyV1LobbyMembersLocalMemberPlayerSlots {}
 
 impl IsApiRequest for GetLolLobbyV1LobbyMembersLocalMemberPlayerSlots {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolLobbyQuickPlayPresetSlotDto>;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v1/lobby/members/localMember/player-slots".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-lobby/v1/lobby/members/localMember/player-slots".to_string()}
 }
 
 pub fn get_lol_lobby_v_1_lobby_members_local_member_player_slots() -> GetLolLobbyV1LobbyMembersLocalMemberPlayerSlots {
-    GetLolLobbyV1LobbyMembersLocalMemberPlayerSlots {
-        
-    }
+    GetLolLobbyV1LobbyMembersLocalMemberPlayerSlots{}
 }
 
 
-pub struct GetLolLobbyV1LobbyTftRankedHistory {
-
-}
+pub struct GetLolLobbyV1LobbyTftRankedHistory {}
 
 impl IsApiRequest for GetLolLobbyV1LobbyTftRankedHistory {
     const METHOD: Method = Method::GET;
     type ReturnType = bool;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v1/lobby/tft-ranked-history".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-lobby/v1/lobby/tft-ranked-history".to_string()}
 }
 
 pub fn get_lol_lobby_v_1_lobby_tft_ranked_history() -> GetLolLobbyV1LobbyTftRankedHistory {
-    GetLolLobbyV1LobbyTftRankedHistory {
-        
-    }
+    GetLolLobbyV1LobbyTftRankedHistory{}
 }
 
 
-pub struct GetLolLobbyV1PartiesGamemode {
-
-}
+pub struct GetLolLobbyV1PartiesGamemode {}
 
 impl IsApiRequest for GetLolLobbyV1PartiesGamemode {
     const METHOD: Method = Method::GET;
     type ReturnType = LolLobbyGameModeDto;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v1/parties/gamemode".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-lobby/v1/parties/gamemode".to_string()}
 }
 
 pub fn get_lol_lobby_v_1_parties_gamemode() -> GetLolLobbyV1PartiesGamemode {
-    GetLolLobbyV1PartiesGamemode {
-        
-    }
+    GetLolLobbyV1PartiesGamemode{}
 }
 
 
-pub struct GetLolLobbyV1PartiesPlayer {
-
-}
+pub struct GetLolLobbyV1PartiesPlayer {}
 
 impl IsApiRequest for GetLolLobbyV1PartiesPlayer {
     const METHOD: Method = Method::GET;
     type ReturnType = LolLobbyPlayerDto;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v1/parties/player".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-lobby/v1/parties/player".to_string()}
 }
 
 pub fn get_lol_lobby_v_1_parties_player() -> GetLolLobbyV1PartiesPlayer {
-    GetLolLobbyV1PartiesPlayer {
-        
-    }
+    GetLolLobbyV1PartiesPlayer{}
 }
 
 
-pub struct GetLolLobbyV1PartyRewards {
-
-}
+pub struct GetLolLobbyV1PartyRewards {}
 
 impl IsApiRequest for GetLolLobbyV1PartyRewards {
     const METHOD: Method = Method::GET;
     type ReturnType = LolLobbyLobbyPartyRewards;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v1/party-rewards".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-lobby/v1/party-rewards".to_string()}
 }
 
 pub fn get_lol_lobby_v_1_party_rewards() -> GetLolLobbyV1PartyRewards {
-    GetLolLobbyV1PartyRewards {
-        
-    }
+    GetLolLobbyV1PartyRewards{}
 }
 
 
-pub struct GetLolLobbyV2CommsMembers {
-
-}
+pub struct GetLolLobbyV2CommsMembers {}
 
 impl IsApiRequest for GetLolLobbyV2CommsMembers {
     const METHOD: Method = Method::GET;
     type ReturnType = LolLobbyPremadePartyDto;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v2/comms/members".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-lobby/v2/comms/members".to_string()}
 }
 
 pub fn get_lol_lobby_v_2_comms_members() -> GetLolLobbyV2CommsMembers {
-    GetLolLobbyV2CommsMembers {
-        
-    }
+    GetLolLobbyV2CommsMembers{}
 }
 
 
-pub struct GetLolLobbyV2CommsToken {
-
-}
+pub struct GetLolLobbyV2CommsToken {}
 
 impl IsApiRequest for GetLolLobbyV2CommsToken {
     const METHOD: Method = Method::GET;
     type ReturnType = String;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v2/comms/token".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-lobby/v2/comms/token".to_string()}
 }
 
 pub fn get_lol_lobby_v_2_comms_token() -> GetLolLobbyV2CommsToken {
-    GetLolLobbyV2CommsToken {
-        
-    }
+    GetLolLobbyV2CommsToken{}
 }
 
 
-pub struct GetLolLobbyV2EligibilityGameSelectEligibilityHash {
-
-}
+pub struct GetLolLobbyV2EligibilityGameSelectEligibilityHash {}
 
 impl IsApiRequest for GetLolLobbyV2EligibilityGameSelectEligibilityHash {
     const METHOD: Method = Method::GET;
     type ReturnType = i64;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v2/eligibility/game-select-eligibility-hash".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-lobby/v2/eligibility/game-select-eligibility-hash".to_string()}
 }
 
 pub fn get_lol_lobby_v_2_eligibility_game_select_eligibility_hash() -> GetLolLobbyV2EligibilityGameSelectEligibilityHash {
-    GetLolLobbyV2EligibilityGameSelectEligibilityHash {
-        
-    }
+    GetLolLobbyV2EligibilityGameSelectEligibilityHash{}
 }
 
 
-pub struct GetLolLobbyV2EligibilityInitialConfigurationComplete {
-
-}
+pub struct GetLolLobbyV2EligibilityInitialConfigurationComplete {}
 
 impl IsApiRequest for GetLolLobbyV2EligibilityInitialConfigurationComplete {
     const METHOD: Method = Method::GET;
     type ReturnType = bool;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v2/eligibility/initial-configuration-complete".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-lobby/v2/eligibility/initial-configuration-complete".to_string()}
 }
 
 pub fn get_lol_lobby_v_2_eligibility_initial_configuration_complete() -> GetLolLobbyV2EligibilityInitialConfigurationComplete {
-    GetLolLobbyV2EligibilityInitialConfigurationComplete {
-        
-    }
+    GetLolLobbyV2EligibilityInitialConfigurationComplete{}
 }
 
 
-pub struct GetLolLobbyV2Lobby {
-
-}
+pub struct GetLolLobbyV2Lobby {}
 
 impl IsApiRequest for GetLolLobbyV2Lobby {
     const METHOD: Method = Method::GET;
     type ReturnType = LolLobbyLobbyDto;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v2/lobby".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-lobby/v2/lobby".to_string()}
 }
 
 pub fn get_lol_lobby_v_2_lobby() -> GetLolLobbyV2Lobby {
-    GetLolLobbyV2Lobby {
-        
-    }
+    GetLolLobbyV2Lobby{}
 }
 
 
-pub struct GetLolLobbyV2LobbyCustomAvailableBots {
-
-}
+pub struct GetLolLobbyV2LobbyCustomAvailableBots {}
 
 impl IsApiRequest for GetLolLobbyV2LobbyCustomAvailableBots {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolLobbyLobbyBotChampion>;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v2/lobby/custom/available-bots".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-lobby/v2/lobby/custom/available-bots".to_string()}
 }
 
 pub fn get_lol_lobby_v_2_lobby_custom_available_bots() -> GetLolLobbyV2LobbyCustomAvailableBots {
-    GetLolLobbyV2LobbyCustomAvailableBots {
-        
-    }
+    GetLolLobbyV2LobbyCustomAvailableBots{}
 }
 
 
-pub struct GetLolLobbyV2LobbyCustomBotsEnabled {
-
-}
+pub struct GetLolLobbyV2LobbyCustomBotsEnabled {}
 
 impl IsApiRequest for GetLolLobbyV2LobbyCustomBotsEnabled {
     const METHOD: Method = Method::GET;
     type ReturnType = bool;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v2/lobby/custom/bots-enabled".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-lobby/v2/lobby/custom/bots-enabled".to_string()}
 }
 
 pub fn get_lol_lobby_v_2_lobby_custom_bots_enabled() -> GetLolLobbyV2LobbyCustomBotsEnabled {
-    GetLolLobbyV2LobbyCustomBotsEnabled {
-        
-    }
+    GetLolLobbyV2LobbyCustomBotsEnabled{}
 }
 
 
-pub struct GetLolLobbyV2LobbyInvitations {
-
-}
+pub struct GetLolLobbyV2LobbyInvitations {}
 
 impl IsApiRequest for GetLolLobbyV2LobbyInvitations {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolLobbyLobbyInvitationDto>;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v2/lobby/invitations".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-lobby/v2/lobby/invitations".to_string()}
 }
 
 pub fn get_lol_lobby_v_2_lobby_invitations() -> GetLolLobbyV2LobbyInvitations {
-    GetLolLobbyV2LobbyInvitations {
-        
-    }
+    GetLolLobbyV2LobbyInvitations{}
 }
 
 
-pub struct GetLolLobbyV2LobbyMatchmakingSearchState {
-
-}
+pub struct GetLolLobbyV2LobbyMatchmakingSearchState {}
 
 impl IsApiRequest for GetLolLobbyV2LobbyMatchmakingSearchState {
     const METHOD: Method = Method::GET;
     type ReturnType = LolLobbyLobbyMatchmakingSearchResource;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v2/lobby/matchmaking/search-state".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-lobby/v2/lobby/matchmaking/search-state".to_string()}
 }
 
 pub fn get_lol_lobby_v_2_lobby_matchmaking_search_state() -> GetLolLobbyV2LobbyMatchmakingSearchState {
-    GetLolLobbyV2LobbyMatchmakingSearchState {
-        
-    }
+    GetLolLobbyV2LobbyMatchmakingSearchState{}
 }
 
 
-pub struct GetLolLobbyV2LobbyMembers {
-
-}
+pub struct GetLolLobbyV2LobbyMembers {}
 
 impl IsApiRequest for GetLolLobbyV2LobbyMembers {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolLobbyLobbyParticipantDto>;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v2/lobby/members".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-lobby/v2/lobby/members".to_string()}
 }
 
 pub fn get_lol_lobby_v_2_lobby_members() -> GetLolLobbyV2LobbyMembers {
-    GetLolLobbyV2LobbyMembers {
-        
-    }
+    GetLolLobbyV2LobbyMembers{}
 }
 
 
-pub struct GetLolLobbyV2Notifications {
-
-}
+pub struct GetLolLobbyV2Notifications {}
 
 impl IsApiRequest for GetLolLobbyV2Notifications {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolLobbyLobbyNotification>;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v2/notifications".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-lobby/v2/notifications".to_string()}
 }
 
 pub fn get_lol_lobby_v_2_notifications() -> GetLolLobbyV2Notifications {
-    GetLolLobbyV2Notifications {
-        
-    }
+    GetLolLobbyV2Notifications{}
 }
 
 
-pub struct GetLolLobbyV2PartyActive {
-
-}
+pub struct GetLolLobbyV2PartyActive {}
 
 impl IsApiRequest for GetLolLobbyV2PartyActive {
     const METHOD: Method = Method::GET;
     type ReturnType = bool;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v2/party-active".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-lobby/v2/party-active".to_string()}
 }
 
 pub fn get_lol_lobby_v_2_party_active() -> GetLolLobbyV2PartyActive {
-    GetLolLobbyV2PartyActive {
-        
-    }
+    GetLolLobbyV2PartyActive{}
 }
 
 
-pub struct GetLolLobbyV2PartyEogStatus {
-
-}
+pub struct GetLolLobbyV2PartyEogStatus {}
 
 impl IsApiRequest for GetLolLobbyV2PartyEogStatus {
     const METHOD: Method = Method::GET;
     type ReturnType = LolLobbyPartyStatusDto;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v2/party/eog-status".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-lobby/v2/party/eog-status".to_string()}
 }
 
 pub fn get_lol_lobby_v_2_party_eog_status() -> GetLolLobbyV2PartyEogStatus {
-    GetLolLobbyV2PartyEogStatus {
-        
-    }
+    GetLolLobbyV2PartyEogStatus{}
 }
 
 
-pub struct GetLolLobbyV2ReceivedInvitations {
-
-}
+pub struct GetLolLobbyV2ReceivedInvitations {}
 
 impl IsApiRequest for GetLolLobbyV2ReceivedInvitations {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolLobbyReceivedInvitationDto>;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v2/received-invitations".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-lobby/v2/received-invitations".to_string()}
 }
 
 pub fn get_lol_lobby_v_2_received_invitations() -> GetLolLobbyV2ReceivedInvitations {
-    GetLolLobbyV2ReceivedInvitations {
-        
-    }
+    GetLolLobbyV2ReceivedInvitations{}
 }
 
 
-pub struct GetLolLobbyV2RegistrationStatus {
-
-}
+pub struct GetLolLobbyV2RegistrationStatus {}
 
 impl IsApiRequest for GetLolLobbyV2RegistrationStatus {
     const METHOD: Method = Method::GET;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v2/registration-status".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-lobby/v2/registration-status".to_string()}
 }
 
 pub fn get_lol_lobby_v_2_registration_status() -> GetLolLobbyV2RegistrationStatus {
-    GetLolLobbyV2RegistrationStatus {
-        
-    }
+    GetLolLobbyV2RegistrationStatus{}
 }
 
 
 pub struct PostLolLobbyV1Clash {
-
     pub body: String,
 }
 
 impl IsApiRequest for PostLolLobbyV1Clash {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v1/clash".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-lobby/v1/clash".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_lobby_v_1_clash(body: String) -> PostLolLobbyV1Clash {
-    PostLolLobbyV1Clash {
-        body
-    }
+    PostLolLobbyV1Clash{body}
 }
 
 
 pub struct PostLolLobbyV1CustomGamesByIdJoin {
-
     pub id: u64,
     pub body: LolLobbyLobbyCustomJoinParameters,
 }
@@ -949,86 +461,49 @@ pub struct PostLolLobbyV1CustomGamesByIdJoin {
 impl IsApiRequest for PostLolLobbyV1CustomGamesByIdJoin {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-lobby/v1/custom-games/{}/join", self.id)
-    }
-
+    fn get_url(&self) -> String {format!("/lol-lobby/v1/custom-games/{}/join", self.id)}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_lobby_v_1_custom_games_by_id_join(id: u64, body: LolLobbyLobbyCustomJoinParameters) -> PostLolLobbyV1CustomGamesByIdJoin {
-    PostLolLobbyV1CustomGamesByIdJoin {
-        id, body
-    }
+    PostLolLobbyV1CustomGamesByIdJoin{id, body}
 }
 
 
-pub struct PostLolLobbyV1CustomGamesRefresh {
-
-}
+pub struct PostLolLobbyV1CustomGamesRefresh {}
 
 impl IsApiRequest for PostLolLobbyV1CustomGamesRefresh {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v1/custom-games/refresh".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-lobby/v1/custom-games/refresh".to_string()}
 }
 
 pub fn post_lol_lobby_v_1_custom_games_refresh() -> PostLolLobbyV1CustomGamesRefresh {
-    PostLolLobbyV1CustomGamesRefresh {
-        
-    }
+    PostLolLobbyV1CustomGamesRefresh{}
 }
 
 
 pub struct PostLolLobbyV1LobbyCustomBots {
-
     pub body: LolLobbyLobbyBotParams,
 }
 
 impl IsApiRequest for PostLolLobbyV1LobbyCustomBots {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v1/lobby/custom/bots".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-lobby/v1/lobby/custom/bots".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_lobby_v_1_lobby_custom_bots(body: LolLobbyLobbyBotParams) -> PostLolLobbyV1LobbyCustomBots {
-    PostLolLobbyV1LobbyCustomBots {
-        body
-    }
+    PostLolLobbyV1LobbyCustomBots{body}
 }
 
 
 pub struct PostLolLobbyV1LobbyCustomBotsBySummonerInternalNameByBotUuidToDelete {
-
     pub summoner_internal_name: String,
     pub bot_uuid_to_delete: String,
     pub body: LolLobbyLobbyBotParams,
@@ -1037,143 +512,80 @@ pub struct PostLolLobbyV1LobbyCustomBotsBySummonerInternalNameByBotUuidToDelete 
 impl IsApiRequest for PostLolLobbyV1LobbyCustomBotsBySummonerInternalNameByBotUuidToDelete {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-lobby/v1/lobby/custom/bots/{}/{}", self.summoner_internal_name, self.bot_uuid_to_delete)
-    }
-
+    fn get_url(&self) -> String {format!("/lol-lobby/v1/lobby/custom/bots/{}/{}", self.summoner_internal_name, self.bot_uuid_to_delete)}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_lobby_v_1_lobby_custom_bots_by_summoner_internal_name_by_bot_uuid_to_delete(summoner_internal_name: String, bot_uuid_to_delete: String, body: LolLobbyLobbyBotParams) -> PostLolLobbyV1LobbyCustomBotsBySummonerInternalNameByBotUuidToDelete {
-    PostLolLobbyV1LobbyCustomBotsBySummonerInternalNameByBotUuidToDelete {
-        summoner_internal_name, bot_uuid_to_delete, body
-    }
+    PostLolLobbyV1LobbyCustomBotsBySummonerInternalNameByBotUuidToDelete{summoner_internal_name, bot_uuid_to_delete, body}
 }
 
 
-pub struct PostLolLobbyV1LobbyCustomCancelChampSelect {
-
-}
+pub struct PostLolLobbyV1LobbyCustomCancelChampSelect {}
 
 impl IsApiRequest for PostLolLobbyV1LobbyCustomCancelChampSelect {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v1/lobby/custom/cancel-champ-select".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-lobby/v1/lobby/custom/cancel-champ-select".to_string()}
 }
 
 pub fn post_lol_lobby_v_1_lobby_custom_cancel_champ_select() -> PostLolLobbyV1LobbyCustomCancelChampSelect {
-    PostLolLobbyV1LobbyCustomCancelChampSelect {
-        
-    }
+    PostLolLobbyV1LobbyCustomCancelChampSelect{}
 }
 
 
-pub struct PostLolLobbyV1LobbyCustomStartChampSelect {
-
-}
+pub struct PostLolLobbyV1LobbyCustomStartChampSelect {}
 
 impl IsApiRequest for PostLolLobbyV1LobbyCustomStartChampSelect {
     const METHOD: Method = Method::POST;
     type ReturnType = LolLobbyLobbyCustomChampSelectStartResponse;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v1/lobby/custom/start-champ-select".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-lobby/v1/lobby/custom/start-champ-select".to_string()}
 }
 
 pub fn post_lol_lobby_v_1_lobby_custom_start_champ_select() -> PostLolLobbyV1LobbyCustomStartChampSelect {
-    PostLolLobbyV1LobbyCustomStartChampSelect {
-        
-    }
+    PostLolLobbyV1LobbyCustomStartChampSelect{}
 }
 
 
 pub struct PostLolLobbyV1LobbyCustomSwitchTeams {
-
     pub body: String,
 }
 
 impl IsApiRequest for PostLolLobbyV1LobbyCustomSwitchTeams {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v1/lobby/custom/switch-teams".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-lobby/v1/lobby/custom/switch-teams".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_lobby_v_1_lobby_custom_switch_teams(body: String) -> PostLolLobbyV1LobbyCustomSwitchTeams {
-    PostLolLobbyV1LobbyCustomSwitchTeams {
-        body
-    }
+    PostLolLobbyV1LobbyCustomSwitchTeams{body}
 }
 
 
 pub struct PostLolLobbyV1LobbyInvitations {
-
     pub body: LolLobbyLobbyInvitation,
 }
 
 impl IsApiRequest for PostLolLobbyV1LobbyInvitations {
     const METHOD: Method = Method::POST;
     type ReturnType = LolLobbyLobbyInvitation;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v1/lobby/invitations".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-lobby/v1/lobby/invitations".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_lobby_v_1_lobby_invitations(body: LolLobbyLobbyInvitation) -> PostLolLobbyV1LobbyInvitations {
-    PostLolLobbyV1LobbyInvitations {
-        body
-    }
+    PostLolLobbyV1LobbyInvitations{body}
 }
 
 
 pub struct PostLolLobbyV1LobbyMembersLocalMemberPlayerSlotsBySlotsIndexByPerksString {
-
     pub slots_index: u64,
     pub perks_string: String,
 }
@@ -1181,461 +593,252 @@ pub struct PostLolLobbyV1LobbyMembersLocalMemberPlayerSlotsBySlotsIndexByPerksSt
 impl IsApiRequest for PostLolLobbyV1LobbyMembersLocalMemberPlayerSlotsBySlotsIndexByPerksString {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-lobby/v1/lobby/members/localMember/player-slots/{}/{}", self.slots_index, self.perks_string)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-lobby/v1/lobby/members/localMember/player-slots/{}/{}", self.slots_index, self.perks_string)}
 }
 
 pub fn post_lol_lobby_v_1_lobby_members_local_member_player_slots_by_slots_index_by_perks_string(slots_index: u64, perks_string: String) -> PostLolLobbyV1LobbyMembersLocalMemberPlayerSlotsBySlotsIndexByPerksString {
-    PostLolLobbyV1LobbyMembersLocalMemberPlayerSlotsBySlotsIndexByPerksString {
-        slots_index, perks_string
-    }
+    PostLolLobbyV1LobbyMembersLocalMemberPlayerSlotsBySlotsIndexByPerksString{slots_index, perks_string}
 }
 
 
 pub struct PostLolLobbyV1TournamentsByIdJoin {
-
     pub id: String,
 }
 
 impl IsApiRequest for PostLolLobbyV1TournamentsByIdJoin {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-lobby/v1/tournaments/{}/join", self.id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-lobby/v1/tournaments/{}/join", self.id)}
 }
 
 pub fn post_lol_lobby_v_1_tournaments_by_id_join(id: String) -> PostLolLobbyV1TournamentsByIdJoin {
-    PostLolLobbyV1TournamentsByIdJoin {
-        id
-    }
+    PostLolLobbyV1TournamentsByIdJoin{id}
 }
 
 
-pub struct PostLolLobbyV2EligibilityParty {
-
-}
+pub struct PostLolLobbyV2EligibilityParty {}
 
 impl IsApiRequest for PostLolLobbyV2EligibilityParty {
     const METHOD: Method = Method::POST;
     type ReturnType = Vec<LolLobbyEligibility>;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v2/eligibility/party".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-lobby/v2/eligibility/party".to_string()}
 }
 
 pub fn post_lol_lobby_v_2_eligibility_party() -> PostLolLobbyV2EligibilityParty {
-    PostLolLobbyV2EligibilityParty {
-        
-    }
+    PostLolLobbyV2EligibilityParty{}
 }
 
 
-pub struct PostLolLobbyV2EligibilitySelf {
-
-}
+pub struct PostLolLobbyV2EligibilitySelf {}
 
 impl IsApiRequest for PostLolLobbyV2EligibilitySelf {
     const METHOD: Method = Method::POST;
     type ReturnType = Vec<LolLobbyEligibility>;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v2/eligibility/self".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-lobby/v2/eligibility/self".to_string()}
 }
 
 pub fn post_lol_lobby_v_2_eligibility_self() -> PostLolLobbyV2EligibilitySelf {
-    PostLolLobbyV2EligibilitySelf {
-        
-    }
+    PostLolLobbyV2EligibilitySelf{}
 }
 
 
 pub struct PostLolLobbyV2EogInvitations {
-
     pub body: Vec<LolLobbyLobbyInvitationDto>,
 }
 
 impl IsApiRequest for PostLolLobbyV2EogInvitations {
     const METHOD: Method = Method::POST;
     type ReturnType = Vec<LolLobbyLobbyInvitationDto>;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v2/eog-invitations".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-lobby/v2/eog-invitations".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_lobby_v_2_eog_invitations(body: Vec<LolLobbyLobbyInvitationDto>) -> PostLolLobbyV2EogInvitations {
-    PostLolLobbyV2EogInvitations {
-        body
-    }
+    PostLolLobbyV2EogInvitations{body}
 }
 
 
 pub struct PostLolLobbyV2Lobby {
-
     pub body: LolLobbyLobbyChangeGameDto,
 }
 
 impl IsApiRequest for PostLolLobbyV2Lobby {
     const METHOD: Method = Method::POST;
     type ReturnType = LolLobbyLobbyDto;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v2/lobby".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-lobby/v2/lobby".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_lobby_v_2_lobby(body: LolLobbyLobbyChangeGameDto) -> PostLolLobbyV2Lobby {
-    PostLolLobbyV2Lobby {
-        body
-    }
+    PostLolLobbyV2Lobby{body}
 }
 
 
 pub struct PostLolLobbyV2LobbyInvitations {
-
     pub body: Vec<LolLobbyLobbyInvitationDto>,
 }
 
 impl IsApiRequest for PostLolLobbyV2LobbyInvitations {
     const METHOD: Method = Method::POST;
     type ReturnType = Vec<LolLobbyLobbyInvitationDto>;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v2/lobby/invitations".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-lobby/v2/lobby/invitations".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_lobby_v_2_lobby_invitations(body: Vec<LolLobbyLobbyInvitationDto>) -> PostLolLobbyV2LobbyInvitations {
-    PostLolLobbyV2LobbyInvitations {
-        body
-    }
+    PostLolLobbyV2LobbyInvitations{body}
 }
 
 
-pub struct PostLolLobbyV2LobbyMatchmakingSearch {
-
-}
+pub struct PostLolLobbyV2LobbyMatchmakingSearch {}
 
 impl IsApiRequest for PostLolLobbyV2LobbyMatchmakingSearch {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v2/lobby/matchmaking/search".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-lobby/v2/lobby/matchmaking/search".to_string()}
 }
 
 pub fn post_lol_lobby_v_2_lobby_matchmaking_search() -> PostLolLobbyV2LobbyMatchmakingSearch {
-    PostLolLobbyV2LobbyMatchmakingSearch {
-        
-    }
+    PostLolLobbyV2LobbyMatchmakingSearch{}
 }
 
 
 pub struct PostLolLobbyV2LobbyMembersBySummonerIdGrantInvite {
-
     pub summoner_id: u64,
 }
 
 impl IsApiRequest for PostLolLobbyV2LobbyMembersBySummonerIdGrantInvite {
     const METHOD: Method = Method::POST;
     type ReturnType = u64;
-
-    fn get_url(&self) -> String {
-        format!("/lol-lobby/v2/lobby/members/{}/grant-invite", self.summoner_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-lobby/v2/lobby/members/{}/grant-invite", self.summoner_id)}
 }
 
 pub fn post_lol_lobby_v_2_lobby_members_by_summoner_id_grant_invite(summoner_id: u64) -> PostLolLobbyV2LobbyMembersBySummonerIdGrantInvite {
-    PostLolLobbyV2LobbyMembersBySummonerIdGrantInvite {
-        summoner_id
-    }
+    PostLolLobbyV2LobbyMembersBySummonerIdGrantInvite{summoner_id}
 }
 
 
 pub struct PostLolLobbyV2LobbyMembersBySummonerIdKick {
-
     pub summoner_id: u64,
 }
 
 impl IsApiRequest for PostLolLobbyV2LobbyMembersBySummonerIdKick {
     const METHOD: Method = Method::POST;
     type ReturnType = u64;
-
-    fn get_url(&self) -> String {
-        format!("/lol-lobby/v2/lobby/members/{}/kick", self.summoner_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-lobby/v2/lobby/members/{}/kick", self.summoner_id)}
 }
 
 pub fn post_lol_lobby_v_2_lobby_members_by_summoner_id_kick(summoner_id: u64) -> PostLolLobbyV2LobbyMembersBySummonerIdKick {
-    PostLolLobbyV2LobbyMembersBySummonerIdKick {
-        summoner_id
-    }
+    PostLolLobbyV2LobbyMembersBySummonerIdKick{summoner_id}
 }
 
 
 pub struct PostLolLobbyV2LobbyMembersBySummonerIdPromote {
-
     pub summoner_id: u64,
 }
 
 impl IsApiRequest for PostLolLobbyV2LobbyMembersBySummonerIdPromote {
     const METHOD: Method = Method::POST;
     type ReturnType = u64;
-
-    fn get_url(&self) -> String {
-        format!("/lol-lobby/v2/lobby/members/{}/promote", self.summoner_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-lobby/v2/lobby/members/{}/promote", self.summoner_id)}
 }
 
 pub fn post_lol_lobby_v_2_lobby_members_by_summoner_id_promote(summoner_id: u64) -> PostLolLobbyV2LobbyMembersBySummonerIdPromote {
-    PostLolLobbyV2LobbyMembersBySummonerIdPromote {
-        summoner_id
-    }
+    PostLolLobbyV2LobbyMembersBySummonerIdPromote{summoner_id}
 }
 
 
 pub struct PostLolLobbyV2LobbyMembersBySummonerIdRevokeInvite {
-
     pub summoner_id: u64,
 }
 
 impl IsApiRequest for PostLolLobbyV2LobbyMembersBySummonerIdRevokeInvite {
     const METHOD: Method = Method::POST;
     type ReturnType = u64;
-
-    fn get_url(&self) -> String {
-        format!("/lol-lobby/v2/lobby/members/{}/revoke-invite", self.summoner_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-lobby/v2/lobby/members/{}/revoke-invite", self.summoner_id)}
 }
 
 pub fn post_lol_lobby_v_2_lobby_members_by_summoner_id_revoke_invite(summoner_id: u64) -> PostLolLobbyV2LobbyMembersBySummonerIdRevokeInvite {
-    PostLolLobbyV2LobbyMembersBySummonerIdRevokeInvite {
-        summoner_id
-    }
+    PostLolLobbyV2LobbyMembersBySummonerIdRevokeInvite{summoner_id}
 }
 
 
 pub struct PostLolLobbyV2LobbyTeamByTeam {
-
     pub team: String,
 }
 
 impl IsApiRequest for PostLolLobbyV2LobbyTeamByTeam {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        format!("/lol-lobby/v2/lobby/team/{}", self.team)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-lobby/v2/lobby/team/{}", self.team)}
 }
 
 pub fn post_lol_lobby_v_2_lobby_team_by_team(team: String) -> PostLolLobbyV2LobbyTeamByTeam {
-    PostLolLobbyV2LobbyTeamByTeam {
-        team
-    }
+    PostLolLobbyV2LobbyTeamByTeam{team}
 }
 
 
 pub struct PostLolLobbyV2MatchmakingQuickSearch {
-
     pub body: LolLobbyLobbyChangeGameDto,
 }
 
 impl IsApiRequest for PostLolLobbyV2MatchmakingQuickSearch {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v2/matchmaking/quick-search".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-lobby/v2/matchmaking/quick-search".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_lobby_v_2_matchmaking_quick_search(body: LolLobbyLobbyChangeGameDto) -> PostLolLobbyV2MatchmakingQuickSearch {
-    PostLolLobbyV2MatchmakingQuickSearch {
-        body
-    }
+    PostLolLobbyV2MatchmakingQuickSearch{body}
 }
 
 
 pub struct PostLolLobbyV2Notifications {
-
     pub body: LolLobbyLobbyNotification,
 }
 
 impl IsApiRequest for PostLolLobbyV2Notifications {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v2/notifications".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-lobby/v2/notifications".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_lobby_v_2_notifications(body: LolLobbyLobbyNotification) -> PostLolLobbyV2Notifications {
-    PostLolLobbyV2Notifications {
-        body
-    }
+    PostLolLobbyV2Notifications{body}
 }
 
 
 pub struct PostLolLobbyV2PartiesOverridesEnabledForTeamBuilderQueues {
-
     pub body: bool,
 }
 
 impl IsApiRequest for PostLolLobbyV2PartiesOverridesEnabledForTeamBuilderQueues {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v2/parties/overrides/EnabledForTeamBuilderQueues".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-lobby/v2/parties/overrides/EnabledForTeamBuilderQueues".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_lobby_v_2_parties_overrides_enabled_for_team_builder_queues(body: bool) -> PostLolLobbyV2PartiesOverridesEnabledForTeamBuilderQueues {
-    PostLolLobbyV2PartiesOverridesEnabledForTeamBuilderQueues {
-        body
-    }
+    PostLolLobbyV2PartiesOverridesEnabledForTeamBuilderQueues{body}
 }
 
 
 pub struct PostLolLobbyV2PartyByPartyIdJoin {
-
     pub party_id: String,
     pub body: LolLobbyCustomJoinOptionsDto,
 }
@@ -1643,287 +846,159 @@ pub struct PostLolLobbyV2PartyByPartyIdJoin {
 impl IsApiRequest for PostLolLobbyV2PartyByPartyIdJoin {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-lobby/v2/party/{}/join", self.party_id)
-    }
-
+    fn get_url(&self) -> String {format!("/lol-lobby/v2/party/{}/join", self.party_id)}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_lobby_v_2_party_by_party_id_join(party_id: String, body: LolLobbyCustomJoinOptionsDto) -> PostLolLobbyV2PartyByPartyIdJoin {
-    PostLolLobbyV2PartyByPartyIdJoin {
-        party_id, body
-    }
+    PostLolLobbyV2PartyByPartyIdJoin{party_id, body}
 }
 
 
-pub struct PostLolLobbyV2PlayAgain {
-
-}
+pub struct PostLolLobbyV2PlayAgain {}
 
 impl IsApiRequest for PostLolLobbyV2PlayAgain {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v2/play-again".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-lobby/v2/play-again".to_string()}
 }
 
 pub fn post_lol_lobby_v_2_play_again() -> PostLolLobbyV2PlayAgain {
-    PostLolLobbyV2PlayAgain {
-        
-    }
+    PostLolLobbyV2PlayAgain{}
 }
 
 
-pub struct PostLolLobbyV2PlayAgainDecline {
-
-}
+pub struct PostLolLobbyV2PlayAgainDecline {}
 
 impl IsApiRequest for PostLolLobbyV2PlayAgainDecline {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v2/play-again-decline".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-lobby/v2/play-again-decline".to_string()}
 }
 
 pub fn post_lol_lobby_v_2_play_again_decline() -> PostLolLobbyV2PlayAgainDecline {
-    PostLolLobbyV2PlayAgainDecline {
-        
-    }
+    PostLolLobbyV2PlayAgainDecline{}
 }
 
 
 pub struct PostLolLobbyV2ReceivedInvitationsByInvitationIdAccept {
-
     pub invitation_id: String,
 }
 
 impl IsApiRequest for PostLolLobbyV2ReceivedInvitationsByInvitationIdAccept {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        format!("/lol-lobby/v2/received-invitations/{}/accept", self.invitation_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-lobby/v2/received-invitations/{}/accept", self.invitation_id)}
 }
 
 pub fn post_lol_lobby_v_2_received_invitations_by_invitation_id_accept(invitation_id: String) -> PostLolLobbyV2ReceivedInvitationsByInvitationIdAccept {
-    PostLolLobbyV2ReceivedInvitationsByInvitationIdAccept {
-        invitation_id
-    }
+    PostLolLobbyV2ReceivedInvitationsByInvitationIdAccept{invitation_id}
 }
 
 
 pub struct PostLolLobbyV2ReceivedInvitationsByInvitationIdDecline {
-
     pub invitation_id: String,
 }
 
 impl IsApiRequest for PostLolLobbyV2ReceivedInvitationsByInvitationIdDecline {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        format!("/lol-lobby/v2/received-invitations/{}/decline", self.invitation_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-lobby/v2/received-invitations/{}/decline", self.invitation_id)}
 }
 
 pub fn post_lol_lobby_v_2_received_invitations_by_invitation_id_decline(invitation_id: String) -> PostLolLobbyV2ReceivedInvitationsByInvitationIdDecline {
-    PostLolLobbyV2ReceivedInvitationsByInvitationIdDecline {
-        invitation_id
-    }
+    PostLolLobbyV2ReceivedInvitationsByInvitationIdDecline{invitation_id}
 }
 
 
-pub struct PutLolLobbyV1AutofillDisplayed {
-
-}
+pub struct PutLolLobbyV1AutofillDisplayed {}
 
 impl IsApiRequest for PutLolLobbyV1AutofillDisplayed {
     const METHOD: Method = Method::PUT;
     type ReturnType = bool;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v1/autofill-displayed".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-lobby/v1/autofill-displayed".to_string()}
 }
 
 pub fn put_lol_lobby_v_1_autofill_displayed() -> PutLolLobbyV1AutofillDisplayed {
-    PutLolLobbyV1AutofillDisplayed {
-        
-    }
+    PutLolLobbyV1AutofillDisplayed{}
 }
 
 
 pub struct PutLolLobbyV1LobbyMembersLocalMemberPlayerSlots {
-
     pub body: Vec<LolLobbyQuickPlayPresetSlotDto>,
 }
 
 impl IsApiRequest for PutLolLobbyV1LobbyMembersLocalMemberPlayerSlots {
     const METHOD: Method = Method::PUT;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v1/lobby/members/localMember/player-slots".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-lobby/v1/lobby/members/localMember/player-slots".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn put_lol_lobby_v_1_lobby_members_local_member_player_slots(body: Vec<LolLobbyQuickPlayPresetSlotDto>) -> PutLolLobbyV1LobbyMembersLocalMemberPlayerSlots {
-    PutLolLobbyV1LobbyMembersLocalMemberPlayerSlots {
-        body
-    }
+    PutLolLobbyV1LobbyMembersLocalMemberPlayerSlots{body}
 }
 
 
 pub struct PutLolLobbyV1LobbyMembersLocalMemberPositionPreferences {
-
     pub body: LolLobbyLobbyPositionPreferences,
 }
 
 impl IsApiRequest for PutLolLobbyV1LobbyMembersLocalMemberPositionPreferences {
     const METHOD: Method = Method::PUT;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v1/lobby/members/localMember/position-preferences".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-lobby/v1/lobby/members/localMember/position-preferences".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn put_lol_lobby_v_1_lobby_members_local_member_position_preferences(body: LolLobbyLobbyPositionPreferences) -> PutLolLobbyV1LobbyMembersLocalMemberPositionPreferences {
-    PutLolLobbyV1LobbyMembersLocalMemberPositionPreferences {
-        body
-    }
+    PutLolLobbyV1LobbyMembersLocalMemberPositionPreferences{body}
 }
 
 
 pub struct PutLolLobbyV1LobbyMembersLocalMemberQuickplayPlayerState {
-
     pub body: String,
 }
 
 impl IsApiRequest for PutLolLobbyV1LobbyMembersLocalMemberQuickplayPlayerState {
     const METHOD: Method = Method::PUT;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v1/lobby/members/localMember/quickplayPlayerState".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-lobby/v1/lobby/members/localMember/quickplayPlayerState".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn put_lol_lobby_v_1_lobby_members_local_member_quickplay_player_state(body: String) -> PutLolLobbyV1LobbyMembersLocalMemberQuickplayPlayerState {
-    PutLolLobbyV1LobbyMembersLocalMemberQuickplayPlayerState {
-        body
-    }
+    PutLolLobbyV1LobbyMembersLocalMemberQuickplayPlayerState{body}
 }
 
 
 pub struct PutLolLobbyV1PartiesActive {
-
     pub body: i32,
 }
 
 impl IsApiRequest for PutLolLobbyV1PartiesActive {
     const METHOD: Method = Method::PUT;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v1/parties/active".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-lobby/v1/parties/active".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn put_lol_lobby_v_1_parties_active(body: i32) -> PutLolLobbyV1PartiesActive {
-    PutLolLobbyV1PartiesActive {
-        body
-    }
+    PutLolLobbyV1PartiesActive{body}
 }
 
 
 pub struct PutLolLobbyV1PartiesByPartyIdMembersByPuuidRole {
-
     pub party_id: String,
     pub puuid: String,
     pub body: String,
@@ -1932,227 +1007,140 @@ pub struct PutLolLobbyV1PartiesByPartyIdMembersByPuuidRole {
 impl IsApiRequest for PutLolLobbyV1PartiesByPartyIdMembersByPuuidRole {
     const METHOD: Method = Method::PUT;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        format!("/lol-lobby/v1/parties/{}/members/{}/role", self.party_id, self.puuid)
-    }
-
+    fn get_url(&self) -> String {format!("/lol-lobby/v1/parties/{}/members/{}/role", self.party_id, self.puuid)}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn put_lol_lobby_v_1_parties_by_party_id_members_by_puuid_role(party_id: String, puuid: String, body: String) -> PutLolLobbyV1PartiesByPartyIdMembersByPuuidRole {
-    PutLolLobbyV1PartiesByPartyIdMembersByPuuidRole {
-        party_id, puuid, body
-    }
+    PutLolLobbyV1PartiesByPartyIdMembersByPuuidRole{party_id, puuid, body}
 }
 
 
 pub struct PutLolLobbyV1PartiesMetadata {
-
     pub body: LolLobbyPartyMemberMetadataDto,
 }
 
 impl IsApiRequest for PutLolLobbyV1PartiesMetadata {
     const METHOD: Method = Method::PUT;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v1/parties/metadata".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-lobby/v1/parties/metadata".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn put_lol_lobby_v_1_parties_metadata(body: LolLobbyPartyMemberMetadataDto) -> PutLolLobbyV1PartiesMetadata {
-    PutLolLobbyV1PartiesMetadata {
-        body
-    }
+    PutLolLobbyV1PartiesMetadata{body}
 }
 
 
 pub struct PutLolLobbyV1PartiesQueue {
-
     pub body: i32,
 }
 
 impl IsApiRequest for PutLolLobbyV1PartiesQueue {
     const METHOD: Method = Method::PUT;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v1/parties/queue".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-lobby/v1/parties/queue".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn put_lol_lobby_v_1_parties_queue(body: i32) -> PutLolLobbyV1PartiesQueue {
-    PutLolLobbyV1PartiesQueue {
-        body
-    }
+    PutLolLobbyV1PartiesQueue{body}
 }
 
 
 pub struct PutLolLobbyV1PartiesReady {
-
     pub body: i32,
 }
 
 impl IsApiRequest for PutLolLobbyV1PartiesReady {
     const METHOD: Method = Method::PUT;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v1/parties/ready".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-lobby/v1/parties/ready".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn put_lol_lobby_v_1_parties_ready(body: i32) -> PutLolLobbyV1PartiesReady {
-    PutLolLobbyV1PartiesReady {
-        body
-    }
+    PutLolLobbyV1PartiesReady{body}
 }
 
 
 pub struct PutLolLobbyV2LobbyMembersLocalMemberPositionPreferences {
-
     pub body: LolLobbyLobbyPositionPreferences,
 }
 
 impl IsApiRequest for PutLolLobbyV2LobbyMembersLocalMemberPositionPreferences {
     const METHOD: Method = Method::PUT;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v2/lobby/members/localMember/position-preferences".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-lobby/v2/lobby/members/localMember/position-preferences".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn put_lol_lobby_v_2_lobby_members_local_member_position_preferences(body: LolLobbyLobbyPositionPreferences) -> PutLolLobbyV2LobbyMembersLocalMemberPositionPreferences {
-    PutLolLobbyV2LobbyMembersLocalMemberPositionPreferences {
-        body
-    }
+    PutLolLobbyV2LobbyMembersLocalMemberPositionPreferences{body}
 }
 
 
 pub struct PutLolLobbyV2LobbyPartyType {
-
     pub body: String,
 }
 
 impl IsApiRequest for PutLolLobbyV2LobbyPartyType {
     const METHOD: Method = Method::PUT;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v2/lobby/partyType".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-lobby/v2/lobby/partyType".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn put_lol_lobby_v_2_lobby_party_type(body: String) -> PutLolLobbyV2LobbyPartyType {
-    PutLolLobbyV2LobbyPartyType {
-        body
-    }
+    PutLolLobbyV2LobbyPartyType{body}
 }
 
 
 pub struct PutLolLobbyV2LobbyStrawberryMapId {
-
     pub body: LolLobbyStrawberryMapUpdateDto,
 }
 
 impl IsApiRequest for PutLolLobbyV2LobbyStrawberryMapId {
     const METHOD: Method = Method::PUT;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v2/lobby/strawberryMapId".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-lobby/v2/lobby/strawberryMapId".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn put_lol_lobby_v_2_lobby_strawberry_map_id(body: LolLobbyStrawberryMapUpdateDto) -> PutLolLobbyV2LobbyStrawberryMapId {
-    PutLolLobbyV2LobbyStrawberryMapId {
-        body
-    }
+    PutLolLobbyV2LobbyStrawberryMapId{body}
 }
 
 
 pub struct PutLolLobbyV2LobbySubteamData {
-
     pub body: LolLobbySubteamDataDto,
 }
 
 impl IsApiRequest for PutLolLobbyV2LobbySubteamData {
     const METHOD: Method = Method::PUT;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-lobby/v2/lobby/subteamData".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-lobby/v2/lobby/subteamData".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn put_lol_lobby_v_2_lobby_subteam_data(body: LolLobbySubteamDataDto) -> PutLolLobbyV2LobbySubteamData {
-    PutLolLobbyV2LobbySubteamData {
-        body
-    }
+    PutLolLobbyV2LobbySubteamData{body}
 }
 
 

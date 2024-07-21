@@ -10,7 +10,6 @@ mod additional;
 // ENDPOINTS
 
 pub struct GetLolRankedV1ApexLeaguesByQueueTypeByTier {
-
     pub queue_type: LolRankedLeagueQueueType,
     pub tier: String,
 }
@@ -18,341 +17,166 @@ pub struct GetLolRankedV1ApexLeaguesByQueueTypeByTier {
 impl IsApiRequest for GetLolRankedV1ApexLeaguesByQueueTypeByTier {
     const METHOD: Method = Method::GET;
     type ReturnType = LolRankedLeagueLadderInfo;
-
-    fn get_url(&self) -> String {
-        format!("/lol-ranked/v1/apex-leagues/{}/{}", serde_json::to_string(&self.queue_type).unwrap(), self.tier)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-ranked/v1/apex-leagues/{}/{}", serde_json::to_string(&self.queue_type).unwrap(), self.tier)}
 }
 
 pub fn get_lol_ranked_v_1_apex_leagues_by_queue_type_by_tier(queue_type: LolRankedLeagueQueueType, tier: String) -> GetLolRankedV1ApexLeaguesByQueueTypeByTier {
-    GetLolRankedV1ApexLeaguesByQueueTypeByTier {
-        queue_type, tier
-    }
+    GetLolRankedV1ApexLeaguesByQueueTypeByTier{queue_type, tier}
 }
 
 
-pub struct GetLolRankedV1ChallengerLaddersEnabled {
-
-}
+pub struct GetLolRankedV1ChallengerLaddersEnabled {}
 
 impl IsApiRequest for GetLolRankedV1ChallengerLaddersEnabled {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<String>;
-
-    fn get_url(&self) -> String {
-        "/lol-ranked/v1/challenger-ladders-enabled".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-ranked/v1/challenger-ladders-enabled".to_string()}
 }
 
 pub fn get_lol_ranked_v_1_challenger_ladders_enabled() -> GetLolRankedV1ChallengerLaddersEnabled {
-    GetLolRankedV1ChallengerLaddersEnabled {
-        
-    }
+    GetLolRankedV1ChallengerLaddersEnabled{}
 }
 
 
-pub struct GetLolRankedV1CurrentLpChangeNotification {
-
-}
+pub struct GetLolRankedV1CurrentLpChangeNotification {}
 
 impl IsApiRequest for GetLolRankedV1CurrentLpChangeNotification {
     const METHOD: Method = Method::GET;
     type ReturnType = LolRankedLcuLeagueNotification;
-
-    fn get_url(&self) -> String {
-        "/lol-ranked/v1/current-lp-change-notification".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-ranked/v1/current-lp-change-notification".to_string()}
 }
 
 pub fn get_lol_ranked_v_1_current_lp_change_notification() -> GetLolRankedV1CurrentLpChangeNotification {
-    GetLolRankedV1CurrentLpChangeNotification {
-        
-    }
+    GetLolRankedV1CurrentLpChangeNotification{}
 }
 
 
-pub struct GetLolRankedV1CurrentRankedStats {
-
-}
+pub struct GetLolRankedV1CurrentRankedStats {}
 
 impl IsApiRequest for GetLolRankedV1CurrentRankedStats {
     const METHOD: Method = Method::GET;
     type ReturnType = LolRankedRankedStats;
-
-    fn get_url(&self) -> String {
-        "/lol-ranked/v1/current-ranked-stats".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-ranked/v1/current-ranked-stats".to_string()}
 }
 
 pub fn get_lol_ranked_v_1_current_ranked_stats() -> GetLolRankedV1CurrentRankedStats {
-    GetLolRankedV1CurrentRankedStats {
-        
-    }
+    GetLolRankedV1CurrentRankedStats{}
 }
 
 
 pub struct GetLolRankedV1EligibleTiersQueueTypeByQueueType {
-
     pub queue_type: LolRankedLeagueQueueType,
 }
 
 impl IsApiRequest for GetLolRankedV1EligibleTiersQueueTypeByQueueType {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-ranked/v1/eligibleTiers/queueType/{}", serde_json::to_string(&self.queue_type).unwrap())
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-ranked/v1/eligibleTiers/queueType/{}", serde_json::to_string(&self.queue_type).unwrap())}
 }
 
 pub fn get_lol_ranked_v_1_eligible_tiers_queue_type_by_queue_type(queue_type: LolRankedLeagueQueueType) -> GetLolRankedV1EligibleTiersQueueTypeByQueueType {
-    GetLolRankedV1EligibleTiersQueueTypeByQueueType {
-        queue_type
-    }
+    GetLolRankedV1EligibleTiersQueueTypeByQueueType{queue_type}
 }
 
 
-pub struct GetLolRankedV1EosNotifications {
-
-}
+pub struct GetLolRankedV1EosNotifications {}
 
 impl IsApiRequest for GetLolRankedV1EosNotifications {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolRankedEosNotificationResource>;
-
-    fn get_url(&self) -> String {
-        "/lol-ranked/v1/eos-notifications".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-ranked/v1/eos-notifications".to_string()}
 }
 
 pub fn get_lol_ranked_v_1_eos_notifications() -> GetLolRankedV1EosNotifications {
-    GetLolRankedV1EosNotifications {
-        
-    }
+    GetLolRankedV1EosNotifications{}
 }
 
 
-pub struct GetLolRankedV1EosRewards {
-
-}
+pub struct GetLolRankedV1EosRewards {}
 
 impl IsApiRequest for GetLolRankedV1EosRewards {
     const METHOD: Method = Method::GET;
     type ReturnType = LolRankedEosRewardsConfig;
-
-    fn get_url(&self) -> String {
-        "/lol-ranked/v1/eos-rewards".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-ranked/v1/eos-rewards".to_string()}
 }
 
 pub fn get_lol_ranked_v_1_eos_rewards() -> GetLolRankedV1EosRewards {
-    GetLolRankedV1EosRewards {
-        
-    }
+    GetLolRankedV1EosRewards{}
 }
 
 
 pub struct GetLolRankedV1LeagueLaddersByPuuid {
-
     pub puuid: String,
 }
 
 impl IsApiRequest for GetLolRankedV1LeagueLaddersByPuuid {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolRankedLeagueLadderInfo>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-ranked/v1/league-ladders/{}", self.puuid)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-ranked/v1/league-ladders/{}", self.puuid)}
 }
 
 pub fn get_lol_ranked_v_1_league_ladders_by_puuid(puuid: String) -> GetLolRankedV1LeagueLaddersByPuuid {
-    GetLolRankedV1LeagueLaddersByPuuid {
-        puuid
-    }
+    GetLolRankedV1LeagueLaddersByPuuid{puuid}
 }
 
 
-pub struct GetLolRankedV1Notifications {
-
-}
+pub struct GetLolRankedV1Notifications {}
 
 impl IsApiRequest for GetLolRankedV1Notifications {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolRankedLcuLeagueNotification>;
-
-    fn get_url(&self) -> String {
-        "/lol-ranked/v1/notifications".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-ranked/v1/notifications".to_string()}
 }
 
 pub fn get_lol_ranked_v_1_notifications() -> GetLolRankedV1Notifications {
-    GetLolRankedV1Notifications {
-        
-    }
+    GetLolRankedV1Notifications{}
 }
 
 
 pub struct GetLolRankedV1RankedStatsByPuuid {
-
     pub puuid: String,
 }
 
 impl IsApiRequest for GetLolRankedV1RankedStatsByPuuid {
     const METHOD: Method = Method::GET;
     type ReturnType = LolRankedRankedStats;
-
-    fn get_url(&self) -> String {
-        format!("/lol-ranked/v1/ranked-stats/{}", self.puuid)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-ranked/v1/ranked-stats/{}", self.puuid)}
 }
 
 pub fn get_lol_ranked_v_1_ranked_stats_by_puuid(puuid: String) -> GetLolRankedV1RankedStatsByPuuid {
-    GetLolRankedV1RankedStatsByPuuid {
-        puuid
-    }
+    GetLolRankedV1RankedStatsByPuuid{puuid}
 }
 
 
 pub struct GetLolRankedV1RatedLadderByQueueType {
-
     pub queue_type: LolRankedLeagueQueueType,
 }
 
 impl IsApiRequest for GetLolRankedV1RatedLadderByQueueType {
     const METHOD: Method = Method::GET;
     type ReturnType = LolRankedRatedLadderInfo;
-
-    fn get_url(&self) -> String {
-        format!("/lol-ranked/v1/rated-ladder/{}", serde_json::to_string(&self.queue_type).unwrap())
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-ranked/v1/rated-ladder/{}", serde_json::to_string(&self.queue_type).unwrap())}
 }
 
 pub fn get_lol_ranked_v_1_rated_ladder_by_queue_type(queue_type: LolRankedLeagueQueueType) -> GetLolRankedV1RatedLadderByQueueType {
-    GetLolRankedV1RatedLadderByQueueType {
-        queue_type
-    }
+    GetLolRankedV1RatedLadderByQueueType{queue_type}
 }
 
 
-pub struct GetLolRankedV1SignedRankedStats {
-
-}
+pub struct GetLolRankedV1SignedRankedStats {}
 
 impl IsApiRequest for GetLolRankedV1SignedRankedStats {
     const METHOD: Method = Method::GET;
     type ReturnType = LolRankedSignedRankedStatsDto;
-
-    fn get_url(&self) -> String {
-        "/lol-ranked/v1/signed-ranked-stats".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-ranked/v1/signed-ranked-stats".to_string()}
 }
 
 pub fn get_lol_ranked_v_1_signed_ranked_stats() -> GetLolRankedV1SignedRankedStats {
-    GetLolRankedV1SignedRankedStats {
-        
-    }
+    GetLolRankedV1SignedRankedStats{}
 }
 
 
 pub struct GetLolRankedV1SocialLeaderboardRankedQueueStatsForPuuids {
-
     pub queue_type: LolRankedLeagueQueueType,
     pub puuids: Vec<String>,
 }
@@ -360,15 +184,7 @@ pub struct GetLolRankedV1SocialLeaderboardRankedQueueStatsForPuuids {
 impl IsApiRequest for GetLolRankedV1SocialLeaderboardRankedQueueStatsForPuuids {
     const METHOD: Method = Method::GET;
     type ReturnType = LolRankedSocialLeaderboardRankedQueueStats;
-
-    fn get_url(&self) -> String {
-        "/lol-ranked/v1/social-leaderboard-ranked-queue-stats-for-puuids".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
+    fn get_url(&self) -> String {"/lol-ranked/v1/social-leaderboard-ranked-queue-stats-for-puuids".to_string()}
     fn get_query_params(&self) -> Option<Value> {
         Some(json!({
             "queueType" : self.queue_type,
@@ -378,70 +194,37 @@ impl IsApiRequest for GetLolRankedV1SocialLeaderboardRankedQueueStatsForPuuids {
 }
 
 pub fn get_lol_ranked_v_1_social_leaderboard_ranked_queue_stats_for_puuids(queue_type: LolRankedLeagueQueueType, puuids: Vec<String>) -> GetLolRankedV1SocialLeaderboardRankedQueueStatsForPuuids {
-    GetLolRankedV1SocialLeaderboardRankedQueueStatsForPuuids {
-        queue_type, puuids
-    }
+    GetLolRankedV1SocialLeaderboardRankedQueueStatsForPuuids{queue_type, puuids}
 }
 
 
-pub struct GetLolRankedV1SplitsConfig {
-
-}
+pub struct GetLolRankedV1SplitsConfig {}
 
 impl IsApiRequest for GetLolRankedV1SplitsConfig {
     const METHOD: Method = Method::GET;
     type ReturnType = LolRankedRewardsInfo;
-
-    fn get_url(&self) -> String {
-        "/lol-ranked/v1/splits-config".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-ranked/v1/splits-config".to_string()}
 }
 
 pub fn get_lol_ranked_v_1_splits_config() -> GetLolRankedV1SplitsConfig {
-    GetLolRankedV1SplitsConfig {
-        
-    }
+    GetLolRankedV1SplitsConfig{}
 }
 
 
-pub struct GetLolRankedV1TopRatedLaddersEnabled {
-
-}
+pub struct GetLolRankedV1TopRatedLaddersEnabled {}
 
 impl IsApiRequest for GetLolRankedV1TopRatedLaddersEnabled {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<String>;
-
-    fn get_url(&self) -> String {
-        "/lol-ranked/v1/top-rated-ladders-enabled".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-ranked/v1/top-rated-ladders-enabled".to_string()}
 }
 
 pub fn get_lol_ranked_v_1_top_rated_ladders_enabled() -> GetLolRankedV1TopRatedLaddersEnabled {
-    GetLolRankedV1TopRatedLaddersEnabled {
-        
-    }
+    GetLolRankedV1TopRatedLaddersEnabled{}
 }
 
 
 pub struct GetLolRankedV2Tiers {
-
     pub summoner_ids: Vec<u64>,
     pub queue_types: Vec<LolRankedLeagueQueueType>,
 }
@@ -449,15 +232,7 @@ pub struct GetLolRankedV2Tiers {
 impl IsApiRequest for GetLolRankedV2Tiers {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolRankedParticipantTiers>;
-
-    fn get_url(&self) -> String {
-        "/lol-ranked/v2/tiers".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
+    fn get_url(&self) -> String {"/lol-ranked/v2/tiers".to_string()}
     fn get_query_params(&self) -> Option<Value> {
         Some(json!({
             "summonerIds" : self.summoner_ids,
@@ -467,67 +242,37 @@ impl IsApiRequest for GetLolRankedV2Tiers {
 }
 
 pub fn get_lol_ranked_v_2_tiers(summoner_ids: Vec<u64>, queue_types: Vec<LolRankedLeagueQueueType>) -> GetLolRankedV2Tiers {
-    GetLolRankedV2Tiers {
-        summoner_ids, queue_types
-    }
+    GetLolRankedV2Tiers{summoner_ids, queue_types}
 }
 
 
 pub struct PostLolRankedV1EosNotificationsByIdAcknowledge {
-
     pub id: String,
 }
 
 impl IsApiRequest for PostLolRankedV1EosNotificationsByIdAcknowledge {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-ranked/v1/eos-notifications/{}/acknowledge", self.id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-ranked/v1/eos-notifications/{}/acknowledge", self.id)}
 }
 
 pub fn post_lol_ranked_v_1_eos_notifications_by_id_acknowledge(id: String) -> PostLolRankedV1EosNotificationsByIdAcknowledge {
-    PostLolRankedV1EosNotificationsByIdAcknowledge {
-        id
-    }
+    PostLolRankedV1EosNotificationsByIdAcknowledge{id}
 }
 
 
 pub struct PostLolRankedV1NotificationsByIdAcknowledge {
-
     pub id: u64,
 }
 
 impl IsApiRequest for PostLolRankedV1NotificationsByIdAcknowledge {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-ranked/v1/notifications/{}/acknowledge", self.id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-ranked/v1/notifications/{}/acknowledge", self.id)}
 }
 
 pub fn post_lol_ranked_v_1_notifications_by_id_acknowledge(id: u64) -> PostLolRankedV1NotificationsByIdAcknowledge {
-    PostLolRankedV1NotificationsByIdAcknowledge {
-        id
-    }
+    PostLolRankedV1NotificationsByIdAcknowledge{id}
 }
 
 

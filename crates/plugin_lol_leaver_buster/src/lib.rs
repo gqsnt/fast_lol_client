@@ -10,116 +10,58 @@ mod additional;
 // ENDPOINTS
 
 pub struct DeleteLolLeaverBusterV1NotificationsById {
-
     pub id: u32,
 }
 
 impl IsApiRequest for DeleteLolLeaverBusterV1NotificationsById {
     const METHOD: Method = Method::DELETE;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-leaver-buster/v1/notifications/{}", self.id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-leaver-buster/v1/notifications/{}", self.id)}
 }
 
 pub fn delete_lol_leaver_buster_v_1_notifications_by_id(id: u32) -> DeleteLolLeaverBusterV1NotificationsById {
-    DeleteLolLeaverBusterV1NotificationsById {
-        id
-    }
+    DeleteLolLeaverBusterV1NotificationsById{id}
 }
 
 
-pub struct GetLolLeaverBusterV1Notifications {
-
-}
+pub struct GetLolLeaverBusterV1Notifications {}
 
 impl IsApiRequest for GetLolLeaverBusterV1Notifications {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolLeaverBusterLeaverBusterNotificationResource>;
-
-    fn get_url(&self) -> String {
-        "/lol-leaver-buster/v1/notifications".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-leaver-buster/v1/notifications".to_string()}
 }
 
 pub fn get_lol_leaver_buster_v_1_notifications() -> GetLolLeaverBusterV1Notifications {
-    GetLolLeaverBusterV1Notifications {
-        
-    }
+    GetLolLeaverBusterV1Notifications{}
 }
 
 
 pub struct GetLolLeaverBusterV1NotificationsById {
-
     pub id: u32,
 }
 
 impl IsApiRequest for GetLolLeaverBusterV1NotificationsById {
     const METHOD: Method = Method::GET;
     type ReturnType = LolLeaverBusterLeaverBusterNotificationResource;
-
-    fn get_url(&self) -> String {
-        format!("/lol-leaver-buster/v1/notifications/{}", self.id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-leaver-buster/v1/notifications/{}", self.id)}
 }
 
 pub fn get_lol_leaver_buster_v_1_notifications_by_id(id: u32) -> GetLolLeaverBusterV1NotificationsById {
-    GetLolLeaverBusterV1NotificationsById {
-        id
-    }
+    GetLolLeaverBusterV1NotificationsById{id}
 }
 
 
-pub struct GetLolLeaverBusterV1RankedRestriction {
-
-}
+pub struct GetLolLeaverBusterV1RankedRestriction {}
 
 impl IsApiRequest for GetLolLeaverBusterV1RankedRestriction {
     const METHOD: Method = Method::GET;
     type ReturnType = LolLeaverBusterRankedRestrictionInfo;
-
-    fn get_url(&self) -> String {
-        "/lol-leaver-buster/v1/ranked-restriction".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-leaver-buster/v1/ranked-restriction".to_string()}
 }
 
 pub fn get_lol_leaver_buster_v_1_ranked_restriction() -> GetLolLeaverBusterV1RankedRestriction {
-    GetLolLeaverBusterV1RankedRestriction {
-        
-    }
+    GetLolLeaverBusterV1RankedRestriction{}
 }
 
 

@@ -9,94 +9,50 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct GetLolMatchHistoryV1Delta {
-
-}
+pub struct GetLolMatchHistoryV1Delta {}
 
 impl IsApiRequest for GetLolMatchHistoryV1Delta {
     const METHOD: Method = Method::GET;
     type ReturnType = LolMatchHistoryMatchHistoryPlayerDelta;
-
-    fn get_url(&self) -> String {
-        "/lol-match-history/v1/delta".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-match-history/v1/delta".to_string()}
 }
 
 pub fn get_lol_match_history_v_1_delta() -> GetLolMatchHistoryV1Delta {
-    GetLolMatchHistoryV1Delta {
-        
-    }
+    GetLolMatchHistoryV1Delta{}
 }
 
 
 pub struct GetLolMatchHistoryV1GameTimelinesByGameId {
-
     pub game_id: u64,
 }
 
 impl IsApiRequest for GetLolMatchHistoryV1GameTimelinesByGameId {
     const METHOD: Method = Method::GET;
     type ReturnType = LolMatchHistoryMatchHistoryTimelineFrames;
-
-    fn get_url(&self) -> String {
-        format!("/lol-match-history/v1/game-timelines/{}", self.game_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-match-history/v1/game-timelines/{}", self.game_id)}
 }
 
 pub fn get_lol_match_history_v_1_game_timelines_by_game_id(game_id: u64) -> GetLolMatchHistoryV1GameTimelinesByGameId {
-    GetLolMatchHistoryV1GameTimelinesByGameId {
-        game_id
-    }
+    GetLolMatchHistoryV1GameTimelinesByGameId{game_id}
 }
 
 
 pub struct GetLolMatchHistoryV1GamesByGameId {
-
     pub game_id: u64,
 }
 
 impl IsApiRequest for GetLolMatchHistoryV1GamesByGameId {
     const METHOD: Method = Method::GET;
     type ReturnType = LolMatchHistoryMatchHistoryGame;
-
-    fn get_url(&self) -> String {
-        format!("/lol-match-history/v1/games/{}", self.game_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-match-history/v1/games/{}", self.game_id)}
 }
 
 pub fn get_lol_match_history_v_1_games_by_game_id(game_id: u64) -> GetLolMatchHistoryV1GamesByGameId {
-    GetLolMatchHistoryV1GamesByGameId {
-        game_id
-    }
+    GetLolMatchHistoryV1GamesByGameId{game_id}
 }
 
 
 pub struct GetLolMatchHistoryV1ProductsLolByPuuidMatches {
-
     pub puuid: String,
     pub beg_index: Option<u32>,
     pub end_index: Option<u32>,
@@ -105,15 +61,7 @@ pub struct GetLolMatchHistoryV1ProductsLolByPuuidMatches {
 impl IsApiRequest for GetLolMatchHistoryV1ProductsLolByPuuidMatches {
     const METHOD: Method = Method::GET;
     type ReturnType = LolMatchHistoryMatchHistoryList;
-
-    fn get_url(&self) -> String {
-        format!("/lol-match-history/v1/products/lol/{}/matches", self.puuid)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
+    fn get_url(&self) -> String {format!("/lol-match-history/v1/products/lol/{}/matches", self.puuid)}
     fn get_query_params(&self) -> Option<Value> {
         Some(json!({
             "begIndex" : self.beg_index,
@@ -123,14 +71,11 @@ impl IsApiRequest for GetLolMatchHistoryV1ProductsLolByPuuidMatches {
 }
 
 pub fn get_lol_match_history_v_1_products_lol_by_puuid_matches(puuid: String, beg_index: Option<u32>, end_index: Option<u32>) -> GetLolMatchHistoryV1ProductsLolByPuuidMatches {
-    GetLolMatchHistoryV1ProductsLolByPuuidMatches {
-        puuid, beg_index, end_index
-    }
+    GetLolMatchHistoryV1ProductsLolByPuuidMatches{puuid, beg_index, end_index}
 }
 
 
 pub struct GetLolMatchHistoryV1ProductsLolCurrentSummonerMatches {
-
     pub beg_index: Option<u32>,
     pub end_index: Option<u32>,
 }
@@ -138,15 +83,7 @@ pub struct GetLolMatchHistoryV1ProductsLolCurrentSummonerMatches {
 impl IsApiRequest for GetLolMatchHistoryV1ProductsLolCurrentSummonerMatches {
     const METHOD: Method = Method::GET;
     type ReturnType = LolMatchHistoryMatchHistoryList;
-
-    fn get_url(&self) -> String {
-        "/lol-match-history/v1/products/lol/current-summoner/matches".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
+    fn get_url(&self) -> String {"/lol-match-history/v1/products/lol/current-summoner/matches".to_string()}
     fn get_query_params(&self) -> Option<Value> {
         Some(json!({
             "begIndex" : self.beg_index,
@@ -156,14 +93,11 @@ impl IsApiRequest for GetLolMatchHistoryV1ProductsLolCurrentSummonerMatches {
 }
 
 pub fn get_lol_match_history_v_1_products_lol_current_summoner_matches(beg_index: Option<u32>, end_index: Option<u32>) -> GetLolMatchHistoryV1ProductsLolCurrentSummonerMatches {
-    GetLolMatchHistoryV1ProductsLolCurrentSummonerMatches {
-        beg_index, end_index
-    }
+    GetLolMatchHistoryV1ProductsLolCurrentSummonerMatches{beg_index, end_index}
 }
 
 
 pub struct GetLolMatchHistoryV1ProductsTftByPuuidMatches {
-
     pub puuid: String,
     pub begin: Option<u32>,
     pub count: Option<u32>,
@@ -173,15 +107,7 @@ pub struct GetLolMatchHistoryV1ProductsTftByPuuidMatches {
 impl IsApiRequest for GetLolMatchHistoryV1ProductsTftByPuuidMatches {
     const METHOD: Method = Method::GET;
     type ReturnType = LolMatchHistoryGamhsMatchHistoryList;
-
-    fn get_url(&self) -> String {
-        format!("/lol-match-history/v1/products/tft/{}/matches", self.puuid)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
+    fn get_url(&self) -> String {format!("/lol-match-history/v1/products/tft/{}/matches", self.puuid)}
     fn get_query_params(&self) -> Option<Value> {
         Some(json!({
             "begin" : self.begin,
@@ -192,70 +118,37 @@ impl IsApiRequest for GetLolMatchHistoryV1ProductsTftByPuuidMatches {
 }
 
 pub fn get_lol_match_history_v_1_products_tft_by_puuid_matches(puuid: String, begin: Option<u32>, count: Option<u32>, tag: Option<String>) -> GetLolMatchHistoryV1ProductsTftByPuuidMatches {
-    GetLolMatchHistoryV1ProductsTftByPuuidMatches {
-        puuid, begin, count, tag
-    }
+    GetLolMatchHistoryV1ProductsTftByPuuidMatches{puuid, begin, count, tag}
 }
 
 
-pub struct GetLolMatchHistoryV1RecentlyPlayedSummoners {
-
-}
+pub struct GetLolMatchHistoryV1RecentlyPlayedSummoners {}
 
 impl IsApiRequest for GetLolMatchHistoryV1RecentlyPlayedSummoners {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolMatchHistoryRecentlyPlayedSummoner>;
-
-    fn get_url(&self) -> String {
-        "/lol-match-history/v1/recently-played-summoners".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-match-history/v1/recently-played-summoners".to_string()}
 }
 
 pub fn get_lol_match_history_v_1_recently_played_summoners() -> GetLolMatchHistoryV1RecentlyPlayedSummoners {
-    GetLolMatchHistoryV1RecentlyPlayedSummoners {
-        
-    }
+    GetLolMatchHistoryV1RecentlyPlayedSummoners{}
 }
 
 
-pub struct GetLolMatchHistoryV1WebUrl {
-
-}
+pub struct GetLolMatchHistoryV1WebUrl {}
 
 impl IsApiRequest for GetLolMatchHistoryV1WebUrl {
     const METHOD: Method = Method::GET;
     type ReturnType = String;
-
-    fn get_url(&self) -> String {
-        "/lol-match-history/v1/web-url".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-match-history/v1/web-url".to_string()}
 }
 
 pub fn get_lol_match_history_v_1_web_url() -> GetLolMatchHistoryV1WebUrl {
-    GetLolMatchHistoryV1WebUrl {
-        
-    }
+    GetLolMatchHistoryV1WebUrl{}
 }
 
 
 pub struct GetLolMatchHistoryV3MatchlistAccountByAccountId {
-
     pub account_id: u64,
     pub beg_index: Option<u32>,
     pub end_index: Option<u32>,
@@ -264,15 +157,7 @@ pub struct GetLolMatchHistoryV3MatchlistAccountByAccountId {
 impl IsApiRequest for GetLolMatchHistoryV3MatchlistAccountByAccountId {
     const METHOD: Method = Method::GET;
     type ReturnType = LolMatchHistoryMatchHistoryList;
-
-    fn get_url(&self) -> String {
-        format!("/lol-match-history/v3/matchlist/account/{}", self.account_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
+    fn get_url(&self) -> String {format!("/lol-match-history/v3/matchlist/account/{}", self.account_id)}
     fn get_query_params(&self) -> Option<Value> {
         Some(json!({
             "begIndex" : self.beg_index,
@@ -282,38 +167,25 @@ impl IsApiRequest for GetLolMatchHistoryV3MatchlistAccountByAccountId {
 }
 
 pub fn get_lol_match_history_v_3_matchlist_account_by_account_id(account_id: u64, beg_index: Option<u32>, end_index: Option<u32>) -> GetLolMatchHistoryV3MatchlistAccountByAccountId {
-    GetLolMatchHistoryV3MatchlistAccountByAccountId {
-        account_id, beg_index, end_index
-    }
+    GetLolMatchHistoryV3MatchlistAccountByAccountId{account_id, beg_index, end_index}
 }
 
 
 pub struct PostLolMatchHistoryV1AcsEndpointOverride {
-
     pub body: LolMatchHistoryAcsEndPoint,
 }
 
 impl IsApiRequest for PostLolMatchHistoryV1AcsEndpointOverride {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-match-history/v1/acs-endpoint-override".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-match-history/v1/acs-endpoint-override".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_match_history_v_1_acs_endpoint_override(body: LolMatchHistoryAcsEndPoint) -> PostLolMatchHistoryV1AcsEndpointOverride {
-    PostLolMatchHistoryV1AcsEndpointOverride {
-        body
-    }
+    PostLolMatchHistoryV1AcsEndpointOverride{body}
 }
 
 

@@ -10,94 +10,51 @@ mod additional;
 // ENDPOINTS
 
 pub struct GetLolCollectionsV1InventoriesBySummonerIdBackdrop {
-
     pub summoner_id: u64,
 }
 
 impl IsApiRequest for GetLolCollectionsV1InventoriesBySummonerIdBackdrop {
     const METHOD: Method = Method::GET;
     type ReturnType = LolCollectionsCollectionsSummonerBackdrop;
-
-    fn get_url(&self) -> String {
-        format!("/lol-collections/v1/inventories/{}/backdrop", self.summoner_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-collections/v1/inventories/{}/backdrop", self.summoner_id)}
 }
 
 pub fn get_lol_collections_v_1_inventories_by_summoner_id_backdrop(summoner_id: u64) -> GetLolCollectionsV1InventoriesBySummonerIdBackdrop {
-    GetLolCollectionsV1InventoriesBySummonerIdBackdrop {
-        summoner_id
-    }
+    GetLolCollectionsV1InventoriesBySummonerIdBackdrop{summoner_id}
 }
 
 
 pub struct GetLolCollectionsV1InventoriesBySummonerIdSpells {
-
     pub summoner_id: u64,
 }
 
 impl IsApiRequest for GetLolCollectionsV1InventoriesBySummonerIdSpells {
     const METHOD: Method = Method::GET;
     type ReturnType = LolCollectionsCollectionsSummonerSpells;
-
-    fn get_url(&self) -> String {
-        format!("/lol-collections/v1/inventories/{}/spells", self.summoner_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-collections/v1/inventories/{}/spells", self.summoner_id)}
 }
 
 pub fn get_lol_collections_v_1_inventories_by_summoner_id_spells(summoner_id: u64) -> GetLolCollectionsV1InventoriesBySummonerIdSpells {
-    GetLolCollectionsV1InventoriesBySummonerIdSpells {
-        summoner_id
-    }
+    GetLolCollectionsV1InventoriesBySummonerIdSpells{summoner_id}
 }
 
 
 pub struct GetLolCollectionsV1InventoriesBySummonerIdWardSkins {
-
     pub summoner_id: u64,
 }
 
 impl IsApiRequest for GetLolCollectionsV1InventoriesBySummonerIdWardSkins {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolCollectionsCollectionsWardSkin>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-collections/v1/inventories/{}/ward-skins", self.summoner_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-collections/v1/inventories/{}/ward-skins", self.summoner_id)}
 }
 
 pub fn get_lol_collections_v_1_inventories_by_summoner_id_ward_skins(summoner_id: u64) -> GetLolCollectionsV1InventoriesBySummonerIdWardSkins {
-    GetLolCollectionsV1InventoriesBySummonerIdWardSkins {
-        summoner_id
-    }
+    GetLolCollectionsV1InventoriesBySummonerIdWardSkins{summoner_id}
 }
 
 
 pub struct GetLolCollectionsV1InventoriesBySummonerIdWardSkinsByWardSkinId {
-
     pub summoner_id: u64,
     pub ward_skin_id: i64,
 }
@@ -105,24 +62,11 @@ pub struct GetLolCollectionsV1InventoriesBySummonerIdWardSkinsByWardSkinId {
 impl IsApiRequest for GetLolCollectionsV1InventoriesBySummonerIdWardSkinsByWardSkinId {
     const METHOD: Method = Method::GET;
     type ReturnType = LolCollectionsCollectionsWardSkin;
-
-    fn get_url(&self) -> String {
-        format!("/lol-collections/v1/inventories/{}/ward-skins/{}", self.summoner_id, self.ward_skin_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-collections/v1/inventories/{}/ward-skins/{}", self.summoner_id, self.ward_skin_id)}
 }
 
 pub fn get_lol_collections_v_1_inventories_by_summoner_id_ward_skins_by_ward_skin_id(summoner_id: u64, ward_skin_id: i64) -> GetLolCollectionsV1InventoriesBySummonerIdWardSkinsByWardSkinId {
-    GetLolCollectionsV1InventoriesBySummonerIdWardSkinsByWardSkinId {
-        summoner_id, ward_skin_id
-    }
+    GetLolCollectionsV1InventoriesBySummonerIdWardSkinsByWardSkinId{summoner_id, ward_skin_id}
 }
 
 

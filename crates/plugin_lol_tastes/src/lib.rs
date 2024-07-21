@@ -9,87 +9,42 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct GetLolTastesV1Ready {
-
-}
+pub struct GetLolTastesV1Ready {}
 
 impl IsApiRequest for GetLolTastesV1Ready {
     const METHOD: Method = Method::GET;
     type ReturnType = bool;
-
-    fn get_url(&self) -> String {
-        "/lol-tastes/v1/ready".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-tastes/v1/ready".to_string()}
 }
 
 pub fn get_lol_tastes_v_1_ready() -> GetLolTastesV1Ready {
-    GetLolTastesV1Ready {
-        
-    }
+    GetLolTastesV1Ready{}
 }
 
 
-pub struct GetLolTastesV1SkinsModel {
-
-}
+pub struct GetLolTastesV1SkinsModel {}
 
 impl IsApiRequest for GetLolTastesV1SkinsModel {
     const METHOD: Method = Method::GET;
     type ReturnType = LolTastesDataModelResponse;
-
-    fn get_url(&self) -> String {
-        "/lol-tastes/v1/skins-model".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-tastes/v1/skins-model".to_string()}
 }
 
 pub fn get_lol_tastes_v_1_skins_model() -> GetLolTastesV1SkinsModel {
-    GetLolTastesV1SkinsModel {
-        
-    }
+    GetLolTastesV1SkinsModel{}
 }
 
 
-pub struct GetLolTastesV1TftOverviewModel {
-
-}
+pub struct GetLolTastesV1TftOverviewModel {}
 
 impl IsApiRequest for GetLolTastesV1TftOverviewModel {
     const METHOD: Method = Method::GET;
     type ReturnType = LolTastesDataModelResponse;
-
-    fn get_url(&self) -> String {
-        "/lol-tastes/v1/tft-overview-model".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-tastes/v1/tft-overview-model".to_string()}
 }
 
 pub fn get_lol_tastes_v_1_tft_overview_model() -> GetLolTastesV1TftOverviewModel {
-    GetLolTastesV1TftOverviewModel {
-        
-    }
+    GetLolTastesV1TftOverviewModel{}
 }
 
 

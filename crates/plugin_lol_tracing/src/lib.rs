@@ -17,24 +17,11 @@ pub struct DeleteTracingV1PerformanceByName {
 impl IsApiRequest for DeleteTracingV1PerformanceByName {
     const METHOD: Method = Method::DELETE;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        format!("/tracing/v1/performance/{}", self.name)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/tracing/v1/performance/{}", self.name)}
 }
 
 pub fn delete_tracing_v_1_performance_by_name(name: String) -> DeleteTracingV1PerformanceByName {
-    DeleteTracingV1PerformanceByName {
-        name
-    }
+    DeleteTracingV1PerformanceByName{name}
 }
 
 
@@ -48,15 +35,7 @@ pub struct DeleteTracingV1TraceTimeSeriesEventByEventName {
 impl IsApiRequest for DeleteTracingV1TraceTimeSeriesEventByEventName {
     const METHOD: Method = Method::DELETE;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        format!("/tracing/v1/trace/time-series-event/{}", self.event_name)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
+    fn get_url(&self) -> String {format!("/tracing/v1/trace/time-series-event/{}", self.event_name)}
     fn get_query_params(&self) -> Option<Value> {
         Some(json!({
             "when" : self.when,
@@ -66,37 +45,23 @@ impl IsApiRequest for DeleteTracingV1TraceTimeSeriesEventByEventName {
 }
 
 pub fn delete_tracing_v_1_trace_time_series_event_by_event_name(event_name: String, when: u64, suffix: Option<String>) -> DeleteTracingV1TraceTimeSeriesEventByEventName {
-    DeleteTracingV1TraceTimeSeriesEventByEventName {
-        event_name, when, suffix
-    }
+    DeleteTracingV1TraceTimeSeriesEventByEventName{event_name, when, suffix}
 }
 
 
 pub struct GetTracingV1TracePayloadsEnabled {
     // Returns whether payloads are included in the tracing log.
+
 }
 
 impl IsApiRequest for GetTracingV1TracePayloadsEnabled {
     const METHOD: Method = Method::GET;
     type ReturnType = bool;
-
-    fn get_url(&self) -> String {
-        "/tracing/v1/trace/payloads/enabled".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/tracing/v1/trace/payloads/enabled".to_string()}
 }
 
 pub fn get_tracing_v_1_trace_payloads_enabled() -> GetTracingV1TracePayloadsEnabled {
-    GetTracingV1TracePayloadsEnabled {
-        
-    }
+    GetTracingV1TracePayloadsEnabled{}
 }
 
 
@@ -108,24 +73,11 @@ pub struct PostTracingV1PerformanceByName {
 impl IsApiRequest for PostTracingV1PerformanceByName {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        format!("/tracing/v1/performance/{}", self.name)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/tracing/v1/performance/{}", self.name)}
 }
 
 pub fn post_tracing_v_1_performance_by_name(name: String) -> PostTracingV1PerformanceByName {
-    PostTracingV1PerformanceByName {
-        name
-    }
+    PostTracingV1PerformanceByName{name}
 }
 
 
@@ -137,24 +89,14 @@ pub struct PostTracingV1TraceCriticalFlow {
 impl IsApiRequest for PostTracingV1TraceCriticalFlow {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/tracing/v1/trace/critical-flow".to_string()
-    }
-
+    fn get_url(&self) -> String {"/tracing/v1/trace/critical-flow".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_tracing_v_1_trace_critical_flow(body: TracingCriticalFlowEventV1) -> PostTracingV1TraceCriticalFlow {
-    PostTracingV1TraceCriticalFlow {
-        body
-    }
+    PostTracingV1TraceCriticalFlow{body}
 }
 
 
@@ -166,24 +108,14 @@ pub struct PostTracingV1TraceEvent {
 impl IsApiRequest for PostTracingV1TraceEvent {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/tracing/v1/trace/event".to_string()
-    }
-
+    fn get_url(&self) -> String {"/tracing/v1/trace/event".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_tracing_v_1_trace_event(body: TracingEventV1) -> PostTracingV1TraceEvent {
-    PostTracingV1TraceEvent {
-        body
-    }
+    PostTracingV1TraceEvent{body}
 }
 
 
@@ -195,24 +127,14 @@ pub struct PostTracingV1TraceModule {
 impl IsApiRequest for PostTracingV1TraceModule {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/tracing/v1/trace/module".to_string()
-    }
-
+    fn get_url(&self) -> String {"/tracing/v1/trace/module".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_tracing_v_1_trace_module(body: TracingModuleV1) -> PostTracingV1TraceModule {
-    PostTracingV1TraceModule {
-        body
-    }
+    PostTracingV1TraceModule{body}
 }
 
 
@@ -227,15 +149,7 @@ pub struct PostTracingV1TraceNonTimingEventByEventName {
 impl IsApiRequest for PostTracingV1TraceNonTimingEventByEventName {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        format!("/tracing/v1/trace/non-timing-event/{}", self.event_name)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
+    fn get_url(&self) -> String {format!("/tracing/v1/trace/non-timing-event/{}", self.event_name)}
     fn get_query_params(&self) -> Option<Value> {
         Some(json!({
             "when" : self.when,
@@ -246,9 +160,7 @@ impl IsApiRequest for PostTracingV1TraceNonTimingEventByEventName {
 }
 
 pub fn post_tracing_v_1_trace_non_timing_event_by_event_name(event_name: String, when: u64, value: String, unit: String) -> PostTracingV1TraceNonTimingEventByEventName {
-    PostTracingV1TraceNonTimingEventByEventName {
-        event_name, when, value, unit
-    }
+    PostTracingV1TraceNonTimingEventByEventName{event_name, when, value, unit}
 }
 
 
@@ -260,24 +172,14 @@ pub struct PostTracingV1TracePhaseBegin {
 impl IsApiRequest for PostTracingV1TracePhaseBegin {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/tracing/v1/trace/phase/begin".to_string()
-    }
-
+    fn get_url(&self) -> String {"/tracing/v1/trace/phase/begin".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_tracing_v_1_trace_phase_begin(body: TracingPhaseBeginV1) -> PostTracingV1TracePhaseBegin {
-    PostTracingV1TracePhaseBegin {
-        body
-    }
+    PostTracingV1TracePhaseBegin{body}
 }
 
 
@@ -289,24 +191,14 @@ pub struct PostTracingV1TracePhaseEnd {
 impl IsApiRequest for PostTracingV1TracePhaseEnd {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/tracing/v1/trace/phase/end".to_string()
-    }
-
+    fn get_url(&self) -> String {"/tracing/v1/trace/phase/end".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_tracing_v_1_trace_phase_end(body: TracingPhaseEndV1) -> PostTracingV1TracePhaseEnd {
-    PostTracingV1TracePhaseEnd {
-        body
-    }
+    PostTracingV1TracePhaseEnd{body}
 }
 
 
@@ -318,24 +210,14 @@ pub struct PostTracingV1TraceStepEvent {
 impl IsApiRequest for PostTracingV1TraceStepEvent {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/tracing/v1/trace/step-event".to_string()
-    }
-
+    fn get_url(&self) -> String {"/tracing/v1/trace/step-event".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_tracing_v_1_trace_step_event(body: String) -> PostTracingV1TraceStepEvent {
-    PostTracingV1TraceStepEvent {
-        body
-    }
+    PostTracingV1TraceStepEvent{body}
 }
 
 
@@ -348,24 +230,14 @@ pub struct PostTracingV1TraceTimeSeriesEventByEventName {
 impl IsApiRequest for PostTracingV1TraceTimeSeriesEventByEventName {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        format!("/tracing/v1/trace/time-series-event/{}", self.event_name)
-    }
-
+    fn get_url(&self) -> String {format!("/tracing/v1/trace/time-series-event/{}", self.event_name)}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_tracing_v_1_trace_time_series_event_by_event_name(event_name: String, body: u64) -> PostTracingV1TraceTimeSeriesEventByEventName {
-    PostTracingV1TraceTimeSeriesEventByEventName {
-        event_name, body
-    }
+    PostTracingV1TraceTimeSeriesEventByEventName{event_name, body}
 }
 
 
@@ -379,24 +251,14 @@ pub struct PostTracingV1TraceTimeSeriesEventByEventNameMarkerByMarkerName {
 impl IsApiRequest for PostTracingV1TraceTimeSeriesEventByEventNameMarkerByMarkerName {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        format!("/tracing/v1/trace/time-series-event/{}/marker/{}", self.event_name, self.marker_name)
-    }
-
+    fn get_url(&self) -> String {format!("/tracing/v1/trace/time-series-event/{}/marker/{}", self.event_name, self.marker_name)}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_tracing_v_1_trace_time_series_event_by_event_name_marker_by_marker_name(event_name: String, marker_name: String, body: u64) -> PostTracingV1TraceTimeSeriesEventByEventNameMarkerByMarkerName {
-    PostTracingV1TraceTimeSeriesEventByEventNameMarkerByMarkerName {
-        event_name, marker_name, body
-    }
+    PostTracingV1TraceTimeSeriesEventByEventNameMarkerByMarkerName{event_name, marker_name, body}
 }
 
 

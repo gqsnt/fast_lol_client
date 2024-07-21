@@ -9,145 +9,75 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct GetLolBannersV1CurrentSummonerFlags {
-
-}
+pub struct GetLolBannersV1CurrentSummonerFlags {}
 
 impl IsApiRequest for GetLolBannersV1CurrentSummonerFlags {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolBannersBannerFlag>;
-
-    fn get_url(&self) -> String {
-        "/lol-banners/v1/current-summoner/flags".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-banners/v1/current-summoner/flags".to_string()}
 }
 
 pub fn get_lol_banners_v_1_current_summoner_flags() -> GetLolBannersV1CurrentSummonerFlags {
-    GetLolBannersV1CurrentSummonerFlags {
-        
-    }
+    GetLolBannersV1CurrentSummonerFlags{}
 }
 
 
-pub struct GetLolBannersV1CurrentSummonerFlagsEquipped {
-
-}
+pub struct GetLolBannersV1CurrentSummonerFlagsEquipped {}
 
 impl IsApiRequest for GetLolBannersV1CurrentSummonerFlagsEquipped {
     const METHOD: Method = Method::GET;
     type ReturnType = LolBannersBannerFlag;
-
-    fn get_url(&self) -> String {
-        "/lol-banners/v1/current-summoner/flags/equipped".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-banners/v1/current-summoner/flags/equipped".to_string()}
 }
 
 pub fn get_lol_banners_v_1_current_summoner_flags_equipped() -> GetLolBannersV1CurrentSummonerFlagsEquipped {
-    GetLolBannersV1CurrentSummonerFlagsEquipped {
-        
-    }
+    GetLolBannersV1CurrentSummonerFlagsEquipped{}
 }
 
 
-pub struct GetLolBannersV1CurrentSummonerFramesEquipped {
-
-}
+pub struct GetLolBannersV1CurrentSummonerFramesEquipped {}
 
 impl IsApiRequest for GetLolBannersV1CurrentSummonerFramesEquipped {
     const METHOD: Method = Method::GET;
     type ReturnType = LolBannersBannerFrame;
-
-    fn get_url(&self) -> String {
-        "/lol-banners/v1/current-summoner/frames/equipped".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-banners/v1/current-summoner/frames/equipped".to_string()}
 }
 
 pub fn get_lol_banners_v_1_current_summoner_frames_equipped() -> GetLolBannersV1CurrentSummonerFramesEquipped {
-    GetLolBannersV1CurrentSummonerFramesEquipped {
-        
-    }
+    GetLolBannersV1CurrentSummonerFramesEquipped{}
 }
 
 
 pub struct GetLolBannersV1PlayersByPuuidFlagsEquipped {
-
     pub puuid: String,
 }
 
 impl IsApiRequest for GetLolBannersV1PlayersByPuuidFlagsEquipped {
     const METHOD: Method = Method::GET;
     type ReturnType = LolBannersBannerFlag;
-
-    fn get_url(&self) -> String {
-        format!("/lol-banners/v1/players/{}/flags/equipped", self.puuid)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-banners/v1/players/{}/flags/equipped", self.puuid)}
 }
 
 pub fn get_lol_banners_v_1_players_by_puuid_flags_equipped(puuid: String) -> GetLolBannersV1PlayersByPuuidFlagsEquipped {
-    GetLolBannersV1PlayersByPuuidFlagsEquipped {
-        puuid
-    }
+    GetLolBannersV1PlayersByPuuidFlagsEquipped{puuid}
 }
 
 
 pub struct PutLolBannersV1CurrentSummonerFlagsEquipped {
-
     pub body: LolBannersBannerFlag,
 }
 
 impl IsApiRequest for PutLolBannersV1CurrentSummonerFlagsEquipped {
     const METHOD: Method = Method::PUT;
     type ReturnType = LolBannersBannerFlag;
-
-    fn get_url(&self) -> String {
-        "/lol-banners/v1/current-summoner/flags/equipped".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-banners/v1/current-summoner/flags/equipped".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn put_lol_banners_v_1_current_summoner_flags_equipped(body: LolBannersBannerFlag) -> PutLolBannersV1CurrentSummonerFlagsEquipped {
-    PutLolBannersV1CurrentSummonerFlagsEquipped {
-        body
-    }
+    PutLolBannersV1CurrentSummonerFlagsEquipped{body}
 }
 
 

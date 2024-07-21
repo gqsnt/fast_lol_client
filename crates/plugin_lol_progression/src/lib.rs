@@ -10,116 +10,58 @@ mod additional;
 // ENDPOINTS
 
 pub struct GetLolProgressionV1GroupsByGroupIdConfiguration {
-
     pub group_id: String,
 }
 
 impl IsApiRequest for GetLolProgressionV1GroupsByGroupIdConfiguration {
     const METHOD: Method = Method::GET;
     type ReturnType = LolProgressionGroup;
-
-    fn get_url(&self) -> String {
-        format!("/lol-progression/v1/groups/{}/configuration", self.group_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-progression/v1/groups/{}/configuration", self.group_id)}
 }
 
 pub fn get_lol_progression_v_1_groups_by_group_id_configuration(group_id: String) -> GetLolProgressionV1GroupsByGroupIdConfiguration {
-    GetLolProgressionV1GroupsByGroupIdConfiguration {
-        group_id
-    }
+    GetLolProgressionV1GroupsByGroupIdConfiguration{group_id}
 }
 
 
 pub struct GetLolProgressionV1GroupsByGroupIdInstanceData {
-
     pub group_id: String,
 }
 
 impl IsApiRequest for GetLolProgressionV1GroupsByGroupIdInstanceData {
     const METHOD: Method = Method::GET;
     type ReturnType = LolProgressionEntityInstance;
-
-    fn get_url(&self) -> String {
-        format!("/lol-progression/v1/groups/{}/instanceData", self.group_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-progression/v1/groups/{}/instanceData", self.group_id)}
 }
 
 pub fn get_lol_progression_v_1_groups_by_group_id_instance_data(group_id: String) -> GetLolProgressionV1GroupsByGroupIdInstanceData {
-    GetLolProgressionV1GroupsByGroupIdInstanceData {
-        group_id
-    }
+    GetLolProgressionV1GroupsByGroupIdInstanceData{group_id}
 }
 
 
-pub struct GetLolProgressionV1GroupsConfiguration {
-
-}
+pub struct GetLolProgressionV1GroupsConfiguration {}
 
 impl IsApiRequest for GetLolProgressionV1GroupsConfiguration {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolProgressionGroup>;
-
-    fn get_url(&self) -> String {
-        "/lol-progression/v1/groups/configuration".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-progression/v1/groups/configuration".to_string()}
 }
 
 pub fn get_lol_progression_v_1_groups_configuration() -> GetLolProgressionV1GroupsConfiguration {
-    GetLolProgressionV1GroupsConfiguration {
-        
-    }
+    GetLolProgressionV1GroupsConfiguration{}
 }
 
 
-pub struct GetLolProgressionV1Ready {
-
-}
+pub struct GetLolProgressionV1Ready {}
 
 impl IsApiRequest for GetLolProgressionV1Ready {
     const METHOD: Method = Method::GET;
     type ReturnType = bool;
-
-    fn get_url(&self) -> String {
-        "/lol-progression/v1/ready".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-progression/v1/ready".to_string()}
 }
 
 pub fn get_lol_progression_v_1_ready() -> GetLolProgressionV1Ready {
-    GetLolProgressionV1Ready {
-        
-    }
+    GetLolProgressionV1Ready{}
 }
 
 

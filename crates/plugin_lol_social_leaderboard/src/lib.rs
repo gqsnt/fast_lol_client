@@ -10,22 +10,13 @@ mod additional;
 // ENDPOINTS
 
 pub struct GetLolSocialLeaderboardV1LeaderboardNextUpdateTime {
-
     pub queue_type: Option<LolSocialLeaderboardLeagueQueueType>,
 }
 
 impl IsApiRequest for GetLolSocialLeaderboardV1LeaderboardNextUpdateTime {
     const METHOD: Method = Method::GET;
     type ReturnType = i64;
-
-    fn get_url(&self) -> String {
-        "/lol-social-leaderboard/v1/leaderboard-next-update-time".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
+    fn get_url(&self) -> String {"/lol-social-leaderboard/v1/leaderboard-next-update-time".to_string()}
     fn get_query_params(&self) -> Option<Value> {
         Some(json!({
             "queueType" : self.queue_type,
@@ -34,29 +25,18 @@ impl IsApiRequest for GetLolSocialLeaderboardV1LeaderboardNextUpdateTime {
 }
 
 pub fn get_lol_social_leaderboard_v_1_leaderboard_next_update_time(queue_type: Option<LolSocialLeaderboardLeagueQueueType>) -> GetLolSocialLeaderboardV1LeaderboardNextUpdateTime {
-    GetLolSocialLeaderboardV1LeaderboardNextUpdateTime {
-        queue_type
-    }
+    GetLolSocialLeaderboardV1LeaderboardNextUpdateTime{queue_type}
 }
 
 
 pub struct GetLolSocialLeaderboardV1SocialLeaderboardData {
-
     pub queue_type: Option<LolSocialLeaderboardLeagueQueueType>,
 }
 
 impl IsApiRequest for GetLolSocialLeaderboardV1SocialLeaderboardData {
     const METHOD: Method = Method::GET;
     type ReturnType = LolSocialLeaderboardSocialLeaderboardData;
-
-    fn get_url(&self) -> String {
-        "/lol-social-leaderboard/v1/social-leaderboard-data".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
+    fn get_url(&self) -> String {"/lol-social-leaderboard/v1/social-leaderboard-data".to_string()}
     fn get_query_params(&self) -> Option<Value> {
         Some(json!({
             "queueType" : self.queue_type,
@@ -65,9 +45,7 @@ impl IsApiRequest for GetLolSocialLeaderboardV1SocialLeaderboardData {
 }
 
 pub fn get_lol_social_leaderboard_v_1_social_leaderboard_data(queue_type: Option<LolSocialLeaderboardLeagueQueueType>) -> GetLolSocialLeaderboardV1SocialLeaderboardData {
-    GetLolSocialLeaderboardV1SocialLeaderboardData {
-        queue_type
-    }
+    GetLolSocialLeaderboardV1SocialLeaderboardData{queue_type}
 }
 
 

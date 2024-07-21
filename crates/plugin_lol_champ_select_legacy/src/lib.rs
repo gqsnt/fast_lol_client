@@ -9,345 +9,165 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct GetLolChampSelectLegacyV1BannableChampionIds {
-
-}
+pub struct GetLolChampSelectLegacyV1BannableChampionIds {}
 
 impl IsApiRequest for GetLolChampSelectLegacyV1BannableChampionIds {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<i32>;
-
-    fn get_url(&self) -> String {
-        "/lol-champ-select-legacy/v1/bannable-champion-ids".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-champ-select-legacy/v1/bannable-champion-ids".to_string()}
 }
 
 pub fn get_lol_champ_select_legacy_v_1_bannable_champion_ids() -> GetLolChampSelectLegacyV1BannableChampionIds {
-    GetLolChampSelectLegacyV1BannableChampionIds {
-        
-    }
+    GetLolChampSelectLegacyV1BannableChampionIds{}
 }
 
 
-pub struct GetLolChampSelectLegacyV1CurrentChampion {
-
-}
+pub struct GetLolChampSelectLegacyV1CurrentChampion {}
 
 impl IsApiRequest for GetLolChampSelectLegacyV1CurrentChampion {
     const METHOD: Method = Method::GET;
     type ReturnType = i32;
-
-    fn get_url(&self) -> String {
-        "/lol-champ-select-legacy/v1/current-champion".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-champ-select-legacy/v1/current-champion".to_string()}
 }
 
 pub fn get_lol_champ_select_legacy_v_1_current_champion() -> GetLolChampSelectLegacyV1CurrentChampion {
-    GetLolChampSelectLegacyV1CurrentChampion {
-        
-    }
+    GetLolChampSelectLegacyV1CurrentChampion{}
 }
 
 
-pub struct GetLolChampSelectLegacyV1DisabledChampionIds {
-
-}
+pub struct GetLolChampSelectLegacyV1DisabledChampionIds {}
 
 impl IsApiRequest for GetLolChampSelectLegacyV1DisabledChampionIds {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<i32>;
-
-    fn get_url(&self) -> String {
-        "/lol-champ-select-legacy/v1/disabled-champion-ids".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-champ-select-legacy/v1/disabled-champion-ids".to_string()}
 }
 
 pub fn get_lol_champ_select_legacy_v_1_disabled_champion_ids() -> GetLolChampSelectLegacyV1DisabledChampionIds {
-    GetLolChampSelectLegacyV1DisabledChampionIds {
-        
-    }
+    GetLolChampSelectLegacyV1DisabledChampionIds{}
 }
 
 
-pub struct GetLolChampSelectLegacyV1ImplementationActive {
-
-}
+pub struct GetLolChampSelectLegacyV1ImplementationActive {}
 
 impl IsApiRequest for GetLolChampSelectLegacyV1ImplementationActive {
     const METHOD: Method = Method::GET;
     type ReturnType = bool;
-
-    fn get_url(&self) -> String {
-        "/lol-champ-select-legacy/v1/implementation-active".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-champ-select-legacy/v1/implementation-active".to_string()}
 }
 
 pub fn get_lol_champ_select_legacy_v_1_implementation_active() -> GetLolChampSelectLegacyV1ImplementationActive {
-    GetLolChampSelectLegacyV1ImplementationActive {
-        
-    }
+    GetLolChampSelectLegacyV1ImplementationActive{}
 }
 
 
-pub struct GetLolChampSelectLegacyV1PickableChampionIds {
-
-}
+pub struct GetLolChampSelectLegacyV1PickableChampionIds {}
 
 impl IsApiRequest for GetLolChampSelectLegacyV1PickableChampionIds {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<i32>;
-
-    fn get_url(&self) -> String {
-        "/lol-champ-select-legacy/v1/pickable-champion-ids".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-champ-select-legacy/v1/pickable-champion-ids".to_string()}
 }
 
 pub fn get_lol_champ_select_legacy_v_1_pickable_champion_ids() -> GetLolChampSelectLegacyV1PickableChampionIds {
-    GetLolChampSelectLegacyV1PickableChampionIds {
-        
-    }
+    GetLolChampSelectLegacyV1PickableChampionIds{}
 }
 
 
-pub struct GetLolChampSelectLegacyV1PickableSkinIds {
-
-}
+pub struct GetLolChampSelectLegacyV1PickableSkinIds {}
 
 impl IsApiRequest for GetLolChampSelectLegacyV1PickableSkinIds {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<i32>;
-
-    fn get_url(&self) -> String {
-        "/lol-champ-select-legacy/v1/pickable-skin-ids".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-champ-select-legacy/v1/pickable-skin-ids".to_string()}
 }
 
 pub fn get_lol_champ_select_legacy_v_1_pickable_skin_ids() -> GetLolChampSelectLegacyV1PickableSkinIds {
-    GetLolChampSelectLegacyV1PickableSkinIds {
-        
-    }
+    GetLolChampSelectLegacyV1PickableSkinIds{}
 }
 
 
-pub struct GetLolChampSelectLegacyV1Session {
-
-}
+pub struct GetLolChampSelectLegacyV1Session {}
 
 impl IsApiRequest for GetLolChampSelectLegacyV1Session {
     const METHOD: Method = Method::GET;
     type ReturnType = LolChampSelectLegacyChampSelectSession;
-
-    fn get_url(&self) -> String {
-        "/lol-champ-select-legacy/v1/session".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-champ-select-legacy/v1/session".to_string()}
 }
 
 pub fn get_lol_champ_select_legacy_v_1_session() -> GetLolChampSelectLegacyV1Session {
-    GetLolChampSelectLegacyV1Session {
-        
-    }
+    GetLolChampSelectLegacyV1Session{}
 }
 
 
-pub struct GetLolChampSelectLegacyV1SessionMySelection {
-
-}
+pub struct GetLolChampSelectLegacyV1SessionMySelection {}
 
 impl IsApiRequest for GetLolChampSelectLegacyV1SessionMySelection {
     const METHOD: Method = Method::GET;
     type ReturnType = LolChampSelectLegacyChampSelectPlayerSelection;
-
-    fn get_url(&self) -> String {
-        "/lol-champ-select-legacy/v1/session/my-selection".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-champ-select-legacy/v1/session/my-selection".to_string()}
 }
 
 pub fn get_lol_champ_select_legacy_v_1_session_my_selection() -> GetLolChampSelectLegacyV1SessionMySelection {
-    GetLolChampSelectLegacyV1SessionMySelection {
-        
-    }
+    GetLolChampSelectLegacyV1SessionMySelection{}
 }
 
 
-pub struct GetLolChampSelectLegacyV1SessionTimer {
-
-}
+pub struct GetLolChampSelectLegacyV1SessionTimer {}
 
 impl IsApiRequest for GetLolChampSelectLegacyV1SessionTimer {
     const METHOD: Method = Method::GET;
     type ReturnType = LolChampSelectLegacyChampSelectTimer;
-
-    fn get_url(&self) -> String {
-        "/lol-champ-select-legacy/v1/session/timer".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-champ-select-legacy/v1/session/timer".to_string()}
 }
 
 pub fn get_lol_champ_select_legacy_v_1_session_timer() -> GetLolChampSelectLegacyV1SessionTimer {
-    GetLolChampSelectLegacyV1SessionTimer {
-        
-    }
+    GetLolChampSelectLegacyV1SessionTimer{}
 }
 
 
-pub struct GetLolChampSelectLegacyV1SessionTrades {
-
-}
+pub struct GetLolChampSelectLegacyV1SessionTrades {}
 
 impl IsApiRequest for GetLolChampSelectLegacyV1SessionTrades {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolChampSelectLegacyChampSelectTradeContract>;
-
-    fn get_url(&self) -> String {
-        "/lol-champ-select-legacy/v1/session/trades".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-champ-select-legacy/v1/session/trades".to_string()}
 }
 
 pub fn get_lol_champ_select_legacy_v_1_session_trades() -> GetLolChampSelectLegacyV1SessionTrades {
-    GetLolChampSelectLegacyV1SessionTrades {
-        
-    }
+    GetLolChampSelectLegacyV1SessionTrades{}
 }
 
 
 pub struct GetLolChampSelectLegacyV1SessionTradesById {
-
     pub id: i64,
 }
 
 impl IsApiRequest for GetLolChampSelectLegacyV1SessionTradesById {
     const METHOD: Method = Method::GET;
     type ReturnType = LolChampSelectLegacyChampSelectTradeContract;
-
-    fn get_url(&self) -> String {
-        format!("/lol-champ-select-legacy/v1/session/trades/{}", self.id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-champ-select-legacy/v1/session/trades/{}", self.id)}
 }
 
 pub fn get_lol_champ_select_legacy_v_1_session_trades_by_id(id: i64) -> GetLolChampSelectLegacyV1SessionTradesById {
-    GetLolChampSelectLegacyV1SessionTradesById {
-        id
-    }
+    GetLolChampSelectLegacyV1SessionTradesById{id}
 }
 
 
-pub struct GetLolChampSelectLegacyV1TeamBoost {
-
-}
+pub struct GetLolChampSelectLegacyV1TeamBoost {}
 
 impl IsApiRequest for GetLolChampSelectLegacyV1TeamBoost {
     const METHOD: Method = Method::GET;
     type ReturnType = LolChampSelectLegacyTeamBoost;
-
-    fn get_url(&self) -> String {
-        "/lol-champ-select-legacy/v1/team-boost".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-champ-select-legacy/v1/team-boost".to_string()}
 }
 
 pub fn get_lol_champ_select_legacy_v_1_team_boost() -> GetLolChampSelectLegacyV1TeamBoost {
-    GetLolChampSelectLegacyV1TeamBoost {
-        
-    }
+    GetLolChampSelectLegacyV1TeamBoost{}
 }
 
 
 pub struct PatchLolChampSelectLegacyV1SessionActionsById {
-
     pub id: u64,
     pub body: LolChampSelectLegacyChampSelectAction,
 }
@@ -355,254 +175,133 @@ pub struct PatchLolChampSelectLegacyV1SessionActionsById {
 impl IsApiRequest for PatchLolChampSelectLegacyV1SessionActionsById {
     const METHOD: Method = Method::PATCH;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-champ-select-legacy/v1/session/actions/{}", self.id)
-    }
-
+    fn get_url(&self) -> String {format!("/lol-champ-select-legacy/v1/session/actions/{}", self.id)}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn patch_lol_champ_select_legacy_v_1_session_actions_by_id(id: u64, body: LolChampSelectLegacyChampSelectAction) -> PatchLolChampSelectLegacyV1SessionActionsById {
-    PatchLolChampSelectLegacyV1SessionActionsById {
-        id, body
-    }
+    PatchLolChampSelectLegacyV1SessionActionsById{id, body}
 }
 
 
 pub struct PatchLolChampSelectLegacyV1SessionMySelection {
-
     pub body: LolChampSelectLegacyChampSelectMySelection,
 }
 
 impl IsApiRequest for PatchLolChampSelectLegacyV1SessionMySelection {
     const METHOD: Method = Method::PATCH;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-champ-select-legacy/v1/session/my-selection".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-champ-select-legacy/v1/session/my-selection".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn patch_lol_champ_select_legacy_v_1_session_my_selection(body: LolChampSelectLegacyChampSelectMySelection) -> PatchLolChampSelectLegacyV1SessionMySelection {
-    PatchLolChampSelectLegacyV1SessionMySelection {
-        body
-    }
+    PatchLolChampSelectLegacyV1SessionMySelection{body}
 }
 
 
-pub struct PostLolChampSelectLegacyV1BattleTrainingLaunch {
-
-}
+pub struct PostLolChampSelectLegacyV1BattleTrainingLaunch {}
 
 impl IsApiRequest for PostLolChampSelectLegacyV1BattleTrainingLaunch {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-champ-select-legacy/v1/battle-training/launch".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-champ-select-legacy/v1/battle-training/launch".to_string()}
 }
 
 pub fn post_lol_champ_select_legacy_v_1_battle_training_launch() -> PostLolChampSelectLegacyV1BattleTrainingLaunch {
-    PostLolChampSelectLegacyV1BattleTrainingLaunch {
-        
-    }
+    PostLolChampSelectLegacyV1BattleTrainingLaunch{}
 }
 
 
 pub struct PostLolChampSelectLegacyV1SessionActionsByIdComplete {
-
     pub id: i64,
 }
 
 impl IsApiRequest for PostLolChampSelectLegacyV1SessionActionsByIdComplete {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-champ-select-legacy/v1/session/actions/{}/complete", self.id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-champ-select-legacy/v1/session/actions/{}/complete", self.id)}
 }
 
 pub fn post_lol_champ_select_legacy_v_1_session_actions_by_id_complete(id: i64) -> PostLolChampSelectLegacyV1SessionActionsByIdComplete {
-    PostLolChampSelectLegacyV1SessionActionsByIdComplete {
-        id
-    }
+    PostLolChampSelectLegacyV1SessionActionsByIdComplete{id}
 }
 
 
-pub struct PostLolChampSelectLegacyV1SessionMySelectionReroll {
-
-}
+pub struct PostLolChampSelectLegacyV1SessionMySelectionReroll {}
 
 impl IsApiRequest for PostLolChampSelectLegacyV1SessionMySelectionReroll {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-champ-select-legacy/v1/session/my-selection/reroll".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-champ-select-legacy/v1/session/my-selection/reroll".to_string()}
 }
 
 pub fn post_lol_champ_select_legacy_v_1_session_my_selection_reroll() -> PostLolChampSelectLegacyV1SessionMySelectionReroll {
-    PostLolChampSelectLegacyV1SessionMySelectionReroll {
-        
-    }
+    PostLolChampSelectLegacyV1SessionMySelectionReroll{}
 }
 
 
 pub struct PostLolChampSelectLegacyV1SessionTradesByIdAccept {
-
     pub id: i64,
 }
 
 impl IsApiRequest for PostLolChampSelectLegacyV1SessionTradesByIdAccept {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-champ-select-legacy/v1/session/trades/{}/accept", self.id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-champ-select-legacy/v1/session/trades/{}/accept", self.id)}
 }
 
 pub fn post_lol_champ_select_legacy_v_1_session_trades_by_id_accept(id: i64) -> PostLolChampSelectLegacyV1SessionTradesByIdAccept {
-    PostLolChampSelectLegacyV1SessionTradesByIdAccept {
-        id
-    }
+    PostLolChampSelectLegacyV1SessionTradesByIdAccept{id}
 }
 
 
 pub struct PostLolChampSelectLegacyV1SessionTradesByIdCancel {
-
     pub id: i64,
 }
 
 impl IsApiRequest for PostLolChampSelectLegacyV1SessionTradesByIdCancel {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-champ-select-legacy/v1/session/trades/{}/cancel", self.id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-champ-select-legacy/v1/session/trades/{}/cancel", self.id)}
 }
 
 pub fn post_lol_champ_select_legacy_v_1_session_trades_by_id_cancel(id: i64) -> PostLolChampSelectLegacyV1SessionTradesByIdCancel {
-    PostLolChampSelectLegacyV1SessionTradesByIdCancel {
-        id
-    }
+    PostLolChampSelectLegacyV1SessionTradesByIdCancel{id}
 }
 
 
 pub struct PostLolChampSelectLegacyV1SessionTradesByIdDecline {
-
     pub id: i64,
 }
 
 impl IsApiRequest for PostLolChampSelectLegacyV1SessionTradesByIdDecline {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-champ-select-legacy/v1/session/trades/{}/decline", self.id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-champ-select-legacy/v1/session/trades/{}/decline", self.id)}
 }
 
 pub fn post_lol_champ_select_legacy_v_1_session_trades_by_id_decline(id: i64) -> PostLolChampSelectLegacyV1SessionTradesByIdDecline {
-    PostLolChampSelectLegacyV1SessionTradesByIdDecline {
-        id
-    }
+    PostLolChampSelectLegacyV1SessionTradesByIdDecline{id}
 }
 
 
 pub struct PostLolChampSelectLegacyV1SessionTradesByIdRequest {
-
     pub id: i64,
 }
 
 impl IsApiRequest for PostLolChampSelectLegacyV1SessionTradesByIdRequest {
     const METHOD: Method = Method::POST;
     type ReturnType = LolChampSelectLegacyChampSelectTradeContract;
-
-    fn get_url(&self) -> String {
-        format!("/lol-champ-select-legacy/v1/session/trades/{}/request", self.id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-champ-select-legacy/v1/session/trades/{}/request", self.id)}
 }
 
 pub fn post_lol_champ_select_legacy_v_1_session_trades_by_id_request(id: i64) -> PostLolChampSelectLegacyV1SessionTradesByIdRequest {
-    PostLolChampSelectLegacyV1SessionTradesByIdRequest {
-        id
-    }
+    PostLolChampSelectLegacyV1SessionTradesByIdRequest{id}
 }
 
 

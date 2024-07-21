@@ -10,59 +10,30 @@ mod additional;
 // ENDPOINTS
 
 pub struct DeleteLolRmsV1ChampionMasteryLeaveupUpdateById {
-
     pub id: u64,
 }
 
 impl IsApiRequest for DeleteLolRmsV1ChampionMasteryLeaveupUpdateById {
     const METHOD: Method = Method::DELETE;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-rms/v1/champion-mastery-leaveup-update/{}", self.id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-rms/v1/champion-mastery-leaveup-update/{}", self.id)}
 }
 
 pub fn delete_lol_rms_v_1_champion_mastery_leaveup_update_by_id(id: u64) -> DeleteLolRmsV1ChampionMasteryLeaveupUpdateById {
-    DeleteLolRmsV1ChampionMasteryLeaveupUpdateById {
-        id
-    }
+    DeleteLolRmsV1ChampionMasteryLeaveupUpdateById{id}
 }
 
 
-pub struct GetLolRmsV1ChampionMasteryLeaveupUpdate {
-
-}
+pub struct GetLolRmsV1ChampionMasteryLeaveupUpdate {}
 
 impl IsApiRequest for GetLolRmsV1ChampionMasteryLeaveupUpdate {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolRiotMessagingServiceChampionMasteryLevelUp>;
-
-    fn get_url(&self) -> String {
-        "/lol-rms/v1/champion-mastery-leaveup-update".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-rms/v1/champion-mastery-leaveup-update".to_string()}
 }
 
 pub fn get_lol_rms_v_1_champion_mastery_leaveup_update() -> GetLolRmsV1ChampionMasteryLeaveupUpdate {
-    GetLolRmsV1ChampionMasteryLeaveupUpdate {
-        
-    }
+    GetLolRmsV1ChampionMasteryLeaveupUpdate{}
 }
 
 

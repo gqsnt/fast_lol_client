@@ -9,172 +9,86 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct GetLolEndOfGameV1ChampionMasteryUpdates {
-
-}
+pub struct GetLolEndOfGameV1ChampionMasteryUpdates {}
 
 impl IsApiRequest for GetLolEndOfGameV1ChampionMasteryUpdates {
     const METHOD: Method = Method::GET;
     type ReturnType = LolEndOfGameChampionMasteryUpdate;
-
-    fn get_url(&self) -> String {
-        "/lol-end-of-game/v1/champion-mastery-updates".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-end-of-game/v1/champion-mastery-updates".to_string()}
 }
 
 pub fn get_lol_end_of_game_v_1_champion_mastery_updates() -> GetLolEndOfGameV1ChampionMasteryUpdates {
-    GetLolEndOfGameV1ChampionMasteryUpdates {
-        
-    }
+    GetLolEndOfGameV1ChampionMasteryUpdates{}
 }
 
 
-pub struct GetLolEndOfGameV1EogStatsBlock {
-
-}
+pub struct GetLolEndOfGameV1EogStatsBlock {}
 
 impl IsApiRequest for GetLolEndOfGameV1EogStatsBlock {
     const METHOD: Method = Method::GET;
     type ReturnType = LolEndOfGameEndOfGameStats;
-
-    fn get_url(&self) -> String {
-        "/lol-end-of-game/v1/eog-stats-block".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-end-of-game/v1/eog-stats-block".to_string()}
 }
 
 pub fn get_lol_end_of_game_v_1_eog_stats_block() -> GetLolEndOfGameV1EogStatsBlock {
-    GetLolEndOfGameV1EogStatsBlock {
-        
-    }
+    GetLolEndOfGameV1EogStatsBlock{}
 }
 
 
-pub struct GetLolEndOfGameV1GameclientEogStatsBlock {
-
-}
+pub struct GetLolEndOfGameV1GameclientEogStatsBlock {}
 
 impl IsApiRequest for GetLolEndOfGameV1GameclientEogStatsBlock {
     const METHOD: Method = Method::GET;
     type ReturnType = LolEndOfGameGameClientEndOfGameStats;
-
-    fn get_url(&self) -> String {
-        "/lol-end-of-game/v1/gameclient-eog-stats-block".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-end-of-game/v1/gameclient-eog-stats-block".to_string()}
 }
 
 pub fn get_lol_end_of_game_v_1_gameclient_eog_stats_block() -> GetLolEndOfGameV1GameclientEogStatsBlock {
-    GetLolEndOfGameV1GameclientEogStatsBlock {
-        
-    }
+    GetLolEndOfGameV1GameclientEogStatsBlock{}
 }
 
 
-pub struct GetLolEndOfGameV1TftEogStats {
-
-}
+pub struct GetLolEndOfGameV1TftEogStats {}
 
 impl IsApiRequest for GetLolEndOfGameV1TftEogStats {
     const METHOD: Method = Method::GET;
     type ReturnType = LolEndOfGameTftEndOfGameViewModel;
-
-    fn get_url(&self) -> String {
-        "/lol-end-of-game/v1/tft-eog-stats".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-end-of-game/v1/tft-eog-stats".to_string()}
 }
 
 pub fn get_lol_end_of_game_v_1_tft_eog_stats() -> GetLolEndOfGameV1TftEogStats {
-    GetLolEndOfGameV1TftEogStats {
-        
-    }
+    GetLolEndOfGameV1TftEogStats{}
 }
 
 
 pub struct PostLolEndOfGameV1GameclientEogStatsBlock {
-
     pub body: LolEndOfGameGameClientEndOfGameStats,
 }
 
 impl IsApiRequest for PostLolEndOfGameV1GameclientEogStatsBlock {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-end-of-game/v1/gameclient-eog-stats-block".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-end-of-game/v1/gameclient-eog-stats-block".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_end_of_game_v_1_gameclient_eog_stats_block(body: LolEndOfGameGameClientEndOfGameStats) -> PostLolEndOfGameV1GameclientEogStatsBlock {
-    PostLolEndOfGameV1GameclientEogStatsBlock {
-        body
-    }
+    PostLolEndOfGameV1GameclientEogStatsBlock{body}
 }
 
 
-pub struct PostLolEndOfGameV1StateDismissStats {
-
-}
+pub struct PostLolEndOfGameV1StateDismissStats {}
 
 impl IsApiRequest for PostLolEndOfGameV1StateDismissStats {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-end-of-game/v1/state/dismiss-stats".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-end-of-game/v1/state/dismiss-stats".to_string()}
 }
 
 pub fn post_lol_end_of_game_v_1_state_dismiss_stats() -> PostLolEndOfGameV1StateDismissStats {
-    PostLolEndOfGameV1StateDismissStats {
-        
-    }
+    PostLolEndOfGameV1StateDismissStats{}
 }
 
 

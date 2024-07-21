@@ -10,171 +10,82 @@ mod additional;
 // ENDPOINTS
 
 pub struct GetLolPublishingContentV1ListenersAllowListByRegion {
-
     pub region: String,
 }
 
 impl IsApiRequest for GetLolPublishingContentV1ListenersAllowListByRegion {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-publishing-content/v1/listeners/allow-list/{}", self.region)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-publishing-content/v1/listeners/allow-list/{}", self.region)}
 }
 
 pub fn get_lol_publishing_content_v_1_listeners_allow_list_by_region(region: String) -> GetLolPublishingContentV1ListenersAllowListByRegion {
-    GetLolPublishingContentV1ListenersAllowListByRegion {
-        region
-    }
+    GetLolPublishingContentV1ListenersAllowListByRegion{region}
 }
 
 
-pub struct GetLolPublishingContentV1ListenersClientData {
-
-}
+pub struct GetLolPublishingContentV1ListenersClientData {}
 
 impl IsApiRequest for GetLolPublishingContentV1ListenersClientData {
     const METHOD: Method = Method::GET;
     type ReturnType = LolPublishingContentClientData;
-
-    fn get_url(&self) -> String {
-        "/lol-publishing-content/v1/listeners/client-data".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-publishing-content/v1/listeners/client-data".to_string()}
 }
 
 pub fn get_lol_publishing_content_v_1_listeners_client_data() -> GetLolPublishingContentV1ListenersClientData {
-    GetLolPublishingContentV1ListenersClientData {
-        
-    }
+    GetLolPublishingContentV1ListenersClientData{}
 }
 
 
-pub struct GetLolPublishingContentV1ListenersPubhubConfig {
-
-}
+pub struct GetLolPublishingContentV1ListenersPubhubConfig {}
 
 impl IsApiRequest for GetLolPublishingContentV1ListenersPubhubConfig {
     const METHOD: Method = Method::GET;
     type ReturnType = LolPublishingContentPubHubConfig;
-
-    fn get_url(&self) -> String {
-        "/lol-publishing-content/v1/listeners/pubhub-config".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-publishing-content/v1/listeners/pubhub-config".to_string()}
 }
 
 pub fn get_lol_publishing_content_v_1_listeners_pubhub_config() -> GetLolPublishingContentV1ListenersPubhubConfig {
-    GetLolPublishingContentV1ListenersPubhubConfig {
-        
-    }
+    GetLolPublishingContentV1ListenersPubhubConfig{}
 }
 
 
-pub struct GetLolPublishingContentV1Ready {
-
-}
+pub struct GetLolPublishingContentV1Ready {}
 
 impl IsApiRequest for GetLolPublishingContentV1Ready {
     const METHOD: Method = Method::GET;
     type ReturnType = bool;
-
-    fn get_url(&self) -> String {
-        "/lol-publishing-content/v1/ready".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-publishing-content/v1/ready".to_string()}
 }
 
 pub fn get_lol_publishing_content_v_1_ready() -> GetLolPublishingContentV1Ready {
-    GetLolPublishingContentV1Ready {
-        
-    }
+    GetLolPublishingContentV1Ready{}
 }
 
 
-pub struct GetLolPublishingContentV1Settings {
-
-}
+pub struct GetLolPublishingContentV1Settings {}
 
 impl IsApiRequest for GetLolPublishingContentV1Settings {
     const METHOD: Method = Method::GET;
     type ReturnType = LolPublishingContentPublishingSettings;
-
-    fn get_url(&self) -> String {
-        "/lol-publishing-content/v1/settings".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-publishing-content/v1/settings".to_string()}
 }
 
 pub fn get_lol_publishing_content_v_1_settings() -> GetLolPublishingContentV1Settings {
-    GetLolPublishingContentV1Settings {
-        
-    }
+    GetLolPublishingContentV1Settings{}
 }
 
 
-pub struct GetLolPublishingContentV1TftHubCards {
-
-}
+pub struct GetLolPublishingContentV1TftHubCards {}
 
 impl IsApiRequest for GetLolPublishingContentV1TftHubCards {
     const METHOD: Method = Method::GET;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-publishing-content/v1/tft-hub-cards".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-publishing-content/v1/tft-hub-cards".to_string()}
 }
 
 pub fn get_lol_publishing_content_v_1_tft_hub_cards() -> GetLolPublishingContentV1TftHubCards {
-    GetLolPublishingContentV1TftHubCards {
-        
-    }
+    GetLolPublishingContentV1TftHubCards{}
 }
 
 

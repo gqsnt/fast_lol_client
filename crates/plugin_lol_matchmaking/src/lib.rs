@@ -9,257 +9,127 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct DeleteLolMatchmakingV1Search {
-
-}
+pub struct DeleteLolMatchmakingV1Search {}
 
 impl IsApiRequest for DeleteLolMatchmakingV1Search {
     const METHOD: Method = Method::DELETE;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-matchmaking/v1/search".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-matchmaking/v1/search".to_string()}
 }
 
 pub fn delete_lol_matchmaking_v_1_search() -> DeleteLolMatchmakingV1Search {
-    DeleteLolMatchmakingV1Search {
-        
-    }
+    DeleteLolMatchmakingV1Search{}
 }
 
 
-pub struct GetLolMatchmakingV1ReadyCheck {
-
-}
+pub struct GetLolMatchmakingV1ReadyCheck {}
 
 impl IsApiRequest for GetLolMatchmakingV1ReadyCheck {
     const METHOD: Method = Method::GET;
     type ReturnType = LolMatchmakingMatchmakingReadyCheckResource;
-
-    fn get_url(&self) -> String {
-        "/lol-matchmaking/v1/ready-check".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-matchmaking/v1/ready-check".to_string()}
 }
 
 pub fn get_lol_matchmaking_v_1_ready_check() -> GetLolMatchmakingV1ReadyCheck {
-    GetLolMatchmakingV1ReadyCheck {
-        
-    }
+    GetLolMatchmakingV1ReadyCheck{}
 }
 
 
-pub struct GetLolMatchmakingV1Search {
-
-}
+pub struct GetLolMatchmakingV1Search {}
 
 impl IsApiRequest for GetLolMatchmakingV1Search {
     const METHOD: Method = Method::GET;
     type ReturnType = LolMatchmakingMatchmakingSearchResource;
-
-    fn get_url(&self) -> String {
-        "/lol-matchmaking/v1/search".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-matchmaking/v1/search".to_string()}
 }
 
 pub fn get_lol_matchmaking_v_1_search() -> GetLolMatchmakingV1Search {
-    GetLolMatchmakingV1Search {
-        
-    }
+    GetLolMatchmakingV1Search{}
 }
 
 
-pub struct GetLolMatchmakingV1SearchErrors {
-
-}
+pub struct GetLolMatchmakingV1SearchErrors {}
 
 impl IsApiRequest for GetLolMatchmakingV1SearchErrors {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolMatchmakingMatchmakingSearchErrorResource>;
-
-    fn get_url(&self) -> String {
-        "/lol-matchmaking/v1/search/errors".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-matchmaking/v1/search/errors".to_string()}
 }
 
 pub fn get_lol_matchmaking_v_1_search_errors() -> GetLolMatchmakingV1SearchErrors {
-    GetLolMatchmakingV1SearchErrors {
-        
-    }
+    GetLolMatchmakingV1SearchErrors{}
 }
 
 
 pub struct GetLolMatchmakingV1SearchErrorsById {
-
     pub id: i32,
 }
 
 impl IsApiRequest for GetLolMatchmakingV1SearchErrorsById {
     const METHOD: Method = Method::GET;
     type ReturnType = LolMatchmakingMatchmakingSearchErrorResource;
-
-    fn get_url(&self) -> String {
-        format!("/lol-matchmaking/v1/search/errors/{}", self.id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-matchmaking/v1/search/errors/{}", self.id)}
 }
 
 pub fn get_lol_matchmaking_v_1_search_errors_by_id(id: i32) -> GetLolMatchmakingV1SearchErrorsById {
-    GetLolMatchmakingV1SearchErrorsById {
-        id
-    }
+    GetLolMatchmakingV1SearchErrorsById{id}
 }
 
 
-pub struct PostLolMatchmakingV1ReadyCheckAccept {
-
-}
+pub struct PostLolMatchmakingV1ReadyCheckAccept {}
 
 impl IsApiRequest for PostLolMatchmakingV1ReadyCheckAccept {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-matchmaking/v1/ready-check/accept".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-matchmaking/v1/ready-check/accept".to_string()}
 }
 
 pub fn post_lol_matchmaking_v_1_ready_check_accept() -> PostLolMatchmakingV1ReadyCheckAccept {
-    PostLolMatchmakingV1ReadyCheckAccept {
-        
-    }
+    PostLolMatchmakingV1ReadyCheckAccept{}
 }
 
 
-pub struct PostLolMatchmakingV1ReadyCheckDecline {
-
-}
+pub struct PostLolMatchmakingV1ReadyCheckDecline {}
 
 impl IsApiRequest for PostLolMatchmakingV1ReadyCheckDecline {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-matchmaking/v1/ready-check/decline".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-matchmaking/v1/ready-check/decline".to_string()}
 }
 
 pub fn post_lol_matchmaking_v_1_ready_check_decline() -> PostLolMatchmakingV1ReadyCheckDecline {
-    PostLolMatchmakingV1ReadyCheckDecline {
-        
-    }
+    PostLolMatchmakingV1ReadyCheckDecline{}
 }
 
 
-pub struct PostLolMatchmakingV1Search {
-
-}
+pub struct PostLolMatchmakingV1Search {}
 
 impl IsApiRequest for PostLolMatchmakingV1Search {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-matchmaking/v1/search".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-matchmaking/v1/search".to_string()}
 }
 
 pub fn post_lol_matchmaking_v_1_search() -> PostLolMatchmakingV1Search {
-    PostLolMatchmakingV1Search {
-        
-    }
+    PostLolMatchmakingV1Search{}
 }
 
 
 pub struct PutLolMatchmakingV1Search {
-
     pub body: LolMatchmakingMatchmakingSearchResource,
 }
 
 impl IsApiRequest for PutLolMatchmakingV1Search {
     const METHOD: Method = Method::PUT;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-matchmaking/v1/search".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-matchmaking/v1/search".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn put_lol_matchmaking_v_1_search(body: LolMatchmakingMatchmakingSearchResource) -> PutLolMatchmakingV1Search {
-    PutLolMatchmakingV1Search {
-        body
-    }
+    PutLolMatchmakingV1Search{body}
 }
 
 

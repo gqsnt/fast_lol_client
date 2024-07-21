@@ -9,286 +9,145 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct DeleteLolTftTrovesV1RollRewards {
-
-}
+pub struct DeleteLolTftTrovesV1RollRewards {}
 
 impl IsApiRequest for DeleteLolTftTrovesV1RollRewards {
     const METHOD: Method = Method::DELETE;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-tft-troves/v1/roll-rewards".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-tft-troves/v1/roll-rewards".to_string()}
 }
 
 pub fn delete_lol_tft_troves_v_1_roll_rewards() -> DeleteLolTftTrovesV1RollRewards {
-    DeleteLolTftTrovesV1RollRewards {
-        
-    }
+    DeleteLolTftTrovesV1RollRewards{}
 }
 
 
-pub struct GetLolTftTrovesV1Banners {
-
-}
+pub struct GetLolTftTrovesV1Banners {}
 
 impl IsApiRequest for GetLolTftTrovesV1Banners {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolTftTrovesTrovesBanner>;
-
-    fn get_url(&self) -> String {
-        "/lol-tft-troves/v1/banners".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-tft-troves/v1/banners".to_string()}
 }
 
 pub fn get_lol_tft_troves_v_1_banners() -> GetLolTftTrovesV1Banners {
-    GetLolTftTrovesV1Banners {
-        
-    }
+    GetLolTftTrovesV1Banners{}
 }
 
 
-pub struct GetLolTftTrovesV1Config {
-
-}
+pub struct GetLolTftTrovesV1Config {}
 
 impl IsApiRequest for GetLolTftTrovesV1Config {
     const METHOD: Method = Method::GET;
     type ReturnType = LolTftTrovesTroves;
-
-    fn get_url(&self) -> String {
-        "/lol-tft-troves/v1/config".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-tft-troves/v1/config".to_string()}
 }
 
 pub fn get_lol_tft_troves_v_1_config() -> GetLolTftTrovesV1Config {
-    GetLolTftTrovesV1Config {
-        
-    }
+    GetLolTftTrovesV1Config{}
 }
 
 
 pub struct GetLolTftTrovesV1LootOddsByDropTableId {
-
     pub drop_table_id: String,
 }
 
 impl IsApiRequest for GetLolTftTrovesV1LootOddsByDropTableId {
     const METHOD: Method = Method::GET;
     type ReturnType = LolTftTrovesVerboseLootOddsResponse;
-
-    fn get_url(&self) -> String {
-        format!("/lol-tft-troves/v1/loot-odds/{}", self.drop_table_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-tft-troves/v1/loot-odds/{}", self.drop_table_id)}
 }
 
 pub fn get_lol_tft_troves_v_1_loot_odds_by_drop_table_id(drop_table_id: String) -> GetLolTftTrovesV1LootOddsByDropTableId {
-    GetLolTftTrovesV1LootOddsByDropTableId {
-        drop_table_id
-    }
+    GetLolTftTrovesV1LootOddsByDropTableId{drop_table_id}
 }
 
 
-pub struct GetLolTftTrovesV1MilestoneNotifications {
-
-}
+pub struct GetLolTftTrovesV1MilestoneNotifications {}
 
 impl IsApiRequest for GetLolTftTrovesV1MilestoneNotifications {
     const METHOD: Method = Method::GET;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-tft-troves/v1/milestone-notifications".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-tft-troves/v1/milestone-notifications".to_string()}
 }
 
 pub fn get_lol_tft_troves_v_1_milestone_notifications() -> GetLolTftTrovesV1MilestoneNotifications {
-    GetLolTftTrovesV1MilestoneNotifications {
-        
-    }
+    GetLolTftTrovesV1MilestoneNotifications{}
 }
 
 
-pub struct GetLolTftTrovesV1Milestones {
-
-}
+pub struct GetLolTftTrovesV1Milestones {}
 
 impl IsApiRequest for GetLolTftTrovesV1Milestones {
     const METHOD: Method = Method::GET;
     type ReturnType = LolTftTrovesTrovesMilestones;
-
-    fn get_url(&self) -> String {
-        "/lol-tft-troves/v1/milestones".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-tft-troves/v1/milestones".to_string()}
 }
 
 pub fn get_lol_tft_troves_v_1_milestones() -> GetLolTftTrovesV1Milestones {
-    GetLolTftTrovesV1Milestones {
-        
-    }
+    GetLolTftTrovesV1Milestones{}
 }
 
 
-pub struct GetLolTftTrovesV1RollRewards {
-
-}
+pub struct GetLolTftTrovesV1RollRewards {}
 
 impl IsApiRequest for GetLolTftTrovesV1RollRewards {
     const METHOD: Method = Method::GET;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-tft-troves/v1/roll-rewards".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-tft-troves/v1/roll-rewards".to_string()}
 }
 
 pub fn get_lol_tft_troves_v_1_roll_rewards() -> GetLolTftTrovesV1RollRewards {
-    GetLolTftTrovesV1RollRewards {
-        
-    }
+    GetLolTftTrovesV1RollRewards{}
 }
 
 
-pub struct GetLolTftTrovesV1StatusNotifications {
-
-}
+pub struct GetLolTftTrovesV1StatusNotifications {}
 
 impl IsApiRequest for GetLolTftTrovesV1StatusNotifications {
     const METHOD: Method = Method::GET;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-tft-troves/v1/status-notifications".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-tft-troves/v1/status-notifications".to_string()}
 }
 
 pub fn get_lol_tft_troves_v_1_status_notifications() -> GetLolTftTrovesV1StatusNotifications {
-    GetLolTftTrovesV1StatusNotifications {
-        
-    }
+    GetLolTftTrovesV1StatusNotifications{}
 }
 
 
 pub struct PostLolTftTrovesV1Purchase {
-
     pub body: LolTftTrovesTrovesPurchaseRequest,
 }
 
 impl IsApiRequest for PostLolTftTrovesV1Purchase {
     const METHOD: Method = Method::POST;
     type ReturnType = LolTftTrovesCapOrdersResponseDto;
-
-    fn get_url(&self) -> String {
-        "/lol-tft-troves/v1/purchase".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-tft-troves/v1/purchase".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_tft_troves_v_1_purchase(body: LolTftTrovesTrovesPurchaseRequest) -> PostLolTftTrovesV1Purchase {
-    PostLolTftTrovesV1Purchase {
-        body
-    }
+    PostLolTftTrovesV1Purchase{body}
 }
 
 
 pub struct PostLolTftTrovesV1Roll {
-
     pub body: LolTftTrovesTrovesRollRequest,
 }
 
 impl IsApiRequest for PostLolTftTrovesV1Roll {
     const METHOD: Method = Method::POST;
     type ReturnType = LolTftTrovesCapOrdersResponseDto;
-
-    fn get_url(&self) -> String {
-        "/lol-tft-troves/v1/roll".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-tft-troves/v1/roll".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_tft_troves_v_1_roll(body: LolTftTrovesTrovesRollRequest) -> PostLolTftTrovesV1Roll {
-    PostLolTftTrovesV1Roll {
-        body
-    }
+    PostLolTftTrovesV1Roll{body}
 }
 
 

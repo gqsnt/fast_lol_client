@@ -9,31 +9,16 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct GetLolShutdownV1Notification {
-
-}
+pub struct GetLolShutdownV1Notification {}
 
 impl IsApiRequest for GetLolShutdownV1Notification {
     const METHOD: Method = Method::GET;
     type ReturnType = LolShutdownShutdownNotification;
-
-    fn get_url(&self) -> String {
-        "/lol-shutdown/v1/notification".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-shutdown/v1/notification".to_string()}
 }
 
 pub fn get_lol_shutdown_v_1_notification() -> GetLolShutdownV1Notification {
-    GetLolShutdownV1Notification {
-        
-    }
+    GetLolShutdownV1Notification{}
 }
 
 

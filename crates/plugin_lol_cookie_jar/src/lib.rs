@@ -11,29 +11,17 @@ mod additional;
 
 pub struct GetCookieJarV1Cookies {
     // Get all cookies.
+
 }
 
 impl IsApiRequest for GetCookieJarV1Cookies {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<Cookie>;
-
-    fn get_url(&self) -> String {
-        "/cookie-jar/v1/cookies".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/cookie-jar/v1/cookies".to_string()}
 }
 
 pub fn get_cookie_jar_v_1_cookies() -> GetCookieJarV1Cookies {
-    GetCookieJarV1Cookies {
-        
-    }
+    GetCookieJarV1Cookies{}
 }
 
 
@@ -45,24 +33,14 @@ pub struct PostCookieJarV1Cookies {
 impl IsApiRequest for PostCookieJarV1Cookies {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/cookie-jar/v1/cookies".to_string()
-    }
-
+    fn get_url(&self) -> String {"/cookie-jar/v1/cookies".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_cookie_jar_v_1_cookies(body: Vec<Cookie>) -> PostCookieJarV1Cookies {
-    PostCookieJarV1Cookies {
-        body
-    }
+    PostCookieJarV1Cookies{body}
 }
 
 

@@ -10,65 +10,36 @@ mod additional;
 // ENDPOINTS
 
 pub struct GetLolMarketplaceV1ProductsByProductStores {
-
     pub product: String,
 }
 
 impl IsApiRequest for GetLolMarketplaceV1ProductsByProductStores {
     const METHOD: Method = Method::GET;
     type ReturnType = LolMarketplaceStoresResponse;
-
-    fn get_url(&self) -> String {
-        format!("/lol-marketplace/v1/products/{}/stores", self.product)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-marketplace/v1/products/{}/stores", self.product)}
 }
 
 pub fn get_lol_marketplace_v_1_products_by_product_stores(product: String) -> GetLolMarketplaceV1ProductsByProductStores {
-    GetLolMarketplaceV1ProductsByProductStores {
-        product
-    }
+    GetLolMarketplaceV1ProductsByProductStores{product}
 }
 
 
 pub struct GetLolMarketplaceV1PurchasesByPurchaseId {
-
     pub purchase_id: String,
 }
 
 impl IsApiRequest for GetLolMarketplaceV1PurchasesByPurchaseId {
     const METHOD: Method = Method::GET;
     type ReturnType = LolMarketplacePurchaseTransaction;
-
-    fn get_url(&self) -> String {
-        format!("/lol-marketplace/v1/purchases/{}", self.purchase_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-marketplace/v1/purchases/{}", self.purchase_id)}
 }
 
 pub fn get_lol_marketplace_v_1_purchases_by_purchase_id(purchase_id: String) -> GetLolMarketplaceV1PurchasesByPurchaseId {
-    GetLolMarketplaceV1PurchasesByPurchaseId {
-        purchase_id
-    }
+    GetLolMarketplaceV1PurchasesByPurchaseId{purchase_id}
 }
 
 
 pub struct PostLolMarketplaceV1ProductsByProductPurchases {
-
     pub product: String,
     pub body: LolMarketplacePurchaseRequest,
 }
@@ -76,24 +47,14 @@ pub struct PostLolMarketplaceV1ProductsByProductPurchases {
 impl IsApiRequest for PostLolMarketplaceV1ProductsByProductPurchases {
     const METHOD: Method = Method::POST;
     type ReturnType = LolMarketplacePurchaseResponse;
-
-    fn get_url(&self) -> String {
-        format!("/lol-marketplace/v1/products/{}/purchases", self.product)
-    }
-
+    fn get_url(&self) -> String {format!("/lol-marketplace/v1/products/{}/purchases", self.product)}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_marketplace_v_1_products_by_product_purchases(product: String, body: LolMarketplacePurchaseRequest) -> PostLolMarketplaceV1ProductsByProductPurchases {
-    PostLolMarketplaceV1ProductsByProductPurchases {
-        product, body
-    }
+    PostLolMarketplaceV1ProductsByProductPurchases{product, body}
 }
 
 

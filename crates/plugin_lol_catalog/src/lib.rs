@@ -10,7 +10,6 @@ mod additional;
 // ENDPOINTS
 
 pub struct GetLolCatalogV1ItemDetails {
-
     pub inventory_type: String,
     pub item_id: i64,
 }
@@ -18,15 +17,7 @@ pub struct GetLolCatalogV1ItemDetails {
 impl IsApiRequest for GetLolCatalogV1ItemDetails {
     const METHOD: Method = Method::GET;
     type ReturnType = LolCatalogCatalogPluginItemWithDetails;
-
-    fn get_url(&self) -> String {
-        "/lol-catalog/v1/item-details".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
+    fn get_url(&self) -> String {"/lol-catalog/v1/item-details".to_string()}
     fn get_query_params(&self) -> Option<Value> {
         Some(json!({
             "inventoryType" : self.inventory_type,
@@ -36,14 +27,11 @@ impl IsApiRequest for GetLolCatalogV1ItemDetails {
 }
 
 pub fn get_lol_catalog_v_1_item_details(inventory_type: String, item_id: i64) -> GetLolCatalogV1ItemDetails {
-    GetLolCatalogV1ItemDetails {
-        inventory_type, item_id
-    }
+    GetLolCatalogV1ItemDetails{inventory_type, item_id}
 }
 
 
 pub struct GetLolCatalogV1Items {
-
     pub inventory_type: String,
     pub item_ids: Vec<i64>,
 }
@@ -51,15 +39,7 @@ pub struct GetLolCatalogV1Items {
 impl IsApiRequest for GetLolCatalogV1Items {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolCatalogItemChoiceDetails>;
-
-    fn get_url(&self) -> String {
-        "/lol-catalog/v1/items".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
+    fn get_url(&self) -> String {"/lol-catalog/v1/items".to_string()}
     fn get_query_params(&self) -> Option<Value> {
         Some(json!({
             "inventoryType" : self.inventory_type,
@@ -69,58 +49,33 @@ impl IsApiRequest for GetLolCatalogV1Items {
 }
 
 pub fn get_lol_catalog_v_1_items(inventory_type: String, item_ids: Vec<i64>) -> GetLolCatalogV1Items {
-    GetLolCatalogV1Items {
-        inventory_type, item_ids
-    }
+    GetLolCatalogV1Items{inventory_type, item_ids}
 }
 
 
 pub struct GetLolCatalogV1ItemsByInventoryType {
-
     pub inventory_type: String,
 }
 
 impl IsApiRequest for GetLolCatalogV1ItemsByInventoryType {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolCatalogCatalogPluginItem>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-catalog/v1/items/{}", self.inventory_type)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-catalog/v1/items/{}", self.inventory_type)}
 }
 
 pub fn get_lol_catalog_v_1_items_by_inventory_type(inventory_type: String) -> GetLolCatalogV1ItemsByInventoryType {
-    GetLolCatalogV1ItemsByInventoryType {
-        inventory_type
-    }
+    GetLolCatalogV1ItemsByInventoryType{inventory_type}
 }
 
 
 pub struct GetLolCatalogV1ItemsListDetails {
-
     pub catalog_items_keys: Vec<LolCatalogItemKey>,
 }
 
 impl IsApiRequest for GetLolCatalogV1ItemsListDetails {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolCatalogCatalogPluginItemWithDetails>;
-
-    fn get_url(&self) -> String {
-        "/lol-catalog/v1/items-list-details".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
+    fn get_url(&self) -> String {"/lol-catalog/v1/items-list-details".to_string()}
     fn get_query_params(&self) -> Option<Value> {
         Some(json!({
             "catalogItemsKeys" : self.catalog_items_keys,
@@ -129,29 +84,18 @@ impl IsApiRequest for GetLolCatalogV1ItemsListDetails {
 }
 
 pub fn get_lol_catalog_v_1_items_list_details(catalog_items_keys: Vec<LolCatalogItemKey>) -> GetLolCatalogV1ItemsListDetails {
-    GetLolCatalogV1ItemsListDetails {
-        catalog_items_keys
-    }
+    GetLolCatalogV1ItemsListDetails{catalog_items_keys}
 }
 
 
 pub struct GetLolCatalogV1ItemsListDetailsSkipCache {
-
     pub catalog_items_keys: Vec<LolCatalogItemKey>,
 }
 
 impl IsApiRequest for GetLolCatalogV1ItemsListDetailsSkipCache {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolCatalogCatalogPluginItemWithDetails>;
-
-    fn get_url(&self) -> String {
-        "/lol-catalog/v1/items-list-details/skip-cache".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
+    fn get_url(&self) -> String {"/lol-catalog/v1/items-list-details/skip-cache".to_string()}
     fn get_query_params(&self) -> Option<Value> {
         Some(json!({
             "catalogItemsKeys" : self.catalog_items_keys,
@@ -160,9 +104,7 @@ impl IsApiRequest for GetLolCatalogV1ItemsListDetailsSkipCache {
 }
 
 pub fn get_lol_catalog_v_1_items_list_details_skip_cache(catalog_items_keys: Vec<LolCatalogItemKey>) -> GetLolCatalogV1ItemsListDetailsSkipCache {
-    GetLolCatalogV1ItemsListDetailsSkipCache {
-        catalog_items_keys
-    }
+    GetLolCatalogV1ItemsListDetailsSkipCache{catalog_items_keys}
 }
 
 

@@ -9,31 +9,16 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct GetEntitlementsV1Token {
-
-}
+pub struct GetEntitlementsV1Token {}
 
 impl IsApiRequest for GetEntitlementsV1Token {
     const METHOD: Method = Method::GET;
     type ReturnType = EntitlementsToken;
-
-    fn get_url(&self) -> String {
-        "/entitlements/v1/token".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/entitlements/v1/token".to_string()}
 }
 
 pub fn get_entitlements_v_1_token() -> GetEntitlementsV1Token {
-    GetEntitlementsV1Token {
-        
-    }
+    GetEntitlementsV1Token{}
 }
 
 

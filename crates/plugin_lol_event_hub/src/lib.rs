@@ -9,642 +9,329 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct GetLolEventHubV1Events {
-
-}
+pub struct GetLolEventHubV1Events {}
 
 impl IsApiRequest for GetLolEventHubV1Events {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolEventHubActiveEventUiData>;
-
-    fn get_url(&self) -> String {
-        "/lol-event-hub/v1/events".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-event-hub/v1/events".to_string()}
 }
 
 pub fn get_lol_event_hub_v_1_events() -> GetLolEventHubV1Events {
-    GetLolEventHubV1Events {
-        
-    }
+    GetLolEventHubV1Events{}
 }
 
 
 pub struct GetLolEventHubV1EventsByEventIdEventDetailsData {
-
     pub event_id: String,
 }
 
 impl IsApiRequest for GetLolEventHubV1EventsByEventIdEventDetailsData {
     const METHOD: Method = Method::GET;
     type ReturnType = LolEventHubEventDetailsUiData;
-
-    fn get_url(&self) -> String {
-        format!("/lol-event-hub/v1/events/{}/event-details-data", self.event_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-event-hub/v1/events/{}/event-details-data", self.event_id)}
 }
 
 pub fn get_lol_event_hub_v_1_events_by_event_id_event_details_data(event_id: String) -> GetLolEventHubV1EventsByEventIdEventDetailsData {
-    GetLolEventHubV1EventsByEventIdEventDetailsData {
-        event_id
-    }
+    GetLolEventHubV1EventsByEventIdEventDetailsData{event_id}
 }
 
 
 pub struct GetLolEventHubV1EventsByEventIdInfo {
-
     pub event_id: String,
 }
 
 impl IsApiRequest for GetLolEventHubV1EventsByEventIdInfo {
     const METHOD: Method = Method::GET;
     type ReturnType = LolEventHubEventInfoUiData;
-
-    fn get_url(&self) -> String {
-        format!("/lol-event-hub/v1/events/{}/info", self.event_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-event-hub/v1/events/{}/info", self.event_id)}
 }
 
 pub fn get_lol_event_hub_v_1_events_by_event_id_info(event_id: String) -> GetLolEventHubV1EventsByEventIdInfo {
-    GetLolEventHubV1EventsByEventIdInfo {
-        event_id
-    }
+    GetLolEventHubV1EventsByEventIdInfo{event_id}
 }
 
 
 pub struct GetLolEventHubV1EventsByEventIdIsGracePeriod {
-
     pub event_id: String,
 }
 
 impl IsApiRequest for GetLolEventHubV1EventsByEventIdIsGracePeriod {
     const METHOD: Method = Method::GET;
     type ReturnType = bool;
-
-    fn get_url(&self) -> String {
-        format!("/lol-event-hub/v1/events/{}/is-grace-period", self.event_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-event-hub/v1/events/{}/is-grace-period", self.event_id)}
 }
 
 pub fn get_lol_event_hub_v_1_events_by_event_id_is_grace_period(event_id: String) -> GetLolEventHubV1EventsByEventIdIsGracePeriod {
-    GetLolEventHubV1EventsByEventIdIsGracePeriod {
-        event_id
-    }
+    GetLolEventHubV1EventsByEventIdIsGracePeriod{event_id}
 }
 
 
 pub struct GetLolEventHubV1EventsByEventIdNarrative {
-
     pub event_id: String,
 }
 
 impl IsApiRequest for GetLolEventHubV1EventsByEventIdNarrative {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolEventHubNarrativeElement>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-event-hub/v1/events/{}/narrative", self.event_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-event-hub/v1/events/{}/narrative", self.event_id)}
 }
 
 pub fn get_lol_event_hub_v_1_events_by_event_id_narrative(event_id: String) -> GetLolEventHubV1EventsByEventIdNarrative {
-    GetLolEventHubV1EventsByEventIdNarrative {
-        event_id
-    }
+    GetLolEventHubV1EventsByEventIdNarrative{event_id}
 }
 
 
 pub struct GetLolEventHubV1EventsByEventIdPassBackgroundData {
-
     pub event_id: String,
 }
 
 impl IsApiRequest for GetLolEventHubV1EventsByEventIdPassBackgroundData {
     const METHOD: Method = Method::GET;
     type ReturnType = LolEventHubEventBackgroundUiData;
-
-    fn get_url(&self) -> String {
-        format!("/lol-event-hub/v1/events/{}/pass-background-data", self.event_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-event-hub/v1/events/{}/pass-background-data", self.event_id)}
 }
 
 pub fn get_lol_event_hub_v_1_events_by_event_id_pass_background_data(event_id: String) -> GetLolEventHubV1EventsByEventIdPassBackgroundData {
-    GetLolEventHubV1EventsByEventIdPassBackgroundData {
-        event_id
-    }
+    GetLolEventHubV1EventsByEventIdPassBackgroundData{event_id}
 }
 
 
 pub struct GetLolEventHubV1EventsByEventIdPassBundles {
-
     pub event_id: String,
 }
 
 impl IsApiRequest for GetLolEventHubV1EventsByEventIdPassBundles {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolEventHubBundleOfferUiData>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-event-hub/v1/events/{}/pass-bundles", self.event_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-event-hub/v1/events/{}/pass-bundles", self.event_id)}
 }
 
 pub fn get_lol_event_hub_v_1_events_by_event_id_pass_bundles(event_id: String) -> GetLolEventHubV1EventsByEventIdPassBundles {
-    GetLolEventHubV1EventsByEventIdPassBundles {
-        event_id
-    }
+    GetLolEventHubV1EventsByEventIdPassBundles{event_id}
 }
 
 
 pub struct GetLolEventHubV1EventsByEventIdProgressInfoData {
-
     pub event_id: String,
 }
 
 impl IsApiRequest for GetLolEventHubV1EventsByEventIdProgressInfoData {
     const METHOD: Method = Method::GET;
     type ReturnType = LolEventHubProgressInfoUiData;
-
-    fn get_url(&self) -> String {
-        format!("/lol-event-hub/v1/events/{}/progress-info-data", self.event_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-event-hub/v1/events/{}/progress-info-data", self.event_id)}
 }
 
 pub fn get_lol_event_hub_v_1_events_by_event_id_progress_info_data(event_id: String) -> GetLolEventHubV1EventsByEventIdProgressInfoData {
-    GetLolEventHubV1EventsByEventIdProgressInfoData {
-        event_id
-    }
+    GetLolEventHubV1EventsByEventIdProgressInfoData{event_id}
 }
 
 
 pub struct GetLolEventHubV1EventsByEventIdProgressionPurchaseData {
-
     pub event_id: String,
 }
 
 impl IsApiRequest for GetLolEventHubV1EventsByEventIdProgressionPurchaseData {
     const METHOD: Method = Method::GET;
     type ReturnType = LolEventHubProgressionPurchaseUiData;
-
-    fn get_url(&self) -> String {
-        format!("/lol-event-hub/v1/events/{}/progression-purchase-data", self.event_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-event-hub/v1/events/{}/progression-purchase-data", self.event_id)}
 }
 
 pub fn get_lol_event_hub_v_1_events_by_event_id_progression_purchase_data(event_id: String) -> GetLolEventHubV1EventsByEventIdProgressionPurchaseData {
-    GetLolEventHubV1EventsByEventIdProgressionPurchaseData {
-        event_id
-    }
+    GetLolEventHubV1EventsByEventIdProgressionPurchaseData{event_id}
 }
 
 
 pub struct GetLolEventHubV1EventsByEventIdRewardTrackBonusItems {
-
     pub event_id: String,
 }
 
 impl IsApiRequest for GetLolEventHubV1EventsByEventIdRewardTrackBonusItems {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolEventHubRewardTrackItem>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-event-hub/v1/events/{}/reward-track/bonus-items", self.event_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-event-hub/v1/events/{}/reward-track/bonus-items", self.event_id)}
 }
 
 pub fn get_lol_event_hub_v_1_events_by_event_id_reward_track_bonus_items(event_id: String) -> GetLolEventHubV1EventsByEventIdRewardTrackBonusItems {
-    GetLolEventHubV1EventsByEventIdRewardTrackBonusItems {
-        event_id
-    }
+    GetLolEventHubV1EventsByEventIdRewardTrackBonusItems{event_id}
 }
 
 
 pub struct GetLolEventHubV1EventsByEventIdRewardTrackBonusProgress {
-
     pub event_id: String,
 }
 
 impl IsApiRequest for GetLolEventHubV1EventsByEventIdRewardTrackBonusProgress {
     const METHOD: Method = Method::GET;
     type ReturnType = LolEventHubRewardTrackProgress;
-
-    fn get_url(&self) -> String {
-        format!("/lol-event-hub/v1/events/{}/reward-track/bonus-progress", self.event_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-event-hub/v1/events/{}/reward-track/bonus-progress", self.event_id)}
 }
 
 pub fn get_lol_event_hub_v_1_events_by_event_id_reward_track_bonus_progress(event_id: String) -> GetLolEventHubV1EventsByEventIdRewardTrackBonusProgress {
-    GetLolEventHubV1EventsByEventIdRewardTrackBonusProgress {
-        event_id
-    }
+    GetLolEventHubV1EventsByEventIdRewardTrackBonusProgress{event_id}
 }
 
 
 pub struct GetLolEventHubV1EventsByEventIdRewardTrackFailure {
-
     pub event_id: String,
 }
 
 impl IsApiRequest for GetLolEventHubV1EventsByEventIdRewardTrackFailure {
     const METHOD: Method = Method::GET;
     type ReturnType = LolEventHubEventHubError;
-
-    fn get_url(&self) -> String {
-        format!("/lol-event-hub/v1/events/{}/reward-track/failure", self.event_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-event-hub/v1/events/{}/reward-track/failure", self.event_id)}
 }
 
 pub fn get_lol_event_hub_v_1_events_by_event_id_reward_track_failure(event_id: String) -> GetLolEventHubV1EventsByEventIdRewardTrackFailure {
-    GetLolEventHubV1EventsByEventIdRewardTrackFailure {
-        event_id
-    }
+    GetLolEventHubV1EventsByEventIdRewardTrackFailure{event_id}
 }
 
 
 pub struct GetLolEventHubV1EventsByEventIdRewardTrackItems {
-
     pub event_id: String,
 }
 
 impl IsApiRequest for GetLolEventHubV1EventsByEventIdRewardTrackItems {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolEventHubRewardTrackItem>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-event-hub/v1/events/{}/reward-track/items", self.event_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-event-hub/v1/events/{}/reward-track/items", self.event_id)}
 }
 
 pub fn get_lol_event_hub_v_1_events_by_event_id_reward_track_items(event_id: String) -> GetLolEventHubV1EventsByEventIdRewardTrackItems {
-    GetLolEventHubV1EventsByEventIdRewardTrackItems {
-        event_id
-    }
+    GetLolEventHubV1EventsByEventIdRewardTrackItems{event_id}
 }
 
 
 pub struct GetLolEventHubV1EventsByEventIdRewardTrackProgress {
-
     pub event_id: String,
 }
 
 impl IsApiRequest for GetLolEventHubV1EventsByEventIdRewardTrackProgress {
     const METHOD: Method = Method::GET;
     type ReturnType = LolEventHubRewardTrackProgress;
-
-    fn get_url(&self) -> String {
-        format!("/lol-event-hub/v1/events/{}/reward-track/progress", self.event_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-event-hub/v1/events/{}/reward-track/progress", self.event_id)}
 }
 
 pub fn get_lol_event_hub_v_1_events_by_event_id_reward_track_progress(event_id: String) -> GetLolEventHubV1EventsByEventIdRewardTrackProgress {
-    GetLolEventHubV1EventsByEventIdRewardTrackProgress {
-        event_id
-    }
+    GetLolEventHubV1EventsByEventIdRewardTrackProgress{event_id}
 }
 
 
 pub struct GetLolEventHubV1EventsByEventIdRewardTrackUnclaimedRewards {
-
     pub event_id: String,
 }
 
 impl IsApiRequest for GetLolEventHubV1EventsByEventIdRewardTrackUnclaimedRewards {
     const METHOD: Method = Method::GET;
     type ReturnType = LolEventHubUnclaimedRewardsUiData;
-
-    fn get_url(&self) -> String {
-        format!("/lol-event-hub/v1/events/{}/reward-track/unclaimed-rewards", self.event_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-event-hub/v1/events/{}/reward-track/unclaimed-rewards", self.event_id)}
 }
 
 pub fn get_lol_event_hub_v_1_events_by_event_id_reward_track_unclaimed_rewards(event_id: String) -> GetLolEventHubV1EventsByEventIdRewardTrackUnclaimedRewards {
-    GetLolEventHubV1EventsByEventIdRewardTrackUnclaimedRewards {
-        event_id
-    }
+    GetLolEventHubV1EventsByEventIdRewardTrackUnclaimedRewards{event_id}
 }
 
 
 pub struct GetLolEventHubV1EventsByEventIdRewardTrackXp {
-
     pub event_id: String,
 }
 
 impl IsApiRequest for GetLolEventHubV1EventsByEventIdRewardTrackXp {
     const METHOD: Method = Method::GET;
     type ReturnType = LolEventHubRewardTrackXp;
-
-    fn get_url(&self) -> String {
-        format!("/lol-event-hub/v1/events/{}/reward-track/xp", self.event_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-event-hub/v1/events/{}/reward-track/xp", self.event_id)}
 }
 
 pub fn get_lol_event_hub_v_1_events_by_event_id_reward_track_xp(event_id: String) -> GetLolEventHubV1EventsByEventIdRewardTrackXp {
-    GetLolEventHubV1EventsByEventIdRewardTrackXp {
-        event_id
-    }
+    GetLolEventHubV1EventsByEventIdRewardTrackXp{event_id}
 }
 
 
 pub struct GetLolEventHubV1EventsByEventIdTokenShop {
-
     pub event_id: String,
 }
 
 impl IsApiRequest for GetLolEventHubV1EventsByEventIdTokenShop {
     const METHOD: Method = Method::GET;
     type ReturnType = LolEventHubTokenShopUiData;
-
-    fn get_url(&self) -> String {
-        format!("/lol-event-hub/v1/events/{}/token-shop", self.event_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-event-hub/v1/events/{}/token-shop", self.event_id)}
 }
 
 pub fn get_lol_event_hub_v_1_events_by_event_id_token_shop(event_id: String) -> GetLolEventHubV1EventsByEventIdTokenShop {
-    GetLolEventHubV1EventsByEventIdTokenShop {
-        event_id
-    }
+    GetLolEventHubV1EventsByEventIdTokenShop{event_id}
 }
 
 
 pub struct GetLolEventHubV1EventsByEventIdTokenShopCategoriesOffers {
-
     pub event_id: String,
 }
 
 impl IsApiRequest for GetLolEventHubV1EventsByEventIdTokenShopCategoriesOffers {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolEventHubCategoryOffersUiData>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-event-hub/v1/events/{}/token-shop/categories-offers", self.event_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-event-hub/v1/events/{}/token-shop/categories-offers", self.event_id)}
 }
 
 pub fn get_lol_event_hub_v_1_events_by_event_id_token_shop_categories_offers(event_id: String) -> GetLolEventHubV1EventsByEventIdTokenShopCategoriesOffers {
-    GetLolEventHubV1EventsByEventIdTokenShopCategoriesOffers {
-        event_id
-    }
+    GetLolEventHubV1EventsByEventIdTokenShopCategoriesOffers{event_id}
 }
 
 
 pub struct GetLolEventHubV1EventsByEventIdTokenShopTokenBalance {
-
     pub event_id: String,
 }
 
 impl IsApiRequest for GetLolEventHubV1EventsByEventIdTokenShopTokenBalance {
     const METHOD: Method = Method::GET;
     type ReturnType = u32;
-
-    fn get_url(&self) -> String {
-        format!("/lol-event-hub/v1/events/{}/token-shop/token-balance", self.event_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-event-hub/v1/events/{}/token-shop/token-balance", self.event_id)}
 }
 
 pub fn get_lol_event_hub_v_1_events_by_event_id_token_shop_token_balance(event_id: String) -> GetLolEventHubV1EventsByEventIdTokenShopTokenBalance {
-    GetLolEventHubV1EventsByEventIdTokenShopTokenBalance {
-        event_id
-    }
+    GetLolEventHubV1EventsByEventIdTokenShopTokenBalance{event_id}
 }
 
 
-pub struct GetLolEventHubV1NavigationButtonData {
-
-}
+pub struct GetLolEventHubV1NavigationButtonData {}
 
 impl IsApiRequest for GetLolEventHubV1NavigationButtonData {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolEventHubNavigationButtonUiData>;
-
-    fn get_url(&self) -> String {
-        "/lol-event-hub/v1/navigation-button-data".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-event-hub/v1/navigation-button-data".to_string()}
 }
 
 pub fn get_lol_event_hub_v_1_navigation_button_data() -> GetLolEventHubV1NavigationButtonData {
-    GetLolEventHubV1NavigationButtonData {
-        
-    }
+    GetLolEventHubV1NavigationButtonData{}
 }
 
 
-pub struct GetLolEventHubV1Skins {
-
-}
+pub struct GetLolEventHubV1Skins {}
 
 impl IsApiRequest for GetLolEventHubV1Skins {
     const METHOD: Method = Method::GET;
     type ReturnType = LolEventHubEventPassInfo;
-
-    fn get_url(&self) -> String {
-        "/lol-event-hub/v1/skins".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-event-hub/v1/skins".to_string()}
 }
 
 pub fn get_lol_event_hub_v_1_skins() -> GetLolEventHubV1Skins {
-    GetLolEventHubV1Skins {
-        
-    }
+    GetLolEventHubV1Skins{}
 }
 
 
-pub struct GetLolEventHubV1TokenUpsell {
-
-}
+pub struct GetLolEventHubV1TokenUpsell {}
 
 impl IsApiRequest for GetLolEventHubV1TokenUpsell {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolEventHubTokenUpsell>;
-
-    fn get_url(&self) -> String {
-        "/lol-event-hub/v1/token-upsell".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-event-hub/v1/token-upsell".to_string()}
 }
 
 pub fn get_lol_event_hub_v_1_token_upsell() -> GetLolEventHubV1TokenUpsell {
-    GetLolEventHubV1TokenUpsell {
-        
-    }
+    GetLolEventHubV1TokenUpsell{}
 }
 
 
 pub struct PostLolEventHubV1EventsByEventIdPurchaseOffer {
-
     pub event_id: String,
     pub body: LolEventHubPurchaseOfferRequest,
 }
@@ -652,82 +339,47 @@ pub struct PostLolEventHubV1EventsByEventIdPurchaseOffer {
 impl IsApiRequest for PostLolEventHubV1EventsByEventIdPurchaseOffer {
     const METHOD: Method = Method::POST;
     type ReturnType = LolEventHubPurchaseOfferResponseV3;
-
-    fn get_url(&self) -> String {
-        format!("/lol-event-hub/v1/events/{}/purchase-offer", self.event_id)
-    }
-
+    fn get_url(&self) -> String {format!("/lol-event-hub/v1/events/{}/purchase-offer", self.event_id)}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_event_hub_v_1_events_by_event_id_purchase_offer(event_id: String, body: LolEventHubPurchaseOfferRequest) -> PostLolEventHubV1EventsByEventIdPurchaseOffer {
-    PostLolEventHubV1EventsByEventIdPurchaseOffer {
-        event_id, body
-    }
+    PostLolEventHubV1EventsByEventIdPurchaseOffer{event_id, body}
 }
 
 
 pub struct PostLolEventHubV1EventsByEventIdRewardTrackClaimAll {
-
     pub event_id: String,
 }
 
 impl IsApiRequest for PostLolEventHubV1EventsByEventIdRewardTrackClaimAll {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        format!("/lol-event-hub/v1/events/{}/reward-track/claim-all", self.event_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-event-hub/v1/events/{}/reward-track/claim-all", self.event_id)}
 }
 
 pub fn post_lol_event_hub_v_1_events_by_event_id_reward_track_claim_all(event_id: String) -> PostLolEventHubV1EventsByEventIdRewardTrackClaimAll {
-    PostLolEventHubV1EventsByEventIdRewardTrackClaimAll {
-        event_id
-    }
+    PostLolEventHubV1EventsByEventIdRewardTrackClaimAll{event_id}
 }
 
 
 pub struct PostLolEventHubV1PurchaseItem {
-
     pub body: LolEventHubItemOrderDto,
 }
 
 impl IsApiRequest for PostLolEventHubV1PurchaseItem {
     const METHOD: Method = Method::POST;
     type ReturnType = LolEventHubPurchaseOrderResponseDto;
-
-    fn get_url(&self) -> String {
-        "/lol-event-hub/v1/purchase-item".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-event-hub/v1/purchase-item".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_event_hub_v_1_purchase_item(body: LolEventHubItemOrderDto) -> PostLolEventHubV1PurchaseItem {
-    PostLolEventHubV1PurchaseItem {
-        body
-    }
+    PostLolEventHubV1PurchaseItem{body}
 }
 
 

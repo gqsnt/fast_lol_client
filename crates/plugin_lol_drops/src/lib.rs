@@ -9,123 +9,65 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct GetLolDropsV1DropTables {
-
-}
+pub struct GetLolDropsV1DropTables {}
 
 impl IsApiRequest for GetLolDropsV1DropTables {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolDropsCapDropsDropTableWithPityDto>;
-
-    fn get_url(&self) -> String {
-        "/lol-drops/v1/drop-tables".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-drops/v1/drop-tables".to_string()}
 }
 
 pub fn get_lol_drops_v_1_drop_tables() -> GetLolDropsV1DropTables {
-    GetLolDropsV1DropTables {
-        
-    }
+    GetLolDropsV1DropTables{}
 }
 
 
 pub struct GetLolDropsV1DropTablesByDropTableId {
-
     pub drop_table_id: String,
 }
 
 impl IsApiRequest for GetLolDropsV1DropTablesByDropTableId {
     const METHOD: Method = Method::GET;
     type ReturnType = LolDropsCapDropsDropTableWithPityDto;
-
-    fn get_url(&self) -> String {
-        format!("/lol-drops/v1/drop-tables/{}", self.drop_table_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-drops/v1/drop-tables/{}", self.drop_table_id)}
 }
 
 pub fn get_lol_drops_v_1_drop_tables_by_drop_table_id(drop_table_id: String) -> GetLolDropsV1DropTablesByDropTableId {
-    GetLolDropsV1DropTablesByDropTableId {
-        drop_table_id
-    }
+    GetLolDropsV1DropTablesByDropTableId{drop_table_id}
 }
 
 
 pub struct GetLolDropsV1DropTablesByDropTableIdOddsList {
-
     pub drop_table_id: String,
 }
 
 impl IsApiRequest for GetLolDropsV1DropTablesByDropTableIdOddsList {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolDropsCapDropsOddsListEntryDto>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-drops/v1/drop-tables/{}/odds-list", self.drop_table_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-drops/v1/drop-tables/{}/odds-list", self.drop_table_id)}
 }
 
 pub fn get_lol_drops_v_1_drop_tables_by_drop_table_id_odds_list(drop_table_id: String) -> GetLolDropsV1DropTablesByDropTableIdOddsList {
-    GetLolDropsV1DropTablesByDropTableIdOddsList {
-        drop_table_id
-    }
+    GetLolDropsV1DropTablesByDropTableIdOddsList{drop_table_id}
 }
 
 
 pub struct GetLolDropsV1DropTablesByDropTableIdOddsTree {
-
     pub drop_table_id: String,
 }
 
 impl IsApiRequest for GetLolDropsV1DropTablesByDropTableIdOddsTree {
     const METHOD: Method = Method::GET;
     type ReturnType = LolDropsCapDropsOddsTreeNodeDto;
-
-    fn get_url(&self) -> String {
-        format!("/lol-drops/v1/drop-tables/{}/odds-tree", self.drop_table_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-drops/v1/drop-tables/{}/odds-tree", self.drop_table_id)}
 }
 
 pub fn get_lol_drops_v_1_drop_tables_by_drop_table_id_odds_tree(drop_table_id: String) -> GetLolDropsV1DropTablesByDropTableIdOddsTree {
-    GetLolDropsV1DropTablesByDropTableIdOddsTree {
-        drop_table_id
-    }
+    GetLolDropsV1DropTablesByDropTableIdOddsTree{drop_table_id}
 }
 
 
 pub struct GetLolDropsV1DropTablesByDropTableIdPlayersByPlayerIdPityCount {
-
     pub drop_table_id: String,
     pub player_id: String,
 }
@@ -133,110 +75,54 @@ pub struct GetLolDropsV1DropTablesByDropTableIdPlayersByPlayerIdPityCount {
 impl IsApiRequest for GetLolDropsV1DropTablesByDropTableIdPlayersByPlayerIdPityCount {
     const METHOD: Method = Method::GET;
     type ReturnType = LolDropsCapDropTableCounterDto;
-
-    fn get_url(&self) -> String {
-        format!("/lol-drops/v1/drop-tables/{}/players/{}/pity-count", self.drop_table_id, self.player_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-drops/v1/drop-tables/{}/players/{}/pity-count", self.drop_table_id, self.player_id)}
 }
 
 pub fn get_lol_drops_v_1_drop_tables_by_drop_table_id_players_by_player_id_pity_count(drop_table_id: String, player_id: String) -> GetLolDropsV1DropTablesByDropTableIdPlayersByPlayerIdPityCount {
-    GetLolDropsV1DropTablesByDropTableIdPlayersByPlayerIdPityCount {
-        drop_table_id, player_id
-    }
+    GetLolDropsV1DropTablesByDropTableIdPlayersByPlayerIdPityCount{drop_table_id, player_id}
 }
 
 
 pub struct GetLolDropsV1PlayersByPlayerIdPityCounts {
-
     pub player_id: String,
 }
 
 impl IsApiRequest for GetLolDropsV1PlayersByPlayerIdPityCounts {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolDropsCapDropTableCounterDto>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-drops/v1/players/{}/pity-counts", self.player_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-drops/v1/players/{}/pity-counts", self.player_id)}
 }
 
 pub fn get_lol_drops_v_1_players_by_player_id_pity_counts(player_id: String) -> GetLolDropsV1PlayersByPlayerIdPityCounts {
-    GetLolDropsV1PlayersByPlayerIdPityCounts {
-        player_id
-    }
+    GetLolDropsV1PlayersByPlayerIdPityCounts{player_id}
 }
 
 
 pub struct GetLolDropsV1PlayersByPlayerIdTotalRollsCounts {
-
     pub player_id: String,
 }
 
 impl IsApiRequest for GetLolDropsV1PlayersByPlayerIdTotalRollsCounts {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolDropsCapDropTableCounterDto>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-drops/v1/players/{}/total-rolls-counts", self.player_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-drops/v1/players/{}/total-rolls-counts", self.player_id)}
 }
 
 pub fn get_lol_drops_v_1_players_by_player_id_total_rolls_counts(player_id: String) -> GetLolDropsV1PlayersByPlayerIdTotalRollsCounts {
-    GetLolDropsV1PlayersByPlayerIdTotalRollsCounts {
-        player_id
-    }
+    GetLolDropsV1PlayersByPlayerIdTotalRollsCounts{player_id}
 }
 
 
-pub struct GetLolDropsV1Ready {
-
-}
+pub struct GetLolDropsV1Ready {}
 
 impl IsApiRequest for GetLolDropsV1Ready {
     const METHOD: Method = Method::GET;
     type ReturnType = bool;
-
-    fn get_url(&self) -> String {
-        "/lol-drops/v1/ready".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-drops/v1/ready".to_string()}
 }
 
 pub fn get_lol_drops_v_1_ready() -> GetLolDropsV1Ready {
-    GetLolDropsV1Ready {
-        
-    }
+    GetLolDropsV1Ready{}
 }
 
 

@@ -10,22 +10,13 @@ mod additional;
 // ENDPOINTS
 
 pub struct GetLolRewardsV1Grants {
-
     pub status: Option<LolRewardsGrantStatus>,
 }
 
 impl IsApiRequest for GetLolRewardsV1Grants {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolRewardsRewardGrant>;
-
-    fn get_url(&self) -> String {
-        "/lol-rewards/v1/grants".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
+    fn get_url(&self) -> String {"/lol-rewards/v1/grants".to_string()}
     fn get_query_params(&self) -> Option<Value> {
         Some(json!({
             "status" : self.status,
@@ -34,29 +25,18 @@ impl IsApiRequest for GetLolRewardsV1Grants {
 }
 
 pub fn get_lol_rewards_v_1_grants(status: Option<LolRewardsGrantStatus>) -> GetLolRewardsV1Grants {
-    GetLolRewardsV1Grants {
-        status
-    }
+    GetLolRewardsV1Grants{status}
 }
 
 
 pub struct GetLolRewardsV1Groups {
-
     pub types: Option<Vec<String>>,
 }
 
 impl IsApiRequest for GetLolRewardsV1Groups {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolRewardsSvcRewardGroup>;
-
-    fn get_url(&self) -> String {
-        "/lol-rewards/v1/groups".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
+    fn get_url(&self) -> String {"/lol-rewards/v1/groups".to_string()}
     fn get_query_params(&self) -> Option<Value> {
         Some(json!({
             "types" : self.types,
@@ -65,43 +45,29 @@ impl IsApiRequest for GetLolRewardsV1Groups {
 }
 
 pub fn get_lol_rewards_v_1_groups(types: Option<Vec<String>>) -> GetLolRewardsV1Groups {
-    GetLolRewardsV1Groups {
-        types
-    }
+    GetLolRewardsV1Groups{types}
 }
 
 
 pub struct PatchLolRewardsV1GrantsView {
-
     pub body: Vec<String>,
 }
 
 impl IsApiRequest for PatchLolRewardsV1GrantsView {
     const METHOD: Method = Method::PATCH;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-rewards/v1/grants/view".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-rewards/v1/grants/view".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn patch_lol_rewards_v_1_grants_view(body: Vec<String>) -> PatchLolRewardsV1GrantsView {
-    PatchLolRewardsV1GrantsView {
-        body
-    }
+    PatchLolRewardsV1GrantsView{body}
 }
 
 
 pub struct PostLolRewardsV1GrantsByGrantIdSelect {
-
     pub grant_id: String,
     pub body: LolRewardsSelectionRequestDto,
 }
@@ -109,82 +75,50 @@ pub struct PostLolRewardsV1GrantsByGrantIdSelect {
 impl IsApiRequest for PostLolRewardsV1GrantsByGrantIdSelect {
     const METHOD: Method = Method::POST;
     type ReturnType = LolRewardsRewardGrant;
-
-    fn get_url(&self) -> String {
-        format!("/lol-rewards/v1/grants/{}/select", self.grant_id)
-    }
-
+    fn get_url(&self) -> String {format!("/lol-rewards/v1/grants/{}/select", self.grant_id)}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_rewards_v_1_grants_by_grant_id_select(grant_id: String, body: LolRewardsSelectionRequestDto) -> PostLolRewardsV1GrantsByGrantIdSelect {
-    PostLolRewardsV1GrantsByGrantIdSelect {
-        grant_id, body
-    }
+    PostLolRewardsV1GrantsByGrantIdSelect{grant_id, body}
 }
 
 
 pub struct PostLolRewardsV1RewardReplay {
-
     pub body: String,
 }
 
 impl IsApiRequest for PostLolRewardsV1RewardReplay {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-rewards/v1/reward/replay".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-rewards/v1/reward/replay".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_rewards_v_1_reward_replay(body: String) -> PostLolRewardsV1RewardReplay {
-    PostLolRewardsV1RewardReplay {
-        body
-    }
+    PostLolRewardsV1RewardReplay{body}
 }
 
 
 pub struct PostLolRewardsV1SelectBulk {
-
     pub body: Vec<LolRewardsSelectionRequestDto>,
 }
 
 impl IsApiRequest for PostLolRewardsV1SelectBulk {
     const METHOD: Method = Method::POST;
     type ReturnType = LolRewardsSelectGrantStatusResponse;
-
-    fn get_url(&self) -> String {
-        "/lol-rewards/v1/select-bulk".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-rewards/v1/select-bulk".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_rewards_v_1_select_bulk(body: Vec<LolRewardsSelectionRequestDto>) -> PostLolRewardsV1SelectBulk {
-    PostLolRewardsV1SelectBulk {
-        body
-    }
+    PostLolRewardsV1SelectBulk{body}
 }
 
 

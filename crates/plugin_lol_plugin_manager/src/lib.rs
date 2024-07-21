@@ -19,15 +19,7 @@ pub struct GetByPluginAssetsByPath {
 impl IsApiRequest for GetByPluginAssetsByPath {
     const METHOD: Method = Method::GET;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/{}/assets/{}", self.plugin, self.path_)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
+    fn get_url(&self) -> String {format!("/{}/assets/{}", self.plugin, self.path_)}
     fn get_query_params(&self) -> Option<Value> {
         Some(json!({
             "if-none-match" : self.if_none_match,
@@ -36,93 +28,55 @@ impl IsApiRequest for GetByPluginAssetsByPath {
 }
 
 pub fn get_by_plugin_assets_by_path(plugin: String, path_: String, if_none_match: Option<String>) -> GetByPluginAssetsByPath {
-    GetByPluginAssetsByPath {
-        plugin, path_, if_none_match
-    }
+    GetByPluginAssetsByPath{plugin, path_, if_none_match}
 }
 
 
 pub struct GetPluginManagerV1ExternalPluginsAvailability {
     // Get the status of the external plugin connection.
+
 }
 
 impl IsApiRequest for GetPluginManagerV1ExternalPluginsAvailability {
     const METHOD: Method = Method::GET;
     type ReturnType = ExternalPluginsResource;
-
-    fn get_url(&self) -> String {
-        "/plugin-manager/v1/external-plugins/availability".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/plugin-manager/v1/external-plugins/availability".to_string()}
 }
 
 pub fn get_plugin_manager_v_1_external_plugins_availability() -> GetPluginManagerV1ExternalPluginsAvailability {
-    GetPluginManagerV1ExternalPluginsAvailability {
-        
-    }
+    GetPluginManagerV1ExternalPluginsAvailability{}
 }
 
 
 pub struct GetPluginManagerV1Status {
     // Get the status of the plugin manager.
+
 }
 
 impl IsApiRequest for GetPluginManagerV1Status {
     const METHOD: Method = Method::GET;
     type ReturnType = PluginManagerResource;
-
-    fn get_url(&self) -> String {
-        "/plugin-manager/v1/status".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/plugin-manager/v1/status".to_string()}
 }
 
 pub fn get_plugin_manager_v_1_status() -> GetPluginManagerV1Status {
-    GetPluginManagerV1Status {
-        
-    }
+    GetPluginManagerV1Status{}
 }
 
 
 pub struct GetPluginManagerV2Descriptions {
     // Get all plugin descriptions.
+
 }
 
 impl IsApiRequest for GetPluginManagerV2Descriptions {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<PluginDescriptionResource>;
-
-    fn get_url(&self) -> String {
-        "/plugin-manager/v2/descriptions".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/plugin-manager/v2/descriptions".to_string()}
 }
 
 pub fn get_plugin_manager_v_2_descriptions() -> GetPluginManagerV2Descriptions {
-    GetPluginManagerV2Descriptions {
-        
-    }
+    GetPluginManagerV2Descriptions{}
 }
 
 
@@ -134,52 +88,27 @@ pub struct GetPluginManagerV2DescriptionsByPlugin {
 impl IsApiRequest for GetPluginManagerV2DescriptionsByPlugin {
     const METHOD: Method = Method::GET;
     type ReturnType = PluginDescriptionResource;
-
-    fn get_url(&self) -> String {
-        format!("/plugin-manager/v2/descriptions/{}", self.plugin)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/plugin-manager/v2/descriptions/{}", self.plugin)}
 }
 
 pub fn get_plugin_manager_v_2_descriptions_by_plugin(plugin: String) -> GetPluginManagerV2DescriptionsByPlugin {
-    GetPluginManagerV2DescriptionsByPlugin {
-        plugin
-    }
+    GetPluginManagerV2DescriptionsByPlugin{plugin}
 }
 
 
 pub struct GetPluginManagerV2Plugins {
     // Get diagnostic information for all plugins.
+
 }
 
 impl IsApiRequest for GetPluginManagerV2Plugins {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<PluginResource>;
-
-    fn get_url(&self) -> String {
-        "/plugin-manager/v2/plugins".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/plugin-manager/v2/plugins".to_string()}
 }
 
 pub fn get_plugin_manager_v_2_plugins() -> GetPluginManagerV2Plugins {
-    GetPluginManagerV2Plugins {
-        
-    }
+    GetPluginManagerV2Plugins{}
 }
 
 
@@ -191,52 +120,27 @@ pub struct GetPluginManagerV2PluginsByPlugin {
 impl IsApiRequest for GetPluginManagerV2PluginsByPlugin {
     const METHOD: Method = Method::GET;
     type ReturnType = PluginResource;
-
-    fn get_url(&self) -> String {
-        format!("/plugin-manager/v2/plugins/{}", self.plugin)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/plugin-manager/v2/plugins/{}", self.plugin)}
 }
 
 pub fn get_plugin_manager_v_2_plugins_by_plugin(plugin: String) -> GetPluginManagerV2PluginsByPlugin {
-    GetPluginManagerV2PluginsByPlugin {
-        plugin
-    }
+    GetPluginManagerV2PluginsByPlugin{plugin}
 }
 
 
 pub struct GetPluginManagerV3PluginsManifest {
     // Get the plugin manifest.
+
 }
 
 impl IsApiRequest for GetPluginManagerV3PluginsManifest {
     const METHOD: Method = Method::GET;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/plugin-manager/v3/plugins-manifest".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/plugin-manager/v3/plugins-manifest".to_string()}
 }
 
 pub fn get_plugin_manager_v_3_plugins_manifest() -> GetPluginManagerV3PluginsManifest {
-    GetPluginManagerV3PluginsManifest {
-        
-    }
+    GetPluginManagerV3PluginsManifest{}
 }
 
 
@@ -250,15 +154,7 @@ pub struct HeadByPluginAssetsByPath {
 impl IsApiRequest for HeadByPluginAssetsByPath {
     const METHOD: Method = Method::HEAD;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/{}/assets/{}", self.plugin, self.path_)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
+    fn get_url(&self) -> String {format!("/{}/assets/{}", self.plugin, self.path_)}
     fn get_query_params(&self) -> Option<Value> {
         Some(json!({
             "if-none-match" : self.if_none_match,
@@ -267,9 +163,7 @@ impl IsApiRequest for HeadByPluginAssetsByPath {
 }
 
 pub fn head_by_plugin_assets_by_path(plugin: String, path_: String, if_none_match: Option<String>) -> HeadByPluginAssetsByPath {
-    HeadByPluginAssetsByPath {
-        plugin, path_, if_none_match
-    }
+    HeadByPluginAssetsByPath{plugin, path_, if_none_match}
 }
 
 

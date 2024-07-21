@@ -10,116 +10,58 @@ mod additional;
 // ENDPOINTS
 
 pub struct DeleteLolPlayerMessagingV1CelebrationNotificationByIdAcknowledge {
-
     pub id: u32,
 }
 
 impl IsApiRequest for DeleteLolPlayerMessagingV1CelebrationNotificationByIdAcknowledge {
     const METHOD: Method = Method::DELETE;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-player-messaging/v1/celebration/notification/{}/acknowledge", self.id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-player-messaging/v1/celebration/notification/{}/acknowledge", self.id)}
 }
 
 pub fn delete_lol_player_messaging_v_1_celebration_notification_by_id_acknowledge(id: u32) -> DeleteLolPlayerMessagingV1CelebrationNotificationByIdAcknowledge {
-    DeleteLolPlayerMessagingV1CelebrationNotificationByIdAcknowledge {
-        id
-    }
+    DeleteLolPlayerMessagingV1CelebrationNotificationByIdAcknowledge{id}
 }
 
 
 pub struct DeleteLolPlayerMessagingV1NotificationByIdAcknowledge {
-
     pub id: u32,
 }
 
 impl IsApiRequest for DeleteLolPlayerMessagingV1NotificationByIdAcknowledge {
     const METHOD: Method = Method::DELETE;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-player-messaging/v1/notification/{}/acknowledge", self.id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-player-messaging/v1/notification/{}/acknowledge", self.id)}
 }
 
 pub fn delete_lol_player_messaging_v_1_notification_by_id_acknowledge(id: u32) -> DeleteLolPlayerMessagingV1NotificationByIdAcknowledge {
-    DeleteLolPlayerMessagingV1NotificationByIdAcknowledge {
-        id
-    }
+    DeleteLolPlayerMessagingV1NotificationByIdAcknowledge{id}
 }
 
 
-pub struct GetLolPlayerMessagingV1CelebrationNotification {
-
-}
+pub struct GetLolPlayerMessagingV1CelebrationNotification {}
 
 impl IsApiRequest for GetLolPlayerMessagingV1CelebrationNotification {
     const METHOD: Method = Method::GET;
     type ReturnType = LolPlayerMessagingDynamicCelebrationMessagingNotificationResource;
-
-    fn get_url(&self) -> String {
-        "/lol-player-messaging/v1/celebration/notification".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-player-messaging/v1/celebration/notification".to_string()}
 }
 
 pub fn get_lol_player_messaging_v_1_celebration_notification() -> GetLolPlayerMessagingV1CelebrationNotification {
-    GetLolPlayerMessagingV1CelebrationNotification {
-        
-    }
+    GetLolPlayerMessagingV1CelebrationNotification{}
 }
 
 
-pub struct GetLolPlayerMessagingV1Notification {
-
-}
+pub struct GetLolPlayerMessagingV1Notification {}
 
 impl IsApiRequest for GetLolPlayerMessagingV1Notification {
     const METHOD: Method = Method::GET;
     type ReturnType = LolPlayerMessagingPlayerMessagingNotificationResource;
-
-    fn get_url(&self) -> String {
-        "/lol-player-messaging/v1/notification".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-player-messaging/v1/notification".to_string()}
 }
 
 pub fn get_lol_player_messaging_v_1_notification() -> GetLolPlayerMessagingV1Notification {
-    GetLolPlayerMessagingV1Notification {
-        
-    }
+    GetLolPlayerMessagingV1Notification{}
 }
 
 

@@ -10,59 +10,30 @@ mod additional;
 // ENDPOINTS
 
 pub struct GetAntiAddictionV1PoliciesByPolicyTypeAntiAddictionState {
-
     pub policy_type: LolAntiAddictionPolicyType,
 }
 
 impl IsApiRequest for GetAntiAddictionV1PoliciesByPolicyTypeAntiAddictionState {
     const METHOD: Method = Method::GET;
     type ReturnType = LolAntiAddictionAntiAddictionState;
-
-    fn get_url(&self) -> String {
-        format!("/anti-addiction/v1/policies/{}/anti-addiction-state", serde_json::to_string(&self.policy_type).unwrap())
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/anti-addiction/v1/policies/{}/anti-addiction-state", serde_json::to_string(&self.policy_type).unwrap())}
 }
 
 pub fn get_anti_addiction_v_1_policies_by_policy_type_anti_addiction_state(policy_type: LolAntiAddictionPolicyType) -> GetAntiAddictionV1PoliciesByPolicyTypeAntiAddictionState {
-    GetAntiAddictionV1PoliciesByPolicyTypeAntiAddictionState {
-        policy_type
-    }
+    GetAntiAddictionV1PoliciesByPolicyTypeAntiAddictionState{policy_type}
 }
 
 
-pub struct GetLolAntiAddictionV1AntiAddictionToken {
-
-}
+pub struct GetLolAntiAddictionV1AntiAddictionToken {}
 
 impl IsApiRequest for GetLolAntiAddictionV1AntiAddictionToken {
     const METHOD: Method = Method::GET;
     type ReturnType = LolAntiAddictionAntiAddictionToken;
-
-    fn get_url(&self) -> String {
-        "/lol-anti-addiction/v1/anti-addiction-token".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-anti-addiction/v1/anti-addiction-token".to_string()}
 }
 
 pub fn get_lol_anti_addiction_v_1_anti_addiction_token() -> GetLolAntiAddictionV1AntiAddictionToken {
-    GetLolAntiAddictionV1AntiAddictionToken {
-        
-    }
+    GetLolAntiAddictionV1AntiAddictionToken{}
 }
 
 

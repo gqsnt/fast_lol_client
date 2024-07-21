@@ -9,89 +9,52 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct GetLolPftV2Survey {
-
-}
+pub struct GetLolPftV2Survey {}
 
 impl IsApiRequest for GetLolPftV2Survey {
     const METHOD: Method = Method::GET;
     type ReturnType = LolPftPftSurvey;
-
-    fn get_url(&self) -> String {
-        "/lol-pft/v2/survey".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-pft/v2/survey".to_string()}
 }
 
 pub fn get_lol_pft_v_2_survey() -> GetLolPftV2Survey {
-    GetLolPftV2Survey {
-        
-    }
+    GetLolPftV2Survey{}
 }
 
 
 pub struct PostLolPftV2Events {
-
     pub body: LolPftPftEvent,
 }
 
 impl IsApiRequest for PostLolPftV2Events {
     const METHOD: Method = Method::POST;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-pft/v2/events".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-pft/v2/events".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_pft_v_2_events(body: LolPftPftEvent) -> PostLolPftV2Events {
-    PostLolPftV2Events {
-        body
-    }
+    PostLolPftV2Events{body}
 }
 
 
 pub struct PostLolPftV2Survey {
-
     pub body: LolPftPftSurvey,
 }
 
 impl IsApiRequest for PostLolPftV2Survey {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-pft/v2/survey".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-pft/v2/survey".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_pft_v_2_survey(body: LolPftPftSurvey) -> PostLolPftV2Survey {
-    PostLolPftV2Survey {
-        body
-    }
+    PostLolPftV2Survey{body}
 }
 
 

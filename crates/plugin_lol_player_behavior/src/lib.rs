@@ -9,456 +9,221 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct DeleteLolPlayerBehaviorV1CodeOfConductNotification {
-
-}
+pub struct DeleteLolPlayerBehaviorV1CodeOfConductNotification {}
 
 impl IsApiRequest for DeleteLolPlayerBehaviorV1CodeOfConductNotification {
     const METHOD: Method = Method::DELETE;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-player-behavior/v1/code-of-conduct-notification".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-player-behavior/v1/code-of-conduct-notification".to_string()}
 }
 
 pub fn delete_lol_player_behavior_v_1_code_of_conduct_notification() -> DeleteLolPlayerBehaviorV1CodeOfConductNotification {
-    DeleteLolPlayerBehaviorV1CodeOfConductNotification {
-        
-    }
+    DeleteLolPlayerBehaviorV1CodeOfConductNotification{}
 }
 
 
 pub struct DeleteLolPlayerBehaviorV1ReporterFeedbackById {
-
     pub id: String,
 }
 
 impl IsApiRequest for DeleteLolPlayerBehaviorV1ReporterFeedbackById {
     const METHOD: Method = Method::DELETE;
     type ReturnType = LolPlayerBehaviorReporterFeedback;
-
-    fn get_url(&self) -> String {
-        format!("/lol-player-behavior/v1/reporter-feedback/{}", self.id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-player-behavior/v1/reporter-feedback/{}", self.id)}
 }
 
 pub fn delete_lol_player_behavior_v_1_reporter_feedback_by_id(id: String) -> DeleteLolPlayerBehaviorV1ReporterFeedbackById {
-    DeleteLolPlayerBehaviorV1ReporterFeedbackById {
-        id
-    }
+    DeleteLolPlayerBehaviorV1ReporterFeedbackById{id}
 }
 
 
-pub struct GetLolPlayerBehaviorV1Ban {
-
-}
+pub struct GetLolPlayerBehaviorV1Ban {}
 
 impl IsApiRequest for GetLolPlayerBehaviorV1Ban {
     const METHOD: Method = Method::GET;
     type ReturnType = LolPlayerBehaviorBanNotification;
-
-    fn get_url(&self) -> String {
-        "/lol-player-behavior/v1/ban".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-player-behavior/v1/ban".to_string()}
 }
 
 pub fn get_lol_player_behavior_v_1_ban() -> GetLolPlayerBehaviorV1Ban {
-    GetLolPlayerBehaviorV1Ban {
-        
-    }
+    GetLolPlayerBehaviorV1Ban{}
 }
 
 
-pub struct GetLolPlayerBehaviorV1ChatRestriction {
-
-}
+pub struct GetLolPlayerBehaviorV1ChatRestriction {}
 
 impl IsApiRequest for GetLolPlayerBehaviorV1ChatRestriction {
     const METHOD: Method = Method::GET;
     type ReturnType = LolPlayerBehaviorRestrictionNotification;
-
-    fn get_url(&self) -> String {
-        "/lol-player-behavior/v1/chat-restriction".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-player-behavior/v1/chat-restriction".to_string()}
 }
 
 pub fn get_lol_player_behavior_v_1_chat_restriction() -> GetLolPlayerBehaviorV1ChatRestriction {
-    GetLolPlayerBehaviorV1ChatRestriction {
-        
-    }
+    GetLolPlayerBehaviorV1ChatRestriction{}
 }
 
 
-pub struct GetLolPlayerBehaviorV1CodeOfConductNotification {
-
-}
+pub struct GetLolPlayerBehaviorV1CodeOfConductNotification {}
 
 impl IsApiRequest for GetLolPlayerBehaviorV1CodeOfConductNotification {
     const METHOD: Method = Method::GET;
     type ReturnType = LolPlayerBehaviorCodeOfConductNotification;
-
-    fn get_url(&self) -> String {
-        "/lol-player-behavior/v1/code-of-conduct-notification".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-player-behavior/v1/code-of-conduct-notification".to_string()}
 }
 
 pub fn get_lol_player_behavior_v_1_code_of_conduct_notification() -> GetLolPlayerBehaviorV1CodeOfConductNotification {
-    GetLolPlayerBehaviorV1CodeOfConductNotification {
-        
-    }
+    GetLolPlayerBehaviorV1CodeOfConductNotification{}
 }
 
 
-pub struct GetLolPlayerBehaviorV1Config {
-
-}
+pub struct GetLolPlayerBehaviorV1Config {}
 
 impl IsApiRequest for GetLolPlayerBehaviorV1Config {
     const METHOD: Method = Method::GET;
     type ReturnType = LolPlayerBehaviorPlayerBehaviorConfig;
-
-    fn get_url(&self) -> String {
-        "/lol-player-behavior/v1/config".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-player-behavior/v1/config".to_string()}
 }
 
 pub fn get_lol_player_behavior_v_1_config() -> GetLolPlayerBehaviorV1Config {
-    GetLolPlayerBehaviorV1Config {
-        
-    }
+    GetLolPlayerBehaviorV1Config{}
 }
 
 
-pub struct GetLolPlayerBehaviorV1CredibilityBehaviorWarnings {
-
-}
+pub struct GetLolPlayerBehaviorV1CredibilityBehaviorWarnings {}
 
 impl IsApiRequest for GetLolPlayerBehaviorV1CredibilityBehaviorWarnings {
     const METHOD: Method = Method::GET;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-player-behavior/v1/credibility-behavior-warnings".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-player-behavior/v1/credibility-behavior-warnings".to_string()}
 }
 
 pub fn get_lol_player_behavior_v_1_credibility_behavior_warnings() -> GetLolPlayerBehaviorV1CredibilityBehaviorWarnings {
-    GetLolPlayerBehaviorV1CredibilityBehaviorWarnings {
-        
-    }
+    GetLolPlayerBehaviorV1CredibilityBehaviorWarnings{}
 }
 
 
-pub struct GetLolPlayerBehaviorV1ReformCard {
-
-}
+pub struct GetLolPlayerBehaviorV1ReformCard {}
 
 impl IsApiRequest for GetLolPlayerBehaviorV1ReformCard {
     const METHOD: Method = Method::GET;
     type ReturnType = LolPlayerBehaviorReformCard;
-
-    fn get_url(&self) -> String {
-        "/lol-player-behavior/v1/reform-card".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-player-behavior/v1/reform-card".to_string()}
 }
 
 pub fn get_lol_player_behavior_v_1_reform_card() -> GetLolPlayerBehaviorV1ReformCard {
-    GetLolPlayerBehaviorV1ReformCard {
-        
-    }
+    GetLolPlayerBehaviorV1ReformCard{}
 }
 
 
-pub struct GetLolPlayerBehaviorV1ReporterFeedback {
-
-}
+pub struct GetLolPlayerBehaviorV1ReporterFeedback {}
 
 impl IsApiRequest for GetLolPlayerBehaviorV1ReporterFeedback {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolPlayerBehaviorReporterFeedback>;
-
-    fn get_url(&self) -> String {
-        "/lol-player-behavior/v1/reporter-feedback".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-player-behavior/v1/reporter-feedback".to_string()}
 }
 
 pub fn get_lol_player_behavior_v_1_reporter_feedback() -> GetLolPlayerBehaviorV1ReporterFeedback {
-    GetLolPlayerBehaviorV1ReporterFeedback {
-        
-    }
+    GetLolPlayerBehaviorV1ReporterFeedback{}
 }
 
 
 pub struct GetLolPlayerBehaviorV1ReporterFeedbackById {
-
     pub id: String,
 }
 
 impl IsApiRequest for GetLolPlayerBehaviorV1ReporterFeedbackById {
     const METHOD: Method = Method::GET;
     type ReturnType = LolPlayerBehaviorReporterFeedback;
-
-    fn get_url(&self) -> String {
-        format!("/lol-player-behavior/v1/reporter-feedback/{}", self.id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-player-behavior/v1/reporter-feedback/{}", self.id)}
 }
 
 pub fn get_lol_player_behavior_v_1_reporter_feedback_by_id(id: String) -> GetLolPlayerBehaviorV1ReporterFeedbackById {
-    GetLolPlayerBehaviorV1ReporterFeedbackById {
-        id
-    }
+    GetLolPlayerBehaviorV1ReporterFeedbackById{id}
 }
 
 
-pub struct GetLolPlayerBehaviorV2ReformCard {
-
-}
+pub struct GetLolPlayerBehaviorV2ReformCard {}
 
 impl IsApiRequest for GetLolPlayerBehaviorV2ReformCard {
     const METHOD: Method = Method::GET;
     type ReturnType = LolPlayerBehaviorReformCardV2;
-
-    fn get_url(&self) -> String {
-        "/lol-player-behavior/v2/reform-card".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-player-behavior/v2/reform-card".to_string()}
 }
 
 pub fn get_lol_player_behavior_v_2_reform_card() -> GetLolPlayerBehaviorV2ReformCard {
-    GetLolPlayerBehaviorV2ReformCard {
-        
-    }
+    GetLolPlayerBehaviorV2ReformCard{}
 }
 
 
-pub struct GetLolPlayerBehaviorV2ReporterFeedback {
-
-}
+pub struct GetLolPlayerBehaviorV2ReporterFeedback {}
 
 impl IsApiRequest for GetLolPlayerBehaviorV2ReporterFeedback {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolPlayerBehaviorReporterFeedbackMessage>;
-
-    fn get_url(&self) -> String {
-        "/lol-player-behavior/v2/reporter-feedback".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-player-behavior/v2/reporter-feedback".to_string()}
 }
 
 pub fn get_lol_player_behavior_v_2_reporter_feedback() -> GetLolPlayerBehaviorV2ReporterFeedback {
-    GetLolPlayerBehaviorV2ReporterFeedback {
-        
-    }
+    GetLolPlayerBehaviorV2ReporterFeedback{}
 }
 
 
-pub struct GetLolPlayerBehaviorV3ReformCards {
-
-}
+pub struct GetLolPlayerBehaviorV3ReformCards {}
 
 impl IsApiRequest for GetLolPlayerBehaviorV3ReformCards {
     const METHOD: Method = Method::GET;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/lol-player-behavior/v3/reform-cards".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-player-behavior/v3/reform-cards".to_string()}
 }
 
 pub fn get_lol_player_behavior_v_3_reform_cards() -> GetLolPlayerBehaviorV3ReformCards {
-    GetLolPlayerBehaviorV3ReformCards {
-        
-    }
+    GetLolPlayerBehaviorV3ReformCards{}
 }
 
 
 pub struct PostLolPlayerBehaviorV2ReporterFeedbackByKey {
-
     pub key: String,
 }
 
 impl IsApiRequest for PostLolPlayerBehaviorV2ReporterFeedbackByKey {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        format!("/lol-player-behavior/v2/reporter-feedback/{}", self.key)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-player-behavior/v2/reporter-feedback/{}", self.key)}
 }
 
 pub fn post_lol_player_behavior_v_2_reporter_feedback_by_key(key: String) -> PostLolPlayerBehaviorV2ReporterFeedbackByKey {
-    PostLolPlayerBehaviorV2ReporterFeedbackByKey {
-        key
-    }
+    PostLolPlayerBehaviorV2ReporterFeedbackByKey{key}
 }
 
 
 pub struct PutLolPlayerBehaviorV1AckCredibilityBehaviorWarningByMailId {
-
     pub mail_id: String,
 }
 
 impl IsApiRequest for PutLolPlayerBehaviorV1AckCredibilityBehaviorWarningByMailId {
     const METHOD: Method = Method::PUT;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        format!("/lol-player-behavior/v1/ack-credibility-behavior-warning/{}", self.mail_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-player-behavior/v1/ack-credibility-behavior-warning/{}", self.mail_id)}
 }
 
 pub fn put_lol_player_behavior_v_1_ack_credibility_behavior_warning_by_mail_id(mail_id: String) -> PutLolPlayerBehaviorV1AckCredibilityBehaviorWarningByMailId {
-    PutLolPlayerBehaviorV1AckCredibilityBehaviorWarningByMailId {
-        mail_id
-    }
+    PutLolPlayerBehaviorV1AckCredibilityBehaviorWarningByMailId{mail_id}
 }
 
 
 pub struct PutLolPlayerBehaviorV3ReformCardById {
-
     pub id: String,
 }
 
 impl IsApiRequest for PutLolPlayerBehaviorV3ReformCardById {
     const METHOD: Method = Method::PUT;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        format!("/lol-player-behavior/v3/reform-card/{}", self.id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-player-behavior/v3/reform-card/{}", self.id)}
 }
 
 pub fn put_lol_player_behavior_v_3_reform_card_by_id(id: String) -> PutLolPlayerBehaviorV3ReformCardById {
-    PutLolPlayerBehaviorV3ReformCardById {
-        id
-    }
+    PutLolPlayerBehaviorV3ReformCardById{id}
 }
 
 

@@ -9,64 +9,33 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct GetLolRegaliaV2Config {
-
-}
+pub struct GetLolRegaliaV2Config {}
 
 impl IsApiRequest for GetLolRegaliaV2Config {
     const METHOD: Method = Method::GET;
     type ReturnType = LolRegaliaRegaliaFrontendConfig;
-
-    fn get_url(&self) -> String {
-        "/lol-regalia/v2/config".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-regalia/v2/config".to_string()}
 }
 
 pub fn get_lol_regalia_v_2_config() -> GetLolRegaliaV2Config {
-    GetLolRegaliaV2Config {
-        
-    }
+    GetLolRegaliaV2Config{}
 }
 
 
-pub struct GetLolRegaliaV2CurrentSummonerRegalia {
-
-}
+pub struct GetLolRegaliaV2CurrentSummonerRegalia {}
 
 impl IsApiRequest for GetLolRegaliaV2CurrentSummonerRegalia {
     const METHOD: Method = Method::GET;
     type ReturnType = LolRegaliaRegaliaWithPreferences;
-
-    fn get_url(&self) -> String {
-        "/lol-regalia/v2/current-summoner/regalia".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-regalia/v2/current-summoner/regalia".to_string()}
 }
 
 pub fn get_lol_regalia_v_2_current_summoner_regalia() -> GetLolRegaliaV2CurrentSummonerRegalia {
-    GetLolRegaliaV2CurrentSummonerRegalia {
-        
-    }
+    GetLolRegaliaV2CurrentSummonerRegalia{}
 }
 
 
 pub struct GetLolRegaliaV2SummonersBySummonerIdQueuesByQueuePositionsByPositionRegalia {
-
     pub summoner_id: u64,
     pub queue: String,
     pub position: String,
@@ -75,29 +44,15 @@ pub struct GetLolRegaliaV2SummonersBySummonerIdQueuesByQueuePositionsByPositionR
 impl IsApiRequest for GetLolRegaliaV2SummonersBySummonerIdQueuesByQueuePositionsByPositionRegalia {
     const METHOD: Method = Method::GET;
     type ReturnType = LolRegaliaRegalia;
-
-    fn get_url(&self) -> String {
-        format!("/lol-regalia/v2/summoners/{}/queues/{}/positions/{}/regalia", self.summoner_id, self.queue, self.position)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-regalia/v2/summoners/{}/queues/{}/positions/{}/regalia", self.summoner_id, self.queue, self.position)}
 }
 
 pub fn get_lol_regalia_v_2_summoners_by_summoner_id_queues_by_queue_positions_by_position_regalia(summoner_id: u64, queue: String, position: String) -> GetLolRegaliaV2SummonersBySummonerIdQueuesByQueuePositionsByPositionRegalia {
-    GetLolRegaliaV2SummonersBySummonerIdQueuesByQueuePositionsByPositionRegalia {
-        summoner_id, queue, position
-    }
+    GetLolRegaliaV2SummonersBySummonerIdQueuesByQueuePositionsByPositionRegalia{summoner_id, queue, position}
 }
 
 
 pub struct GetLolRegaliaV2SummonersBySummonerIdQueuesByQueueRegalia {
-
     pub summoner_id: u64,
     pub queue: String,
 }
@@ -105,29 +60,15 @@ pub struct GetLolRegaliaV2SummonersBySummonerIdQueuesByQueueRegalia {
 impl IsApiRequest for GetLolRegaliaV2SummonersBySummonerIdQueuesByQueueRegalia {
     const METHOD: Method = Method::GET;
     type ReturnType = LolRegaliaRegalia;
-
-    fn get_url(&self) -> String {
-        format!("/lol-regalia/v2/summoners/{}/queues/{}/regalia", self.summoner_id, self.queue)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-regalia/v2/summoners/{}/queues/{}/regalia", self.summoner_id, self.queue)}
 }
 
 pub fn get_lol_regalia_v_2_summoners_by_summoner_id_queues_by_queue_regalia(summoner_id: u64, queue: String) -> GetLolRegaliaV2SummonersBySummonerIdQueuesByQueueRegalia {
-    GetLolRegaliaV2SummonersBySummonerIdQueuesByQueueRegalia {
-        summoner_id, queue
-    }
+    GetLolRegaliaV2SummonersBySummonerIdQueuesByQueueRegalia{summoner_id, queue}
 }
 
 
 pub struct GetLolRegaliaV2SummonersBySummonerIdRegalia {
-
     pub summoner_id: u64,
     pub hovercard: bool,
 }
@@ -135,15 +76,7 @@ pub struct GetLolRegaliaV2SummonersBySummonerIdRegalia {
 impl IsApiRequest for GetLolRegaliaV2SummonersBySummonerIdRegalia {
     const METHOD: Method = Method::GET;
     type ReturnType = LolRegaliaRegalia;
-
-    fn get_url(&self) -> String {
-        format!("/lol-regalia/v2/summoners/{}/regalia", self.summoner_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
+    fn get_url(&self) -> String {format!("/lol-regalia/v2/summoners/{}/regalia", self.summoner_id)}
     fn get_query_params(&self) -> Option<Value> {
         Some(json!({
             "hovercard" : self.hovercard,
@@ -152,125 +85,70 @@ impl IsApiRequest for GetLolRegaliaV2SummonersBySummonerIdRegalia {
 }
 
 pub fn get_lol_regalia_v_2_summoners_by_summoner_id_regalia(summoner_id: u64, hovercard: bool) -> GetLolRegaliaV2SummonersBySummonerIdRegalia {
-    GetLolRegaliaV2SummonersBySummonerIdRegalia {
-        summoner_id, hovercard
-    }
+    GetLolRegaliaV2SummonersBySummonerIdRegalia{summoner_id, hovercard}
 }
 
 
 pub struct GetLolRegaliaV2SummonersBySummonerIdRegaliaAsync {
-
     pub summoner_id: u64,
 }
 
 impl IsApiRequest for GetLolRegaliaV2SummonersBySummonerIdRegaliaAsync {
     const METHOD: Method = Method::GET;
     type ReturnType = LolRegaliaRegaliaAsync;
-
-    fn get_url(&self) -> String {
-        format!("/lol-regalia/v2/summoners/{}/regalia/async", self.summoner_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-regalia/v2/summoners/{}/regalia/async", self.summoner_id)}
 }
 
 pub fn get_lol_regalia_v_2_summoners_by_summoner_id_regalia_async(summoner_id: u64) -> GetLolRegaliaV2SummonersBySummonerIdRegaliaAsync {
-    GetLolRegaliaV2SummonersBySummonerIdRegaliaAsync {
-        summoner_id
-    }
+    GetLolRegaliaV2SummonersBySummonerIdRegaliaAsync{summoner_id}
 }
 
 
 pub struct GetLolRegaliaV3InventoryByInventoryType {
-
     pub inventory_type: String,
 }
 
 impl IsApiRequest for GetLolRegaliaV3InventoryByInventoryType {
     const METHOD: Method = Method::GET;
     type ReturnType = LolRegaliaRegaliaInventoryItem;
-
-    fn get_url(&self) -> String {
-        format!("/lol-regalia/v3/inventory/{}", self.inventory_type)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-regalia/v3/inventory/{}", self.inventory_type)}
 }
 
 pub fn get_lol_regalia_v_3_inventory_by_inventory_type(inventory_type: String) -> GetLolRegaliaV3InventoryByInventoryType {
-    GetLolRegaliaV3InventoryByInventoryType {
-        inventory_type
-    }
+    GetLolRegaliaV3InventoryByInventoryType{inventory_type}
 }
 
 
 pub struct GetLolRegaliaV3SummonersBySummonerIdRegalia {
-
     pub summoner_id: u64,
 }
 
 impl IsApiRequest for GetLolRegaliaV3SummonersBySummonerIdRegalia {
     const METHOD: Method = Method::GET;
     type ReturnType = LolRegaliaRegalia;
-
-    fn get_url(&self) -> String {
-        format!("/lol-regalia/v3/summoners/{}/regalia", self.summoner_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-regalia/v3/summoners/{}/regalia", self.summoner_id)}
 }
 
 pub fn get_lol_regalia_v_3_summoners_by_summoner_id_regalia(summoner_id: u64) -> GetLolRegaliaV3SummonersBySummonerIdRegalia {
-    GetLolRegaliaV3SummonersBySummonerIdRegalia {
-        summoner_id
-    }
+    GetLolRegaliaV3SummonersBySummonerIdRegalia{summoner_id}
 }
 
 
 pub struct PutLolRegaliaV2CurrentSummonerRegalia {
-
     pub body: LolRegaliaRegaliaPreferences,
 }
 
 impl IsApiRequest for PutLolRegaliaV2CurrentSummonerRegalia {
     const METHOD: Method = Method::PUT;
     type ReturnType = LolRegaliaRegaliaWithPreferences;
-
-    fn get_url(&self) -> String {
-        "/lol-regalia/v2/current-summoner/regalia".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-regalia/v2/current-summoner/regalia".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn put_lol_regalia_v_2_current_summoner_regalia(body: LolRegaliaRegaliaPreferences) -> PutLolRegaliaV2CurrentSummonerRegalia {
-    PutLolRegaliaV2CurrentSummonerRegalia {
-        body
-    }
+    PutLolRegaliaV2CurrentSummonerRegalia{body}
 }
 
 

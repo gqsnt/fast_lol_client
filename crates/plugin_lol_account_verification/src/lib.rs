@@ -9,174 +9,96 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct GetLolAccountVerificationV1IsVerified {
-
-}
+pub struct GetLolAccountVerificationV1IsVerified {}
 
 impl IsApiRequest for GetLolAccountVerificationV1IsVerified {
     const METHOD: Method = Method::GET;
     type ReturnType = LolAccountVerificationIsVerifiedResponse;
-
-    fn get_url(&self) -> String {
-        "/lol-account-verification/v1/is-verified".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-account-verification/v1/is-verified".to_string()}
 }
 
 pub fn get_lol_account_verification_v_1_is_verified() -> GetLolAccountVerificationV1IsVerified {
-    GetLolAccountVerificationV1IsVerified {
-        
-    }
+    GetLolAccountVerificationV1IsVerified{}
 }
 
 
-pub struct GetLolAccountVerificationV1PhoneNumber {
-
-}
+pub struct GetLolAccountVerificationV1PhoneNumber {}
 
 impl IsApiRequest for GetLolAccountVerificationV1PhoneNumber {
     const METHOD: Method = Method::GET;
     type ReturnType = LolAccountVerificationPhoneNumberResponse;
-
-    fn get_url(&self) -> String {
-        "/lol-account-verification/v1/phone-number".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-account-verification/v1/phone-number".to_string()}
 }
 
 pub fn get_lol_account_verification_v_1_phone_number() -> GetLolAccountVerificationV1PhoneNumber {
-    GetLolAccountVerificationV1PhoneNumber {
-        
-    }
+    GetLolAccountVerificationV1PhoneNumber{}
 }
 
 
 pub struct PostLolAccountVerificationV1ConfirmActivationPin {
-
     pub body: LolAccountVerificationConfirmActivationPinRequest,
 }
 
 impl IsApiRequest for PostLolAccountVerificationV1ConfirmActivationPin {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-account-verification/v1/confirmActivationPin".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-account-verification/v1/confirmActivationPin".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_account_verification_v_1_confirm_activation_pin(body: LolAccountVerificationConfirmActivationPinRequest) -> PostLolAccountVerificationV1ConfirmActivationPin {
-    PostLolAccountVerificationV1ConfirmActivationPin {
-        body
-    }
+    PostLolAccountVerificationV1ConfirmActivationPin{body}
 }
 
 
 pub struct PostLolAccountVerificationV1ConfirmDeactivationPin {
-
     pub body: LolAccountVerificationConfirmDeactivationPinRequest,
 }
 
 impl IsApiRequest for PostLolAccountVerificationV1ConfirmDeactivationPin {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-account-verification/v1/confirmDeactivationPin".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-account-verification/v1/confirmDeactivationPin".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_account_verification_v_1_confirm_deactivation_pin(body: LolAccountVerificationConfirmDeactivationPinRequest) -> PostLolAccountVerificationV1ConfirmDeactivationPin {
-    PostLolAccountVerificationV1ConfirmDeactivationPin {
-        body
-    }
+    PostLolAccountVerificationV1ConfirmDeactivationPin{body}
 }
 
 
 pub struct PostLolAccountVerificationV1SendActivationPin {
-
     pub body: LolAccountVerificationSendActivationPinRequest,
 }
 
 impl IsApiRequest for PostLolAccountVerificationV1SendActivationPin {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-account-verification/v1/sendActivationPin".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-account-verification/v1/sendActivationPin".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_account_verification_v_1_send_activation_pin(body: LolAccountVerificationSendActivationPinRequest) -> PostLolAccountVerificationV1SendActivationPin {
-    PostLolAccountVerificationV1SendActivationPin {
-        body
-    }
+    PostLolAccountVerificationV1SendActivationPin{body}
 }
 
 
-pub struct PostLolAccountVerificationV1SendDeactivationPin {
-
-}
+pub struct PostLolAccountVerificationV1SendDeactivationPin {}
 
 impl IsApiRequest for PostLolAccountVerificationV1SendDeactivationPin {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-account-verification/v1/sendDeactivationPin".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-account-verification/v1/sendDeactivationPin".to_string()}
 }
 
 pub fn post_lol_account_verification_v_1_send_deactivation_pin() -> PostLolAccountVerificationV1SendDeactivationPin {
-    PostLolAccountVerificationV1SendDeactivationPin {
-        
-    }
+    PostLolAccountVerificationV1SendDeactivationPin{}
 }
 
 

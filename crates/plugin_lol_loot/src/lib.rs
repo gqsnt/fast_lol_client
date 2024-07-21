@@ -10,306 +10,151 @@ mod additional;
 // ENDPOINTS
 
 pub struct DeleteLolLootV1LootGrantsById {
-
     pub id: i64,
 }
 
 impl IsApiRequest for DeleteLolLootV1LootGrantsById {
     const METHOD: Method = Method::DELETE;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-loot/v1/loot-grants/{}", self.id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-loot/v1/loot-grants/{}", self.id)}
 }
 
 pub fn delete_lol_loot_v_1_loot_grants_by_id(id: i64) -> DeleteLolLootV1LootGrantsById {
-    DeleteLolLootV1LootGrantsById {
-        id
-    }
+    DeleteLolLootV1LootGrantsById{id}
 }
 
 
 pub struct DeleteLolLootV1PlayerLootByLootIdNewNotification {
-
     pub loot_id: String,
 }
 
 impl IsApiRequest for DeleteLolLootV1PlayerLootByLootIdNewNotification {
     const METHOD: Method = Method::DELETE;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-loot/v1/player-loot/{}/new-notification", self.loot_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-loot/v1/player-loot/{}/new-notification", self.loot_id)}
 }
 
 pub fn delete_lol_loot_v_1_player_loot_by_loot_id_new_notification(loot_id: String) -> DeleteLolLootV1PlayerLootByLootIdNewNotification {
-    DeleteLolLootV1PlayerLootByLootIdNewNotification {
-        loot_id
-    }
+    DeleteLolLootV1PlayerLootByLootIdNewNotification{loot_id}
 }
 
 
-pub struct GetLolLootV1CurrencyConfiguration {
-
-}
+pub struct GetLolLootV1CurrencyConfiguration {}
 
 impl IsApiRequest for GetLolLootV1CurrencyConfiguration {
     const METHOD: Method = Method::GET;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-loot/v1/currency-configuration".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-loot/v1/currency-configuration".to_string()}
 }
 
 pub fn get_lol_loot_v_1_currency_configuration() -> GetLolLootV1CurrencyConfiguration {
-    GetLolLootV1CurrencyConfiguration {
-        
-    }
+    GetLolLootV1CurrencyConfiguration{}
 }
 
 
-pub struct GetLolLootV1Enabled {
-
-}
+pub struct GetLolLootV1Enabled {}
 
 impl IsApiRequest for GetLolLootV1Enabled {
     const METHOD: Method = Method::GET;
     type ReturnType = bool;
-
-    fn get_url(&self) -> String {
-        "/lol-loot/v1/enabled".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-loot/v1/enabled".to_string()}
 }
 
 pub fn get_lol_loot_v_1_enabled() -> GetLolLootV1Enabled {
-    GetLolLootV1Enabled {
-        
-    }
+    GetLolLootV1Enabled{}
 }
 
 
-pub struct GetLolLootV1LootGrants {
-
-}
+pub struct GetLolLootV1LootGrants {}
 
 impl IsApiRequest for GetLolLootV1LootGrants {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolLootLootGrantNotification>;
-
-    fn get_url(&self) -> String {
-        "/lol-loot/v1/loot-grants".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-loot/v1/loot-grants".to_string()}
 }
 
 pub fn get_lol_loot_v_1_loot_grants() -> GetLolLootV1LootGrants {
-    GetLolLootV1LootGrants {
-        
-    }
+    GetLolLootV1LootGrants{}
 }
 
 
-pub struct GetLolLootV1LootItems {
-
-}
+pub struct GetLolLootV1LootItems {}
 
 impl IsApiRequest for GetLolLootV1LootItems {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolLootLootItem>;
-
-    fn get_url(&self) -> String {
-        "/lol-loot/v1/loot-items".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-loot/v1/loot-items".to_string()}
 }
 
 pub fn get_lol_loot_v_1_loot_items() -> GetLolLootV1LootItems {
-    GetLolLootV1LootItems {
-        
-    }
+    GetLolLootV1LootItems{}
 }
 
 
 pub struct GetLolLootV1LootOddsByRecipeName {
-
     pub recipe_name: String,
 }
 
 impl IsApiRequest for GetLolLootV1LootOddsByRecipeName {
     const METHOD: Method = Method::GET;
     type ReturnType = LolLootVerboseLootOddsResponse;
-
-    fn get_url(&self) -> String {
-        format!("/lol-loot/v1/loot-odds/{}", self.recipe_name)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-loot/v1/loot-odds/{}", self.recipe_name)}
 }
 
 pub fn get_lol_loot_v_1_loot_odds_by_recipe_name(recipe_name: String) -> GetLolLootV1LootOddsByRecipeName {
-    GetLolLootV1LootOddsByRecipeName {
-        recipe_name
-    }
+    GetLolLootV1LootOddsByRecipeName{recipe_name}
 }
 
 
 pub struct GetLolLootV1LootOddsByRecipeNameVisibility {
-
     pub recipe_name: String,
 }
 
 impl IsApiRequest for GetLolLootV1LootOddsByRecipeNameVisibility {
     const METHOD: Method = Method::GET;
     type ReturnType = bool;
-
-    fn get_url(&self) -> String {
-        format!("/lol-loot/v1/loot-odds/{}/visibility", self.recipe_name)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-loot/v1/loot-odds/{}/visibility", self.recipe_name)}
 }
 
 pub fn get_lol_loot_v_1_loot_odds_by_recipe_name_visibility(recipe_name: String) -> GetLolLootV1LootOddsByRecipeNameVisibility {
-    GetLolLootV1LootOddsByRecipeNameVisibility {
-        recipe_name
-    }
+    GetLolLootV1LootOddsByRecipeNameVisibility{recipe_name}
 }
 
 
-pub struct GetLolLootV1MassDisenchantConfiguration {
-
-}
+pub struct GetLolLootV1MassDisenchantConfiguration {}
 
 impl IsApiRequest for GetLolLootV1MassDisenchantConfiguration {
     const METHOD: Method = Method::GET;
     type ReturnType = LolLootMassDisenchantClientConfig;
-
-    fn get_url(&self) -> String {
-        "/lol-loot/v1/mass-disenchant/configuration".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-loot/v1/mass-disenchant/configuration".to_string()}
 }
 
 pub fn get_lol_loot_v_1_mass_disenchant_configuration() -> GetLolLootV1MassDisenchantConfiguration {
-    GetLolLootV1MassDisenchantConfiguration {
-        
-    }
+    GetLolLootV1MassDisenchantConfiguration{}
 }
 
 
-pub struct GetLolLootV1MassDisenchantRecipes {
-
-}
+pub struct GetLolLootV1MassDisenchantRecipes {}
 
 impl IsApiRequest for GetLolLootV1MassDisenchantRecipes {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LootLcdsRecipeClientDto>;
-
-    fn get_url(&self) -> String {
-        "/lol-loot/v1/mass-disenchant-recipes".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-loot/v1/mass-disenchant-recipes".to_string()}
 }
 
 pub fn get_lol_loot_v_1_mass_disenchant_recipes() -> GetLolLootV1MassDisenchantRecipes {
-    GetLolLootV1MassDisenchantRecipes {
-        
-    }
+    GetLolLootV1MassDisenchantRecipes{}
 }
 
 
 pub struct GetLolLootV1Milestones {
-
     pub minimize_response: bool,
 }
 
 impl IsApiRequest for GetLolLootV1Milestones {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolLootLootMilestones>;
-
-    fn get_url(&self) -> String {
-        "/lol-loot/v1/milestones".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
+    fn get_url(&self) -> String {"/lol-loot/v1/milestones".to_string()}
     fn get_query_params(&self) -> Option<Value> {
         Some(json!({
             "minimizeResponse" : self.minimize_response,
@@ -318,585 +163,296 @@ impl IsApiRequest for GetLolLootV1Milestones {
 }
 
 pub fn get_lol_loot_v_1_milestones(minimize_response: bool) -> GetLolLootV1Milestones {
-    GetLolLootV1Milestones {
-        minimize_response
-    }
+    GetLolLootV1Milestones{minimize_response}
 }
 
 
 pub struct GetLolLootV1MilestonesByLootMilestonesId {
-
     pub loot_milestones_id: String,
 }
 
 impl IsApiRequest for GetLolLootV1MilestonesByLootMilestonesId {
     const METHOD: Method = Method::GET;
     type ReturnType = LolLootLootMilestones;
-
-    fn get_url(&self) -> String {
-        format!("/lol-loot/v1/milestones/{}", self.loot_milestones_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-loot/v1/milestones/{}", self.loot_milestones_id)}
 }
 
 pub fn get_lol_loot_v_1_milestones_by_loot_milestones_id(loot_milestones_id: String) -> GetLolLootV1MilestonesByLootMilestonesId {
-    GetLolLootV1MilestonesByLootMilestonesId {
-        loot_milestones_id
-    }
+    GetLolLootV1MilestonesByLootMilestonesId{loot_milestones_id}
 }
 
 
 pub struct GetLolLootV1MilestonesByLootMilestonesIdClaimProgress {
-
     pub loot_milestones_id: String,
 }
 
 impl IsApiRequest for GetLolLootV1MilestonesByLootMilestonesIdClaimProgress {
     const METHOD: Method = Method::GET;
     type ReturnType = LolLootLootMilestonesClaimResponse;
-
-    fn get_url(&self) -> String {
-        format!("/lol-loot/v1/milestones/{}/claimProgress", self.loot_milestones_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-loot/v1/milestones/{}/claimProgress", self.loot_milestones_id)}
 }
 
 pub fn get_lol_loot_v_1_milestones_by_loot_milestones_id_claim_progress(loot_milestones_id: String) -> GetLolLootV1MilestonesByLootMilestonesIdClaimProgress {
-    GetLolLootV1MilestonesByLootMilestonesIdClaimProgress {
-        loot_milestones_id
-    }
+    GetLolLootV1MilestonesByLootMilestonesIdClaimProgress{loot_milestones_id}
 }
 
 
 pub struct GetLolLootV1MilestonesByLootMilestonesIdCounter {
-
     pub loot_milestones_id: String,
 }
 
 impl IsApiRequest for GetLolLootV1MilestonesByLootMilestonesIdCounter {
     const METHOD: Method = Method::GET;
     type ReturnType = LolLootLootMilestonesCounter;
-
-    fn get_url(&self) -> String {
-        format!("/lol-loot/v1/milestones/{}/counter", self.loot_milestones_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-loot/v1/milestones/{}/counter", self.loot_milestones_id)}
 }
 
 pub fn get_lol_loot_v_1_milestones_by_loot_milestones_id_counter(loot_milestones_id: String) -> GetLolLootV1MilestonesByLootMilestonesIdCounter {
-    GetLolLootV1MilestonesByLootMilestonesIdCounter {
-        loot_milestones_id
-    }
+    GetLolLootV1MilestonesByLootMilestonesIdCounter{loot_milestones_id}
 }
 
 
-pub struct GetLolLootV1MilestonesCounters {
-
-}
+pub struct GetLolLootV1MilestonesCounters {}
 
 impl IsApiRequest for GetLolLootV1MilestonesCounters {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolLootLootMilestonesCounter>;
-
-    fn get_url(&self) -> String {
-        "/lol-loot/v1/milestones/counters".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-loot/v1/milestones/counters".to_string()}
 }
 
 pub fn get_lol_loot_v_1_milestones_counters() -> GetLolLootV1MilestonesCounters {
-    GetLolLootV1MilestonesCounters {
-        
-    }
+    GetLolLootV1MilestonesCounters{}
 }
 
 
-pub struct GetLolLootV1MilestonesItems {
-
-}
+pub struct GetLolLootV1MilestonesItems {}
 
 impl IsApiRequest for GetLolLootV1MilestonesItems {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<String>;
-
-    fn get_url(&self) -> String {
-        "/lol-loot/v1/milestones/items".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-loot/v1/milestones/items".to_string()}
 }
 
 pub fn get_lol_loot_v_1_milestones_items() -> GetLolLootV1MilestonesItems {
-    GetLolLootV1MilestonesItems {
-        
-    }
+    GetLolLootV1MilestonesItems{}
 }
 
 
-pub struct GetLolLootV1PlayerDisplayCategories {
-
-}
+pub struct GetLolLootV1PlayerDisplayCategories {}
 
 impl IsApiRequest for GetLolLootV1PlayerDisplayCategories {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<String>;
-
-    fn get_url(&self) -> String {
-        "/lol-loot/v1/player-display-categories".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-loot/v1/player-display-categories".to_string()}
 }
 
 pub fn get_lol_loot_v_1_player_display_categories() -> GetLolLootV1PlayerDisplayCategories {
-    GetLolLootV1PlayerDisplayCategories {
-        
-    }
+    GetLolLootV1PlayerDisplayCategories{}
 }
 
 
-pub struct GetLolLootV1PlayerLoot {
-
-}
+pub struct GetLolLootV1PlayerLoot {}
 
 impl IsApiRequest for GetLolLootV1PlayerLoot {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolLootPlayerLoot>;
-
-    fn get_url(&self) -> String {
-        "/lol-loot/v1/player-loot".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-loot/v1/player-loot".to_string()}
 }
 
 pub fn get_lol_loot_v_1_player_loot() -> GetLolLootV1PlayerLoot {
-    GetLolLootV1PlayerLoot {
-        
-    }
+    GetLolLootV1PlayerLoot{}
 }
 
 
 pub struct GetLolLootV1PlayerLootByLootId {
-
     pub loot_id: String,
 }
 
 impl IsApiRequest for GetLolLootV1PlayerLootByLootId {
     const METHOD: Method = Method::GET;
     type ReturnType = LolLootPlayerLoot;
-
-    fn get_url(&self) -> String {
-        format!("/lol-loot/v1/player-loot/{}", self.loot_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-loot/v1/player-loot/{}", self.loot_id)}
 }
 
 pub fn get_lol_loot_v_1_player_loot_by_loot_id(loot_id: String) -> GetLolLootV1PlayerLootByLootId {
-    GetLolLootV1PlayerLootByLootId {
-        loot_id
-    }
+    GetLolLootV1PlayerLootByLootId{loot_id}
 }
 
 
 pub struct GetLolLootV1PlayerLootByLootIdContextMenu {
-
     pub loot_id: String,
 }
 
 impl IsApiRequest for GetLolLootV1PlayerLootByLootIdContextMenu {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolLootContextMenu>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-loot/v1/player-loot/{}/context-menu", self.loot_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-loot/v1/player-loot/{}/context-menu", self.loot_id)}
 }
 
 pub fn get_lol_loot_v_1_player_loot_by_loot_id_context_menu(loot_id: String) -> GetLolLootV1PlayerLootByLootIdContextMenu {
-    GetLolLootV1PlayerLootByLootIdContextMenu {
-        loot_id
-    }
+    GetLolLootV1PlayerLootByLootIdContextMenu{loot_id}
 }
 
 
-pub struct GetLolLootV1PlayerLootMap {
-
-}
+pub struct GetLolLootV1PlayerLootMap {}
 
 impl IsApiRequest for GetLolLootV1PlayerLootMap {
     const METHOD: Method = Method::GET;
     type ReturnType = LolLootPlayerLoot;
-
-    fn get_url(&self) -> String {
-        "/lol-loot/v1/player-loot-map".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-loot/v1/player-loot-map".to_string()}
 }
 
 pub fn get_lol_loot_v_1_player_loot_map() -> GetLolLootV1PlayerLootMap {
-    GetLolLootV1PlayerLootMap {
-        
-    }
+    GetLolLootV1PlayerLootMap{}
 }
 
 
-pub struct GetLolLootV1PlayerLootNotifications {
-
-}
+pub struct GetLolLootV1PlayerLootNotifications {}
 
 impl IsApiRequest for GetLolLootV1PlayerLootNotifications {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolLootPlayerLootNotification>;
-
-    fn get_url(&self) -> String {
-        "/lol-loot/v1/player-loot-notifications".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-loot/v1/player-loot-notifications".to_string()}
 }
 
 pub fn get_lol_loot_v_1_player_loot_notifications() -> GetLolLootV1PlayerLootNotifications {
-    GetLolLootV1PlayerLootNotifications {
-        
-    }
+    GetLolLootV1PlayerLootNotifications{}
 }
 
 
-pub struct GetLolLootV1Ready {
-
-}
+pub struct GetLolLootV1Ready {}
 
 impl IsApiRequest for GetLolLootV1Ready {
     const METHOD: Method = Method::GET;
     type ReturnType = bool;
-
-    fn get_url(&self) -> String {
-        "/lol-loot/v1/ready".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-loot/v1/ready".to_string()}
 }
 
 pub fn get_lol_loot_v_1_ready() -> GetLolLootV1Ready {
-    GetLolLootV1Ready {
-        
-    }
+    GetLolLootV1Ready{}
 }
 
 
-pub struct GetLolLootV1RecipesConfiguration {
-
-}
+pub struct GetLolLootV1RecipesConfiguration {}
 
 impl IsApiRequest for GetLolLootV1RecipesConfiguration {
     const METHOD: Method = Method::GET;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/lol-loot/v1/recipes/configuration".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-loot/v1/recipes/configuration".to_string()}
 }
 
 pub fn get_lol_loot_v_1_recipes_configuration() -> GetLolLootV1RecipesConfiguration {
-    GetLolLootV1RecipesConfiguration {
-        
-    }
+    GetLolLootV1RecipesConfiguration{}
 }
 
 
 pub struct GetLolLootV1RecipesInitialItemByLootId {
-
     pub loot_id: String,
 }
 
 impl IsApiRequest for GetLolLootV1RecipesInitialItemByLootId {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolLootRecipeWithMilestones>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-loot/v1/recipes/initial-item/{}", self.loot_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-loot/v1/recipes/initial-item/{}", self.loot_id)}
 }
 
 pub fn get_lol_loot_v_1_recipes_initial_item_by_loot_id(loot_id: String) -> GetLolLootV1RecipesInitialItemByLootId {
-    GetLolLootV1RecipesInitialItemByLootId {
-        loot_id
-    }
+    GetLolLootV1RecipesInitialItemByLootId{loot_id}
 }
 
 
-pub struct GetLolLootV2PlayerLootMap {
-
-}
+pub struct GetLolLootV2PlayerLootMap {}
 
 impl IsApiRequest for GetLolLootV2PlayerLootMap {
     const METHOD: Method = Method::GET;
     type ReturnType = LolLootPlayerLootMap;
-
-    fn get_url(&self) -> String {
-        "/lol-loot/v2/player-loot-map".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-loot/v2/player-loot-map".to_string()}
 }
 
 pub fn get_lol_loot_v_2_player_loot_map() -> GetLolLootV2PlayerLootMap {
-    GetLolLootV2PlayerLootMap {
-        
-    }
+    GetLolLootV2PlayerLootMap{}
 }
 
 
 pub struct PostLolLootV1CraftMass {
-
     pub body: Vec<CraftLootDto>,
 }
 
 impl IsApiRequest for PostLolLootV1CraftMass {
     const METHOD: Method = Method::POST;
     type ReturnType = LolLootPlayerLootUpdate;
-
-    fn get_url(&self) -> String {
-        "/lol-loot/v1/craft/mass".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-loot/v1/craft/mass".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_loot_v_1_craft_mass(body: Vec<CraftLootDto>) -> PostLolLootV1CraftMass {
-    PostLolLootV1CraftMass {
-        body
-    }
+    PostLolLootV1CraftMass{body}
 }
 
 
 pub struct PostLolLootV1MilestonesByLootMilestonesIdClaim {
-
     pub loot_milestones_id: String,
 }
 
 impl IsApiRequest for PostLolLootV1MilestonesByLootMilestonesIdClaim {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        format!("/lol-loot/v1/milestones/{}/claim", self.loot_milestones_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-loot/v1/milestones/{}/claim", self.loot_milestones_id)}
 }
 
 pub fn post_lol_loot_v_1_milestones_by_loot_milestones_id_claim(loot_milestones_id: String) -> PostLolLootV1MilestonesByLootMilestonesIdClaim {
-    PostLolLootV1MilestonesByLootMilestonesIdClaim {
-        loot_milestones_id
-    }
+    PostLolLootV1MilestonesByLootMilestonesIdClaim{loot_milestones_id}
 }
 
 
 pub struct PostLolLootV1PlayerLootByLootIdContextMenu {
-
     pub loot_id: String,
 }
 
 impl IsApiRequest for PostLolLootV1PlayerLootByLootIdContextMenu {
     const METHOD: Method = Method::POST;
     type ReturnType = Vec<LolLootContextMenu>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-loot/v1/player-loot/{}/context-menu", self.loot_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-loot/v1/player-loot/{}/context-menu", self.loot_id)}
 }
 
 pub fn post_lol_loot_v_1_player_loot_by_loot_id_context_menu(loot_id: String) -> PostLolLootV1PlayerLootByLootIdContextMenu {
-    PostLolLootV1PlayerLootByLootIdContextMenu {
-        loot_id
-    }
+    PostLolLootV1PlayerLootByLootIdContextMenu{loot_id}
 }
 
 
 pub struct PostLolLootV1PlayerLootByLootNameRedeem {
-
     pub loot_name: String,
 }
 
 impl IsApiRequest for PostLolLootV1PlayerLootByLootNameRedeem {
     const METHOD: Method = Method::POST;
     type ReturnType = LolLootPlayerLootUpdate;
-
-    fn get_url(&self) -> String {
-        format!("/lol-loot/v1/player-loot/{}/redeem", self.loot_name)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-loot/v1/player-loot/{}/redeem", self.loot_name)}
 }
 
 pub fn post_lol_loot_v_1_player_loot_by_loot_name_redeem(loot_name: String) -> PostLolLootV1PlayerLootByLootNameRedeem {
-    PostLolLootV1PlayerLootByLootNameRedeem {
-        loot_name
-    }
+    PostLolLootV1PlayerLootByLootNameRedeem{loot_name}
 }
 
 
 pub struct PostLolLootV1PlayerLootNotificationsByIdAcknowledge {
-
     pub id: String,
 }
 
 impl IsApiRequest for PostLolLootV1PlayerLootNotificationsByIdAcknowledge {
     const METHOD: Method = Method::POST;
     type ReturnType = String;
-
-    fn get_url(&self) -> String {
-        format!("/lol-loot/v1/player-loot-notifications/{}/acknowledge", self.id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-loot/v1/player-loot-notifications/{}/acknowledge", self.id)}
 }
 
 pub fn post_lol_loot_v_1_player_loot_notifications_by_id_acknowledge(id: String) -> PostLolLootV1PlayerLootNotificationsByIdAcknowledge {
-    PostLolLootV1PlayerLootNotificationsByIdAcknowledge {
-        id
-    }
+    PostLolLootV1PlayerLootNotificationsByIdAcknowledge{id}
 }
 
 
 pub struct PostLolLootV1RecipesByRecipeNameCraft {
-
     pub recipe_name: String,
     pub player_loot_list: Vec<String>,
     pub repeat: Option<i32>,
@@ -905,15 +461,7 @@ pub struct PostLolLootV1RecipesByRecipeNameCraft {
 impl IsApiRequest for PostLolLootV1RecipesByRecipeNameCraft {
     const METHOD: Method = Method::POST;
     type ReturnType = LolLootPlayerLootUpdate;
-
-    fn get_url(&self) -> String {
-        format!("/lol-loot/v1/recipes/{}/craft", self.recipe_name)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
+    fn get_url(&self) -> String {format!("/lol-loot/v1/recipes/{}/craft", self.recipe_name)}
     fn get_query_params(&self) -> Option<Value> {
         Some(json!({
             "playerLootList" : self.player_loot_list,
@@ -923,96 +471,58 @@ impl IsApiRequest for PostLolLootV1RecipesByRecipeNameCraft {
 }
 
 pub fn post_lol_loot_v_1_recipes_by_recipe_name_craft(recipe_name: String, player_loot_list: Vec<String>, repeat: Option<i32>) -> PostLolLootV1RecipesByRecipeNameCraft {
-    PostLolLootV1RecipesByRecipeNameCraft {
-        recipe_name, player_loot_list, repeat
-    }
+    PostLolLootV1RecipesByRecipeNameCraft{recipe_name, player_loot_list, repeat}
 }
 
 
 pub struct PostLolLootV1RecipesInitialItemByLootId {
-
     pub loot_id: String,
 }
 
 impl IsApiRequest for PostLolLootV1RecipesInitialItemByLootId {
     const METHOD: Method = Method::POST;
     type ReturnType = Vec<LolLootRecipeWithMilestones>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-loot/v1/recipes/initial-item/{}", self.loot_id)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-loot/v1/recipes/initial-item/{}", self.loot_id)}
 }
 
 pub fn post_lol_loot_v_1_recipes_initial_item_by_loot_id(loot_id: String) -> PostLolLootV1RecipesInitialItemByLootId {
-    PostLolLootV1RecipesInitialItemByLootId {
-        loot_id
-    }
+    PostLolLootV1RecipesInitialItemByLootId{loot_id}
 }
 
 
 pub struct PostLolLootV1Refresh {
-
     pub body: bool,
 }
 
 impl IsApiRequest for PostLolLootV1Refresh {
     const METHOD: Method = Method::POST;
     type ReturnType = String;
-
-    fn get_url(&self) -> String {
-        "/lol-loot/v1/refresh".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-loot/v1/refresh".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_loot_v_1_refresh(body: bool) -> PostLolLootV1Refresh {
-    PostLolLootV1Refresh {
-        body
-    }
+    PostLolLootV1Refresh{body}
 }
 
 
 pub struct PutLolLootV1LootOddsEvaluateQuery {
-
     pub body: QueryEvaluationRequestDto,
 }
 
 impl IsApiRequest for PutLolLootV1LootOddsEvaluateQuery {
     const METHOD: Method = Method::PUT;
     type ReturnType = Vec<LolLootQueryEvaluatedLootItem>;
-
-    fn get_url(&self) -> String {
-        "/lol-loot/v1/loot-odds/evaluateQuery".to_string()
-    }
-
+    fn get_url(&self) -> String {"/lol-loot/v1/loot-odds/evaluateQuery".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn put_lol_loot_v_1_loot_odds_evaluate_query(body: QueryEvaluationRequestDto) -> PutLolLootV1LootOddsEvaluateQuery {
-    PutLolLootV1LootOddsEvaluateQuery {
-        body
-    }
+    PutLolLootV1LootOddsEvaluateQuery{body}
 }
 
 

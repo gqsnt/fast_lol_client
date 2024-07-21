@@ -9,93 +9,48 @@ mod additional;
 
 // ENDPOINTS
 
-pub struct GetLolSeasonsV1SeasonLOLCurrentSplitSeasons {
-
-}
+pub struct GetLolSeasonsV1SeasonLOLCurrentSplitSeasons {}
 
 impl IsApiRequest for GetLolSeasonsV1SeasonLOLCurrentSplitSeasons {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<i64>;
-
-    fn get_url(&self) -> String {
-        "/lol-seasons/v1/season/LOL/current-split-seasons".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-seasons/v1/season/LOL/current-split-seasons".to_string()}
 }
 
 pub fn get_lol_seasons_v_1_season_lol_current_split_seasons() -> GetLolSeasonsV1SeasonLOLCurrentSplitSeasons {
-    GetLolSeasonsV1SeasonLOLCurrentSplitSeasons {
-        
-    }
+    GetLolSeasonsV1SeasonLOLCurrentSplitSeasons{}
 }
 
 
 pub struct GetLolSeasonsV1SeasonProductByProduct {
-
     pub product: String,
 }
 
 impl IsApiRequest for GetLolSeasonsV1SeasonProductByProduct {
     const METHOD: Method = Method::GET;
     type ReturnType = LolSeasonsAllSeasonsProduct;
-
-    fn get_url(&self) -> String {
-        format!("/lol-seasons/v1/season/product/{}", self.product)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/lol-seasons/v1/season/product/{}", self.product)}
 }
 
 pub fn get_lol_seasons_v_1_season_product_by_product(product: String) -> GetLolSeasonsV1SeasonProductByProduct {
-    GetLolSeasonsV1SeasonProductByProduct {
-        product
-    }
+    GetLolSeasonsV1SeasonProductByProduct{product}
 }
 
 
-pub struct GetLolSeasonsV1SeasonRecentFinalSplit {
-
-}
+pub struct GetLolSeasonsV1SeasonRecentFinalSplit {}
 
 impl IsApiRequest for GetLolSeasonsV1SeasonRecentFinalSplit {
     const METHOD: Method = Method::GET;
     type ReturnType = LolSeasonsAllSeasonsProduct;
-
-    fn get_url(&self) -> String {
-        "/lol-seasons/v1/season/recent-final-split".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/lol-seasons/v1/season/recent-final-split".to_string()}
 }
 
 pub fn get_lol_seasons_v_1_season_recent_final_split() -> GetLolSeasonsV1SeasonRecentFinalSplit {
-    GetLolSeasonsV1SeasonRecentFinalSplit {
-        
-    }
+    GetLolSeasonsV1SeasonRecentFinalSplit{}
 }
 
 
 pub struct PostLolSeasonsV1AllSeasonsProductByProduct {
-
     pub product: String,
     pub body: LolSeasonsAllProductSeasonQuery,
 }
@@ -103,24 +58,14 @@ pub struct PostLolSeasonsV1AllSeasonsProductByProduct {
 impl IsApiRequest for PostLolSeasonsV1AllSeasonsProductByProduct {
     const METHOD: Method = Method::POST;
     type ReturnType = Vec<LolSeasonsAllSeasonsProduct>;
-
-    fn get_url(&self) -> String {
-        format!("/lol-seasons/v1/allSeasons/product/{}", self.product)
-    }
-
+    fn get_url(&self) -> String {format!("/lol-seasons/v1/allSeasons/product/{}", self.product)}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_lol_seasons_v_1_all_seasons_product_by_product(product: String, body: LolSeasonsAllProductSeasonQuery) -> PostLolSeasonsV1AllSeasonsProductByProduct {
-    PostLolSeasonsV1AllSeasonsProductByProduct {
-        product, body
-    }
+    PostLolSeasonsV1AllSeasonsProductByProduct{product, body}
 }
 
 

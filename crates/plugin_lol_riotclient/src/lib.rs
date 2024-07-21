@@ -11,57 +11,33 @@ mod additional;
 
 pub struct DeleteRiotclientAffinity {
     // Deletes the current runtime affinity of the application.
+
 }
 
 impl IsApiRequest for DeleteRiotclientAffinity {
     const METHOD: Method = Method::DELETE;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/riotclient/affinity".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/riotclient/affinity".to_string()}
 }
 
 pub fn delete_riotclient_affinity() -> DeleteRiotclientAffinity {
-    DeleteRiotclientAffinity {
-        
-    }
+    DeleteRiotclientAffinity{}
 }
 
 
 pub struct DeleteRiotclientSplash {
     // Hide the splash screen.
+
 }
 
 impl IsApiRequest for DeleteRiotclientSplash {
     const METHOD: Method = Method::DELETE;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/riotclient/splash".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/riotclient/splash".to_string()}
 }
 
 pub fn delete_riotclient_splash() -> DeleteRiotclientSplash {
-    DeleteRiotclientSplash {
-        
-    }
+    DeleteRiotclientSplash{}
 }
 
 
@@ -73,388 +49,216 @@ pub struct DeleteRiotclientV1AuthTokensByAuthToken {
 impl IsApiRequest for DeleteRiotclientV1AuthTokensByAuthToken {
     const METHOD: Method = Method::DELETE;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/riotclient/v1/auth-tokens/{}", self.auth_token)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/riotclient/v1/auth-tokens/{}", self.auth_token)}
 }
 
 pub fn delete_riotclient_v_1_auth_tokens_by_auth_token(auth_token: String) -> DeleteRiotclientV1AuthTokensByAuthToken {
-    DeleteRiotclientV1AuthTokensByAuthToken {
-        auth_token
-    }
+    DeleteRiotclientV1AuthTokensByAuthToken{auth_token}
 }
 
 
 pub struct GetRiotclientAffinity {
     // Get the current runtime affinity of the application.
+
 }
 
 impl IsApiRequest for GetRiotclientAffinity {
     const METHOD: Method = Method::GET;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/riotclient/affinity".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/riotclient/affinity".to_string()}
 }
 
 pub fn get_riotclient_affinity() -> GetRiotclientAffinity {
-    GetRiotclientAffinity {
-        
-    }
+    GetRiotclientAffinity{}
 }
 
 
 pub struct GetRiotclientAppName {
     // Application name without file extension
+
 }
 
 impl IsApiRequest for GetRiotclientAppName {
     const METHOD: Method = Method::GET;
     type ReturnType = String;
-
-    fn get_url(&self) -> String {
-        "/riotclient/app-name".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/riotclient/app-name".to_string()}
 }
 
 pub fn get_riotclient_app_name() -> GetRiotclientAppName {
-    GetRiotclientAppName {
-        
-    }
+    GetRiotclientAppName{}
 }
 
 
 pub struct GetRiotclientAppPort {
     // Get the TCP port number that the remoting server is listening on.
+
 }
 
 impl IsApiRequest for GetRiotclientAppPort {
     const METHOD: Method = Method::GET;
     type ReturnType = u16;
-
-    fn get_url(&self) -> String {
-        "/riotclient/app-port".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/riotclient/app-port".to_string()}
 }
 
 pub fn get_riotclient_app_port() -> GetRiotclientAppPort {
-    GetRiotclientAppPort {
-        
-    }
+    GetRiotclientAppPort{}
 }
 
 
 pub struct GetRiotclientAuthToken {
     // Return the auth token used by the remoting server
+
 }
 
 impl IsApiRequest for GetRiotclientAuthToken {
     const METHOD: Method = Method::GET;
     type ReturnType = String;
-
-    fn get_url(&self) -> String {
-        "/riotclient/auth-token".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/riotclient/auth-token".to_string()}
 }
 
 pub fn get_riotclient_auth_token() -> GetRiotclientAuthToken {
-    GetRiotclientAuthToken {
-        
-    }
+    GetRiotclientAuthToken{}
 }
 
 
 pub struct GetRiotclientCommandLineArgs {
     // Get the command line parameters for the application
+
 }
 
 impl IsApiRequest for GetRiotclientCommandLineArgs {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<String>;
-
-    fn get_url(&self) -> String {
-        "/riotclient/command-line-args".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/riotclient/command-line-args".to_string()}
 }
 
 pub fn get_riotclient_command_line_args() -> GetRiotclientCommandLineArgs {
-    GetRiotclientCommandLineArgs {
-        
-    }
+    GetRiotclientCommandLineArgs{}
 }
 
 
 pub struct GetRiotclientMachineId {
     // Base64 encoded uuid identifying the user's machine
+
 }
 
 impl IsApiRequest for GetRiotclientMachineId {
     const METHOD: Method = Method::GET;
     type ReturnType = String;
-
-    fn get_url(&self) -> String {
-        "/riotclient/machine-id".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/riotclient/machine-id".to_string()}
 }
 
 pub fn get_riotclient_machine_id() -> GetRiotclientMachineId {
-    GetRiotclientMachineId {
-        
-    }
+    GetRiotclientMachineId{}
 }
 
 
-pub struct GetRiotclientRegionLocale {
-
-}
+pub struct GetRiotclientRegionLocale {}
 
 impl IsApiRequest for GetRiotclientRegionLocale {
     const METHOD: Method = Method::GET;
     type ReturnType = LolL10NRegionLocale;
-
-    fn get_url(&self) -> String {
-        "/riotclient/region-locale".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/riotclient/region-locale".to_string()}
 }
 
 pub fn get_riotclient_region_locale() -> GetRiotclientRegionLocale {
-    GetRiotclientRegionLocale {
-        
-    }
+    GetRiotclientRegionLocale{}
 }
 
 
 pub struct GetRiotclientSystemInfoV1BasicInfo {
     // Get basic system information: OS, memory, processor speed, and number of physical cores
+
 }
 
 impl IsApiRequest for GetRiotclientSystemInfoV1BasicInfo {
     const METHOD: Method = Method::GET;
     type ReturnType = BasicSystemInfo;
-
-    fn get_url(&self) -> String {
-        "/riotclient/system-info/v1/basic-info".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/riotclient/system-info/v1/basic-info".to_string()}
 }
 
 pub fn get_riotclient_system_info_v_1_basic_info() -> GetRiotclientSystemInfoV1BasicInfo {
-    GetRiotclientSystemInfoV1BasicInfo {
-        
-    }
+    GetRiotclientSystemInfoV1BasicInfo{}
 }
 
 
 pub struct GetRiotclientTrace {
     // Retrieves a completed scheduler trace.
+
 }
 
 impl IsApiRequest for GetRiotclientTrace {
     const METHOD: Method = Method::GET;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        "/riotclient/trace".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/riotclient/trace".to_string()}
 }
 
 pub fn get_riotclient_trace() -> GetRiotclientTrace {
-    GetRiotclientTrace {
-        
-    }
+    GetRiotclientTrace{}
 }
 
 
 pub struct GetRiotclientUxCrashCount {
     // Returns whether the ux has crashed or not
+
 }
 
 impl IsApiRequest for GetRiotclientUxCrashCount {
     const METHOD: Method = Method::GET;
     type ReturnType = u32;
-
-    fn get_url(&self) -> String {
-        "/riotclient/ux-crash-count".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/riotclient/ux-crash-count".to_string()}
 }
 
 pub fn get_riotclient_ux_crash_count() -> GetRiotclientUxCrashCount {
-    GetRiotclientUxCrashCount {
-        
-    }
+    GetRiotclientUxCrashCount{}
 }
 
 
 pub struct GetRiotclientUxState {
     // Get the current Ux state.
+
 }
 
 impl IsApiRequest for GetRiotclientUxState {
     const METHOD: Method = Method::GET;
     type ReturnType = String;
-
-    fn get_url(&self) -> String {
-        "/riotclient/ux-state".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/riotclient/ux-state".to_string()}
 }
 
 pub fn get_riotclient_ux_state() -> GetRiotclientUxState {
-    GetRiotclientUxState {
-        
-    }
+    GetRiotclientUxState{}
 }
 
 
 pub struct GetRiotclientV1CrashReportingEnvironment {
     // Get the crash reporting environment identifier.
+
 }
 
 impl IsApiRequest for GetRiotclientV1CrashReportingEnvironment {
     const METHOD: Method = Method::GET;
     type ReturnType = CrashReportingEnvironment;
-
-    fn get_url(&self) -> String {
-        "/riotclient/v1/crash-reporting/environment".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/riotclient/v1/crash-reporting/environment".to_string()}
 }
 
 pub fn get_riotclient_v_1_crash_reporting_environment() -> GetRiotclientV1CrashReportingEnvironment {
-    GetRiotclientV1CrashReportingEnvironment {
-        
-    }
+    GetRiotclientV1CrashReportingEnvironment{}
 }
 
 
 pub struct GetRiotclientZoomScale {
     // Gets the last known posted zoom-scale value.
+
 }
 
 impl IsApiRequest for GetRiotclientZoomScale {
     const METHOD: Method = Method::GET;
     type ReturnType = f64;
-
-    fn get_url(&self) -> String {
-        "/riotclient/zoom-scale".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/riotclient/zoom-scale".to_string()}
 }
 
 pub fn get_riotclient_zoom_scale() -> GetRiotclientZoomScale {
-    GetRiotclientZoomScale {
-        
-    }
+    GetRiotclientZoomScale{}
 }
 
 
@@ -466,108 +270,62 @@ pub struct PostRiotclientAffinity {
 impl IsApiRequest for PostRiotclientAffinity {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/riotclient/affinity".to_string()
-    }
-
+    fn get_url(&self) -> String {"/riotclient/affinity".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_riotclient_affinity(body: String) -> PostRiotclientAffinity {
-    PostRiotclientAffinity {
-        body
-    }
+    PostRiotclientAffinity{body}
 }
 
 
 pub struct PostRiotclientKillAndRestartUx {
     // Kills the ux process and restarts it. Used only when the ux process crashes.
+
 }
 
 impl IsApiRequest for PostRiotclientKillAndRestartUx {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/riotclient/kill-and-restart-ux".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/riotclient/kill-and-restart-ux".to_string()}
 }
 
 pub fn post_riotclient_kill_and_restart_ux() -> PostRiotclientKillAndRestartUx {
-    PostRiotclientKillAndRestartUx {
-        
-    }
+    PostRiotclientKillAndRestartUx{}
 }
 
 
 pub struct PostRiotclientKillUx {
     // Kills the ux process.
+
 }
 
 impl IsApiRequest for PostRiotclientKillUx {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/riotclient/kill-ux".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/riotclient/kill-ux".to_string()}
 }
 
 pub fn post_riotclient_kill_ux() -> PostRiotclientKillUx {
-    PostRiotclientKillUx {
-        
-    }
+    PostRiotclientKillUx{}
 }
 
 
 pub struct PostRiotclientLaunchUx {
     // Launches the ux process.
+
 }
 
 impl IsApiRequest for PostRiotclientLaunchUx {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/riotclient/launch-ux".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/riotclient/launch-ux".to_string()}
 }
 
 pub fn post_riotclient_launch_ux() -> PostRiotclientLaunchUx {
-    PostRiotclientLaunchUx {
-        
-    }
+    PostRiotclientLaunchUx{}
 }
 
 
@@ -579,24 +337,14 @@ pub struct PostRiotclientNewArgs {
 impl IsApiRequest for PostRiotclientNewArgs {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/riotclient/new-args".to_string()
-    }
-
+    fn get_url(&self) -> String {"/riotclient/new-args".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_riotclient_new_args(body: Vec<String>) -> PostRiotclientNewArgs {
-    PostRiotclientNewArgs {
-        body
-    }
+    PostRiotclientNewArgs{body}
 }
 
 
@@ -608,192 +356,110 @@ pub struct PostRiotclientOpenUrlInBrowser {
 impl IsApiRequest for PostRiotclientOpenUrlInBrowser {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/riotclient/open-url-in-browser".to_string()
-    }
-
+    fn get_url(&self) -> String {"/riotclient/open-url-in-browser".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_riotclient_open_url_in_browser(body: String) -> PostRiotclientOpenUrlInBrowser {
-    PostRiotclientOpenUrlInBrowser {
-        body
-    }
+    PostRiotclientOpenUrlInBrowser{body}
 }
 
 
 pub struct PostRiotclientShowSwagger {
     // Open swagger in the default browser.
+
 }
 
 impl IsApiRequest for PostRiotclientShowSwagger {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/riotclient/show-swagger".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/riotclient/show-swagger".to_string()}
 }
 
 pub fn post_riotclient_show_swagger() -> PostRiotclientShowSwagger {
-    PostRiotclientShowSwagger {
-        
-    }
+    PostRiotclientShowSwagger{}
 }
 
 
 pub struct PostRiotclientUnload {
     // Unloads the UX process
+
 }
 
 impl IsApiRequest for PostRiotclientUnload {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/riotclient/unload".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/riotclient/unload".to_string()}
 }
 
 pub fn post_riotclient_unload() -> PostRiotclientUnload {
-    PostRiotclientUnload {
-        
-    }
+    PostRiotclientUnload{}
 }
 
 
 pub struct PostRiotclientUxAllowForeground {
     // Allows the background process to launch the game into the foregound.
+
 }
 
 impl IsApiRequest for PostRiotclientUxAllowForeground {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/riotclient/ux-allow-foreground".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/riotclient/ux-allow-foreground".to_string()}
 }
 
 pub fn post_riotclient_ux_allow_foreground() -> PostRiotclientUxAllowForeground {
-    PostRiotclientUxAllowForeground {
-        
-    }
+    PostRiotclientUxAllowForeground{}
 }
 
 
 pub struct PostRiotclientUxFlash {
     // Flash the ux process' main window and the taskbar/dock icon, if they exist.
+
 }
 
 impl IsApiRequest for PostRiotclientUxFlash {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/riotclient/ux-flash".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/riotclient/ux-flash".to_string()}
 }
 
 pub fn post_riotclient_ux_flash() -> PostRiotclientUxFlash {
-    PostRiotclientUxFlash {
-        
-    }
+    PostRiotclientUxFlash{}
 }
 
 
 pub struct PostRiotclientUxMinimize {
     // Minimize the ux process and all its windows if it exists. This does not kill the ux.
+
 }
 
 impl IsApiRequest for PostRiotclientUxMinimize {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/riotclient/ux-minimize".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/riotclient/ux-minimize".to_string()}
 }
 
 pub fn post_riotclient_ux_minimize() -> PostRiotclientUxMinimize {
-    PostRiotclientUxMinimize {
-        
-    }
+    PostRiotclientUxMinimize{}
 }
 
 
 pub struct PostRiotclientUxShow {
     // Shows the ux process if it exists; create and show if it does not.
+
 }
 
 impl IsApiRequest for PostRiotclientUxShow {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/riotclient/ux-show".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/riotclient/ux-show".to_string()}
 }
 
 pub fn post_riotclient_ux_show() -> PostRiotclientUxShow {
-    PostRiotclientUxShow {
-        
-    }
+    PostRiotclientUxShow{}
 }
 
 
@@ -805,53 +471,32 @@ pub struct PostRiotclientV1CrashReportingLogs {
 impl IsApiRequest for PostRiotclientV1CrashReportingLogs {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/riotclient/v1/crash-reporting/logs".to_string()
-    }
-
+    fn get_url(&self) -> String {"/riotclient/v1/crash-reporting/logs".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_riotclient_v_1_crash_reporting_logs(body: String) -> PostRiotclientV1CrashReportingLogs {
-    PostRiotclientV1CrashReportingLogs {
-        body
-    }
+    PostRiotclientV1CrashReportingLogs{body}
 }
 
 
 pub struct PostRiotclientV1ElevationRequests {
-
     pub body: ElevationRequest,
 }
 
 impl IsApiRequest for PostRiotclientV1ElevationRequests {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/riotclient/v1/elevation-requests".to_string()
-    }
-
+    fn get_url(&self) -> String {"/riotclient/v1/elevation-requests".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_riotclient_v_1_elevation_requests(body: ElevationRequest) -> PostRiotclientV1ElevationRequests {
-    PostRiotclientV1ElevationRequests {
-        body
-    }
+    PostRiotclientV1ElevationRequests{body}
 }
 
 
@@ -863,24 +508,14 @@ pub struct PostRiotclientZoomScale {
 impl IsApiRequest for PostRiotclientZoomScale {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/riotclient/zoom-scale".to_string()
-    }
-
+    fn get_url(&self) -> String {"/riotclient/zoom-scale".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn post_riotclient_zoom_scale(body: f64) -> PostRiotclientZoomScale {
-    PostRiotclientZoomScale {
-        body
-    }
+    PostRiotclientZoomScale{body}
 }
 
 
@@ -892,52 +527,30 @@ pub struct PutRiotclientSplash {
 impl IsApiRequest for PutRiotclientSplash {
     const METHOD: Method = Method::PUT;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/riotclient/splash".to_string()
-    }
-
+    fn get_url(&self) -> String {"/riotclient/splash".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn put_riotclient_splash(body: String) -> PutRiotclientSplash {
-    PutRiotclientSplash {
-        body
-    }
+    PutRiotclientSplash{body}
 }
 
 
 pub struct PutRiotclientUxLoadComplete {
     // Ux notification that it has completed loading the main window.
+
 }
 
 impl IsApiRequest for PutRiotclientUxLoadComplete {
     const METHOD: Method = Method::PUT;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/riotclient/ux-load-complete".to_string()
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {"/riotclient/ux-load-complete".to_string()}
 }
 
 pub fn put_riotclient_ux_load_complete() -> PutRiotclientUxLoadComplete {
-    PutRiotclientUxLoadComplete {
-        
-    }
+    PutRiotclientUxLoadComplete{}
 }
 
 
@@ -949,24 +562,14 @@ pub struct PutRiotclientUxStateAck {
 impl IsApiRequest for PutRiotclientUxStateAck {
     const METHOD: Method = Method::PUT;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/riotclient/ux-state/ack".to_string()
-    }
-
+    fn get_url(&self) -> String {"/riotclient/ux-state/ack".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn put_riotclient_ux_state_ack(body: u32) -> PutRiotclientUxStateAck {
-    PutRiotclientUxStateAck {
-        body
-    }
+    PutRiotclientUxStateAck{body}
 }
 
 
@@ -978,24 +581,11 @@ pub struct PutRiotclientV1AuthTokensByAuthToken {
 impl IsApiRequest for PutRiotclientV1AuthTokensByAuthToken {
     const METHOD: Method = Method::PUT;
     type ReturnType = HashMap<String, String>;
-
-    fn get_url(&self) -> String {
-        format!("/riotclient/v1/auth-tokens/{}", self.auth_token)
-    }
-
-    fn get_body(&self) -> Option<Value> {
-        None
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
-    }
+    fn get_url(&self) -> String {format!("/riotclient/v1/auth-tokens/{}", self.auth_token)}
 }
 
 pub fn put_riotclient_v_1_auth_tokens_by_auth_token(auth_token: String) -> PutRiotclientV1AuthTokensByAuthToken {
-    PutRiotclientV1AuthTokensByAuthToken {
-        auth_token
-    }
+    PutRiotclientV1AuthTokensByAuthToken{auth_token}
 }
 
 
@@ -1007,24 +597,14 @@ pub struct PutRiotclientV1CrashReportingEnvironment {
 impl IsApiRequest for PutRiotclientV1CrashReportingEnvironment {
     const METHOD: Method = Method::PUT;
     type ReturnType = Value;
-
-    fn get_url(&self) -> String {
-        "/riotclient/v1/crash-reporting/environment".to_string()
-    }
-
+    fn get_url(&self) -> String {"/riotclient/v1/crash-reporting/environment".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
-    }
-
-    fn get_query_params(&self) -> Option<Value> {
-        None
     }
 }
 
 pub fn put_riotclient_v_1_crash_reporting_environment(body: CrashReportingEnvironment) -> PutRiotclientV1CrashReportingEnvironment {
-    PutRiotclientV1CrashReportingEnvironment {
-        body
-    }
+    PutRiotclientV1CrashReportingEnvironment{body}
 }
 
 
