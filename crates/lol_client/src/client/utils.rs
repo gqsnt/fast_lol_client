@@ -83,11 +83,11 @@ pub fn perform_game_flow_update(
         | LolGameflowGameflowPhase::Matchmaking
         | LolGameflowGameflowPhase::ReadyCheck => {
             all_commands.push(
-                perform_save_request(connected_state, "lol_lobby",plugin_lol_lobby::get_lol_lobby_v_2_lobby(), |r| LobbyMessage::LobbySessionResult(r).into())
+                perform_save_request(connected_state, "lol_lobby_session",plugin_lol_lobby::get_lol_lobby_v_2_lobby(), |r| LobbyMessage::LobbySessionResult(r).into())
             );
             if matches!( current_state,LolGameflowGameflowPhase::Matchmaking| LolGameflowGameflowPhase::ReadyCheck ) {
                 all_commands.push(
-                    perform_request(connected_state, plugin_lol_matchmaking::get_lol_matchmaking_v_1_search(), |r| LobbyMessage::MatchmakingSearchResult(r).into())
+                    perform_save_request(connected_state, "lol_matchmaking_search_session",plugin_lol_matchmaking::get_lol_matchmaking_v_1_search(), |r| LobbyMessage::MatchmakingSearchResult(r).into())
                 );
             } else {
                 connected_state.play.lobby_state.matchmaking_session = None;

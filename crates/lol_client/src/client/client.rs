@@ -87,7 +87,7 @@ impl LolClient {
     pub async fn execute_and_save<S: IsApiRequest>(&self, request: S, file_name: &str) -> AppResult<S::ReturnType> {
         let response = self.execute(request).await;
         let timestamp = chrono::Utc::now().timestamp_millis();
-        let path = std::fs::File::create(PathBuf::from("../../../../temp").join(format!("{}_{}.json", file_name, timestamp)))?;
+        let path = std::fs::File::create(PathBuf::from("temp").join(format!("{}_{}.json", file_name, timestamp)))?;
         match response {
             Ok(r) => {
                 serde_json::to_writer_pretty(&path, &r).unwrap();
