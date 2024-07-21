@@ -565,7 +565,7 @@ pub struct GetLolEventHubV1NavigationButtonData {
 
 impl IsApiRequest for GetLolEventHubV1NavigationButtonData {
     const METHOD: Method = Method::GET;
-    type ReturnType = LolEventHubNavigationButtonUiData;
+    type ReturnType = Vec<LolEventHubNavigationButtonUiData>;
 
     fn get_url(&self) -> String {
         "/lol-event-hub/v1/navigation-button-data".to_string()
@@ -884,6 +884,7 @@ pub struct LolEventHubEventInfoUiData {
     pub event_name: String,
     pub event_type: String,
     pub event_icon: String,
+    pub nav_bar_icon: String,
     pub event_token_image: String,
     pub current_token_balance: i32,
     pub locked_token_count: i32,
@@ -950,6 +951,7 @@ pub struct LolEventHubNavigationButtonUiData {
     pub show_pip: bool,
     pub show_glow: bool,
     pub icon_path: String,
+    pub event_name: String,
 }
 
 

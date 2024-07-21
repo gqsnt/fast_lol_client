@@ -322,6 +322,7 @@ pub struct LolRegaliaRegaliaFrontendConfig {
 pub struct LolRegaliaRegaliaInventoryItem {
     pub items: Vec<LolRegaliaGameDataRegalia>,
     pub is_owned: bool,
+    pub purchase_date: String,
 }
 
 

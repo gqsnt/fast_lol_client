@@ -498,6 +498,7 @@ pub struct LolTftTeamPlannerTeamSettings {
 pub struct LolTftTeamPlannerTftTeamPlannerConfig {
     pub enabled: bool,
     pub multiple_sets_enabled: bool,
+    pub multiple_teams_enabled: bool,
 }
 
 

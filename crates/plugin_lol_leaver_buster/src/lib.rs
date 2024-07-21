@@ -134,6 +134,7 @@ pub struct LolLeaverBusterLeaverBusterNotificationResource {
     pub type_: LolLeaverBusterLeaverBusterNotificationType,
     pub punished_games_remaining: i32,
     pub queue_lockout_timer_expiry_utc_millis_diff: u64,
+    pub is_win_required: bool,
     pub from_rms: bool,
 }
 
@@ -142,6 +143,7 @@ pub struct LolLeaverBusterLeaverBusterNotificationResource {
 #[serde(rename_all = "camelCase")]
 pub struct LolLeaverBusterRankedRestrictionInfo {
     pub punished_games_remaining: i32,
+    pub is_win_required: bool,
     pub needs_ack: bool,
 }
 

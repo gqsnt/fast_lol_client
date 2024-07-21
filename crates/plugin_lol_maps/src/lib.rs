@@ -216,6 +216,7 @@ pub struct LolMapsMaps {
     pub properties: HashMap<String, String>,
     pub per_position_required_summoner_spells: LolMapsGameModeSpellList,
     pub per_position_disallowed_summoner_spells: LolMapsGameModeSpellList,
+    pub tft_set_override: String,
 }
 
 
