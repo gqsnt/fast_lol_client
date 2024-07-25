@@ -2,6 +2,7 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 use serde_json::{json, Value, to_value};
+use std::collections::hash_map::Values;
 use reqwest::Method;
 use common::IsApiRequest;
 
@@ -10,7 +11,7 @@ mod additional;
 // ENDPOINTS
 
 pub struct DeleteRiotclientAffinity {
-    // Deletes the current runtime affinity of the application.
+    /// Deletes the current runtime affinity of the application.
 
 }
 
@@ -26,7 +27,7 @@ pub fn delete_riotclient_affinity() -> DeleteRiotclientAffinity {
 
 
 pub struct DeleteRiotclientSplash {
-    // Hide the splash screen.
+    /// Hide the splash screen.
 
 }
 
@@ -42,29 +43,29 @@ pub fn delete_riotclient_splash() -> DeleteRiotclientSplash {
 
 
 pub struct DeleteRiotclientV1AuthTokensByAuthToken {
-    // Unregister an existing auth token.
+    /// Unregister an existing auth token.
     pub auth_token: String,
 }
 
 impl IsApiRequest for DeleteRiotclientV1AuthTokensByAuthToken {
     const METHOD: Method = Method::DELETE;
-    type ReturnType = HashMap<String, String>;
+    type ReturnType = Value;
     fn get_url(&self) -> String {format!("/riotclient/v1/auth-tokens/{}", self.auth_token)}
 }
 
-pub fn delete_riotclient_v_1_auth_tokens_by_auth_token(auth_token: String) -> DeleteRiotclientV1AuthTokensByAuthToken {
+pub fn delete_riotclient_v1_auth_tokens_by_auth_token(auth_token: String) -> DeleteRiotclientV1AuthTokensByAuthToken {
     DeleteRiotclientV1AuthTokensByAuthToken{auth_token}
 }
 
 
 pub struct GetRiotclientAffinity {
-    // Get the current runtime affinity of the application.
+    /// Get the current runtime affinity of the application.
 
 }
 
 impl IsApiRequest for GetRiotclientAffinity {
     const METHOD: Method = Method::GET;
-    type ReturnType = HashMap<String, String>;
+    type ReturnType = Value;
     fn get_url(&self) -> String {"/riotclient/affinity".to_string()}
 }
 
@@ -74,7 +75,7 @@ pub fn get_riotclient_affinity() -> GetRiotclientAffinity {
 
 
 pub struct GetRiotclientAppName {
-    // Application name without file extension
+    /// Application name without file extension
 
 }
 
@@ -90,7 +91,7 @@ pub fn get_riotclient_app_name() -> GetRiotclientAppName {
 
 
 pub struct GetRiotclientAppPort {
-    // Get the TCP port number that the remoting server is listening on.
+    /// Get the TCP port number that the remoting server is listening on.
 
 }
 
@@ -106,7 +107,7 @@ pub fn get_riotclient_app_port() -> GetRiotclientAppPort {
 
 
 pub struct GetRiotclientAuthToken {
-    // Return the auth token used by the remoting server
+    /// Return the auth token used by the remoting server
 
 }
 
@@ -122,7 +123,7 @@ pub fn get_riotclient_auth_token() -> GetRiotclientAuthToken {
 
 
 pub struct GetRiotclientCommandLineArgs {
-    // Get the command line parameters for the application
+    /// Get the command line parameters for the application
 
 }
 
@@ -138,7 +139,7 @@ pub fn get_riotclient_command_line_args() -> GetRiotclientCommandLineArgs {
 
 
 pub struct GetRiotclientMachineId {
-    // Base64 encoded uuid identifying the user's machine
+    /// Base64 encoded uuid identifying the user's machine
 
 }
 
@@ -167,7 +168,7 @@ pub fn get_riotclient_region_locale() -> GetRiotclientRegionLocale {
 
 
 pub struct GetRiotclientSystemInfoV1BasicInfo {
-    // Get basic system information: OS, memory, processor speed, and number of physical cores
+    /// Get basic system information: OS, memory, processor speed, and number of physical cores
 
 }
 
@@ -177,19 +178,19 @@ impl IsApiRequest for GetRiotclientSystemInfoV1BasicInfo {
     fn get_url(&self) -> String {"/riotclient/system-info/v1/basic-info".to_string()}
 }
 
-pub fn get_riotclient_system_info_v_1_basic_info() -> GetRiotclientSystemInfoV1BasicInfo {
+pub fn get_riotclient_system_info_v1_basic_info() -> GetRiotclientSystemInfoV1BasicInfo {
     GetRiotclientSystemInfoV1BasicInfo{}
 }
 
 
 pub struct GetRiotclientTrace {
-    // Retrieves a completed scheduler trace.
+    /// Retrieves a completed scheduler trace.
 
 }
 
 impl IsApiRequest for GetRiotclientTrace {
     const METHOD: Method = Method::GET;
-    type ReturnType = HashMap<String, String>;
+    type ReturnType = Value;
     fn get_url(&self) -> String {"/riotclient/trace".to_string()}
 }
 
@@ -199,7 +200,7 @@ pub fn get_riotclient_trace() -> GetRiotclientTrace {
 
 
 pub struct GetRiotclientUxCrashCount {
-    // Returns whether the ux has crashed or not
+    /// Returns whether the ux has crashed or not
 
 }
 
@@ -215,7 +216,7 @@ pub fn get_riotclient_ux_crash_count() -> GetRiotclientUxCrashCount {
 
 
 pub struct GetRiotclientUxState {
-    // Get the current Ux state.
+    /// Get the current Ux state.
 
 }
 
@@ -231,7 +232,7 @@ pub fn get_riotclient_ux_state() -> GetRiotclientUxState {
 
 
 pub struct GetRiotclientV1CrashReportingEnvironment {
-    // Get the crash reporting environment identifier.
+    /// Get the crash reporting environment identifier.
 
 }
 
@@ -241,13 +242,13 @@ impl IsApiRequest for GetRiotclientV1CrashReportingEnvironment {
     fn get_url(&self) -> String {"/riotclient/v1/crash-reporting/environment".to_string()}
 }
 
-pub fn get_riotclient_v_1_crash_reporting_environment() -> GetRiotclientV1CrashReportingEnvironment {
+pub fn get_riotclient_v1_crash_reporting_environment() -> GetRiotclientV1CrashReportingEnvironment {
     GetRiotclientV1CrashReportingEnvironment{}
 }
 
 
 pub struct GetRiotclientZoomScale {
-    // Gets the last known posted zoom-scale value.
+    /// Gets the last known posted zoom-scale value.
 
 }
 
@@ -263,7 +264,7 @@ pub fn get_riotclient_zoom_scale() -> GetRiotclientZoomScale {
 
 
 pub struct PostRiotclientAffinity {
-    // Sets the current runtime affinity of the application.
+    /// Sets the current runtime affinity of the application.
     pub body: String,
 }
 
@@ -282,7 +283,7 @@ pub fn post_riotclient_affinity(body: String) -> PostRiotclientAffinity {
 
 
 pub struct PostRiotclientKillAndRestartUx {
-    // Kills the ux process and restarts it. Used only when the ux process crashes.
+    /// Kills the ux process and restarts it. Used only when the ux process crashes.
 
 }
 
@@ -298,7 +299,7 @@ pub fn post_riotclient_kill_and_restart_ux() -> PostRiotclientKillAndRestartUx {
 
 
 pub struct PostRiotclientKillUx {
-    // Kills the ux process.
+    /// Kills the ux process.
 
 }
 
@@ -314,7 +315,7 @@ pub fn post_riotclient_kill_ux() -> PostRiotclientKillUx {
 
 
 pub struct PostRiotclientLaunchUx {
-    // Launches the ux process.
+    /// Launches the ux process.
 
 }
 
@@ -330,7 +331,7 @@ pub fn post_riotclient_launch_ux() -> PostRiotclientLaunchUx {
 
 
 pub struct PostRiotclientNewArgs {
-    // Endpoint for passing in new data.
+    /// Endpoint for passing in new data.
     pub body: Vec<String>,
 }
 
@@ -349,7 +350,7 @@ pub fn post_riotclient_new_args(body: Vec<String>) -> PostRiotclientNewArgs {
 
 
 pub struct PostRiotclientOpenUrlInBrowser {
-    // Opens a URL in the player's system browser. The browser will use its existing cookies to determine if the player is logged in, meaning that using this API can result in three differenet cases:    //     // * The player is signed in with the current account    // * The player is signed in with a different account    // * The player is not signed in at all.    //     // In order to ensure the player is signed in with the same account as the client, leverage Player Platform's [authentication redirect](https://platform.riotgames.com/docs/authenticate-players/how-rso-works/sign-in-on-mobile/authentication-redirect) feature.
+    /// Opens a URL in the player's system browser. The browser will use its existing cookies to determine if the player is logged in, meaning that using this API can result in three differenet cases:    ///     /// * The player is signed in with the current account    /// * The player is signed in with a different account    /// * The player is not signed in at all.    ///     /// In order to ensure the player is signed in with the same account as the client, leverage Player Platform's [authentication redirect](https://platform.riotgames.com/docs/authenticate-players/how-rso-works/sign-in-on-mobile/authentication-redirect) feature.
     pub body: String,
 }
 
@@ -368,7 +369,7 @@ pub fn post_riotclient_open_url_in_browser(body: String) -> PostRiotclientOpenUr
 
 
 pub struct PostRiotclientShowSwagger {
-    // Open swagger in the default browser.
+    /// Open swagger in the default browser.
 
 }
 
@@ -384,7 +385,7 @@ pub fn post_riotclient_show_swagger() -> PostRiotclientShowSwagger {
 
 
 pub struct PostRiotclientUnload {
-    // Unloads the UX process
+    /// Unloads the UX process
 
 }
 
@@ -400,7 +401,7 @@ pub fn post_riotclient_unload() -> PostRiotclientUnload {
 
 
 pub struct PostRiotclientUxAllowForeground {
-    // Allows the background process to launch the game into the foregound.
+    /// Allows the background process to launch the game into the foregound.
 
 }
 
@@ -416,7 +417,7 @@ pub fn post_riotclient_ux_allow_foreground() -> PostRiotclientUxAllowForeground 
 
 
 pub struct PostRiotclientUxFlash {
-    // Flash the ux process' main window and the taskbar/dock icon, if they exist.
+    /// Flash the ux process' main window and the taskbar/dock icon, if they exist.
 
 }
 
@@ -432,7 +433,7 @@ pub fn post_riotclient_ux_flash() -> PostRiotclientUxFlash {
 
 
 pub struct PostRiotclientUxMinimize {
-    // Minimize the ux process and all its windows if it exists. This does not kill the ux.
+    /// Minimize the ux process and all its windows if it exists. This does not kill the ux.
 
 }
 
@@ -448,7 +449,7 @@ pub fn post_riotclient_ux_minimize() -> PostRiotclientUxMinimize {
 
 
 pub struct PostRiotclientUxShow {
-    // Shows the ux process if it exists; create and show if it does not.
+    /// Shows the ux process if it exists; create and show if it does not.
 
 }
 
@@ -464,7 +465,7 @@ pub fn post_riotclient_ux_show() -> PostRiotclientUxShow {
 
 
 pub struct PostRiotclientV1CrashReportingLogs {
-    // Adds the enclosed log to the app's crash report.
+    /// Adds the enclosed log to the app's crash report.
     pub body: String,
 }
 
@@ -477,7 +478,7 @@ impl IsApiRequest for PostRiotclientV1CrashReportingLogs {
     }
 }
 
-pub fn post_riotclient_v_1_crash_reporting_logs(body: String) -> PostRiotclientV1CrashReportingLogs {
+pub fn post_riotclient_v1_crash_reporting_logs(body: String) -> PostRiotclientV1CrashReportingLogs {
     PostRiotclientV1CrashReportingLogs{body}
 }
 
@@ -495,13 +496,13 @@ impl IsApiRequest for PostRiotclientV1ElevationRequests {
     }
 }
 
-pub fn post_riotclient_v_1_elevation_requests(body: ElevationRequest) -> PostRiotclientV1ElevationRequests {
+pub fn post_riotclient_v1_elevation_requests(body: ElevationRequest) -> PostRiotclientV1ElevationRequests {
     PostRiotclientV1ElevationRequests{body}
 }
 
 
 pub struct PostRiotclientZoomScale {
-    // Handles changing the zoom scale value.
+    /// Handles changing the zoom scale value.
     pub body: f64,
 }
 
@@ -520,7 +521,7 @@ pub fn post_riotclient_zoom_scale(body: f64) -> PostRiotclientZoomScale {
 
 
 pub struct PutRiotclientSplash {
-    // Show the splash screen.
+    /// Show the splash screen.
     pub body: String,
 }
 
@@ -539,7 +540,7 @@ pub fn put_riotclient_splash(body: String) -> PutRiotclientSplash {
 
 
 pub struct PutRiotclientUxLoadComplete {
-    // Ux notification that it has completed loading the main window.
+    /// Ux notification that it has completed loading the main window.
 
 }
 
@@ -555,7 +556,7 @@ pub fn put_riotclient_ux_load_complete() -> PutRiotclientUxLoadComplete {
 
 
 pub struct PutRiotclientUxStateAck {
-    // Ux acknowledges the update to the Ux state.
+    /// Ux acknowledges the update to the Ux state.
     pub body: u32,
 }
 
@@ -574,23 +575,23 @@ pub fn put_riotclient_ux_state_ack(body: u32) -> PutRiotclientUxStateAck {
 
 
 pub struct PutRiotclientV1AuthTokensByAuthToken {
-    // Register an auth token.  This is any alpha-numeric string that will be used as a password with the `riot` user when making requests.
+    /// Register an auth token.  This is any alpha-numeric string that will be used as a password with the `riot` user when making requests.
     pub auth_token: String,
 }
 
 impl IsApiRequest for PutRiotclientV1AuthTokensByAuthToken {
     const METHOD: Method = Method::PUT;
-    type ReturnType = HashMap<String, String>;
+    type ReturnType = Value;
     fn get_url(&self) -> String {format!("/riotclient/v1/auth-tokens/{}", self.auth_token)}
 }
 
-pub fn put_riotclient_v_1_auth_tokens_by_auth_token(auth_token: String) -> PutRiotclientV1AuthTokensByAuthToken {
+pub fn put_riotclient_v1_auth_tokens_by_auth_token(auth_token: String) -> PutRiotclientV1AuthTokensByAuthToken {
     PutRiotclientV1AuthTokensByAuthToken{auth_token}
 }
 
 
 pub struct PutRiotclientV1CrashReportingEnvironment {
-    // Tags the crash with an environment so it can be filtered more easily.
+    /// Tags the crash with an environment so it can be filtered more easily.
     pub body: CrashReportingEnvironment,
 }
 
@@ -603,7 +604,7 @@ impl IsApiRequest for PutRiotclientV1CrashReportingEnvironment {
     }
 }
 
-pub fn put_riotclient_v_1_crash_reporting_environment(body: CrashReportingEnvironment) -> PutRiotclientV1CrashReportingEnvironment {
+pub fn put_riotclient_v1_crash_reporting_environment(body: CrashReportingEnvironment) -> PutRiotclientV1CrashReportingEnvironment {
     PutRiotclientV1CrashReportingEnvironment{body}
 }
 
@@ -615,8 +616,11 @@ pub fn put_riotclient_v_1_crash_reporting_environment(body: CrashReportingEnviro
 pub struct BasicOperatingSystemInfo {
     pub edition: String,
     pub platform: String,
+    #[serde(rename = "versionMajor")]
     pub version_major: String,
+    #[serde(rename = "versionMinor")]
     pub version_minor: String,
+    #[serde(rename = "buildNumber")]
     pub build_number: String,
 }
 
@@ -624,8 +628,11 @@ pub struct BasicOperatingSystemInfo {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct BasicSystemInfo {
+    #[serde(rename = "operatingSystem")]
     pub operating_system: BasicOperatingSystemInfo,
+    #[serde(rename = "physicalMemory")]
     pub physical_memory: u64,
+    #[serde(rename = "physicalProcessorCores")]
     pub physical_processor_cores: u64,
 }
 
@@ -634,7 +641,9 @@ pub struct BasicSystemInfo {
 #[serde(rename_all = "camelCase")]
 pub struct CrashReportingEnvironment {
     pub environment: String,
+    #[serde(rename = "userName")]
     pub user_name: String,
+    #[serde(rename = "userId")]
     pub user_id: String,
 }
 
@@ -651,7 +660,9 @@ pub struct ElevationRequest {
 pub struct LolL10NRegionLocale {
     pub region: String,
     pub locale: String,
+    #[serde(rename = "webRegion")]
     pub web_region: String,
+    #[serde(rename = "webLanguage")]
     pub web_language: String,
 }
 

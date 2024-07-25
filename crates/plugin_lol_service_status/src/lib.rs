@@ -2,6 +2,7 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 use serde_json::{json, Value, to_value};
+use std::collections::hash_map::Values;
 use reqwest::Method;
 use common::IsApiRequest;
 
@@ -17,7 +18,7 @@ impl IsApiRequest for GetLolServiceStatusV1LcuStatus {
     fn get_url(&self) -> String {"/lol-service-status/v1/lcu-status".to_string()}
 }
 
-pub fn get_lol_service_status_v_1_lcu_status() -> GetLolServiceStatusV1LcuStatus {
+pub fn get_lol_service_status_v1_lcu_status() -> GetLolServiceStatusV1LcuStatus {
     GetLolServiceStatusV1LcuStatus{}
 }
 
@@ -30,7 +31,7 @@ impl IsApiRequest for GetLolServiceStatusV1TickerMessages {
     fn get_url(&self) -> String {"/lol-service-status/v1/ticker-messages".to_string()}
 }
 
-pub fn get_lol_service_status_v_1_ticker_messages() -> GetLolServiceStatusV1TickerMessages {
+pub fn get_lol_service_status_v1_ticker_messages() -> GetLolServiceStatusV1TickerMessages {
     GetLolServiceStatusV1TickerMessages{}
 }
 
@@ -41,6 +42,7 @@ pub fn get_lol_service_status_v_1_ticker_messages() -> GetLolServiceStatusV1Tick
 #[serde(rename_all = "camelCase")]
 pub struct LolServiceStatusServiceStatusResource {
     pub status: String,
+    #[serde(rename = "humanReadableUrl")]
     pub human_readable_url: String,
 }
 
@@ -49,7 +51,9 @@ pub struct LolServiceStatusServiceStatusResource {
 #[serde(rename_all = "camelCase")]
 pub struct LolServiceStatusTickerMessage {
     pub severity: String,
+    #[serde(rename = "createdAt")]
     pub created_at: String,
+    #[serde(rename = "updatedAt")]
     pub updated_at: String,
     pub heading: String,
     pub message: String,

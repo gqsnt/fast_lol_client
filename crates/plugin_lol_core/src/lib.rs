@@ -2,6 +2,7 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 use serde_json::{json, Value, to_value};
+use std::collections::hash_map::Values;
 use reqwest::Method;
 use common::IsApiRequest;
 
@@ -10,7 +11,7 @@ mod additional;
 // ENDPOINTS
 
 pub struct LoggingGetEntries {
-    // Gets all buffered log entries since the last call.
+    /// Gets all buffered log entries since the last call.
 
 }
 
@@ -26,13 +27,13 @@ pub fn logging_get_entries() -> LoggingGetEntries {
 
 
 pub struct LoggingMetrics {
-    // Returns all metrics
+    /// Returns all metrics
 
 }
 
 impl IsApiRequest for LoggingMetrics {
     const METHOD: Method = Method::POST;
-    type ReturnType = HashMap<String, String>;
+    type ReturnType = Value;
     fn get_url(&self) -> String {"/LoggingMetrics".to_string()}
 }
 
@@ -42,13 +43,13 @@ pub fn logging_metrics() -> LoggingMetrics {
 
 
 pub struct LoggingMetricsMetadata {
-    // Returns metadata for all metrics
+    /// Returns metadata for all metrics
 
 }
 
 impl IsApiRequest for LoggingMetricsMetadata {
     const METHOD: Method = Method::POST;
-    type ReturnType = HashMap<String, String>;
+    type ReturnType = Value;
     fn get_url(&self) -> String {"/LoggingMetricsMetadata".to_string()}
 }
 
@@ -58,7 +59,7 @@ pub fn logging_metrics_metadata() -> LoggingMetricsMetadata {
 
 
 pub struct LoggingStart {
-    // Initializes the logging system.
+    /// Initializes the logging system.
     pub buffered: Option<bool>,
     pub severity: Option<LogSeverityLevels>,
 }
@@ -67,11 +68,11 @@ impl IsApiRequest for LoggingStart {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
     fn get_url(&self) -> String {"/LoggingStart".to_string()}
-    fn get_query_params(&self) -> Option<Value> {
-        Some(json!({
-            "buffered" : self.buffered,
-            "severity" : self.severity,
-        }))
+    fn get_query(&self) -> Option<Vec<(String,String)>> {
+        Some(vec![
+            ("buffered".to_string(), serde_json::to_string(&self.buffered).unwrap()),
+            ("severity".to_string(), serde_json::to_string(&self.severity).unwrap())
+        ])
     }
 }
 
@@ -81,7 +82,7 @@ pub fn logging_start(buffered: Option<bool>, severity: Option<LogSeverityLevels>
 
 
 pub struct LoggingStop {
-    // Finalizes the logging system.
+    /// Finalizes the logging system.
 
 }
 
@@ -97,7 +98,7 @@ pub fn logging_stop() -> LoggingStop {
 
 
 pub struct PostRiotclientAddorupdatemetric {
-    // Adds or Updates a Metric
+    /// Adds or Updates a Metric
     pub group: String,
     pub object: String,
     pub name: String,
@@ -108,13 +109,13 @@ impl IsApiRequest for PostRiotclientAddorupdatemetric {
     const METHOD: Method = Method::POST;
     type ReturnType = Value;
     fn get_url(&self) -> String {"/riotclient/addorupdatemetric".to_string()}
-    fn get_query_params(&self) -> Option<Value> {
-        Some(json!({
-            "group" : self.group,
-            "object" : self.object,
-            "name" : self.name,
-            "value" : self.value,
-        }))
+    fn get_query(&self) -> Option<Vec<(String,String)>> {
+        Some(vec![
+            ("group".to_string(), serde_json::to_string(&self.group).unwrap()),
+            ("object".to_string(), serde_json::to_string(&self.object).unwrap()),
+            ("name".to_string(), serde_json::to_string(&self.name).unwrap()),
+            ("value".to_string(), serde_json::to_string(&self.value).unwrap())
+        ])
     }
 }
 

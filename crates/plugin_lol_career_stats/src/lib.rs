@@ -2,6 +2,7 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 use serde_json::{json, Value, to_value};
+use std::collections::hash_map::Values;
 use reqwest::Method;
 use common::IsApiRequest;
 
@@ -22,7 +23,7 @@ impl IsApiRequest for GetLolCareerStatsV1ChampionAveragesByChampionIdByPositionB
     fn get_url(&self) -> String {format!("/lol-career-stats/v1/champion-averages/{}/{}/{}/{}", self.champion_id, serde_json::to_string(&self.position).unwrap(), self.tier, serde_json::to_string(&self.queue).unwrap())}
 }
 
-pub fn get_lol_career_stats_v_1_champion_averages_by_champion_id_by_position_by_tier_by_queue(champion_id: i32, position: LolCareerStatsSummonersRiftPosition, tier: String, queue: LolCareerStatsCareerStatsQueueType) -> GetLolCareerStatsV1ChampionAveragesByChampionIdByPositionByTierByQueue {
+pub fn get_lol_career_stats_v1_champion_averages_by_champion_id_by_position_by_tier_by_queue(champion_id: i32, position: LolCareerStatsSummonersRiftPosition, tier: String, queue: LolCareerStatsCareerStatsQueueType) -> GetLolCareerStatsV1ChampionAveragesByChampionIdByPositionByTierByQueue {
     GetLolCareerStatsV1ChampionAveragesByChampionIdByPositionByTierByQueue{champion_id, position, tier, queue}
 }
 
@@ -41,7 +42,7 @@ impl IsApiRequest for GetLolCareerStatsV1ChampionAveragesSeasonBySeasonByChampio
     fn get_url(&self) -> String {format!("/lol-career-stats/v1/champion-averages/season/{}/{}/{}/{}/{}", self.season, self.champion_id, serde_json::to_string(&self.position).unwrap(), self.tier, serde_json::to_string(&self.queue).unwrap())}
 }
 
-pub fn get_lol_career_stats_v_1_champion_averages_season_by_season_by_champion_id_by_position_by_tier_by_queue(season: u32, champion_id: i32, position: LolCareerStatsSummonersRiftPosition, tier: String, queue: LolCareerStatsCareerStatsQueueType) -> GetLolCareerStatsV1ChampionAveragesSeasonBySeasonByChampionIdByPositionByTierByQueue {
+pub fn get_lol_career_stats_v1_champion_averages_season_by_season_by_champion_id_by_position_by_tier_by_queue(season: u32, champion_id: i32, position: LolCareerStatsSummonersRiftPosition, tier: String, queue: LolCareerStatsCareerStatsQueueType) -> GetLolCareerStatsV1ChampionAveragesSeasonBySeasonByChampionIdByPositionByTierByQueue {
     GetLolCareerStatsV1ChampionAveragesSeasonBySeasonByChampionIdByPositionByTierByQueue{season, champion_id, position, tier, queue}
 }
 
@@ -57,7 +58,7 @@ impl IsApiRequest for GetLolCareerStatsV1ChampionExpertsByChampionIdByPosition {
     fn get_url(&self) -> String {format!("/lol-career-stats/v1/champion-experts/{}/{}", self.champion_id, serde_json::to_string(&self.position).unwrap())}
 }
 
-pub fn get_lol_career_stats_v_1_champion_experts_by_champion_id_by_position(champion_id: i32, position: LolCareerStatsSummonersRiftPosition) -> GetLolCareerStatsV1ChampionExpertsByChampionIdByPosition {
+pub fn get_lol_career_stats_v1_champion_experts_by_champion_id_by_position(champion_id: i32, position: LolCareerStatsSummonersRiftPosition) -> GetLolCareerStatsV1ChampionExpertsByChampionIdByPosition {
     GetLolCareerStatsV1ChampionExpertsByChampionIdByPosition{champion_id, position}
 }
 
@@ -74,7 +75,7 @@ impl IsApiRequest for GetLolCareerStatsV1ChampionExpertsSeasonBySeasonByChampion
     fn get_url(&self) -> String {format!("/lol-career-stats/v1/champion-experts/season/{}/{}/{}", self.season, self.champion_id, serde_json::to_string(&self.position).unwrap())}
 }
 
-pub fn get_lol_career_stats_v_1_champion_experts_season_by_season_by_champion_id_by_position(season: u32, champion_id: i32, position: LolCareerStatsSummonersRiftPosition) -> GetLolCareerStatsV1ChampionExpertsSeasonBySeasonByChampionIdByPosition {
+pub fn get_lol_career_stats_v1_champion_experts_season_by_season_by_champion_id_by_position(season: u32, champion_id: i32, position: LolCareerStatsSummonersRiftPosition) -> GetLolCareerStatsV1ChampionExpertsSeasonBySeasonByChampionIdByPosition {
     GetLolCareerStatsV1ChampionExpertsSeasonBySeasonByChampionIdByPosition{season, champion_id, position}
 }
 
@@ -91,7 +92,7 @@ impl IsApiRequest for GetLolCareerStatsV1PositionAveragesByPositionByTierByQueue
     fn get_url(&self) -> String {format!("/lol-career-stats/v1/position-averages/{}/{}/{}", serde_json::to_string(&self.position).unwrap(), self.tier, serde_json::to_string(&self.queue).unwrap())}
 }
 
-pub fn get_lol_career_stats_v_1_position_averages_by_position_by_tier_by_queue(position: LolCareerStatsSummonersRiftPosition, tier: String, queue: LolCareerStatsCareerStatsQueueType) -> GetLolCareerStatsV1PositionAveragesByPositionByTierByQueue {
+pub fn get_lol_career_stats_v1_position_averages_by_position_by_tier_by_queue(position: LolCareerStatsSummonersRiftPosition, tier: String, queue: LolCareerStatsCareerStatsQueueType) -> GetLolCareerStatsV1PositionAveragesByPositionByTierByQueue {
     GetLolCareerStatsV1PositionAveragesByPositionByTierByQueue{position, tier, queue}
 }
 
@@ -109,7 +110,7 @@ impl IsApiRequest for GetLolCareerStatsV1PositionAveragesSeasonBySeasonByPositio
     fn get_url(&self) -> String {format!("/lol-career-stats/v1/position-averages/season/{}/{}/{}/{}", self.season, serde_json::to_string(&self.position).unwrap(), self.tier, serde_json::to_string(&self.queue).unwrap())}
 }
 
-pub fn get_lol_career_stats_v_1_position_averages_season_by_season_by_position_by_tier_by_queue(season: u32, position: LolCareerStatsSummonersRiftPosition, tier: String, queue: LolCareerStatsCareerStatsQueueType) -> GetLolCareerStatsV1PositionAveragesSeasonBySeasonByPositionByTierByQueue {
+pub fn get_lol_career_stats_v1_position_averages_season_by_season_by_position_by_tier_by_queue(season: u32, position: LolCareerStatsSummonersRiftPosition, tier: String, queue: LolCareerStatsCareerStatsQueueType) -> GetLolCareerStatsV1PositionAveragesSeasonBySeasonByPositionByTierByQueue {
     GetLolCareerStatsV1PositionAveragesSeasonBySeasonByPositionByTierByQueue{season, position, tier, queue}
 }
 
@@ -124,7 +125,7 @@ impl IsApiRequest for GetLolCareerStatsV1PositionExpertsByPosition {
     fn get_url(&self) -> String {format!("/lol-career-stats/v1/position-experts/{}", serde_json::to_string(&self.position).unwrap())}
 }
 
-pub fn get_lol_career_stats_v_1_position_experts_by_position(position: LolCareerStatsSummonersRiftPosition) -> GetLolCareerStatsV1PositionExpertsByPosition {
+pub fn get_lol_career_stats_v1_position_experts_by_position(position: LolCareerStatsSummonersRiftPosition) -> GetLolCareerStatsV1PositionExpertsByPosition {
     GetLolCareerStatsV1PositionExpertsByPosition{position}
 }
 
@@ -140,7 +141,7 @@ impl IsApiRequest for GetLolCareerStatsV1PositionExpertsSeasonBySeasonByPosition
     fn get_url(&self) -> String {format!("/lol-career-stats/v1/position-experts/season/{}/{}", self.season, serde_json::to_string(&self.position).unwrap())}
 }
 
-pub fn get_lol_career_stats_v_1_position_experts_season_by_season_by_position(season: u32, position: LolCareerStatsSummonersRiftPosition) -> GetLolCareerStatsV1PositionExpertsSeasonBySeasonByPosition {
+pub fn get_lol_career_stats_v1_position_experts_season_by_season_by_position(season: u32, position: LolCareerStatsSummonersRiftPosition) -> GetLolCareerStatsV1PositionExpertsSeasonBySeasonByPosition {
     GetLolCareerStatsV1PositionExpertsSeasonBySeasonByPosition{season, position}
 }
 
@@ -151,11 +152,11 @@ pub struct GetLolCareerStatsV1SummonerGamesByPuuid {
 
 impl IsApiRequest for GetLolCareerStatsV1SummonerGamesByPuuid {
     const METHOD: Method = Method::GET;
-    type ReturnType = HashMap<String, String>;
+    type ReturnType = Value;
     fn get_url(&self) -> String {format!("/lol-career-stats/v1/summoner-games/{}", self.puuid)}
 }
 
-pub fn get_lol_career_stats_v_1_summoner_games_by_puuid(puuid: String) -> GetLolCareerStatsV1SummonerGamesByPuuid {
+pub fn get_lol_career_stats_v1_summoner_games_by_puuid(puuid: String) -> GetLolCareerStatsV1SummonerGamesByPuuid {
     GetLolCareerStatsV1SummonerGamesByPuuid{puuid}
 }
 
@@ -167,11 +168,11 @@ pub struct GetLolCareerStatsV1SummonerGamesByPuuidSeasonBySeason {
 
 impl IsApiRequest for GetLolCareerStatsV1SummonerGamesByPuuidSeasonBySeason {
     const METHOD: Method = Method::GET;
-    type ReturnType = HashMap<String, String>;
+    type ReturnType = Value;
     fn get_url(&self) -> String {format!("/lol-career-stats/v1/summoner-games/{}/season/{}", self.puuid, self.season)}
 }
 
-pub fn get_lol_career_stats_v_1_summoner_games_by_puuid_season_by_season(puuid: String, season: u32) -> GetLolCareerStatsV1SummonerGamesByPuuidSeasonBySeason {
+pub fn get_lol_career_stats_v1_summoner_games_by_puuid_season_by_season(puuid: String, season: u32) -> GetLolCareerStatsV1SummonerGamesByPuuidSeasonBySeason {
     GetLolCareerStatsV1SummonerGamesByPuuidSeasonBySeason{puuid, season}
 }
 
@@ -186,16 +187,16 @@ pub struct GetLolCareerStatsV1SummonerStatsByPuuidBySeasonByQueueByPosition {
 
 impl IsApiRequest for GetLolCareerStatsV1SummonerStatsByPuuidBySeasonByQueueByPosition {
     const METHOD: Method = Method::GET;
-    type ReturnType = HashMap<String, String>;
+    type ReturnType = Value;
     fn get_url(&self) -> String {format!("/lol-career-stats/v1/summoner-stats/{}/{}/{}/{}", self.puuid, self.season, serde_json::to_string(&self.queue).unwrap(), serde_json::to_string(&self.position).unwrap())}
-    fn get_query_params(&self) -> Option<Value> {
-        Some(json!({
-            "championId" : self.champion_id,
-        }))
+    fn get_query(&self) -> Option<Vec<(String,String)>> {
+        Some(vec![
+            ("championId".to_string(), serde_json::to_string(&self.champion_id).unwrap())
+        ])
     }
 }
 
-pub fn get_lol_career_stats_v_1_summoner_stats_by_puuid_by_season_by_queue_by_position(puuid: String, season: u32, queue: LolCareerStatsCareerStatsQueueType, position: LolCareerStatsSummonersRiftPosition, champion_id: Option<i32>) -> GetLolCareerStatsV1SummonerStatsByPuuidBySeasonByQueueByPosition {
+pub fn get_lol_career_stats_v1_summoner_stats_by_puuid_by_season_by_queue_by_position(puuid: String, season: u32, queue: LolCareerStatsCareerStatsQueueType, position: LolCareerStatsSummonersRiftPosition, champion_id: Option<i32>) -> GetLolCareerStatsV1SummonerStatsByPuuidBySeasonByQueueByPosition {
     GetLolCareerStatsV1SummonerStatsByPuuidBySeasonByQueueByPosition{puuid, season, queue, position, champion_id}
 }
 
@@ -213,7 +214,7 @@ impl IsApiRequest for PostLolCareerStatsV1ChampionStatsPercentiles {
     }
 }
 
-pub fn post_lol_career_stats_v_1_champion_stats_percentiles(body: Vec<LolCareerStatsStatsQueryRequest>) -> PostLolCareerStatsV1ChampionStatsPercentiles {
+pub fn post_lol_career_stats_v1_champion_stats_percentiles(body: Vec<LolCareerStatsStatsQueryRequest>) -> PostLolCareerStatsV1ChampionStatsPercentiles {
     PostLolCareerStatsV1ChampionStatsPercentiles{body}
 }
 
@@ -231,7 +232,7 @@ impl IsApiRequest for PostLolCareerStatsV1PositionStatsPercentiles {
     }
 }
 
-pub fn post_lol_career_stats_v_1_position_stats_percentiles(body: Vec<LolCareerStatsPositionStatsQueryRequest>) -> PostLolCareerStatsV1PositionStatsPercentiles {
+pub fn post_lol_career_stats_v1_position_stats_percentiles(body: Vec<LolCareerStatsPositionStatsQueryRequest>) -> PostLolCareerStatsV1PositionStatsPercentiles {
     PostLolCareerStatsV1PositionStatsPercentiles{body}
 }
 
@@ -241,23 +242,32 @@ pub fn post_lol_career_stats_v_1_position_stats_percentiles(body: Vec<LolCareerS
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolCareerStatsChampionQueueStatsResponse {
+    #[serde(rename = "championId")]
     pub champion_id: i32,
+    #[serde(rename = "queueType")]
     pub queue_type: LolCareerStatsCareerStatsQueueType,
     pub position: LolCareerStatsSummonersRiftPosition,
+    #[serde(rename = "rankTier")]
     pub rank_tier: String,
-    pub stats: HashMap<String, String>,
+    pub stats: Value,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolCareerStatsExpertPlayer {
+    #[serde(rename = "championId")]
     pub champion_id: i32,
     pub position: LolCareerStatsSummonersRiftPosition,
+    #[serde(rename = "summonerId")]
     pub summoner_id: u64,
+    #[serde(rename = "summonerName")]
     pub summoner_name: String,
+    #[serde(rename = "numOfGames")]
     pub num_of_games: i32,
+    #[serde(rename = "winRate")]
     pub win_rate: f32,
+    #[serde(rename = "expertRank")]
     pub expert_rank: i32,
 }
 
@@ -265,8 +275,10 @@ pub struct LolCareerStatsExpertPlayer {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolCareerStatsPositionStatsQueryRequest {
+    #[serde(rename = "queueType")]
     pub queue_type: LolCareerStatsCareerStatsQueueType,
     pub position: LolCareerStatsSummonersRiftPosition,
+    #[serde(rename = "rankTier")]
     pub rank_tier: String,
     pub season: u32,
 }
@@ -275,21 +287,27 @@ pub struct LolCareerStatsPositionStatsQueryRequest {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolCareerStatsStatisticsPercentilesResponse {
+    #[serde(rename = "championId")]
     pub champion_id: i32,
+    #[serde(rename = "queueType")]
     pub queue_type: LolCareerStatsCareerStatsQueueType,
     pub position: LolCareerStatsSummonersRiftPosition,
+    #[serde(rename = "rankTier")]
     pub rank_tier: String,
     pub season: u32,
-    pub stats: HashMap<String, String>,
+    pub stats: Value,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolCareerStatsStatsQueryRequest {
+    #[serde(rename = "championId")]
     pub champion_id: i32,
+    #[serde(rename = "queueType")]
     pub queue_type: LolCareerStatsCareerStatsQueueType,
     pub position: LolCareerStatsSummonersRiftPosition,
+    #[serde(rename = "rankTier")]
     pub rank_tier: String,
     pub season: u32,
 }

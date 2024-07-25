@@ -2,6 +2,7 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 use serde_json::{json, Value, to_value};
+use std::collections::hash_map::Values;
 use reqwest::Method;
 use common::IsApiRequest;
 
@@ -17,7 +18,7 @@ impl IsApiRequest for DeleteRiotMessagingServiceV1Connect {
     fn get_url(&self) -> String {"/riot-messaging-service/v1/connect".to_string()}
 }
 
-pub fn delete_riot_messaging_service_v_1_connect() -> DeleteRiotMessagingServiceV1Connect {
+pub fn delete_riot_messaging_service_v1_connect() -> DeleteRiotMessagingServiceV1Connect {
     DeleteRiotMessagingServiceV1Connect{}
 }
 
@@ -30,7 +31,7 @@ impl IsApiRequest for DeleteRiotMessagingServiceV1Entitlements {
     fn get_url(&self) -> String {"/riot-messaging-service/v1/entitlements".to_string()}
 }
 
-pub fn delete_riot_messaging_service_v_1_entitlements() -> DeleteRiotMessagingServiceV1Entitlements {
+pub fn delete_riot_messaging_service_v1_entitlements() -> DeleteRiotMessagingServiceV1Entitlements {
     DeleteRiotMessagingServiceV1Entitlements{}
 }
 
@@ -43,7 +44,7 @@ impl IsApiRequest for DeleteRiotMessagingServiceV1Session {
     fn get_url(&self) -> String {"/riot-messaging-service/v1/session".to_string()}
 }
 
-pub fn delete_riot_messaging_service_v_1_session() -> DeleteRiotMessagingServiceV1Session {
+pub fn delete_riot_messaging_service_v1_session() -> DeleteRiotMessagingServiceV1Session {
     DeleteRiotMessagingServiceV1Session{}
 }
 
@@ -58,7 +59,7 @@ impl IsApiRequest for GetRiotMessagingServiceV1MessageByA {
     fn get_url(&self) -> String {format!("/riot-messaging-service/v1/message/{}", self.a)}
 }
 
-pub fn get_riot_messaging_service_v_1_message_by_a(a: String) -> GetRiotMessagingServiceV1MessageByA {
+pub fn get_riot_messaging_service_v1_message_by_a(a: String) -> GetRiotMessagingServiceV1MessageByA {
     GetRiotMessagingServiceV1MessageByA{a}
 }
 
@@ -74,7 +75,7 @@ impl IsApiRequest for GetRiotMessagingServiceV1MessageByAByB {
     fn get_url(&self) -> String {format!("/riot-messaging-service/v1/message/{}/{}", self.a, self.b)}
 }
 
-pub fn get_riot_messaging_service_v_1_message_by_a_by_b(a: String, b: String) -> GetRiotMessagingServiceV1MessageByAByB {
+pub fn get_riot_messaging_service_v1_message_by_a_by_b(a: String, b: String) -> GetRiotMessagingServiceV1MessageByAByB {
     GetRiotMessagingServiceV1MessageByAByB{a, b}
 }
 
@@ -91,7 +92,7 @@ impl IsApiRequest for GetRiotMessagingServiceV1MessageByAByBByC {
     fn get_url(&self) -> String {format!("/riot-messaging-service/v1/message/{}/{}/{}", self.a, self.b, self.c)}
 }
 
-pub fn get_riot_messaging_service_v_1_message_by_a_by_b_by_c(a: String, b: String, c: String) -> GetRiotMessagingServiceV1MessageByAByBByC {
+pub fn get_riot_messaging_service_v1_message_by_a_by_b_by_c(a: String, b: String, c: String) -> GetRiotMessagingServiceV1MessageByAByBByC {
     GetRiotMessagingServiceV1MessageByAByBByC{a, b, c}
 }
 
@@ -109,7 +110,7 @@ impl IsApiRequest for GetRiotMessagingServiceV1MessageByAByBByCByD {
     fn get_url(&self) -> String {format!("/riot-messaging-service/v1/message/{}/{}/{}/{}", self.a, self.b, self.c, self.d)}
 }
 
-pub fn get_riot_messaging_service_v_1_message_by_a_by_b_by_c_by_d(a: String, b: String, c: String, d: String) -> GetRiotMessagingServiceV1MessageByAByBByCByD {
+pub fn get_riot_messaging_service_v1_message_by_a_by_b_by_c_by_d(a: String, b: String, c: String, d: String) -> GetRiotMessagingServiceV1MessageByAByBByCByD {
     GetRiotMessagingServiceV1MessageByAByBByCByD{a, b, c, d}
 }
 
@@ -128,7 +129,7 @@ impl IsApiRequest for GetRiotMessagingServiceV1MessageByAByBByCByDByE {
     fn get_url(&self) -> String {format!("/riot-messaging-service/v1/message/{}/{}/{}/{}/{}", self.a, self.b, self.c, self.d, self.e)}
 }
 
-pub fn get_riot_messaging_service_v_1_message_by_a_by_b_by_c_by_d_by_e(a: String, b: String, c: String, d: String, e: String) -> GetRiotMessagingServiceV1MessageByAByBByCByDByE {
+pub fn get_riot_messaging_service_v1_message_by_a_by_b_by_c_by_d_by_e(a: String, b: String, c: String, d: String, e: String) -> GetRiotMessagingServiceV1MessageByAByBByCByDByE {
     GetRiotMessagingServiceV1MessageByAByBByCByDByE{a, b, c, d, e}
 }
 
@@ -148,7 +149,7 @@ impl IsApiRequest for GetRiotMessagingServiceV1MessageByAByBByCByDByEByF {
     fn get_url(&self) -> String {format!("/riot-messaging-service/v1/message/{}/{}/{}/{}/{}/{}", self.a, self.b, self.c, self.d, self.e, self.f)}
 }
 
-pub fn get_riot_messaging_service_v_1_message_by_a_by_b_by_c_by_d_by_e_by_f(a: String, b: String, c: String, d: String, e: String, f: String) -> GetRiotMessagingServiceV1MessageByAByBByCByDByEByF {
+pub fn get_riot_messaging_service_v1_message_by_a_by_b_by_c_by_d_by_e_by_f(a: String, b: String, c: String, d: String, e: String, f: String) -> GetRiotMessagingServiceV1MessageByAByBByCByDByEByF {
     GetRiotMessagingServiceV1MessageByAByBByCByDByEByF{a, b, c, d, e, f}
 }
 
@@ -161,7 +162,7 @@ impl IsApiRequest for GetRiotMessagingServiceV1Session {
     fn get_url(&self) -> String {"/riot-messaging-service/v1/session".to_string()}
 }
 
-pub fn get_riot_messaging_service_v_1_session() -> GetRiotMessagingServiceV1Session {
+pub fn get_riot_messaging_service_v1_session() -> GetRiotMessagingServiceV1Session {
     GetRiotMessagingServiceV1Session{}
 }
 
@@ -174,7 +175,7 @@ impl IsApiRequest for GetRiotMessagingServiceV1State {
     fn get_url(&self) -> String {"/riot-messaging-service/v1/state".to_string()}
 }
 
-pub fn get_riot_messaging_service_v_1_state() -> GetRiotMessagingServiceV1State {
+pub fn get_riot_messaging_service_v1_state() -> GetRiotMessagingServiceV1State {
     GetRiotMessagingServiceV1State{}
 }
 
@@ -192,7 +193,7 @@ impl IsApiRequest for PostRiotMessagingServiceV1Connect {
     }
 }
 
-pub fn post_riot_messaging_service_v_1_connect(body: String) -> PostRiotMessagingServiceV1Connect {
+pub fn post_riot_messaging_service_v1_connect(body: String) -> PostRiotMessagingServiceV1Connect {
     PostRiotMessagingServiceV1Connect{body}
 }
 
@@ -210,7 +211,7 @@ impl IsApiRequest for PostRiotMessagingServiceV1Entitlements {
     }
 }
 
-pub fn post_riot_messaging_service_v_1_entitlements(body: RiotMessagingServiceEntitlementsToken) -> PostRiotMessagingServiceV1Entitlements {
+pub fn post_riot_messaging_service_v1_entitlements(body: RiotMessagingServiceEntitlementsToken) -> PostRiotMessagingServiceV1Entitlements {
     PostRiotMessagingServiceV1Entitlements{body}
 }
 
@@ -220,6 +221,7 @@ pub fn post_riot_messaging_service_v_1_entitlements(body: RiotMessagingServiceEn
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct RiotMessagingServiceEntitlementsToken {
+    #[serde(rename = "accessToken")]
     pub access_token: String,
     pub token: String,
     pub subject: String,
@@ -233,6 +235,7 @@ pub struct RiotMessagingServiceEntitlementsToken {
 pub struct RiotMessagingServiceSession {
     pub state: RiotMessagingServiceState,
     pub token: String,
+    #[serde(rename = "tokenType")]
     pub token_type: RiotMessagingServiceTokenType,
 }
 
@@ -246,6 +249,7 @@ pub struct RmsMessage {
     pub version: String,
     pub timestamp: i64,
     pub payload: String,
+    #[serde(rename = "ackRequired")]
     pub ack_required: bool,
 }
 

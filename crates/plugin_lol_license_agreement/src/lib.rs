@@ -2,6 +2,7 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 use serde_json::{json, Value, to_value};
+use std::collections::hash_map::Values;
 use reqwest::Method;
 use common::IsApiRequest;
 
@@ -17,7 +18,7 @@ impl IsApiRequest for GetLolLicenseAgreementV1Agreement {
     fn get_url(&self) -> String {"/lol-license-agreement/v1/agreement".to_string()}
 }
 
-pub fn get_lol_license_agreement_v_1_agreement() -> GetLolLicenseAgreementV1Agreement {
+pub fn get_lol_license_agreement_v1_agreement() -> GetLolLicenseAgreementV1Agreement {
     GetLolLicenseAgreementV1Agreement{}
 }
 
@@ -30,7 +31,7 @@ impl IsApiRequest for GetLolLicenseAgreementV1Agreements {
     fn get_url(&self) -> String {"/lol-license-agreement/v1/agreements".to_string()}
 }
 
-pub fn get_lol_license_agreement_v_1_agreements() -> GetLolLicenseAgreementV1Agreements {
+pub fn get_lol_license_agreement_v1_agreements() -> GetLolLicenseAgreementV1Agreements {
     GetLolLicenseAgreementV1Agreements{}
 }
 
@@ -43,7 +44,7 @@ impl IsApiRequest for GetLolLicenseAgreementV1AllAgreements {
     fn get_url(&self) -> String {"/lol-license-agreement/v1/all-agreements".to_string()}
 }
 
-pub fn get_lol_license_agreement_v_1_all_agreements() -> GetLolLicenseAgreementV1AllAgreements {
+pub fn get_lol_license_agreement_v1_all_agreements() -> GetLolLicenseAgreementV1AllAgreements {
     GetLolLicenseAgreementV1AllAgreements{}
 }
 
@@ -56,7 +57,7 @@ impl IsApiRequest for GetLolLicenseAgreementV1PrivacyPolicy {
     fn get_url(&self) -> String {"/lol-license-agreement/v1/privacy-policy".to_string()}
 }
 
-pub fn get_lol_license_agreement_v_1_privacy_policy() -> GetLolLicenseAgreementV1PrivacyPolicy {
+pub fn get_lol_license_agreement_v1_privacy_policy() -> GetLolLicenseAgreementV1PrivacyPolicy {
     GetLolLicenseAgreementV1PrivacyPolicy{}
 }
 
@@ -69,7 +70,7 @@ impl IsApiRequest for GetLolLicenseAgreementV1ServeLocation {
     fn get_url(&self) -> String {"/lol-license-agreement/v1/serve-location".to_string()}
 }
 
-pub fn get_lol_license_agreement_v_1_serve_location() -> GetLolLicenseAgreementV1ServeLocation {
+pub fn get_lol_license_agreement_v1_serve_location() -> GetLolLicenseAgreementV1ServeLocation {
     GetLolLicenseAgreementV1ServeLocation{}
 }
 
@@ -80,11 +81,11 @@ pub struct PostLolLicenseAgreementV1AgreementsByIdAccept {
 
 impl IsApiRequest for PostLolLicenseAgreementV1AgreementsByIdAccept {
     const METHOD: Method = Method::POST;
-    type ReturnType = HashMap<String, String>;
+    type ReturnType = Value;
     fn get_url(&self) -> String {format!("/lol-license-agreement/v1/agreements/{}/accept", self.id)}
 }
 
-pub fn post_lol_license_agreement_v_1_agreements_by_id_accept(id: String) -> PostLolLicenseAgreementV1AgreementsByIdAccept {
+pub fn post_lol_license_agreement_v1_agreements_by_id_accept(id: String) -> PostLolLicenseAgreementV1AgreementsByIdAccept {
     PostLolLicenseAgreementV1AgreementsByIdAccept{id}
 }
 
@@ -95,11 +96,11 @@ pub struct PostLolLicenseAgreementV1AgreementsByIdDecline {
 
 impl IsApiRequest for PostLolLicenseAgreementV1AgreementsByIdDecline {
     const METHOD: Method = Method::POST;
-    type ReturnType = HashMap<String, String>;
+    type ReturnType = Value;
     fn get_url(&self) -> String {format!("/lol-license-agreement/v1/agreements/{}/decline", self.id)}
 }
 
-pub fn post_lol_license_agreement_v_1_agreements_by_id_decline(id: String) -> PostLolLicenseAgreementV1AgreementsByIdDecline {
+pub fn post_lol_license_agreement_v1_agreements_by_id_decline(id: String) -> PostLolLicenseAgreementV1AgreementsByIdDecline {
     PostLolLicenseAgreementV1AgreementsByIdDecline{id}
 }
 
@@ -110,6 +111,7 @@ pub fn post_lol_license_agreement_v_1_agreements_by_id_decline(id: String) -> Po
 #[serde(rename_all = "camelCase")]
 pub struct LolLicenseAgreementLicenseAgreement {
     pub id: String,
+    #[serde(rename = "licenseType")]
     pub license_type: LolLicenseAgreementLicenseAgreementType,
     pub text: String,
 }

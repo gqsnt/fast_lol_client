@@ -1,5 +1,6 @@
-use convert_case::{Case, Casing};
+// use convert_case::{Boundary, Case, Casing};
 use std::fmt;
+use convert_case::{Boundary, Case, Casing};
 use crate::generator::rust_type::RustType;
 
 #[derive(Debug, Clone)]
@@ -21,7 +22,7 @@ impl Parameter{
     }
 
     pub fn new(name: String, required: bool, type_: RustType) -> Parameter {
-        let mut rename = name.clone().replace("-", "_").to_case(Case::Snake);
+        let mut rename = name.clone().replace("-", "_").from_case(Case::Camel).without_boundaries(&[Boundary::UpperDigit]).to_case(Case::Snake);
         if crate::generator::utils::is_rust_keyword(&rename){
             rename = rename
                 .replace("+", "")

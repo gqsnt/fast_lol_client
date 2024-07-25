@@ -3,7 +3,7 @@ use iced::widget::{Column, combo_box, Container, container, pick_list, text};
 use serde_json::Value;
 use plugin_lol_chat::{LolChatConversationResource, LolChatFriendResource, LolChatUserResource};
 use crate::AppResult;
-
+use crate::assets::Assets;
 use crate::client::utils::perform_request;
 use crate::ui::application::AppState;
 use crate::ui::message::Message;
@@ -77,7 +77,7 @@ impl HasView for ChatView {
         }
         Command::none()
     }
-    fn view(connected_state: &ConnectedState) -> Container<'_, Message> {
+    fn view<'a>(connected_state: &'a ConnectedState, assets: &'a Assets) -> Container<'a, Message> {
         let pick_list = pick_list(
             &*connected_state.chat.conversations,
             connected_state.chat.selected_conversation.as_ref(),

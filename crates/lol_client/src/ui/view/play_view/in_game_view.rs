@@ -4,6 +4,7 @@ use iced::widget::{Column, Container, container, Row, text};
 use serde_json::Value;
 use plugin_lol_gameflow::LolGameflowGameflowPhase;
 use crate::AppResult;
+use crate::assets::Assets;
 use crate::client::apis;
 use crate::client::utils::perform_request;
 use crate::ui::application::AppState;
@@ -33,13 +34,13 @@ impl HasView for InGameView {
         if let AppState::Connected(connected_state) = state {
             match message {
                 InGameMessage::Reconnect => {
-                    return perform_request(connected_state, plugin_lol_gameflow::post_lol_gameflow_v_1_reconnect(), |r| Message::None);
+                    return perform_request(connected_state, plugin_lol_gameflow::post_lol_gameflow_v1_reconnect(), |r| Message::None);
                 }
             }
         }
         Command::none()
     }
-    fn view(connected_state: &ConnectedState) -> Container<'_, Message> {
+    fn view<'a>(connected_state: &'a ConnectedState, assets: &'a Assets) -> Container<'a, Message> {
         container(Column::new()
             .push(
                 text("In Game").size(25)

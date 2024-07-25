@@ -2,6 +2,7 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 use serde_json::{json, Value, to_value};
+use std::collections::hash_map::Values;
 use reqwest::Method;
 use common::IsApiRequest;
 
@@ -17,7 +18,7 @@ impl IsApiRequest for GetEntitlementsV1Token {
     fn get_url(&self) -> String {"/entitlements/v1/token".to_string()}
 }
 
-pub fn get_entitlements_v_1_token() -> GetEntitlementsV1Token {
+pub fn get_entitlements_v1_token() -> GetEntitlementsV1Token {
     GetEntitlementsV1Token{}
 }
 
@@ -27,6 +28,7 @@ pub fn get_entitlements_v_1_token() -> GetEntitlementsV1Token {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct EntitlementsToken {
+    #[serde(rename = "accessToken")]
     pub access_token: String,
     pub token: String,
     pub subject: String,

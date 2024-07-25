@@ -2,6 +2,7 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 use serde_json::{json, Value, to_value};
+use std::collections::hash_map::Values;
 use reqwest::Method;
 use common::IsApiRequest;
 
@@ -10,7 +11,7 @@ mod additional;
 // ENDPOINTS
 
 pub struct GetByPluginAssetsByPath {
-    // Download a backend asset
+    /// Download a backend asset
     pub plugin: String,
     pub path_: String,
     pub if_none_match: Option<String>,
@@ -18,12 +19,12 @@ pub struct GetByPluginAssetsByPath {
 
 impl IsApiRequest for GetByPluginAssetsByPath {
     const METHOD: Method = Method::GET;
-    type ReturnType = HashMap<String, String>;
+    type ReturnType = Value;
     fn get_url(&self) -> String {format!("/{}/assets/{}", self.plugin, self.path_)}
-    fn get_query_params(&self) -> Option<Value> {
-        Some(json!({
-            "if-none-match" : self.if_none_match,
-        }))
+    fn get_query(&self) -> Option<Vec<(String,String)>> {
+        Some(vec![
+            ("if-none-match".to_string(), serde_json::to_string(&self.if_none_match).unwrap())
+        ])
     }
 }
 
@@ -33,7 +34,7 @@ pub fn get_by_plugin_assets_by_path(plugin: String, path_: String, if_none_match
 
 
 pub struct GetPluginManagerV1ExternalPluginsAvailability {
-    // Get the status of the external plugin connection.
+    /// Get the status of the external plugin connection.
 
 }
 
@@ -43,13 +44,13 @@ impl IsApiRequest for GetPluginManagerV1ExternalPluginsAvailability {
     fn get_url(&self) -> String {"/plugin-manager/v1/external-plugins/availability".to_string()}
 }
 
-pub fn get_plugin_manager_v_1_external_plugins_availability() -> GetPluginManagerV1ExternalPluginsAvailability {
+pub fn get_plugin_manager_v1_external_plugins_availability() -> GetPluginManagerV1ExternalPluginsAvailability {
     GetPluginManagerV1ExternalPluginsAvailability{}
 }
 
 
 pub struct GetPluginManagerV1Status {
-    // Get the status of the plugin manager.
+    /// Get the status of the plugin manager.
 
 }
 
@@ -59,13 +60,13 @@ impl IsApiRequest for GetPluginManagerV1Status {
     fn get_url(&self) -> String {"/plugin-manager/v1/status".to_string()}
 }
 
-pub fn get_plugin_manager_v_1_status() -> GetPluginManagerV1Status {
+pub fn get_plugin_manager_v1_status() -> GetPluginManagerV1Status {
     GetPluginManagerV1Status{}
 }
 
 
 pub struct GetPluginManagerV2Descriptions {
-    // Get all plugin descriptions.
+    /// Get all plugin descriptions.
 
 }
 
@@ -75,13 +76,13 @@ impl IsApiRequest for GetPluginManagerV2Descriptions {
     fn get_url(&self) -> String {"/plugin-manager/v2/descriptions".to_string()}
 }
 
-pub fn get_plugin_manager_v_2_descriptions() -> GetPluginManagerV2Descriptions {
+pub fn get_plugin_manager_v2_descriptions() -> GetPluginManagerV2Descriptions {
     GetPluginManagerV2Descriptions{}
 }
 
 
 pub struct GetPluginManagerV2DescriptionsByPlugin {
-    // Get a plugin description.
+    /// Get a plugin description.
     pub plugin: String,
 }
 
@@ -91,13 +92,13 @@ impl IsApiRequest for GetPluginManagerV2DescriptionsByPlugin {
     fn get_url(&self) -> String {format!("/plugin-manager/v2/descriptions/{}", self.plugin)}
 }
 
-pub fn get_plugin_manager_v_2_descriptions_by_plugin(plugin: String) -> GetPluginManagerV2DescriptionsByPlugin {
+pub fn get_plugin_manager_v2_descriptions_by_plugin(plugin: String) -> GetPluginManagerV2DescriptionsByPlugin {
     GetPluginManagerV2DescriptionsByPlugin{plugin}
 }
 
 
 pub struct GetPluginManagerV2Plugins {
-    // Get diagnostic information for all plugins.
+    /// Get diagnostic information for all plugins.
 
 }
 
@@ -107,13 +108,13 @@ impl IsApiRequest for GetPluginManagerV2Plugins {
     fn get_url(&self) -> String {"/plugin-manager/v2/plugins".to_string()}
 }
 
-pub fn get_plugin_manager_v_2_plugins() -> GetPluginManagerV2Plugins {
+pub fn get_plugin_manager_v2_plugins() -> GetPluginManagerV2Plugins {
     GetPluginManagerV2Plugins{}
 }
 
 
 pub struct GetPluginManagerV2PluginsByPlugin {
-    // Get diagnostic information for a single plugin.
+    /// Get diagnostic information for a single plugin.
     pub plugin: String,
 }
 
@@ -123,29 +124,29 @@ impl IsApiRequest for GetPluginManagerV2PluginsByPlugin {
     fn get_url(&self) -> String {format!("/plugin-manager/v2/plugins/{}", self.plugin)}
 }
 
-pub fn get_plugin_manager_v_2_plugins_by_plugin(plugin: String) -> GetPluginManagerV2PluginsByPlugin {
+pub fn get_plugin_manager_v2_plugins_by_plugin(plugin: String) -> GetPluginManagerV2PluginsByPlugin {
     GetPluginManagerV2PluginsByPlugin{plugin}
 }
 
 
 pub struct GetPluginManagerV3PluginsManifest {
-    // Get the plugin manifest.
+    /// Get the plugin manifest.
 
 }
 
 impl IsApiRequest for GetPluginManagerV3PluginsManifest {
     const METHOD: Method = Method::GET;
-    type ReturnType = HashMap<String, String>;
+    type ReturnType = Value;
     fn get_url(&self) -> String {"/plugin-manager/v3/plugins-manifest".to_string()}
 }
 
-pub fn get_plugin_manager_v_3_plugins_manifest() -> GetPluginManagerV3PluginsManifest {
+pub fn get_plugin_manager_v3_plugins_manifest() -> GetPluginManagerV3PluginsManifest {
     GetPluginManagerV3PluginsManifest{}
 }
 
 
 pub struct HeadByPluginAssetsByPath {
-    // Download the header for a backend asset
+    /// Download the header for a backend asset
     pub plugin: String,
     pub path_: String,
     pub if_none_match: Option<String>,
@@ -153,12 +154,12 @@ pub struct HeadByPluginAssetsByPath {
 
 impl IsApiRequest for HeadByPluginAssetsByPath {
     const METHOD: Method = Method::HEAD;
-    type ReturnType = HashMap<String, String>;
+    type ReturnType = Value;
     fn get_url(&self) -> String {format!("/{}/assets/{}", self.plugin, self.path_)}
-    fn get_query_params(&self) -> Option<Value> {
-        Some(json!({
-            "if-none-match" : self.if_none_match,
-        }))
+    fn get_query(&self) -> Option<Vec<(String,String)>> {
+        Some(vec![
+            ("if-none-match".to_string(), serde_json::to_string(&self.if_none_match).unwrap())
+        ])
     }
 }
 
@@ -173,6 +174,7 @@ pub fn head_by_plugin_assets_by_path(plugin: String, path_: String, if_none_matc
 #[serde(rename_all = "camelCase")]
 pub struct ExternalPluginsResource {
     pub state: ExternalPluginsAvailability,
+    #[serde(rename = "errorString")]
     pub error_string: String,
 }
 
@@ -181,7 +183,9 @@ pub struct ExternalPluginsResource {
 #[serde(rename_all = "camelCase")]
 pub struct PluginDescriptionResource {
     pub name: String,
+    #[serde(rename = "riotMeta")]
     pub riot_meta: PluginMetadataResource,
+    #[serde(rename = "pluginDependencies")]
     pub plugin_dependencies: Vec<String>,
 }
 
@@ -196,14 +200,18 @@ pub struct PluginManagerResource {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct PluginMetadataResource {
+    #[serde(rename = "type")]
     pub type_: String,
     pub subtype: String,
     pub app: String,
     pub feature: String,
     pub mock: String,
+    #[serde(rename = "hasBundledAssets")]
     pub has_bundled_assets: bool,
+    #[serde(rename = "globalAssetBundles")]
     pub global_asset_bundles: Vec<String>,
-    pub per_locale_asset_bundles: HashMap<String, HashMap<String, String>>,
+    #[serde(rename = "perLocaleAssetBundles")]
+    pub per_locale_asset_bundles: HashMap<String, Value>,
     pub implements: Vec<String>,
     pub threading: PluginThreadingModel,
 }
@@ -212,17 +220,24 @@ pub struct PluginMetadataResource {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct PluginResource {
+    #[serde(rename = "fullName")]
     pub full_name: String,
+    #[serde(rename = "shortName")]
     pub short_name: String,
     pub supertype: String,
     pub subtype: String,
     pub app: String,
     pub feature: String,
+    #[serde(rename = "threadingModel")]
     pub threading_model: String,
+    #[serde(rename = "assetBundleNames")]
     pub asset_bundle_names: Vec<String>,
+    #[serde(rename = "mountedAssetBundles")]
     pub mounted_asset_bundles: HashMap<String, String>,
+    #[serde(rename = "orderWadFileMounted")]
     pub order_wad_file_mounted: i32,
     pub dependencies: Vec<PluginResourceContract>,
+    #[serde(rename = "implementedContracts")]
     pub implemented_contracts: Vec<PluginResourceContract>,
 }
 
@@ -230,6 +245,7 @@ pub struct PluginResource {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct PluginResourceContract {
+    #[serde(rename = "fullName")]
     pub full_name: String,
 }
 

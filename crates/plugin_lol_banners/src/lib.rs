@@ -2,6 +2,7 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 use serde_json::{json, Value, to_value};
+use std::collections::hash_map::Values;
 use reqwest::Method;
 use common::IsApiRequest;
 
@@ -17,7 +18,7 @@ impl IsApiRequest for GetLolBannersV1CurrentSummonerFlags {
     fn get_url(&self) -> String {"/lol-banners/v1/current-summoner/flags".to_string()}
 }
 
-pub fn get_lol_banners_v_1_current_summoner_flags() -> GetLolBannersV1CurrentSummonerFlags {
+pub fn get_lol_banners_v1_current_summoner_flags() -> GetLolBannersV1CurrentSummonerFlags {
     GetLolBannersV1CurrentSummonerFlags{}
 }
 
@@ -30,7 +31,7 @@ impl IsApiRequest for GetLolBannersV1CurrentSummonerFlagsEquipped {
     fn get_url(&self) -> String {"/lol-banners/v1/current-summoner/flags/equipped".to_string()}
 }
 
-pub fn get_lol_banners_v_1_current_summoner_flags_equipped() -> GetLolBannersV1CurrentSummonerFlagsEquipped {
+pub fn get_lol_banners_v1_current_summoner_flags_equipped() -> GetLolBannersV1CurrentSummonerFlagsEquipped {
     GetLolBannersV1CurrentSummonerFlagsEquipped{}
 }
 
@@ -43,7 +44,7 @@ impl IsApiRequest for GetLolBannersV1CurrentSummonerFramesEquipped {
     fn get_url(&self) -> String {"/lol-banners/v1/current-summoner/frames/equipped".to_string()}
 }
 
-pub fn get_lol_banners_v_1_current_summoner_frames_equipped() -> GetLolBannersV1CurrentSummonerFramesEquipped {
+pub fn get_lol_banners_v1_current_summoner_frames_equipped() -> GetLolBannersV1CurrentSummonerFramesEquipped {
     GetLolBannersV1CurrentSummonerFramesEquipped{}
 }
 
@@ -58,7 +59,7 @@ impl IsApiRequest for GetLolBannersV1PlayersByPuuidFlagsEquipped {
     fn get_url(&self) -> String {format!("/lol-banners/v1/players/{}/flags/equipped", self.puuid)}
 }
 
-pub fn get_lol_banners_v_1_players_by_puuid_flags_equipped(puuid: String) -> GetLolBannersV1PlayersByPuuidFlagsEquipped {
+pub fn get_lol_banners_v1_players_by_puuid_flags_equipped(puuid: String) -> GetLolBannersV1PlayersByPuuidFlagsEquipped {
     GetLolBannersV1PlayersByPuuidFlagsEquipped{puuid}
 }
 
@@ -76,7 +77,7 @@ impl IsApiRequest for PutLolBannersV1CurrentSummonerFlagsEquipped {
     }
 }
 
-pub fn put_lol_banners_v_1_current_summoner_flags_equipped(body: LolBannersBannerFlag) -> PutLolBannersV1CurrentSummonerFlagsEquipped {
+pub fn put_lol_banners_v1_current_summoner_flags_equipped(body: LolBannersBannerFlag) -> PutLolBannersV1CurrentSummonerFlagsEquipped {
     PutLolBannersV1CurrentSummonerFlagsEquipped{body}
 }
 
@@ -86,10 +87,13 @@ pub fn put_lol_banners_v_1_current_summoner_flags_equipped(body: LolBannersBanne
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolBannersBannerFlag {
+    #[serde(rename = "itemId")]
     pub item_id: i32,
     pub theme: String,
     pub level: i64,
+    #[serde(rename = "seasonId")]
     pub season_id: i64,
+    #[serde(rename = "earnedDateIso8601")]
     pub earned_date_iso_8601: String,
 }
 

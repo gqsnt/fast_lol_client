@@ -2,6 +2,7 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 use serde_json::{json, Value, to_value};
+use std::collections::hash_map::Values;
 use reqwest::Method;
 use common::IsApiRequest;
 
@@ -19,7 +20,7 @@ impl IsApiRequest for DeleteLolLoadoutsV4LoadoutsById {
     fn get_url(&self) -> String {format!("/lol-loadouts/v4/loadouts/{}", self.id)}
 }
 
-pub fn delete_lol_loadouts_v_4_loadouts_by_id(id: String) -> DeleteLolLoadoutsV4LoadoutsById {
+pub fn delete_lol_loadouts_v4_loadouts_by_id(id: String) -> DeleteLolLoadoutsV4LoadoutsById {
     DeleteLolLoadoutsV4LoadoutsById{id}
 }
 
@@ -32,7 +33,7 @@ impl IsApiRequest for GetLolLoadoutsV1LoadoutsReady {
     fn get_url(&self) -> String {"/lol-loadouts/v1/loadouts-ready".to_string()}
 }
 
-pub fn get_lol_loadouts_v_1_loadouts_ready() -> GetLolLoadoutsV1LoadoutsReady {
+pub fn get_lol_loadouts_v1_loadouts_ready() -> GetLolLoadoutsV1LoadoutsReady {
     GetLolLoadoutsV1LoadoutsReady{}
 }
 
@@ -47,7 +48,7 @@ impl IsApiRequest for GetLolLoadoutsV4LoadoutsByLoadoutId {
     fn get_url(&self) -> String {format!("/lol-loadouts/v4/loadouts/{}", self.loadout_id)}
 }
 
-pub fn get_lol_loadouts_v_4_loadouts_by_loadout_id(loadout_id: String) -> GetLolLoadoutsV4LoadoutsByLoadoutId {
+pub fn get_lol_loadouts_v4_loadouts_by_loadout_id(loadout_id: String) -> GetLolLoadoutsV4LoadoutsByLoadoutId {
     GetLolLoadoutsV4LoadoutsByLoadoutId{loadout_id}
 }
 
@@ -60,7 +61,7 @@ impl IsApiRequest for GetLolLoadoutsV4LoadoutsScopeAccount {
     fn get_url(&self) -> String {"/lol-loadouts/v4/loadouts/scope/account".to_string()}
 }
 
-pub fn get_lol_loadouts_v_4_loadouts_scope_account() -> GetLolLoadoutsV4LoadoutsScopeAccount {
+pub fn get_lol_loadouts_v4_loadouts_scope_account() -> GetLolLoadoutsV4LoadoutsScopeAccount {
     GetLolLoadoutsV4LoadoutsScopeAccount{}
 }
 
@@ -76,7 +77,7 @@ impl IsApiRequest for GetLolLoadoutsV4LoadoutsScopeByScopeByScopeItemId {
     fn get_url(&self) -> String {format!("/lol-loadouts/v4/loadouts/scope/{}/{}", self.scope, self.scope_item_id)}
 }
 
-pub fn get_lol_loadouts_v_4_loadouts_scope_by_scope_by_scope_item_id(scope: String, scope_item_id: u32) -> GetLolLoadoutsV4LoadoutsScopeByScopeByScopeItemId {
+pub fn get_lol_loadouts_v4_loadouts_scope_by_scope_by_scope_item_id(scope: String, scope_item_id: u32) -> GetLolLoadoutsV4LoadoutsScopeByScopeByScopeItemId {
     GetLolLoadoutsV4LoadoutsScopeByScopeByScopeItemId{scope, scope_item_id}
 }
 
@@ -95,7 +96,7 @@ impl IsApiRequest for PatchLolLoadoutsV4LoadoutsById {
     }
 }
 
-pub fn patch_lol_loadouts_v_4_loadouts_by_id(id: String, body: LolLoadoutsUpdateLoadoutDto) -> PatchLolLoadoutsV4LoadoutsById {
+pub fn patch_lol_loadouts_v4_loadouts_by_id(id: String, body: LolLoadoutsUpdateLoadoutDto) -> PatchLolLoadoutsV4LoadoutsById {
     PatchLolLoadoutsV4LoadoutsById{id, body}
 }
 
@@ -113,7 +114,7 @@ impl IsApiRequest for PostLolLoadoutsV4Loadouts {
     }
 }
 
-pub fn post_lol_loadouts_v_4_loadouts(body: LolLoadoutsCreateLoadoutDto) -> PostLolLoadoutsV4Loadouts {
+pub fn post_lol_loadouts_v4_loadouts(body: LolLoadoutsCreateLoadoutDto) -> PostLolLoadoutsV4Loadouts {
     PostLolLoadoutsV4Loadouts{body}
 }
 
@@ -132,7 +133,7 @@ impl IsApiRequest for PutLolLoadoutsV4LoadoutsById {
     }
 }
 
-pub fn put_lol_loadouts_v_4_loadouts_by_id(id: String, body: LolLoadoutsUpdateLoadoutDto) -> PutLolLoadoutsV4LoadoutsById {
+pub fn put_lol_loadouts_v4_loadouts_by_id(id: String, body: LolLoadoutsUpdateLoadoutDto) -> PutLolLoadoutsV4LoadoutsById {
     PutLolLoadoutsV4LoadoutsById{id, body}
 }
 
@@ -143,9 +144,11 @@ pub fn put_lol_loadouts_v_4_loadouts_by_id(id: String, body: LolLoadoutsUpdateLo
 #[serde(rename_all = "camelCase")]
 pub struct LolLoadoutsCreateLoadoutDto {
     pub scope: String,
+    #[serde(rename = "itemId")]
     pub item_id: Option<u32>,
     pub name: String,
-    pub loadout: LolLoadoutsItemKey,
+    pub loadout: HashMap<String, LolLoadoutsItemKey>,
+    #[serde(rename = "refreshTime")]
     pub refresh_time: String,
 }
 
@@ -153,8 +156,11 @@ pub struct LolLoadoutsCreateLoadoutDto {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolLoadoutsItemKey {
+    #[serde(rename = "inventoryType")]
     pub inventory_type: String,
+    #[serde(rename = "contentId")]
     pub content_id: String,
+    #[serde(rename = "itemId")]
     pub item_id: i32,
 }
 
@@ -163,9 +169,11 @@ pub struct LolLoadoutsItemKey {
 #[serde(rename_all = "camelCase")]
 pub struct LolLoadoutsScopedLoadout {
     pub scope: String,
+    #[serde(rename = "itemId")]
     pub item_id: Option<u32>,
     pub name: String,
-    pub loadout: LolLoadoutsItemKey,
+    pub loadout: HashMap<String, LolLoadoutsItemKey>,
+    #[serde(rename = "refreshTime")]
     pub refresh_time: String,
     pub id: String,
 }
@@ -176,7 +184,7 @@ pub struct LolLoadoutsScopedLoadout {
 pub struct LolLoadoutsUpdateLoadoutDto {
     pub id: String,
     pub name: String,
-    pub loadout: LolLoadoutsItemKey,
+    pub loadout: HashMap<String, LolLoadoutsItemKey>,
 }
 
 

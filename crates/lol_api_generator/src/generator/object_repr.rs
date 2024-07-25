@@ -2,7 +2,7 @@ use std::collections::HashSet;
 use std::fmt;
 use crate::generator::param::Parameter;
 use crate::generator::rust_type::RustType;
-use crate::generator::utils::{crate_path_from_type_and_name, get_object_name_in_type};
+use crate::generator::utils::{get_object_name_in_type};
 
 
 pub const OBJECT_TEMPLATE: &str = r#"
@@ -42,7 +42,7 @@ impl Object{
 impl fmt::Display for Object {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         let mut attributes = self.fields.iter().map(|field| {
-            field.to_string()
+            field.to_string_with_rename()
         }).collect::<Vec<String>>().join("\n");
         if !attributes.is_empty(){
             attributes = format!("\n{}\n", attributes);

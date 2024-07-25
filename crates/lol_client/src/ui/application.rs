@@ -13,10 +13,12 @@ use crate::ui::view::nav_bar_view::{NavBarMessage, NavBarView};
 use crate::ui::view::play_view::{PlayMessage, PlayView};
 use crate::ui::view::profile_view::ProfileView;
 use plugin_lol_gameflow::LolGameflowGameflowPhase;
+use crate::assets::{Assets, load_assets};
 
 pub struct MainApp {
     state: AppState,
     config: Config,
+    assets:Assets,
 }
 
 
@@ -30,11 +32,12 @@ impl Application for MainApp {
     fn new(_flags: Self::Flags) -> (Self, Command<Message>) {
         let config = Config::new();
         (Self {
-            state: AppState::Disconnected,
+            state: AppState::LoadingAsset,
             config: config.clone(),
+            assets:Assets::default(),
         }, Command::batch(vec![
             load_material_font().map(Message::FontLoaded),
-            Command::perform(wait_client_available(config.riot_path.to_string()), Message::ConnectResult),
+            Command::perform(load_assets(), Message::AssetsLoaded),
         ]))
     }
 
@@ -49,7 +52,7 @@ impl Application for MainApp {
                 if let Ok(connected_state) = &mut result {
                     self.state = AppState::Connected(connected_state.clone());
                     Command::batch(vec![
-                        perform_request(connected_state, plugin_lol_gameflow::get_lol_gameflow_v_1_gameflow_phase(), Message::GamFlowResult),
+                        perform_request(connected_state, plugin_lol_gameflow::get_lol_gameflow_v1_gameflow_phase(), Message::GamFlowResult),
                     ])
                 } else {
                     Command::none()
@@ -57,7 +60,6 @@ impl Application for MainApp {
             }
             Message::Disconnected => {
                 self.state = AppState::Disconnected;
-                println!("Disconnected");
                 Command::perform(wait_client_available(self.config.riot_path.to_string()), Message::ConnectResult)
             }
             Message::GamFlowResult(r) => {
@@ -66,7 +68,7 @@ impl Application for MainApp {
                         connected_state.state = r.unwrap_or(LolGameflowGameflowPhase::None);
                         perform_game_flow_update(connected_state)
                     }
-                    AppState::Disconnected => Command::none()
+                   _ => Command::none(),
                 }
             }
             Message::NavBar(message) => NavBarView::update(message, &mut self.state),
@@ -75,6 +77,10 @@ impl Application for MainApp {
             Message::Profile(message) => ProfileView::update(message, &mut self.state),
             Message::FontLoaded(_) => { Command::none() }
             Message::None => {Command::none()}
+            Message::AssetsLoaded(assets) => {
+                self.assets = assets.unwrap();
+                Command::perform(async {}, |_|Message::Disconnected )
+            }
         }
     }
 
@@ -86,19 +92,22 @@ impl Application for MainApp {
                     AppState::Connected(connected_state) => {
                         container(Row::new()
                             .push(Column::new()
-                                .push(NavBarView::view(connected_state))
+                                .push(NavBarView::view(connected_state, &self.assets))
                                 .width(Length::Fixed(200.0))
                                 .height(Length::Fill)
                                 .spacing(30)
                             )
                             .push(match connected_state.nav_bar.state {
-                                NavBarMessage::Profile => { ProfileView::view(connected_state) }
-                                NavBarMessage::Play => { PlayView::view(connected_state) }
-                                NavBarMessage::Chat => { ChatView::view(connected_state) }
+                                NavBarMessage::Profile => { ProfileView::view(connected_state, &self.assets) }
+                                NavBarMessage::Play => { PlayView::view(connected_state, &self.assets) }
+                                NavBarMessage::Chat => { ChatView::view(connected_state, &self.assets) }
                             }).width(Length::Fill).height(Length::Fill))
                     }
                     AppState::Disconnected => {
                         container(Column::new().push(text("Waiting for client...")))
+                    }
+                    AppState::LoadingAsset => {
+                        container(Column::new().push(text("Loading asset...")))
                     }
                 })
             .spacing(20)
@@ -122,5 +131,6 @@ impl Application for MainApp {
 #[derive(Debug, Clone)]
 pub enum AppState {
     Connected(ConnectedState),
+    LoadingAsset,
     Disconnected,
 }

@@ -2,6 +2,7 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 use serde_json::{json, Value, to_value};
+use std::collections::hash_map::Values;
 use reqwest::Method;
 use common::IsApiRequest;
 
@@ -15,11 +16,11 @@ pub struct DeleteLolLeaverBusterV1NotificationsById {
 
 impl IsApiRequest for DeleteLolLeaverBusterV1NotificationsById {
     const METHOD: Method = Method::DELETE;
-    type ReturnType = HashMap<String, String>;
+    type ReturnType = Value;
     fn get_url(&self) -> String {format!("/lol-leaver-buster/v1/notifications/{}", self.id)}
 }
 
-pub fn delete_lol_leaver_buster_v_1_notifications_by_id(id: u32) -> DeleteLolLeaverBusterV1NotificationsById {
+pub fn delete_lol_leaver_buster_v1_notifications_by_id(id: u32) -> DeleteLolLeaverBusterV1NotificationsById {
     DeleteLolLeaverBusterV1NotificationsById{id}
 }
 
@@ -32,7 +33,7 @@ impl IsApiRequest for GetLolLeaverBusterV1Notifications {
     fn get_url(&self) -> String {"/lol-leaver-buster/v1/notifications".to_string()}
 }
 
-pub fn get_lol_leaver_buster_v_1_notifications() -> GetLolLeaverBusterV1Notifications {
+pub fn get_lol_leaver_buster_v1_notifications() -> GetLolLeaverBusterV1Notifications {
     GetLolLeaverBusterV1Notifications{}
 }
 
@@ -47,7 +48,7 @@ impl IsApiRequest for GetLolLeaverBusterV1NotificationsById {
     fn get_url(&self) -> String {format!("/lol-leaver-buster/v1/notifications/{}", self.id)}
 }
 
-pub fn get_lol_leaver_buster_v_1_notifications_by_id(id: u32) -> GetLolLeaverBusterV1NotificationsById {
+pub fn get_lol_leaver_buster_v1_notifications_by_id(id: u32) -> GetLolLeaverBusterV1NotificationsById {
     GetLolLeaverBusterV1NotificationsById{id}
 }
 
@@ -60,7 +61,7 @@ impl IsApiRequest for GetLolLeaverBusterV1RankedRestriction {
     fn get_url(&self) -> String {"/lol-leaver-buster/v1/ranked-restriction".to_string()}
 }
 
-pub fn get_lol_leaver_buster_v_1_ranked_restriction() -> GetLolLeaverBusterV1RankedRestriction {
+pub fn get_lol_leaver_buster_v1_ranked_restriction() -> GetLolLeaverBusterV1RankedRestriction {
     GetLolLeaverBusterV1RankedRestriction{}
 }
 
@@ -71,12 +72,19 @@ pub fn get_lol_leaver_buster_v_1_ranked_restriction() -> GetLolLeaverBusterV1Ran
 #[serde(rename_all = "camelCase")]
 pub struct LolLeaverBusterLeaverBusterNotificationResource {
     pub id: u32,
+    #[serde(rename = "msgId")]
     pub msg_id: String,
+    #[serde(rename = "accountId")]
     pub account_id: u64,
+    #[serde(rename = "type")]
     pub type_: LolLeaverBusterLeaverBusterNotificationType,
+    #[serde(rename = "punishedGamesRemaining")]
     pub punished_games_remaining: i32,
+    #[serde(rename = "queueLockoutTimerExpiryUtcMillisDiff")]
     pub queue_lockout_timer_expiry_utc_millis_diff: u64,
+    #[serde(rename = "isWinRequired")]
     pub is_win_required: bool,
+    #[serde(rename = "fromRms")]
     pub from_rms: bool,
 }
 
@@ -84,8 +92,11 @@ pub struct LolLeaverBusterLeaverBusterNotificationResource {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolLeaverBusterRankedRestrictionInfo {
+    #[serde(rename = "punishedGamesRemaining")]
     pub punished_games_remaining: i32,
+    #[serde(rename = "isWinRequired")]
     pub is_win_required: bool,
+    #[serde(rename = "needsAck")]
     pub needs_ack: bool,
 }
 

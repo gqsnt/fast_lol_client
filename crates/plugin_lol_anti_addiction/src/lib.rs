@@ -2,6 +2,7 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 use serde_json::{json, Value, to_value};
+use std::collections::hash_map::Values;
 use reqwest::Method;
 use common::IsApiRequest;
 
@@ -19,7 +20,7 @@ impl IsApiRequest for GetAntiAddictionV1PoliciesByPolicyTypeAntiAddictionState {
     fn get_url(&self) -> String {format!("/anti-addiction/v1/policies/{}/anti-addiction-state", serde_json::to_string(&self.policy_type).unwrap())}
 }
 
-pub fn get_anti_addiction_v_1_policies_by_policy_type_anti_addiction_state(policy_type: LolAntiAddictionPolicyType) -> GetAntiAddictionV1PoliciesByPolicyTypeAntiAddictionState {
+pub fn get_anti_addiction_v1_policies_by_policy_type_anti_addiction_state(policy_type: LolAntiAddictionPolicyType) -> GetAntiAddictionV1PoliciesByPolicyTypeAntiAddictionState {
     GetAntiAddictionV1PoliciesByPolicyTypeAntiAddictionState{policy_type}
 }
 
@@ -32,7 +33,7 @@ impl IsApiRequest for GetLolAntiAddictionV1AntiAddictionToken {
     fn get_url(&self) -> String {"/lol-anti-addiction/v1/anti-addiction-token".to_string()}
 }
 
-pub fn get_lol_anti_addiction_v_1_anti_addiction_token() -> GetLolAntiAddictionV1AntiAddictionToken {
+pub fn get_lol_anti_addiction_v1_anti_addiction_token() -> GetLolAntiAddictionV1AntiAddictionToken {
     GetLolAntiAddictionV1AntiAddictionToken{}
 }
 
@@ -42,8 +43,11 @@ pub fn get_lol_anti_addiction_v_1_anti_addiction_token() -> GetLolAntiAddictionV
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolAntiAddictionAntiAddictionState {
+    #[serde(rename = "policyType")]
     pub policy_type: LolAntiAddictionPolicyType,
+    #[serde(rename = "localizationKey")]
     pub localization_key: String,
+    #[serde(rename = "antiAddictionToken")]
     pub anti_addiction_token: String,
 }
 
@@ -51,6 +55,7 @@ pub struct LolAntiAddictionAntiAddictionState {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolAntiAddictionAntiAddictionToken {
+    #[serde(rename = "antiAddictionToken")]
     pub anti_addiction_token: String,
 }
 

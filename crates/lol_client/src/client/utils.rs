@@ -75,19 +75,19 @@ pub fn perform_game_flow_update(
     let current_state = connected_state.state.clone();
     println!("perform_states_update: {:?}", current_state);
     let mut all_commands = vec![
-        perform_request_with_delay(connected_state, plugin_lol_gameflow::get_lol_gameflow_v_1_gameflow_phase(), 500, |r| Message::GamFlowResult(r)),
-        perform_request(connected_state, plugin_lol_chat::get_lol_chat_v_1_conversations(),|r|ChatMessage::ConversationsResult(r).into())
+        perform_request_with_delay(connected_state, plugin_lol_gameflow::get_lol_gameflow_v1_gameflow_phase(), 500, |r| Message::GamFlowResult(r)),
+        perform_request(connected_state, plugin_lol_chat::get_lol_chat_v1_conversations(),|r|ChatMessage::ConversationsResult(r).into())
     ];
     match current_state {
         LolGameflowGameflowPhase::Lobby
         | LolGameflowGameflowPhase::Matchmaking
         | LolGameflowGameflowPhase::ReadyCheck => {
             all_commands.push(
-                perform_save_request(connected_state, "lol_lobby_session",plugin_lol_lobby::get_lol_lobby_v_2_lobby(), |r| LobbyMessage::LobbySessionResult(r).into())
+                perform_save_request(connected_state, "lol_lobby_session",plugin_lol_lobby::get_lol_lobby_v2_lobby(), |r| LobbyMessage::LobbySessionResult(r).into())
             );
             if matches!( current_state,LolGameflowGameflowPhase::Matchmaking| LolGameflowGameflowPhase::ReadyCheck ) {
                 all_commands.push(
-                    perform_save_request(connected_state, "lol_matchmaking_search_session",plugin_lol_matchmaking::get_lol_matchmaking_v_1_search(), |r| LobbyMessage::MatchmakingSearchResult(r).into())
+                    perform_save_request(connected_state, "lol_matchmaking_search_session",plugin_lol_matchmaking::get_lol_matchmaking_v1_search(), |r| LobbyMessage::MatchmakingSearchResult(r).into())
                 );
             } else {
                 connected_state.play.lobby_state.matchmaking_session = None;
@@ -95,7 +95,7 @@ pub fn perform_game_flow_update(
         }
         LolGameflowGameflowPhase::ChampSelect => {
             all_commands.push(
-                perform_request(connected_state, plugin_lol_champ_select::get_lol_champ_select_v_1_session(), |r| ChampSelectMessage::ChampSelectSessionResult(r).into())
+                perform_save_request(connected_state, "lol_champ_select_session",plugin_lol_champ_select::get_lol_champ_select_v1_session(), |r| ChampSelectMessage::ChampSelectSessionResult(r).into())
             );
         }
         LolGameflowGameflowPhase::GameStart

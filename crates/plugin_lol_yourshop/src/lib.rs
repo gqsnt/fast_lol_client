@@ -2,6 +2,7 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 use serde_json::{json, Value, to_value};
+use std::collections::hash_map::Values;
 use reqwest::Method;
 use common::IsApiRequest;
 
@@ -17,7 +18,7 @@ impl IsApiRequest for GetLolYourshopV1HasPermissions {
     fn get_url(&self) -> String {"/lol-yourshop/v1/has-permissions".to_string()}
 }
 
-pub fn get_lol_yourshop_v_1_has_permissions() -> GetLolYourshopV1HasPermissions {
+pub fn get_lol_yourshop_v1_has_permissions() -> GetLolYourshopV1HasPermissions {
     GetLolYourshopV1HasPermissions{}
 }
 
@@ -30,7 +31,7 @@ impl IsApiRequest for GetLolYourshopV1Modal {
     fn get_url(&self) -> String {"/lol-yourshop/v1/modal".to_string()}
 }
 
-pub fn get_lol_yourshop_v_1_modal() -> GetLolYourshopV1Modal {
+pub fn get_lol_yourshop_v1_modal() -> GetLolYourshopV1Modal {
     GetLolYourshopV1Modal{}
 }
 
@@ -43,7 +44,7 @@ impl IsApiRequest for GetLolYourshopV1Offers {
     fn get_url(&self) -> String {"/lol-yourshop/v1/offers".to_string()}
 }
 
-pub fn get_lol_yourshop_v_1_offers() -> GetLolYourshopV1Offers {
+pub fn get_lol_yourshop_v1_offers() -> GetLolYourshopV1Offers {
     GetLolYourshopV1Offers{}
 }
 
@@ -56,7 +57,7 @@ impl IsApiRequest for GetLolYourshopV1Ready {
     fn get_url(&self) -> String {"/lol-yourshop/v1/ready".to_string()}
 }
 
-pub fn get_lol_yourshop_v_1_ready() -> GetLolYourshopV1Ready {
+pub fn get_lol_yourshop_v1_ready() -> GetLolYourshopV1Ready {
     GetLolYourshopV1Ready{}
 }
 
@@ -69,7 +70,7 @@ impl IsApiRequest for GetLolYourshopV1Status {
     fn get_url(&self) -> String {"/lol-yourshop/v1/status".to_string()}
 }
 
-pub fn get_lol_yourshop_v_1_status() -> GetLolYourshopV1Status {
+pub fn get_lol_yourshop_v1_status() -> GetLolYourshopV1Status {
     GetLolYourshopV1Status{}
 }
 
@@ -82,7 +83,7 @@ impl IsApiRequest for GetLolYourshopV1Themed {
     fn get_url(&self) -> String {"/lol-yourshop/v1/themed".to_string()}
 }
 
-pub fn get_lol_yourshop_v_1_themed() -> GetLolYourshopV1Themed {
+pub fn get_lol_yourshop_v1_themed() -> GetLolYourshopV1Themed {
     GetLolYourshopV1Themed{}
 }
 
@@ -97,7 +98,7 @@ impl IsApiRequest for PostLolYourshopV1OffersByIdPurchase {
     fn get_url(&self) -> String {format!("/lol-yourshop/v1/offers/{}/purchase", self.id)}
 }
 
-pub fn post_lol_yourshop_v_1_offers_by_id_purchase(id: String) -> PostLolYourshopV1OffersByIdPurchase {
+pub fn post_lol_yourshop_v1_offers_by_id_purchase(id: String) -> PostLolYourshopV1OffersByIdPurchase {
     PostLolYourshopV1OffersByIdPurchase{id}
 }
 
@@ -112,7 +113,7 @@ impl IsApiRequest for PostLolYourshopV1OffersByIdReveal {
     fn get_url(&self) -> String {format!("/lol-yourshop/v1/offers/{}/reveal", self.id)}
 }
 
-pub fn post_lol_yourshop_v_1_offers_by_id_reveal(id: String) -> PostLolYourshopV1OffersByIdReveal {
+pub fn post_lol_yourshop_v1_offers_by_id_reveal(id: String) -> PostLolYourshopV1OffersByIdReveal {
     PostLolYourshopV1OffersByIdReveal{id}
 }
 
@@ -130,7 +131,7 @@ impl IsApiRequest for PostLolYourshopV1Permissions {
     }
 }
 
-pub fn post_lol_yourshop_v_1_permissions(body: LolYourshopPlayerPermissions) -> PostLolYourshopV1Permissions {
+pub fn post_lol_yourshop_v1_permissions(body: LolYourshopPlayerPermissions) -> PostLolYourshopV1Permissions {
     PostLolYourshopV1Permissions{body}
 }
 
@@ -140,6 +141,7 @@ pub fn post_lol_yourshop_v_1_permissions(body: LolYourshopPlayerPermissions) -> 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolYourshopPlayerPermissions {
+    #[serde(rename = "useData")]
     pub use_data: String,
 }
 
@@ -147,10 +149,15 @@ pub struct LolYourshopPlayerPermissions {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolYourshopPurchaseItem {
+    #[serde(rename = "offerId")]
     pub offer_id: String,
+    #[serde(rename = "inventoryType")]
     pub inventory_type: String,
+    #[serde(rename = "itemId")]
     pub item_id: i32,
+    #[serde(rename = "pricePaid")]
     pub price_paid: i64,
+    #[serde(rename = "orderId")]
     pub order_id: String,
 }
 
@@ -167,15 +174,22 @@ pub struct LolYourshopPurchaseResponse {
 #[serde(rename_all = "camelCase")]
 pub struct LolYourshopUiOffer {
     pub id: String,
+    #[serde(rename = "originalPrice")]
     pub original_price: i64,
+    #[serde(rename = "discountPrice")]
     pub discount_price: i64,
+    #[serde(rename = "type")]
     pub type_: String,
+    #[serde(rename = "skinName")]
     pub skin_name: String,
+    #[serde(rename = "championId")]
     pub champion_id: i32,
+    #[serde(rename = "skinId")]
     pub skin_id: i32,
     pub owned: bool,
     pub revealed: bool,
     pub purchasing: bool,
+    #[serde(rename = "expirationDate")]
     pub expiration_date: String,
 }
 
@@ -183,9 +197,12 @@ pub struct LolYourshopUiOffer {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolYourshopUiStatus {
+    #[serde(rename = "hubEnabled")]
     pub hub_enabled: bool,
     pub name: String,
+    #[serde(rename = "startTime")]
     pub start_time: String,
+    #[serde(rename = "endTime")]
     pub end_time: String,
 }
 

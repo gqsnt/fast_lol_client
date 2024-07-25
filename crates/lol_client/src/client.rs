@@ -1,3 +1,8 @@
+pub mod client_type;
+pub mod utils;
+pub mod apis;
+
+
 use std::path::PathBuf;
 
 use base64::Engine;
@@ -44,13 +49,13 @@ impl LolClient {
         if let Some(body) = request.get_body() {
             request_builder = request_builder.json(&body)
         }
-        if let Some(query) = request.get_query_params() {
+        if let Some(query) = request.get_query() {
             request_builder = request_builder.query(&query)
         }
         let response = request_builder
             .send()
-            .await
-            .map_err(|e| AppError::DisconnectedError(e.to_string()))?;
+            .await.unwrap();
+            //.map_err(|e| AppError::DisconnectedError(e.to_string()))?;
 
         if !response.status().is_success(){
             return Err(AppError::ApiRequestError(format!("API request failed with status: {:?}", response.text().await?)));

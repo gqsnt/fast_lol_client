@@ -1,5 +1,6 @@
-use openapiv3::{ArrayType, ParameterData, ParameterSchemaOrContent, ReferenceOr, SchemaKind, StatusCode};
 use convert_case::{Case, Casing};
+use openapiv3::{ArrayType, ParameterData, ParameterSchemaOrContent, ReferenceOr, SchemaKind, StatusCode};
+// use convert_case::{Boundary, Case, Casing};
 use syn::parse::{Parser, ParseStream};
 use syn::Ident;
 use regex::Regex;
@@ -13,10 +14,10 @@ pub fn get_object_name_in_type(type_:&RustType) -> Option<String>{
             Some(object.clone())
         }
         RustType::Array(inner) => {
-            if let RustType::Object(Some(name)) = *inner.clone(){
-                return Some(name.clone());
-            }
-            None
+            get_object_name_in_type(inner)
+        }
+        RustType::HashMap(inner) => {
+            get_object_name_in_type(inner)
         }
         _ => {
             None
@@ -173,12 +174,6 @@ pub fn extract_version_number(s: &str) -> Option<String> {
     } else {
         None
     }
-}
-
-
-pub fn crate_path_from_type_and_name(type_: &str, name: &str) -> String {
-    let lower_name = name.to_case(Case::Snake);
-    format!("crate::{}::{}::{}", type_,lower_name, name)
 }
 
 

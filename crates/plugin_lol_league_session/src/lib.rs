@@ -2,6 +2,7 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 use serde_json::{json, Value, to_value};
+use std::collections::hash_map::Values;
 use reqwest::Method;
 use common::IsApiRequest;
 
@@ -17,7 +18,7 @@ impl IsApiRequest for GetLolLeagueSessionV1LeagueSessionToken {
     fn get_url(&self) -> String {"/lol-league-session/v1/league-session-token".to_string()}
 }
 
-pub fn get_lol_league_session_v_1_league_session_token() -> GetLolLeagueSessionV1LeagueSessionToken {
+pub fn get_lol_league_session_v1_league_session_token() -> GetLolLeagueSessionV1LeagueSessionToken {
     GetLolLeagueSessionV1LeagueSessionToken{}
 }
 

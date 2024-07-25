@@ -2,6 +2,7 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 use serde_json::{json, Value, to_value};
+use std::collections::hash_map::Values;
 use reqwest::Method;
 use common::IsApiRequest;
 
@@ -10,7 +11,7 @@ mod additional;
 // ENDPOINTS
 
 pub struct GetProcessControlV1Process {
-    // Returns information about the process-control.
+    /// Returns information about the process-control.
 
 }
 
@@ -20,13 +21,13 @@ impl IsApiRequest for GetProcessControlV1Process {
     fn get_url(&self) -> String {"/process-control/v1/process".to_string()}
 }
 
-pub fn get_process_control_v_1_process() -> GetProcessControlV1Process {
+pub fn get_process_control_v1_process() -> GetProcessControlV1Process {
     GetProcessControlV1Process{}
 }
 
 
 pub struct PostProcessControlV1ProcessQuit {
-    // Quits the application.
+    /// Quits the application.
 
 }
 
@@ -36,7 +37,7 @@ impl IsApiRequest for PostProcessControlV1ProcessQuit {
     fn get_url(&self) -> String {"/process-control/v1/process/quit".to_string()}
 }
 
-pub fn post_process_control_v_1_process_quit() -> PostProcessControlV1ProcessQuit {
+pub fn post_process_control_v1_process_quit() -> PostProcessControlV1ProcessQuit {
     PostProcessControlV1ProcessQuit{}
 }
 

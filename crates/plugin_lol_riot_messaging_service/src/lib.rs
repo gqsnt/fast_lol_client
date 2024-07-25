@@ -2,6 +2,7 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 use serde_json::{json, Value, to_value};
+use std::collections::hash_map::Values;
 use reqwest::Method;
 use common::IsApiRequest;
 
@@ -15,11 +16,11 @@ pub struct DeleteLolRmsV1ChampionMasteryLeaveupUpdateById {
 
 impl IsApiRequest for DeleteLolRmsV1ChampionMasteryLeaveupUpdateById {
     const METHOD: Method = Method::DELETE;
-    type ReturnType = HashMap<String, String>;
+    type ReturnType = Value;
     fn get_url(&self) -> String {format!("/lol-rms/v1/champion-mastery-leaveup-update/{}", self.id)}
 }
 
-pub fn delete_lol_rms_v_1_champion_mastery_leaveup_update_by_id(id: u64) -> DeleteLolRmsV1ChampionMasteryLeaveupUpdateById {
+pub fn delete_lol_rms_v1_champion_mastery_leaveup_update_by_id(id: u64) -> DeleteLolRmsV1ChampionMasteryLeaveupUpdateById {
     DeleteLolRmsV1ChampionMasteryLeaveupUpdateById{id}
 }
 
@@ -32,7 +33,7 @@ impl IsApiRequest for GetLolRmsV1ChampionMasteryLeaveupUpdate {
     fn get_url(&self) -> String {"/lol-rms/v1/champion-mastery-leaveup-update".to_string()}
 }
 
-pub fn get_lol_rms_v_1_champion_mastery_leaveup_update() -> GetLolRmsV1ChampionMasteryLeaveupUpdate {
+pub fn get_lol_rms_v1_champion_mastery_leaveup_update() -> GetLolRmsV1ChampionMasteryLeaveupUpdate {
     GetLolRmsV1ChampionMasteryLeaveupUpdate{}
 }
 
@@ -44,8 +45,11 @@ pub fn get_lol_rms_v_1_champion_mastery_leaveup_update() -> GetLolRmsV1ChampionM
 pub struct LolRiotMessagingServiceChampionMasteryLevelUp {
     pub id: u64,
     pub puuid: String,
+    #[serde(rename = "championId")]
     pub champion_id: i32,
+    #[serde(rename = "hasLeveledUp")]
     pub has_leveled_up: bool,
+    #[serde(rename = "championLevel")]
     pub champion_level: i64,
 }
 

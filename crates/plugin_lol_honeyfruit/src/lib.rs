@@ -2,6 +2,7 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 use serde_json::{json, Value, to_value};
+use std::collections::hash_map::Values;
 use reqwest::Method;
 use common::IsApiRequest;
 
@@ -13,11 +14,11 @@ pub struct DeleteLolHoneyfruitV1AccountClaimMigration {}
 
 impl IsApiRequest for DeleteLolHoneyfruitV1AccountClaimMigration {
     const METHOD: Method = Method::DELETE;
-    type ReturnType = HashMap<String, String>;
+    type ReturnType = Value;
     fn get_url(&self) -> String {"/lol-honeyfruit/v1/account-claim/migration".to_string()}
 }
 
-pub fn delete_lol_honeyfruit_v_1_account_claim_migration() -> DeleteLolHoneyfruitV1AccountClaimMigration {
+pub fn delete_lol_honeyfruit_v1_account_claim_migration() -> DeleteLolHoneyfruitV1AccountClaimMigration {
     DeleteLolHoneyfruitV1AccountClaimMigration{}
 }
 
@@ -32,7 +33,7 @@ impl IsApiRequest for GetLolHoneyfruitV1AccountClaimAccountStatusByPuuid {
     fn get_url(&self) -> String {format!("/lol-honeyfruit/v1/account-claim/account-status/{}", self.puuid)}
 }
 
-pub fn get_lol_honeyfruit_v_1_account_claim_account_status_by_puuid(puuid: String) -> GetLolHoneyfruitV1AccountClaimAccountStatusByPuuid {
+pub fn get_lol_honeyfruit_v1_account_claim_account_status_by_puuid(puuid: String) -> GetLolHoneyfruitV1AccountClaimAccountStatusByPuuid {
     GetLolHoneyfruitV1AccountClaimAccountStatusByPuuid{puuid}
 }
 
@@ -45,7 +46,7 @@ impl IsApiRequest for GetLolHoneyfruitV1AccountClaimAutoDismiss {
     fn get_url(&self) -> String {"/lol-honeyfruit/v1/account-claim/auto-dismiss".to_string()}
 }
 
-pub fn get_lol_honeyfruit_v_1_account_claim_auto_dismiss() -> GetLolHoneyfruitV1AccountClaimAutoDismiss {
+pub fn get_lol_honeyfruit_v1_account_claim_auto_dismiss() -> GetLolHoneyfruitV1AccountClaimAutoDismiss {
     GetLolHoneyfruitV1AccountClaimAutoDismiss{}
 }
 
@@ -58,7 +59,7 @@ impl IsApiRequest for GetLolHoneyfruitV1AccountClaimMigration {
     fn get_url(&self) -> String {"/lol-honeyfruit/v1/account-claim/migration".to_string()}
 }
 
-pub fn get_lol_honeyfruit_v_1_account_claim_migration() -> GetLolHoneyfruitV1AccountClaimMigration {
+pub fn get_lol_honeyfruit_v1_account_claim_migration() -> GetLolHoneyfruitV1AccountClaimMigration {
     GetLolHoneyfruitV1AccountClaimMigration{}
 }
 
@@ -71,7 +72,7 @@ impl IsApiRequest for GetLolHoneyfruitV1LinkingSettingsButtonAvailable {
     fn get_url(&self) -> String {"/lol-honeyfruit/v1/linking-settings-button-available".to_string()}
 }
 
-pub fn get_lol_honeyfruit_v_1_linking_settings_button_available() -> GetLolHoneyfruitV1LinkingSettingsButtonAvailable {
+pub fn get_lol_honeyfruit_v1_linking_settings_button_available() -> GetLolHoneyfruitV1LinkingSettingsButtonAvailable {
     GetLolHoneyfruitV1LinkingSettingsButtonAvailable{}
 }
 
@@ -84,7 +85,7 @@ impl IsApiRequest for GetLolHoneyfruitV1VngPublisherSettings {
     fn get_url(&self) -> String {"/lol-honeyfruit/v1/vng-publisher-settings".to_string()}
 }
 
-pub fn get_lol_honeyfruit_v_1_vng_publisher_settings() -> GetLolHoneyfruitV1VngPublisherSettings {
+pub fn get_lol_honeyfruit_v1_vng_publisher_settings() -> GetLolHoneyfruitV1VngPublisherSettings {
     GetLolHoneyfruitV1VngPublisherSettings{}
 }
 
@@ -97,7 +98,7 @@ impl IsApiRequest for PostLolHoneyfruitV1AccountClaimLinkingRedirect {
     fn get_url(&self) -> String {"/lol-honeyfruit/v1/account-claim/linking-redirect".to_string()}
 }
 
-pub fn post_lol_honeyfruit_v_1_account_claim_linking_redirect() -> PostLolHoneyfruitV1AccountClaimLinkingRedirect {
+pub fn post_lol_honeyfruit_v1_account_claim_linking_redirect() -> PostLolHoneyfruitV1AccountClaimLinkingRedirect {
     PostLolHoneyfruitV1AccountClaimLinkingRedirect{}
 }
 
@@ -110,7 +111,7 @@ impl IsApiRequest for PostLolHoneyfruitV1AccountClaimMigration {
     fn get_url(&self) -> String {"/lol-honeyfruit/v1/account-claim/migration".to_string()}
 }
 
-pub fn post_lol_honeyfruit_v_1_account_claim_migration() -> PostLolHoneyfruitV1AccountClaimMigration {
+pub fn post_lol_honeyfruit_v1_account_claim_migration() -> PostLolHoneyfruitV1AccountClaimMigration {
     PostLolHoneyfruitV1AccountClaimMigration{}
 }
 
@@ -119,11 +120,11 @@ pub struct PostLolHoneyfruitV1VngPublisherSettings {}
 
 impl IsApiRequest for PostLolHoneyfruitV1VngPublisherSettings {
     const METHOD: Method = Method::POST;
-    type ReturnType = HashMap<String, String>;
+    type ReturnType = Value;
     fn get_url(&self) -> String {"/lol-honeyfruit/v1/vng-publisher-settings".to_string()}
 }
 
-pub fn post_lol_honeyfruit_v_1_vng_publisher_settings() -> PostLolHoneyfruitV1VngPublisherSettings {
+pub fn post_lol_honeyfruit_v1_vng_publisher_settings() -> PostLolHoneyfruitV1VngPublisherSettings {
     PostLolHoneyfruitV1VngPublisherSettings{}
 }
 
@@ -134,14 +135,14 @@ pub struct PutLolHoneyfruitV1AccountClaimAutoDismiss {
 
 impl IsApiRequest for PutLolHoneyfruitV1AccountClaimAutoDismiss {
     const METHOD: Method = Method::PUT;
-    type ReturnType = HashMap<String, String>;
+    type ReturnType = Value;
     fn get_url(&self) -> String {"/lol-honeyfruit/v1/account-claim/auto-dismiss".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
     }
 }
 
-pub fn put_lol_honeyfruit_v_1_account_claim_auto_dismiss(body: bool) -> PutLolHoneyfruitV1AccountClaimAutoDismiss {
+pub fn put_lol_honeyfruit_v1_account_claim_auto_dismiss(body: bool) -> PutLolHoneyfruitV1AccountClaimAutoDismiss {
     PutLolHoneyfruitV1AccountClaimAutoDismiss{body}
 }
 

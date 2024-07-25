@@ -2,6 +2,7 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 use serde_json::{json, Value, to_value};
+use std::collections::hash_map::Values;
 use reqwest::Method;
 use common::IsApiRequest;
 
@@ -17,7 +18,7 @@ impl IsApiRequest for GetLolAccountVerificationV1IsVerified {
     fn get_url(&self) -> String {"/lol-account-verification/v1/is-verified".to_string()}
 }
 
-pub fn get_lol_account_verification_v_1_is_verified() -> GetLolAccountVerificationV1IsVerified {
+pub fn get_lol_account_verification_v1_is_verified() -> GetLolAccountVerificationV1IsVerified {
     GetLolAccountVerificationV1IsVerified{}
 }
 
@@ -30,7 +31,7 @@ impl IsApiRequest for GetLolAccountVerificationV1PhoneNumber {
     fn get_url(&self) -> String {"/lol-account-verification/v1/phone-number".to_string()}
 }
 
-pub fn get_lol_account_verification_v_1_phone_number() -> GetLolAccountVerificationV1PhoneNumber {
+pub fn get_lol_account_verification_v1_phone_number() -> GetLolAccountVerificationV1PhoneNumber {
     GetLolAccountVerificationV1PhoneNumber{}
 }
 
@@ -48,7 +49,7 @@ impl IsApiRequest for PostLolAccountVerificationV1ConfirmActivationPin {
     }
 }
 
-pub fn post_lol_account_verification_v_1_confirm_activation_pin(body: LolAccountVerificationConfirmActivationPinRequest) -> PostLolAccountVerificationV1ConfirmActivationPin {
+pub fn post_lol_account_verification_v1_confirm_activation_pin(body: LolAccountVerificationConfirmActivationPinRequest) -> PostLolAccountVerificationV1ConfirmActivationPin {
     PostLolAccountVerificationV1ConfirmActivationPin{body}
 }
 
@@ -66,7 +67,7 @@ impl IsApiRequest for PostLolAccountVerificationV1ConfirmDeactivationPin {
     }
 }
 
-pub fn post_lol_account_verification_v_1_confirm_deactivation_pin(body: LolAccountVerificationConfirmDeactivationPinRequest) -> PostLolAccountVerificationV1ConfirmDeactivationPin {
+pub fn post_lol_account_verification_v1_confirm_deactivation_pin(body: LolAccountVerificationConfirmDeactivationPinRequest) -> PostLolAccountVerificationV1ConfirmDeactivationPin {
     PostLolAccountVerificationV1ConfirmDeactivationPin{body}
 }
 
@@ -84,7 +85,7 @@ impl IsApiRequest for PostLolAccountVerificationV1SendActivationPin {
     }
 }
 
-pub fn post_lol_account_verification_v_1_send_activation_pin(body: LolAccountVerificationSendActivationPinRequest) -> PostLolAccountVerificationV1SendActivationPin {
+pub fn post_lol_account_verification_v1_send_activation_pin(body: LolAccountVerificationSendActivationPinRequest) -> PostLolAccountVerificationV1SendActivationPin {
     PostLolAccountVerificationV1SendActivationPin{body}
 }
 
@@ -97,7 +98,7 @@ impl IsApiRequest for PostLolAccountVerificationV1SendDeactivationPin {
     fn get_url(&self) -> String {"/lol-account-verification/v1/sendDeactivationPin".to_string()}
 }
 
-pub fn post_lol_account_verification_v_1_send_deactivation_pin() -> PostLolAccountVerificationV1SendDeactivationPin {
+pub fn post_lol_account_verification_v1_send_deactivation_pin() -> PostLolAccountVerificationV1SendDeactivationPin {
     PostLolAccountVerificationV1SendDeactivationPin{}
 }
 
@@ -107,6 +108,7 @@ pub fn post_lol_account_verification_v_1_send_deactivation_pin() -> PostLolAccou
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolAccountVerificationConfirmActivationPinRequest {
+    #[serde(rename = "oneTimePin")]
     pub one_time_pin: String,
 }
 
@@ -114,6 +116,7 @@ pub struct LolAccountVerificationConfirmActivationPinRequest {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolAccountVerificationConfirmDeactivationPinRequest {
+    #[serde(rename = "oneTimePin")]
     pub one_time_pin: String,
 }
 
@@ -130,7 +133,9 @@ pub struct LolAccountVerificationIsVerifiedResponse {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolAccountVerificationPhoneNumberObfuscated {
+    #[serde(rename = "countryCode")]
     pub country_code: String,
+    #[serde(rename = "endsWith")]
     pub ends_with: String,
     pub length: i32,
 }
@@ -141,6 +146,7 @@ pub struct LolAccountVerificationPhoneNumberObfuscated {
 pub struct LolAccountVerificationPhoneNumberResponse {
     pub data: LolAccountVerificationPhoneNumberResponseData,
     pub error: LolAccountVerificationResponseError,
+    #[serde(rename = "clientMessageId")]
     pub client_message_id: String,
 }
 
@@ -148,6 +154,7 @@ pub struct LolAccountVerificationPhoneNumberResponse {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolAccountVerificationPhoneNumberResponseData {
+    #[serde(rename = "phoneNumberObfuscated")]
     pub phone_number_obfuscated: LolAccountVerificationPhoneNumberObfuscated,
 }
 
@@ -155,6 +162,7 @@ pub struct LolAccountVerificationPhoneNumberResponseData {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolAccountVerificationResponseError {
+    #[serde(rename = "errorCode")]
     pub error_code: String,
     pub message: String,
 }
@@ -163,6 +171,7 @@ pub struct LolAccountVerificationResponseError {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolAccountVerificationSendActivationPinRequest {
+    #[serde(rename = "phoneNumber")]
     pub phone_number: String,
     pub locale: String,
 }

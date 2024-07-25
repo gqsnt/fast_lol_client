@@ -2,6 +2,7 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 use serde_json::{json, Value, to_value};
+use std::collections::hash_map::Values;
 use reqwest::Method;
 use common::IsApiRequest;
 
@@ -17,7 +18,7 @@ impl IsApiRequest for GetLolRegaliaV2Config {
     fn get_url(&self) -> String {"/lol-regalia/v2/config".to_string()}
 }
 
-pub fn get_lol_regalia_v_2_config() -> GetLolRegaliaV2Config {
+pub fn get_lol_regalia_v2_config() -> GetLolRegaliaV2Config {
     GetLolRegaliaV2Config{}
 }
 
@@ -30,7 +31,7 @@ impl IsApiRequest for GetLolRegaliaV2CurrentSummonerRegalia {
     fn get_url(&self) -> String {"/lol-regalia/v2/current-summoner/regalia".to_string()}
 }
 
-pub fn get_lol_regalia_v_2_current_summoner_regalia() -> GetLolRegaliaV2CurrentSummonerRegalia {
+pub fn get_lol_regalia_v2_current_summoner_regalia() -> GetLolRegaliaV2CurrentSummonerRegalia {
     GetLolRegaliaV2CurrentSummonerRegalia{}
 }
 
@@ -47,7 +48,7 @@ impl IsApiRequest for GetLolRegaliaV2SummonersBySummonerIdQueuesByQueuePositions
     fn get_url(&self) -> String {format!("/lol-regalia/v2/summoners/{}/queues/{}/positions/{}/regalia", self.summoner_id, self.queue, self.position)}
 }
 
-pub fn get_lol_regalia_v_2_summoners_by_summoner_id_queues_by_queue_positions_by_position_regalia(summoner_id: u64, queue: String, position: String) -> GetLolRegaliaV2SummonersBySummonerIdQueuesByQueuePositionsByPositionRegalia {
+pub fn get_lol_regalia_v2_summoners_by_summoner_id_queues_by_queue_positions_by_position_regalia(summoner_id: u64, queue: String, position: String) -> GetLolRegaliaV2SummonersBySummonerIdQueuesByQueuePositionsByPositionRegalia {
     GetLolRegaliaV2SummonersBySummonerIdQueuesByQueuePositionsByPositionRegalia{summoner_id, queue, position}
 }
 
@@ -63,7 +64,7 @@ impl IsApiRequest for GetLolRegaliaV2SummonersBySummonerIdQueuesByQueueRegalia {
     fn get_url(&self) -> String {format!("/lol-regalia/v2/summoners/{}/queues/{}/regalia", self.summoner_id, self.queue)}
 }
 
-pub fn get_lol_regalia_v_2_summoners_by_summoner_id_queues_by_queue_regalia(summoner_id: u64, queue: String) -> GetLolRegaliaV2SummonersBySummonerIdQueuesByQueueRegalia {
+pub fn get_lol_regalia_v2_summoners_by_summoner_id_queues_by_queue_regalia(summoner_id: u64, queue: String) -> GetLolRegaliaV2SummonersBySummonerIdQueuesByQueueRegalia {
     GetLolRegaliaV2SummonersBySummonerIdQueuesByQueueRegalia{summoner_id, queue}
 }
 
@@ -77,14 +78,14 @@ impl IsApiRequest for GetLolRegaliaV2SummonersBySummonerIdRegalia {
     const METHOD: Method = Method::GET;
     type ReturnType = LolRegaliaRegalia;
     fn get_url(&self) -> String {format!("/lol-regalia/v2/summoners/{}/regalia", self.summoner_id)}
-    fn get_query_params(&self) -> Option<Value> {
-        Some(json!({
-            "hovercard" : self.hovercard,
-        }))
+    fn get_query(&self) -> Option<Vec<(String,String)>> {
+        Some(vec![
+            ("hovercard".to_string(), serde_json::to_string(&self.hovercard).unwrap())
+        ])
     }
 }
 
-pub fn get_lol_regalia_v_2_summoners_by_summoner_id_regalia(summoner_id: u64, hovercard: bool) -> GetLolRegaliaV2SummonersBySummonerIdRegalia {
+pub fn get_lol_regalia_v2_summoners_by_summoner_id_regalia(summoner_id: u64, hovercard: bool) -> GetLolRegaliaV2SummonersBySummonerIdRegalia {
     GetLolRegaliaV2SummonersBySummonerIdRegalia{summoner_id, hovercard}
 }
 
@@ -99,7 +100,7 @@ impl IsApiRequest for GetLolRegaliaV2SummonersBySummonerIdRegaliaAsync {
     fn get_url(&self) -> String {format!("/lol-regalia/v2/summoners/{}/regalia/async", self.summoner_id)}
 }
 
-pub fn get_lol_regalia_v_2_summoners_by_summoner_id_regalia_async(summoner_id: u64) -> GetLolRegaliaV2SummonersBySummonerIdRegaliaAsync {
+pub fn get_lol_regalia_v2_summoners_by_summoner_id_regalia_async(summoner_id: u64) -> GetLolRegaliaV2SummonersBySummonerIdRegaliaAsync {
     GetLolRegaliaV2SummonersBySummonerIdRegaliaAsync{summoner_id}
 }
 
@@ -110,11 +111,11 @@ pub struct GetLolRegaliaV3InventoryByInventoryType {
 
 impl IsApiRequest for GetLolRegaliaV3InventoryByInventoryType {
     const METHOD: Method = Method::GET;
-    type ReturnType = LolRegaliaRegaliaInventoryItem;
+    type ReturnType = HashMap<String, LolRegaliaRegaliaInventoryItem>;
     fn get_url(&self) -> String {format!("/lol-regalia/v3/inventory/{}", self.inventory_type)}
 }
 
-pub fn get_lol_regalia_v_3_inventory_by_inventory_type(inventory_type: String) -> GetLolRegaliaV3InventoryByInventoryType {
+pub fn get_lol_regalia_v3_inventory_by_inventory_type(inventory_type: String) -> GetLolRegaliaV3InventoryByInventoryType {
     GetLolRegaliaV3InventoryByInventoryType{inventory_type}
 }
 
@@ -129,7 +130,7 @@ impl IsApiRequest for GetLolRegaliaV3SummonersBySummonerIdRegalia {
     fn get_url(&self) -> String {format!("/lol-regalia/v3/summoners/{}/regalia", self.summoner_id)}
 }
 
-pub fn get_lol_regalia_v_3_summoners_by_summoner_id_regalia(summoner_id: u64) -> GetLolRegaliaV3SummonersBySummonerIdRegalia {
+pub fn get_lol_regalia_v3_summoners_by_summoner_id_regalia(summoner_id: u64) -> GetLolRegaliaV3SummonersBySummonerIdRegalia {
     GetLolRegaliaV3SummonersBySummonerIdRegalia{summoner_id}
 }
 
@@ -147,7 +148,7 @@ impl IsApiRequest for PutLolRegaliaV2CurrentSummonerRegalia {
     }
 }
 
-pub fn put_lol_regalia_v_2_current_summoner_regalia(body: LolRegaliaRegaliaPreferences) -> PutLolRegaliaV2CurrentSummonerRegalia {
+pub fn put_lol_regalia_v2_current_summoner_regalia(body: LolRegaliaRegaliaPreferences) -> PutLolRegaliaV2CurrentSummonerRegalia {
     PutLolRegaliaV2CurrentSummonerRegalia{body}
 }
 
@@ -158,11 +159,17 @@ pub fn put_lol_regalia_v_2_current_summoner_regalia(body: LolRegaliaRegaliaPrefe
 #[serde(rename_all = "camelCase")]
 pub struct LolRegaliaGameDataRegalia {
     pub id: String,
+    #[serde(rename = "idSecondary")]
     pub id_secondary: String,
+    #[serde(rename = "assetPath")]
     pub asset_path: String,
+    #[serde(rename = "isSelectable")]
     pub is_selectable: bool,
+    #[serde(rename = "regaliaType")]
     pub regalia_type: String,
+    #[serde(rename = "localizedName")]
     pub localized_name: String,
+    #[serde(rename = "localizedDescription")]
     pub localized_description: String,
 }
 
@@ -170,12 +177,19 @@ pub struct LolRegaliaGameDataRegalia {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolRegaliaRegalia {
+    #[serde(rename = "profileIconId")]
     pub profile_icon_id: i32,
+    #[serde(rename = "crestType")]
     pub crest_type: String,
+    #[serde(rename = "bannerType")]
     pub banner_type: String,
+    #[serde(rename = "summonerLevel")]
     pub summoner_level: u32,
+    #[serde(rename = "lastSeasonHighestRank")]
     pub last_season_highest_rank: Option<String>,
+    #[serde(rename = "highestRankedEntry")]
     pub highest_ranked_entry: Option<LolRegaliaRegaliaRankedEntry>,
+    #[serde(rename = "selectedPrestigeCrest")]
     pub selected_prestige_crest: u8,
 }
 
@@ -183,6 +197,7 @@ pub struct LolRegaliaRegalia {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolRegaliaRegaliaAsync {
+    #[serde(rename = "md5")]
     pub md_5: String,
 }
 
@@ -190,7 +205,9 @@ pub struct LolRegaliaRegaliaAsync {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolRegaliaRegaliaFrontendConfig {
+    #[serde(rename = "hovercardEnabled")]
     pub hovercard_enabled: bool,
+    #[serde(rename = "selectionsEnabled")]
     pub selections_enabled: bool,
 }
 
@@ -199,7 +216,9 @@ pub struct LolRegaliaRegaliaFrontendConfig {
 #[serde(rename_all = "camelCase")]
 pub struct LolRegaliaRegaliaInventoryItem {
     pub items: Vec<LolRegaliaGameDataRegalia>,
+    #[serde(rename = "isOwned")]
     pub is_owned: bool,
+    #[serde(rename = "purchaseDate")]
     pub purchase_date: String,
 }
 
@@ -207,8 +226,11 @@ pub struct LolRegaliaRegaliaInventoryItem {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolRegaliaRegaliaPreferences {
+    #[serde(rename = "preferredCrestType")]
     pub preferred_crest_type: String,
+    #[serde(rename = "preferredBannerType")]
     pub preferred_banner_type: String,
+    #[serde(rename = "selectedPrestigeCrest")]
     pub selected_prestige_crest: u8,
 }
 
@@ -216,9 +238,11 @@ pub struct LolRegaliaRegaliaPreferences {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolRegaliaRegaliaRankedEntry {
+    #[serde(rename = "queueType")]
     pub queue_type: LolRegaliaLeagueQueueType,
     pub tier: String,
     pub division: LolRegaliaLeagueDivision,
+    #[serde(rename = "splitRewardLevel")]
     pub split_reward_level: i32,
 }
 
@@ -226,14 +250,23 @@ pub struct LolRegaliaRegaliaRankedEntry {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolRegaliaRegaliaWithPreferences {
+    #[serde(rename = "profileIconId")]
     pub profile_icon_id: i32,
+    #[serde(rename = "crestType")]
     pub crest_type: String,
+    #[serde(rename = "bannerType")]
     pub banner_type: String,
+    #[serde(rename = "preferredCrestType")]
     pub preferred_crest_type: String,
+    #[serde(rename = "preferredBannerType")]
     pub preferred_banner_type: String,
+    #[serde(rename = "selectedPrestigeCrest")]
     pub selected_prestige_crest: u8,
+    #[serde(rename = "summonerLevel")]
     pub summoner_level: u32,
+    #[serde(rename = "lastSeasonHighestRank")]
     pub last_season_highest_rank: Option<String>,
+    #[serde(rename = "highestRankedEntry")]
     pub highest_ranked_entry: Option<LolRegaliaRegaliaRankedEntry>,
 }
 

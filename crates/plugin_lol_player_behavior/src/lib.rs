@@ -2,6 +2,7 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 use serde_json::{json, Value, to_value};
+use std::collections::hash_map::Values;
 use reqwest::Method;
 use common::IsApiRequest;
 
@@ -13,11 +14,11 @@ pub struct DeleteLolPlayerBehaviorV1CodeOfConductNotification {}
 
 impl IsApiRequest for DeleteLolPlayerBehaviorV1CodeOfConductNotification {
     const METHOD: Method = Method::DELETE;
-    type ReturnType = HashMap<String, String>;
+    type ReturnType = Value;
     fn get_url(&self) -> String {"/lol-player-behavior/v1/code-of-conduct-notification".to_string()}
 }
 
-pub fn delete_lol_player_behavior_v_1_code_of_conduct_notification() -> DeleteLolPlayerBehaviorV1CodeOfConductNotification {
+pub fn delete_lol_player_behavior_v1_code_of_conduct_notification() -> DeleteLolPlayerBehaviorV1CodeOfConductNotification {
     DeleteLolPlayerBehaviorV1CodeOfConductNotification{}
 }
 
@@ -32,7 +33,7 @@ impl IsApiRequest for DeleteLolPlayerBehaviorV1ReporterFeedbackById {
     fn get_url(&self) -> String {format!("/lol-player-behavior/v1/reporter-feedback/{}", self.id)}
 }
 
-pub fn delete_lol_player_behavior_v_1_reporter_feedback_by_id(id: String) -> DeleteLolPlayerBehaviorV1ReporterFeedbackById {
+pub fn delete_lol_player_behavior_v1_reporter_feedback_by_id(id: String) -> DeleteLolPlayerBehaviorV1ReporterFeedbackById {
     DeleteLolPlayerBehaviorV1ReporterFeedbackById{id}
 }
 
@@ -45,7 +46,7 @@ impl IsApiRequest for GetLolPlayerBehaviorV1Ban {
     fn get_url(&self) -> String {"/lol-player-behavior/v1/ban".to_string()}
 }
 
-pub fn get_lol_player_behavior_v_1_ban() -> GetLolPlayerBehaviorV1Ban {
+pub fn get_lol_player_behavior_v1_ban() -> GetLolPlayerBehaviorV1Ban {
     GetLolPlayerBehaviorV1Ban{}
 }
 
@@ -58,7 +59,7 @@ impl IsApiRequest for GetLolPlayerBehaviorV1ChatRestriction {
     fn get_url(&self) -> String {"/lol-player-behavior/v1/chat-restriction".to_string()}
 }
 
-pub fn get_lol_player_behavior_v_1_chat_restriction() -> GetLolPlayerBehaviorV1ChatRestriction {
+pub fn get_lol_player_behavior_v1_chat_restriction() -> GetLolPlayerBehaviorV1ChatRestriction {
     GetLolPlayerBehaviorV1ChatRestriction{}
 }
 
@@ -71,7 +72,7 @@ impl IsApiRequest for GetLolPlayerBehaviorV1CodeOfConductNotification {
     fn get_url(&self) -> String {"/lol-player-behavior/v1/code-of-conduct-notification".to_string()}
 }
 
-pub fn get_lol_player_behavior_v_1_code_of_conduct_notification() -> GetLolPlayerBehaviorV1CodeOfConductNotification {
+pub fn get_lol_player_behavior_v1_code_of_conduct_notification() -> GetLolPlayerBehaviorV1CodeOfConductNotification {
     GetLolPlayerBehaviorV1CodeOfConductNotification{}
 }
 
@@ -84,7 +85,7 @@ impl IsApiRequest for GetLolPlayerBehaviorV1Config {
     fn get_url(&self) -> String {"/lol-player-behavior/v1/config".to_string()}
 }
 
-pub fn get_lol_player_behavior_v_1_config() -> GetLolPlayerBehaviorV1Config {
+pub fn get_lol_player_behavior_v1_config() -> GetLolPlayerBehaviorV1Config {
     GetLolPlayerBehaviorV1Config{}
 }
 
@@ -97,7 +98,7 @@ impl IsApiRequest for GetLolPlayerBehaviorV1CredibilityBehaviorWarnings {
     fn get_url(&self) -> String {"/lol-player-behavior/v1/credibility-behavior-warnings".to_string()}
 }
 
-pub fn get_lol_player_behavior_v_1_credibility_behavior_warnings() -> GetLolPlayerBehaviorV1CredibilityBehaviorWarnings {
+pub fn get_lol_player_behavior_v1_credibility_behavior_warnings() -> GetLolPlayerBehaviorV1CredibilityBehaviorWarnings {
     GetLolPlayerBehaviorV1CredibilityBehaviorWarnings{}
 }
 
@@ -110,7 +111,7 @@ impl IsApiRequest for GetLolPlayerBehaviorV1ReformCard {
     fn get_url(&self) -> String {"/lol-player-behavior/v1/reform-card".to_string()}
 }
 
-pub fn get_lol_player_behavior_v_1_reform_card() -> GetLolPlayerBehaviorV1ReformCard {
+pub fn get_lol_player_behavior_v1_reform_card() -> GetLolPlayerBehaviorV1ReformCard {
     GetLolPlayerBehaviorV1ReformCard{}
 }
 
@@ -123,7 +124,7 @@ impl IsApiRequest for GetLolPlayerBehaviorV1ReporterFeedback {
     fn get_url(&self) -> String {"/lol-player-behavior/v1/reporter-feedback".to_string()}
 }
 
-pub fn get_lol_player_behavior_v_1_reporter_feedback() -> GetLolPlayerBehaviorV1ReporterFeedback {
+pub fn get_lol_player_behavior_v1_reporter_feedback() -> GetLolPlayerBehaviorV1ReporterFeedback {
     GetLolPlayerBehaviorV1ReporterFeedback{}
 }
 
@@ -138,7 +139,7 @@ impl IsApiRequest for GetLolPlayerBehaviorV1ReporterFeedbackById {
     fn get_url(&self) -> String {format!("/lol-player-behavior/v1/reporter-feedback/{}", self.id)}
 }
 
-pub fn get_lol_player_behavior_v_1_reporter_feedback_by_id(id: String) -> GetLolPlayerBehaviorV1ReporterFeedbackById {
+pub fn get_lol_player_behavior_v1_reporter_feedback_by_id(id: String) -> GetLolPlayerBehaviorV1ReporterFeedbackById {
     GetLolPlayerBehaviorV1ReporterFeedbackById{id}
 }
 
@@ -151,7 +152,7 @@ impl IsApiRequest for GetLolPlayerBehaviorV2ReformCard {
     fn get_url(&self) -> String {"/lol-player-behavior/v2/reform-card".to_string()}
 }
 
-pub fn get_lol_player_behavior_v_2_reform_card() -> GetLolPlayerBehaviorV2ReformCard {
+pub fn get_lol_player_behavior_v2_reform_card() -> GetLolPlayerBehaviorV2ReformCard {
     GetLolPlayerBehaviorV2ReformCard{}
 }
 
@@ -164,7 +165,7 @@ impl IsApiRequest for GetLolPlayerBehaviorV2ReporterFeedback {
     fn get_url(&self) -> String {"/lol-player-behavior/v2/reporter-feedback".to_string()}
 }
 
-pub fn get_lol_player_behavior_v_2_reporter_feedback() -> GetLolPlayerBehaviorV2ReporterFeedback {
+pub fn get_lol_player_behavior_v2_reporter_feedback() -> GetLolPlayerBehaviorV2ReporterFeedback {
     GetLolPlayerBehaviorV2ReporterFeedback{}
 }
 
@@ -173,11 +174,11 @@ pub struct GetLolPlayerBehaviorV3ReformCards {}
 
 impl IsApiRequest for GetLolPlayerBehaviorV3ReformCards {
     const METHOD: Method = Method::GET;
-    type ReturnType = HashMap<String, String>;
+    type ReturnType = Value;
     fn get_url(&self) -> String {"/lol-player-behavior/v3/reform-cards".to_string()}
 }
 
-pub fn get_lol_player_behavior_v_3_reform_cards() -> GetLolPlayerBehaviorV3ReformCards {
+pub fn get_lol_player_behavior_v3_reform_cards() -> GetLolPlayerBehaviorV3ReformCards {
     GetLolPlayerBehaviorV3ReformCards{}
 }
 
@@ -192,7 +193,7 @@ impl IsApiRequest for PostLolPlayerBehaviorV2ReporterFeedbackByKey {
     fn get_url(&self) -> String {format!("/lol-player-behavior/v2/reporter-feedback/{}", self.key)}
 }
 
-pub fn post_lol_player_behavior_v_2_reporter_feedback_by_key(key: String) -> PostLolPlayerBehaviorV2ReporterFeedbackByKey {
+pub fn post_lol_player_behavior_v2_reporter_feedback_by_key(key: String) -> PostLolPlayerBehaviorV2ReporterFeedbackByKey {
     PostLolPlayerBehaviorV2ReporterFeedbackByKey{key}
 }
 
@@ -207,7 +208,7 @@ impl IsApiRequest for PutLolPlayerBehaviorV1AckCredibilityBehaviorWarningByMailI
     fn get_url(&self) -> String {format!("/lol-player-behavior/v1/ack-credibility-behavior-warning/{}", self.mail_id)}
 }
 
-pub fn put_lol_player_behavior_v_1_ack_credibility_behavior_warning_by_mail_id(mail_id: String) -> PutLolPlayerBehaviorV1AckCredibilityBehaviorWarningByMailId {
+pub fn put_lol_player_behavior_v1_ack_credibility_behavior_warning_by_mail_id(mail_id: String) -> PutLolPlayerBehaviorV1AckCredibilityBehaviorWarningByMailId {
     PutLolPlayerBehaviorV1AckCredibilityBehaviorWarningByMailId{mail_id}
 }
 
@@ -222,7 +223,7 @@ impl IsApiRequest for PutLolPlayerBehaviorV3ReformCardById {
     fn get_url(&self) -> String {format!("/lol-player-behavior/v3/reform-card/{}", self.id)}
 }
 
-pub fn put_lol_player_behavior_v_3_reform_card_by_id(id: String) -> PutLolPlayerBehaviorV3ReformCardById {
+pub fn put_lol_player_behavior_v3_reform_card_by_id(id: String) -> PutLolPlayerBehaviorV3ReformCardById {
     PutLolPlayerBehaviorV3ReformCardById{id}
 }
 
@@ -235,8 +236,11 @@ pub struct LolPlayerBehaviorBanNotification {
     pub id: u64,
     pub source: LolPlayerBehaviorNotificationSource,
     pub reason: String,
+    #[serde(rename = "timeUntilBanExpires")]
     pub time_until_ban_expires: u64,
+    #[serde(rename = "isPermaBan")]
     pub is_perma_ban: bool,
+    #[serde(rename = "displayReformCard")]
     pub display_reform_card: bool,
 }
 
@@ -251,7 +255,9 @@ pub struct LolPlayerBehaviorCodeOfConductNotification {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolPlayerBehaviorPlayerBehaviorConfig {
+    #[serde(rename = "IsLoaded")]
     pub is_loaded: bool,
+    #[serde(rename = "CodeOfConductEnabled")]
     pub code_of_conduct_enabled: bool,
 }
 
@@ -260,14 +266,22 @@ pub struct LolPlayerBehaviorPlayerBehaviorConfig {
 #[serde(rename_all = "camelCase")]
 pub struct LolPlayerBehaviorReformCard {
     pub id: u64,
+    #[serde(rename = "punishmentType")]
     pub punishment_type: String,
     pub reason: String,
+    #[serde(rename = "timeWhenPunishmentExpires")]
     pub time_when_punishment_expires: u64,
+    #[serde(rename = "punishmentLengthTime")]
     pub punishment_length_time: u64,
+    #[serde(rename = "punishmentLengthGames")]
     pub punishment_length_games: i64,
+    #[serde(rename = "restrictedChatGamesRemaining")]
     pub restricted_chat_games_remaining: i64,
+    #[serde(rename = "chatLogs")]
     pub chat_logs: Vec<String>,
+    #[serde(rename = "gameIds")]
     pub game_ids: Vec<u64>,
+    #[serde(rename = "playerFacingMessage")]
     pub player_facing_message: String,
 }
 
@@ -275,8 +289,11 @@ pub struct LolPlayerBehaviorReformCard {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolPlayerBehaviorReformCardChatLogs {
+    #[serde(rename = "preGameChatLogs")]
     pub pre_game_chat_logs: Vec<String>,
+    #[serde(rename = "inGameChatLogs")]
     pub in_game_chat_logs: Vec<String>,
+    #[serde(rename = "postGameChatLogs")]
     pub post_game_chat_logs: Vec<String>,
 }
 
@@ -285,13 +302,21 @@ pub struct LolPlayerBehaviorReformCardChatLogs {
 #[serde(rename_all = "camelCase")]
 pub struct LolPlayerBehaviorReformCardV2 {
     pub id: u64,
+    #[serde(rename = "punishmentType")]
     pub punishment_type: String,
+    #[serde(rename = "punishmentReason")]
     pub punishment_reason: String,
+    #[serde(rename = "punishedUntilDateMillis")]
     pub punished_until_date_millis: u64,
+    #[serde(rename = "punishmentLengthMillis")]
     pub punishment_length_millis: u64,
+    #[serde(rename = "punishmentLengthGames")]
     pub punishment_length_games: i64,
+    #[serde(rename = "punishedForReformCardChatLogs")]
     pub punished_for_reform_card_chat_logs: Vec<LolPlayerBehaviorReformCardChatLogs>,
+    #[serde(rename = "punishedForGameIds")]
     pub punished_for_game_ids: Vec<u64>,
+    #[serde(rename = "playerFacingMessage")]
     pub player_facing_message: String,
 }
 
@@ -300,8 +325,11 @@ pub struct LolPlayerBehaviorReformCardV2 {
 #[serde(rename_all = "camelCase")]
 pub struct LolPlayerBehaviorReporterFeedback {
     pub id: u64,
+    #[serde(rename = "accountId")]
     pub account_id: u64,
+    #[serde(rename = "messageId")]
     pub message_id: String,
+    #[serde(rename = "type")]
     pub type_: String,
 }
 
@@ -322,8 +350,11 @@ pub struct LolPlayerBehaviorReporterFeedbackMessage {
 pub struct LolPlayerBehaviorRestrictionNotification {
     pub id: u64,
     pub source: LolPlayerBehaviorNotificationSource,
+    #[serde(rename = "gamesRemaining")]
     pub games_remaining: i64,
+    #[serde(rename = "expirationMillis")]
     pub expiration_millis: u64,
+    #[serde(rename = "displayReformCard")]
     pub display_reform_card: bool,
 }
 

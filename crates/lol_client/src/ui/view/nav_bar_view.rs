@@ -1,6 +1,7 @@
 use iced::{Command, Length};
 use iced::widget::{Column, Container, container};
 use plugin_lol_gameflow::LolGameflowGameflowPhase;
+use crate::assets::Assets;
 use crate::ui::application::AppState;
 use crate::ui::message::Message;
 use crate::ui::state::{ConnectedState};
@@ -33,7 +34,7 @@ impl HasView for NavBarView {
         }
         Command::none()
     }
-    fn view(connected_state: &ConnectedState) -> Container<'_, Message> {
+    fn view<'a>(connected_state: &'a ConnectedState, assets: &'a Assets) -> Container<'a, Message> {
         let nav_bar_state = &connected_state.nav_bar;
         container(Column::new()
             .push(nav_button("Profile", get_message_if_not_already(NavBarMessage::Profile, nav_bar_state.state.clone())))

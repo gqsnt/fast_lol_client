@@ -2,6 +2,7 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 use serde_json::{json, Value, to_value};
+use std::collections::hash_map::Values;
 use reqwest::Method;
 use common::IsApiRequest;
 
@@ -22,7 +23,7 @@ impl IsApiRequest for PostPaymentsV1PmcStartUrl {
     }
 }
 
-pub fn post_payments_v_1_pmc_start_url(body: PaymentsFrontEndRequest) -> PostPaymentsV1PmcStartUrl {
+pub fn post_payments_v1_pmc_start_url(body: PaymentsFrontEndRequest) -> PostPaymentsV1PmcStartUrl {
     PostPaymentsV1PmcStartUrl{body}
 }
 
@@ -40,7 +41,7 @@ impl IsApiRequest for PostPaymentsV1UpdatePaymentTelemetryState {
     }
 }
 
-pub fn post_payments_v_1_update_payment_telemetry_state(body: PaymentsPaymentsTelemetryTransitions) -> PostPaymentsV1UpdatePaymentTelemetryState {
+pub fn post_payments_v1_update_payment_telemetry_state(body: PaymentsPaymentsTelemetryTransitions) -> PostPaymentsV1UpdatePaymentTelemetryState {
     PostPaymentsV1UpdatePaymentTelemetryState{body}
 }
 
@@ -50,14 +51,22 @@ pub fn post_payments_v_1_update_payment_telemetry_state(body: PaymentsPaymentsTe
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct PaymentsFrontEndRequest {
+    #[serde(rename = "isPrepaid")]
     pub is_prepaid: bool,
+    #[serde(rename = "localeId")]
     pub locale_id: String,
+    #[serde(rename = "summonerLevel")]
     pub summoner_level: i16,
+    #[serde(rename = "gifteeAccountId")]
     pub giftee_account_id: String,
+    #[serde(rename = "gifteeMessage")]
     pub giftee_message: String,
+    #[serde(rename = "rsoToken")]
     pub rso_token: String,
+    #[serde(rename = "usePmcSessions")]
     pub use_pmc_sessions: bool,
     pub game: String,
+    #[serde(rename = "openedFrom")]
     pub opened_from: String,
 }
 

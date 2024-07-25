@@ -2,6 +2,7 @@ use iced::Command;
 use iced::widget::{Column, Container, container, pick_list, text};
 use plugin_lol_game_queues::LolGameQueuesQueue;
 use plugin_lol_lobby::LolLobbyLobbyChangeGameDto;
+use crate::assets::Assets;
 use crate::client::apis;
 use crate::client::utils::perform_request;
 use crate::ui::application::AppState;
@@ -38,7 +39,7 @@ impl HasView for CreateLobbyCoopAiView {
                     if let Some(queue) = &connected_state.play.create_lobby_state.coop_ai_state.selected_queue {
                         return perform_request(
                             connected_state,
-                            plugin_lol_lobby::post_lol_lobby_v_2_lobby(
+                            plugin_lol_lobby::post_lol_lobby_v2_lobby(
                                 LolLobbyLobbyChangeGameDto {
                                     queue_id: queue.id,
                                     ..Default::default()
@@ -52,7 +53,7 @@ impl HasView for CreateLobbyCoopAiView {
         }
         Command::none()
     }
-    fn view(connected_state: &ConnectedState) -> Container<'_, Message> {
+    fn view<'a>(connected_state: &'a ConnectedState, assets: &'a Assets) -> Container<'a, Message> {
         container(Column::new()
             .push(text("Create Lobby Coop AI"))
             .push(pick_list(

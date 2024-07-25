@@ -2,6 +2,7 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 use serde_json::{json, Value, to_value};
+use std::collections::hash_map::Values;
 use reqwest::Method;
 use common::IsApiRequest;
 
@@ -19,7 +20,7 @@ impl IsApiRequest for DeleteLolPatchV1NotificationsById {
     fn get_url(&self) -> String {format!("/lol-patch/v1/notifications/{}", self.id)}
 }
 
-pub fn delete_lol_patch_v_1_notifications_by_id(id: String) -> DeleteLolPatchV1NotificationsById {
+pub fn delete_lol_patch_v1_notifications_by_id(id: String) -> DeleteLolPatchV1NotificationsById {
     DeleteLolPatchV1NotificationsById{id}
 }
 
@@ -32,7 +33,7 @@ impl IsApiRequest for GetLolPatchV1CheckingEnabled {
     fn get_url(&self) -> String {"/lol-patch/v1/checking-enabled".to_string()}
 }
 
-pub fn get_lol_patch_v_1_checking_enabled() -> GetLolPatchV1CheckingEnabled {
+pub fn get_lol_patch_v1_checking_enabled() -> GetLolPatchV1CheckingEnabled {
     GetLolPatchV1CheckingEnabled{}
 }
 
@@ -45,7 +46,7 @@ impl IsApiRequest for GetLolPatchV1Environment {
     fn get_url(&self) -> String {"/lol-patch/v1/environment".to_string()}
 }
 
-pub fn get_lol_patch_v_1_environment() -> GetLolPatchV1Environment {
+pub fn get_lol_patch_v1_environment() -> GetLolPatchV1Environment {
     GetLolPatchV1Environment{}
 }
 
@@ -58,7 +59,7 @@ impl IsApiRequest for GetLolPatchV1GameVersion {
     fn get_url(&self) -> String {"/lol-patch/v1/game-version".to_string()}
 }
 
-pub fn get_lol_patch_v_1_game_version() -> GetLolPatchV1GameVersion {
+pub fn get_lol_patch_v1_game_version() -> GetLolPatchV1GameVersion {
     GetLolPatchV1GameVersion{}
 }
 
@@ -71,7 +72,7 @@ impl IsApiRequest for GetLolPatchV1Notifications {
     fn get_url(&self) -> String {"/lol-patch/v1/notifications".to_string()}
 }
 
-pub fn get_lol_patch_v_1_notifications() -> GetLolPatchV1Notifications {
+pub fn get_lol_patch_v1_notifications() -> GetLolPatchV1Notifications {
     GetLolPatchV1Notifications{}
 }
 
@@ -84,7 +85,7 @@ impl IsApiRequest for GetLolPatchV1ProductsLeagueOfLegendsInstallLocation {
     fn get_url(&self) -> String {"/lol-patch/v1/products/league_of_legends/install-location".to_string()}
 }
 
-pub fn get_lol_patch_v_1_products_league_of_legends_install_location() -> GetLolPatchV1ProductsLeagueOfLegendsInstallLocation {
+pub fn get_lol_patch_v1_products_league_of_legends_install_location() -> GetLolPatchV1ProductsLeagueOfLegendsInstallLocation {
     GetLolPatchV1ProductsLeagueOfLegendsInstallLocation{}
 }
 
@@ -97,7 +98,7 @@ impl IsApiRequest for GetLolPatchV1ProductsLeagueOfLegendsState {
     fn get_url(&self) -> String {"/lol-patch/v1/products/league_of_legends/state".to_string()}
 }
 
-pub fn get_lol_patch_v_1_products_league_of_legends_state() -> GetLolPatchV1ProductsLeagueOfLegendsState {
+pub fn get_lol_patch_v1_products_league_of_legends_state() -> GetLolPatchV1ProductsLeagueOfLegendsState {
     GetLolPatchV1ProductsLeagueOfLegendsState{}
 }
 
@@ -110,7 +111,7 @@ impl IsApiRequest for GetLolPatchV1ProductsLeagueOfLegendsSupportedGameReleases 
     fn get_url(&self) -> String {"/lol-patch/v1/products/league_of_legends/supported-game-releases".to_string()}
 }
 
-pub fn get_lol_patch_v_1_products_league_of_legends_supported_game_releases() -> GetLolPatchV1ProductsLeagueOfLegendsSupportedGameReleases {
+pub fn get_lol_patch_v1_products_league_of_legends_supported_game_releases() -> GetLolPatchV1ProductsLeagueOfLegendsSupportedGameReleases {
     GetLolPatchV1ProductsLeagueOfLegendsSupportedGameReleases{}
 }
 
@@ -123,7 +124,7 @@ impl IsApiRequest for GetLolPatchV1Status {
     fn get_url(&self) -> String {"/lol-patch/v1/status".to_string()}
 }
 
-pub fn get_lol_patch_v_1_status() -> GetLolPatchV1Status {
+pub fn get_lol_patch_v1_status() -> GetLolPatchV1Status {
     GetLolPatchV1Status{}
 }
 
@@ -136,7 +137,7 @@ impl IsApiRequest for PostLolPatchV1ProductsLeagueOfLegendsDetectCorruptionReque
     fn get_url(&self) -> String {"/lol-patch/v1/products/league_of_legends/detect-corruption-request".to_string()}
 }
 
-pub fn post_lol_patch_v_1_products_league_of_legends_detect_corruption_request() -> PostLolPatchV1ProductsLeagueOfLegendsDetectCorruptionRequest {
+pub fn post_lol_patch_v1_products_league_of_legends_detect_corruption_request() -> PostLolPatchV1ProductsLeagueOfLegendsDetectCorruptionRequest {
     PostLolPatchV1ProductsLeagueOfLegendsDetectCorruptionRequest{}
 }
 
@@ -149,7 +150,7 @@ impl IsApiRequest for PostLolPatchV1ProductsLeagueOfLegendsPartialRepairRequest 
     fn get_url(&self) -> String {"/lol-patch/v1/products/league_of_legends/partial-repair-request".to_string()}
 }
 
-pub fn post_lol_patch_v_1_products_league_of_legends_partial_repair_request() -> PostLolPatchV1ProductsLeagueOfLegendsPartialRepairRequest {
+pub fn post_lol_patch_v1_products_league_of_legends_partial_repair_request() -> PostLolPatchV1ProductsLeagueOfLegendsPartialRepairRequest {
     PostLolPatchV1ProductsLeagueOfLegendsPartialRepairRequest{}
 }
 
@@ -162,7 +163,7 @@ impl IsApiRequest for PostLolPatchV1ProductsLeagueOfLegendsStartCheckingRequest 
     fn get_url(&self) -> String {"/lol-patch/v1/products/league_of_legends/start-checking-request".to_string()}
 }
 
-pub fn post_lol_patch_v_1_products_league_of_legends_start_checking_request() -> PostLolPatchV1ProductsLeagueOfLegendsStartCheckingRequest {
+pub fn post_lol_patch_v1_products_league_of_legends_start_checking_request() -> PostLolPatchV1ProductsLeagueOfLegendsStartCheckingRequest {
     PostLolPatchV1ProductsLeagueOfLegendsStartCheckingRequest{}
 }
 
@@ -175,7 +176,7 @@ impl IsApiRequest for PostLolPatchV1ProductsLeagueOfLegendsStartPatchingRequest 
     fn get_url(&self) -> String {"/lol-patch/v1/products/league_of_legends/start-patching-request".to_string()}
 }
 
-pub fn post_lol_patch_v_1_products_league_of_legends_start_patching_request() -> PostLolPatchV1ProductsLeagueOfLegendsStartPatchingRequest {
+pub fn post_lol_patch_v1_products_league_of_legends_start_patching_request() -> PostLolPatchV1ProductsLeagueOfLegendsStartPatchingRequest {
     PostLolPatchV1ProductsLeagueOfLegendsStartPatchingRequest{}
 }
 
@@ -188,7 +189,7 @@ impl IsApiRequest for PostLolPatchV1ProductsLeagueOfLegendsStopCheckingRequest {
     fn get_url(&self) -> String {"/lol-patch/v1/products/league_of_legends/stop-checking-request".to_string()}
 }
 
-pub fn post_lol_patch_v_1_products_league_of_legends_stop_checking_request() -> PostLolPatchV1ProductsLeagueOfLegendsStopCheckingRequest {
+pub fn post_lol_patch_v1_products_league_of_legends_stop_checking_request() -> PostLolPatchV1ProductsLeagueOfLegendsStopCheckingRequest {
     PostLolPatchV1ProductsLeagueOfLegendsStopCheckingRequest{}
 }
 
@@ -206,7 +207,7 @@ impl IsApiRequest for PostLolPatchV1ProductsLeagueOfLegendsStopPatchingRequest {
     }
 }
 
-pub fn post_lol_patch_v_1_products_league_of_legends_stop_patching_request(body: bool) -> PostLolPatchV1ProductsLeagueOfLegendsStopPatchingRequest {
+pub fn post_lol_patch_v1_products_league_of_legends_stop_patching_request(body: bool) -> PostLolPatchV1ProductsLeagueOfLegendsStopPatchingRequest {
     PostLolPatchV1ProductsLeagueOfLegendsStopPatchingRequest{body}
 }
 
@@ -224,7 +225,7 @@ impl IsApiRequest for PutLolPatchV1GamePatchUrl {
     }
 }
 
-pub fn put_lol_patch_v_1_game_patch_url(body: String) -> PutLolPatchV1GamePatchUrl {
+pub fn put_lol_patch_v1_game_patch_url(body: String) -> PutLolPatchV1GamePatchUrl {
     PutLolPatchV1GamePatchUrl{body}
 }
 
@@ -242,7 +243,7 @@ impl IsApiRequest for PutLolPatchV1Ux {
     }
 }
 
-pub fn put_lol_patch_v_1_ux(body: LolPatchUxResource) -> PutLolPatchV1Ux {
+pub fn put_lol_patch_v1_ux(body: LolPatchUxResource) -> PutLolPatchV1Ux {
     PutLolPatchV1Ux{body}
 }
 
@@ -260,9 +261,11 @@ pub struct LolPatchChunkingPatcherEnvironment {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolPatchComponentActionProgress {
+    #[serde(rename = "currentItem")]
     pub current_item: String,
     pub total: LolPatchComponentStateProgress,
     pub network: LolPatchComponentStateProgress,
+    #[serde(rename = "primaryWork")]
     pub primary_work: LolPatchComponentStateWorkType,
 }
 
@@ -272,9 +275,13 @@ pub struct LolPatchComponentActionProgress {
 pub struct LolPatchComponentState {
     pub id: String,
     pub action: LolPatchComponentStateAction,
+    #[serde(rename = "isUpToDate")]
     pub is_up_to_date: bool,
+    #[serde(rename = "isUpdateAvailable")]
     pub is_update_available: bool,
-    pub time_of_last_up_to_date_check_iso_8601: Option<String>,
+    #[serde(rename = "timeOfLastUpToDateCheckISO8601")]
+    pub time_of_last_up_to_date_check_iso8601: Option<String>,
+    #[serde(rename = "isCorrupted")]
     pub is_corrupted: bool,
     pub progress: Option<LolPatchComponentActionProgress>,
 }
@@ -283,8 +290,11 @@ pub struct LolPatchComponentState {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolPatchComponentStateProgress {
+    #[serde(rename = "bytesComplete")]
     pub bytes_complete: u64,
+    #[serde(rename = "bytesRequired")]
     pub bytes_required: u64,
+    #[serde(rename = "bytesPerSecond")]
     pub bytes_per_second: f64,
 }
 
@@ -292,7 +302,9 @@ pub struct LolPatchComponentStateProgress {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolPatchInstallPaths {
+    #[serde(rename = "gameInstallRoot")]
     pub game_install_root: String,
+    #[serde(rename = "gameExecutablePath")]
     pub game_executable_path: String,
 }
 
@@ -301,8 +313,9 @@ pub struct LolPatchInstallPaths {
 #[serde(rename_all = "camelCase")]
 pub struct LolPatchNotification {
     pub id: String,
+    #[serde(rename = "notificationId")]
     pub notification_id: LolPatchNotificationId,
-    pub data: HashMap<String, HashMap<String, String>>,
+    pub data: HashMap<String, Value>,
 }
 
 
@@ -319,10 +332,15 @@ pub struct LolPatchPatchSieveDownload {
 pub struct LolPatchProductState {
     pub id: String,
     pub action: LolPatchComponentStateAction,
+    #[serde(rename = "isUpToDate")]
     pub is_up_to_date: bool,
+    #[serde(rename = "isUpdateAvailable")]
     pub is_update_available: bool,
+    #[serde(rename = "isCorrupted")]
     pub is_corrupted: bool,
+    #[serde(rename = "isStopped")]
     pub is_stopped: bool,
+    #[serde(rename = "percentPatched")]
     pub percent_patched: f64,
     pub components: Vec<LolPatchComponentState>,
 }
@@ -331,6 +349,7 @@ pub struct LolPatchProductState {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolPatchStatus {
+    #[serde(rename = "connectedToPatchServer")]
     pub connected_to_patch_server: bool,
 }
 

@@ -2,6 +2,7 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 use serde_json::{json, Value, to_value};
+use std::collections::hash_map::Values;
 use reqwest::Method;
 use common::IsApiRequest;
 
@@ -17,14 +18,14 @@ impl IsApiRequest for GetLolRewardsV1Grants {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolRewardsRewardGrant>;
     fn get_url(&self) -> String {"/lol-rewards/v1/grants".to_string()}
-    fn get_query_params(&self) -> Option<Value> {
-        Some(json!({
-            "status" : self.status,
-        }))
+    fn get_query(&self) -> Option<Vec<(String,String)>> {
+        Some(vec![
+            ("status".to_string(), serde_json::to_string(&self.status).unwrap())
+        ])
     }
 }
 
-pub fn get_lol_rewards_v_1_grants(status: Option<LolRewardsGrantStatus>) -> GetLolRewardsV1Grants {
+pub fn get_lol_rewards_v1_grants(status: Option<LolRewardsGrantStatus>) -> GetLolRewardsV1Grants {
     GetLolRewardsV1Grants{status}
 }
 
@@ -37,14 +38,14 @@ impl IsApiRequest for GetLolRewardsV1Groups {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolRewardsSvcRewardGroup>;
     fn get_url(&self) -> String {"/lol-rewards/v1/groups".to_string()}
-    fn get_query_params(&self) -> Option<Value> {
-        Some(json!({
-            "types" : self.types,
-        }))
+    fn get_query(&self) -> Option<Vec<(String,String)>> {
+        Some(vec![
+            ("types".to_string(), serde_json::to_string(&self.types).unwrap())
+        ])
     }
 }
 
-pub fn get_lol_rewards_v_1_groups(types: Option<Vec<String>>) -> GetLolRewardsV1Groups {
+pub fn get_lol_rewards_v1_groups(types: Option<Vec<String>>) -> GetLolRewardsV1Groups {
     GetLolRewardsV1Groups{types}
 }
 
@@ -62,7 +63,7 @@ impl IsApiRequest for PatchLolRewardsV1GrantsView {
     }
 }
 
-pub fn patch_lol_rewards_v_1_grants_view(body: Vec<String>) -> PatchLolRewardsV1GrantsView {
+pub fn patch_lol_rewards_v1_grants_view(body: Vec<String>) -> PatchLolRewardsV1GrantsView {
     PatchLolRewardsV1GrantsView{body}
 }
 
@@ -81,7 +82,7 @@ impl IsApiRequest for PostLolRewardsV1GrantsByGrantIdSelect {
     }
 }
 
-pub fn post_lol_rewards_v_1_grants_by_grant_id_select(grant_id: String, body: LolRewardsSelectionRequestDto) -> PostLolRewardsV1GrantsByGrantIdSelect {
+pub fn post_lol_rewards_v1_grants_by_grant_id_select(grant_id: String, body: LolRewardsSelectionRequestDto) -> PostLolRewardsV1GrantsByGrantIdSelect {
     PostLolRewardsV1GrantsByGrantIdSelect{grant_id, body}
 }
 
@@ -99,7 +100,7 @@ impl IsApiRequest for PostLolRewardsV1RewardReplay {
     }
 }
 
-pub fn post_lol_rewards_v_1_reward_replay(body: String) -> PostLolRewardsV1RewardReplay {
+pub fn post_lol_rewards_v1_reward_replay(body: String) -> PostLolRewardsV1RewardReplay {
     PostLolRewardsV1RewardReplay{body}
 }
 
@@ -110,14 +111,14 @@ pub struct PostLolRewardsV1SelectBulk {
 
 impl IsApiRequest for PostLolRewardsV1SelectBulk {
     const METHOD: Method = Method::POST;
-    type ReturnType = LolRewardsSelectGrantStatusResponse;
+    type ReturnType = HashMap<String, LolRewardsSelectGrantStatusResponse>;
     fn get_url(&self) -> String {"/lol-rewards/v1/select-bulk".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
     }
 }
 
-pub fn post_lol_rewards_v_1_select_bulk(body: Vec<LolRewardsSelectionRequestDto>) -> PostLolRewardsV1SelectBulk {
+pub fn post_lol_rewards_v1_select_bulk(body: Vec<LolRewardsSelectionRequestDto>) -> PostLolRewardsV1SelectBulk {
     PostLolRewardsV1SelectBulk{body}
 }
 
@@ -127,7 +128,9 @@ pub fn post_lol_rewards_v_1_select_bulk(body: Vec<LolRewardsSelectionRequestDto>
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolRewardsGrantorDescription {
+    #[serde(rename = "appName")]
     pub app_name: String,
+    #[serde(rename = "entityId")]
     pub entity_id: String,
 }
 
@@ -136,9 +139,12 @@ pub struct LolRewardsGrantorDescription {
 #[serde(rename_all = "camelCase")]
 pub struct LolRewardsReward {
     pub id: String,
+    #[serde(rename = "itemId")]
     pub item_id: String,
+    #[serde(rename = "itemType")]
     pub item_type: String,
     pub quantity: i32,
+    #[serde(rename = "fulfillmentSource")]
     pub fulfillment_source: String,
     pub media: HashMap<String, String>,
     pub localizations: HashMap<String, String>,
@@ -149,6 +155,7 @@ pub struct LolRewardsReward {
 #[serde(rename_all = "camelCase")]
 pub struct LolRewardsRewardGrant {
     pub info: LolRewardsSvcRewardGrant,
+    #[serde(rename = "rewardGroup")]
     pub reward_group: LolRewardsSvcRewardGroup,
 }
 
@@ -156,7 +163,9 @@ pub struct LolRewardsRewardGrant {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolRewardsSelectionRequestDto {
+    #[serde(rename = "grantId")]
     pub grant_id: String,
+    #[serde(rename = "rewardGroupId")]
     pub reward_group_id: String,
     pub selections: Vec<String>,
 }
@@ -165,7 +174,9 @@ pub struct LolRewardsSelectionRequestDto {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolRewardsSelectionStrategyConfig {
+    #[serde(rename = "minSelectionsAllowed")]
     pub min_selections_allowed: u32,
+    #[serde(rename = "maxSelectionsAllowed")]
     pub max_selections_allowed: u32,
 }
 
@@ -174,24 +185,35 @@ pub struct LolRewardsSelectionStrategyConfig {
 #[serde(rename_all = "camelCase")]
 pub struct LolRewardsSvcRewardGrant {
     pub id: String,
+    #[serde(rename = "granteeId")]
     pub grantee_id: String,
+    #[serde(rename = "rewardGroupId")]
     pub reward_group_id: String,
+    #[serde(rename = "dateCreated")]
     pub date_created: String,
     pub status: LolRewardsGrantStatus,
+    #[serde(rename = "grantElements")]
     pub grant_elements: Vec<LolRewardsSvcRewardGrantElement>,
+    #[serde(rename = "selectedIds")]
     pub selected_ids: Vec<String>,
     pub viewed: bool,
+    #[serde(rename = "grantorDescription")]
     pub grantor_description: LolRewardsGrantorDescription,
-    pub message_parameters: HashMap<String, HashMap<String, String>>,
+    #[serde(rename = "messageParameters")]
+    pub message_parameters: HashMap<String, Value>,
 }
 
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolRewardsSvcRewardGrantElement {
+    #[serde(rename = "elementId")]
     pub element_id: String,
+    #[serde(rename = "itemId")]
     pub item_id: String,
+    #[serde(rename = "itemType")]
     pub item_type: String,
+    #[serde(rename = "fulfillmentSource")]
     pub fulfillment_source: String,
     pub status: LolRewardsRewardStatus,
     pub quantity: i32,
@@ -204,15 +226,20 @@ pub struct LolRewardsSvcRewardGrantElement {
 #[serde(rename_all = "camelCase")]
 pub struct LolRewardsSvcRewardGroup {
     pub id: String,
+    #[serde(rename = "productId")]
     pub product_id: String,
     pub types: Vec<String>,
     pub rewards: Vec<LolRewardsReward>,
+    #[serde(rename = "childRewardGroupIds")]
     pub child_reward_group_ids: Vec<String>,
+    #[serde(rename = "rewardStrategy")]
     pub reward_strategy: LolRewardsRewardStrategy,
+    #[serde(rename = "selectionStrategyConfig")]
     pub selection_strategy_config: Option<LolRewardsSelectionStrategyConfig>,
     pub active: bool,
     pub media: HashMap<String, String>,
     pub localizations: HashMap<String, String>,
+    #[serde(rename = "celebrationType")]
     pub celebration_type: LolRewardsCelebrationType,
 }
 

@@ -2,6 +2,7 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 use serde_json::{json, Value, to_value};
+use std::collections::hash_map::Values;
 use reqwest::Method;
 use common::IsApiRequest;
 
@@ -19,7 +20,7 @@ impl IsApiRequest for GetClientConfigV1StatusByType {
     fn get_url(&self) -> String {format!("/client-config/v1/status/{}", serde_json::to_string(&self.type_).unwrap())}
 }
 
-pub fn get_client_config_v_1_status_by_type(type_: ClientConfigConfigType) -> GetClientConfigV1StatusByType {
+pub fn get_client_config_v1_status_by_type(type_: ClientConfigConfigType) -> GetClientConfigV1StatusByType {
     GetClientConfigV1StatusByType{type_}
 }
 
@@ -30,11 +31,11 @@ pub struct GetClientConfigV2ConfigByName {
 
 impl IsApiRequest for GetClientConfigV2ConfigByName {
     const METHOD: Method = Method::GET;
-    type ReturnType = HashMap<String, String>;
+    type ReturnType = Value;
     fn get_url(&self) -> String {format!("/client-config/v2/config/{}", self.name)}
 }
 
-pub fn get_client_config_v_2_config_by_name(name: String) -> GetClientConfigV2ConfigByName {
+pub fn get_client_config_v2_config_by_name(name: String) -> GetClientConfigV2ConfigByName {
     GetClientConfigV2ConfigByName{name}
 }
 
@@ -45,11 +46,11 @@ pub struct GetClientConfigV2NamespaceByNamespace {
 
 impl IsApiRequest for GetClientConfigV2NamespaceByNamespace {
     const METHOD: Method = Method::GET;
-    type ReturnType = HashMap<String, HashMap<String, String>>;
+    type ReturnType = HashMap<String, Value>;
     fn get_url(&self) -> String {format!("/client-config/v2/namespace/{}", self.namespace)}
 }
 
-pub fn get_client_config_v_2_namespace_by_namespace(namespace: String) -> GetClientConfigV2NamespaceByNamespace {
+pub fn get_client_config_v2_namespace_by_namespace(namespace: String) -> GetClientConfigV2NamespaceByNamespace {
     GetClientConfigV2NamespaceByNamespace{namespace}
 }
 
@@ -60,11 +61,11 @@ pub struct GetClientConfigV2NamespaceByNamespacePlayer {
 
 impl IsApiRequest for GetClientConfigV2NamespaceByNamespacePlayer {
     const METHOD: Method = Method::GET;
-    type ReturnType = HashMap<String, HashMap<String, String>>;
+    type ReturnType = HashMap<String, Value>;
     fn get_url(&self) -> String {format!("/client-config/v2/namespace/{}/player", self.namespace)}
 }
 
-pub fn get_client_config_v_2_namespace_by_namespace_player(namespace: String) -> GetClientConfigV2NamespaceByNamespacePlayer {
+pub fn get_client_config_v2_namespace_by_namespace_player(namespace: String) -> GetClientConfigV2NamespaceByNamespacePlayer {
     GetClientConfigV2NamespaceByNamespacePlayer{namespace}
 }
 
@@ -75,11 +76,11 @@ pub struct GetClientConfigV2NamespaceByNamespacePublic {
 
 impl IsApiRequest for GetClientConfigV2NamespaceByNamespacePublic {
     const METHOD: Method = Method::GET;
-    type ReturnType = HashMap<String, HashMap<String, String>>;
+    type ReturnType = HashMap<String, Value>;
     fn get_url(&self) -> String {format!("/client-config/v2/namespace/{}/public", self.namespace)}
 }
 
-pub fn get_client_config_v_2_namespace_by_namespace_public(namespace: String) -> GetClientConfigV2NamespaceByNamespacePublic {
+pub fn get_client_config_v2_namespace_by_namespace_public(namespace: String) -> GetClientConfigV2NamespaceByNamespacePublic {
     GetClientConfigV2NamespaceByNamespacePublic{namespace}
 }
 
@@ -97,7 +98,7 @@ impl IsApiRequest for PutClientConfigV1EntitlementsToken {
     }
 }
 
-pub fn put_client_config_v_1_entitlements_token(body: ClientConfigEntitlementsUpdate) -> PutClientConfigV1EntitlementsToken {
+pub fn put_client_config_v1_entitlements_token(body: ClientConfigEntitlementsUpdate) -> PutClientConfigV1EntitlementsToken {
     PutClientConfigV1EntitlementsToken{body}
 }
 
@@ -110,7 +111,7 @@ impl IsApiRequest for PutClientConfigV1RefreshConfigStatus {
     fn get_url(&self) -> String {"/client-config/v1/refresh-config-status".to_string()}
 }
 
-pub fn put_client_config_v_1_refresh_config_status() -> PutClientConfigV1RefreshConfigStatus {
+pub fn put_client_config_v1_refresh_config_status() -> PutClientConfigV1RefreshConfigStatus {
     PutClientConfigV1RefreshConfigStatus{}
 }
 
@@ -128,7 +129,7 @@ impl IsApiRequest for PutClientConfigV2NamespaceChanges {
     }
 }
 
-pub fn put_client_config_v_2_namespace_changes(body: ClientConfigConfigNamespaceUpdate) -> PutClientConfigV2NamespaceChanges {
+pub fn put_client_config_v2_namespace_changes(body: ClientConfigConfigNamespaceUpdate) -> PutClientConfigV2NamespaceChanges {
     PutClientConfigV2NamespaceChanges{body}
 }
 
@@ -147,6 +148,7 @@ pub struct ClientConfigConfigNamespaceUpdate {
 #[serde(rename_all = "camelCase")]
 pub struct ClientConfigConfigStatus {
     pub readiness: ClientConfigConfigReadinessEnum,
+    #[serde(rename = "updateId")]
     pub update_id: u64,
 }
 
@@ -154,6 +156,7 @@ pub struct ClientConfigConfigStatus {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct ClientConfigEntitlements {
+    #[serde(rename = "accessToken")]
     pub access_token: String,
     pub token: String,
     pub subject: String,
@@ -165,7 +168,9 @@ pub struct ClientConfigEntitlements {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct ClientConfigEntitlementsUpdate {
+    #[serde(rename = "UpdateType")]
     pub update_type: ClientConfigUpdateType,
+    #[serde(rename = "EntitlementsTokenResource")]
     pub entitlements_token_resource: ClientConfigEntitlements,
 }
 

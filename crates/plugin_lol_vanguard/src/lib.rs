@@ -2,6 +2,7 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 use serde_json::{json, Value, to_value};
+use std::collections::hash_map::Values;
 use reqwest::Method;
 use common::IsApiRequest;
 
@@ -17,7 +18,7 @@ impl IsApiRequest for GetLolVanguardV1ConfigDaysToReshowModal {
     fn get_url(&self) -> String {"/lol-vanguard/v1/config/days-to-reshow-modal".to_string()}
 }
 
-pub fn get_lol_vanguard_v_1_config_days_to_reshow_modal() -> GetLolVanguardV1ConfigDaysToReshowModal {
+pub fn get_lol_vanguard_v1_config_days_to_reshow_modal() -> GetLolVanguardV1ConfigDaysToReshowModal {
     GetLolVanguardV1ConfigDaysToReshowModal{}
 }
 
@@ -30,7 +31,7 @@ impl IsApiRequest for GetLolVanguardV1ConfigEnabled {
     fn get_url(&self) -> String {"/lol-vanguard/v1/config/enabled".to_string()}
 }
 
-pub fn get_lol_vanguard_v_1_config_enabled() -> GetLolVanguardV1ConfigEnabled {
+pub fn get_lol_vanguard_v1_config_enabled() -> GetLolVanguardV1ConfigEnabled {
     GetLolVanguardV1ConfigEnabled{}
 }
 
@@ -43,7 +44,7 @@ impl IsApiRequest for GetLolVanguardV1IsPlayingInPcb {
     fn get_url(&self) -> String {"/lol-vanguard/v1/is-playing-in-pcb".to_string()}
 }
 
-pub fn get_lol_vanguard_v_1_is_playing_in_pcb() -> GetLolVanguardV1IsPlayingInPcb {
+pub fn get_lol_vanguard_v1_is_playing_in_pcb() -> GetLolVanguardV1IsPlayingInPcb {
     GetLolVanguardV1IsPlayingInPcb{}
 }
 
@@ -56,7 +57,7 @@ impl IsApiRequest for GetLolVanguardV1MachineSpecs {
     fn get_url(&self) -> String {"/lol-vanguard/v1/machine-specs".to_string()}
 }
 
-pub fn get_lol_vanguard_v_1_machine_specs() -> GetLolVanguardV1MachineSpecs {
+pub fn get_lol_vanguard_v1_machine_specs() -> GetLolVanguardV1MachineSpecs {
     GetLolVanguardV1MachineSpecs{}
 }
 
@@ -69,7 +70,7 @@ impl IsApiRequest for GetLolVanguardV1Session {
     fn get_url(&self) -> String {"/lol-vanguard/v1/session".to_string()}
 }
 
-pub fn get_lol_vanguard_v_1_session() -> GetLolVanguardV1Session {
+pub fn get_lol_vanguard_v1_session() -> GetLolVanguardV1Session {
     GetLolVanguardV1Session{}
 }
 
@@ -80,14 +81,14 @@ pub struct PostLolVanguardV1TelemetrySystemCheck {
 
 impl IsApiRequest for PostLolVanguardV1TelemetrySystemCheck {
     const METHOD: Method = Method::POST;
-    type ReturnType = HashMap<String, String>;
+    type ReturnType = Value;
     fn get_url(&self) -> String {"/lol-vanguard/v1/telemetry/system-check".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
     }
 }
 
-pub fn post_lol_vanguard_v_1_telemetry_system_check(body: LolVanguardVanguardSystemCheckTelemetryEvent) -> PostLolVanguardV1TelemetrySystemCheck {
+pub fn post_lol_vanguard_v1_telemetry_system_check(body: LolVanguardVanguardSystemCheckTelemetryEvent) -> PostLolVanguardV1TelemetrySystemCheck {
     PostLolVanguardV1TelemetrySystemCheck{body}
 }
 
@@ -97,7 +98,9 @@ pub fn post_lol_vanguard_v_1_telemetry_system_check(body: LolVanguardVanguardSys
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolVanguardVanguardMachineSpecs {
+    #[serde(rename = "tpm2Enabled")]
     pub tpm_2_enabled: bool,
+    #[serde(rename = "secureBootEnabled")]
     pub secure_boot_enabled: bool,
 }
 
@@ -106,6 +109,7 @@ pub struct LolVanguardVanguardMachineSpecs {
 #[serde(rename_all = "camelCase")]
 pub struct LolVanguardVanguardSession {
     pub state: LolVanguardVanguardSessionState,
+    #[serde(rename = "vanguardStatus")]
     pub vanguard_status: i32,
 }
 
@@ -113,7 +117,9 @@ pub struct LolVanguardVanguardSession {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolVanguardVanguardSystemCheckTelemetryEvent {
+    #[serde(rename = "passedOsCheck")]
     pub passed_os_check: bool,
+    #[serde(rename = "passedSecureFeaturesCheck")]
     pub passed_secure_features_check: bool,
 }
 

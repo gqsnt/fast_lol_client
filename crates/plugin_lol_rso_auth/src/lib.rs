@@ -2,6 +2,7 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 use serde_json::{json, Value, to_value};
+use std::collections::hash_map::Values;
 use reqwest::Method;
 use common::IsApiRequest;
 
@@ -17,7 +18,7 @@ impl IsApiRequest for DeleteLolRsoAuthV1Authorization {
     fn get_url(&self) -> String {"/lol-rso-auth/v1/authorization".to_string()}
 }
 
-pub fn delete_lol_rso_auth_v_1_authorization() -> DeleteLolRsoAuthV1Authorization {
+pub fn delete_lol_rso_auth_v1_authorization() -> DeleteLolRsoAuthV1Authorization {
     DeleteLolRsoAuthV1Authorization{}
 }
 
@@ -30,7 +31,7 @@ impl IsApiRequest for DeleteLolRsoAuthV1Session {
     fn get_url(&self) -> String {"/lol-rso-auth/v1/session".to_string()}
 }
 
-pub fn delete_lol_rso_auth_v_1_session() -> DeleteLolRsoAuthV1Session {
+pub fn delete_lol_rso_auth_v1_session() -> DeleteLolRsoAuthV1Session {
     DeleteLolRsoAuthV1Session{}
 }
 
@@ -43,7 +44,7 @@ impl IsApiRequest for DeleteLolRsoAuthV2Config {
     fn get_url(&self) -> String {"/lol-rso-auth/v2/config".to_string()}
 }
 
-pub fn delete_lol_rso_auth_v_2_config() -> DeleteLolRsoAuthV2Config {
+pub fn delete_lol_rso_auth_v2_config() -> DeleteLolRsoAuthV2Config {
     DeleteLolRsoAuthV2Config{}
 }
 
@@ -56,7 +57,7 @@ impl IsApiRequest for GetLolRsoAuthConfigurationV3ReadyState {
     fn get_url(&self) -> String {"/lol-rso-auth/configuration/v3/ready-state".to_string()}
 }
 
-pub fn get_lol_rso_auth_configuration_v_3_ready_state() -> GetLolRsoAuthConfigurationV3ReadyState {
+pub fn get_lol_rso_auth_configuration_v3_ready_state() -> GetLolRsoAuthConfigurationV3ReadyState {
     GetLolRsoAuthConfigurationV3ReadyState{}
 }
 
@@ -69,7 +70,7 @@ impl IsApiRequest for GetLolRsoAuthV1Authorization {
     fn get_url(&self) -> String {"/lol-rso-auth/v1/authorization".to_string()}
 }
 
-pub fn get_lol_rso_auth_v_1_authorization() -> GetLolRsoAuthV1Authorization {
+pub fn get_lol_rso_auth_v1_authorization() -> GetLolRsoAuthV1Authorization {
     GetLolRsoAuthV1Authorization{}
 }
 
@@ -82,7 +83,7 @@ impl IsApiRequest for GetLolRsoAuthV1AuthorizationAccessToken {
     fn get_url(&self) -> String {"/lol-rso-auth/v1/authorization/access-token".to_string()}
 }
 
-pub fn get_lol_rso_auth_v_1_authorization_access_token() -> GetLolRsoAuthV1AuthorizationAccessToken {
+pub fn get_lol_rso_auth_v1_authorization_access_token() -> GetLolRsoAuthV1AuthorizationAccessToken {
     GetLolRsoAuthV1AuthorizationAccessToken{}
 }
 
@@ -95,7 +96,7 @@ impl IsApiRequest for GetLolRsoAuthV1AuthorizationCountry {
     fn get_url(&self) -> String {"/lol-rso-auth/v1/authorization/country".to_string()}
 }
 
-pub fn get_lol_rso_auth_v_1_authorization_country() -> GetLolRsoAuthV1AuthorizationCountry {
+pub fn get_lol_rso_auth_v1_authorization_country() -> GetLolRsoAuthV1AuthorizationCountry {
     GetLolRsoAuthV1AuthorizationCountry{}
 }
 
@@ -108,7 +109,7 @@ impl IsApiRequest for GetLolRsoAuthV1AuthorizationError {
     fn get_url(&self) -> String {"/lol-rso-auth/v1/authorization/error".to_string()}
 }
 
-pub fn get_lol_rso_auth_v_1_authorization_error() -> GetLolRsoAuthV1AuthorizationError {
+pub fn get_lol_rso_auth_v1_authorization_error() -> GetLolRsoAuthV1AuthorizationError {
     GetLolRsoAuthV1AuthorizationError{}
 }
 
@@ -121,7 +122,7 @@ impl IsApiRequest for GetLolRsoAuthV1AuthorizationIdToken {
     fn get_url(&self) -> String {"/lol-rso-auth/v1/authorization/id-token".to_string()}
 }
 
-pub fn get_lol_rso_auth_v_1_authorization_id_token() -> GetLolRsoAuthV1AuthorizationIdToken {
+pub fn get_lol_rso_auth_v1_authorization_id_token() -> GetLolRsoAuthV1AuthorizationIdToken {
     GetLolRsoAuthV1AuthorizationIdToken{}
 }
 
@@ -134,7 +135,7 @@ impl IsApiRequest for GetLolRsoAuthV1AuthorizationUserinfo {
     fn get_url(&self) -> String {"/lol-rso-auth/v1/authorization/userinfo".to_string()}
 }
 
-pub fn get_lol_rso_auth_v_1_authorization_userinfo() -> GetLolRsoAuthV1AuthorizationUserinfo {
+pub fn get_lol_rso_auth_v1_authorization_userinfo() -> GetLolRsoAuthV1AuthorizationUserinfo {
     GetLolRsoAuthV1AuthorizationUserinfo{}
 }
 
@@ -149,7 +150,7 @@ impl IsApiRequest for GetLolRsoAuthV1StatusByPlatformId {
     fn get_url(&self) -> String {format!("/lol-rso-auth/v1/status/{}", self.platform_id)}
 }
 
-pub fn get_lol_rso_auth_v_1_status_by_platform_id(platform_id: String) -> GetLolRsoAuthV1StatusByPlatformId {
+pub fn get_lol_rso_auth_v1_status_by_platform_id(platform_id: String) -> GetLolRsoAuthV1StatusByPlatformId {
     GetLolRsoAuthV1StatusByPlatformId{platform_id}
 }
 
@@ -167,7 +168,7 @@ impl IsApiRequest for PostLolRsoAuthV1AuthorizationGas {
     }
 }
 
-pub fn post_lol_rso_auth_v_1_authorization_gas(body: LolRsoAuthRsoPlayerCredentials) -> PostLolRsoAuthV1AuthorizationGas {
+pub fn post_lol_rso_auth_v1_authorization_gas(body: LolRsoAuthRsoPlayerCredentials) -> PostLolRsoAuthV1AuthorizationGas {
     PostLolRsoAuthV1AuthorizationGas{body}
 }
 
@@ -180,7 +181,7 @@ impl IsApiRequest for PostLolRsoAuthV1AuthorizationRefresh {
     fn get_url(&self) -> String {"/lol-rso-auth/v1/authorization/refresh".to_string()}
 }
 
-pub fn post_lol_rso_auth_v_1_authorization_refresh() -> PostLolRsoAuthV1AuthorizationRefresh {
+pub fn post_lol_rso_auth_v1_authorization_refresh() -> PostLolRsoAuthV1AuthorizationRefresh {
     PostLolRsoAuthV1AuthorizationRefresh{}
 }
 
@@ -193,7 +194,7 @@ impl IsApiRequest for PostLolRsoAuthV1AuthorizationUserinfo {
     fn get_url(&self) -> String {"/lol-rso-auth/v1/authorization/userinfo".to_string()}
 }
 
-pub fn post_lol_rso_auth_v_1_authorization_userinfo() -> PostLolRsoAuthV1AuthorizationUserinfo {
+pub fn post_lol_rso_auth_v1_authorization_userinfo() -> PostLolRsoAuthV1AuthorizationUserinfo {
     PostLolRsoAuthV1AuthorizationUserinfo{}
 }
 
@@ -206,25 +207,25 @@ impl IsApiRequest for PostLolRsoAuthV1DeviceId {
     fn get_url(&self) -> String {"/lol-rso-auth/v1/device-id".to_string()}
 }
 
-pub fn post_lol_rso_auth_v_1_device_id() -> PostLolRsoAuthV1DeviceId {
+pub fn post_lol_rso_auth_v1_device_id() -> PostLolRsoAuthV1DeviceId {
     PostLolRsoAuthV1DeviceId{}
 }
 
 
 pub struct PostLolRsoAuthV1ExternalSessionConfig {
-    pub body: HashMap<String, String>,
+    pub body: Value,
 }
 
 impl IsApiRequest for PostLolRsoAuthV1ExternalSessionConfig {
     const METHOD: Method = Method::POST;
-    type ReturnType = HashMap<String, String>;
+    type ReturnType = Value;
     fn get_url(&self) -> String {"/lol-rso-auth/v1/external-session-config".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
     }
 }
 
-pub fn post_lol_rso_auth_v_1_external_session_config(body: HashMap<String, String>) -> PostLolRsoAuthV1ExternalSessionConfig {
+pub fn post_lol_rso_auth_v1_external_session_config(body: Value) -> PostLolRsoAuthV1ExternalSessionConfig {
     PostLolRsoAuthV1ExternalSessionConfig{body}
 }
 
@@ -242,7 +243,7 @@ impl IsApiRequest for PostLolRsoAuthV2Config {
     }
 }
 
-pub fn post_lol_rso_auth_v_2_config(body: LolRsoAuthPublicClientConfig) -> PostLolRsoAuthV2Config {
+pub fn post_lol_rso_auth_v2_config(body: LolRsoAuthPublicClientConfig) -> PostLolRsoAuthV2Config {
     PostLolRsoAuthV2Config{body}
 }
 
@@ -262,6 +263,7 @@ pub struct LolRsoAuthAccessToken {
 #[serde(rename_all = "camelCase")]
 pub struct LolRsoAuthAuthError {
     pub error: String,
+    #[serde(rename = "errorDescription")]
     pub error_description: String,
 }
 
@@ -269,7 +271,9 @@ pub struct LolRsoAuthAuthError {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolRsoAuthAuthorization {
+    #[serde(rename = "currentPlatformId")]
     pub current_platform_id: String,
+    #[serde(rename = "currentAccountId")]
     pub current_account_id: u64,
     pub subject: String,
 }
@@ -278,10 +282,15 @@ pub struct LolRsoAuthAuthorization {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolRsoAuthDeviceId {
+    #[serde(rename = "collectorServerName")]
     pub collector_server_name: String,
+    #[serde(rename = "merchantId")]
     pub merchant_id: String,
+    #[serde(rename = "sessionId")]
     pub session_id: String,
+    #[serde(rename = "installId")]
     pub install_id: String,
+    #[serde(rename = "frameUrl")]
     pub frame_url: String,
 }
 
@@ -298,6 +307,7 @@ pub struct LolRsoAuthIdToken {
 #[serde(rename_all = "camelCase")]
 pub struct LolRsoAuthPublicClientConfig {
     pub url: String,
+    #[serde(rename = "clientId")]
     pub client_id: String,
 }
 
@@ -305,9 +315,12 @@ pub struct LolRsoAuthPublicClientConfig {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolRsoAuthRegionStatus {
+    #[serde(rename = "platformId")]
     pub platform_id: String,
     pub enabled: bool,
+    #[serde(rename = "isLQFallbackAllowed")]
     pub is_lq_fallback_allowed: bool,
+    #[serde(rename = "isUserInfoEnabled")]
     pub is_user_info_enabled: bool,
 }
 
@@ -324,6 +337,7 @@ pub struct LolRsoAuthRsoConfigReadyState {
 pub struct LolRsoAuthRsoPlayerCredentials {
     pub username: String,
     pub password: String,
+    #[serde(rename = "platformId")]
     pub platform_id: String,
 }
 
@@ -331,6 +345,7 @@ pub struct LolRsoAuthRsoPlayerCredentials {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolRsoAuthUserInfo {
+    #[serde(rename = "userInfo")]
     pub user_info: String,
 }
 

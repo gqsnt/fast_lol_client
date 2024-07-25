@@ -2,6 +2,7 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 use serde_json::{json, Value, to_value};
+use std::collections::hash_map::Values;
 use reqwest::Method;
 use common::IsApiRequest;
 
@@ -17,7 +18,7 @@ impl IsApiRequest for GetLolKickoutV1Notification {
     fn get_url(&self) -> String {"/lol-kickout/v1/notification".to_string()}
 }
 
-pub fn get_lol_kickout_v_1_notification() -> GetLolKickoutV1Notification {
+pub fn get_lol_kickout_v1_notification() -> GetLolKickoutV1Notification {
     GetLolKickoutV1Notification{}
 }
 

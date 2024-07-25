@@ -2,6 +2,7 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 use serde_json::{json, Value, to_value};
+use std::collections::hash_map::Values;
 use reqwest::Method;
 use common::IsApiRequest;
 
@@ -15,11 +16,11 @@ pub struct DeleteLolPlayerReportSenderV1ReportedPlayersGameIdByGameId {
 
 impl IsApiRequest for DeleteLolPlayerReportSenderV1ReportedPlayersGameIdByGameId {
     const METHOD: Method = Method::DELETE;
-    type ReturnType = HashMap<String, String>;
+    type ReturnType = Value;
     fn get_url(&self) -> String {format!("/lol-player-report-sender/v1/reported-players/gameId/{}", self.game_id)}
 }
 
-pub fn delete_lol_player_report_sender_v_1_reported_players_game_id_by_game_id(game_id: u64) -> DeleteLolPlayerReportSenderV1ReportedPlayersGameIdByGameId {
+pub fn delete_lol_player_report_sender_v1_reported_players_game_id_by_game_id(game_id: u64) -> DeleteLolPlayerReportSenderV1ReportedPlayersGameIdByGameId {
     DeleteLolPlayerReportSenderV1ReportedPlayersGameIdByGameId{game_id}
 }
 
@@ -32,7 +33,7 @@ impl IsApiRequest for GetLolPlayerReportSenderV1GameIdsWithVerbalAbuseReport {
     fn get_url(&self) -> String {"/lol-player-report-sender/v1/game-ids-with-verbal-abuse-report".to_string()}
 }
 
-pub fn get_lol_player_report_sender_v_1_game_ids_with_verbal_abuse_report() -> GetLolPlayerReportSenderV1GameIdsWithVerbalAbuseReport {
+pub fn get_lol_player_report_sender_v1_game_ids_with_verbal_abuse_report() -> GetLolPlayerReportSenderV1GameIdsWithVerbalAbuseReport {
     GetLolPlayerReportSenderV1GameIdsWithVerbalAbuseReport{}
 }
 
@@ -45,7 +46,7 @@ impl IsApiRequest for GetLolPlayerReportSenderV1InGameReports {
     fn get_url(&self) -> String {"/lol-player-report-sender/v1/in-game-reports".to_string()}
 }
 
-pub fn get_lol_player_report_sender_v_1_in_game_reports() -> GetLolPlayerReportSenderV1InGameReports {
+pub fn get_lol_player_report_sender_v1_in_game_reports() -> GetLolPlayerReportSenderV1InGameReports {
     GetLolPlayerReportSenderV1InGameReports{}
 }
 
@@ -60,7 +61,7 @@ impl IsApiRequest for GetLolPlayerReportSenderV1ReportedPlayersGameIdByGameId {
     fn get_url(&self) -> String {format!("/lol-player-report-sender/v1/reported-players/gameId/{}", self.game_id)}
 }
 
-pub fn get_lol_player_report_sender_v_1_reported_players_game_id_by_game_id(game_id: u64) -> GetLolPlayerReportSenderV1ReportedPlayersGameIdByGameId {
+pub fn get_lol_player_report_sender_v1_reported_players_game_id_by_game_id(game_id: u64) -> GetLolPlayerReportSenderV1ReportedPlayersGameIdByGameId {
     GetLolPlayerReportSenderV1ReportedPlayersGameIdByGameId{game_id}
 }
 
@@ -71,14 +72,14 @@ pub struct PostLolPlayerReportSenderV1ChampSelectReports {
 
 impl IsApiRequest for PostLolPlayerReportSenderV1ChampSelectReports {
     const METHOD: Method = Method::POST;
-    type ReturnType = HashMap<String, String>;
+    type ReturnType = Value;
     fn get_url(&self) -> String {"/lol-player-report-sender/v1/champ-select-reports".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
     }
 }
 
-pub fn post_lol_player_report_sender_v_1_champ_select_reports(body: LolPlayerReportSenderPlayerReport) -> PostLolPlayerReportSenderV1ChampSelectReports {
+pub fn post_lol_player_report_sender_v1_champ_select_reports(body: LolPlayerReportSenderPlayerReport) -> PostLolPlayerReportSenderV1ChampSelectReports {
     PostLolPlayerReportSenderV1ChampSelectReports{body}
 }
 
@@ -89,14 +90,14 @@ pub struct PostLolPlayerReportSenderV1EndOfGameReports {
 
 impl IsApiRequest for PostLolPlayerReportSenderV1EndOfGameReports {
     const METHOD: Method = Method::POST;
-    type ReturnType = HashMap<String, String>;
+    type ReturnType = Value;
     fn get_url(&self) -> String {"/lol-player-report-sender/v1/end-of-game-reports".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
     }
 }
 
-pub fn post_lol_player_report_sender_v_1_end_of_game_reports(body: LolPlayerReportSenderPlayerReport) -> PostLolPlayerReportSenderV1EndOfGameReports {
+pub fn post_lol_player_report_sender_v1_end_of_game_reports(body: LolPlayerReportSenderPlayerReport) -> PostLolPlayerReportSenderV1EndOfGameReports {
     PostLolPlayerReportSenderV1EndOfGameReports{body}
 }
 
@@ -107,14 +108,14 @@ pub struct PostLolPlayerReportSenderV1InGameReports {
 
 impl IsApiRequest for PostLolPlayerReportSenderV1InGameReports {
     const METHOD: Method = Method::POST;
-    type ReturnType = HashMap<String, String>;
+    type ReturnType = Value;
     fn get_url(&self) -> String {"/lol-player-report-sender/v1/in-game-reports".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
     }
 }
 
-pub fn post_lol_player_report_sender_v_1_in_game_reports(body: LolPlayerReportSenderPlayerReport) -> PostLolPlayerReportSenderV1InGameReports {
+pub fn post_lol_player_report_sender_v1_in_game_reports(body: LolPlayerReportSenderPlayerReport) -> PostLolPlayerReportSenderV1InGameReports {
     PostLolPlayerReportSenderV1InGameReports{body}
 }
 
@@ -125,14 +126,14 @@ pub struct PostLolPlayerReportSenderV1MatchHistoryReports {
 
 impl IsApiRequest for PostLolPlayerReportSenderV1MatchHistoryReports {
     const METHOD: Method = Method::POST;
-    type ReturnType = HashMap<String, String>;
+    type ReturnType = Value;
     fn get_url(&self) -> String {"/lol-player-report-sender/v1/match-history-reports".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
     }
 }
 
-pub fn post_lol_player_report_sender_v_1_match_history_reports(body: LolPlayerReportSenderPlayerReport) -> PostLolPlayerReportSenderV1MatchHistoryReports {
+pub fn post_lol_player_report_sender_v1_match_history_reports(body: LolPlayerReportSenderPlayerReport) -> PostLolPlayerReportSenderV1MatchHistoryReports {
     PostLolPlayerReportSenderV1MatchHistoryReports{body}
 }
 
@@ -142,10 +143,14 @@ pub fn post_lol_player_report_sender_v_1_match_history_reports(body: LolPlayerRe
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolPlayerReportSenderPlayerReport {
+    #[serde(rename = "offenderPuuid")]
     pub offender_puuid: String,
+    #[serde(rename = "obfuscatedOffenderPuuid")]
     pub obfuscated_offender_puuid: String,
     pub categories: Vec<String>,
+    #[serde(rename = "gameId")]
     pub game_id: u64,
+    #[serde(rename = "offenderSummonerId")]
     pub offender_summoner_id: u64,
     pub comment: String,
 }

@@ -2,6 +2,7 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 use serde_json::{json, Value, to_value};
+use std::collections::hash_map::Values;
 use reqwest::Method;
 use common::IsApiRequest;
 
@@ -17,7 +18,7 @@ impl IsApiRequest for GetSanitizerV1Status {
     fn get_url(&self) -> String {"/sanitizer/v1/status".to_string()}
 }
 
-pub fn get_sanitizer_v_1_status() -> GetSanitizerV1Status {
+pub fn get_sanitizer_v1_status() -> GetSanitizerV1Status {
     GetSanitizerV1Status{}
 }
 
@@ -35,7 +36,7 @@ impl IsApiRequest for PostSanitizerV1ContainsSanitized {
     }
 }
 
-pub fn post_sanitizer_v_1_contains_sanitized(body: SanitizerContainsSanitizedRequest) -> PostSanitizerV1ContainsSanitized {
+pub fn post_sanitizer_v1_contains_sanitized(body: SanitizerContainsSanitizedRequest) -> PostSanitizerV1ContainsSanitized {
     PostSanitizerV1ContainsSanitized{body}
 }
 
@@ -53,7 +54,7 @@ impl IsApiRequest for PostSanitizerV1Sanitize {
     }
 }
 
-pub fn post_sanitizer_v_1_sanitize(body: SanitizerSanitizeRequest) -> PostSanitizerV1Sanitize {
+pub fn post_sanitizer_v1_sanitize(body: SanitizerSanitizeRequest) -> PostSanitizerV1Sanitize {
     PostSanitizerV1Sanitize{body}
 }
 
@@ -65,6 +66,7 @@ pub fn post_sanitizer_v_1_sanitize(body: SanitizerSanitizeRequest) -> PostSaniti
 pub struct SanitizerContainsSanitizedRequest {
     pub text: String,
     pub level: Option<u32>,
+    #[serde(rename = "aggressiveScan")]
     pub aggressive_scan: Option<bool>,
 }
 
@@ -82,6 +84,7 @@ pub struct SanitizerSanitizeRequest {
     pub texts: Option<Vec<String>>,
     pub text: Option<String>,
     pub level: Option<u32>,
+    #[serde(rename = "aggressiveScan")]
     pub aggressive_scan: Option<bool>,
 }
 
@@ -101,9 +104,13 @@ pub struct SanitizerSanitizerStatus {
     pub ready: bool,
     pub region: String,
     pub locale: String,
+    #[serde(rename = "filteredWordCountsByLevel")]
     pub filtered_word_counts_by_level: HashMap<String, u32>,
+    #[serde(rename = "whitelistedWordCountsByLevel")]
     pub whitelisted_word_counts_by_level: HashMap<String, u32>,
+    #[serde(rename = "breakingCharsCount")]
     pub breaking_chars_count: u32,
+    #[serde(rename = "projectedCharsCount")]
     pub projected_chars_count: u32,
 }
 

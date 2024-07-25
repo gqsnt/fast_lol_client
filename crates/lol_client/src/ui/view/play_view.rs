@@ -7,6 +7,7 @@ use serde_json::Value;
 use plugin_lol_game_queues::{LolGameQueuesQueue, LolGameQueuesQueueAvailability, LolGameQueuesQueueCustomGame, LolGameQueuesQueueCustomGameSubcategory, LolGameQueuesQueueGameCategory};
 use plugin_lol_gameflow::LolGameflowGameflowPhase;
 use crate::AppResult;
+use crate::assets::Assets;
 use crate::client::apis::LolGameMode;
 use crate::client::utils::perform_request;
 use crate::ui::application::AppState;
@@ -121,20 +122,20 @@ impl HasView for PlayView {
             PlayMessage::InGame(message) => InGameView::update(message, state),
         }
     }
-    fn view(connected_state: &ConnectedState) -> Container<'_, Message> {
+    fn view<'a>(connected_state: &'a ConnectedState, assets: &'a Assets) -> Container<'a, Message> {
         container(Column::new()
             .push(match connected_state.state {
-                LolGameflowGameflowPhase::None => CreateLobbyView::view(connected_state),
+                LolGameflowGameflowPhase::None => CreateLobbyView::view(connected_state, assets),
                 LolGameflowGameflowPhase::Lobby
                 | LolGameflowGameflowPhase::Matchmaking
-                | LolGameflowGameflowPhase::ReadyCheck => LobbyView::view(connected_state),
-                LolGameflowGameflowPhase::ChampSelect => ChampSelectView::view(connected_state),
+                | LolGameflowGameflowPhase::ReadyCheck => LobbyView::view(connected_state, assets),
+                LolGameflowGameflowPhase::ChampSelect => ChampSelectView::view(connected_state, assets),
                 LolGameflowGameflowPhase::GameStart => container(Column::new().push(text("Game Starting"))),
                 LolGameflowGameflowPhase::Reconnect
-                | LolGameflowGameflowPhase::InProgress => InGameView::view(connected_state),
+                | LolGameflowGameflowPhase::InProgress => InGameView::view(connected_state, assets),
                 LolGameflowGameflowPhase::WaitingForStats
                 |LolGameflowGameflowPhase::PreEndOfGame
-                |LolGameflowGameflowPhase::EndOfGame => EndOfGameView::view(connected_state),
+                |LolGameflowGameflowPhase::EndOfGame => EndOfGameView::view(connected_state, assets),
                 LolGameflowGameflowPhase::FailedToLaunch
                 | LolGameflowGameflowPhase::CheckedIntoTournament
                 | LolGameflowGameflowPhase::TerminatedInError => container(Column::new().push(text("Not Implemented/Error"))),

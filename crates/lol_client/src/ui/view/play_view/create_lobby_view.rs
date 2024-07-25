@@ -3,7 +3,7 @@ use std::fmt;
 
 use iced::Command;
 use iced::widget::{Column, Container, container, pick_list, Row, text};
-
+use crate::assets::Assets;
 use crate::client::utils::perform_request;
 use crate::ui::application::AppState;
 use crate::ui::message::Message;
@@ -103,7 +103,7 @@ impl HasView for CreateLobbyView {
             CreateLobbyMessage::JoinCustom(message) => CreateLobbyJoinCustomView::update(message, state),
         };
     }
-    fn view(connected_state: &ConnectedState) -> Container<'_, Message> {
+    fn view<'a>(connected_state: &'a ConnectedState, assets: &'a Assets) -> Container<'a, Message> {
         container(Column::new()
             .push(text("Create Lobby").size(25))
             .push(
@@ -114,11 +114,11 @@ impl HasView for CreateLobbyView {
                 )
             )
             .push(match connected_state.play.create_lobby_state.view_type {
-                CreateLobbyViewType::Pvp => CreateLobbyPvpView::view(connected_state),
-                CreateLobbyViewType::CoopVsAi => CreateLobbyCoopAiView::view(connected_state),
-                CreateLobbyViewType::Training => CreateLobbyTrainingView::view(connected_state),
-                CreateLobbyViewType::Custom => CreateLobbyCustomView::view(connected_state),
-                CreateLobbyViewType::JoinCustom => CreateLobbyJoinCustomView::view(connected_state),
+                CreateLobbyViewType::Pvp => CreateLobbyPvpView::view(connected_state, assets),
+                CreateLobbyViewType::CoopVsAi => CreateLobbyCoopAiView::view(connected_state,assets ),
+                CreateLobbyViewType::Training => CreateLobbyTrainingView::view(connected_state, assets),
+                CreateLobbyViewType::Custom => CreateLobbyCustomView::view(connected_state, assets),
+                CreateLobbyViewType::JoinCustom => CreateLobbyJoinCustomView::view(connected_state, assets),
             })
             .spacing(20)
         )

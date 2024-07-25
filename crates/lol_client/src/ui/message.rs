@@ -3,6 +3,8 @@ use serde::de::DeserializeOwned;
 use serde_json::Value;
 use plugin_lol_gameflow::LolGameflowGameflowPhase;
 use crate::AppResult;
+use crate::assets::Assets;
+use crate::ui::application::AppState;
 use crate::ui::state::{ConnectedState};
 use crate::ui::view::chat_view::ChatMessage;
 use crate::ui::view::nav_bar_view::NavBarMessage;
@@ -13,6 +15,7 @@ use crate::ui::view::profile_view::ProfileMessage;
 pub enum Message {
     None,
     FontLoaded(LoadingResult),
+    AssetsLoaded(AppResult<Assets>),
     ConnectResult(AppResult<ConnectedState>),
     Disconnected,
     GamFlowResult(AppResult<LolGameflowGameflowPhase>),

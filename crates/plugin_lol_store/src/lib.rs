@@ -2,6 +2,7 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 use serde_json::{json, Value, to_value};
+use std::collections::hash_map::Values;
 use reqwest::Method;
 use common::IsApiRequest;
 
@@ -17,7 +18,7 @@ impl IsApiRequest for GetLolStoreV1AliasChangeNotifications {
     fn get_url(&self) -> String {"/lol-store/v1/alias-change-notifications".to_string()}
 }
 
-pub fn get_lol_store_v_1_alias_change_notifications() -> GetLolStoreV1AliasChangeNotifications {
+pub fn get_lol_store_v1_alias_change_notifications() -> GetLolStoreV1AliasChangeNotifications {
     GetLolStoreV1AliasChangeNotifications{}
 }
 
@@ -28,11 +29,11 @@ pub struct GetLolStoreV1ByPageType {
 
 impl IsApiRequest for GetLolStoreV1ByPageType {
     const METHOD: Method = Method::GET;
-    type ReturnType = HashMap<String, String>;
+    type ReturnType = Value;
     fn get_url(&self) -> String {format!("/lol-store/v1/{}", self.page_type)}
 }
 
-pub fn get_lol_store_v_1_by_page_type(page_type: String) -> GetLolStoreV1ByPageType {
+pub fn get_lol_store_v1_by_page_type(page_type: String) -> GetLolStoreV1ByPageType {
     GetLolStoreV1ByPageType{page_type}
 }
 
@@ -46,15 +47,15 @@ impl IsApiRequest for GetLolStoreV1Catalog {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolStoreCatalogItem>;
     fn get_url(&self) -> String {"/lol-store/v1/catalog".to_string()}
-    fn get_query_params(&self) -> Option<Value> {
-        Some(json!({
-            "inventoryType" : self.inventory_type,
-            "itemId" : self.item_id,
-        }))
+    fn get_query(&self) -> Option<Vec<(String,String)>> {
+        Some(vec![
+            ("inventoryType".to_string(), serde_json::to_string(&self.inventory_type).unwrap()),
+            ("itemId".to_string(), serde_json::to_string(&self.item_id).unwrap())
+        ])
     }
 }
 
-pub fn get_lol_store_v_1_catalog(inventory_type: Option<Vec<String>>, item_id: Option<Vec<i32>>) -> GetLolStoreV1Catalog {
+pub fn get_lol_store_v1_catalog(inventory_type: Option<Vec<String>>, item_id: Option<Vec<i32>>) -> GetLolStoreV1Catalog {
     GetLolStoreV1Catalog{inventory_type, item_id}
 }
 
@@ -67,14 +68,14 @@ impl IsApiRequest for GetLolStoreV1CatalogByInstanceIds {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolStoreCatalogItem>;
     fn get_url(&self) -> String {"/lol-store/v1/catalogByInstanceIds".to_string()}
-    fn get_query_params(&self) -> Option<Value> {
-        Some(json!({
-            "instanceIds" : self.instance_ids,
-        }))
+    fn get_query(&self) -> Option<Vec<(String,String)>> {
+        Some(vec![
+            ("instanceIds".to_string(), serde_json::to_string(&self.instance_ids).unwrap())
+        ])
     }
 }
 
-pub fn get_lol_store_v_1_catalog_by_instance_ids(instance_ids: Vec<String>) -> GetLolStoreV1CatalogByInstanceIds {
+pub fn get_lol_store_v1_catalog_by_instance_ids(instance_ids: Vec<String>) -> GetLolStoreV1CatalogByInstanceIds {
     GetLolStoreV1CatalogByInstanceIds{instance_ids}
 }
 
@@ -88,14 +89,14 @@ impl IsApiRequest for GetLolStoreV1CatalogByInventoryType {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolStoreCatalogItem>;
     fn get_url(&self) -> String {format!("/lol-store/v1/catalog/{}", self.inventory_type)}
-    fn get_query_params(&self) -> Option<Value> {
-        Some(json!({
-            "itemIds" : self.item_ids,
-        }))
+    fn get_query(&self) -> Option<Vec<(String,String)>> {
+        Some(vec![
+            ("itemIds".to_string(), serde_json::to_string(&self.item_ids).unwrap())
+        ])
     }
 }
 
-pub fn get_lol_store_v_1_catalog_by_inventory_type(inventory_type: String, item_ids: Vec<i32>) -> GetLolStoreV1CatalogByInventoryType {
+pub fn get_lol_store_v1_catalog_by_inventory_type(inventory_type: String, item_ids: Vec<i32>) -> GetLolStoreV1CatalogByInventoryType {
     GetLolStoreV1CatalogByInventoryType{inventory_type, item_ids}
 }
 
@@ -108,14 +109,14 @@ impl IsApiRequest for GetLolStoreV1CatalogItemsSkipCache {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolStoreCatalogItem>;
     fn get_url(&self) -> String {"/lol-store/v1/catalog/items/skip-cache".to_string()}
-    fn get_query_params(&self) -> Option<Value> {
-        Some(json!({
-            "catalogItemKeys" : self.catalog_item_keys,
-        }))
+    fn get_query(&self) -> Option<Vec<(String,String)>> {
+        Some(vec![
+            ("catalogItemKeys".to_string(), serde_json::to_string(&self.catalog_item_keys).unwrap())
+        ])
     }
 }
 
-pub fn get_lol_store_v_1_catalog_items_skip_cache(catalog_item_keys: Vec<LolStoreItemKey>) -> GetLolStoreV1CatalogItemsSkipCache {
+pub fn get_lol_store_v1_catalog_items_skip_cache(catalog_item_keys: Vec<LolStoreItemKey>) -> GetLolStoreV1CatalogItemsSkipCache {
     GetLolStoreV1CatalogItemsSkipCache{catalog_item_keys}
 }
 
@@ -128,7 +129,7 @@ impl IsApiRequest for GetLolStoreV1CatalogSales {
     fn get_url(&self) -> String {"/lol-store/v1/catalog/sales".to_string()}
 }
 
-pub fn get_lol_store_v_1_catalog_sales() -> GetLolStoreV1CatalogSales {
+pub fn get_lol_store_v1_catalog_sales() -> GetLolStoreV1CatalogSales {
     GetLolStoreV1CatalogSales{}
 }
 
@@ -141,7 +142,7 @@ impl IsApiRequest for GetLolStoreV1GetStoreUrl {
     fn get_url(&self) -> String {"/lol-store/v1/getStoreUrl".to_string()}
 }
 
-pub fn get_lol_store_v_1_get_store_url() -> GetLolStoreV1GetStoreUrl {
+pub fn get_lol_store_v1_get_store_url() -> GetLolStoreV1GetStoreUrl {
     GetLolStoreV1GetStoreUrl{}
 }
 
@@ -154,7 +155,7 @@ impl IsApiRequest for GetLolStoreV1Giftablefriends {
     fn get_url(&self) -> String {"/lol-store/v1/giftablefriends".to_string()}
 }
 
-pub fn get_lol_store_v_1_giftablefriends() -> GetLolStoreV1Giftablefriends {
+pub fn get_lol_store_v1_giftablefriends() -> GetLolStoreV1Giftablefriends {
     GetLolStoreV1Giftablefriends{}
 }
 
@@ -165,16 +166,16 @@ pub struct GetLolStoreV1ItemKeysFromInstanceIds {
 
 impl IsApiRequest for GetLolStoreV1ItemKeysFromInstanceIds {
     const METHOD: Method = Method::GET;
-    type ReturnType = LolStoreItemKey;
+    type ReturnType = HashMap<String, LolStoreItemKey>;
     fn get_url(&self) -> String {"/lol-store/v1/itemKeysFromInstanceIds".to_string()}
-    fn get_query_params(&self) -> Option<Value> {
-        Some(json!({
-            "instanceIds" : self.instance_ids,
-        }))
+    fn get_query(&self) -> Option<Vec<(String,String)>> {
+        Some(vec![
+            ("instanceIds".to_string(), serde_json::to_string(&self.instance_ids).unwrap())
+        ])
     }
 }
 
-pub fn get_lol_store_v_1_item_keys_from_instance_ids(instance_ids: Vec<String>) -> GetLolStoreV1ItemKeysFromInstanceIds {
+pub fn get_lol_store_v1_item_keys_from_instance_ids(instance_ids: Vec<String>) -> GetLolStoreV1ItemKeysFromInstanceIds {
     GetLolStoreV1ItemKeysFromInstanceIds{instance_ids}
 }
 
@@ -185,16 +186,16 @@ pub struct GetLolStoreV1ItemKeysFromOfferIds {
 
 impl IsApiRequest for GetLolStoreV1ItemKeysFromOfferIds {
     const METHOD: Method = Method::GET;
-    type ReturnType = LolStoreItemKey;
+    type ReturnType = HashMap<String, LolStoreItemKey>;
     fn get_url(&self) -> String {"/lol-store/v1/itemKeysFromOfferIds".to_string()}
-    fn get_query_params(&self) -> Option<Value> {
-        Some(json!({
-            "offerIds" : self.offer_ids,
-        }))
+    fn get_query(&self) -> Option<Vec<(String,String)>> {
+        Some(vec![
+            ("offerIds".to_string(), serde_json::to_string(&self.offer_ids).unwrap())
+        ])
     }
 }
 
-pub fn get_lol_store_v_1_item_keys_from_offer_ids(offer_ids: Vec<String>) -> GetLolStoreV1ItemKeysFromOfferIds {
+pub fn get_lol_store_v1_item_keys_from_offer_ids(offer_ids: Vec<String>) -> GetLolStoreV1ItemKeysFromOfferIds {
     GetLolStoreV1ItemKeysFromOfferIds{offer_ids}
 }
 
@@ -207,7 +208,7 @@ impl IsApiRequest for GetLolStoreV1LastPage {
     fn get_url(&self) -> String {"/lol-store/v1/lastPage".to_string()}
 }
 
-pub fn get_lol_store_v_1_last_page() -> GetLolStoreV1LastPage {
+pub fn get_lol_store_v1_last_page() -> GetLolStoreV1LastPage {
     GetLolStoreV1LastPage{}
 }
 
@@ -220,14 +221,14 @@ impl IsApiRequest for GetLolStoreV1Offers {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolStoreCapOffer>;
     fn get_url(&self) -> String {"/lol-store/v1/offers".to_string()}
-    fn get_query_params(&self) -> Option<Value> {
-        Some(json!({
-            "inventoryTypeUUIDs" : self.inventory_type_uui_ds,
-        }))
+    fn get_query(&self) -> Option<Vec<(String,String)>> {
+        Some(vec![
+            ("inventoryTypeUUIDs".to_string(), serde_json::to_string(&self.inventory_type_uui_ds).unwrap())
+        ])
     }
 }
 
-pub fn get_lol_store_v_1_offers(inventory_type_uui_ds: Option<Vec<String>>) -> GetLolStoreV1Offers {
+pub fn get_lol_store_v1_offers(inventory_type_uui_ds: Option<Vec<String>>) -> GetLolStoreV1Offers {
     GetLolStoreV1Offers{inventory_type_uui_ds}
 }
 
@@ -242,7 +243,7 @@ impl IsApiRequest for GetLolStoreV1OffersByOfferId {
     fn get_url(&self) -> String {format!("/lol-store/v1/offers/{}", self.offer_id)}
 }
 
-pub fn get_lol_store_v_1_offers_by_offer_id(offer_id: String) -> GetLolStoreV1OffersByOfferId {
+pub fn get_lol_store_v1_offers_by_offer_id(offer_id: String) -> GetLolStoreV1OffersByOfferId {
     GetLolStoreV1OffersByOfferId{offer_id}
 }
 
@@ -255,7 +256,7 @@ impl IsApiRequest for GetLolStoreV1OrderNotifications {
     fn get_url(&self) -> String {"/lol-store/v1/order-notifications".to_string()}
 }
 
-pub fn get_lol_store_v_1_order_notifications() -> GetLolStoreV1OrderNotifications {
+pub fn get_lol_store_v1_order_notifications() -> GetLolStoreV1OrderNotifications {
     GetLolStoreV1OrderNotifications{}
 }
 
@@ -270,7 +271,7 @@ impl IsApiRequest for GetLolStoreV1OrderNotificationsById {
     fn get_url(&self) -> String {format!("/lol-store/v1/order-notifications/{}", self.id)}
 }
 
-pub fn get_lol_store_v_1_order_notifications_by_id(id: u64) -> GetLolStoreV1OrderNotificationsById {
+pub fn get_lol_store_v1_order_notifications_by_id(id: u64) -> GetLolStoreV1OrderNotificationsById {
     GetLolStoreV1OrderNotificationsById{id}
 }
 
@@ -283,18 +284,18 @@ pub struct GetLolStoreV1PaymentDetails {
 
 impl IsApiRequest for GetLolStoreV1PaymentDetails {
     const METHOD: Method = Method::GET;
-    type ReturnType = HashMap<String, String>;
+    type ReturnType = Value;
     fn get_url(&self) -> String {"/lol-store/v1/paymentDetails".to_string()}
-    fn get_query_params(&self) -> Option<Value> {
-        Some(json!({
-            "action" : self.action,
-            "giftRecipientAccountId" : self.gift_recipient_account_id,
-            "giftMessage" : self.gift_message,
-        }))
+    fn get_query(&self) -> Option<Vec<(String,String)>> {
+        Some(vec![
+            ("action".to_string(), serde_json::to_string(&self.action).unwrap()),
+            ("giftRecipientAccountId".to_string(), serde_json::to_string(&self.gift_recipient_account_id).unwrap()),
+            ("giftMessage".to_string(), serde_json::to_string(&self.gift_message).unwrap())
+        ])
     }
 }
 
-pub fn get_lol_store_v_1_payment_details(action: String, gift_recipient_account_id: Option<u64>, gift_message: Option<String>) -> GetLolStoreV1PaymentDetails {
+pub fn get_lol_store_v1_payment_details(action: String, gift_recipient_account_id: Option<u64>, gift_message: Option<String>) -> GetLolStoreV1PaymentDetails {
     GetLolStoreV1PaymentDetails{action, gift_recipient_account_id, gift_message}
 }
 
@@ -309,7 +310,7 @@ impl IsApiRequest for GetLolStoreV1SkinsBySkinId {
     fn get_url(&self) -> String {format!("/lol-store/v1/skins/{}", self.skin_id)}
 }
 
-pub fn get_lol_store_v_1_skins_by_skin_id(skin_id: i32) -> GetLolStoreV1SkinsBySkinId {
+pub fn get_lol_store_v1_skins_by_skin_id(skin_id: i32) -> GetLolStoreV1SkinsBySkinId {
     GetLolStoreV1SkinsBySkinId{skin_id}
 }
 
@@ -322,7 +323,7 @@ impl IsApiRequest for GetLolStoreV1Status {
     fn get_url(&self) -> String {"/lol-store/v1/status".to_string()}
 }
 
-pub fn get_lol_store_v_1_status() -> GetLolStoreV1Status {
+pub fn get_lol_store_v1_status() -> GetLolStoreV1Status {
     GetLolStoreV1Status{}
 }
 
@@ -335,7 +336,7 @@ impl IsApiRequest for GetLolStoreV1StoreReady {
     fn get_url(&self) -> String {"/lol-store/v1/store-ready".to_string()}
 }
 
-pub fn get_lol_store_v_1_store_ready() -> GetLolStoreV1StoreReady {
+pub fn get_lol_store_v1_store_ready() -> GetLolStoreV1StoreReady {
     GetLolStoreV1StoreReady{}
 }
 
@@ -348,14 +349,14 @@ impl IsApiRequest for GetLolStoreV2Offers {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolStoreCapOffer>;
     fn get_url(&self) -> String {"/lol-store/v2/offers".to_string()}
-    fn get_query_params(&self) -> Option<Value> {
-        Some(json!({
-            "typeId" : self.type_id,
-        }))
+    fn get_query(&self) -> Option<Vec<(String,String)>> {
+        Some(vec![
+            ("typeId".to_string(), serde_json::to_string(&self.type_id).unwrap())
+        ])
     }
 }
 
-pub fn get_lol_store_v_2_offers(type_id: Option<String>) -> GetLolStoreV2Offers {
+pub fn get_lol_store_v2_offers(type_id: Option<String>) -> GetLolStoreV2Offers {
     GetLolStoreV2Offers{type_id}
 }
 
@@ -373,7 +374,7 @@ impl IsApiRequest for PostLolStoreV1LastPage {
     }
 }
 
-pub fn post_lol_store_v_1_last_page(body: String) -> PostLolStoreV1LastPage {
+pub fn post_lol_store_v1_last_page(body: String) -> PostLolStoreV1LastPage {
     PostLolStoreV1LastPage{body}
 }
 
@@ -384,14 +385,14 @@ pub struct PostLolStoreV1NotificationsAcknowledge {
 
 impl IsApiRequest for PostLolStoreV1NotificationsAcknowledge {
     const METHOD: Method = Method::POST;
-    type ReturnType = HashMap<String, String>;
+    type ReturnType = Value;
     fn get_url(&self) -> String {"/lol-store/v1/notifications/acknowledge".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
     }
 }
 
-pub fn post_lol_store_v_1_notifications_acknowledge(body: String) -> PostLolStoreV1NotificationsAcknowledge {
+pub fn post_lol_store_v1_notifications_acknowledge(body: String) -> PostLolStoreV1NotificationsAcknowledge {
     PostLolStoreV1NotificationsAcknowledge{body}
 }
 
@@ -409,7 +410,7 @@ impl IsApiRequest for PostLolStoreV3Purchase {
     }
 }
 
-pub fn post_lol_store_v_3_purchase(body: Vec<LolStoreItemOrderDto>) -> PostLolStoreV3Purchase {
+pub fn post_lol_store_v3_purchase(body: Vec<LolStoreItemOrderDto>) -> PostLolStoreV3Purchase {
     PostLolStoreV3Purchase{body}
 }
 
@@ -420,6 +421,7 @@ pub fn post_lol_store_v_3_purchase(body: Vec<LolStoreItemOrderDto>) -> PostLolSt
 #[serde(rename_all = "camelCase")]
 pub struct LolStoreAliasChangeNotificationResource {
     pub id: u64,
+    #[serde(rename = "type")]
     pub type_: String,
     pub details: LolStoreAliasDetail,
 }
@@ -439,6 +441,7 @@ pub struct LolStoreAliasDetail {
 pub struct LolStoreBundled {
     pub flexible: bool,
     pub items: Vec<LolStoreBundledItem>,
+    #[serde(rename = "minimumPrices")]
     pub minimum_prices: Vec<LolStoreBundledItemCost>,
 }
 
@@ -446,9 +449,12 @@ pub struct LolStoreBundled {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolStoreBundledItem {
+    #[serde(rename = "inventoryType")]
     pub inventory_type: String,
+    #[serde(rename = "itemId")]
     pub item_id: i32,
     pub quantity: u32,
+    #[serde(rename = "discountPrices")]
     pub discount_prices: Vec<LolStoreBundledItemCost>,
 }
 
@@ -459,6 +465,7 @@ pub struct LolStoreBundledItemCost {
     pub currency: String,
     pub cost: i64,
     pub discount: Option<f32>,
+    #[serde(rename = "costType")]
     pub cost_type: String,
 }
 
@@ -467,13 +474,18 @@ pub struct LolStoreBundledItemCost {
 #[serde(rename_all = "camelCase")]
 pub struct LolStoreCapOffer {
     pub id: String,
+    #[serde(rename = "typeId")]
     pub type_id: String,
     pub label: String,
+    #[serde(rename = "productId")]
     pub product_id: String,
+    #[serde(rename = "merchantId")]
     pub merchant_id: String,
-    pub payload: HashMap<String, String>,
+    pub payload: Value,
     pub active: bool,
+    #[serde(rename = "startDate")]
     pub start_date: String,
+    #[serde(rename = "createdDate")]
     pub created_date: String,
 }
 
@@ -481,22 +493,32 @@ pub struct LolStoreCapOffer {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolStoreCatalogItem {
+    #[serde(rename = "itemId")]
     pub item_id: i32,
+    #[serde(rename = "inventoryType")]
     pub inventory_type: String,
+    #[serde(rename = "iconUrl")]
     pub icon_url: Option<String>,
-    pub localizations: Option<LolStoreItemLocalization>,
+    pub localizations: Option<HashMap<String, LolStoreItemLocalization>>,
     pub active: Option<bool>,
     pub bundled: Option<LolStoreBundled>,
+    #[serde(rename = "inactiveDate")]
     pub inactive_date: Option<String>,
+    #[serde(rename = "maxQuantity")]
     pub max_quantity: Option<i32>,
     pub prices: Option<Vec<LolStoreItemCost>>,
+    #[serde(rename = "releaseDate")]
     pub release_date: Option<String>,
     pub sale: Option<LolStoreSale>,
+    #[serde(rename = "subInventoryType")]
     pub sub_inventory_type: Option<String>,
     pub tags: Option<Vec<String>>,
+    #[serde(rename = "itemRequirements")]
     pub item_requirements: Option<Vec<LolStoreItemKey>>,
     pub metadata: Option<Vec<LolStoreItemMetadataEntry>>,
+    #[serde(rename = "itemInstanceId")]
     pub item_instance_id: Option<String>,
+    #[serde(rename = "offerId")]
     pub offer_id: Option<String>,
 }
 
@@ -504,8 +526,11 @@ pub struct LolStoreCatalogItem {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolStoreGiftingFriend {
+    #[serde(rename = "friendsSince")]
     pub friends_since: String,
+    #[serde(rename = "oldFriends")]
     pub old_friends: bool,
+    #[serde(rename = "summonerId")]
     pub summoner_id: u64,
     pub nick: String,
 }
@@ -523,7 +548,9 @@ pub struct LolStoreItemCost {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolStoreItemKey {
+    #[serde(rename = "inventoryType")]
     pub inventory_type: String,
+    #[serde(rename = "itemId")]
     pub item_id: i32,
 }
 
@@ -540,6 +567,7 @@ pub struct LolStoreItemLocalization {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolStoreItemMetadataEntry {
+    #[serde(rename = "type")]
     pub type_: String,
     pub value: String,
 }
@@ -548,9 +576,12 @@ pub struct LolStoreItemMetadataEntry {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolStoreItemOrderDto {
+    #[serde(rename = "inventoryType")]
     pub inventory_type: String,
+    #[serde(rename = "itemId")]
     pub item_id: i32,
     pub quantity: u32,
+    #[serde(rename = "rpCost")]
     pub rp_cost: u32,
 }
 
@@ -569,7 +600,9 @@ pub struct LolStoreItemSale {
 #[serde(rename_all = "camelCase")]
 pub struct LolStoreOrderNotificationResource {
     pub id: u64,
+    #[serde(rename = "eventTypeId")]
     pub event_type_id: String,
+    #[serde(rename = "eventType")]
     pub event_type: String,
     pub status: String,
 }
@@ -578,7 +611,9 @@ pub struct LolStoreOrderNotificationResource {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolStorePurchaseOrderResponseDto {
+    #[serde(rename = "rpBalance")]
     pub rp_balance: i64,
+    #[serde(rename = "ipBalance")]
     pub ip_balance: i64,
     pub transactions: Vec<LolStoreTransactionResponseDto>,
 }
@@ -587,7 +622,9 @@ pub struct LolStorePurchaseOrderResponseDto {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolStoreSale {
+    #[serde(rename = "startDate")]
     pub start_date: String,
+    #[serde(rename = "endDate")]
     pub end_date: String,
     pub prices: Vec<LolStoreItemCost>,
 }
@@ -596,6 +633,7 @@ pub struct LolStoreSale {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolStoreStoreStatus {
+    #[serde(rename = "storefrontIsRunning")]
     pub storefront_is_running: bool,
 }
 
@@ -604,7 +642,9 @@ pub struct LolStoreStoreStatus {
 #[serde(rename_all = "camelCase")]
 pub struct LolStoreTransactionResponseDto {
     pub id: String,
+    #[serde(rename = "inventoryType")]
     pub inventory_type: String,
+    #[serde(rename = "itemId")]
     pub item_id: i32,
 }
 

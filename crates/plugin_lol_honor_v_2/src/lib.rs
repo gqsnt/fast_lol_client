@@ -2,6 +2,7 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 use serde_json::{json, Value, to_value};
+use std::collections::hash_map::Values;
 use reqwest::Method;
 use common::IsApiRequest;
 
@@ -17,7 +18,7 @@ impl IsApiRequest for GetLolHonorV2V1Ballot {
     fn get_url(&self) -> String {"/lol-honor-v2/v1/ballot".to_string()}
 }
 
-pub fn get_lol_honor_v_2_v_1_ballot() -> GetLolHonorV2V1Ballot {
+pub fn get_lol_honor_v2_v1_ballot() -> GetLolHonorV2V1Ballot {
     GetLolHonorV2V1Ballot{}
 }
 
@@ -30,7 +31,7 @@ impl IsApiRequest for GetLolHonorV2V1Config {
     fn get_url(&self) -> String {"/lol-honor-v2/v1/config".to_string()}
 }
 
-pub fn get_lol_honor_v_2_v_1_config() -> GetLolHonorV2V1Config {
+pub fn get_lol_honor_v2_v1_config() -> GetLolHonorV2V1Config {
     GetLolHonorV2V1Config{}
 }
 
@@ -43,7 +44,7 @@ impl IsApiRequest for GetLolHonorV2V1LateRecognition {
     fn get_url(&self) -> String {"/lol-honor-v2/v1/late-recognition".to_string()}
 }
 
-pub fn get_lol_honor_v_2_v_1_late_recognition() -> GetLolHonorV2V1LateRecognition {
+pub fn get_lol_honor_v2_v1_late_recognition() -> GetLolHonorV2V1LateRecognition {
     GetLolHonorV2V1LateRecognition{}
 }
 
@@ -56,7 +57,7 @@ impl IsApiRequest for GetLolHonorV2V1LatestEligibleGame {
     fn get_url(&self) -> String {"/lol-honor-v2/v1/latest-eligible-game".to_string()}
 }
 
-pub fn get_lol_honor_v_2_v_1_latest_eligible_game() -> GetLolHonorV2V1LatestEligibleGame {
+pub fn get_lol_honor_v2_v1_latest_eligible_game() -> GetLolHonorV2V1LatestEligibleGame {
     GetLolHonorV2V1LatestEligibleGame{}
 }
 
@@ -69,7 +70,7 @@ impl IsApiRequest for GetLolHonorV2V1LevelChange {
     fn get_url(&self) -> String {"/lol-honor-v2/v1/level-change".to_string()}
 }
 
-pub fn get_lol_honor_v_2_v_1_level_change() -> GetLolHonorV2V1LevelChange {
+pub fn get_lol_honor_v2_v1_level_change() -> GetLolHonorV2V1LevelChange {
     GetLolHonorV2V1LevelChange{}
 }
 
@@ -82,7 +83,7 @@ impl IsApiRequest for GetLolHonorV2V1MutualHonor {
     fn get_url(&self) -> String {"/lol-honor-v2/v1/mutual-honor".to_string()}
 }
 
-pub fn get_lol_honor_v_2_v_1_mutual_honor() -> GetLolHonorV2V1MutualHonor {
+pub fn get_lol_honor_v2_v1_mutual_honor() -> GetLolHonorV2V1MutualHonor {
     GetLolHonorV2V1MutualHonor{}
 }
 
@@ -95,7 +96,7 @@ impl IsApiRequest for GetLolHonorV2V1Profile {
     fn get_url(&self) -> String {"/lol-honor-v2/v1/profile".to_string()}
 }
 
-pub fn get_lol_honor_v_2_v_1_profile() -> GetLolHonorV2V1Profile {
+pub fn get_lol_honor_v2_v1_profile() -> GetLolHonorV2V1Profile {
     GetLolHonorV2V1Profile{}
 }
 
@@ -108,7 +109,7 @@ impl IsApiRequest for GetLolHonorV2V1Recognition {
     fn get_url(&self) -> String {"/lol-honor-v2/v1/recognition".to_string()}
 }
 
-pub fn get_lol_honor_v_2_v_1_recognition() -> GetLolHonorV2V1Recognition {
+pub fn get_lol_honor_v2_v1_recognition() -> GetLolHonorV2V1Recognition {
     GetLolHonorV2V1Recognition{}
 }
 
@@ -121,7 +122,7 @@ impl IsApiRequest for GetLolHonorV2V1RecognitionHistory {
     fn get_url(&self) -> String {"/lol-honor-v2/v1/recognition-history".to_string()}
 }
 
-pub fn get_lol_honor_v_2_v_1_recognition_history() -> GetLolHonorV2V1RecognitionHistory {
+pub fn get_lol_honor_v2_v1_recognition_history() -> GetLolHonorV2V1RecognitionHistory {
     GetLolHonorV2V1RecognitionHistory{}
 }
 
@@ -134,7 +135,7 @@ impl IsApiRequest for GetLolHonorV2V1RewardGranted {
     fn get_url(&self) -> String {"/lol-honor-v2/v1/reward-granted".to_string()}
 }
 
-pub fn get_lol_honor_v_2_v_1_reward_granted() -> GetLolHonorV2V1RewardGranted {
+pub fn get_lol_honor_v2_v1_reward_granted() -> GetLolHonorV2V1RewardGranted {
     GetLolHonorV2V1RewardGranted{}
 }
 
@@ -147,7 +148,7 @@ impl IsApiRequest for GetLolHonorV2V1TeamChoices {
     fn get_url(&self) -> String {"/lol-honor-v2/v1/team-choices".to_string()}
 }
 
-pub fn get_lol_honor_v_2_v_1_team_choices() -> GetLolHonorV2V1TeamChoices {
+pub fn get_lol_honor_v2_v1_team_choices() -> GetLolHonorV2V1TeamChoices {
     GetLolHonorV2V1TeamChoices{}
 }
 
@@ -160,7 +161,7 @@ impl IsApiRequest for GetLolHonorV2V1VoteCompletion {
     fn get_url(&self) -> String {"/lol-honor-v2/v1/vote-completion".to_string()}
 }
 
-pub fn get_lol_honor_v_2_v_1_vote_completion() -> GetLolHonorV2V1VoteCompletion {
+pub fn get_lol_honor_v2_v1_vote_completion() -> GetLolHonorV2V1VoteCompletion {
     GetLolHonorV2V1VoteCompletion{}
 }
 
@@ -173,7 +174,7 @@ impl IsApiRequest for PostLolHonorV1Ballot {
     fn get_url(&self) -> String {"/lol-honor/v1/ballot".to_string()}
 }
 
-pub fn post_lol_honor_v_1_ballot() -> PostLolHonorV1Ballot {
+pub fn post_lol_honor_v1_ballot() -> PostLolHonorV1Ballot {
     PostLolHonorV1Ballot{}
 }
 
@@ -191,7 +192,7 @@ impl IsApiRequest for PostLolHonorV1Honor {
     }
 }
 
-pub fn post_lol_honor_v_1_honor(body: LolHonorV2ApiHonorPlayerServerRequestV3) -> PostLolHonorV1Honor {
+pub fn post_lol_honor_v1_honor(body: LolHonorV2ApiHonorPlayerServerRequestV3) -> PostLolHonorV1Honor {
     PostLolHonorV1Honor{body}
 }
 
@@ -209,7 +210,7 @@ impl IsApiRequest for PostLolHonorV2V1HonorPlayer {
     }
 }
 
-pub fn post_lol_honor_v_2_v_1_honor_player(body: LolHonorV2ApiHonorPlayerServerRequest) -> PostLolHonorV2V1HonorPlayer {
+pub fn post_lol_honor_v2_v1_honor_player(body: LolHonorV2ApiHonorPlayerServerRequest) -> PostLolHonorV2V1HonorPlayer {
     PostLolHonorV2V1HonorPlayer{body}
 }
 
@@ -222,7 +223,7 @@ impl IsApiRequest for PostLolHonorV2V1LateRecognitionAck {
     fn get_url(&self) -> String {"/lol-honor-v2/v1/late-recognition/ack".to_string()}
 }
 
-pub fn post_lol_honor_v_2_v_1_late_recognition_ack() -> PostLolHonorV2V1LateRecognitionAck {
+pub fn post_lol_honor_v2_v1_late_recognition_ack() -> PostLolHonorV2V1LateRecognitionAck {
     PostLolHonorV2V1LateRecognitionAck{}
 }
 
@@ -235,7 +236,7 @@ impl IsApiRequest for PostLolHonorV2V1LevelChangeAck {
     fn get_url(&self) -> String {"/lol-honor-v2/v1/level-change/ack".to_string()}
 }
 
-pub fn post_lol_honor_v_2_v_1_level_change_ack() -> PostLolHonorV2V1LevelChangeAck {
+pub fn post_lol_honor_v2_v1_level_change_ack() -> PostLolHonorV2V1LevelChangeAck {
     PostLolHonorV2V1LevelChangeAck{}
 }
 
@@ -248,7 +249,7 @@ impl IsApiRequest for PostLolHonorV2V1MutualHonorAck {
     fn get_url(&self) -> String {"/lol-honor-v2/v1/mutual-honor/ack".to_string()}
 }
 
-pub fn post_lol_honor_v_2_v_1_mutual_honor_ack() -> PostLolHonorV2V1MutualHonorAck {
+pub fn post_lol_honor_v2_v1_mutual_honor_ack() -> PostLolHonorV2V1MutualHonorAck {
     PostLolHonorV2V1MutualHonorAck{}
 }
 
@@ -261,7 +262,7 @@ impl IsApiRequest for PostLolHonorV2V1RewardGrantedAck {
     fn get_url(&self) -> String {"/lol-honor-v2/v1/reward-granted/ack".to_string()}
 }
 
-pub fn post_lol_honor_v_2_v_1_reward_granted_ack() -> PostLolHonorV2V1RewardGrantedAck {
+pub fn post_lol_honor_v2_v1_reward_granted_ack() -> PostLolHonorV2V1RewardGrantedAck {
     PostLolHonorV2V1RewardGrantedAck{}
 }
 
@@ -271,9 +272,12 @@ pub fn post_lol_honor_v_2_v_1_reward_granted_ack() -> PostLolHonorV2V1RewardGran
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolHonorV2ApiHonorPlayerServerRequest {
+    #[serde(rename = "summonerId")]
     pub summoner_id: u64,
     pub puuid: String,
+    #[serde(rename = "honorType")]
     pub honor_type: String,
+    #[serde(rename = "gameId")]
     pub game_id: u64,
 }
 
@@ -282,6 +286,7 @@ pub struct LolHonorV2ApiHonorPlayerServerRequest {
 #[serde(rename_all = "camelCase")]
 pub struct LolHonorV2ApiHonorPlayerServerRequestV3 {
     pub puuid: String,
+    #[serde(rename = "honorType")]
     pub honor_type: String,
 }
 
@@ -289,10 +294,15 @@ pub struct LolHonorV2ApiHonorPlayerServerRequestV3 {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolHonorV2Ballot {
+    #[serde(rename = "eligibleAllies")]
     pub eligible_allies: Vec<LolHonorV2EligiblePlayer>,
+    #[serde(rename = "eligibleOpponents")]
     pub eligible_opponents: Vec<LolHonorV2EligiblePlayer>,
+    #[serde(rename = "numVotes")]
     pub num_votes: u32,
+    #[serde(rename = "gameId")]
     pub game_id: u64,
+    #[serde(rename = "honoredPlayers")]
     pub honored_players: Vec<LolHonorV2ApiHonorPlayerServerRequestV3>,
 }
 
@@ -300,6 +310,7 @@ pub struct LolHonorV2Ballot {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolHonorV2DynamicHonorMessage {
+    #[serde(rename = "messageId")]
     pub message_id: String,
     pub value: i32,
 }
@@ -309,9 +320,13 @@ pub struct LolHonorV2DynamicHonorMessage {
 #[serde(rename_all = "camelCase")]
 pub struct LolHonorV2EligiblePlayer {
     pub puuid: String,
+    #[serde(rename = "summonerId")]
     pub summoner_id: u64,
+    #[serde(rename = "summonerName")]
     pub summoner_name: String,
+    #[serde(rename = "championName")]
     pub champion_name: String,
+    #[serde(rename = "skinSplashPath")]
     pub skin_splash_path: String,
 }
 
@@ -319,8 +334,11 @@ pub struct LolHonorV2EligiblePlayer {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolHonorV2Honor {
+    #[serde(rename = "honorCategory")]
     pub honor_category: String,
+    #[serde(rename = "voterRelationship")]
     pub voter_relationship: String,
+    #[serde(rename = "senderPuuid")]
     pub sender_puuid: String,
 }
 
@@ -328,12 +346,18 @@ pub struct LolHonorV2Honor {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolHonorV2HonorConfig {
+    #[serde(rename = "Enabled")]
     pub enabled: bool,
+    #[serde(rename = "SecondsToVote")]
     pub seconds_to_vote: i32,
+    #[serde(rename = "HonorVisibilityEnabled")]
     pub honor_visibility_enabled: bool,
+    #[serde(rename = "HonorSuggestionsEnabled")]
     pub honor_suggestions_enabled: bool,
-    pub honor_endpoints_v_2_enabled: bool,
-    pub ceremony_v_3_enabled: bool,
+    #[serde(rename = "honorEndpointsV2Enabled")]
+    pub honor_endpoints_v2_enabled: bool,
+    #[serde(rename = "ceremonyV3Enabled")]
+    pub ceremony_v3_enabled: bool,
 }
 
 
@@ -341,8 +365,11 @@ pub struct LolHonorV2HonorConfig {
 #[serde(rename_all = "camelCase")]
 pub struct LolHonorV2HonorInteraction {
     pub puuid: String,
+    #[serde(rename = "displayName")]
     pub display_name: String,
+    #[serde(rename = "gameId")]
     pub game_id: u64,
+    #[serde(rename = "summonerId")]
     pub summoner_id: u64,
 }
 
@@ -350,6 +377,7 @@ pub struct LolHonorV2HonorInteraction {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolHonorV2MutualHonor {
+    #[serde(rename = "gameId")]
     pub game_id: u64,
     pub summoners: Vec<LolHonorV2MutualHonorPlayer>,
 }
@@ -358,8 +386,11 @@ pub struct LolHonorV2MutualHonor {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolHonorV2MutualHonorPlayer {
+    #[serde(rename = "summonerId")]
     pub summoner_id: u64,
+    #[serde(rename = "championId")]
     pub champion_id: i32,
+    #[serde(rename = "skinId")]
     pub skin_id: i32,
 }
 
@@ -367,8 +398,10 @@ pub struct LolHonorV2MutualHonorPlayer {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolHonorV2ProfileInfo {
+    #[serde(rename = "honorLevel")]
     pub honor_level: i32,
     pub checkpoint: i32,
+    #[serde(rename = "rewardsLocked")]
     pub rewards_locked: bool,
 }
 
@@ -376,6 +409,7 @@ pub struct LolHonorV2ProfileInfo {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolHonorV2Reward {
+    #[serde(rename = "rewardType")]
     pub reward_type: String,
     pub quantity: i32,
 }
@@ -384,10 +418,14 @@ pub struct LolHonorV2Reward {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolHonorV2VendedHonorChange {
+    #[serde(rename = "actionType")]
     pub action_type: String,
+    #[serde(rename = "previousState")]
     pub previous_state: LolHonorV2VendedHonorState,
+    #[serde(rename = "currentState")]
     pub current_state: LolHonorV2VendedHonorState,
     pub reward: LolHonorV2Reward,
+    #[serde(rename = "dynamicHonorMessage")]
     pub dynamic_honor_message: LolHonorV2DynamicHonorMessage,
 }
 
@@ -397,6 +435,7 @@ pub struct LolHonorV2VendedHonorChange {
 pub struct LolHonorV2VendedHonorState {
     pub level: i32,
     pub checkpoint: i32,
+    #[serde(rename = "rewardsLocked")]
     pub rewards_locked: bool,
 }
 
@@ -404,8 +443,10 @@ pub struct LolHonorV2VendedHonorState {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolHonorV2VendedReward {
+    #[serde(rename = "rewardType")]
     pub reward_type: String,
     pub quantity: i32,
+    #[serde(rename = "dynamicHonorMessage")]
     pub dynamic_honor_message: LolHonorV2DynamicHonorMessage,
 }
 
@@ -413,7 +454,9 @@ pub struct LolHonorV2VendedReward {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolHonorV2VoteCompletion {
+    #[serde(rename = "gameId")]
     pub game_id: u64,
+    #[serde(rename = "fullTeamVote")]
     pub full_team_vote: bool,
 }
 

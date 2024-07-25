@@ -1,6 +1,6 @@
 use iced::Command;
 use iced::widget::{Column, Container, container, text};
-
+use crate::assets::Assets;
 use crate::ui::application::AppState;
 use crate::ui::message::Message;
 use crate::ui::state::ConnectedState;
@@ -27,7 +27,7 @@ impl HasView for CreateLobbyJoinCustomView {
         }
         Command::none()
     }
-    fn view(connected_state: &ConnectedState) -> Container<'_, Message> {
+    fn view<'a>(connected_state: &'a ConnectedState, assets: &'a Assets) -> Container<'a, Message> {
         container(
             Column::new()
                 .push(text("Join Custom Game"))

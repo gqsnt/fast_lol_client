@@ -2,6 +2,7 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 use serde_json::{json, Value, to_value};
+use std::collections::hash_map::Values;
 use reqwest::Method;
 use common::IsApiRequest;
 
@@ -13,11 +14,11 @@ pub struct DeleteLolPremadeVoiceV1MicTest {}
 
 impl IsApiRequest for DeleteLolPremadeVoiceV1MicTest {
     const METHOD: Method = Method::DELETE;
-    type ReturnType = HashMap<String, String>;
+    type ReturnType = Value;
     fn get_url(&self) -> String {"/lol-premade-voice/v1/mic-test".to_string()}
 }
 
-pub fn delete_lol_premade_voice_v_1_mic_test() -> DeleteLolPremadeVoiceV1MicTest {
+pub fn delete_lol_premade_voice_v1_mic_test() -> DeleteLolPremadeVoiceV1MicTest {
     DeleteLolPremadeVoiceV1MicTest{}
 }
 
@@ -30,7 +31,7 @@ impl IsApiRequest for DeleteLolPremadeVoiceV1Session {
     fn get_url(&self) -> String {"/lol-premade-voice/v1/session".to_string()}
 }
 
-pub fn delete_lol_premade_voice_v_1_session() -> DeleteLolPremadeVoiceV1Session {
+pub fn delete_lol_premade_voice_v1_session() -> DeleteLolPremadeVoiceV1Session {
     DeleteLolPremadeVoiceV1Session{}
 }
 
@@ -43,7 +44,7 @@ impl IsApiRequest for GetLolPremadeVoiceV1Availability {
     fn get_url(&self) -> String {"/lol-premade-voice/v1/availability".to_string()}
 }
 
-pub fn get_lol_premade_voice_v_1_availability() -> GetLolPremadeVoiceV1Availability {
+pub fn get_lol_premade_voice_v1_availability() -> GetLolPremadeVoiceV1Availability {
     GetLolPremadeVoiceV1Availability{}
 }
 
@@ -56,7 +57,7 @@ impl IsApiRequest for GetLolPremadeVoiceV1Capturedevices {
     fn get_url(&self) -> String {"/lol-premade-voice/v1/capturedevices".to_string()}
 }
 
-pub fn get_lol_premade_voice_v_1_capturedevices() -> GetLolPremadeVoiceV1Capturedevices {
+pub fn get_lol_premade_voice_v1_capturedevices() -> GetLolPremadeVoiceV1Capturedevices {
     GetLolPremadeVoiceV1Capturedevices{}
 }
 
@@ -69,7 +70,7 @@ impl IsApiRequest for GetLolPremadeVoiceV1FirstExperience {
     fn get_url(&self) -> String {"/lol-premade-voice/v1/first-experience".to_string()}
 }
 
-pub fn get_lol_premade_voice_v_1_first_experience() -> GetLolPremadeVoiceV1FirstExperience {
+pub fn get_lol_premade_voice_v1_first_experience() -> GetLolPremadeVoiceV1FirstExperience {
     GetLolPremadeVoiceV1FirstExperience{}
 }
 
@@ -82,7 +83,7 @@ impl IsApiRequest for GetLolPremadeVoiceV1MicTest {
     fn get_url(&self) -> String {"/lol-premade-voice/v1/mic-test".to_string()}
 }
 
-pub fn get_lol_premade_voice_v_1_mic_test() -> GetLolPremadeVoiceV1MicTest {
+pub fn get_lol_premade_voice_v1_mic_test() -> GetLolPremadeVoiceV1MicTest {
     GetLolPremadeVoiceV1MicTest{}
 }
 
@@ -95,7 +96,7 @@ impl IsApiRequest for GetLolPremadeVoiceV1ParticipantRecords {
     fn get_url(&self) -> String {"/lol-premade-voice/v1/participant-records".to_string()}
 }
 
-pub fn get_lol_premade_voice_v_1_participant_records() -> GetLolPremadeVoiceV1ParticipantRecords {
+pub fn get_lol_premade_voice_v1_participant_records() -> GetLolPremadeVoiceV1ParticipantRecords {
     GetLolPremadeVoiceV1ParticipantRecords{}
 }
 
@@ -108,7 +109,7 @@ impl IsApiRequest for GetLolPremadeVoiceV1Participants {
     fn get_url(&self) -> String {"/lol-premade-voice/v1/participants".to_string()}
 }
 
-pub fn get_lol_premade_voice_v_1_participants() -> GetLolPremadeVoiceV1Participants {
+pub fn get_lol_premade_voice_v1_participants() -> GetLolPremadeVoiceV1Participants {
     GetLolPremadeVoiceV1Participants{}
 }
 
@@ -121,7 +122,7 @@ impl IsApiRequest for GetLolPremadeVoiceV1Settings {
     fn get_url(&self) -> String {"/lol-premade-voice/v1/settings".to_string()}
 }
 
-pub fn get_lol_premade_voice_v_1_settings() -> GetLolPremadeVoiceV1Settings {
+pub fn get_lol_premade_voice_v1_settings() -> GetLolPremadeVoiceV1Settings {
     GetLolPremadeVoiceV1Settings{}
 }
 
@@ -134,7 +135,7 @@ impl IsApiRequest for PostLolPremadeVoiceV1FirstExperienceGame {
     fn get_url(&self) -> String {"/lol-premade-voice/v1/first-experience/game".to_string()}
 }
 
-pub fn post_lol_premade_voice_v_1_first_experience_game() -> PostLolPremadeVoiceV1FirstExperienceGame {
+pub fn post_lol_premade_voice_v1_first_experience_game() -> PostLolPremadeVoiceV1FirstExperienceGame {
     PostLolPremadeVoiceV1FirstExperienceGame{}
 }
 
@@ -147,7 +148,7 @@ impl IsApiRequest for PostLolPremadeVoiceV1FirstExperienceLcu {
     fn get_url(&self) -> String {"/lol-premade-voice/v1/first-experience/lcu".to_string()}
 }
 
-pub fn post_lol_premade_voice_v_1_first_experience_lcu() -> PostLolPremadeVoiceV1FirstExperienceLcu {
+pub fn post_lol_premade_voice_v1_first_experience_lcu() -> PostLolPremadeVoiceV1FirstExperienceLcu {
     PostLolPremadeVoiceV1FirstExperienceLcu{}
 }
 
@@ -160,7 +161,7 @@ impl IsApiRequest for PostLolPremadeVoiceV1FirstExperienceReset {
     fn get_url(&self) -> String {"/lol-premade-voice/v1/first-experience/reset".to_string()}
 }
 
-pub fn post_lol_premade_voice_v_1_first_experience_reset() -> PostLolPremadeVoiceV1FirstExperienceReset {
+pub fn post_lol_premade_voice_v1_first_experience_reset() -> PostLolPremadeVoiceV1FirstExperienceReset {
     PostLolPremadeVoiceV1FirstExperienceReset{}
 }
 
@@ -178,7 +179,7 @@ impl IsApiRequest for PostLolPremadeVoiceV1GameClientUpdatedPTTKey {
     }
 }
 
-pub fn post_lol_premade_voice_v_1_game_client_updated_ptt_key(body: String) -> PostLolPremadeVoiceV1GameClientUpdatedPTTKey {
+pub fn post_lol_premade_voice_v1_game_client_updated_ptt_key(body: String) -> PostLolPremadeVoiceV1GameClientUpdatedPTTKey {
     PostLolPremadeVoiceV1GameClientUpdatedPTTKey{body}
 }
 
@@ -187,11 +188,11 @@ pub struct PostLolPremadeVoiceV1MicTest {}
 
 impl IsApiRequest for PostLolPremadeVoiceV1MicTest {
     const METHOD: Method = Method::POST;
-    type ReturnType = HashMap<String, String>;
+    type ReturnType = Value;
     fn get_url(&self) -> String {"/lol-premade-voice/v1/mic-test".to_string()}
 }
 
-pub fn post_lol_premade_voice_v_1_mic_test() -> PostLolPremadeVoiceV1MicTest {
+pub fn post_lol_premade_voice_v1_mic_test() -> PostLolPremadeVoiceV1MicTest {
     PostLolPremadeVoiceV1MicTest{}
 }
 
@@ -209,7 +210,7 @@ impl IsApiRequest for PostLolPremadeVoiceV1PushToTalkCheckAvailable {
     }
 }
 
-pub fn post_lol_premade_voice_v_1_push_to_talk_check_available(body: i32) -> PostLolPremadeVoiceV1PushToTalkCheckAvailable {
+pub fn post_lol_premade_voice_v1_push_to_talk_check_available(body: i32) -> PostLolPremadeVoiceV1PushToTalkCheckAvailable {
     PostLolPremadeVoiceV1PushToTalkCheckAvailable{body}
 }
 
@@ -222,7 +223,7 @@ impl IsApiRequest for PostLolPremadeVoiceV1Session {
     fn get_url(&self) -> String {"/lol-premade-voice/v1/session".to_string()}
 }
 
-pub fn post_lol_premade_voice_v_1_session() -> PostLolPremadeVoiceV1Session {
+pub fn post_lol_premade_voice_v1_session() -> PostLolPremadeVoiceV1Session {
     PostLolPremadeVoiceV1Session{}
 }
 
@@ -235,7 +236,7 @@ impl IsApiRequest for PostLolPremadeVoiceV1SettingsReset {
     fn get_url(&self) -> String {"/lol-premade-voice/v1/settings/reset".to_string()}
 }
 
-pub fn post_lol_premade_voice_v_1_settings_reset() -> PostLolPremadeVoiceV1SettingsReset {
+pub fn post_lol_premade_voice_v1_settings_reset() -> PostLolPremadeVoiceV1SettingsReset {
     PostLolPremadeVoiceV1SettingsReset{}
 }
 
@@ -253,7 +254,7 @@ impl IsApiRequest for PutLolPremadeVoiceV1Capturedevices {
     }
 }
 
-pub fn put_lol_premade_voice_v_1_capturedevices(body: String) -> PutLolPremadeVoiceV1Capturedevices {
+pub fn put_lol_premade_voice_v1_capturedevices(body: String) -> PutLolPremadeVoiceV1Capturedevices {
     PutLolPremadeVoiceV1Capturedevices{body}
 }
 
@@ -272,7 +273,7 @@ impl IsApiRequest for PutLolPremadeVoiceV1ParticipantsByPuuidMute {
     }
 }
 
-pub fn put_lol_premade_voice_v_1_participants_by_puuid_mute(puuid: String, body: i32) -> PutLolPremadeVoiceV1ParticipantsByPuuidMute {
+pub fn put_lol_premade_voice_v1_participants_by_puuid_mute(puuid: String, body: i32) -> PutLolPremadeVoiceV1ParticipantsByPuuidMute {
     PutLolPremadeVoiceV1ParticipantsByPuuidMute{puuid, body}
 }
 
@@ -291,7 +292,7 @@ impl IsApiRequest for PutLolPremadeVoiceV1ParticipantsByPuuidVolume {
     }
 }
 
-pub fn put_lol_premade_voice_v_1_participants_by_puuid_volume(puuid: String, body: i32) -> PutLolPremadeVoiceV1ParticipantsByPuuidVolume {
+pub fn put_lol_premade_voice_v1_participants_by_puuid_volume(puuid: String, body: i32) -> PutLolPremadeVoiceV1ParticipantsByPuuidVolume {
     PutLolPremadeVoiceV1ParticipantsByPuuidVolume{puuid, body}
 }
 
@@ -309,7 +310,7 @@ impl IsApiRequest for PutLolPremadeVoiceV1SelfActivationSensitivity {
     }
 }
 
-pub fn put_lol_premade_voice_v_1_self_activation_sensitivity(body: i32) -> PutLolPremadeVoiceV1SelfActivationSensitivity {
+pub fn put_lol_premade_voice_v1_self_activation_sensitivity(body: i32) -> PutLolPremadeVoiceV1SelfActivationSensitivity {
     PutLolPremadeVoiceV1SelfActivationSensitivity{body}
 }
 
@@ -327,7 +328,7 @@ impl IsApiRequest for PutLolPremadeVoiceV1SelfInputMode {
     }
 }
 
-pub fn put_lol_premade_voice_v_1_self_input_mode(body: LolPremadeVoiceInputMode) -> PutLolPremadeVoiceV1SelfInputMode {
+pub fn put_lol_premade_voice_v1_self_input_mode(body: LolPremadeVoiceInputMode) -> PutLolPremadeVoiceV1SelfInputMode {
     PutLolPremadeVoiceV1SelfInputMode{body}
 }
 
@@ -345,7 +346,7 @@ impl IsApiRequest for PutLolPremadeVoiceV1SelfMicLevel {
     }
 }
 
-pub fn put_lol_premade_voice_v_1_self_mic_level(body: i32) -> PutLolPremadeVoiceV1SelfMicLevel {
+pub fn put_lol_premade_voice_v1_self_mic_level(body: i32) -> PutLolPremadeVoiceV1SelfMicLevel {
     PutLolPremadeVoiceV1SelfMicLevel{body}
 }
 
@@ -363,7 +364,7 @@ impl IsApiRequest for PutLolPremadeVoiceV1SelfMute {
     }
 }
 
-pub fn put_lol_premade_voice_v_1_self_mute(body: i32) -> PutLolPremadeVoiceV1SelfMute {
+pub fn put_lol_premade_voice_v1_self_mute(body: i32) -> PutLolPremadeVoiceV1SelfMute {
     PutLolPremadeVoiceV1SelfMute{body}
 }
 
@@ -373,7 +374,9 @@ pub fn put_lol_premade_voice_v_1_self_mute(body: i32) -> PutLolPremadeVoiceV1Sel
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolPremadeVoiceAudioPropertiesResource {
+    #[serde(rename = "isLoopbackEnabled")]
     pub is_loopback_enabled: bool,
+    #[serde(rename = "micEnergy")]
     pub mic_energy: u32,
 }
 
@@ -392,7 +395,9 @@ pub struct LolPremadeVoiceDeviceResource {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolPremadeVoiceFirstExperience {
+    #[serde(rename = "showFirstExperienceInLCU")]
     pub show_first_experience_in_lcu: bool,
+    #[serde(rename = "showFirstExperienceInGame")]
     pub show_first_experience_in_game: bool,
 }
 
@@ -400,13 +405,18 @@ pub struct LolPremadeVoiceFirstExperience {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolPremadeVoicePremadeVoiceParticipantDto {
+    #[serde(rename = "participantId")]
     pub participant_id: String,
+    #[serde(rename = "summonerId")]
     pub summoner_id: u64,
     pub puuid: String,
+    #[serde(rename = "displayName")]
     pub display_name: String,
     pub volume: u32,
     pub energy: u32,
+    #[serde(rename = "isMuted")]
     pub is_muted: bool,
+    #[serde(rename = "isSpeaking")]
     pub is_speaking: bool,
 }
 
@@ -414,17 +424,29 @@ pub struct LolPremadeVoicePremadeVoiceParticipantDto {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolPremadeVoiceSettingsResource {
+    #[serde(rename = "currentCaptureDeviceHandle")]
     pub current_capture_device_handle: String,
+    #[serde(rename = "vadHangoverTime")]
     pub vad_hangover_time: u32,
+    #[serde(rename = "vadSensitivity")]
     pub vad_sensitivity: u32,
+    #[serde(rename = "micLevel")]
     pub mic_level: u32,
+    #[serde(rename = "localMicMuted")]
     pub local_mic_muted: bool,
+    #[serde(rename = "loopbackEnabled")]
     pub loopback_enabled: bool,
+    #[serde(rename = "autoJoin")]
     pub auto_join: bool,
+    #[serde(rename = "muteOnConnect")]
     pub mute_on_connect: bool,
+    #[serde(rename = "vadActive")]
     pub vad_active: bool,
+    #[serde(rename = "pttActive")]
     pub ptt_active: bool,
+    #[serde(rename = "inputMode")]
     pub input_mode: LolPremadeVoiceInputMode,
+    #[serde(rename = "pttKey")]
     pub ptt_key: Option<String>,
 }
 
@@ -433,10 +455,15 @@ pub struct LolPremadeVoiceSettingsResource {
 #[serde(rename_all = "camelCase")]
 pub struct LolPremadeVoiceVoiceAvailability {
     pub enabled: bool,
+    #[serde(rename = "connectedToVoiceServer")]
     pub connected_to_voice_server: bool,
+    #[serde(rename = "voiceChannelAvailable")]
     pub voice_channel_available: bool,
+    #[serde(rename = "disabledAfterLogin")]
     pub disabled_after_login: bool,
+    #[serde(rename = "showUI")]
     pub show_ui: bool,
+    #[serde(rename = "showDisconnectedState")]
     pub show_disconnected_state: bool,
 }
 

@@ -1,7 +1,7 @@
 use std::collections::{HashMap, HashSet};
 use std::io::Write;
-
-use convert_case::{Case, Casing};
+use std::path::PathBuf;
+// use convert_case::{Case, Casing};
 use openapiv3::{ReferenceOr, SchemaKind, Type};
 use serde_json::Value;
 
@@ -73,6 +73,33 @@ impl ConvertOpenApiToRust {
         for (_, plugin) in &self.plugins {
             plugin.generate()
         }
+        let mut all_plugins = self.plugins.iter().map(|(_, plugin)| plugin.name.clone()).collect::<Vec<String>>();
+        all_plugins.push("common".to_string());
+        all_plugins.push("lol_api_generator".to_string());
+        all_plugins.push("lol_client".to_string());
+        let crates_path=  PathBuf::from("crates");
+        // list dir in crates_path
+        let mut crates = std::fs::read_dir(&crates_path).unwrap().map(|res| res.map(|e| e.path())).collect::<Result<Vec<_>, std::io::Error>>().unwrap();
+        // make diff
+        let mut diff = crates.clone();
+        diff.retain(|x| !all_plugins.contains(&x.file_name().unwrap().to_str().unwrap().to_string()));
+        if diff.len() > 0 {
+            println!("Some plugin remains in the crates folder");
+            for path in &diff {
+                println!("    {}", path.display());
+            }
+            // check if the user wants to remove the remaining plugins
+            let mut input = String::new();
+            print!("Do you want to remove the remaining plugins? [y/N]: ");
+            std::io::stdout().flush().unwrap();
+            std::io::stdin().read_line(&mut input).unwrap();
+            if input.trim().to_lowercase() == "y" {
+                for path in &diff {
+                    std::fs::remove_dir_all(path).unwrap();
+                }
+            }
+
+        }
         Ok(())
     }
 
@@ -107,14 +134,14 @@ impl ConvertOpenApiToRust {
         let mut plugins_len = self.plugins.len();
         let mut i = 0;
         while i < plugins_len {
-            let (key1, plugin1) = {
-                let (key1, plugin1) = self.plugins.iter().nth(i).unwrap();
+            let (mut key1, mut plugin1) = {
+                let (mut key1, mut plugin1) = self.plugins.iter().nth(i).unwrap();
                 (key1.clone(), plugin1.clone())
             };
             for j in 0..plugins_len {
                 if i != j {
-                    let (key2, plugin2) = {
-                        let (key2, plugin2) = self.plugins.iter().nth(j).unwrap();
+                    let (mut key2, mut plugin2) = {
+                        let (key2,  plugin2) = self.plugins.iter().nth(j).unwrap();
                         (key2.clone(), plugin2.clone())
                     };
 
@@ -122,6 +149,11 @@ impl ConvertOpenApiToRust {
                     let plugin2_imports = plugin2.objects.keys().cloned().collect::<HashSet<String>>();
                     let common_imports = plugin1_imports.intersection(&plugin2_imports).collect::<HashSet<&String>>();
                     if !common_imports.is_empty() {
+                        if key2 < key1{
+                            let temp_key = key2.clone();
+                            key2 = key1.clone();
+                            key1 = temp_key;
+                        }
                         let old_plugin = self.plugins.remove(&key2).unwrap();
                         let mut new_plugin = self.plugins.remove(&key1).unwrap();
                         let new_key = format!("{}_{}", key1, key2.replace("plugin_lol_", ""));
@@ -150,52 +182,6 @@ impl ConvertOpenApiToRust {
         std::path::PathBuf::from("lol_apis").join("src")
     }
 
-
-    pub fn write_models(&self) -> Result<(), std::io::Error> {
-        let models_path = Self::get_result_path().join("models");
-        let model_file = Self::get_result_path().join("models.rs");
-        let mut model_writer = std::fs::File::create(model_file.clone())?;
-        for object in self.objects.iter() {
-            // match object{
-            //     ObjectType::Object(object) => {
-            //         let lower_name = object.name.to_case(Case::Snake);
-            //         let mut writer = std::fs::File::create(models_path.join(format!("{}.rs", lower_name)))?;
-            //         writer.write_all(format!("{}", object).as_bytes())?;
-            //         model_writer.write_all(format!("pub mod {};\n", lower_name).as_bytes())?;
-            //     }
-            //     ObjectType::Enum(enum_) => {
-            //         let lower_name = enum_.name.to_case(Case::Snake);
-            //         let mut writer = std::fs::File::create(models_path.join(format!("{}.rs", lower_name)))?;
-            //         writer.write_all(format!("{}", enum_).as_bytes())?;
-            //         model_writer.write_all(format!("pub mod {};\n", lower_name).as_bytes())?;
-            //         let import_name = crate_path_from_type_and_name("models", enum_.name.as_str());
-            //         for alternative in enum_.alternatives.iter() {
-            //             if alternative == &enum_.name {
-            //                 continue;
-            //             }
-            //             let lower_name = alternative.clone().to_case(Case::Snake);
-            //             let mut alternative_writer = std::fs::File::create(models_path.join(format!("{}.rs", lower_name)))?;
-            //             alternative_writer.write_all(format!("use {};\npub type {} = {};",&import_name,  alternative, &enum_.name).as_bytes())?;
-            //             model_writer.write_all(format!("pub mod {};\n", lower_name).as_bytes())?;
-            //         }
-            //     }
-            // }
-        }
-        Ok(())
-    }
-
-    pub fn write_apis(&self) -> Result<(), std::io::Error> {
-        let apis_path = Self::get_result_path().join("apis");
-        let api_file = Self::get_result_path().join("apis.rs");
-        let mut api_writer = std::fs::File::create(api_file.clone())?;
-        for endpoint in self.endpoints.iter() {
-            let lower_name = endpoint.name.to_case(Case::Snake);
-            let mut writer = std::fs::File::create(apis_path.join(format!("{}.rs", lower_name)))?;
-            writer.write_all(format!("{}", endpoint).as_bytes())?;
-            api_writer.write_all(format!("pub mod {};\n", lower_name).as_bytes())?;
-        }
-        Ok(())
-    }
 
 
     pub fn parse_endpoints(&mut self) -> Result<(), String> {

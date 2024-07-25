@@ -23,6 +23,7 @@ pub const PLUGIN_LIB_TEMPLATE: &str = r#"
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 use serde_json::{json, Value, to_value};
+use std::collections::hash_map::Values;
 use reqwest::Method;
 use common::IsApiRequest;
 

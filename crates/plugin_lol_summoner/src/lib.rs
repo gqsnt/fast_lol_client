@@ -2,6 +2,7 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 use serde_json::{json, Value, to_value};
+use std::collections::hash_map::Values;
 use reqwest::Method;
 use common::IsApiRequest;
 
@@ -18,15 +19,15 @@ impl IsApiRequest for GetLolSummonerV1AliasLookup {
     const METHOD: Method = Method::GET;
     type ReturnType = LolSummonerAliasLookupResponse;
     fn get_url(&self) -> String {"/lol-summoner/v1/alias/lookup".to_string()}
-    fn get_query_params(&self) -> Option<Value> {
-        Some(json!({
-            "gameName" : self.game_name,
-            "tagLine" : self.tag_line,
-        }))
+    fn get_query(&self) -> Option<Vec<(String,String)>> {
+        Some(vec![
+            ("gameName".to_string(), serde_json::to_string(&self.game_name).unwrap()),
+            ("tagLine".to_string(), serde_json::to_string(&self.tag_line).unwrap())
+        ])
     }
 }
 
-pub fn get_lol_summoner_v_1_alias_lookup(game_name: String, tag_line: String) -> GetLolSummonerV1AliasLookup {
+pub fn get_lol_summoner_v1_alias_lookup(game_name: String, tag_line: String) -> GetLolSummonerV1AliasLookup {
     GetLolSummonerV1AliasLookup{game_name, tag_line}
 }
 
@@ -41,7 +42,7 @@ impl IsApiRequest for GetLolSummonerV1CheckNameAvailabilityByName {
     fn get_url(&self) -> String {format!("/lol-summoner/v1/check-name-availability/{}", self.name)}
 }
 
-pub fn get_lol_summoner_v_1_check_name_availability_by_name(name: String) -> GetLolSummonerV1CheckNameAvailabilityByName {
+pub fn get_lol_summoner_v1_check_name_availability_by_name(name: String) -> GetLolSummonerV1CheckNameAvailabilityByName {
     GetLolSummonerV1CheckNameAvailabilityByName{name}
 }
 
@@ -56,7 +57,7 @@ impl IsApiRequest for GetLolSummonerV1CheckNameAvailabilityNewSummonersByName {
     fn get_url(&self) -> String {format!("/lol-summoner/v1/check-name-availability-new-summoners/{}", self.name)}
 }
 
-pub fn get_lol_summoner_v_1_check_name_availability_new_summoners_by_name(name: String) -> GetLolSummonerV1CheckNameAvailabilityNewSummonersByName {
+pub fn get_lol_summoner_v1_check_name_availability_new_summoners_by_name(name: String) -> GetLolSummonerV1CheckNameAvailabilityNewSummonersByName {
     GetLolSummonerV1CheckNameAvailabilityNewSummonersByName{name}
 }
 
@@ -69,7 +70,7 @@ impl IsApiRequest for GetLolSummonerV1CurrentSummoner {
     fn get_url(&self) -> String {"/lol-summoner/v1/current-summoner".to_string()}
 }
 
-pub fn get_lol_summoner_v_1_current_summoner() -> GetLolSummonerV1CurrentSummoner {
+pub fn get_lol_summoner_v1_current_summoner() -> GetLolSummonerV1CurrentSummoner {
     GetLolSummonerV1CurrentSummoner{}
 }
 
@@ -82,7 +83,7 @@ impl IsApiRequest for GetLolSummonerV1CurrentSummonerAccountAndSummonerIds {
     fn get_url(&self) -> String {"/lol-summoner/v1/current-summoner/account-and-summoner-ids".to_string()}
 }
 
-pub fn get_lol_summoner_v_1_current_summoner_account_and_summoner_ids() -> GetLolSummonerV1CurrentSummonerAccountAndSummonerIds {
+pub fn get_lol_summoner_v1_current_summoner_account_and_summoner_ids() -> GetLolSummonerV1CurrentSummonerAccountAndSummonerIds {
     GetLolSummonerV1CurrentSummonerAccountAndSummonerIds{}
 }
 
@@ -95,7 +96,7 @@ impl IsApiRequest for GetLolSummonerV1CurrentSummonerAutofill {
     fn get_url(&self) -> String {"/lol-summoner/v1/current-summoner/autofill".to_string()}
 }
 
-pub fn get_lol_summoner_v_1_current_summoner_autofill() -> GetLolSummonerV1CurrentSummonerAutofill {
+pub fn get_lol_summoner_v1_current_summoner_autofill() -> GetLolSummonerV1CurrentSummonerAutofill {
     GetLolSummonerV1CurrentSummonerAutofill{}
 }
 
@@ -108,7 +109,7 @@ impl IsApiRequest for GetLolSummonerV1CurrentSummonerJwt {
     fn get_url(&self) -> String {"/lol-summoner/v1/current-summoner/jwt".to_string()}
 }
 
-pub fn get_lol_summoner_v_1_current_summoner_jwt() -> GetLolSummonerV1CurrentSummonerJwt {
+pub fn get_lol_summoner_v1_current_summoner_jwt() -> GetLolSummonerV1CurrentSummonerJwt {
     GetLolSummonerV1CurrentSummonerJwt{}
 }
 
@@ -121,7 +122,7 @@ impl IsApiRequest for GetLolSummonerV1CurrentSummonerProfilePrivacy {
     fn get_url(&self) -> String {"/lol-summoner/v1/current-summoner/profile-privacy".to_string()}
 }
 
-pub fn get_lol_summoner_v_1_current_summoner_profile_privacy() -> GetLolSummonerV1CurrentSummonerProfilePrivacy {
+pub fn get_lol_summoner_v1_current_summoner_profile_privacy() -> GetLolSummonerV1CurrentSummonerProfilePrivacy {
     GetLolSummonerV1CurrentSummonerProfilePrivacy{}
 }
 
@@ -134,7 +135,7 @@ impl IsApiRequest for GetLolSummonerV1CurrentSummonerRerollPoints {
     fn get_url(&self) -> String {"/lol-summoner/v1/current-summoner/rerollPoints".to_string()}
 }
 
-pub fn get_lol_summoner_v_1_current_summoner_reroll_points() -> GetLolSummonerV1CurrentSummonerRerollPoints {
+pub fn get_lol_summoner_v1_current_summoner_reroll_points() -> GetLolSummonerV1CurrentSummonerRerollPoints {
     GetLolSummonerV1CurrentSummonerRerollPoints{}
 }
 
@@ -143,11 +144,11 @@ pub struct GetLolSummonerV1CurrentSummonerSummonerProfile {}
 
 impl IsApiRequest for GetLolSummonerV1CurrentSummonerSummonerProfile {
     const METHOD: Method = Method::GET;
-    type ReturnType = HashMap<String, String>;
+    type ReturnType = Value;
     fn get_url(&self) -> String {"/lol-summoner/v1/current-summoner/summoner-profile".to_string()}
 }
 
-pub fn get_lol_summoner_v_1_current_summoner_summoner_profile() -> GetLolSummonerV1CurrentSummonerSummonerProfile {
+pub fn get_lol_summoner_v1_current_summoner_summoner_profile() -> GetLolSummonerV1CurrentSummonerSummonerProfile {
     GetLolSummonerV1CurrentSummonerSummonerProfile{}
 }
 
@@ -160,7 +161,7 @@ impl IsApiRequest for GetLolSummonerV1PlayerAliasState {
     fn get_url(&self) -> String {"/lol-summoner/v1/player-alias-state".to_string()}
 }
 
-pub fn get_lol_summoner_v_1_player_alias_state() -> GetLolSummonerV1PlayerAliasState {
+pub fn get_lol_summoner_v1_player_alias_state() -> GetLolSummonerV1PlayerAliasState {
     GetLolSummonerV1PlayerAliasState{}
 }
 
@@ -173,7 +174,7 @@ impl IsApiRequest for GetLolSummonerV1PlayerNameMode {
     fn get_url(&self) -> String {"/lol-summoner/v1/player-name-mode".to_string()}
 }
 
-pub fn get_lol_summoner_v_1_player_name_mode() -> GetLolSummonerV1PlayerNameMode {
+pub fn get_lol_summoner_v1_player_name_mode() -> GetLolSummonerV1PlayerNameMode {
     GetLolSummonerV1PlayerNameMode{}
 }
 
@@ -186,7 +187,7 @@ impl IsApiRequest for GetLolSummonerV1ProfilePrivacyEnabled {
     fn get_url(&self) -> String {"/lol-summoner/v1/profile-privacy-enabled".to_string()}
 }
 
-pub fn get_lol_summoner_v_1_profile_privacy_enabled() -> GetLolSummonerV1ProfilePrivacyEnabled {
+pub fn get_lol_summoner_v1_profile_privacy_enabled() -> GetLolSummonerV1ProfilePrivacyEnabled {
     GetLolSummonerV1ProfilePrivacyEnabled{}
 }
 
@@ -199,7 +200,7 @@ impl IsApiRequest for GetLolSummonerV1RiotAliasFreeEligibility {
     fn get_url(&self) -> String {"/lol-summoner/v1/riot-alias-free-eligibility".to_string()}
 }
 
-pub fn get_lol_summoner_v_1_riot_alias_free_eligibility() -> GetLolSummonerV1RiotAliasFreeEligibility {
+pub fn get_lol_summoner_v1_riot_alias_free_eligibility() -> GetLolSummonerV1RiotAliasFreeEligibility {
     GetLolSummonerV1RiotAliasFreeEligibility{}
 }
 
@@ -212,7 +213,7 @@ impl IsApiRequest for GetLolSummonerV1RiotAliasPurchaseEligibility {
     fn get_url(&self) -> String {"/lol-summoner/v1/riot-alias-purchase-eligibility".to_string()}
 }
 
-pub fn get_lol_summoner_v_1_riot_alias_purchase_eligibility() -> GetLolSummonerV1RiotAliasPurchaseEligibility {
+pub fn get_lol_summoner_v1_riot_alias_purchase_eligibility() -> GetLolSummonerV1RiotAliasPurchaseEligibility {
     GetLolSummonerV1RiotAliasPurchaseEligibility{}
 }
 
@@ -225,7 +226,7 @@ impl IsApiRequest for GetLolSummonerV1Status {
     fn get_url(&self) -> String {"/lol-summoner/v1/status".to_string()}
 }
 
-pub fn get_lol_summoner_v_1_status() -> GetLolSummonerV1Status {
+pub fn get_lol_summoner_v1_status() -> GetLolSummonerV1Status {
     GetLolSummonerV1Status{}
 }
 
@@ -236,16 +237,16 @@ pub struct GetLolSummonerV1SummonerProfile {
 
 impl IsApiRequest for GetLolSummonerV1SummonerProfile {
     const METHOD: Method = Method::GET;
-    type ReturnType = HashMap<String, String>;
+    type ReturnType = Value;
     fn get_url(&self) -> String {"/lol-summoner/v1/summoner-profile".to_string()}
-    fn get_query_params(&self) -> Option<Value> {
-        Some(json!({
-            "puuid" : self.puuid,
-        }))
+    fn get_query(&self) -> Option<Vec<(String,String)>> {
+        Some(vec![
+            ("puuid".to_string(), serde_json::to_string(&self.puuid).unwrap())
+        ])
     }
 }
 
-pub fn get_lol_summoner_v_1_summoner_profile(puuid: String) -> GetLolSummonerV1SummonerProfile {
+pub fn get_lol_summoner_v1_summoner_profile(puuid: String) -> GetLolSummonerV1SummonerProfile {
     GetLolSummonerV1SummonerProfile{puuid}
 }
 
@@ -258,7 +259,7 @@ impl IsApiRequest for GetLolSummonerV1SummonerRequestsReady {
     fn get_url(&self) -> String {"/lol-summoner/v1/summoner-requests-ready".to_string()}
 }
 
-pub fn get_lol_summoner_v_1_summoner_requests_ready() -> GetLolSummonerV1SummonerRequestsReady {
+pub fn get_lol_summoner_v1_summoner_requests_ready() -> GetLolSummonerV1SummonerRequestsReady {
     GetLolSummonerV1SummonerRequestsReady{}
 }
 
@@ -271,14 +272,14 @@ impl IsApiRequest for GetLolSummonerV1Summoners {
     const METHOD: Method = Method::GET;
     type ReturnType = LolSummonerSummoner;
     fn get_url(&self) -> String {"/lol-summoner/v1/summoners".to_string()}
-    fn get_query_params(&self) -> Option<Value> {
-        Some(json!({
-            "name" : self.name,
-        }))
+    fn get_query(&self) -> Option<Vec<(String,String)>> {
+        Some(vec![
+            ("name".to_string(), serde_json::to_string(&self.name).unwrap())
+        ])
     }
 }
 
-pub fn get_lol_summoner_v_1_summoners(name: String) -> GetLolSummonerV1Summoners {
+pub fn get_lol_summoner_v1_summoners(name: String) -> GetLolSummonerV1Summoners {
     GetLolSummonerV1Summoners{name}
 }
 
@@ -293,7 +294,7 @@ impl IsApiRequest for GetLolSummonerV1SummonersById {
     fn get_url(&self) -> String {format!("/lol-summoner/v1/summoners/{}", self.id)}
 }
 
-pub fn get_lol_summoner_v_1_summoners_by_id(id: u64) -> GetLolSummonerV1SummonersById {
+pub fn get_lol_summoner_v1_summoners_by_id(id: u64) -> GetLolSummonerV1SummonersById {
     GetLolSummonerV1SummonersById{id}
 }
 
@@ -308,7 +309,7 @@ impl IsApiRequest for GetLolSummonerV1SummonersByPuuidCachedByPuuid {
     fn get_url(&self) -> String {format!("/lol-summoner/v1/summoners-by-puuid-cached/{}", self.puuid)}
 }
 
-pub fn get_lol_summoner_v_1_summoners_by_puuid_cached_by_puuid(puuid: String) -> GetLolSummonerV1SummonersByPuuidCachedByPuuid {
+pub fn get_lol_summoner_v1_summoners_by_puuid_cached_by_puuid(puuid: String) -> GetLolSummonerV1SummonersByPuuidCachedByPuuid {
     GetLolSummonerV1SummonersByPuuidCachedByPuuid{puuid}
 }
 
@@ -321,14 +322,14 @@ impl IsApiRequest for GetLolSummonerV2SummonerIcons {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolSummonerSummonerIdAndIcon>;
     fn get_url(&self) -> String {"/lol-summoner/v2/summoner-icons".to_string()}
-    fn get_query_params(&self) -> Option<Value> {
-        Some(json!({
-            "ids" : self.ids,
-        }))
+    fn get_query(&self) -> Option<Vec<(String,String)>> {
+        Some(vec![
+            ("ids".to_string(), serde_json::to_string(&self.ids).unwrap())
+        ])
     }
 }
 
-pub fn get_lol_summoner_v_2_summoner_icons(ids: Vec<u64>) -> GetLolSummonerV2SummonerIcons {
+pub fn get_lol_summoner_v2_summoner_icons(ids: Vec<u64>) -> GetLolSummonerV2SummonerIcons {
     GetLolSummonerV2SummonerIcons{ids}
 }
 
@@ -341,14 +342,14 @@ impl IsApiRequest for GetLolSummonerV2SummonerNames {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolSummonerSummonerIdAndName>;
     fn get_url(&self) -> String {"/lol-summoner/v2/summoner-names".to_string()}
-    fn get_query_params(&self) -> Option<Value> {
-        Some(json!({
-            "ids" : self.ids,
-        }))
+    fn get_query(&self) -> Option<Vec<(String,String)>> {
+        Some(vec![
+            ("ids".to_string(), serde_json::to_string(&self.ids).unwrap())
+        ])
     }
 }
 
-pub fn get_lol_summoner_v_2_summoner_names(ids: Vec<u64>) -> GetLolSummonerV2SummonerNames {
+pub fn get_lol_summoner_v2_summoner_names(ids: Vec<u64>) -> GetLolSummonerV2SummonerNames {
     GetLolSummonerV2SummonerNames{ids}
 }
 
@@ -361,14 +362,14 @@ impl IsApiRequest for GetLolSummonerV2Summoners {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolSummonerSummoner>;
     fn get_url(&self) -> String {"/lol-summoner/v2/summoners".to_string()}
-    fn get_query_params(&self) -> Option<Value> {
-        Some(json!({
-            "ids" : self.ids,
-        }))
+    fn get_query(&self) -> Option<Vec<(String,String)>> {
+        Some(vec![
+            ("ids".to_string(), serde_json::to_string(&self.ids).unwrap())
+        ])
     }
 }
 
-pub fn get_lol_summoner_v_2_summoners(ids: Option<Vec<u64>>) -> GetLolSummonerV2Summoners {
+pub fn get_lol_summoner_v2_summoners(ids: Option<Vec<u64>>) -> GetLolSummonerV2Summoners {
     GetLolSummonerV2Summoners{ids}
 }
 
@@ -383,7 +384,7 @@ impl IsApiRequest for GetLolSummonerV2SummonersPuuidByPuuid {
     fn get_url(&self) -> String {format!("/lol-summoner/v2/summoners/puuid/{}", self.puuid)}
 }
 
-pub fn get_lol_summoner_v_2_summoners_puuid_by_puuid(puuid: String) -> GetLolSummonerV2SummonersPuuidByPuuid {
+pub fn get_lol_summoner_v2_summoners_puuid_by_puuid(puuid: String) -> GetLolSummonerV2SummonersPuuidByPuuid {
     GetLolSummonerV2SummonersPuuidByPuuid{puuid}
 }
 
@@ -401,7 +402,7 @@ impl IsApiRequest for PostLolSummonerV1CurrentSummonerName {
     }
 }
 
-pub fn post_lol_summoner_v_1_current_summoner_name(body: String) -> PostLolSummonerV1CurrentSummonerName {
+pub fn post_lol_summoner_v1_current_summoner_name(body: String) -> PostLolSummonerV1CurrentSummonerName {
     PostLolSummonerV1CurrentSummonerName{body}
 }
 
@@ -412,14 +413,14 @@ pub struct PostLolSummonerV1CurrentSummonerSummonerProfile {
 
 impl IsApiRequest for PostLolSummonerV1CurrentSummonerSummonerProfile {
     const METHOD: Method = Method::POST;
-    type ReturnType = HashMap<String, String>;
+    type ReturnType = Value;
     fn get_url(&self) -> String {"/lol-summoner/v1/current-summoner/summoner-profile".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
     }
 }
 
-pub fn post_lol_summoner_v_1_current_summoner_summoner_profile(body: LolSummonerSummonerProfileUpdate) -> PostLolSummonerV1CurrentSummonerSummonerProfile {
+pub fn post_lol_summoner_v1_current_summoner_summoner_profile(body: LolSummonerSummonerProfileUpdate) -> PostLolSummonerV1CurrentSummonerSummonerProfile {
     PostLolSummonerV1CurrentSummonerSummonerProfile{body}
 }
 
@@ -437,7 +438,7 @@ impl IsApiRequest for PostLolSummonerV1SaveAlias {
     }
 }
 
-pub fn post_lol_summoner_v_1_save_alias(body: LolSummonerAlias) -> PostLolSummonerV1SaveAlias {
+pub fn post_lol_summoner_v1_save_alias(body: LolSummonerAlias) -> PostLolSummonerV1SaveAlias {
     PostLolSummonerV1SaveAlias{body}
 }
 
@@ -448,14 +449,14 @@ pub struct PostLolSummonerV1SummonerAliasesByIds {
 
 impl IsApiRequest for PostLolSummonerV1SummonerAliasesByIds {
     const METHOD: Method = Method::POST;
-    type ReturnType = LolSummonerAlias;
+    type ReturnType = HashMap<String, LolSummonerAlias>;
     fn get_url(&self) -> String {"/lol-summoner/v1/summoner-aliases-by-ids".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
     }
 }
 
-pub fn post_lol_summoner_v_1_summoner_aliases_by_ids(body: Vec<u64>) -> PostLolSummonerV1SummonerAliasesByIds {
+pub fn post_lol_summoner_v1_summoner_aliases_by_ids(body: Vec<u64>) -> PostLolSummonerV1SummonerAliasesByIds {
     PostLolSummonerV1SummonerAliasesByIds{body}
 }
 
@@ -466,14 +467,14 @@ pub struct PostLolSummonerV1SummonerAliasesByPuuids {
 
 impl IsApiRequest for PostLolSummonerV1SummonerAliasesByPuuids {
     const METHOD: Method = Method::POST;
-    type ReturnType = LolSummonerAlias;
+    type ReturnType = HashMap<String, LolSummonerAlias>;
     fn get_url(&self) -> String {"/lol-summoner/v1/summoner-aliases-by-puuids".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
     }
 }
 
-pub fn post_lol_summoner_v_1_summoner_aliases_by_puuids(body: Vec<String>) -> PostLolSummonerV1SummonerAliasesByPuuids {
+pub fn post_lol_summoner_v1_summoner_aliases_by_puuids(body: Vec<String>) -> PostLolSummonerV1SummonerAliasesByPuuids {
     PostLolSummonerV1SummonerAliasesByPuuids{body}
 }
 
@@ -491,7 +492,7 @@ impl IsApiRequest for PostLolSummonerV1Summoners {
     }
 }
 
-pub fn post_lol_summoner_v_1_summoners(body: LolSummonerSummonerRequestedName) -> PostLolSummonerV1Summoners {
+pub fn post_lol_summoner_v1_summoners(body: LolSummonerSummonerRequestedName) -> PostLolSummonerV1Summoners {
     PostLolSummonerV1Summoners{body}
 }
 
@@ -509,7 +510,7 @@ impl IsApiRequest for PostLolSummonerV1SummonersAliases {
     }
 }
 
-pub fn post_lol_summoner_v_1_summoners_aliases(body: Vec<LolSummonerAlias>) -> PostLolSummonerV1SummonersAliases {
+pub fn post_lol_summoner_v1_summoners_aliases(body: Vec<LolSummonerAlias>) -> PostLolSummonerV1SummonersAliases {
     PostLolSummonerV1SummonersAliases{body}
 }
 
@@ -527,7 +528,7 @@ impl IsApiRequest for PostLolSummonerV1ValidateAlias {
     }
 }
 
-pub fn post_lol_summoner_v_1_validate_alias(body: LolSummonerAlias) -> PostLolSummonerV1ValidateAlias {
+pub fn post_lol_summoner_v1_validate_alias(body: LolSummonerAlias) -> PostLolSummonerV1ValidateAlias {
     PostLolSummonerV1ValidateAlias{body}
 }
 
@@ -545,7 +546,7 @@ impl IsApiRequest for PostLolSummonerV2SummonersNames {
     }
 }
 
-pub fn post_lol_summoner_v_2_summoners_names(body: Vec<String>) -> PostLolSummonerV2SummonersNames {
+pub fn post_lol_summoner_v2_summoners_names(body: Vec<String>) -> PostLolSummonerV2SummonersNames {
     PostLolSummonerV2SummonersNames{body}
 }
 
@@ -563,7 +564,7 @@ impl IsApiRequest for PostLolSummonerV2SummonersPuuid {
     }
 }
 
-pub fn post_lol_summoner_v_2_summoners_puuid(body: Vec<String>) -> PostLolSummonerV2SummonersPuuid {
+pub fn post_lol_summoner_v2_summoners_puuid(body: Vec<String>) -> PostLolSummonerV2SummonersPuuid {
     PostLolSummonerV2SummonersPuuid{body}
 }
 
@@ -581,7 +582,7 @@ impl IsApiRequest for PutLolSummonerV1CurrentSummonerIcon {
     }
 }
 
-pub fn put_lol_summoner_v_1_current_summoner_icon(body: LolSummonerSummonerIcon) -> PutLolSummonerV1CurrentSummonerIcon {
+pub fn put_lol_summoner_v1_current_summoner_icon(body: LolSummonerSummonerIcon) -> PutLolSummonerV1CurrentSummonerIcon {
     PutLolSummonerV1CurrentSummonerIcon{body}
 }
 
@@ -592,14 +593,14 @@ pub struct PutLolSummonerV1CurrentSummonerProfilePrivacy {
 
 impl IsApiRequest for PutLolSummonerV1CurrentSummonerProfilePrivacy {
     const METHOD: Method = Method::PUT;
-    type ReturnType = HashMap<String, String>;
+    type ReturnType = Value;
     fn get_url(&self) -> String {"/lol-summoner/v1/current-summoner/profile-privacy".to_string()}
     fn get_body(&self) -> Option<Value> {
         Some(to_value(&self.body).unwrap())
     }
 }
 
-pub fn put_lol_summoner_v_1_current_summoner_profile_privacy(body: LolSummonerProfilePrivacySetting) -> PutLolSummonerV1CurrentSummonerProfilePrivacy {
+pub fn put_lol_summoner_v1_current_summoner_profile_privacy(body: LolSummonerProfilePrivacySetting) -> PutLolSummonerV1CurrentSummonerProfilePrivacy {
     PutLolSummonerV1CurrentSummonerProfilePrivacy{body}
 }
 
@@ -609,7 +610,9 @@ pub fn put_lol_summoner_v_1_current_summoner_profile_privacy(body: LolSummonerPr
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolSummonerAccountIdAndSummonerId {
+    #[serde(rename = "accountId")]
     pub account_id: u64,
+    #[serde(rename = "summonerId")]
     pub summoner_id: u64,
 }
 
@@ -617,7 +620,9 @@ pub struct LolSummonerAccountIdAndSummonerId {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolSummonerAlias {
+    #[serde(rename = "gameName")]
     pub game_name: String,
+    #[serde(rename = "tagLine")]
     pub tag_line: String,
 }
 
@@ -626,8 +631,11 @@ pub struct LolSummonerAlias {
 #[serde(rename_all = "camelCase")]
 pub struct LolSummonerAliasAvailability {
     pub alias: LolSummonerAlias,
+    #[serde(rename = "errorCode")]
     pub error_code: LolSummonerAliasAvailabilityCode,
+    #[serde(rename = "errorMessage")]
     pub error_message: String,
+    #[serde(rename = "isSuccess")]
     pub is_success: bool,
 }
 
@@ -643,10 +651,15 @@ pub struct LolSummonerAliasLookupResponse {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolSummonerAutoFillQueueDto {
+    #[serde(rename = "queueId")]
     pub queue_id: i32,
+    #[serde(rename = "autoFillEligible")]
     pub auto_fill_eligible: bool,
+    #[serde(rename = "autoFillProtectedForStreaking")]
     pub auto_fill_protected_for_streaking: bool,
+    #[serde(rename = "autoFillProtectedForPromos")]
     pub auto_fill_protected_for_promos: bool,
+    #[serde(rename = "autoFillProtectedForRemedy")]
     pub auto_fill_protected_for_remedy: bool,
 }
 
@@ -654,8 +667,11 @@ pub struct LolSummonerAutoFillQueueDto {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolSummonerPlayerNameState {
+    #[serde(rename = "isAliasChangeRequired")]
     pub is_alias_change_required: bool,
+    #[serde(rename = "isAliasMissing")]
     pub is_alias_missing: bool,
+    #[serde(rename = "isTaglineCustomizable")]
     pub is_tagline_customizable: bool,
 }
 
@@ -663,6 +679,7 @@ pub struct LolSummonerPlayerNameState {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolSummonerProfilePrivacy {
+    #[serde(rename = "enabledState")]
     pub enabled_state: LolSummonerProfilePrivacyEnabledState,
     pub setting: LolSummonerProfilePrivacySetting,
 }
@@ -678,21 +695,34 @@ pub struct LolSummonerStatus {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolSummonerSummoner {
+    #[serde(rename = "summonerId")]
     pub summoner_id: u64,
+    #[serde(rename = "accountId")]
     pub account_id: u64,
+    #[serde(rename = "displayName")]
     pub display_name: String,
+    #[serde(rename = "internalName")]
     pub internal_name: String,
+    #[serde(rename = "profileIconId")]
     pub profile_icon_id: i32,
+    #[serde(rename = "summonerLevel")]
     pub summoner_level: u32,
+    #[serde(rename = "xpSinceLastLevel")]
     pub xp_since_last_level: u64,
+    #[serde(rename = "xpUntilNextLevel")]
     pub xp_until_next_level: u64,
+    #[serde(rename = "percentCompleteForNextLevel")]
     pub percent_complete_for_next_level: u32,
+    #[serde(rename = "rerollPoints")]
     pub reroll_points: LolSummonerSummonerRerollPoints,
     pub puuid: String,
+    #[serde(rename = "nameChangeFlag")]
     pub name_change_flag: bool,
     pub unnamed: bool,
     pub privacy: LolSummonerProfilePrivacySetting,
+    #[serde(rename = "gameName")]
     pub game_name: String,
+    #[serde(rename = "tagLine")]
     pub tag_line: String,
 }
 
@@ -700,7 +730,9 @@ pub struct LolSummonerSummoner {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolSummonerSummonerIcon {
+    #[serde(rename = "profileIconId")]
     pub profile_icon_id: i32,
+    #[serde(rename = "inventoryToken")]
     pub inventory_token: String,
 }
 
@@ -708,7 +740,9 @@ pub struct LolSummonerSummonerIcon {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolSummonerSummonerIdAndIcon {
+    #[serde(rename = "summonerId")]
     pub summoner_id: u64,
+    #[serde(rename = "profileIconId")]
     pub profile_icon_id: i32,
     pub puuid: String,
 }
@@ -717,7 +751,9 @@ pub struct LolSummonerSummonerIdAndIcon {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolSummonerSummonerIdAndName {
+    #[serde(rename = "summonerId")]
     pub summoner_id: u64,
+    #[serde(rename = "displayName")]
     pub display_name: String,
     pub puuid: String,
 }
@@ -727,7 +763,7 @@ pub struct LolSummonerSummonerIdAndName {
 #[serde(rename_all = "camelCase")]
 pub struct LolSummonerSummonerProfileUpdate {
     pub key: String,
-    pub value: HashMap<String, String>,
+    pub value: Value,
     pub inventory: String,
 }
 
@@ -742,10 +778,15 @@ pub struct LolSummonerSummonerRequestedName {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolSummonerSummonerRerollPoints {
+    #[serde(rename = "pointsToReroll")]
     pub points_to_reroll: u32,
+    #[serde(rename = "currentPoints")]
     pub current_points: u32,
+    #[serde(rename = "numberOfRolls")]
     pub number_of_rolls: u32,
+    #[serde(rename = "maxRolls")]
     pub max_rolls: u32,
+    #[serde(rename = "pointsCostToRoll")]
     pub points_cost_to_roll: u32,
 }
 

@@ -1,5 +1,6 @@
 use iced::Command;
 use iced::widget::Container;
+use crate::assets::Assets;
 use crate::ui::application::AppState;
 use crate::ui::message::Message;
 use crate::ui::state::ConnectedState;
@@ -13,5 +14,5 @@ pub trait HasView {
     type State;
     type Message;
     fn update(message: Self::Message, state: &mut AppState) -> Command<Message>;
-    fn view(connected_state: &ConnectedState) -> Container<'_, Message>;
+    fn view<'a>(connected_state: &'a ConnectedState, assets: &'a Assets) -> Container<'a, Message>;
 }

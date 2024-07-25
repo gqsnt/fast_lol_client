@@ -2,6 +2,7 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 use serde_json::{json, Value, to_value};
+use std::collections::hash_map::Values;
 use reqwest::Method;
 use common::IsApiRequest;
 
@@ -10,7 +11,7 @@ mod additional;
 // ENDPOINTS
 
 pub struct GetTelemetryV1ApplicationStartTime {
-    // Gets the millisecond UNIX timestamp of when the application was started.
+    /// Gets the millisecond UNIX timestamp of when the application was started.
 
 }
 
@@ -20,13 +21,13 @@ impl IsApiRequest for GetTelemetryV1ApplicationStartTime {
     fn get_url(&self) -> String {"/telemetry/v1/application-start-time".to_string()}
 }
 
-pub fn get_telemetry_v_1_application_start_time() -> GetTelemetryV1ApplicationStartTime {
+pub fn get_telemetry_v1_application_start_time() -> GetTelemetryV1ApplicationStartTime {
     GetTelemetryV1ApplicationStartTime{}
 }
 
 
 pub struct PatchTelemetryV3SlisAddBoolDiagnostic {
-    // Add bool diagnostic to be sent with SLIs.
+    /// Add bool diagnostic to be sent with SLIs.
     pub body: SliBoolDiagnostic,
 }
 
@@ -39,13 +40,13 @@ impl IsApiRequest for PatchTelemetryV3SlisAddBoolDiagnostic {
     }
 }
 
-pub fn patch_telemetry_v_3_slis_add_bool_diagnostic(body: SliBoolDiagnostic) -> PatchTelemetryV3SlisAddBoolDiagnostic {
+pub fn patch_telemetry_v3_slis_add_bool_diagnostic(body: SliBoolDiagnostic) -> PatchTelemetryV3SlisAddBoolDiagnostic {
     PatchTelemetryV3SlisAddBoolDiagnostic{body}
 }
 
 
 pub struct PatchTelemetryV3SlisAddDoubleDiagnostic {
-    // Add double diagnostic to be sent with SLIs.
+    /// Add double diagnostic to be sent with SLIs.
     pub body: SliDoubleDiagnostic,
 }
 
@@ -58,13 +59,13 @@ impl IsApiRequest for PatchTelemetryV3SlisAddDoubleDiagnostic {
     }
 }
 
-pub fn patch_telemetry_v_3_slis_add_double_diagnostic(body: SliDoubleDiagnostic) -> PatchTelemetryV3SlisAddDoubleDiagnostic {
+pub fn patch_telemetry_v3_slis_add_double_diagnostic(body: SliDoubleDiagnostic) -> PatchTelemetryV3SlisAddDoubleDiagnostic {
     PatchTelemetryV3SlisAddDoubleDiagnostic{body}
 }
 
 
 pub struct PatchTelemetryV3SlisAddIntDiagnostic {
-    // Add int diagnostic to be sent with SLIs.
+    /// Add int diagnostic to be sent with SLIs.
     pub body: SliIntDiagnostic,
 }
 
@@ -77,13 +78,13 @@ impl IsApiRequest for PatchTelemetryV3SlisAddIntDiagnostic {
     }
 }
 
-pub fn patch_telemetry_v_3_slis_add_int_diagnostic(body: SliIntDiagnostic) -> PatchTelemetryV3SlisAddIntDiagnostic {
+pub fn patch_telemetry_v3_slis_add_int_diagnostic(body: SliIntDiagnostic) -> PatchTelemetryV3SlisAddIntDiagnostic {
     PatchTelemetryV3SlisAddIntDiagnostic{body}
 }
 
 
 pub struct PatchTelemetryV3SlisAddLabel {
-    // Add label to be sent with SLIs.
+    /// Add label to be sent with SLIs.
     pub body: SliLabel,
 }
 
@@ -96,13 +97,13 @@ impl IsApiRequest for PatchTelemetryV3SlisAddLabel {
     }
 }
 
-pub fn patch_telemetry_v_3_slis_add_label(body: SliLabel) -> PatchTelemetryV3SlisAddLabel {
+pub fn patch_telemetry_v3_slis_add_label(body: SliLabel) -> PatchTelemetryV3SlisAddLabel {
     PatchTelemetryV3SlisAddLabel{body}
 }
 
 
 pub struct PatchTelemetryV3SlisAddStringDiagnostic {
-    // Add string diagnostic to be sent with SLIs.
+    /// Add string diagnostic to be sent with SLIs.
     pub body: SliStringDiagnostic,
 }
 
@@ -115,13 +116,13 @@ impl IsApiRequest for PatchTelemetryV3SlisAddStringDiagnostic {
     }
 }
 
-pub fn patch_telemetry_v_3_slis_add_string_diagnostic(body: SliStringDiagnostic) -> PatchTelemetryV3SlisAddStringDiagnostic {
+pub fn patch_telemetry_v3_slis_add_string_diagnostic(body: SliStringDiagnostic) -> PatchTelemetryV3SlisAddStringDiagnostic {
     PatchTelemetryV3SlisAddStringDiagnostic{body}
 }
 
 
 pub struct PostTelemetryV1CommonDataByKey {
-    // Adds/updates a common data key and value to be sent with every subsequent event.
+    /// Adds/updates a common data key and value to be sent with every subsequent event.
     pub key: String,
     pub body: String,
 }
@@ -135,15 +136,15 @@ impl IsApiRequest for PostTelemetryV1CommonDataByKey {
     }
 }
 
-pub fn post_telemetry_v_1_common_data_by_key(key: String, body: String) -> PostTelemetryV1CommonDataByKey {
+pub fn post_telemetry_v1_common_data_by_key(key: String, body: String) -> PostTelemetryV1CommonDataByKey {
     PostTelemetryV1CommonDataByKey{key, body}
 }
 
 
 pub struct PostTelemetryV1EventsByEventType {
-    // Adds a new event to be sent to Dradis and/or other analytics/monitoring data sinks. All events will have their eventType prefixed with "riot__rclient__"
+    /// Adds a new event to be sent to Dradis and/or other analytics/monitoring data sinks. All events will have their eventType prefixed with "riot__rclient__"
     pub event_type: String,
-    pub body: HashMap<String, HashMap<String, String>>,
+    pub body: HashMap<String, Value>,
 }
 
 impl IsApiRequest for PostTelemetryV1EventsByEventType {
@@ -155,15 +156,15 @@ impl IsApiRequest for PostTelemetryV1EventsByEventType {
     }
 }
 
-pub fn post_telemetry_v_1_events_by_event_type(event_type: String, body: HashMap<String, HashMap<String, String>>) -> PostTelemetryV1EventsByEventType {
+pub fn post_telemetry_v1_events_by_event_type(event_type: String, body: HashMap<String, Value>) -> PostTelemetryV1EventsByEventType {
     PostTelemetryV1EventsByEventType{event_type, body}
 }
 
 
 pub struct PostTelemetryV1EventsWithPerfInfoByEventType {
-    // Adds a new event to be sent to Dradis and/or other analytics/monitoring data sinks. This will include current performance information along with the passed in data. Each call will record the performance counters then reset them for use in the next call. All events will have their eventType prefixed with "riot__rclient__"
+    /// Adds a new event to be sent to Dradis and/or other analytics/monitoring data sinks. This will include current performance information along with the passed in data. Each call will record the performance counters then reset them for use in the next call. All events will have their eventType prefixed with "riot__rclient__"
     pub event_type: String,
-    pub body: HashMap<String, HashMap<String, String>>,
+    pub body: HashMap<String, Value>,
 }
 
 impl IsApiRequest for PostTelemetryV1EventsWithPerfInfoByEventType {
@@ -175,15 +176,15 @@ impl IsApiRequest for PostTelemetryV1EventsWithPerfInfoByEventType {
     }
 }
 
-pub fn post_telemetry_v_1_events_with_perf_info_by_event_type(event_type: String, body: HashMap<String, HashMap<String, String>>) -> PostTelemetryV1EventsWithPerfInfoByEventType {
+pub fn post_telemetry_v1_events_with_perf_info_by_event_type(event_type: String, body: HashMap<String, Value>) -> PostTelemetryV1EventsWithPerfInfoByEventType {
     PostTelemetryV1EventsWithPerfInfoByEventType{event_type, body}
 }
 
 
 pub struct PostTelemetryV3EventsByEventType {
-    // Adds a new event to be sent to Dradis and/or other analytics/monitoring data sinks using the Riot Data API. All events will have their eventType prefixed with "riot__rclient__"
+    /// Adds a new event to be sent to Dradis and/or other analytics/monitoring data sinks using the Riot Data API. All events will have their eventType prefixed with "riot__rclient__"
     pub event_type: String,
-    pub body: HashMap<String, HashMap<String, String>>,
+    pub body: HashMap<String, Value>,
 }
 
 impl IsApiRequest for PostTelemetryV3EventsByEventType {
@@ -195,13 +196,13 @@ impl IsApiRequest for PostTelemetryV3EventsByEventType {
     }
 }
 
-pub fn post_telemetry_v_3_events_by_event_type(event_type: String, body: HashMap<String, HashMap<String, String>>) -> PostTelemetryV3EventsByEventType {
+pub fn post_telemetry_v3_events_by_event_type(event_type: String, body: HashMap<String, Value>) -> PostTelemetryV3EventsByEventType {
     PostTelemetryV3EventsByEventType{event_type, body}
 }
 
 
 pub struct PostTelemetryV3EventsOnceByEventTypeByOnceTag {
-    // Adds a new event to be sent to Dradis and/or other analytics/monitoring data sinks using the Riot Data API that will be sent only once during this client executable run regardless of any javascript frontend restarts. All events will have their eventType prefixed with "riot__rclient__"
+    /// Adds a new event to be sent to Dradis and/or other analytics/monitoring data sinks using the Riot Data API that will be sent only once during this client executable run regardless of any javascript frontend restarts. All events will have their eventType prefixed with "riot__rclient__"
     pub event_type: String,
     pub once_tag: String,
     pub body: HashMap<String, String>,
@@ -216,13 +217,13 @@ impl IsApiRequest for PostTelemetryV3EventsOnceByEventTypeByOnceTag {
     }
 }
 
-pub fn post_telemetry_v_3_events_once_by_event_type_by_once_tag(event_type: String, once_tag: String, body: HashMap<String, String>) -> PostTelemetryV3EventsOnceByEventTypeByOnceTag {
+pub fn post_telemetry_v3_events_once_by_event_type_by_once_tag(event_type: String, once_tag: String, body: HashMap<String, String>) -> PostTelemetryV3EventsOnceByEventTypeByOnceTag {
     PostTelemetryV3EventsOnceByEventTypeByOnceTag{event_type, once_tag, body}
 }
 
 
 pub struct PostTelemetryV3SlisCounts {
-    // Report an SLI to the collector
+    /// Report an SLI to the collector
     pub body: SliCount,
 }
 
@@ -235,13 +236,13 @@ impl IsApiRequest for PostTelemetryV3SlisCounts {
     }
 }
 
-pub fn post_telemetry_v_3_slis_counts(body: SliCount) -> PostTelemetryV3SlisCounts {
+pub fn post_telemetry_v3_slis_counts(body: SliCount) -> PostTelemetryV3SlisCounts {
     PostTelemetryV3SlisCounts{body}
 }
 
 
 pub struct PostTelemetryV3UptimeTrackingNotifyFailure {
-    // Mark an availability item's operation as failure on uptime tracking mechanism.
+    /// Mark an availability item's operation as failure on uptime tracking mechanism.
     pub body: NotifyFailureRequest,
 }
 
@@ -254,13 +255,13 @@ impl IsApiRequest for PostTelemetryV3UptimeTrackingNotifyFailure {
     }
 }
 
-pub fn post_telemetry_v_3_uptime_tracking_notify_failure(body: NotifyFailureRequest) -> PostTelemetryV3UptimeTrackingNotifyFailure {
+pub fn post_telemetry_v3_uptime_tracking_notify_failure(body: NotifyFailureRequest) -> PostTelemetryV3UptimeTrackingNotifyFailure {
     PostTelemetryV3UptimeTrackingNotifyFailure{body}
 }
 
 
 pub struct PostTelemetryV3UptimeTrackingNotifySuccess {
-    // Mark an availability item's operation as success on uptime tracking mechanism.
+    /// Mark an availability item's operation as success on uptime tracking mechanism.
     pub body: NotifySuccessRequest,
 }
 
@@ -273,7 +274,7 @@ impl IsApiRequest for PostTelemetryV3UptimeTrackingNotifySuccess {
     }
 }
 
-pub fn post_telemetry_v_3_uptime_tracking_notify_success(body: NotifySuccessRequest) -> PostTelemetryV3UptimeTrackingNotifySuccess {
+pub fn post_telemetry_v3_uptime_tracking_notify_success(body: NotifySuccessRequest) -> PostTelemetryV3UptimeTrackingNotifySuccess {
     PostTelemetryV3UptimeTrackingNotifySuccess{body}
 }
 
@@ -283,7 +284,9 @@ pub fn post_telemetry_v_3_uptime_tracking_notify_success(body: NotifySuccessRequ
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct NotifyFailureRequest {
+    #[serde(rename = "availabilityItemName")]
     pub availability_item_name: String,
+    #[serde(rename = "failureInfo")]
     pub failure_info: String,
 }
 
@@ -291,6 +294,7 @@ pub struct NotifyFailureRequest {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct NotifySuccessRequest {
+    #[serde(rename = "availabilityItemName")]
     pub availability_item_name: String,
 }
 
@@ -306,16 +310,24 @@ pub struct SliBoolDiagnostic {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct SliCount {
+    #[serde(rename = "sliName")]
     pub sli_name: String,
+    #[serde(rename = "idempotencyKey")]
     pub idempotency_key: String,
     pub successes: f64,
     pub failures: f64,
+    #[serde(rename = "startTimeEpochMs")]
     pub start_time_epoch_ms: i64,
+    #[serde(rename = "endTimeEpochMs")]
     pub end_time_epoch_ms: i64,
     pub labels: HashMap<String, String>,
+    #[serde(rename = "boolDiagnostics")]
     pub bool_diagnostics: HashMap<String, bool>,
+    #[serde(rename = "doubleDiagnostics")]
     pub double_diagnostics: HashMap<String, f64>,
+    #[serde(rename = "intDiagnostics")]
     pub int_diagnostics: HashMap<String, i64>,
+    #[serde(rename = "stringDiagnostics")]
     pub string_diagnostics: HashMap<String, String>,
 }
 

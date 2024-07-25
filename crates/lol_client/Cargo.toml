@@ -9,13 +9,14 @@ serde = { version = "1.0.197", features = ["derive"] }
 reqwest = { version = "0.12.3", features = ["json", "native-tls"] }
 serde_json = "1.0.115"
 tokio = { version = "1.38", features = ["rt", "rt-multi-thread", "macros", "fs"] }
-iced = { version = "0.12.1", features = ["highlighter", "tokio", "debug", "advanced", "lazy", "image"] }
+iced = { version = "0.12.1", features = ["highlighter", "tokio", "debug", "advanced", "lazy", "image", "multi-window"] }
 iced-box = {version = "0.5.0", features = ["material_icons"]}
 base64 = "0.22.1"
 toml = "0.8.14"
 regex = "1.10.5"
 futures = "0.3.30"
 chrono = "0.4.38"
+imagequant = "4.3"
 common = { path = "../common" }
 plugin_lol_lobby = { path = "../plugin_lol_lobby" }
 plugin_lol_chat = { path = "../plugin_lol_chat" }
@@ -25,4 +26,6 @@ plugin_lol_matchmaking = { path = "../plugin_lol_matchmaking" }
 plugin_lol_summoner = { path = "../plugin_lol_summoner" }
 plugin_lol_game_queues = { path = "../plugin_lol_game_queues" }
 plugin_lol_end_of_game = { path = "../plugin_lol_end_of_game" }
-
+plugin_lol_champions = { path = "../plugin_lol_champions" }
+plugin_lol_inventory = { path = "../plugin_lol_inventory" }
+plugin_lol_maps = { path = "../plugin_lol_maps" }

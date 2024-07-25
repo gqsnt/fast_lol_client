@@ -2,6 +2,7 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 use serde_json::{json, Value, to_value};
+use std::collections::hash_map::Values;
 use reqwest::Method;
 use common::IsApiRequest;
 
@@ -19,7 +20,7 @@ impl IsApiRequest for DeleteLolHighlightsV1HighlightsById {
     fn get_url(&self) -> String {format!("/lol-highlights/v1/highlights/{}", self.id)}
 }
 
-pub fn delete_lol_highlights_v_1_highlights_by_id(id: u64) -> DeleteLolHighlightsV1HighlightsById {
+pub fn delete_lol_highlights_v1_highlights_by_id(id: u64) -> DeleteLolHighlightsV1HighlightsById {
     DeleteLolHighlightsV1HighlightsById{id}
 }
 
@@ -32,7 +33,7 @@ impl IsApiRequest for GetLolHighlightsV1Config {
     fn get_url(&self) -> String {"/lol-highlights/v1/config".to_string()}
 }
 
-pub fn get_lol_highlights_v_1_config() -> GetLolHighlightsV1Config {
+pub fn get_lol_highlights_v1_config() -> GetLolHighlightsV1Config {
     GetLolHighlightsV1Config{}
 }
 
@@ -45,7 +46,7 @@ impl IsApiRequest for GetLolHighlightsV1Highlights {
     fn get_url(&self) -> String {"/lol-highlights/v1/highlights".to_string()}
 }
 
-pub fn get_lol_highlights_v_1_highlights() -> GetLolHighlightsV1Highlights {
+pub fn get_lol_highlights_v1_highlights() -> GetLolHighlightsV1Highlights {
     GetLolHighlightsV1Highlights{}
 }
 
@@ -60,7 +61,7 @@ impl IsApiRequest for GetLolHighlightsV1HighlightsById {
     fn get_url(&self) -> String {format!("/lol-highlights/v1/highlights/{}", self.id)}
 }
 
-pub fn get_lol_highlights_v_1_highlights_by_id(id: u64) -> GetLolHighlightsV1HighlightsById {
+pub fn get_lol_highlights_v1_highlights_by_id(id: u64) -> GetLolHighlightsV1HighlightsById {
     GetLolHighlightsV1HighlightsById{id}
 }
 
@@ -73,7 +74,7 @@ impl IsApiRequest for GetLolHighlightsV1HighlightsFolderPath {
     fn get_url(&self) -> String {"/lol-highlights/v1/highlights-folder-path".to_string()}
 }
 
-pub fn get_lol_highlights_v_1_highlights_folder_path() -> GetLolHighlightsV1HighlightsFolderPath {
+pub fn get_lol_highlights_v1_highlights_folder_path() -> GetLolHighlightsV1HighlightsFolderPath {
     GetLolHighlightsV1HighlightsFolderPath{}
 }
 
@@ -86,7 +87,7 @@ impl IsApiRequest for GetLolHighlightsV1HighlightsFolderPathDefault {
     fn get_url(&self) -> String {"/lol-highlights/v1/highlights-folder-path/default".to_string()}
 }
 
-pub fn get_lol_highlights_v_1_highlights_folder_path_default() -> GetLolHighlightsV1HighlightsFolderPathDefault {
+pub fn get_lol_highlights_v1_highlights_folder_path_default() -> GetLolHighlightsV1HighlightsFolderPathDefault {
     GetLolHighlightsV1HighlightsFolderPathDefault{}
 }
 
@@ -97,11 +98,11 @@ pub struct PostLolHighlightsV1FileBrowserByHighlightId {
 
 impl IsApiRequest for PostLolHighlightsV1FileBrowserByHighlightId {
     const METHOD: Method = Method::POST;
-    type ReturnType = HashMap<String, String>;
+    type ReturnType = Value;
     fn get_url(&self) -> String {format!("/lol-highlights/v1/file-browser/{}", self.highlight_id)}
 }
 
-pub fn post_lol_highlights_v_1_file_browser_by_highlight_id(highlight_id: u64) -> PostLolHighlightsV1FileBrowserByHighlightId {
+pub fn post_lol_highlights_v1_file_browser_by_highlight_id(highlight_id: u64) -> PostLolHighlightsV1FileBrowserByHighlightId {
     PostLolHighlightsV1FileBrowserByHighlightId{highlight_id}
 }
 
@@ -114,7 +115,7 @@ impl IsApiRequest for PostLolHighlightsV1Highlights {
     fn get_url(&self) -> String {"/lol-highlights/v1/highlights".to_string()}
 }
 
-pub fn post_lol_highlights_v_1_highlights() -> PostLolHighlightsV1Highlights {
+pub fn post_lol_highlights_v1_highlights() -> PostLolHighlightsV1Highlights {
     PostLolHighlightsV1Highlights{}
 }
 
@@ -133,7 +134,7 @@ impl IsApiRequest for PutLolHighlightsV1HighlightsById {
     }
 }
 
-pub fn put_lol_highlights_v_1_highlights_by_id(id: u64, body: LolHighlightsHighlight) -> PutLolHighlightsV1HighlightsById {
+pub fn put_lol_highlights_v1_highlights_by_id(id: u64, body: LolHighlightsHighlight) -> PutLolHighlightsV1HighlightsById {
     PutLolHighlightsV1HighlightsById{id, body}
 }
 
@@ -147,8 +148,11 @@ pub struct LolHighlightsHighlight {
     pub name: String,
     pub filepath: String,
     pub url: String,
+    #[serde(rename = "mtimeMsUtc")]
     pub mtime_ms_utc: u64,
+    #[serde(rename = "mtimeIso8601")]
     pub mtime_iso_8601: String,
+    #[serde(rename = "fileSizeBytes")]
     pub file_size_bytes: u64,
 }
 
@@ -156,7 +160,9 @@ pub struct LolHighlightsHighlight {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolHighlightsHighlightsConfig {
+    #[serde(rename = "isHighlightsEnabled")]
     pub is_highlights_enabled: bool,
+    #[serde(rename = "invalidHighlightNameCharacters")]
     pub invalid_highlight_name_characters: String,
 }
 

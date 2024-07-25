@@ -2,6 +2,7 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 use serde_json::{json, Value, to_value};
+use std::collections::hash_map::Values;
 use reqwest::Method;
 use common::IsApiRequest;
 
@@ -19,7 +20,7 @@ impl IsApiRequest for GetLolPublishingContentV1ListenersAllowListByRegion {
     fn get_url(&self) -> String {format!("/lol-publishing-content/v1/listeners/allow-list/{}", self.region)}
 }
 
-pub fn get_lol_publishing_content_v_1_listeners_allow_list_by_region(region: String) -> GetLolPublishingContentV1ListenersAllowListByRegion {
+pub fn get_lol_publishing_content_v1_listeners_allow_list_by_region(region: String) -> GetLolPublishingContentV1ListenersAllowListByRegion {
     GetLolPublishingContentV1ListenersAllowListByRegion{region}
 }
 
@@ -32,7 +33,7 @@ impl IsApiRequest for GetLolPublishingContentV1ListenersClientData {
     fn get_url(&self) -> String {"/lol-publishing-content/v1/listeners/client-data".to_string()}
 }
 
-pub fn get_lol_publishing_content_v_1_listeners_client_data() -> GetLolPublishingContentV1ListenersClientData {
+pub fn get_lol_publishing_content_v1_listeners_client_data() -> GetLolPublishingContentV1ListenersClientData {
     GetLolPublishingContentV1ListenersClientData{}
 }
 
@@ -45,7 +46,7 @@ impl IsApiRequest for GetLolPublishingContentV1ListenersPubhubConfig {
     fn get_url(&self) -> String {"/lol-publishing-content/v1/listeners/pubhub-config".to_string()}
 }
 
-pub fn get_lol_publishing_content_v_1_listeners_pubhub_config() -> GetLolPublishingContentV1ListenersPubhubConfig {
+pub fn get_lol_publishing_content_v1_listeners_pubhub_config() -> GetLolPublishingContentV1ListenersPubhubConfig {
     GetLolPublishingContentV1ListenersPubhubConfig{}
 }
 
@@ -58,7 +59,7 @@ impl IsApiRequest for GetLolPublishingContentV1Ready {
     fn get_url(&self) -> String {"/lol-publishing-content/v1/ready".to_string()}
 }
 
-pub fn get_lol_publishing_content_v_1_ready() -> GetLolPublishingContentV1Ready {
+pub fn get_lol_publishing_content_v1_ready() -> GetLolPublishingContentV1Ready {
     GetLolPublishingContentV1Ready{}
 }
 
@@ -71,7 +72,7 @@ impl IsApiRequest for GetLolPublishingContentV1Settings {
     fn get_url(&self) -> String {"/lol-publishing-content/v1/settings".to_string()}
 }
 
-pub fn get_lol_publishing_content_v_1_settings() -> GetLolPublishingContentV1Settings {
+pub fn get_lol_publishing_content_v1_settings() -> GetLolPublishingContentV1Settings {
     GetLolPublishingContentV1Settings{}
 }
 
@@ -80,11 +81,11 @@ pub struct GetLolPublishingContentV1TftHubCards {}
 
 impl IsApiRequest for GetLolPublishingContentV1TftHubCards {
     const METHOD: Method = Method::GET;
-    type ReturnType = HashMap<String, String>;
+    type ReturnType = Value;
     fn get_url(&self) -> String {"/lol-publishing-content/v1/tft-hub-cards".to_string()}
 }
 
-pub fn get_lol_publishing_content_v_1_tft_hub_cards() -> GetLolPublishingContentV1TftHubCards {
+pub fn get_lol_publishing_content_v1_tft_hub_cards() -> GetLolPublishingContentV1TftHubCards {
     GetLolPublishingContentV1TftHubCards{}
 }
 
@@ -106,6 +107,7 @@ pub struct LolPublishingContentClientData {
     pub system_os: String,
     pub protocol: String,
     pub port: u16,
+    #[serde(rename = "assetUrls")]
     pub asset_urls: HashMap<String, String>,
 }
 
@@ -114,6 +116,7 @@ pub struct LolPublishingContentClientData {
 #[serde(rename_all = "camelCase")]
 pub struct LolPublishingContentPubHubConfig {
     pub edge: LolPublishingContentPubHubConfigEdge,
+    #[serde(rename = "appContext")]
     pub app_context: LolPublishingContentPubHubConfigAppContext,
 }
 
@@ -121,16 +124,27 @@ pub struct LolPublishingContentPubHubConfig {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolPublishingContentPubHubConfigAppContext {
+    #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "userRegion")]
     pub user_region: String,
+    #[serde(rename = "deviceCategory")]
     pub device_category: String,
+    #[serde(rename = "deviceOperatingSystem")]
     pub device_operating_system: String,
+    #[serde(rename = "deviceOperatingSystemVersion")]
     pub device_operating_system_version: String,
+    #[serde(rename = "appId")]
     pub app_id: String,
+    #[serde(rename = "appVersion")]
     pub app_version: String,
+    #[serde(rename = "appLocale")]
     pub app_locale: String,
+    #[serde(rename = "appLanguage")]
     pub app_language: String,
+    #[serde(rename = "publishingLocale")]
     pub publishing_locale: String,
+    #[serde(rename = "appSessionId")]
     pub app_session_id: String,
 }
 
@@ -138,7 +152,9 @@ pub struct LolPublishingContentPubHubConfigAppContext {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolPublishingContentPubHubConfigEdge {
+    #[serde(rename = "clientId")]
     pub client_id: String,
+    #[serde(rename = "clientRegion")]
     pub client_region: String,
 }
 
@@ -148,9 +164,13 @@ pub struct LolPublishingContentPubHubConfigEdge {
 pub struct LolPublishingContentPublishingSettings {
     pub region: String,
     pub locale: String,
+    #[serde(rename = "webRegion")]
     pub web_region: String,
+    #[serde(rename = "webLocale")]
     pub web_locale: String,
+    #[serde(rename = "publishingLocale")]
     pub publishing_locale: String,
+    #[serde(rename = "rsoPlatformId")]
     pub rso_platform_id: String,
 }
 

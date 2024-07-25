@@ -17,6 +17,7 @@ pub enum RustType {
     Object(Option<String>),
     HashMap(Box<RustType>),
     Array(Box<RustType>),
+    Value,
     Int16,
     Int8,
 }
@@ -42,6 +43,7 @@ impl fmt::Display for RustType {
             RustType::Array(inner) => format!("Vec<{}>", inner),
             RustType::Int16 => "i16".to_string(),
             RustType::Int8 => "i8".to_string(),
+            RustType::Value => "Value".to_string(),
         })
     }
 }
@@ -85,7 +87,7 @@ impl From<openapiv3::Type> for RustType {
                             AdditionalProperties::Schema(schema) => {
                                 match schema.as_ref() {
                                     ReferenceOr::Reference { reference } => {
-                                        RustType::Object(crate::generator::utils::parse_reference(reference.as_str()))
+                                        RustType::HashMap(Box::new(RustType::Object(crate::generator::utils::parse_reference(reference.as_str()))))
                                     }
                                     ReferenceOr::Item(item) => {
                                         match item.schema_kind.clone() {
@@ -100,7 +102,7 @@ impl From<openapiv3::Type> for RustType {
                                 }
                             }
                             AdditionalProperties::Any(any) => {
-                                RustType::HashMap(Box::new(RustType::String))
+                                RustType::Value
                             }
                         }
                     } else {

@@ -2,6 +2,7 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 use serde_json::{json, Value, to_value};
+use std::collections::hash_map::Values;
 use reqwest::Method;
 use common::IsApiRequest;
 
@@ -17,7 +18,7 @@ impl IsApiRequest for GetLolKrPlaytimeReminderV1HoursPlayed {
     fn get_url(&self) -> String {"/lol-kr-playtime-reminder/v1/hours-played".to_string()}
 }
 
-pub fn get_lol_kr_playtime_reminder_v_1_hours_played() -> GetLolKrPlaytimeReminderV1HoursPlayed {
+pub fn get_lol_kr_playtime_reminder_v1_hours_played() -> GetLolKrPlaytimeReminderV1HoursPlayed {
     GetLolKrPlaytimeReminderV1HoursPlayed{}
 }
 

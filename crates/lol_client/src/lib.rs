@@ -3,6 +3,8 @@ pub mod ui;
 pub mod config;
 pub mod client;
 pub mod utils;
+pub mod static_object;
+pub mod assets;
 
 #[derive(Debug, Clone)]
 pub enum AppError {

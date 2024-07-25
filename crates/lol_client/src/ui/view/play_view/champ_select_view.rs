@@ -2,6 +2,7 @@ use iced::{Application, Command};
 use iced::widget::{Column, Container, container, text};
 use plugin_lol_champ_select::LolChampSelectChampSelectSession;
 use crate::AppResult;
+use crate::assets::Assets;
 use crate::client::utils::perform_request;
 use crate::ui::application::AppState;
 use crate::ui::message::Message;
@@ -38,7 +39,7 @@ impl HasView for ChampSelectView {
                 ChampSelectMessage::QuitCustomLobby => {
                     return perform_request(
                         connected_state,
-                        plugin_lol_lobby::post_lol_lobby_v_1_lobby_custom_cancel_champ_select(),
+                        plugin_lol_lobby::post_lol_lobby_v1_lobby_custom_cancel_champ_select(),
                         |r| Message::None,
                     )
                 }
@@ -46,7 +47,7 @@ impl HasView for ChampSelectView {
         }
         Command::none()
     }
-    fn view(connected_state: &ConnectedState) -> Container<'_, Message> {
+    fn view<'a>(connected_state: &'a ConnectedState, assets: &'a Assets) -> Container<'a, Message> {
         container(Column::new()
             .push(text("Champ Select").size(25))
         ).center_x()

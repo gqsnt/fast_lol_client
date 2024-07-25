@@ -2,6 +2,7 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 use serde_json::{json, Value, to_value};
+use std::collections::hash_map::Values;
 use reqwest::Method;
 use common::IsApiRequest;
 
@@ -17,7 +18,7 @@ impl IsApiRequest for GetLolInventoryV1ChampSelectInventory {
     fn get_url(&self) -> String {"/lol-inventory/v1/champSelectInventory".to_string()}
 }
 
-pub fn get_lol_inventory_v_1_champ_select_inventory() -> GetLolInventoryV1ChampSelectInventory {
+pub fn get_lol_inventory_v1_champ_select_inventory() -> GetLolInventoryV1ChampSelectInventory {
     GetLolInventoryV1ChampSelectInventory{}
 }
 
@@ -30,7 +31,7 @@ impl IsApiRequest for GetLolInventoryV1InitialConfigurationComplete {
     fn get_url(&self) -> String {"/lol-inventory/v1/initial-configuration-complete".to_string()}
 }
 
-pub fn get_lol_inventory_v_1_initial_configuration_complete() -> GetLolInventoryV1InitialConfigurationComplete {
+pub fn get_lol_inventory_v1_initial_configuration_complete() -> GetLolInventoryV1InitialConfigurationComplete {
     GetLolInventoryV1InitialConfigurationComplete{}
 }
 
@@ -43,14 +44,14 @@ impl IsApiRequest for GetLolInventoryV1Inventory {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolInventoryInventoryItemWithPayload>;
     fn get_url(&self) -> String {"/lol-inventory/v1/inventory".to_string()}
-    fn get_query_params(&self) -> Option<Value> {
-        Some(json!({
-            "inventoryTypes" : self.inventory_types,
-        }))
+    fn get_query(&self) -> Option<Vec<(String,String)>> {
+        Some(vec![
+            ("inventoryTypes".to_string(), serde_json::to_string(&self.inventory_types).unwrap())
+        ])
     }
 }
 
-pub fn get_lol_inventory_v_1_inventory(inventory_types: Vec<String>) -> GetLolInventoryV1Inventory {
+pub fn get_lol_inventory_v1_inventory(inventory_types: Vec<String>) -> GetLolInventoryV1Inventory {
     GetLolInventoryV1Inventory{inventory_types}
 }
 
@@ -63,7 +64,7 @@ impl IsApiRequest for GetLolInventoryV1InventoryEmotes {
     fn get_url(&self) -> String {"/lol-inventory/v1/inventory/emotes".to_string()}
 }
 
-pub fn get_lol_inventory_v_1_inventory_emotes() -> GetLolInventoryV1InventoryEmotes {
+pub fn get_lol_inventory_v1_inventory_emotes() -> GetLolInventoryV1InventoryEmotes {
     GetLolInventoryV1InventoryEmotes{}
 }
 
@@ -76,14 +77,14 @@ impl IsApiRequest for GetLolInventoryV1InventoryWithF2P {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolInventoryInventoryItemWithPayload>;
     fn get_url(&self) -> String {"/lol-inventory/v1/inventoryWithF2P".to_string()}
-    fn get_query_params(&self) -> Option<Value> {
-        Some(json!({
-            "inventoryTypes" : self.inventory_types,
-        }))
+    fn get_query(&self) -> Option<Vec<(String,String)>> {
+        Some(vec![
+            ("inventoryTypes".to_string(), serde_json::to_string(&self.inventory_types).unwrap())
+        ])
     }
 }
 
-pub fn get_lol_inventory_v_1_inventory_with_f_2_p(inventory_types: Vec<String>) -> GetLolInventoryV1InventoryWithF2P {
+pub fn get_lol_inventory_v1_inventory_with_f2_p(inventory_types: Vec<String>) -> GetLolInventoryV1InventoryWithF2P {
     GetLolInventoryV1InventoryWithF2P{inventory_types}
 }
 
@@ -98,7 +99,7 @@ impl IsApiRequest for GetLolInventoryV1NotificationsByInventoryType {
     fn get_url(&self) -> String {format!("/lol-inventory/v1/notifications/{}", self.inventory_type)}
 }
 
-pub fn get_lol_inventory_v_1_notifications_by_inventory_type(inventory_type: String) -> GetLolInventoryV1NotificationsByInventoryType {
+pub fn get_lol_inventory_v1_notifications_by_inventory_type(inventory_type: String) -> GetLolInventoryV1NotificationsByInventoryType {
     GetLolInventoryV1NotificationsByInventoryType{inventory_type}
 }
 
@@ -112,14 +113,14 @@ impl IsApiRequest for GetLolInventoryV1PlayersByPuuidInventory {
     const METHOD: Method = Method::GET;
     type ReturnType = Vec<LolInventoryInventoryItemWithPayload>;
     fn get_url(&self) -> String {format!("/lol-inventory/v1/players/{}/inventory", self.puuid)}
-    fn get_query_params(&self) -> Option<Value> {
-        Some(json!({
-            "inventoryTypes" : self.inventory_types,
-        }))
+    fn get_query(&self) -> Option<Vec<(String,String)>> {
+        Some(vec![
+            ("inventoryTypes".to_string(), serde_json::to_string(&self.inventory_types).unwrap())
+        ])
     }
 }
 
-pub fn get_lol_inventory_v_1_players_by_puuid_inventory(puuid: String, inventory_types: Vec<String>) -> GetLolInventoryV1PlayersByPuuidInventory {
+pub fn get_lol_inventory_v1_players_by_puuid_inventory(puuid: String, inventory_types: Vec<String>) -> GetLolInventoryV1PlayersByPuuidInventory {
     GetLolInventoryV1PlayersByPuuidInventory{puuid, inventory_types}
 }
 
@@ -132,14 +133,14 @@ impl IsApiRequest for GetLolInventoryV1SignedInventory {
     const METHOD: Method = Method::GET;
     type ReturnType = HashMap<String, String>;
     fn get_url(&self) -> String {"/lol-inventory/v1/signedInventory".to_string()}
-    fn get_query_params(&self) -> Option<Value> {
-        Some(json!({
-            "inventoryTypes" : self.inventory_types,
-        }))
+    fn get_query(&self) -> Option<Vec<(String,String)>> {
+        Some(vec![
+            ("inventoryTypes".to_string(), serde_json::to_string(&self.inventory_types).unwrap())
+        ])
     }
 }
 
-pub fn get_lol_inventory_v_1_signed_inventory(inventory_types: Vec<String>) -> GetLolInventoryV1SignedInventory {
+pub fn get_lol_inventory_v1_signed_inventory(inventory_types: Vec<String>) -> GetLolInventoryV1SignedInventory {
     GetLolInventoryV1SignedInventory{inventory_types}
 }
 
@@ -148,11 +149,11 @@ pub struct GetLolInventoryV1SignedInventoryCache {}
 
 impl IsApiRequest for GetLolInventoryV1SignedInventoryCache {
     const METHOD: Method = Method::GET;
-    type ReturnType = LolInventoryInventoryCacheEntry;
+    type ReturnType = HashMap<String, LolInventoryInventoryCacheEntry>;
     fn get_url(&self) -> String {"/lol-inventory/v1/signedInventoryCache".to_string()}
 }
 
-pub fn get_lol_inventory_v_1_signed_inventory_cache() -> GetLolInventoryV1SignedInventoryCache {
+pub fn get_lol_inventory_v1_signed_inventory_cache() -> GetLolInventoryV1SignedInventoryCache {
     GetLolInventoryV1SignedInventoryCache{}
 }
 
@@ -166,15 +167,15 @@ impl IsApiRequest for GetLolInventoryV1SignedInventorySimple {
     const METHOD: Method = Method::GET;
     type ReturnType = String;
     fn get_url(&self) -> String {"/lol-inventory/v1/signedInventory/simple".to_string()}
-    fn get_query_params(&self) -> Option<Value> {
-        Some(json!({
-            "inventoryTypes" : self.inventory_types,
-            "queryParams" : self.query_params,
-        }))
+    fn get_query(&self) -> Option<Vec<(String,String)>> {
+        Some(vec![
+            ("inventoryTypes".to_string(), serde_json::to_string(&self.inventory_types).unwrap()),
+            ("queryParams".to_string(), serde_json::to_string(&self.query_params).unwrap())
+        ])
     }
 }
 
-pub fn get_lol_inventory_v_1_signed_inventory_simple(inventory_types: Vec<String>, query_params: Option<HashMap<String, String>>) -> GetLolInventoryV1SignedInventorySimple {
+pub fn get_lol_inventory_v1_signed_inventory_simple(inventory_types: Vec<String>, query_params: Option<HashMap<String, String>>) -> GetLolInventoryV1SignedInventorySimple {
     GetLolInventoryV1SignedInventorySimple{inventory_types, query_params}
 }
 
@@ -187,7 +188,7 @@ impl IsApiRequest for GetLolInventoryV1SignedInventoryTournamentlogos {
     fn get_url(&self) -> String {"/lol-inventory/v1/signedInventory/tournamentlogos".to_string()}
 }
 
-pub fn get_lol_inventory_v_1_signed_inventory_tournamentlogos() -> GetLolInventoryV1SignedInventoryTournamentlogos {
+pub fn get_lol_inventory_v1_signed_inventory_tournamentlogos() -> GetLolInventoryV1SignedInventoryTournamentlogos {
     GetLolInventoryV1SignedInventoryTournamentlogos{}
 }
 
@@ -200,14 +201,14 @@ impl IsApiRequest for GetLolInventoryV1SignedWallet {
     const METHOD: Method = Method::GET;
     type ReturnType = HashMap<String, String>;
     fn get_url(&self) -> String {"/lol-inventory/v1/signedWallet".to_string()}
-    fn get_query_params(&self) -> Option<Value> {
-        Some(json!({
-            "currencyTypes" : self.currency_types,
-        }))
+    fn get_query(&self) -> Option<Vec<(String,String)>> {
+        Some(vec![
+            ("currencyTypes".to_string(), serde_json::to_string(&self.currency_types).unwrap())
+        ])
     }
 }
 
-pub fn get_lol_inventory_v_1_signed_wallet(currency_types: Vec<String>) -> GetLolInventoryV1SignedWallet {
+pub fn get_lol_inventory_v1_signed_wallet(currency_types: Vec<String>) -> GetLolInventoryV1SignedWallet {
     GetLolInventoryV1SignedWallet{currency_types}
 }
 
@@ -222,7 +223,7 @@ impl IsApiRequest for GetLolInventoryV1SignedWalletByCurrencyType {
     fn get_url(&self) -> String {format!("/lol-inventory/v1/signedWallet/{}", self.currency_type)}
 }
 
-pub fn get_lol_inventory_v_1_signed_wallet_by_currency_type(currency_type: String) -> GetLolInventoryV1SignedWalletByCurrencyType {
+pub fn get_lol_inventory_v1_signed_wallet_by_currency_type(currency_type: String) -> GetLolInventoryV1SignedWalletByCurrencyType {
     GetLolInventoryV1SignedWalletByCurrencyType{currency_type}
 }
 
@@ -235,7 +236,7 @@ impl IsApiRequest for GetLolInventoryV1StrawberryInventory {
     fn get_url(&self) -> String {"/lol-inventory/v1/strawberryInventory".to_string()}
 }
 
-pub fn get_lol_inventory_v_1_strawberry_inventory() -> GetLolInventoryV1StrawberryInventory {
+pub fn get_lol_inventory_v1_strawberry_inventory() -> GetLolInventoryV1StrawberryInventory {
     GetLolInventoryV1StrawberryInventory{}
 }
 
@@ -248,14 +249,14 @@ impl IsApiRequest for GetLolInventoryV1Wallet {
     const METHOD: Method = Method::GET;
     type ReturnType = HashMap<String, i32>;
     fn get_url(&self) -> String {"/lol-inventory/v1/wallet".to_string()}
-    fn get_query_params(&self) -> Option<Value> {
-        Some(json!({
-            "currencyTypes" : self.currency_types,
-        }))
+    fn get_query(&self) -> Option<Vec<(String,String)>> {
+        Some(vec![
+            ("currencyTypes".to_string(), serde_json::to_string(&self.currency_types).unwrap())
+        ])
     }
 }
 
-pub fn get_lol_inventory_v_1_wallet(currency_types: Vec<String>) -> GetLolInventoryV1Wallet {
+pub fn get_lol_inventory_v1_wallet(currency_types: Vec<String>) -> GetLolInventoryV1Wallet {
     GetLolInventoryV1Wallet{currency_types}
 }
 
@@ -270,7 +271,7 @@ impl IsApiRequest for GetLolInventoryV1WalletByCurrencyType {
     fn get_url(&self) -> String {format!("/lol-inventory/v1/wallet/{}", self.currency_type)}
 }
 
-pub fn get_lol_inventory_v_1_wallet_by_currency_type(currency_type: String) -> GetLolInventoryV1WalletByCurrencyType {
+pub fn get_lol_inventory_v1_wallet_by_currency_type(currency_type: String) -> GetLolInventoryV1WalletByCurrencyType {
     GetLolInventoryV1WalletByCurrencyType{currency_type}
 }
 
@@ -283,7 +284,7 @@ impl IsApiRequest for GetLolInventoryV1XboxSubscriptionStatus {
     fn get_url(&self) -> String {"/lol-inventory/v1/xbox-subscription-status".to_string()}
 }
 
-pub fn get_lol_inventory_v_1_xbox_subscription_status() -> GetLolInventoryV1XboxSubscriptionStatus {
+pub fn get_lol_inventory_v1_xbox_subscription_status() -> GetLolInventoryV1XboxSubscriptionStatus {
     GetLolInventoryV1XboxSubscriptionStatus{}
 }
 
@@ -298,7 +299,7 @@ impl IsApiRequest for GetLolInventoryV2InventoryByInventoryType {
     fn get_url(&self) -> String {format!("/lol-inventory/v2/inventory/{}", self.inventory_type)}
 }
 
-pub fn get_lol_inventory_v_2_inventory_by_inventory_type(inventory_type: String) -> GetLolInventoryV2InventoryByInventoryType {
+pub fn get_lol_inventory_v2_inventory_by_inventory_type(inventory_type: String) -> GetLolInventoryV2InventoryByInventoryType {
     GetLolInventoryV2InventoryByInventoryType{inventory_type}
 }
 
@@ -316,7 +317,7 @@ impl IsApiRequest for PostLolInventoryV1NotificationAcknowledge {
     }
 }
 
-pub fn post_lol_inventory_v_1_notification_acknowledge(body: i64) -> PostLolInventoryV1NotificationAcknowledge {
+pub fn post_lol_inventory_v1_notification_acknowledge(body: i64) -> PostLolInventoryV1NotificationAcknowledge {
     PostLolInventoryV1NotificationAcknowledge{body}
 }
 
@@ -326,9 +327,13 @@ pub fn post_lol_inventory_v_1_notification_acknowledge(body: i64) -> PostLolInve
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct LolInventoryInventoryCacheEntry {
+    #[serde(rename = "signedInventoryJwt")]
     pub signed_inventory_jwt: String,
+    #[serde(rename = "expirationMS")]
     pub expiration_ms: u64,
+    #[serde(rename = "issuedAtMS")]
     pub issued_at_ms: u64,
+    #[serde(rename = "receivedAtMS")]
     pub received_at_ms: u64,
     pub valid: bool,
 }
@@ -338,19 +343,26 @@ pub struct LolInventoryInventoryCacheEntry {
 #[serde(rename_all = "camelCase")]
 pub struct LolInventoryInventoryItemWithPayload {
     pub uuid: String,
+    #[serde(rename = "itemId")]
     pub item_id: i32,
+    #[serde(rename = "inventoryType")]
     pub inventory_type: String,
+    #[serde(rename = "purchaseDate")]
     pub purchase_date: String,
     pub quantity: u64,
+    #[serde(rename = "ownershipType")]
     pub ownership_type: LolInventoryItemOwnershipType,
+    #[serde(rename = "expirationDate")]
     pub expiration_date: String,
+    #[serde(rename = "f2p")]
     pub f_2_p: bool,
     pub rental: bool,
     pub loyalty: bool,
+    #[serde(rename = "loyaltySources")]
     pub loyalty_sources: Vec<String>,
     pub owned: bool,
     pub wins: u64,
-    pub payload: HashMap<String, String>,
+    pub payload: Value,
 }
 
 
@@ -358,8 +370,11 @@ pub struct LolInventoryInventoryItemWithPayload {
 #[serde(rename_all = "camelCase")]
 pub struct LolInventoryInventoryNotification {
     pub id: i64,
+    #[serde(rename = "itemId")]
     pub item_id: i32,
+    #[serde(rename = "inventoryType")]
     pub inventory_type: String,
+    #[serde(rename = "type")]
     pub type_: String,
     pub acknowledged: bool,
 }
@@ -369,6 +384,7 @@ pub struct LolInventoryInventoryNotification {
 #[serde(rename_all = "camelCase")]
 pub struct LolInventoryXboxSubscriptionStatus {
     pub active: String,
+    #[serde(rename = "subscriptionId")]
     pub subscription_id: String,
 }
 

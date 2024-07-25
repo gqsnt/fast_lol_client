@@ -2,6 +2,7 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 use serde_json::{json, Value, to_value};
+use std::collections::hash_map::Values;
 use reqwest::Method;
 use common::IsApiRequest;
 
@@ -15,11 +16,11 @@ pub struct DeletePlayerNotificationsV1NotificationsById {
 
 impl IsApiRequest for DeletePlayerNotificationsV1NotificationsById {
     const METHOD: Method = Method::DELETE;
-    type ReturnType = HashMap<String, String>;
+    type ReturnType = Value;
     fn get_url(&self) -> String {format!("/player-notifications/v1/notifications/{}", self.id)}
 }
 
-pub fn delete_player_notifications_v_1_notifications_by_id(id: u64) -> DeletePlayerNotificationsV1NotificationsById {
+pub fn delete_player_notifications_v1_notifications_by_id(id: u64) -> DeletePlayerNotificationsV1NotificationsById {
     DeletePlayerNotificationsV1NotificationsById{id}
 }
 
@@ -32,7 +33,7 @@ impl IsApiRequest for GetPlayerNotificationsV1Config {
     fn get_url(&self) -> String {"/player-notifications/v1/config".to_string()}
 }
 
-pub fn get_player_notifications_v_1_config() -> GetPlayerNotificationsV1Config {
+pub fn get_player_notifications_v1_config() -> GetPlayerNotificationsV1Config {
     GetPlayerNotificationsV1Config{}
 }
 
@@ -45,7 +46,7 @@ impl IsApiRequest for GetPlayerNotificationsV1Notifications {
     fn get_url(&self) -> String {"/player-notifications/v1/notifications".to_string()}
 }
 
-pub fn get_player_notifications_v_1_notifications() -> GetPlayerNotificationsV1Notifications {
+pub fn get_player_notifications_v1_notifications() -> GetPlayerNotificationsV1Notifications {
     GetPlayerNotificationsV1Notifications{}
 }
 
@@ -60,7 +61,7 @@ impl IsApiRequest for GetPlayerNotificationsV1NotificationsById {
     fn get_url(&self) -> String {format!("/player-notifications/v1/notifications/{}", self.id)}
 }
 
-pub fn get_player_notifications_v_1_notifications_by_id(id: u64) -> GetPlayerNotificationsV1NotificationsById {
+pub fn get_player_notifications_v1_notifications_by_id(id: u64) -> GetPlayerNotificationsV1NotificationsById {
     GetPlayerNotificationsV1NotificationsById{id}
 }
 
@@ -78,7 +79,7 @@ impl IsApiRequest for PostPlayerNotificationsV1Notifications {
     }
 }
 
-pub fn post_player_notifications_v_1_notifications(body: PlayerNotificationsPlayerNotificationResource) -> PostPlayerNotificationsV1Notifications {
+pub fn post_player_notifications_v1_notifications(body: PlayerNotificationsPlayerNotificationResource) -> PostPlayerNotificationsV1Notifications {
     PostPlayerNotificationsV1Notifications{body}
 }
 
@@ -96,14 +97,14 @@ impl IsApiRequest for PutPlayerNotificationsV1Config {
     }
 }
 
-pub fn put_player_notifications_v_1_config(body: PlayerNotificationsPlayerNotificationConfigResource) -> PutPlayerNotificationsV1Config {
+pub fn put_player_notifications_v1_config(body: PlayerNotificationsPlayerNotificationConfigResource) -> PutPlayerNotificationsV1Config {
     PutPlayerNotificationsV1Config{body}
 }
 
 
 pub struct PutPlayerNotificationsV1NotificationsById {
     pub id: u64,
-    pub body: HashMap<String, String>,
+    pub body: Value,
 }
 
 impl IsApiRequest for PutPlayerNotificationsV1NotificationsById {
@@ -115,7 +116,7 @@ impl IsApiRequest for PutPlayerNotificationsV1NotificationsById {
     }
 }
 
-pub fn put_player_notifications_v_1_notifications_by_id(id: u64, body: HashMap<String, String>) -> PutPlayerNotificationsV1NotificationsById {
+pub fn put_player_notifications_v1_notifications_by_id(id: u64, body: Value) -> PutPlayerNotificationsV1NotificationsById {
     PutPlayerNotificationsV1NotificationsById{id, body}
 }
 
@@ -125,6 +126,7 @@ pub fn put_player_notifications_v_1_notifications_by_id(id: u64, body: HashMap<S
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct PlayerNotificationsPlayerNotificationConfigResource {
+    #[serde(rename = "ExpirationCheckFrequency")]
     pub expiration_check_frequency: Option<u64>,
 }
 
@@ -132,17 +134,22 @@ pub struct PlayerNotificationsPlayerNotificationConfigResource {
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct PlayerNotificationsPlayerNotificationResource {
+    #[serde(rename = "backgroundUrl")]
     pub background_url: String,
     pub created: String,
     pub critical: bool,
     pub data: HashMap<String, String>,
+    #[serde(rename = "detailKey")]
     pub detail_key: String,
     pub expires: String,
+    #[serde(rename = "iconUrl")]
     pub icon_url: String,
     pub id: u64,
     pub source: String,
     pub state: String,
+    #[serde(rename = "titleKey")]
     pub title_key: String,
+    #[serde(rename = "type")]
     pub type_: String,
     pub dismissible: bool,
 }
