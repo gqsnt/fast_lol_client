@@ -6,6 +6,7 @@ use iced_box::icon::material::Material;
 use plugin_lol_lobby::LolLobbyLobbyDto;
 use plugin_lol_matchmaking::{LolMatchmakingMatchmakingReadyCheckResponse, LolMatchmakingMatchmakingSearchResource, LolMatchmakingMatchmakingSearchState};
 use crate::AppResult;
+use crate::assets::Assets;
 use crate::client::apis;
 use crate::client::utils::perform_request;
 use crate::ui::application::AppState;
@@ -54,7 +55,7 @@ impl HasView for LobbyView {
                 LobbyMessage::QuitLobby => {
                     return perform_request(
                         connected_state,
-                        plugin_lol_lobby::delete_lol_lobby_v_2_lobby(),
+                        plugin_lol_lobby::delete_lol_lobby_v2_lobby(),
                         |r| CreateLobbyMessage::DeleteLobbyResult.into(),
                     );
                 }
@@ -63,13 +64,13 @@ impl HasView for LobbyView {
                         return if !session.game_config.is_custom {
                             perform_request(
                                 connected_state,
-                                plugin_lol_lobby::post_lol_lobby_v_2_lobby_matchmaking_search(),
+                                plugin_lol_lobby::post_lol_lobby_v2_lobby_matchmaking_search(),
                                 |r| Message::None,
                             )
                         } else {
                             perform_request(
                                 connected_state,
-                                plugin_lol_lobby::post_lol_lobby_v_1_lobby_custom_start_champ_select(),
+                                plugin_lol_lobby::post_lol_lobby_v1_lobby_custom_start_champ_select(),
                                 |r| Message::None,
                             )
                         };
@@ -80,7 +81,7 @@ impl HasView for LobbyView {
                         if !session.game_config.is_custom {
                             return perform_request(
                                 connected_state,
-                                plugin_lol_lobby::delete_lol_lobby_v_2_lobby_matchmaking_search(),
+                                plugin_lol_lobby::delete_lol_lobby_v2_lobby_matchmaking_search(),
                                 |r| Message::None,
                             );
                         }
@@ -89,28 +90,28 @@ impl HasView for LobbyView {
                 LobbyMessage::AcceptReadyCheck => {
                     return perform_request(
                         connected_state,
-                        plugin_lol_matchmaking::post_lol_matchmaking_v_1_ready_check_accept(),
+                        plugin_lol_matchmaking::post_lol_matchmaking_v1_ready_check_accept(),
                         |r| Message::None,
                     );
                 }
                 LobbyMessage::DeclineReadyCheck => {
                     return perform_request(
                         connected_state,
-                        plugin_lol_matchmaking::post_lol_matchmaking_v_1_ready_check_decline(),
+                        plugin_lol_matchmaking::post_lol_matchmaking_v1_ready_check_decline(),
                         |r| Message::None,
                     );
                 }
                 LobbyMessage::PromoteLobbySummoner(summoner_id) => {
                     return perform_request(
                         connected_state,
-                        plugin_lol_lobby::post_lol_lobby_v_2_lobby_members_by_summoner_id_promote(summoner_id),
+                        plugin_lol_lobby::post_lol_lobby_v2_lobby_members_by_summoner_id_promote(summoner_id),
                         |r| Message::None,
                     );
                 }
                 LobbyMessage::KickPlayer(summoner_id) => {
                     return perform_request(
                         connected_state,
-                        plugin_lol_lobby::post_lol_lobby_v_2_lobby_members_by_summoner_id_kick(summoner_id),
+                        plugin_lol_lobby::post_lol_lobby_v2_lobby_members_by_summoner_id_kick(summoner_id),
                         |r| Message::None,
                     );
                 }
@@ -118,7 +119,7 @@ impl HasView for LobbyView {
         }
         Command::none()
     }
-    fn view(connected_state: &ConnectedState) -> Container<'_, Message> {
+    fn view<'a>(connected_state: &'a ConnectedState, assets: &'a Assets) -> Container<'a, Message> {
         let mut result = Column::new()
             .spacing(20)
             .push(text("Lobby").size(25));
